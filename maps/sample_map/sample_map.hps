@@ -1,15 +1,23 @@
 #include "interfaces/Map_Interface.hps"
-#include "base/Inputhandler_Types.hps"
+#include "base/RichPresenceHandler_Types.hps"
 
+#include "base/InputHandler_Types.hps"
+#include "helpers/helper_game.hps"
+#include "helpers/helper_effects.hps"
 #include "helpers/helper_map.hps"
 #include "helpers/helper_props.hps"
-#include "helpers/helper_effects.hps"
+#include "helpers/helper_areas.hps"
 #include "helpers/helper_audio.hps"
-#include "helpers/helper_imgui.hps"
 #include "helpers/helper_sequences.hps"
-#include "helpers/helper_game.hps"
 #include "helpers/helper_modules.hps"
-#include "helpers/helper_ai.hps"
+#include "helpers/helper_player.hps"
+#include "helpers/helper_imgui.hps"
+#include "helpers/helper_modules.hps"
+#include "custom_depth/helper_custom_depth_audio.hps"
+#include "helper_imgui_urban.hps"
+#include "helper_imgui_cellphone.hps"
+
+#include "helper_custom_depth.hps"
 
 //--------------------------------------------------
  
@@ -39,11 +47,63 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 
+	void PreloadData()
+	{
+		//PlayerHands_PreloadHandModel_Human();
+	}
+	
+	//-------------------------------------------------------
+
 	////////////////////////////
 	// Run first time starting map
 	void OnStart()
 	{
+		/////////////////////////
+		///Preload Sounds
+		Sound_SetGlobalVolume(0.0f);
 		
+		////////////////////////
+		//Setup Entities
+		
+		/////////////////////////
+		// Debug
+		if(cLux_ScriptDebugOn()) 
+		{
+			cLux_AddDebugMessage("Debug on.");
+			
+			//Add any debug stuff here
+			Sound_FadeGlobalVolume(1.0f, 0.5f, eSoundEntryType_WorldAll);
+			//cLux_SetDebugInfoWindowText("Text that should show up when pressing F1");
+		}
+		
+		////////////////////////////
+		// Setup
+		
+		////////////////////////////
+		// Kick off intro
+		if(cLux_ScriptDebugOn() != false)
+		{
+			Effect_Fade_Out(0);
+			
+			IntroSequence("");
+		}
+		
+		///////////////////////////////
+		// Defaults
+		Player_SetJumpDisabled(false);
+		Player_SetMoveSpeedMul(1.0);
+		Player_SetLookSpeedMul(1.0);
+		Player_SetRunSpeedMul(1.0);
+		Player_SetAmbientLight_Indoors();
+		
+		Player_SetFlashlightDisabled(true);
+		
+		if(cLux_ScriptDebugOn()) 
+		{
+			Player_SetFlashlightDisabled(false);
+		}
+		
+		PlayerHands_SetHandModel_Human();
 	}
 
 	//-------------------------------------------------------
@@ -52,7 +112,8 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		
+		Player_SetFootWear("default");
+		Player_SetClothing("default");
 	}
 
 	//-------------------------------------------------------
@@ -98,12 +159,7 @@ class cScrMap : iScrMap
 	
 	void OnGui(float afTimeStep)
 	{
-		cImGuiLabelData label;
-		label.mFontAlign = eFontAlign_Center;
-		label.mFont.mvSize = cVector2f(30,30);
 		
-		ImGui_SetTransCategory("SampleMap");
-		ImGui_DoLabelExt("SampleMessage", label, ImGui_NrmPos(0,0,10.0f), ImGui_NrmSize(1.0f,1.0f));
 	}
  
 	//-------------------------------------------------------
@@ -129,15 +185,15 @@ class cScrMap : iScrMap
  
 	//} END MAIN FUNCTIONS
  
-	//////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
 	// SCENE X *NAME OF SCENE*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
-		 /////////////////////////////////////////
-		 // General
-		 //{//////////////////////////////////////
+		/////////////////////////////////////////
+		// General
+		//{//////////////////////////////////////
 		 
 		//-------------------------------------------------------
 	 
@@ -151,48 +207,112 @@ class cScrMap : iScrMap
 		
 		//} END General	
 	 
-		 /////////////////////////////////////////
-		 // Event *Name Of Event*
-		 //{//////////////////////////////////////
+		/////////////////////////////////////////
+		// Event *INTRO*
+		//{//////////////////////////////////////
 	 
-		 //-------------------------------------------------------
+		//-------------------------------------------------------
 	 
-		 /*Put any variables that are only used in Scene X, Event X here.*/
+		/*Put any variables that are only used in Scene X, Event X here.*/
 	 
-		 //-------------------------------------------------------
+		//-------------------------------------------------------
 	 
-		 /*Put any functionsthat are only used in Scene X, Event X here.*/
+		/*Put any functionsthat are only used in Scene X, Event X here.*/
+		
+		cSequenceStatesData mIntroSequence;
+		void IntroSequence(const tString &in asTimer) 
+		{
+			Sequence_Begin("IntroSequence", mIntroSequence);
+			
+			/////////////////////////////////////
+			//Fade in background audio
+			if (Sequence_DoStepAndWait(0.01)) 
+			{				
+				Player_SetLookSpeedMul(0.0f);
+				//CameraAnimation_Begin("CamAnim_WakeUp","",true);
+				
+				Player_SetJumpDisabled(true);
+				Player_SetCrouchDisabled(true);
+				Player_SetStandDisabled(true);
+				Player_SetHeadBobMul(0.0f);
+			}
+
+			/////////////////////////////////////////
+			// Start in darkness and do camera anim
+			if (Sequence_DoStepAndWait(1.0))
+			{
+				cLux_AddDebugMessage("Begin in darkness..");
+				Effect_Fade_Out(0);
+				
+				cLux_AddDebugMessage("Camera Animation Begin");
+				Effect_ImageTrail_Start(1.0, 0, 10.0, 5.0);
+				
+				Effect_Rumble_Start(0.7, 0.5);
+			}
+
+			/////////////////////////////////////////
+			// Fade in from darkness
+			if (Sequence_DoStepAndWait(3)) 
+			{
+				cLux_AddDebugMessage("Fade");
+				Effect_Fade_In(1.0);
+				
+				Player_SetLookSpeedMul(0.75f);
+				
+				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_WorldAll);
+				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_GuiWorld);
+				
+				Player_SetMoveSpeedMul(0);
+
+				//CameraAnimationNode_SetAutoMove("CamAnim_WakeUp_1", 1);
+							
+				//Sound_CreateAtEntity("WakeUp","00_05_apartment2/SFX/bed_awaken","Player",0,false);
+			}
+			
+			if (Sequence_DoStepAndWait(3)) 
+			{
+				// Allow player to move
+				Player_FadeMoveSpeedMulTo(1.0f,2.0f);
+				Player_SetJumpDisabled(false);
+				Player_SetCrouchDisabled(false);
+				Player_SetStandDisabled(false);
+				Player_SetHeadBobMul(1.0f);
+				Player_FadeLookSpeedMulTo(1.0f,10.0f);
+			}
+
+			Sequence_End();
+		}
 	 
-		 //-------------------------------------------------------
+		//-------------------------------------------------------
 	 
-		 //} END Event *Name Of Event*
+		//} END Event *Name Of Event*
 	 
-	 //} END SCENE X
+	//} END SCENE X
  
  
-	 /////////////////////////////////////////
-	 // ==============
-	 // TERMINALS
-	 // ==============
-	 //{//////////////////////////////////////
+	/////////////////////////////////////////
+	// ==============
+	// TERMINALS
+	// ==============
+	//{//////////////////////////////////////
  
-		 //-------------------------------------------------------
-	 
-		 /////////////////////////////////////////
-		 // Terminal *Name Of Terminal*
-		 //{//////////////////////////////////////
-	 
-		 //-------------------------------------------------------
-	 
-		 /*Put any variables that are only used Terminal here.*/
+		//-------------------------------------------------------
+	
+		/////////////////////////////////////////
+		// Terminal *Name Of Terminal*
+		//{//////////////////////////////////////
 	 
 		 //-------------------------------------------------------
-	 
-		 /*Put any functions that are only used Terminal here.*/
-	 
-		 //-------------------------------------------------------
-	 
-		 //} END Terminal *Name Of Terminal*
+	
+		/*Put any variables that are only used Terminal here.*/
+	
+		//-------------------------------------------------------
+	
+		/*Put any functions that are only used Terminal here.*/
+	
+		//-------------------------------------------------------
+	
+		//} END Terminal *Name Of Terminal*
 	
 	//} END TERMINALS
  
