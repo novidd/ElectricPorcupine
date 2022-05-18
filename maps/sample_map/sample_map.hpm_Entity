@@ -4,10 +4,19 @@
         <Objects />
     </Section>
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="3">
+        <FileIndex_Entities NumOfFiles="12">
             <File Id="0" Path="entities/station/ornaments_wall/sign_fire_extinguisher/sign_fire_extinguisher.ent" />
             <File Id="1" Path="entities/station/tools/fire_extinguisher/fire_extinguisher.ent" />
             <File Id="2" Path="entities/station/lamp/electrical_lamp_small/electrical_lamp_small.ent" />
+            <File Id="3" Path="entities/station/terminals/ark_testing_terminal/ark_testing_terminal.ent" />
+            <File Id="4" Path="entities/station/terminals/camera_portable/camera_portable.ent" />
+            <File Id="5" Path="entities/station/terminals/camera_portable/camera_portable_hud.ent" />
+            <File Id="6" Path="entities/station/terminals/computer_ceiling_terminal/computer_ceiling_terminal.ent" />
+            <File Id="7" Path="entities/station/terminals/computer_panel_terminal/computer_panel_large_GUI.ent" />
+            <File Id="8" Path="entities/station/terminals/computer_panel_terminal/computer_panel_medium_white_GUI.ent" />
+            <File Id="9" Path="entities/station/terminals/computer_panel_terminal/computer_panel_medium_white_GUI_no_collide.ent" />
+            <File Id="10" Path="entities/station/terminals/computer_panel_terminal/computer_panel_small_GUI.ent" />
+            <File Id="11" Path="entities/station/terminals/computer_panel_terminal/computer_panel_medium_GUI.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="285212673" Name="sign_fire_extinguisher_1" CreStamp="1652902949" ModStamp="1652903092" WorldPos="2.75 1.75 0" Rotation="0 0 0" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="17 30 285212673">
@@ -138,6 +147,72 @@
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="285212687" Name="Terminal" CreStamp="1652910429" ModStamp="1652910746" WorldPos="-0.5 1.5 1.25" Rotation="-0 3.14159 -0" Scale="0.7 0.7 0.3" FileIndex="11" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="17 43 285212687">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectBrightnessMul" Value="1" />
+                    <Var Name="IllumColor" Value="0 0 0 0" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
+                    <Var Name="OnGuiFunction" Value="Terminal_OnGui" />
+                    <Var Name="EnterCallback" Value="" />
+                    <Var Name="LeaveCallback" Value="" />
+                    <Var Name="ShowMouse" Value="true" />
+                    <Var Name="AllowInteraction" Value="true" />
+                    <Var Name="UpdateWhenOutOfView" Value="true" />
+                    <Var Name="GuiActive" Value="true" />
+                    <Var Name="CacheAtScreenSize" Value="0.025" />
+                    <Var Name="PlayerPosEntity" Value="" />
+                    <Var Name="FPSWhenIdle" Value="30" />
+                    <Var Name="TerminalColorMul" Value="0.86666673421859741 0.97647064924240112 1 1" />
+                    <Var Name="TerminalBrightness" Value="3" />
+                    <Var Name="VerticalFOV" Value="70" />
                 </UserVariables>
             </Entity>
         </Objects>

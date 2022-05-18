@@ -8,22 +8,40 @@
 #include "helpers/helper_props.hps"
 #include "helpers/helper_areas.hps"
 #include "helpers/helper_audio.hps"
+#include "helpers/helper_ai.hps"
 #include "helpers/helper_sequences.hps"
 #include "helpers/helper_modules.hps"
 #include "helpers/helper_player.hps"
 #include "helpers/helper_imgui.hps"
 #include "helpers/helper_modules.hps"
 #include "custom_depth/helper_custom_depth_audio.hps"
-#include "helper_imgui_urban.hps"
-#include "helper_imgui_cellphone.hps"
+#include "helper_imgui_station.hps"
+#include "helper_imgui_station_app_error.hps"
 
 #include "helper_custom_depth.hps"
+#include "helper_custom_depth_ai.hps"
 
 //--------------------------------------------------
  
 /*Place any global values here. These must be const variables as they will not be saved*/
 /*This is also the place for enums and classes, but these should be avoided whenever possible*/
- 
+
+enum eTechTerminalState
+{
+	eTechTerminalState_MainMenu,
+	eTechTerminalState_SystemStatus,
+	eTechTerminalState_WauText,
+	
+	eTechTerminalState_OmniToolMain,
+	eTechTerminalState_OmniToolChipSetup,
+	eTechTerminalState_OmniToolChipInstalling,
+	eTechTerminalState_OmniToolChipComplete,
+	eTechTerminalState_OmniToolBrainSetup,
+	eTechTerminalState_OmniToolOrientationVideo,
+	
+	eTechTerminalState_SuitStatus,
+}
+
 //--------------------------------------------------
  
 class cScrMap : iScrMap
@@ -299,8 +317,9 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	
 		/////////////////////////////////////////
-		// Terminal *Name Of Terminal*
+		// Terminal *TERMINAL X*
 		//{//////////////////////////////////////
+		
 	 
 		 //-------------------------------------------------------
 	
@@ -309,6 +328,55 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	
 		/*Put any functions that are only used Terminal here.*/
+		
+		void Terminal_OnGui(const tString&in asEntityName, float afTimeStep)
+		{
+			ImGui_SetTransCategory("00_01_sample");
+			
+			///////////////
+			// Data
+			cImGuiButtonData buttonData = StationGui_CreateDefaultButtonData();
+			ImGui_SetDefaultButton(buttonData);
+			
+			cImGuiLabelData labelData;
+			labelData.mFont.mvSize = cVector2f(20);
+			ImGui_SetDefaultLabel(labelData);
+			
+			cImGuiTextFrameData textFrame = ImGui_GetDefaultTextFrame();
+			textFrame.mColorBase = cColor(0,0,0,0);
+			ImGui_SetDefaultTextFrame(textFrame);
+			
+			///////////////
+			// Ornaments
+			StationGuiBG_Backdrop("background/background_logo_pathosstation", cVector2f(0.01, 0.05), 0.75);
+			StationGuiBG_Scanlines();
+			
+			if (StationGui_DrawAndCheckErrors()) return;
+			
+			tString sSystemStatusButtonText = "SystemStatus";
+			tString sSuitStatusButtonText = "SuitStatusButton";
+			
+			bool bBackButtonEnabled = true;
+			int lBackState = eTechTerminalState_MainMenu;
+			int lActiveApp = StationGui_GetActiveApp(eTechTerminalState_MainMenu);
+			int lSecuritySelection = -1;
+			
+			switch(lActiveApp)
+			{
+				
+				case eTechTerminalState_MainMenu:
+				StationGui_AddApp(sSystemStatusButtonText, true, eTechTerminalState_SystemStatus);
+				StationGui_AddApp("CorruptWauButton", true, eTechTerminalState_WauText);
+				StationGui_AddApp("OmniToolButton", true, eTechTerminalState_OmniToolMain);
+				StationGui_AddApp(sSuitStatusButtonText, true, eTechTerminalState_SuitStatus);
+				StationGui_MainMenu();
+				
+				bBackButtonEnabled = false;
+				break;
+			}
+			
+			StationGuiBG_Taskbar("upsilon");
+		}
 	
 		//-------------------------------------------------------
 	
