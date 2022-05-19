@@ -21,6 +21,11 @@
 #include "helper_custom_depth.hps"
 #include "helper_custom_depth_ai.hps"
 
+#include "helper_custom_depth_imgui.hps"
+#include "helper_imgui_station_basics.hps"
+#include "helper_custom_depth_audio.hps"
+#include "helper_font.hps"
+
 //--------------------------------------------------
  
 /*Place any global values here. These must be const variables as they will not be saved*/
@@ -60,6 +65,8 @@ class cScrMap : iScrMap
 	// Set up map environment
 	void Setup()
 	{
+		////////////////////
+		// PRESETS FOR NEXT LEVEL TRANSITION
 		
 	}
 	
@@ -121,7 +128,9 @@ class cScrMap : iScrMap
 			Player_SetFlashlightDisabled(false);
 		}
 		
-		PlayerHands_SetHandModel_Human();
+		//PlayerHands_PreloadHandModel_Diving();
+		PlayerHands_PreloadHandModel_DeepSea();
+		//PlayerHands_SetHandModel_Human();
 	}
 
 	//-------------------------------------------------------
@@ -160,6 +169,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
+			Voice_Play("CaptainDialog_1");
 		}
 	}
 
@@ -177,7 +187,29 @@ class cScrMap : iScrMap
 	
 	void OnGui(float afTimeStep)
 	{
+		//cImGuiGfx gfx("background/background_logo_pathosstation");
+		//gfx.mColor.a = 1;
 		
+		//cVector2f avRelPos = cVector2f(0.1,0.25);
+	
+		//cVector2f vSize = ImGui_GetRatioCorrectSizeByNrmWidth(gfx, 0.5f);
+		//cVector3f vPos = ImGui_NrmPos(cVector3f(avRelPos.x, avRelPos.y, 0.0f));
+	
+		//ImGui_DrawGfx(gfx, vPos, vSize);
+		
+		//cImGuiLabelData label;
+		//label.mFontAlign = eFontAlign_Center;
+		//label.mFont.mvSize = cVector2f(30,30);
+		
+		//ImGui_SetTransCategory("");
+		//ImGui_DoLabelExt("SampleMessage", label, ImGui_NrmPos(0,0,10.0f), ImGui_NrmSize(1.0f,1.0f));
+		
+		//ImGui_SetTransCategory("");
+		//cImGuiWindowData window = StationGui_CreateDefaultWindowData();
+		//window.mFont.mvSize = cVector2f(0.1f, 1.0f);
+		
+		//ImGui_DoWindowStart("x667c", StationGui_CreateDefaultWindowData(), ImGui_NrmPosGroup(0.5, 0.55, 1), ImGui_NrmSizeGroup(cVector2f(0.125, 0.25)));
+		//StationGui_DoWindowEnd();
 	}
  
 	//-------------------------------------------------------

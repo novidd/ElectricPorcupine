@@ -1,7 +1,7 @@
 <HPLMapTrack_Area ID="82014519DE04367D0D344B6D35C2DEC3D9353D" Version="1.00">
     <Section Name="Luis@WIGGLEWAGGLES">
         <Objects>
-            <Area ID="268435460" Name="PlayerStartArea_1" CreStamp="1443527753" ModStamp="1443528025" WorldPos="-0.5 1.25 -0.25" Rotation="0 0 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 11 268435460" AreaType="PlayerStart">
+            <Area ID="268435460" Name="PlayerStartArea_1" CreStamp="1443527753" ModStamp="1652962276" WorldPos="0 1.25 0" Rotation="0 0 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 11 268435460" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
@@ -32,6 +32,37 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="285212707" Name="Transfer0102" CreStamp="1652969274" ModStamp="1652969311" WorldPos="0 5.75 0" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="17 55 285212707" AreaType="MapTransfer">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="true" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                </UserVariables>
+            </Area>
+            <Area ID="285212761" Name="CameraView" CreStamp="1652978263" ModStamp="1652978490" WorldPos="4.7033 1.55483 0" Rotation="-5.75959 4.71239 0" Scale="0.25 0.25 0.25" Active="true" Mesh="" UID="17 26 285212761" AreaType="CameraAnimation">
+                <UserVariables>
+                    <Var Name="MaxYaw" Value="45" />
+                    <Var Name="MaxPitch" Value="45" />
+                    <Var Name="LookSpeedMultiplier" Value="1" />
+                    <Var Name="ForwardTime" Value="1" />
+                    <Var Name="BackwardTime" Value="1" />
+                    <Var Name="AutoMovement" Value="0" />
+                    <Var Name="LookMoveDistance" Value="0" />
+                    <Var Name="LookMoveMaxAngle" Value="0" />
+                    <Var Name="InteractiveMovement" Value="true" />
+                    <Var Name="UseSpeedFading" Value="true" />
+                    <Var Name="CrouchOnExit" Value="false" />
+                    <Var Name="InitToCamera" Value="false" />
+                    <Var Name="UsePlayerEyeline" Value="false" />
+                    <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
         </Objects>
