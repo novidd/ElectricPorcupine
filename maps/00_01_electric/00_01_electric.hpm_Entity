@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="1BF191F8A5D70E64C99060C4F57C91DB490083F" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="9">
+        <FileIndex_Entities NumOfFiles="17">
             <File Id="0" Path="entities/oceanbottom/tech/path_marker/path_marker_fx.ent" />
             <File Id="1" Path="entities/creatures/fish/blue_runner_infected/blue_runner_infected.ent" />
             <File Id="2" Path="entities/creatures/fish/blue_runner/blue_runner.ent" />
@@ -10,6 +10,14 @@
             <File Id="6" Path="entities/oceanbottom/building/omicron_substation/omicron_substation.ent" />
             <File Id="7" Path="entities/oceanbottom/mscurie/rusted_ship_debris/debris_ship_large_03.ent" />
             <File Id="8" Path="entities/oceanbottom/tech/research_site_dynamic_generator_probe/research_site_dynamic_generator_probe.ent" />
+            <File Id="9" Path="entities/oceanbottom/mscurie/rusted_ship_debris/debris_ship_large_02.ent" />
+            <File Id="10" Path="entities/oceanbottom/mscurie/rusted_ship_debris/debris_ship_large_01.ent" />
+            <File Id="11" Path="entities/oceanbottom/mscurie/rusted_ship_debris/debris_ship_small_01.ent" />
+            <File Id="12" Path="entities/oceanbottom/mscurie/rusted_ship_debris/debris_ship_small_02.ent" />
+            <File Id="13" Path="entities/oceanbottom/mscurie/rusted_ship_debris/debris_ship_small_03.ent" />
+            <File Id="14" Path="entities/oceanbottom/mscurie/rusted_ship_debris/ship_huge_01.ent" />
+            <File Id="15" Path="entities/oceanbottom/mscurie/rusted_ship_debris/ship_huge_02.ent" />
+            <File Id="16" Path="entities/oceanbottom/mscurie/rusted_ship_debris/ship_huge_03.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435477" Name="path_marker_fx_1" CreStamp="1653049277" ModStamp="1653060918" WorldPos="1.75 0 -6.25" Rotation="0 0.785398 0" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 150 268435477">
@@ -538,7 +546,7 @@
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435743" Name="debris_ship_large_03_2" CreStamp="1653076094" ModStamp="1653076188" WorldPos="0 -3.75 -6.5" Rotation="-3.14159 3.14159 3.14159" Scale="1.5 1.5 0.5" FileIndex="7" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 288 268435743">
+            <Entity ID="268435743" Name="debris_ship_large_03_2" CreStamp="1653076094" ModStamp="1653076383" WorldPos="0 -4 -6.63051" Rotation="-3.14159 3.14159 3.14159" Scale="1.25 1.35 0.5" FileIndex="7" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 288 268435743">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -549,7 +557,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435744" Name="debris_ship_large_03_3" CreStamp="1653076188" ModStamp="1653076191" WorldPos="0 -1.75 -6.5" Rotation="3.14159 3.14159 -2.38419e-007" Scale="1.5 1.5 0.5" FileIndex="7" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 286 268435744">
+            <Entity ID="268435744" Name="debris_ship_large_03_3" CreStamp="1653076188" ModStamp="1653076749" WorldPos="0 -1.75 -6.63051" Rotation="-3.14159 3.14159 3.14159" Scale="1.25 1.35 0.5" FileIndex="7" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 286 268435744">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -560,7 +568,18 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435745" Name="debris_ship_large_03_4" CreStamp="1653076200" ModStamp="1653076244" WorldPos="0 -1.5 0.25" Rotation="3.14159 -8.90101e-007 3.14159" Scale="2.25 2 1.5" FileIndex="7" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 287 268435745">
+            <Entity ID="268435745" Name="debris_ship_large_03_4" CreStamp="1653076200" ModStamp="1653076636" WorldPos="1.25 -1.35326 0.127181" Rotation="3.14159 -8.90101e-007 3.14159" Scale="1.25 1.5 1.5" FileIndex="7" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 287 268435745">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268435751" Name="debris_ship_large_03_5" CreStamp="1653076637" ModStamp="1653076638" WorldPos="-1.25 -1.35326 0.127181" Rotation="3.14159 -8.90101e-007 3.14159" Scale="1.25 1.5 1.5" FileIndex="7" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 283 268435751">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
