@@ -104,6 +104,11 @@ class cScrMap : iScrMap
 			Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, fFadeTime);
 		}
 		
+		if(cLux_ScriptDebugOn())
+		{
+			cLux_GetCurrentMap().GetWorld().SetFogActive(true);
+		}
+		
 	}
 	
 	//-------------------------------------------------------
