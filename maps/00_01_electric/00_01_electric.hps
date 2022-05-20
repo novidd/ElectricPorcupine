@@ -1,30 +1,39 @@
+
 #include "interfaces/Map_Interface.hps"
+#include "base/AchievementHandler_Types.hps"
+#include "base/InputHandler_Types.hps"
 #include "base/RichPresenceHandler_Types.hps"
 
-#include "base/InputHandler_Types.hps"
 #include "helpers/helper_game.hps"
 #include "helpers/helper_effects.hps"
 #include "helpers/helper_map.hps"
 #include "helpers/helper_props.hps"
-#include "helpers/helper_areas.hps"
 #include "helpers/helper_audio.hps"
-#include "helpers/helper_ai.hps"
 #include "helpers/helper_sequences.hps"
 #include "helpers/helper_modules.hps"
-#include "helpers/helper_player.hps"
 #include "helpers/helper_imgui.hps"
-#include "helpers/helper_modules.hps"
-#include "custom_depth/helper_custom_depth_audio.hps"
+#include "helpers/helper_areas.hps"
+#include "helpers/helper_ai.hps"
+#include "helpers/helper_player.hps"
+
 #include "helper_imgui_station.hps"
 #include "helper_imgui_station_app_error.hps"
+#include "helper_imgui_station_app_audioplayback.hps"
+#include "helper_imgui_station_app_photoviewer.hps"
+#include "helper_imgui_cath_portrait.hps"
+#include "helper_imgui_station_basics.hps"
 
 #include "helper_custom_depth.hps"
 #include "helper_custom_depth_ai.hps"
-
+#include "helper_custom_depth_ai_fleshers.hps"
 #include "helper_custom_depth_imgui.hps"
-#include "helper_imgui_station_basics.hps"
 #include "helper_custom_depth_audio.hps"
+
+#include "custom_depth/helper_custom_depth_audio.hps"
+
 #include "helper_font.hps"
+
+#include "player/Player_Types.hps"
 
 //--------------------------------------------------
  
@@ -49,8 +58,6 @@ enum eTechTerminalState
 
 //--------------------------------------------------
 
-const float gfDofMax = 10.0f;
- 
 class cScrMap : iScrMap
 {
 	//--------------------------------------------
@@ -63,58 +70,44 @@ class cScrMap : iScrMap
  
 	//-------------------------------------------------------
 	
-	int mlDofID = -1;
-	
 	//-------------------------------------------------------
  
 	////////////////////////////
 	// Set up map environment
 	void Setup()
-	{
+	{		
 		///////////////////////////////
 		// Setup presets
 		{
 			// When outside and underwater
-			//Map_Preset_SetupFog("Outside", true, 2, 30, 0.4, cColor(2.0 / 255.0, 7.0 / 255.0, 9.0 / 255.0,1), 1.0, true, true);
-			//Map_Preset_SetupDepthOfField("Outside", true, 0.05, 12.0, 0.1);
-			//Map_Preset_SetupBloom("Outside", 160, 0.00001, 0.5, cColor(0.3, 0.3, 0.3, 1.0));
-			//Map_Preset_SetupSecondaryFog("Outside", true, 0, 70, 0.15, cColor(0, 0, 0, 1));
+			Map_Preset_SetupFog("Exterior", true, 2, 30, 0.4, cColor(2.0 / 255.0, 7.0 / 255.0, 9.0 / 255.0,1), 1.0, true, true);
+			Map_Preset_SetupSecondaryFog("Exterior", true, 0, 70, 0.15, cColor(0, 0, 0, 1));
 			
-			// Inside and not underwater
-			//Map_Preset_SetupFog("Inside", true, 2, 60, 0.9, cColor(0, 0, 0, 1), 1.0, false, false);
-			//Map_Preset_SetupDepthOfField("Inside", false);
-			//Map_Preset_SetupBloom("Inside", 128, 0.75, 0.5, cColor(1.0, 1.0));
-			//Map_Preset_SetupSecondaryFog("Inside", false, 0, 70, 0.15, cColor(0, 0, 0, 1));
+			Map_Preset_SetupDepthOfField("Exterior", true, 0.05, 12.0, 0.1);
+			Map_Preset_SetupBloom("Exterior", 160, 0.00001, 0.5, cColor(0.3, 0.3, 0.3, 1.0));
 			
-			// Liquid area
-			//Map_Preset_SetupFog("LiquidArea", false); //the luquid area has its own fog
-			//Map_Preset_SetupDepthOfField("LiquidArea", true, 0.05, 12.0, 0.1);
-			//Map_Preset_SetupBloom("LiquidArea", 160, 0.00001, 0.5, cColor(0.3, 0.3, 0.3, 1.0));
-			//Map_Preset_SetupSecondaryFog("LiquidArea", true, 0, 70, 0.15, cColor(0, 0, 0, 1));
-			
-			//Player_SetFlashlightEnvParticleMul(4);
-			
-			cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
-			
-			mlDofID = Effect_DoF_Start(0.0f, gfDofMax, 0.1, 0.0);
-		
-			float fFadeTime = 0.5;
-			Effect_Bloom_FadeBrightPass(0.00001, fFadeTime);
-			Effect_Bloom_FadeBloomWidth(160, fFadeTime);
-			Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, fFadeTime);
+			Map_Preset_SetupDepthOfField("ElectricStart", true, 0, 12, 1.0);
+			Map_Preset_SetupBloom("ElectricStart", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
 		}
+		
+		//PLACE THE THREE LINES BELOW IN FUNCTION
+		Map_SetUnderwater(true);
+		Player_SetAmbientLight_Outdoors(true);
+		cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
+		Map_Preset_Fade("Exterior", 0.001f);
 		
 		if(cLux_ScriptDebugOn())
 		{
 			cLux_GetCurrentMap().GetWorld().SetFogActive(true);
 		}
-		
 	}
 	
 	//-------------------------------------------------------
 
 	void PreloadData()
 	{
+		PlayerHands_PreloadHandModel_DeepSea();
+		//PlayerHands_PreloadHandModel_Diving();
 		//PlayerHands_PreloadHandModel_Human();
 	}
 	
@@ -162,16 +155,12 @@ class cScrMap : iScrMap
 		Player_SetRunSpeedMul(1.0);
 		Player_SetAmbientLight_Outdoors();
 		
-		Player_SetFlashlightDisabled(true);
+		PlayerHands_SetHandModel_Diving();
 		
 		if(cLux_ScriptDebugOn()) 
 		{
 			Player_SetFlashlightDisabled(false);
 		}
-		
-		//PlayerHands_PreloadHandModel_Diving();
-		PlayerHands_PreloadHandModel_DeepSea();
-		//PlayerHands_SetHandModel_Human();
 	}
 
 	//-------------------------------------------------------
@@ -210,7 +199,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			
+			Map_Preset_Fade("Exterior", 0.001f);
 		}
 	}
 
@@ -310,6 +299,8 @@ class cScrMap : iScrMap
 			// Start in darkness and do camera anim
 			if (Sequence_DoStepAndWait(1.0))
 			{
+				// HAVE THE PLAYER FLASHLIGHT ON IN INTRO, MAKE IT FLICKER
+				
 				cLux_AddDebugMessage("Begin in darkness..");
 				Effect_Fade_Out(0);
 				
