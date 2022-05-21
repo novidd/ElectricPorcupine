@@ -113,10 +113,6 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
-		/////////////////////////
-		///Preload Sounds
-		Sound_SetGlobalVolume(0.0f);
-		
 		////////////////////////
 		//Setup Entities
 		
@@ -127,8 +123,6 @@ class cScrMap : iScrMap
 			cLux_AddDebugMessage("Debug on.");
 			
 			//Add any debug stuff here
-			Sound_FadeGlobalVolume(1.0f, 0.5f, eSoundEntryType_WorldAll);
-			//cLux_SetDebugInfoWindowText("Text that should show up when pressing F1");
 		}
 		
 		////////////////////////////
@@ -137,26 +131,6 @@ class cScrMap : iScrMap
 		
 		Player_SetAmbientLight_Outdoors();
 		PlayerHands_SetHandModel_Diving();
-		
-		Player_SetJumpDisabled(false);
-		Player_SetMoveSpeedMul(1.0);
-		Player_SetLookSpeedMul(1.0);
-		Player_SetRunSpeedMul(1.0);
-		
-		if(cLux_ScriptDebugOn()) 
-		{
-			Player_SetFlashlightDisabled(false);
-		}
-		
-		////////////////////////////
-		// INTRO SETUP
-		
-		if(cLux_ScriptDebugOn() == false)
-		{
-			Effect_Fade_Out(0);
-			
-			IntroSequence("");
-		}
 	}
 
 	//-------------------------------------------------------
@@ -196,6 +170,11 @@ class cScrMap : iScrMap
 		{
 			Map_Preset_Fade("BRIDGE", 0.001f);
 		}
+		
+		if(alAction == eAction_Test2)
+		{
+			Effect_VideoDistortion_Start(1.0f, 5.0f, 1.0f, 1.0f, 1.0f);
+		}
 	}
 
 	//-------------------------------------------------------
@@ -218,7 +197,6 @@ class cScrMap : iScrMap
 	//-------------------------------------------------------
  
 	//} END MAIN CALLBACKS
- 
  
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
@@ -292,7 +270,7 @@ class cScrMap : iScrMap
 		//} END General	
 	 
 		/////////////////////////////////////////
-		// Event *INTRO*
+		// Event *Name Of Event*
 		//{//////////////////////////////////////
 	 
 		//-------------------------------------------------------
@@ -302,74 +280,6 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	 
 		/*Put any functionsthat are only used in Scene X, Event X here.*/
-		
-		cSequenceStatesData mIntroSequence;
-		void IntroSequence(const tString &in asTimer) 
-		{
-			Sequence_Begin("IntroSequence", mIntroSequence);
-			
-			/////////////////////////////////////
-			//Fade in background audio
-			if (Sequence_DoStepAndWait(0.01)) 
-			{				
-				Player_SetLookSpeedMul(0.0f);
-				//CameraAnimation_Begin("CamAnim_WakeUp","",true);
-				
-				Player_SetJumpDisabled(true);
-				Player_SetCrouchDisabled(true);
-				Player_SetStandDisabled(true);
-				Player_SetHeadBobMul(0.0f);
-			}
-
-			/////////////////////////////////////////
-			// Start in darkness and do camera anim
-			if (Sequence_DoStepAndWait(1.0))
-			{
-				// HAVE THE PLAYER FLASHLIGHT ON IN INTRO, MAKE IT FLICKER
-				
-				cLux_AddDebugMessage("Begin in darkness..");
-				Effect_Fade_Out(0);
-				
-				cLux_AddDebugMessage("Camera Animation Begin");
-				Effect_ImageTrail_Start(1.0, 0, 10.0, 5.0);
-				
-				Effect_Rumble_Start(0.7, 0.5);
-			}
-
-			/////////////////////////////////////////
-			// Fade in from darkness
-			if (Sequence_DoStepAndWait(3)) 
-			{
-				cLux_AddDebugMessage("Fade");
-				Effect_Fade_In(1.0);
-				
-				Player_SetLookSpeedMul(0.75f);
-				
-				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_WorldAll);
-				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_GuiWorld);
-				
-				Player_SetMoveSpeedMul(0);
-
-				//CameraAnimationNode_SetAutoMove("CamAnim_WakeUp_1", 1);
-							
-				//Sound_CreateAtEntity("WakeUp","00_05_apartment2/SFX/bed_awaken","Player",0,false);
-			}
-			
-			if (Sequence_DoStepAndWait(3)) 
-			{
-				// Allow player to move
-				Player_FadeMoveSpeedMulTo(1.0f,2.0f);
-				Player_SetJumpDisabled(false);
-				Player_SetCrouchDisabled(false);
-				Player_SetStandDisabled(false);
-				Player_SetHeadBobMul(1.0f);
-				Player_FadeLookSpeedMulTo(1.0f,10.0f);
-			}
-
-			Sequence_End();
-		}
-	 
-		//-------------------------------------------------------
 	 
 		//} END Event *Name Of Event*
 	 
