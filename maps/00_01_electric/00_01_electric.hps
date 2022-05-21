@@ -90,12 +90,6 @@ class cScrMap : iScrMap
 			Map_Preset_SetupBloom("ElectricStart", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
 		}
 		
-		//PLACE THE THREE LINES BELOW IN FUNCTION
-		Map_SetUnderwater(true);
-		Player_SetAmbientLight_Outdoors(true);
-		cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
-		Map_Preset_Fade("Exterior", 0.001f);
-		
 		if(cLux_ScriptDebugOn())
 		{
 			cLux_GetCurrentMap().GetWorld().SetFogActive(true);
@@ -136,30 +130,30 @@ class cScrMap : iScrMap
 		}
 		
 		////////////////////////////
-		// Setup
+		// LEVEL SETUP
+		SetPlayerIsUnderwater(true, 0.001f, true);
+		
+		Player_SetAmbientLight_Outdoors();
+		PlayerHands_SetHandModel_Diving();
+		
+		Player_SetJumpDisabled(false);
+		Player_SetMoveSpeedMul(1.0);
+		Player_SetLookSpeedMul(1.0);
+		Player_SetRunSpeedMul(1.0);
+		
+		if(cLux_ScriptDebugOn()) 
+		{
+			Player_SetFlashlightDisabled(false);
+		}
 		
 		////////////////////////////
-		// Kick off intro
+		// INTRO SETUP
+		
 		if(cLux_ScriptDebugOn() == false)
 		{
 			Effect_Fade_Out(0);
 			
 			IntroSequence("");
-		}
-		
-		///////////////////////////////
-		// Defaults
-		Player_SetJumpDisabled(false);
-		Player_SetMoveSpeedMul(1.0);
-		Player_SetLookSpeedMul(1.0);
-		Player_SetRunSpeedMul(1.0);
-		Player_SetAmbientLight_Outdoors();
-		
-		PlayerHands_SetHandModel_Diving();
-		
-		if(cLux_ScriptDebugOn()) 
-		{
-			Player_SetFlashlightDisabled(false);
 		}
 	}
 
@@ -169,7 +163,6 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		Map_SetUnderwater(true);
 		Player_SetFlashlightEnvParticleMul(10);
 	}
 
@@ -234,10 +227,41 @@ class cScrMap : iScrMap
 	//-------------------------------------------------------
  
 	/*Put any variables that are used in more than one scene here.*/
+	
+	bool mbPlayerIsUnderwater = true;
  
 	//-------------------------------------------------------
  
 	/*Put any functions that are used in more than one scene here.*/
+	
+	void SetPlayerIsUnderwater(bool abX, float afFadeTime, bool abAffectEffecs)
+	{
+		mbPlayerIsUnderwater = abX;
+		
+		//////////////////////////////
+		// Underwater
+		if(mbPlayerIsUnderwater)
+		{
+			Map_SetUnderwater(true);
+			Player_SetAmbientLight_Outdoors(true);
+			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
+			Map_Preset_Fade("Exterior", afFadeTime);
+			
+			//////////////
+			// Enable all visibility areas and critters
+			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", true);
+			//Entity_SetActive("X_*", true);
+		}
+		//////////////////////////////
+		// Indoors
+		else
+		{
+			////////////////
+			// Disable visibility areas and critters
+			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", false);
+			//Entity_SetActive("X_*", false);
+		}
+	}
  
 	//-------------------------------------------------------
  
@@ -348,7 +372,6 @@ class cScrMap : iScrMap
 		//} END Event *Name Of Event*
 	 
 	//} END SCENE X
- 
  
 	/////////////////////////////////////////
 	// ==============

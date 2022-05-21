@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="1BF191F8A5D70E64C99060C4F57C91DB490083F" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="17">
+        <FileIndex_Entities NumOfFiles="18">
             <File Id="0" Path="entities/oceanbottom/tech/path_marker/path_marker_fx.ent" />
             <File Id="1" Path="entities/creatures/fish/blue_runner_infected/blue_runner_infected.ent" />
             <File Id="2" Path="entities/creatures/fish/blue_runner/blue_runner.ent" />
@@ -18,6 +18,7 @@
             <File Id="14" Path="entities/oceanbottom/mscurie/rusted_ship_debris/ship_huge_01.ent" />
             <File Id="15" Path="entities/oceanbottom/mscurie/rusted_ship_debris/ship_huge_02.ent" />
             <File Id="16" Path="entities/oceanbottom/mscurie/rusted_ship_debris/ship_huge_03.ent" />
+            <File Id="17" Path="entities/creatures/fish/shark_scalloped_hammerhead/shark_scalloped_hammerhead.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435477" Name="path_marker_fx_1" CreStamp="1653049277" ModStamp="1653060918" WorldPos="1.75 0 -6.25" Rotation="0 0.785398 0" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 150 268435477">
@@ -699,6 +700,34 @@
                     <Var Name="ConnectedEntityStatesUsed" Value="0" />
                     <Var Name="TowardsCenterMul" Value="1.5" />
                     <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268435823" Name="hammerhead" CreStamp="1653138492" ModStamp="1653139393" WorldPos="-6.25 23.375 -36.5" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="17" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 267 268435823">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="FishGrave_2" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="0.8" />
+                    <Var Name="ExtraEscapeMul" Value="0" />
                     <Var Name="ExtraEscapeEntities" Value="" />
                 </UserVariables>
             </Entity>
