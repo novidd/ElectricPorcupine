@@ -31,6 +31,16 @@ Mod name: os:profiles/sec_% (CAM_01)
 ----------------------------------------------------------------------------------------------------------
 
 /////////////////////////////////////////
+// THE BRIDGE
+
+-The player will cross the bridge on railway with some sort of transport vehicle.
+-The vehicle will have a terminal on it. It scans for nearby networks. Each end of the bridge has one (+ the middle).
+	- Have a spinning thing when it searches (don't connect immediately, have delay of ~2-5s (yellow connecting status)).
+	- Set current network depending on the transport vechile's location. Use areas, set on collision (Use 1 handler for this).
+	- Each one of these networks give the terminal unique functionality.
+	- When the player reaches the middle part of the bridge, it's network is inactive. The player needs to activate it (show on terminal).
+
+/////////////////////////////////////////
 // LEVEL 1
 
 // SCENE 1 EVENT 1 - INTRO
