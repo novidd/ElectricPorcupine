@@ -40,10 +40,10 @@ Mod name: os:profiles/sec_% (CAM_01)
 -It always wins no matter what move the player does for their first move. The player cannot win against the WAU. It then resets on a loop.
 -The player has to consume the WAU flower in the same room.
 -When they've done this, the chess game is winnable.
+-A new prompt shows up that the last session was restored.
 
--Have several "1 move" checkmate challange presets.
--Move through them like a queue, if player fails a move.
--Give the player a choice to retry or go to next challange preset in the queue.
+-When the player fails with the finishing move, the program throws an error and says its corrupted. 
+It restarts from the same cached session in loop till the player wins.
 
 ----------------------------------------------------------------------------------------------------------
 
