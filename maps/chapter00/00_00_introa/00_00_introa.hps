@@ -40,22 +40,6 @@
 /*Place any global values here. These must be const variables as they will not be saved*/
 /*This is also the place for enums and classes, but these should be avoided whenever possible*/
 
-enum eTechTerminalState
-{
-	eTechTerminalState_MainMenu,
-	eTechTerminalState_SystemStatus,
-	eTechTerminalState_WauText,
-	
-	eTechTerminalState_OmniToolMain,
-	eTechTerminalState_OmniToolChipSetup,
-	eTechTerminalState_OmniToolChipInstalling,
-	eTechTerminalState_OmniToolChipComplete,
-	eTechTerminalState_OmniToolBrainSetup,
-	eTechTerminalState_OmniToolOrientationVideo,
-	
-	eTechTerminalState_SuitStatus,
-}
-
 //--------------------------------------------------
 
 class cScrMap : iScrMap
@@ -75,36 +59,15 @@ class cScrMap : iScrMap
 	////////////////////////////
 	// Set up map environment
 	void Setup()
-	{		
-		///////////////////////////////
-		// Setup presets
-		{
-			// When outside by the BRIDGE and underwater
-			Map_Preset_SetupFog("BRIDGE", true, 2, 30, 0.4, cColor(2.0 / 255.0, 7.0 / 255.0, 9.0 / 255.0,1), 1.0, true, true);
-			Map_Preset_SetupSecondaryFog("BRIDGE", true, 0, 60, 0.15, cColor(0, 0, 0, 1));
-			
-			Map_Preset_SetupDepthOfField("BRIDGE", true, 0.05, 12.0, 0.1);
-			Map_Preset_SetupBloom("BRIDGE", 160, 0.00001, 0.5, cColor(0.3, 0.3, 0.3, 1.0));
-			
-			Map_Preset_SetupDepthOfField("ElectricStart", true, 0, 12, 1.0);
-			Map_Preset_SetupBloom("ElectricStart", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
-			
-			// When outside by the START FACILITY and underwater
-		}
+	{
 		
-		if(cLux_ScriptDebugOn())
-		{
-			cLux_GetCurrentMap().GetWorld().SetFogActive(true);
-		}
 	}
 	
 	//-------------------------------------------------------
 
 	void PreloadData()
 	{
-		PlayerHands_PreloadHandModel_DeepSea();
-		//PlayerHands_PreloadHandModel_Diving();
-		//PlayerHands_PreloadHandModel_Human();
+
 	}
 	
 	//-------------------------------------------------------
@@ -130,8 +93,6 @@ class cScrMap : iScrMap
 		//SetPlayerIsUnderwater(true, 0.001f, true);
 		
 		Player_SetAmbientLight_Indoors();
-		
-		PlayerHands_SetHandModel_Diving();
 	}
 
 	//-------------------------------------------------------
@@ -255,7 +216,7 @@ class cScrMap : iScrMap
  
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *Intro*
+	// SCENE 1 *INTRO A (FLASH)*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
@@ -285,11 +246,13 @@ class cScrMap : iScrMap
 	 
 		//-------------------------------------------------------
 	 
-		/*Put any functionsthat are only used in Scene X, Event X here.*/
+		/*Put any functions that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
 	 
 		//} END Event *Name Of Event*
 	 
-	//} END SCENE X
+	//} END SCENE 1
  
 	/////////////////////////////////////////
 	// ==============
@@ -312,54 +275,6 @@ class cScrMap : iScrMap
 	
 		/*Put any functions that are only used Terminal here.*/
 		
-		void Terminal_OnGui(const tString&in asEntityName, float afTimeStep)
-		{
-			ImGui_SetTransCategory("00_01_sample");
-			
-			///////////////
-			// Data
-			cImGuiButtonData buttonData = StationGui_CreateDefaultButtonData();
-			ImGui_SetDefaultButton(buttonData);
-			
-			cImGuiLabelData labelData;
-			labelData.mFont.mvSize = cVector2f(20);
-			ImGui_SetDefaultLabel(labelData);
-			
-			cImGuiTextFrameData textFrame = ImGui_GetDefaultTextFrame();
-			textFrame.mColorBase = cColor(0,0,0,0);
-			ImGui_SetDefaultTextFrame(textFrame);
-			
-			///////////////
-			// Ornaments
-			StationGuiBG_Backdrop("background/background_logo_pathosstation", cVector2f(0.01, 0.05), 0.75);
-			StationGuiBG_Scanlines();
-			
-			if (StationGui_DrawAndCheckErrors()) return;
-			
-			tString sSystemStatusButtonText = "SystemStatus";
-			tString sSuitStatusButtonText = "SuitStatusButton";
-			
-			bool bBackButtonEnabled = true;
-			int lBackState = eTechTerminalState_MainMenu;
-			int lActiveApp = StationGui_GetActiveApp(eTechTerminalState_MainMenu);
-			int lSecuritySelection = -1;
-			
-			switch(lActiveApp)
-			{
-				
-				case eTechTerminalState_MainMenu:
-				StationGui_AddApp(sSystemStatusButtonText, true, eTechTerminalState_SystemStatus);
-				StationGui_AddApp("CorruptWauButton", true, eTechTerminalState_WauText);
-				StationGui_AddApp("OmniToolButton", true, eTechTerminalState_OmniToolMain);
-				StationGui_AddApp(sSuitStatusButtonText, true, eTechTerminalState_SuitStatus);
-				StationGui_MainMenu();
-				
-				bBackButtonEnabled = false;
-				break;
-			}
-			
-			StationGuiBG_Taskbar("upsilon");
-		}
 	
 		//-------------------------------------------------------
 	
