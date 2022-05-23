@@ -1,0 +1,378 @@
+
+#include "interfaces/Map_Interface.hps"
+#include "base/AchievementHandler_Types.hps"
+#include "base/InputHandler_Types.hps"
+#include "base/RichPresenceHandler_Types.hps"
+
+#include "helpers/helper_game.hps"
+#include "helpers/helper_effects.hps"
+#include "helpers/helper_map.hps"
+#include "helpers/helper_props.hps"
+#include "helpers/helper_audio.hps"
+#include "helpers/helper_sequences.hps"
+#include "helpers/helper_modules.hps"
+#include "helpers/helper_imgui.hps"
+#include "helpers/helper_areas.hps"
+#include "helpers/helper_ai.hps"
+#include "helpers/helper_player.hps"
+
+#include "helper_imgui_station.hps"
+#include "helper_imgui_station_app_error.hps"
+#include "helper_imgui_station_app_audioplayback.hps"
+#include "helper_imgui_station_app_photoviewer.hps"
+#include "helper_imgui_cath_portrait.hps"
+#include "helper_imgui_station_basics.hps"
+
+#include "helper_custom_depth.hps"
+#include "helper_custom_depth_ai.hps"
+#include "helper_custom_depth_ai_fleshers.hps"
+#include "helper_custom_depth_imgui.hps"
+#include "helper_custom_depth_audio.hps"
+
+#include "custom_depth/helper_custom_depth_audio.hps"
+
+#include "helper_font.hps"
+
+#include "player/Player_Types.hps"
+
+//--------------------------------------------------
+ 
+/*Place any global values here. These must be const variables as they will not be saved*/
+/*This is also the place for enums and classes, but these should be avoided whenever possible*/
+
+enum eTechTerminalState
+{
+	eTechTerminalState_MainMenu,
+	eTechTerminalState_SystemStatus,
+	eTechTerminalState_WauText,
+	
+	eTechTerminalState_OmniToolMain,
+	eTechTerminalState_OmniToolChipSetup,
+	eTechTerminalState_OmniToolChipInstalling,
+	eTechTerminalState_OmniToolChipComplete,
+	eTechTerminalState_OmniToolBrainSetup,
+	eTechTerminalState_OmniToolOrientationVideo,
+	
+	eTechTerminalState_SuitStatus,
+}
+
+//--------------------------------------------------
+
+class cScrMap : iScrMap
+{
+	//--------------------------------------------
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN CALLBACKS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+ 
+	//-------------------------------------------------------
+	
+	//-------------------------------------------------------
+ 
+	////////////////////////////
+	// Set up map environment
+	void Setup()
+	{		
+		///////////////////////////////
+		// Setup presets
+		{
+			// When outside by the BRIDGE and underwater
+			Map_Preset_SetupFog("BRIDGE", true, 2, 30, 0.4, cColor(2.0 / 255.0, 7.0 / 255.0, 9.0 / 255.0,1), 1.0, true, true);
+			Map_Preset_SetupSecondaryFog("BRIDGE", true, 0, 60, 0.15, cColor(0, 0, 0, 1));
+			
+			Map_Preset_SetupDepthOfField("BRIDGE", true, 0.05, 12.0, 0.1);
+			Map_Preset_SetupBloom("BRIDGE", 160, 0.00001, 0.5, cColor(0.3, 0.3, 0.3, 1.0));
+			
+			Map_Preset_SetupDepthOfField("ElectricStart", true, 0, 12, 1.0);
+			Map_Preset_SetupBloom("ElectricStart", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+			
+			// When outside by the START FACILITY and underwater
+		}
+		
+		if(cLux_ScriptDebugOn())
+		{
+			cLux_GetCurrentMap().GetWorld().SetFogActive(true);
+		}
+	}
+	
+	//-------------------------------------------------------
+
+	void PreloadData()
+	{
+		PlayerHands_PreloadHandModel_DeepSea();
+		//PlayerHands_PreloadHandModel_Diving();
+		//PlayerHands_PreloadHandModel_Human();
+	}
+	
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run first time starting map
+	void OnStart()
+	{
+		////////////////////////
+		//Setup Entities
+		
+		/////////////////////////
+		// Debug
+		if(cLux_ScriptDebugOn()) 
+		{
+			cLux_AddDebugMessage("Debug on.");
+			
+			//Add any debug stuff here
+		}
+		
+		////////////////////////////
+		// LEVEL SETUP
+		//SetPlayerIsUnderwater(true, 0.001f, true);
+		
+		Player_SetAmbientLight_Indoors();
+		
+		PlayerHands_SetHandModel_Diving();
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when entering map
+	void OnEnter()
+	{
+		
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when leaving map
+	void OnLeave()
+	{
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// The player has died.
+	void OnPlayerKilled(int alRecentDeaths, const tString&in asSource)
+	{
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// To get when player makes input (mostly used for debug)
+	void OnAction(int alAction, bool abPressed) 
+	{
+		if(abPressed==false) return;
+		
+		if(alAction == eAction_Test1)
+		{
+			
+		}
+		
+		if(alAction == eAction_Test2)
+		{
+			Effect_VideoDistortion_Start(1.0f, 5.0f, 1.0f, 1.0f, 1.0f);
+		}
+		
+		if(alAction == eAction_Test3)
+		{
+			//LensFlare_SetVisible("XXX", false);
+		}
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// This only used for pure debug purposes when info needs to printed.
+	float DrawDebugOutput(cGuiSet @apSet,iFontData @apFont,float afY)
+	{
+		//afY = cLux_DrawDebugText("My Debug value:"+..., afY);
+		return afY;
+	}
+	
+	//-------------------------------------------------------
+	
+	void OnGui(float afTimeStep)
+	{
+		
+	}
+ 
+	//-------------------------------------------------------
+ 
+	//} END MAIN CALLBACKS
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN FUNCTIONS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+ 
+	//-------------------------------------------------------
+ 
+	/*Put any variables that are used in more than one scene here.*/
+	
+	bool mbPlayerIsUnderwater = true;
+ 
+	//-------------------------------------------------------
+ 
+	/*Put any functions that are used in more than one scene here.*/
+	
+	void SetPlayerIsUnderwater(bool abX, float afFadeTime, bool abAffectEffecs)
+	{
+		mbPlayerIsUnderwater = abX;
+		
+		//////////////////////////////
+		// Underwater
+		if(mbPlayerIsUnderwater)
+		{
+			Map_SetUnderwater(true);
+			Player_SetAmbientLight_Outdoors(true);
+			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
+			Map_Preset_Fade("BRIDGE", afFadeTime);
+			
+			//////////////
+			// Enable all visibility areas and critters
+			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", true);
+			//Entity_SetActive("X_*", true);
+		}
+		//////////////////////////////
+		// Indoors
+		else
+		{
+			////////////////
+			// Disable visibility areas and critters
+			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", false);
+			//Entity_SetActive("X_*", false);
+		}
+	}
+ 
+	//-------------------------------------------------------
+ 
+	//} END MAIN FUNCTIONS
+ 
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE 1 *Intro*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+ 
+		/////////////////////////////////////////
+		// General
+		//{//////////////////////////////////////
+		 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are used by many events in Scene X here.*/
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are used in more than one event in Scene X here.*/
+	 
+		//-------------------------------------------------------
+		
+		//} END General	
+	 
+		/////////////////////////////////////////
+		// Event *Intro*
+		//{//////////////////////////////////////
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are only used in Scene X, Event X here.*/
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any functionsthat are only used in Scene X, Event X here.*/
+	 
+		//} END Event *Name Of Event*
+	 
+	//} END SCENE X
+ 
+	/////////////////////////////////////////
+	// ==============
+	// TERMINALS
+	// ==============
+	//{//////////////////////////////////////
+ 
+		//-------------------------------------------------------
+	
+		/////////////////////////////////////////
+		// Terminal *TERMINAL X*
+		//{//////////////////////////////////////
+		
+	 
+		 //-------------------------------------------------------
+	
+		/*Put any variables that are only used Terminal here.*/
+	
+		//-------------------------------------------------------
+	
+		/*Put any functions that are only used Terminal here.*/
+		
+		void Terminal_OnGui(const tString&in asEntityName, float afTimeStep)
+		{
+			ImGui_SetTransCategory("00_01_sample");
+			
+			///////////////
+			// Data
+			cImGuiButtonData buttonData = StationGui_CreateDefaultButtonData();
+			ImGui_SetDefaultButton(buttonData);
+			
+			cImGuiLabelData labelData;
+			labelData.mFont.mvSize = cVector2f(20);
+			ImGui_SetDefaultLabel(labelData);
+			
+			cImGuiTextFrameData textFrame = ImGui_GetDefaultTextFrame();
+			textFrame.mColorBase = cColor(0,0,0,0);
+			ImGui_SetDefaultTextFrame(textFrame);
+			
+			///////////////
+			// Ornaments
+			StationGuiBG_Backdrop("background/background_logo_pathosstation", cVector2f(0.01, 0.05), 0.75);
+			StationGuiBG_Scanlines();
+			
+			if (StationGui_DrawAndCheckErrors()) return;
+			
+			tString sSystemStatusButtonText = "SystemStatus";
+			tString sSuitStatusButtonText = "SuitStatusButton";
+			
+			bool bBackButtonEnabled = true;
+			int lBackState = eTechTerminalState_MainMenu;
+			int lActiveApp = StationGui_GetActiveApp(eTechTerminalState_MainMenu);
+			int lSecuritySelection = -1;
+			
+			switch(lActiveApp)
+			{
+				
+				case eTechTerminalState_MainMenu:
+				StationGui_AddApp(sSystemStatusButtonText, true, eTechTerminalState_SystemStatus);
+				StationGui_AddApp("CorruptWauButton", true, eTechTerminalState_WauText);
+				StationGui_AddApp("OmniToolButton", true, eTechTerminalState_OmniToolMain);
+				StationGui_AddApp(sSuitStatusButtonText, true, eTechTerminalState_SuitStatus);
+				StationGui_MainMenu();
+				
+				bBackButtonEnabled = false;
+				break;
+			}
+			
+			StationGuiBG_Taskbar("upsilon");
+		}
+	
+		//-------------------------------------------------------
+	
+		//} END Terminal *Name Of Terminal*
+	
+	//} END TERMINALS
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// AUDIO
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	//} END AUDIO
+ 
+}
