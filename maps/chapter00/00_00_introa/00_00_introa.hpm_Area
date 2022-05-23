@@ -1,7 +1,7 @@
 <HPLMapTrack_Area ID="CBAFC9E0C7AF6CE3B960B11F33F9327387DE8B38" Version="1.00">
     <Section Name="lucas@LUCASPC">
         <Objects>
-            <Area ID="268435584" Name="PlayerStartArea_1" CreStamp="1653340009" ModStamp="1653343060" WorldPos="1.5 1 0" Rotation="0 4.71239 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 87 268435584" AreaType="PlayerStart">
+            <Area ID="268435584" Name="PlayerStartArea_1" CreStamp="1653340009" ModStamp="1653347151" WorldPos="2.25 1 0" Rotation="0 4.71239 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 87 268435584" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
@@ -78,7 +78,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268435729" Name="AMB_IntroA" CreStamp="1653344518" ModStamp="1653346075" WorldPos="0 2 0" Rotation="0 0 0" Scale="5.75 4 5" Active="true" Mesh="" UID="16 103 268435729" AreaType="Soundscape">
+            <Area ID="268435729" Name="AMB_IntroA" CreStamp="1653344518" ModStamp="1653347161" WorldPos="0 2 0" Rotation="0 0 0" Scale="6.5 4 5.5" Active="true" Mesh="" UID="16 103 268435729" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="Off" />
@@ -105,6 +105,30 @@
                 </UserVariables>
             </Area>
             <Area ID="268435730" Name="OrnamentsHangFromPipes" CreStamp="1653344604" ModStamp="1653344632" WorldPos="-1 4.75 0" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 102 268435730" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268435756" Name="RedSpinningLight" CreStamp="1653351582" ModStamp="1653351601" WorldPos="-2.75 3.39 4.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 152 268435756" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />

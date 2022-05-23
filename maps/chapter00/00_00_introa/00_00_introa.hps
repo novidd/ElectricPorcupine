@@ -60,14 +60,20 @@ class cScrMap : iScrMap
 	// Set up map environment
 	void Setup()
 	{
+		// Use these settings for the underwater part
+		//Map_Preset_SetupBloom("Inside2.2", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0));
+		//Map_Preset_SetupDepthOfField("Inside2.2", true, 0, 6, 0.5);
 		
+		////////////////////
+		//PRESET FOR INTRO B
 	}
 	
 	//-------------------------------------------------------
 
 	void PreloadData()
 	{
-
+		//////////////////////////
+		// Particles
 	}
 	
 	//-------------------------------------------------------
@@ -90,7 +96,7 @@ class cScrMap : iScrMap
 		
 		////////////////////////////
 		// LEVEL SETUP
-		//SetPlayerIsUnderwater(true, 0.001f, true);
+		Map_SetUnderwater(true);
 		
 		Player_SetAmbientLight_Indoors();
 	}
@@ -101,7 +107,7 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		
+		cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
 	}
 
 	//-------------------------------------------------------
@@ -174,49 +180,18 @@ class cScrMap : iScrMap
 	//-------------------------------------------------------
  
 	/*Put any variables that are used in more than one scene here.*/
-	
-	bool mbPlayerIsUnderwater = true;
  
 	//-------------------------------------------------------
  
 	/*Put any functions that are used in more than one scene here.*/
 	
-	void SetPlayerIsUnderwater(bool abX, float afFadeTime, bool abAffectEffecs)
-	{
-		mbPlayerIsUnderwater = abX;
-		
-		//////////////////////////////
-		// Underwater
-		if(mbPlayerIsUnderwater)
-		{
-			Map_SetUnderwater(true);
-			Player_SetAmbientLight_Outdoors(true);
-			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
-			Map_Preset_Fade("BRIDGE", afFadeTime);
-			
-			//////////////
-			// Enable all visibility areas and critters
-			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", true);
-			//Entity_SetActive("X_*", true);
-		}
-		//////////////////////////////
-		// Indoors
-		else
-		{
-			////////////////
-			// Disable visibility areas and critters
-			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", false);
-			//Entity_SetActive("X_*", false);
-		}
-	}
- 
 	//-------------------------------------------------------
  
 	//} END MAIN FUNCTIONS
  
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *INTRO A (FLASH)*
+	// SCENE 1 *INTRO A*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
@@ -237,7 +212,7 @@ class cScrMap : iScrMap
 		//} END General	
 	 
 		/////////////////////////////////////////
-		// Event *Intro*
+		// Event *Intro A*
 		//{//////////////////////////////////////
 	 
 		//-------------------------------------------------------
