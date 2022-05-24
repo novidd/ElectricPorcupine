@@ -109,7 +109,7 @@ class cScrMap : iScrMap
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			mbRunIntro = true;
+			mbRunIntro = false;
 			
 			cLux_AddDebugMessage("Debug on.");
 		}
@@ -117,8 +117,6 @@ class cScrMap : iScrMap
 		// Intro setup
 		if(mbRunIntro)
 			SequenceIntro("");
-			
-		AudioHandler("Intro");
 		
 		////////////////////////////
 		// Level setup
@@ -137,6 +135,7 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
+		AudioHandler("Intro");
 		Map_SetUnderwater(true);
 		Map_Preset_Fade("IntroOutdoor", 0.1);
 	}
@@ -557,6 +556,11 @@ class cScrMap : iScrMap
 		{
 			Sound_FadeGlobalVolume(0.0f, 0.25f, eSoundEntryType_WorldAll);
 			Sound_FadeGlobalVolume(0.0f, 0.25f, eSoundEntryType_GuiWorld);
+		}
+		else
+		{
+			Sound_FadeGlobalVolume(1.0f, 0.25f, eSoundEntryType_WorldAll);
+			Sound_FadeGlobalVolume(1.0f, 0.25f, eSoundEntryType_GuiWorld);
 		}
 	}
 	
