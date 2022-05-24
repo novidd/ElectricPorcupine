@@ -66,6 +66,7 @@ class cScrMap : iScrMap
 		
 		////////////////////
 		//PRESET FOR INTRO B
+		Map_Preset_SetupBloom("IntroB", 128, 0.75, 0.5, cColor(1.0, 1.0));
 	}
 	
 	//-------------------------------------------------------
@@ -98,8 +99,10 @@ class cScrMap : iScrMap
 		////////////////////////////
 		// LEVEL SETUP
 		//Map_SetUnderwater(true);
+		cLux_GetCurrentMap().GetWorld().SetFogColor(cColor(0.034,0.039,0.05,0.196));
 		
 		Player_SetAmbientLight_Indoors();
+		
 	}
 
 	//-------------------------------------------------------
@@ -108,7 +111,8 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		
+		Map_SetUnderwater(true);
+		Map_Preset_Fade("IntroB", 1.0);
 	}
 
 	//-------------------------------------------------------

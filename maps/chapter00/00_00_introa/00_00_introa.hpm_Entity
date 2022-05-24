@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="CBAFC9E0C7AF6CE3B960B11F33F9327387DE8B38" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="184">
+        <FileIndex_Entities NumOfFiles="185">
             <File Id="0" Path="entities/creatures/fish/shark_scalloped_hammerhead/shark_scalloped_hammerhead.ent" />
             <File Id="1" Path="entities/oceanbottom/ornaments/rotten_photo/rotten_photo.ent" />
             <File Id="2" Path="entities/oceanbottom/ornaments_wall/photos_corals/photo_coral_01.ent" />
@@ -185,6 +185,7 @@
             <File Id="181" Path="entities/oceanbottom/lamp/warning_light_rusty_theta/warning_light_rusty_theta_rotating_part.ent" />
             <File Id="182" Path="entities/oceanbottom/door/hatch_theta_gate_warning_light/hatch_theta_gate_warning_light_right.ent" />
             <File Id="183" Path="entities/oceanbottom/door/hatch_theta_gate_warning_light/hatch_theta_gate_warning_light_left.ent" />
+            <File Id="184" Path="entities/organic/water/pouring/pouring_small_tileable.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435585" Name="hammerhead" CreStamp="1653340772" ModStamp="1653343112" WorldPos="-103.875 0.25 -8.125" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 86 268435585">
@@ -647,7 +648,7 @@
                     <Var Name="JointResetFix" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435904" Name="theta_gate_inner_layer_frame_1" CreStamp="1653390415" ModStamp="1653394945" WorldPos="-59 241.015 -470.888" Rotation="0 -0 0" Scale="0.75 0.75 0.75" FileIndex="174" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 188 268435904">
+            <Entity ID="268435904" Name="theta_gate_inner_layer_frame_1" CreStamp="1653390415" ModStamp="1653394945" WorldPos="-58.9997 -2.51393 -0.513336" Rotation="0 -0 0" Scale="0.75 0.75 0.75" FileIndex="174" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 188 268435904">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -658,7 +659,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435907" Name="ThetaGate_Up" CreStamp="1653390970" ModStamp="1653394815" WorldPos="-59 240.436 -470" Rotation="0 -0 0" Scale="0.75 0.75 0.75" FileIndex="175" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 186 268435907">
+            <Entity ID="268435907" Name="ThetaGate_Up" CreStamp="1653390970" ModStamp="1653400668" WorldPos="-58.9997 -2.97105 0.374969" Rotation="0 -0 0" Scale="0.75 0.75 0.75" FileIndex="175" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 186 268435907">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -715,7 +716,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435910" Name="ThetaGate_Down" CreStamp="1653391022" ModStamp="1653394817" WorldPos="-59 240.436 -470" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="176" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 196 268435910">
+            <Entity ID="268435910" Name="ThetaGate_Down" CreStamp="1653391022" ModStamp="1653400668" WorldPos="-58.9997 -2.97105 0.374969" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="176" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 196 268435910">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -772,7 +773,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435911" Name="ThetaGate_Walkboard" CreStamp="1653391045" ModStamp="1653394984" WorldPos="-59 241 -470.406" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="177" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 200 268435911">
+            <Entity ID="268435911" Name="ThetaGate_Walkboard" CreStamp="1653391045" ModStamp="1653397102" WorldPos="-58.9997 -2.52893 -0.00201416" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="177" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 200 268435911">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -834,7 +835,7 @@
                     <Var Name="JointResetFix" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435912" Name="ThetaGate_Left" CreStamp="1653391083" ModStamp="1653394945" WorldPos="-59 241.015 -470.888" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="178" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 198 268435912">
+            <Entity ID="268435912" Name="ThetaGate_Left" CreStamp="1653391083" ModStamp="1653397237" WorldPos="-58.9997 -2.51393 -0.491913" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="178" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 198 268435912">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -891,7 +892,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435913" Name="ThetaGate_Right" CreStamp="1653391094" ModStamp="1653394945" WorldPos="-59 241.015 -470.888" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="179" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 197 268435913">
+            <Entity ID="268435913" Name="ThetaGate_Right" CreStamp="1653391094" ModStamp="1653397237" WorldPos="-58.9997 -2.51393 -0.491913" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="179" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 197 268435913">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -948,7 +949,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435914" Name="ThetaWarningLight_Base_1" CreStamp="1653391141" ModStamp="1653393327" WorldPos="-53.425 245.889 -470" Rotation="0 0 0" Scale="1 1 1" FileIndex="180" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 193 268435914">
+            <Entity ID="268435914" Name="ThetaWarningLight_Base_1" CreStamp="1653391141" ModStamp="1653397031" WorldPos="-54.8027 1.14307 0.374969" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="180" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 193 268435914">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1003,7 +1004,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435915" Name="ThetaWarningLight_Lamp_1" CreStamp="1653391164" ModStamp="1653393333" WorldPos="-53.425 245.889 -470" Rotation="0 0 0" Scale="1 1 1" FileIndex="181" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 199 268435915">
+            <Entity ID="268435915" Name="ThetaWarningLight_Lamp_1" CreStamp="1653391164" ModStamp="1653402789" WorldPos="-54.8027 1.14307 0.374969" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="181" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 199 268435915">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1018,7 +1019,7 @@
                     <Var Name="EffectColorMul" Value="1 1 1 1" />
                     <Var Name="EffectBrightnessMul" Value="1" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
-                    <Var Name="IllumBrightness" Value="5" />
+                    <Var Name="IllumBrightness" Value="1" />
                     <Var Name="IsAffectedByDecal" Value="false" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="UpdateBonesWhenCulled" Value="false" />
@@ -1068,7 +1069,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435916" Name="ThetaWarningLight_Lamp_2" CreStamp="1653391289" ModStamp="1653393346" WorldPos="-64.587 245.889 -470" Rotation="0 0 0" Scale="1 1 1" FileIndex="181" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 194 268435916">
+            <Entity ID="268435916" Name="ThetaWarningLight_Lamp_2" CreStamp="1653391289" ModStamp="1653402787" WorldPos="-63.1973 1.14307 0.374969" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="181" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 194 268435916">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1083,7 +1084,7 @@
                     <Var Name="EffectColorMul" Value="1 1 1 1" />
                     <Var Name="EffectBrightnessMul" Value="1" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
-                    <Var Name="IllumBrightness" Value="5" />
+                    <Var Name="IllumBrightness" Value="1" />
                     <Var Name="IsAffectedByDecal" Value="false" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="UpdateBonesWhenCulled" Value="false" />
@@ -1133,7 +1134,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435917" Name="ThetaWarningLight_Base_2" CreStamp="1653391289" ModStamp="1653393340" WorldPos="-64.587 245.889 -470" Rotation="0 0 0" Scale="1 1 1" FileIndex="180" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 195 268435917">
+            <Entity ID="268435917" Name="ThetaWarningLight_Base_2" CreStamp="1653391289" ModStamp="1653397043" WorldPos="-63.1973 1.14307 0.374969" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="180" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 195 268435917">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1188,7 +1189,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435919" Name="ThetaWarningLight_Gate_1" CreStamp="1653391736" ModStamp="1653393314" WorldPos="-53.924 245.889 -469" Rotation="0 -0 0" Scale="1 1 1" FileIndex="182" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 184 268435919">
+            <Entity ID="268435919" Name="ThetaWarningLight_Gate_1" CreStamp="1653391736" ModStamp="1653396225" WorldPos="-55.1946 1.14307 1.125" Rotation="0 -0 0" Scale="0.75 0.75 0.75" FileIndex="182" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 184 268435919">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1245,7 +1246,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435920" Name="ThetaWarningLight_Gate_2" CreStamp="1653391765" ModStamp="1653393316" WorldPos="-64.078 245.897 -469" Rotation="0 0 0" Scale="1 1 1" FileIndex="183" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 191 268435920">
+            <Entity ID="268435920" Name="ThetaWarningLight_Gate_2" CreStamp="1653391765" ModStamp="1653396201" WorldPos="-62.8059 1.14307 1.125" Rotation="0 0 0" Scale="0.75 0.75 0.75" FileIndex="183" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 191 268435920">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
