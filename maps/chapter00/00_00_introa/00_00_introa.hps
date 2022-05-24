@@ -60,31 +60,18 @@ class cScrMap : iScrMap
 	// Set up map environment
 	void Setup()
 	{
-		// Use these settings for the underwater part
-		//Map_Preset_SetupBloom("Inside2.2", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0));
-		//Map_Preset_SetupDepthOfField("Inside2.2", true, 0, 6, 0.5);
-		
-		////////////////////
-		//PRESET FOR INTRO B
-		//Map_Preset_SetupBloom("IntroOutside", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
-		//Map_Preset_SetupDepthOfField("IntroOutside", true, 0, 12, 1.0);
-		//Map_Preset_SetupColorGrading("IntroOutside", "textures/colorgrading/grading_02_04.dds");
-		//Map_Preset_SetupSkybox("IntroOutside", cColor(0.471,0.902,1,1), 0.6);
-		//Map_Preset_SetupFog("IntroOutside", true, 0, 25, 0.3, cColor(0.047,0.086,0.098,1), 1, true, true);
-		//Map_Preset_SetupDirLight("IntroOutside", true, cColor(0.481,0.736,0.77,1), 2, cVector3f(-0.752, -0.637, -0.169), cColor(0.071,0.231,0.255,1), cColor(0.069,0.232,0.254,1));
-		
 		Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
 		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
 		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets red tint to bloom
 		
 		Effect_DoF_Start(0, 12, 1.0f, 0);
 		
-		Map_Preset_SetupBloom("IntroB", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
-		Map_Preset_SetupDepthOfField("IntroB", true, 0, 12, 1.0);
-		Map_Preset_SetupSkybox("IntroB", cColor(0.471,0.902,1,1), 0.6);
-		Map_Preset_SetupFog("IntroB", true, 0, 100, 0.3, cColor(0.047,0.086,0.098,1), 1, true, true);
-		Map_Preset_SetupSecondaryFog("IntroB", true, 0, 50, 0.15, cColor(0.075,0.086,0.085,1));
-		Map_Preset_SetupDirLight("IntroB", true, cColor(0.481,0.736,0.77,1), 2, cVector3f(-0.752, -0.637, -0.169), cColor(0.071,0.231,0.255,1), cColor(0.069,0.232,0.254,1));
+		Map_Preset_SetupBloom("IntroOutdoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+		Map_Preset_SetupDepthOfField("IntroOutdoor", true, 0, 12, 1.0);
+		Map_Preset_SetupSkybox("IntroOutdoor", cColor(0.471,0.902,1,1), 0.6);
+		Map_Preset_SetupFog("IntroOutdoor", true, 0, 100, 0.3, cColor(0.047,0.086,0.098,1), 1, true, true);
+		Map_Preset_SetupSecondaryFog("IntroOutdoor", true, 0, 50, 0.15, cColor(0.075,0.086,0.085,1));
+		Map_Preset_SetupDirLight("IntroOutdoor", true, cColor(0.481,0.736,0.77,1), 2, cVector3f(-0.752, -0.637, -0.169), cColor(0.071,0.231,0.255,1), cColor(0.069,0.232,0.254,1));
 		
 		iTexture@ pSkybox = cResources_CreateTextureCubeMap("grayscale_gradient_1_3.dds",false);
 		cLux_GetCurrentMap().GetWorld().SetFogSkyboxTexture(pSkybox);
@@ -103,6 +90,8 @@ class cScrMap : iScrMap
 		// Preload gui
 		OmnitoolGui_Preload();
 		
+		/////////////////
+		// Preload X
 		PlayerHands_PreloadHandModel_Diving();
 	}
 	
@@ -113,26 +102,33 @@ class cScrMap : iScrMap
 	void OnStart()
 	{
 		////////////////////////
-		//Setup Entities
+		// Setup Entities
 		SetupArrivalOutsideTheta();
 		
 		/////////////////////////
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
+			mbRunIntro = true;
+			
 			cLux_AddDebugMessage("Debug on.");
 		}
+		////////////////////////////
+		// Intro setup
+		if(mbRunIntro)
+			SequenceIntro("");
+			
+		AudioHandler("Intro");
 		
 		////////////////////////////
-		// LEVEL SETUP
-		
+		// Level setup
 		Player_SetAmbientLight_Outdoors();
 		
 		PlayerHands_SetHandModel_Diving();
 		
 		Tool_PickUp("CathTool", false, false);
 		
-		EyeTracking_RegisterEntity("InteractBassConversation", true, false, true, 15.0f, 4.0f);
+		EyeTracking_RegisterEntity("GatePanel", true, false, true, 15.0f, 4.0f);
 	}
 
 	//-------------------------------------------------------
@@ -142,7 +138,7 @@ class cScrMap : iScrMap
 	void OnEnter()
 	{
 		Map_SetUnderwater(true);
-		Map_Preset_Fade("IntroB", 0.1);
+		Map_Preset_Fade("IntroOutdoor", 0.1);
 	}
 
 	//-------------------------------------------------------
@@ -223,7 +219,7 @@ class cScrMap : iScrMap
 	
 	/////////////////////////////////////////
 	// Omnitool
-	//{///////////////////////////////////////
+	//{//////////////////////////////////////
 
 	//-------------------------------------------------------
 	
@@ -248,10 +244,7 @@ class cScrMap : iScrMap
 		
 	void Timer_OmnitoolPluggedIn(const tString &in asTimer)
 	{
-		Dialog_Begin();
-			Dialog_AddBranch("HelperJane_PluggedIn");
-				Dialog_AddSubject("HelperJane_PluggedIn");
-		Dialog_End();
+		
 	}
 
 	//} End omnitool
@@ -262,7 +255,7 @@ class cScrMap : iScrMap
  
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *INTRO A*
+	// SCENE 1 *INTRO*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
@@ -273,6 +266,8 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	 
 		/*Put any variables that are used by many events in Scene X here.*/
+		
+		bool mbRunIntro = true;
 	 
 		//-------------------------------------------------------
 	 
@@ -283,7 +278,7 @@ class cScrMap : iScrMap
 		//} END General	
 	 
 		/////////////////////////////////////////
-		// Event *Intro A*
+		// Event *WHAT HAPPENS IN THE INTRO*
 		//{//////////////////////////////////////
 	 
 		//-------------------------------------------------------
@@ -297,6 +292,43 @@ class cScrMap : iScrMap
 		/*Put any functions that are only used in Scene X, Event X here.*/
 		
 		//-------------------------------------------------------
+		
+		/////////////////////////////////////////
+		// INTRO
+		//{//////////////////////////////////////
+
+		//-------------------------------------------------------
+		
+		cSequenceStatesData mIntroSequence;
+		void SequenceIntro(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceIntro", mIntroSequence);
+			
+			if (Sequence_DoStepAndWait(0.1f))
+			{
+				cLux_AddDebugMessage("!!INTRO START!!");
+			}
+			else if(Sequence_DoStepAndWait(0.1f))
+			{
+				Player_Teleport("Intro");
+				
+				Player_SetActive(false);
+				Player_ShowCrossHairIcons(false);
+			}
+			else if(Sequence_DoStepAndWait(0.1f))
+			{
+				Voice_Play("CaptainDialog_1");
+			}
+			Sequence_End();
+		}
+
+		//-------------------------------------------------------
+
+		//} End INTRO
+		
+		/////////////////////////////////////////
+		// OPEN GATE
+		//{//////////////////////////////////////
 		
 		void OpenGate(const tString &in asEntity, int alState)
 		{
@@ -463,7 +495,7 @@ class cScrMap : iScrMap
 			Entity_StopAnimation("ThetaGate_Right");
 		}
 		
-		//-------------------------------------------------------
+		//} End OPEN GAATE
 	 
 		//} END Event *Name Of Event*
 		
@@ -520,6 +552,11 @@ class cScrMap : iScrMap
 		if(asTimer=="FadeUpDoorSeq")
 		{
 			Sound_FadeGlobalVolume(1.0f, 8.0f, eSoundEntryType_WorldAll);
+		}
+		if(asTimer=="Intro" && mbRunIntro)
+		{
+			Sound_FadeGlobalVolume(0.0f, 0.25f, eSoundEntryType_WorldAll);
+			Sound_FadeGlobalVolume(0.0f, 0.25f, eSoundEntryType_GuiWorld);
 		}
 	}
 	
