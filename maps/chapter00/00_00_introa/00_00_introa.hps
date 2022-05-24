@@ -66,7 +66,30 @@ class cScrMap : iScrMap
 		
 		////////////////////
 		//PRESET FOR INTRO B
-		Map_Preset_SetupBloom("IntroB", 128, 0.75, 0.5, cColor(1.0, 1.0));
+		//Map_Preset_SetupBloom("IntroOutside", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+		//Map_Preset_SetupDepthOfField("IntroOutside", true, 0, 12, 1.0);
+		//Map_Preset_SetupColorGrading("IntroOutside", "textures/colorgrading/grading_02_04.dds");
+		//Map_Preset_SetupSkybox("IntroOutside", cColor(0.471,0.902,1,1), 0.6);
+		//Map_Preset_SetupFog("IntroOutside", true, 0, 25, 0.3, cColor(0.047,0.086,0.098,1), 1, true, true);
+		//Map_Preset_SetupDirLight("IntroOutside", true, cColor(0.481,0.736,0.77,1), 2, cVector3f(-0.752, -0.637, -0.169), cColor(0.071,0.231,0.255,1), cColor(0.069,0.232,0.254,1));
+		
+		Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
+		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
+		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets red tint to bloom
+		
+		Effect_DoF_Start(0, 12, 1.0f, 0);
+		
+		Map_Preset_SetupBloom("IntroB", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+		Map_Preset_SetupDepthOfField("IntroB", true, 0, 12, 1.0);
+		Map_Preset_SetupSkybox("IntroB", cColor(0.471,0.902,1,1), 0.6);
+		Map_Preset_SetupFog("IntroB", true, 0, 100, 0.3, cColor(0.047,0.086,0.098,1), 1, true, true);
+		Map_Preset_SetupSecondaryFog("IntroB", true, 0, 50, 0.15, cColor(0.075,0.086,0.085,1));
+		Map_Preset_SetupDirLight("IntroB", true, cColor(0.481,0.736,0.77,1), 2, cVector3f(-0.752, -0.637, -0.169), cColor(0.071,0.231,0.255,1), cColor(0.069,0.232,0.254,1));
+		
+		iTexture@ pSkybox = cResources_CreateTextureCubeMap("grayscale_gradient_1_3.dds",false);
+		cLux_GetCurrentMap().GetWorld().SetFogSkyboxTexture(pSkybox);
+		
+		CathTool_ResetScreen(eCathToolVariant_HelperJane);
 	}
 	
 	//-------------------------------------------------------
@@ -75,6 +98,12 @@ class cScrMap : iScrMap
 	{
 		//////////////////////////
 		// Particles
+		
+		/////////////////
+		// Preload gui
+		OmnitoolGui_Preload();
+		
+		PlayerHands_PreloadHandModel_Diving();
 	}
 	
 	//-------------------------------------------------------
@@ -92,17 +121,18 @@ class cScrMap : iScrMap
 		if(cLux_ScriptDebugOn()) 
 		{
 			cLux_AddDebugMessage("Debug on.");
-			
-			//Add any debug stuff here
 		}
 		
 		////////////////////////////
 		// LEVEL SETUP
-		//Map_SetUnderwater(true);
-		cLux_GetCurrentMap().GetWorld().SetFogColor(cColor(0.034,0.039,0.05,0.196));
 		
-		Player_SetAmbientLight_Indoors();
+		Player_SetAmbientLight_Outdoors();
 		
+		PlayerHands_SetHandModel_Diving();
+		
+		Tool_PickUp("CathTool", false, false);
+		
+		EyeTracking_RegisterEntity("InteractBassConversation", true, false, true, 15.0f, 4.0f);
 	}
 
 	//-------------------------------------------------------
@@ -112,7 +142,7 @@ class cScrMap : iScrMap
 	void OnEnter()
 	{
 		Map_SetUnderwater(true);
-		Map_Preset_Fade("IntroB", 1.0);
+		Map_Preset_Fade("IntroB", 0.1);
 	}
 
 	//-------------------------------------------------------
@@ -152,7 +182,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
-			//LensFlare_SetVisible("XXX", false);
+			Map_AddTimer("Timer_OmnitoolPluggedIn", 2, "Timer_OmnitoolPluggedIn");
 		}
 	}
 
@@ -190,6 +220,41 @@ class cScrMap : iScrMap
 	//-------------------------------------------------------
  
 	/*Put any functions that are used in more than one scene here.*/
+	
+	/////////////////////////////////////////
+	// Omnitool
+	//{///////////////////////////////////////
+
+	//-------------------------------------------------------
+	
+	bool CanUseCathTool(const tString &in asTool, const tString &in asEntity)
+	{
+		return CathTool_CanUse(asTool, asEntity);
+	}
+		
+	//------------------------------------------------------------
+		
+	bool OnUseCathTool(const tString &in asTool, const tString &in asEntity)
+	{			
+		if (asEntity=="GatePanel")
+		{
+			CathTool_UseOnPanel(asTool, asEntity);
+			return false;
+		}
+		return false;
+	}
+
+	//-------------------------------------------------------
+		
+	void Timer_OmnitoolPluggedIn(const tString &in asTimer)
+	{
+		Dialog_Begin();
+			Dialog_AddBranch("HelperJane_PluggedIn");
+				Dialog_AddSubject("HelperJane_PluggedIn");
+		Dialog_End();
+	}
+
+	//} End omnitool
 	
 	//-------------------------------------------------------
  
@@ -230,6 +295,42 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	 
 		/*Put any functions that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+		
+		void OpenGate(const tString &in asEntity, int alState)
+		{
+			if(alState != 1) return;
+			
+			Entity_SetActive("IntroToolArea", false);
+			
+			Entity_SetInteractionDisabled(asEntity, true);
+			
+			// If the GUI isn't on, turn it on
+			Terminal_SetGuiActive("Airlock2GUI",true);
+			Entity_SetActive("Airlock2GUI", true);
+			
+			Map_RemoveTimer("TimerTurnOffGUI");
+			Map_AddTimer("TimerTurnOffGUI",10.0f,"TimerTurnOffGUI");
+			
+			//SequenceOpenThetame();
+		}
+		
+		void TimerTurnOffGUI(const tString& in asTimer)
+		{
+			Terminal_SetGuiActive("Airlock2GUI",false);
+			Entity_SetActive("Airlock2GUI", false);
+		}
+		
+		void OnGuiAirlock2(const tString&in asEntityName, float afTimeStep)
+		{
+			ImGui_SetTransCategory("01_04_transport_station");
+		
+			StationGuiBG_Scanlines();
+			StationGuiBG_Backdrop();
+			
+			StationGui_BigStatusMessage_Old("GUIAirlockFixed", gStationGuiColor_Highlight, 1.75, true);
+		}
 		
 		//-------------------------------------------------------
 		
@@ -365,7 +466,7 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	 
 		//} END Event *Name Of Event*
-	 
+		
 	//} END SCENE 1
  
 	/////////////////////////////////////////
@@ -460,5 +561,4 @@ class cScrMap : iScrMap
 	}
 	
 	//} END AUDIO
- 
 }
