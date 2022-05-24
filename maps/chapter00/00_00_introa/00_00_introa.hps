@@ -84,6 +84,7 @@ class cScrMap : iScrMap
 	{
 		////////////////////////
 		//Setup Entities
+		SetupArrivalOutsideTheta();
 		
 		/////////////////////////
 		// Debug
@@ -96,7 +97,7 @@ class cScrMap : iScrMap
 		
 		////////////////////////////
 		// LEVEL SETUP
-		Map_SetUnderwater(true);
+		//Map_SetUnderwater(true);
 		
 		Player_SetAmbientLight_Indoors();
 	}
@@ -107,7 +108,7 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
+		
 	}
 
 	//-------------------------------------------------------
@@ -136,7 +137,8 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			
+			Map_AddTimer("StartOpenGateTimer", 2, "SequenceOpenThetame");
+			Audio_ThetaGateStart();
 		}
 		
 		if(alAction == eAction_Test2)
@@ -218,10 +220,143 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	 
 		/*Put any variables that are only used in Scene X, Event X here.*/
+		
+		int mlGateShakeID = -1;
 	 
 		//-------------------------------------------------------
 	 
 		/*Put any functions that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+		
+		cSequenceStatesData mOpenThetameSequence;
+	
+		void SequenceOpenThetame(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceOpenThetame", mOpenThetameSequence);
+			
+			if (Sequence_DoStepAndWait(1))
+			{
+				SlideDoor_SetOpenAmount("ThetaWarningLight_Gate_*", 1, false);
+			}
+			else if (Sequence_DoStepAndWait(2))
+			{
+				MoveObject_SetState("ThetaWarningLight_Base_*", 1);
+			}
+			else if (Sequence_DoStepAndWait(1))
+			{
+				/////////////////////////////////////////////
+				// TUrn off some lamps to put focus on door
+				Map_AddTimer("ThetaGateLamp_Top_1", 0, "TimerSetLampUnlit");
+				Map_AddTimer("ThetaGateLamp_Top_2", 0.4, "TimerSetLampUnlit");
+				Map_AddTimer("ThetaGateLamp_OverrideBox", 1, "TimerSetLampUnlit");
+				Map_AddTimer("ThetaGateLamp_OverrideBox_Spotlight", 1, "TimerFadeLightToBlack");
+				Map_AddTimer("ThetaGateLamp_OverrideBox_Pointlight", 1, "TimerFadeLightToBlack");
+				
+				/////////////////////////////////////////////
+				// Turn on spinning warning lights
+				Lamp_SetLit("ThetaWarningLight_Lamp_*", true, true);
+				Prop_RotateToSpeed("ThetaWarningLight_Lamp_1", 5, 7.5, cVector3f(0, 0, 1), true, "");
+				Prop_RotateToSpeed("ThetaWarningLight_Lamp_2", 5, 7.5, cVector3f(0, 0, -1), true, "");
+			}		
+			else if (Sequence_DoStepAndWait(8.5))
+			{			
+				mlGateShakeID = Effect_Shake_Start(0.005, -1, 2, 0);
+				Effect_Shake_SetSourceEntity(mlGateShakeID, "ThetaGate_Down", 10, 25);
+				
+				Entity_PlayAnimation("ThetaGate_Up", "Open", 0);
+				Entity_PlayAnimation("ThetaGate_Down", "Open", 0);
+				Map_AddTimer("ThetaGate_ClutchPS_1", 2, "TimerThetaGateClutchRelease");
+				Map_AddTimer("ThetaGate_ClutchPS_2", 3, "TimerThetaGateClutchRelease");
+				Map_AddTimer("ThetaGate_ClutchPS_3", 5, "TimerThetaGateClutchRelease");
+				Map_AddTimer("ThetaGate_ClutchPS_4", 6, "TimerThetaGateClutchRelease");
+			}
+			else if (Sequence_DoStepAndWait(0.25))
+			{
+				for (int i = 1; Entity_Exists("ThetaGate_BubblePS_" + i); i++)
+				{
+					Map_AddTimer("ThetaGate_BubblePS_" + i, cMath_RandRectf(0, 0.5),"TimerThetaGatePSDelay");
+				}
+			}
+			else if (Sequence_DoStepAndWait(11))
+			{			
+				Effect_Shake_FadeOut(mlGateShakeID, 1);
+				mlGateShakeID = Effect_Shake_Start(0.0075, -1, 2, 0);
+				Effect_Shake_SetSourceEntity(mlGateShakeID, "ThetaGate_Down", 10, 25);
+				
+				SlideDoor_SetOpenAmount("ThetaGate_Up", 1, false);
+				SlideDoor_SetOpenAmount("ThetaGate_Down", 0.875, false);
+				
+				for (int i = 1; Entity_Exists("ThetaGate_DustFallPS_" + i); i++)
+				{
+					Map_AddTimer("ThetaGate_DustFallPS_" + i, cMath_RandRectf(0.4, 0.75),"TimerThetaGatePSDelay");
+				}
+			}
+			else if (Sequence_DoStepAndWait(1))
+			{
+				Effect_Shake_FadeOut(mlGateShakeID, 0.5);
+				Lever_SetAutoMoveEnabled("ThetaGate_Walkboard", true);
+				Lever_SetAutoMoveTarget("ThetaGate_Walkboard", 1);
+			}
+			else if (Sequence_DoStepAndWait(1))
+			{
+				Entity_PlayAnimation("ThetaGate_Left", "Open", 0);
+				Entity_PlayAnimation("ThetaGate_Right", "Open", 0);
+			}
+			else if (Sequence_DoStepAndWait(7))
+			{
+				mlGateShakeID = Effect_Shake_Start(0.0075, -1, 2, 0);
+				Effect_Shake_SetSourceEntity(mlGateShakeID, "ThetaGate_Down", 10, 25);
+				
+				SlideDoor_SetOpenAmount("ThetaGate_Left", 1, false);
+				SlideDoor_SetOpenAmount("ThetaGate_Right", 1, false);
+			}
+			else if (Sequence_DoStepAndWait(0.5))
+			{
+				Effect_Shake_FadeOut(mlGateShakeID, 1);
+				
+				Lamp_SetLit("ThetaWarningLight_Lamp_*", false, true);
+				Prop_RotateToSpeed("ThetaWarningLight_Lamp_1", 5, 0, cVector3f(0, 0, 1), false, "");
+				Prop_RotateToSpeed("ThetaWarningLight_Lamp_2", 5, 0, cVector3f(0, 0, -1), false, "");
+			}
+			else if (Sequence_DoStepAndWait(2))
+			{
+				MoveObject_SetState("ThetaWarningLight_Base_*", 0);
+			}
+			else if (Sequence_DoStepAndWait(2))
+			{
+				SlideDoor_SetOpenAmount("ThetaWarningLight_Gate_*", 0, false);
+			}
+			
+			Sequence_End();
+		}
+
+		//-------------------------------------------------------
+		
+		void TimerThetaGateClutchRelease(const tString &in asTimer)
+		{
+			/////////////////////
+			// Effects 
+			ParticleSystem_CreateAtEntity(asTimer + "_Particles", "oneshot_sand_cascade.ps", asTimer, false);
+		}
+
+		//-------------------------------------------------------
+		
+		void TimerThetaGatePSDelay(const tString &in asTimer)
+		{
+			// Create the particle system specified in the UserVar of the area
+			ParticleSystem_CreateAtEntity(asTimer + "_Particles", Entity_GetVarString(asTimer, ""), asTimer, false);
+		}
+		
+		//-------------------------------------------------------
+		
+		void SetupArrivalOutsideTheta()
+		{
+			Entity_StopAnimation("ThetaGate_Up");
+			Entity_StopAnimation("ThetaGate_Down");
+			Entity_StopAnimation("ThetaGate_Left");
+			Entity_StopAnimation("ThetaGate_Right");
+		}
 		
 		//-------------------------------------------------------
 	 
@@ -262,6 +397,63 @@ class cScrMap : iScrMap
 	// AUDIO
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	void AudioHandler(const tString &in asTimer)
+	{
+		if(asTimer=="FadeInAudio")
+		{
+			Sound_FadeGlobalVolume(1.0f, 3.0f, eSoundEntryType_WorldAll);
+			Music_FadeVolumeMul(1.0f, 3.0f);
+		}
+		if(asTimer=="FadeDownDoorSeq")
+		{
+			Sound_FadeGlobalVolume(0.4f, 3.0f, eSoundEntryType_WorldAll);
+			Map_AddTimer("FadeUpDoorSeq", 20.f, "AudioHandler");
+		}
+		if(asTimer=="FadeUpDoorSeq")
+		{
+			Sound_FadeGlobalVolume(1.0f, 8.0f, eSoundEntryType_WorldAll);
+		}
+	}
+	
+	//-------------------------------------------------------
+	
+	//Gate sequence
+	void Audio_ThetaGateStart()
+	{
+		Sound_CreateAtEntity("ThetaGateSequence", "02_04_theta_outside/SFX/theta_door_Sequence", "ThetaGateSoundSource");
+		Map_AddTimer("ThetaGateSequenceMusic", 15.f, "ThetaGateSequence");
+		Map_AddTimer("FadeDownDoorSeq", 6.0f, "AudioHandler");
+		//Map_AddTimer("StopAmbientMusicQuickly", 1.0f, "AmbientMusicHandler");
+		//mbAmbientMusicAllowed = false;
+		
+		//Remove anything that might overlap
+		//Entity_SetActive("GraveyardTrigger", false);
+		//Map_RemoveTimer("TimerGraveyardMusic");
+		//Music_Stop(3.0f, eMusicPrio_BgAmb);
+	}
+	
+	//-------------------------------------------------------
+	
+	void ThetaGateSequence (const tString &in asTimer)
+	{
+		//Start music and fade sound
+		if(asTimer=="ThetaGateSequenceMusic")
+		{
+			cLux_AddDebugMessage("Fading Down Theta Gate");
+			//Music_PlayExt("02_04_gate", false, 0.85, 1, 0, 0, eMusicPrio_BigEvent, true);
+			Sound_Fade("ThetaGateSequence", 0.85f, 10.0f);
+			Map_AddTimer("ThetaGateFadeUp", 12.0f, "ThetaGateSequence");
+		}
+		//Fade up gate sound after music
+		else if(asTimer=="ThetaGateFadeUp")
+		{
+			cLux_AddDebugMessage("Fading Up Theta Gate");
+			Sound_Fade("ThetaGateSequence", 1.f, 4.0f);
+		}
+	}
 	
 	//} END AUDIO
  
