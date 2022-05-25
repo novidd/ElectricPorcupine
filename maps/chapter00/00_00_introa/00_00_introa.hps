@@ -196,7 +196,8 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
-			Map_AddTimer("Timer_OmnitoolPluggedIn", 2, "Timer_OmnitoolPluggedIn");
+			SlideDoor_SetClosed("Shutter_1", false, false);
+			cLux_AddDebugMessage("Opening shutters...");
 		}
 	}
 

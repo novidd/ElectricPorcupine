@@ -1,0 +1,89 @@
+<Entity>
+    <ModelData>
+        <Entities />
+        <Mesh Filename="mods/ElectricPorcupine/assets/e_entities/window_security_shutter_large_slide_door.dae">
+            <SubMesh ID="4" Name="shutter" CreStamp="0" ModStamp="0" WorldPos="0 0 0" Rotation="0 0 0" Scale="1 1 1" TriCount="568" Material="" />
+        </Mesh>
+        <Bones />
+        <Shapes>
+            <Shape ID="1" Name="Shape_1" CreStamp="0" ModStamp="0" WorldPos="0 0 -0.103" Rotation="0 0 0" Scale="5.75 2.18 0.128" RelativeTranslation="0 0 0" RelativeRotation="0 -0 0" RelativeScale="1 1 1" ShapeType="Box" />
+        </Shapes>
+        <Bodies>
+            <Body ID="2" Name="Body_1" CreStamp="0" ModStamp="1653483717" WorldPos="0 0 -0.103" Rotation="0 0 0" Scale="1 1 1" Material="Metal Robust" Mass="0" AngularDamping="0.1" LinearDamping="0.1" MaxAngularSpeed="20" MaxLinearSpeed="20" BuoyancyDensityMul="1" BlocksSound="false" ContinuousCollision="true" CanAttachCharacter="false" PushedByCharacterGravity="false" CollideCharacter="true" CollideNonCharacter="true" Volatile="true" UseSurfaceEffects="true" HasGravity="true" BlocksLight="true">
+                <Shape ID="1" />
+            </Body>
+        </Bodies>
+        <Joints>
+            <JointSlider ID="3" Name="JointSlider_1" CreStamp="0" ModStamp="0" WorldPos="0 -1.279 -0.103" Rotation="0 0 0" Scale="1 1 1" LimitStepCount="0" Stiffness="0" MinMoveSpeed="0.1" MinMoveFreq="0.95" MinMoveFreqSpeed="0.2" MinMoveVolume="0.01" MaxMoveSpeed="2" MaxMoveFreq="1.1" MaxMoveFreqSpeed="0.7" MaxMoveVolume="0.8" MiddleMoveSpeed="0.5" MiddleMoveVolume="0.5" MinLimitSound="" MinLimitMinSpeed="0" MinLimitMaxSpeed="0" MaxLimitSound="" MaxLimitMinSpeed="0" MaxLimitMaxSpeed="0" Breakable="false" BreakForce="0" BreakSound="" CollideBodies="true" StickyMinLimit="false" StickyMaxLimit="false" MoveSound="" MoveType="Linear" MinDistance="0" MaxDistance="2.125" ConnectedParentBodyID="-1" ConnectedChildBodyID="2" />
+        </Joints>
+        <Animations />
+        <ProcAnimations />
+    </ModelData>
+    <UserDefinedVariables EntityType="Prop_SlideDoor">
+        <Var Name="Health" Value="100" />
+        <Var Name="Toughness" Value="0" />
+        <Var Name="MaxInteractDistance" Value="0" />
+        <Var Name="EventTag" Value="" />
+        <Var Name="ShowHints" Value="true" />
+        <Var Name="LifeLength" Value="0" />
+        <Var Name="DissolveDuringLifeDecrease" Value="true" />
+        <Var Name="BlocksLineOfSight" Value="true" />
+        <Var Name="MainPhysicsBody" Value="" />
+        <Var Name="NoGravityWhenUnderwater" Value="false" />
+        <Var Name="DisableFreezeAtStart" Value="false" />
+        <Var Name="CustomScriptFile" Value="" />
+        <Var Name="CustomScriptClass" Value="" />
+        <Var Name="ShowMesh" Value="true" />
+        <Var Name="DissolveOnDestruction" Value="false" />
+        <Var Name="DissolveTime" Value="1.0" />
+        <Var Name="RandomizeAnimationStart" Value="true" />
+        <Var Name="EffectsOnSound" Value="" />
+        <Var Name="EffectsOffSound" Value="" />
+        <Var Name="EffectsOnTime" Value="1" />
+        <Var Name="EffectsOffTime" Value="1" />
+        <Var Name="StaticMoveCheckCollision" Value="false" />
+        <Var Name="StaticMoveStartSound" Value="" />
+        <Var Name="StaticMoveStopSound" Value="" />
+        <Var Name="StaticMoveLoopSound" Value="" />
+        <Var Name="StaticMoveLoopSoundFade" Value="true" />
+        <Var Name="BreakActive" Value="false" />
+        <Var Name="BreakOnlyOnMainBody" Value="false" />
+        <Var Name="BreakDestroyJoints" Value="false" />
+        <Var Name="BreakMinEnergy" Value="100" />
+        <Var Name="BreakEntity" Value="" />
+        <Var Name="BreakEntityAlignBody" Value="" />
+        <Var Name="BreakSound" Value="" />
+        <Var Name="BreakParticleSystem" Value="" />
+        <Var Name="BreakImpulse" Value="4" />
+        <Var Name="OpenableByInteraction" Value="true" />
+        <Var Name="AgentColliderBody" Value="" />
+        <Var Name="DoorParts_Body" Value="Body_1" />
+        <Var Name="DoorParts_MoveDir" Value="0 1" />
+        <Var Name="DoorParts_MoveAmount" Value=".97" />
+        <Var Name="OpenSpeed" Value="0.75" />
+        <Var Name="CloseSpeed" Value="1" />
+        <Var Name="OpenAcc" Value="0.15" />
+        <Var Name="CloseAcc" Value="1" />
+        <Var Name="OpenSlowDownDist" Value="0.1" />
+        <Var Name="CloseSlowDownDist" Value="0.1" />
+        <Var Name="CheckCollision" Value="true" />
+        <Var Name="PushImpulse" Value="0.08" />
+        <Var Name="PushMaxMass" Value="40" />
+        <Var Name="OpenSound_Start" Value="entities_station/doors/omicron/bulkhead_vertical/open" />
+        <Var Name="OpenSound_End" Value="" />
+        <Var Name="CloseSound_Start" Value="" />
+        <Var Name="CloseSound_End" Value="" />
+        <Var Name="OpenSound_Loop" Value="" />
+        <Var Name="CloseSound_Loop" Value="" />
+        <Var Name="UseAnimations" Value="false" />
+        <Var Name="Animation_Opening" Value="" />
+        <Var Name="Animation_Closing" Value="" />
+        <Var Name="Animation_Open" Value="" />
+        <Var Name="Animation_Closed" Value="" />
+        <Var Name="Animation_ReplaceMovement" Value="false" />
+        <Var Name="Animation_CollisionOpenBody" Value="" />
+        <Var Name="Animation_CollisionClosedBody" Value="" />
+        <Var Name="Animation_CollisionOpenTime" Value="0" />
+        <Var Name="Animation_CollisionClosedTime" Value="0" />
+    </UserDefinedVariables>
+</Entity>
