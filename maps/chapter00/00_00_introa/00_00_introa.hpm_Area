@@ -541,7 +541,7 @@
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
             </Area>
-            <Area ID="268436187" Name="IntroToolArea" CreStamp="1653414912" ModStamp="1653474571" WorldPos="40 1.5 0.25" Rotation="0 -0.261799 0" Scale="1.5 2 1.25" Active="true" Mesh="" UID="16 67 268436187" AreaType="Tool">
+            <Area ID="268436187" Name="IntroToolArea" CreStamp="1653414912" ModStamp="1653494411" WorldPos="-83 1.5 0.25" Rotation="0 -0.261799 0" Scale="1.5 2 1.25" Active="true" Mesh="" UID="16 67 268436187" AreaType="Tool">
                 <UserVariables>
                     <Var Name="ToolsToEquip" Value="CathTool" />
                     <Var Name="ConnectedToolAreas" Value="" />
@@ -549,7 +549,7 @@
                     <Var Name="LookEntityLOS" Value="false" />
                 </UserVariables>
             </Area>
-            <Area ID="268436196" Name="AMB_Ocean_Global" CreStamp="1653418535" ModStamp="1653484941" WorldPos="40.25 1.5 0" Rotation="0 0 0" Scale="5 5 5" Active="true" Mesh="" UID="16 64 268436196" AreaType="Soundscape">
+            <Area ID="268436196" Name="AMB_Ocean_Global" CreStamp="1653418535" ModStamp="1653494411" WorldPos="-82.75 1.5 0" Rotation="0 0 0" Scale="5 5 5" Active="true" Mesh="" UID="16 64 268436196" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="false" />
                     <Var Name="ReverbType" Value="Off" />
@@ -652,7 +652,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436289" Name="Omni" CreStamp="1653484810" ModStamp="1653484817" WorldPos="40.25 1 0" Rotation="0 0 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 301 268436289" AreaType="PlayerStart">
+            <Area ID="268436289" Name="Omni" CreStamp="1653484810" ModStamp="1653494411" WorldPos="-82.75 1 0" Rotation="0 0 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 301 268436289" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
@@ -804,6 +804,30 @@
                 </UserVariables>
             </Area>
             <Area ID="268436320" Name="TriggerArea_1" CreStamp="1653490091" ModStamp="1653490409" WorldPos="4.7549e-009 5 4" Rotation="0 -0 1.5708" Scale="0.5 7.75 7.75" Active="true" Mesh="" UID="16 326 268436320" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268436355" Name="FishSpot" CreStamp="1653494994" ModStamp="1653495013" WorldPos="8 2 4.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 280 268436355" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
