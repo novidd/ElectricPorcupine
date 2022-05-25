@@ -156,7 +156,7 @@ class cScrMap : iScrMap
 	{
 		AudioHandler("Intro");
 		//Map_SetUnderwater(true);
-		//Map_Preset_Fade("IntroIndoor", 0.1);
+		Map_Preset_Fade("IntroIndoor", 0.1);
 	}
 
 	//-------------------------------------------------------
@@ -198,6 +198,11 @@ class cScrMap : iScrMap
 		{
 			SlideDoor_SetClosed("Shutter_*", false, false);
 			cLux_AddDebugMessage("Opening shutters...");
+		}
+		
+		if(alAction == eAction_Test4)
+		{
+			
 		}
 	}
 
