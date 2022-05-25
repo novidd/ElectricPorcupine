@@ -60,12 +60,14 @@ class cScrMap : iScrMap
 	// Set up map environment
 	void Setup()
 	{
-		Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
-		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
-		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets red tint to bloom
+		//Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
+		//Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
+		//Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets red tint to bloom
 		
-		Effect_DoF_Start(0, 12, 1.0f, 0);
+		//Effect_DoF_Start(0, 12, 1.0f, 0);
 		
+		//////////////////////////
+		// Outdoor preset
 		Map_Preset_SetupBloom("IntroOutdoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
 		Map_Preset_SetupDepthOfField("IntroOutdoor", true, 0, 12, 1.0);
 		Map_Preset_SetupSkybox("IntroOutdoor", cColor(0.471,0.902,1,1), 0.6);
@@ -73,8 +75,25 @@ class cScrMap : iScrMap
 		Map_Preset_SetupSecondaryFog("IntroOutdoor", true, 0, 50, 0.15, cColor(0.075,0.086,0.085,1));
 		Map_Preset_SetupDirLight("IntroOutdoor", true, cColor(0.481,0.736,0.77,1), 2, cVector3f(-0.752, -0.637, -0.169), cColor(0.071,0.231,0.255,1), cColor(0.069,0.232,0.254,1));
 		
-		iTexture@ pSkybox = cResources_CreateTextureCubeMap("grayscale_gradient_1_3.dds",false);
-		cLux_GetCurrentMap().GetWorld().SetFogSkyboxTexture(pSkybox);
+		//////////////////////////
+		// Indoor preset
+		//Map_Preset_SetupBloom("IntroIndoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+		Map_Preset_SetupDepthOfField("IntroIndoor", true, 0, 12, 1.0);
+		Map_Preset_SetupSkybox("IntroIndoor", cColor(0.741,0.741,0.741,1), 1.0);
+		Map_Preset_SetupFog("IntroIndoor", true, 1, 40, 1, cColor(0.004,0.004,0.004,1), 1, false, true);
+		Map_Preset_SetupSecondaryFog("IntroIndoor", false);
+		Map_Preset_SetupColorGrading("IntroIndoor", "textures/colorgrading/grading_03_02.dds");
+		
+		Map_SetEnvironmentParticlesActive(false);
+		Map_SetEnvironmentParticleVisible("*", false);
+		
+		Effect_Bloom_FadeBrightPass(0.65f, 2);
+        Effect_Bloom_FadeBloomWidth(128, 2);
+        Effect_Bloom_FadeBloomFalloff(0.5f, 2);
+        Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
+		
+		//iTexture@ pSkybox = cResources_CreateTextureCubeMap("grayscale_gradient_1_3.dds",false);
+		//cLux_GetCurrentMap().GetWorld().SetFogSkyboxTexture(pSkybox);
 		
 		CathTool_ResetScreen(eCathToolVariant_HelperJane);
 	}
@@ -109,7 +128,7 @@ class cScrMap : iScrMap
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			mbRunIntro = true;
+			mbRunIntro = false;
 			
 			cLux_AddDebugMessage("Debug on.");
 		}
@@ -136,8 +155,8 @@ class cScrMap : iScrMap
 	void OnEnter()
 	{
 		AudioHandler("Intro");
-		Map_SetUnderwater(true);
-		Map_Preset_Fade("IntroOutdoor", 0.1);
+		//Map_SetUnderwater(true);
+		//Map_Preset_Fade("IntroIndoor", 0.1);
 	}
 
 	//-------------------------------------------------------
@@ -316,7 +335,7 @@ class cScrMap : iScrMap
 			}
 			else if(Sequence_DoStepAndWait(0.1f))
 			{
-				Voice_Play("CaptainDialog_1");
+				Voice_Play("HelperJane_PluggedIn_GoodPower");
 			}
 			Sequence_End();
 		}
