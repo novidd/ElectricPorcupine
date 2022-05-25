@@ -196,7 +196,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
-			SlideDoor_SetClosed("Shutter_1", false, false);
+			SlideDoor_SetClosed("Shutter_*", false, false);
 			cLux_AddDebugMessage("Opening shutters...");
 		}
 	}
