@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="CBAFC9E0C7AF6CE3B960B11F33F9327387DE8B38" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="274">
+        <FileIndex_Entities NumOfFiles="275">
             <File Id="0" Path="entities/creatures/fish/shark_scalloped_hammerhead/shark_scalloped_hammerhead.ent" />
             <File Id="1" Path="entities/oceanbottom/ornaments/rotten_photo/rotten_photo.ent" />
             <File Id="2" Path="entities/oceanbottom/ornaments_wall/photos_corals/photo_coral_01.ent" />
@@ -275,6 +275,7 @@
             <File Id="271" Path="entities/character/robot/simon_soma_torso_infected/simon_soma_torso_infected.ent" />
             <File Id="272" Path="entities/character/robot/simon_infected/simon_infected_poseable.ent" />
             <File Id="273" Path="entities/character/robot/simon_infected/simon_infected.ent" />
+            <File Id="274" Path="entities/shipwreck/tech/transformer_hub/transformer_hub.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435585" Name="hammerhead" CreStamp="1653340772" ModStamp="1653343112" WorldPos="-103.875 0.25 -8.125" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 86 268435585">
@@ -1457,7 +1458,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436193" Name="CathTool" CreStamp="1653415216" ModStamp="1653519908" WorldPos="0 1.5 0" Rotation="-0 3.14159 -0" Scale="1 1 1" FileIndex="192" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 66 268436193">
+            <Entity ID="268436193" Name="CathTool" CreStamp="1653415216" ModStamp="1653519908" WorldPos="69.8125 1.5 0" Rotation="-0 3.14159 -0" Scale="1 1 1" FileIndex="192" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 66 268436193">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2360,6 +2361,17 @@
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268436895" Name="transformer_hub_1" CreStamp="1653528590" ModStamp="1653528619" WorldPos="5 0 0" Rotation="-0 3.14159 -1.5708" Scale="1.54 1.5 1.226" FileIndex="274" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 589 268436895">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
