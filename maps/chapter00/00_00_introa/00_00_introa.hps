@@ -77,7 +77,7 @@ class cScrMap : iScrMap
 		
 		//////////////////////////
 		// Indoor preset
-		//Map_Preset_SetupBloom("IntroIndoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+		Map_Preset_SetupBloom("IntroIndoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
 		Map_Preset_SetupDepthOfField("IntroIndoor", true, 0, 12, 1.0);
 		Map_Preset_SetupSkybox("IntroIndoor", cColor(0.741,0.741,0.741,1), 1.0);
 		Map_Preset_SetupFog("IntroIndoor", true, 1, 40, 1, cColor(0.004,0.004,0.004,1), 1, false, true);
@@ -120,9 +120,19 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
-		////////////////////////
+		/////////////////////////
 		// Setup Entities
 		SetupArrivalOutsideTheta();
+		
+		Tool_PickUp("CathTool", false, false);
+		
+		/////////////////////////
+		// Player setup
+		Player_SetAmbientLight_Outdoors();
+		PlayerHands_SetHandModel_Diving();
+		
+		/////////////////////////
+		// Level setup
 		
 		/////////////////////////
 		// Debug
@@ -132,27 +142,14 @@ class cScrMap : iScrMap
 			
 			cLux_AddDebugMessage("Debug on.");
 		}
-		////////////////////////////
-		// Intro setup
+		
+		AudioHandler("Start");
 		
 		if(mbRunIntro)
 		{
 			SetupWakeUp();
 			SequenceIntro("");
 		}
-		
-		////////////////////////////
-		// Level setup
-		AudioHandler("Start");
-		
-		//Player_SetAmbientLight_Indoors();
-		Player_SetAmbientLight_Outdoors();
-		
-		PlayerHands_SetHandModel_Diving();
-		
-		Tool_PickUp("CathTool", false, false);
-		
-		EyeTracking_RegisterEntity("GatePanel", true, false, true, 15.0f, 4.0f);
 	}
 
 	//-------------------------------------------------------
