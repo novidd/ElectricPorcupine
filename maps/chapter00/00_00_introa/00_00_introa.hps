@@ -84,16 +84,16 @@ class cScrMap : iScrMap
 		Map_Preset_SetupSecondaryFog("IntroIndoor", false);
 		Map_Preset_SetupColorGrading("IntroIndoor", "textures/colorgrading/grading_03_02.dds");
 		
-		Map_SetEnvironmentParticlesActive(false);
-		Map_SetEnvironmentParticleVisible("*", false);
+		//Map_SetEnvironmentParticlesActive(false);
+		//Map_SetEnvironmentParticleVisible("*", false);
 		
 		Effect_Bloom_FadeBrightPass(0.65f, 2);
         Effect_Bloom_FadeBloomWidth(128, 2);
         Effect_Bloom_FadeBloomFalloff(0.5f, 2);
         Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
 		
-		//iTexture@ pSkybox = cResources_CreateTextureCubeMap("grayscale_gradient_1_3.dds",false);
-		//cLux_GetCurrentMap().GetWorld().SetFogSkyboxTexture(pSkybox);
+		iTexture@ pSkybox = cResources_CreateTextureCubeMap("grayscale_gradient_1_3.dds",false);
+		cLux_GetCurrentMap().GetWorld().SetFogSkyboxTexture(pSkybox);
 		
 		CathTool_ResetScreen(eCathToolVariant_HelperJane);
 	}
@@ -134,11 +134,14 @@ class cScrMap : iScrMap
 		}
 		////////////////////////////
 		// Intro setup
+		//SetupWakeUp();
+		
 		if(mbRunIntro)
 			SequenceIntro("");
 		
 		////////////////////////////
 		// Level setup
+		//Player_SetAmbientLight_Indoors();
 		Player_SetAmbientLight_Outdoors();
 		
 		PlayerHands_SetHandModel_Diving();
@@ -155,8 +158,8 @@ class cScrMap : iScrMap
 	void OnEnter()
 	{
 		AudioHandler("Intro");
-		//Map_SetUnderwater(true);
-		Map_Preset_Fade("IntroIndoor", 0.1);
+		Map_SetUnderwater(true);
+		Map_Preset_Fade("IntroOutdoor", 0.1);
 	}
 
 	//-------------------------------------------------------
@@ -202,7 +205,12 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test4)
 		{
-			SlideDoor_SetClosed("CompactorDoor", false, false);
+			SequenceIntro("");
+		}
+		
+		if(alAction == eAction_Test5)
+		{
+			WakeUp();
 		}
 	}
 
@@ -309,8 +317,6 @@ class cScrMap : iScrMap
 	 
 		/*Put any variables that are only used in Scene X, Event X here.*/
 		
-		int mlGateShakeID = -1;
-	 
 		//-------------------------------------------------------
 	 
 		/*Put any functions that are only used in Scene X, Event X here.*/
@@ -338,14 +344,45 @@ class cScrMap : iScrMap
 				
 				Player_SetActive(false);
 				Player_ShowCrossHairIcons(false);
+				
+				Player_SetHealth(0.75f);
+				Player_SetFlashlightActive(false,true);
+				Player_SetFlashlightDisabled(true);
 			}
 			else if(Sequence_DoStepAndWait(0.1f))
 			{
-				Voice_Play("HelperJane_PluggedIn_GoodPower");
+				//Voice_Play("HelperJane_PluggedIn_GoodPower");
+			}
+			else if(Sequence_DoStepAndWait(0.1f))
+			{
+				CameraAnimation_Begin("IntroAnim", "", false);
 			}
 			Sequence_End();
 		}
-
+		
+		//-------------------------------------------------------
+		
+		void WakeUp()
+		{
+			CameraAnimation_Begin("IntroAnim", "", false);
+		}
+		
+		//-------------------------------------------------------
+		
+		bool OnCordRelease(const tString &in asEntity, int alDirection)
+		{
+			CameraAnimation_End();
+			
+			Entity_SetActive("DivingSuit", false);
+			Entity_SetActive("DivingArms", false);
+			
+			Emotion_StartBackgroundBreath(eBreathType_Normal, 0.6f, 3, 8, 0, 3);
+			
+			Game_AutoSave();
+			
+			return false;
+		}
+		
 		//-------------------------------------------------------
 
 		//} End INTRO
@@ -353,6 +390,8 @@ class cScrMap : iScrMap
 		/////////////////////////////////////////
 		// OPEN GATE
 		//{//////////////////////////////////////
+		
+		int mlGateShakeID;
 		
 		void OpenGate(const tString &in asEntity, int alState)
 		{
