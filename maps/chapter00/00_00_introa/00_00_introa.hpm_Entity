@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="CBAFC9E0C7AF6CE3B960B11F33F9327387DE8B38" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="302">
+        <FileIndex_Entities NumOfFiles="303">
             <File Id="0" Path="entities/creatures/fish/shark_scalloped_hammerhead/shark_scalloped_hammerhead.ent" />
             <File Id="1" Path="entities/oceanbottom/ornaments/rotten_photo/rotten_photo.ent" />
             <File Id="2" Path="entities/oceanbottom/ornaments_wall/photos_corals/photo_coral_01.ent" />
@@ -303,6 +303,7 @@
             <File Id="299" Path="entities/oceanbottom/special/05_01_loading_crane/05_01_loading_crane_claw.ent" />
             <File Id="300" Path="entities/oceanbottom/machine/lift_arm_delta/lift_arm_extra_joint.ent" />
             <File Id="301" Path="entities/oceanbottom/machine/lift_arm_delta/lift_arm_delta.ent" />
+            <File Id="302" Path="entities/oceanbottom/machine/robot_arm_rusty/robot_arm_rusty.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435585" Name="hammerhead" CreStamp="1653340772" ModStamp="1653343112" WorldPos="-103.875 0.25 -8.125" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 86 268435585">
@@ -2908,6 +2909,17 @@
                 </UserVariables>
             </Entity>
             <Entity ID="268437383" Name="lift_arm_delta_1" CreStamp="1653591320" ModStamp="1653592181" WorldPos="34.25 156.25 34.75" Rotation="-0 3.14159 -0" Scale="1.5 1.5 1.5" FileIndex="301" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 646 268437383">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268437396" Name="robot_arm_rusty_1" CreStamp="1653593011" ModStamp="1653593019" WorldPos="37 155.145 23.5" Rotation="0 -1.5708 0" Scale="1.5 1.5 1.5" FileIndex="302" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 639 268437396">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
