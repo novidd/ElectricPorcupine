@@ -60,11 +60,11 @@ class cScrMap : iScrMap
 	// Set up map environment
 	void Setup()
 	{
-		Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
-		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
-		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets red tint to bloom
+		//Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
+		//Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
+		//Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets red tint to bloom
 		
-		Effect_DoF_Start(0, 12, 1.0f, 0);
+		//Effect_DoF_Start(0, 12, 1.0f, 0);
 		
 		//////////////////////////
 		// Outdoor preset
@@ -77,23 +77,23 @@ class cScrMap : iScrMap
 		
 		//////////////////////////
 		// Indoor preset
-		//Map_Preset_SetupBloom("IntroIndoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+		Map_Preset_SetupBloom("IntroIndoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
 		Map_Preset_SetupDepthOfField("IntroIndoor", true, 0, 12, 1.0);
 		Map_Preset_SetupSkybox("IntroIndoor", cColor(0.741,0.741,0.741,1), 1.0);
 		Map_Preset_SetupFog("IntroIndoor", true, 1, 40, 1, cColor(0.004,0.004,0.004,1), 1, false, true);
 		Map_Preset_SetupSecondaryFog("IntroIndoor", false);
 		Map_Preset_SetupColorGrading("IntroIndoor", "textures/colorgrading/grading_03_02.dds");
 		
-		//Map_SetEnvironmentParticlesActive(false);
-		//Map_SetEnvironmentParticleVisible("*", false);
+		Map_SetEnvironmentParticlesActive(false);
+		Map_SetEnvironmentParticleVisible("*", false);
 		
 		//Effect_Bloom_FadeBrightPass(0.65f, 2);
         //Effect_Bloom_FadeBloomWidth(128, 2);
         //Effect_Bloom_FadeBloomFalloff(0.5f, 2);
         //Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
 		
-		iTexture@ pSkybox = cResources_CreateTextureCubeMap("grayscale_gradient_1_3.dds",false);
-		cLux_GetCurrentMap().GetWorld().SetFogSkyboxTexture(pSkybox);
+		//iTexture@ pSkybox = cResources_CreateTextureCubeMap("grayscale_gradient_1_3.dds",false);
+		//cLux_GetCurrentMap().GetWorld().SetFogSkyboxTexture(pSkybox);
 		
 		CathTool_ResetScreen(eCathToolVariant_HelperJane);
 	}
@@ -120,9 +120,19 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
-		////////////////////////
+		/////////////////////////
 		// Setup Entities
 		SetupArrivalOutsideTheta();
+		
+		Tool_PickUp("CathTool", false, false);
+		
+		/////////////////////////
+		// Player setup
+		Player_SetAmbientLight_Outdoors();
+		PlayerHands_SetHandModel_Diving();
+		
+		/////////////////////////
+		// Level setup
 		
 		/////////////////////////
 		// Debug
@@ -132,27 +142,14 @@ class cScrMap : iScrMap
 			
 			cLux_AddDebugMessage("Debug on.");
 		}
-		////////////////////////////
-		// Intro setup
+		
+		AudioHandler("Start");
 		
 		if(mbRunIntro)
 		{
 			SetupWakeUp();
 			SequenceIntro("");
 		}
-		
-		////////////////////////////
-		// Level setup
-		AudioHandler("Start");
-		
-		//Player_SetAmbientLight_Indoors();
-		Player_SetAmbientLight_Outdoors();
-		
-		PlayerHands_SetHandModel_Diving();
-		
-		Tool_PickUp("CathTool", false, false);
-		
-		EyeTracking_RegisterEntity("GatePanel", true, false, true, 15.0f, 4.0f);
 	}
 
 	//-------------------------------------------------------
@@ -161,8 +158,8 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		Map_SetUnderwater(true);
-		Map_Preset_Fade("IntroOutdoor", 0.1);
+		//Map_SetUnderwater(true);
+		//Map_Preset_Fade("IntroIndoor", 0.1);
 	}
 
 	//-------------------------------------------------------
