@@ -71,18 +71,19 @@ class cScrMap : iScrMap
 		
 		//////////////////////////
 		// Indoor preset
-		Map_Preset_SetupBloom("IntroIndoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
-		Map_Preset_SetupDepthOfField("IntroIndoor", true, 0, 6, 1.0);
-		//Map_Preset_SetupBloom("IntroIndoor", 128, 0.75, 0.1, cColor(1, 1, 1, 0.0));
-		//Map_Preset_SetupDepthOfField("IntroIndoor", false, 1, 12, 1.0);
+		Map_Preset_SetupBloom("WaterIndoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+		Map_Preset_SetupDepthOfField("WaterIndoor", true, 0, 6, 1.0);
+		//Map_Preset_SetupBloom("WaterIndoor", 128, 0.75, 0.1, cColor(1, 1, 1, 0.0));
+		//Map_Preset_SetupDepthOfField("WaterIndoor", false, 1, 12, 1.0);
 		
-		//Map_Preset_SetupFog("IntroIndoor", true, 1, 40, 1, cColor(0.004,0.004,0.004,1), 1, false, true);
-		//Map_Preset_SetupSecondaryFog("IntroIndoor", false);
+		//Map_Preset_SetupFog("WaterIndoor", true, 1, 40, 1, cColor(0.004,0.004,0.004,1), 1, false, true);
+		//Map_Preset_SetupSecondaryFog("WaterIndoor", false);
 		
-		//Map_Preset_SetupSkybox("IntroIndoor", cColor(0.741,0.741,0.741,1), 1.0);
+		//Map_Preset_SetupSkybox("WaterIndoor", cColor(0.741,0.741,0.741,1), 1.0);
 		
-		Map_Preset_SetupColorGrading("IntroIndoor", "textures/colorgrading/grading_03_02.dds");
-		//Map_Preset_SetupColorGrading("IntroIndoor", "textures/colorgrading/grading_default.dds");
+		//Map_Preset_SetupColorGrading("WaterIndoor", "textures/colorgrading/grading_03_02.dds");
+		//Map_Preset_SetupColorGrading("WaterIndoor", "textures/colorgrading/grading_02_04.dds");
+		Map_Preset_SetupColorGrading("WaterIndoor", "textures/colorgrading/grading_default.dds");
 		
 		//Map_SetEnvironmentParticlesActive(false);
 		//Map_SetEnvironmentParticleVisible("*", false);
@@ -169,7 +170,10 @@ class cScrMap : iScrMap
 	void OnEnter()
 	{
 		Map_SetUnderwater(true);
-		Map_Preset_Fade("IntroIndoor", 0.1);
+		
+		Player_SetFlashlightEnvParticleMul(10);
+		
+		Map_Preset_Fade("WaterIndoor", 0.1);
 	}
 
 	//-------------------------------------------------------
