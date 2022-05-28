@@ -126,7 +126,7 @@ class cScrMap : iScrMap
 		
 		/////////////////////////
 		// Player setup
-		Player_SetAmbientLight_Outdoors();
+		Player_SetAmbientLight_Indoors();
 		PlayerHands_SetHandModel_Diving();
 		
 		/////////////////////////
@@ -399,29 +399,26 @@ class cScrMap : iScrMap
 				Entity_SetActive("ToolArea_AirlockStart",false);
 				
 				Button_SetSwitchedOn("AirlockPanel", true, true);
-				//Sound_Stop("side_airlock_idle", 1.0f);
+				Sound_Stop("side_airlock_idle", 1.0f);
 				SlideDoor_SetClosed("slidedoor_airlock_4",true,false);
 				Entity_FadeEffectBaseColor("exit_airlock_lamp_*", cColor(1, 0.1, 0.0, 1), 0.5f);
 				Light_FadeTo("AirLockLight_*", cColor(1, 0.1, 0.0, 1), 4, 0.5f);
 				
 				Sound_FadeGlobalVolume(1.0f, 3.0f, eSoundEntryType_World);
 				Sound_FadeGlobalVolume(1.0f, 3.0f, eSoundEntryType_WorldClean);
-				
-				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
 			}
 			if (Sequence_DoStepAndWait(1.5f))
 			{
 				
 				AirlockEffectsFillWithWater();
+				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
 				Sound_CreateAtEntity("AirlockUWPump", "Entities_OceanBottom/airlock/uw/pump/pump_loop", "Area_OmniTool");
+				
+				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
 				
 			}
 			if (Sequence_DoStepAndWait(4))
 			{
-				//PreloadDeload();
-				
-				//LiquidArea_MoveLinearTo("LiquidArea_1", "LiquidArea_Target", 0.1, 0.5, 0.5);
-				
 				ParticleSystem_SetActive("exti_airlock_flood_effects_*", true);
 				ParticleSystem_SetActive("exti_airlock_flood_effects3_*", true);
 			}
@@ -439,12 +436,9 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(8))
 			{
 				ParticleSystem_Destroy("exti_airlock_flood_effects2_*");
+				
+				Voice_Play("HelperJane_PluggedIn_BadPower");
 			}
-			if (Sequence_DoStepAndWait(0))
-			{
-				//PreloadChangeOfMap();
-			}
-			
 			Sequence_End();
 		}
 		
@@ -468,7 +462,7 @@ class cScrMap : iScrMap
 			//Pump Sounds
 			Sound_CreateAtEntity("AirlockDrainingPumpLoopUW", "Entities_OceanBottom/airlock/uw/pump/pump_loop_nointro", "Area_OmniTool", 0.0f, false, 1.0f);
 			Sound_Stop("AirlockUWPump", 0.5f);
-				
+			
 			Map_AddTimer("AirlockFillingLoopUWStopTimer", 7.0f, "AirlockFillingLoopUWStop");
 		}
 			
@@ -484,7 +478,18 @@ class cScrMap : iScrMap
 			Sound_CreateAtEntity("AirlockUW", "Entities_OceanBottom/airlock/uw/water/filling/end", "Player", 1.f, false, 1.0f);
 			Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "Player", 1.f, false, 1.0f);
 			Sound_CreateAtEntity("PumpUWLeadOut", "Entities_OceanBottom/airlock/uw/pump/pump_end", "Area_OmniTool", 0.0f, false, 1.0f);
+			
+			Map_AddTimer("OpenAirlockDoor", 7.0f, "OpenAirlockDoor");
 		}
+		
+		//-------------------------------------------------------
+		
+		void OpenAirlockDoor(const tString &in asTimer)
+		{
+			SlideDoor_SetClosed("AirlockDoor", false, false);
+		}
+		
+		//-------------------------------------------------------
 		
 		void CollideAirlockWater(int alState)
 		{
@@ -492,18 +497,18 @@ class cScrMap : iScrMap
 			
 			if(alState == -1)
 			{
-				//Entity_SetActive("AMB_AirlockEnd_Water", false);
-				//Entity_SetActive("AMB_AirlockEnd", true);
+				Entity_SetActive("AMB_AirlockEnd_Water", false);
+				Entity_SetActive("AMB_AirlockEnd", true);
 				
-				//Map_SetEnvironmentParticlesActive(false);
-				//Map_SetEnvironmentParticleVisible("*", false);
-				//cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
+				Map_SetEnvironmentParticlesActive(false);
+				Map_SetEnvironmentParticleVisible("*", false);
+				cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
 				
-				//Light_SetVisible("NextLevelBoxLIght", false);
+				Light_SetVisible("NextLevelBoxLIght", false);
 				
-				//Player_SetAmbientLight_Indoors(true);
+				Player_SetAmbientLight_Indoors(true);
 				
-				//Depth_Audio_PlayLeaveWater();
+				Depth_Audio_PlayLeaveWater();
 			}
 			
 			else
@@ -525,10 +530,13 @@ class cScrMap : iScrMap
 			}
 		}
 		
-		//} END EVENT
-		
 		//-------------------------------------------------------
-
+		
+		void SoundStinger_OnPlayerLookAt(const tString &in asEntity, int alState)
+		{
+			cLux_AddDebugMessage("Playing stinger...");
+		}
+		
 		//} End INTRO
 		
 		/////////////////////////////////////////
