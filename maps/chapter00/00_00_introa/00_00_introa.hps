@@ -173,7 +173,7 @@ class cScrMap : iScrMap
 		
 		Player_SetFlashlightEnvParticleMul(10);
 		
-		Map_Preset_Fade("WaterIndoor", 0.1);
+		//Map_Preset_Fade("WaterIndoor", 0.1);
 	}
 
 	//-------------------------------------------------------
@@ -342,6 +342,14 @@ class cScrMap : iScrMap
 
 		//-------------------------------------------------------
 		
+		void OnGuiStartAirlock(const tString&in asEntityName, float afTimeStep)
+		{
+			StationGuiBG_Scanlines();
+			StationGuiBG_Backdrop();
+		}
+		
+		//-------------------------------------------------------
+		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
 		{
@@ -419,6 +427,8 @@ class cScrMap : iScrMap
 			}
 			if (Sequence_DoStepAndWait(4))
 			{
+				LiquidArea_MoveLinearTo("LiquidArea_1", "LiquidArea_Target", 0.1, 0.5, 0.5);
+				
 				ParticleSystem_SetActive("exti_airlock_flood_effects_*", true);
 			}
 			if (Sequence_DoStepAndWait(2))
