@@ -72,7 +72,7 @@ class cScrMap : iScrMap
 		//////////////////////////
 		// Indoor preset
 		Map_Preset_SetupBloom("WaterIndoor", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
-		Map_Preset_SetupDepthOfField("WaterIndoor", true, 0, 6, 1.0);
+		Map_Preset_SetupDepthOfField("WaterIndoor", true, 0, 2, 1.0);
 		//Map_Preset_SetupBloom("WaterIndoor", 128, 0.75, 0.1, cColor(1, 1, 1, 0.0));
 		//Map_Preset_SetupDepthOfField("WaterIndoor", false, 1, 12, 1.0);
 		
@@ -84,6 +84,7 @@ class cScrMap : iScrMap
 		//Map_Preset_SetupColorGrading("WaterIndoor", "textures/colorgrading/grading_03_02.dds");
 		//Map_Preset_SetupColorGrading("WaterIndoor", "textures/colorgrading/grading_02_04.dds");
 		Map_Preset_SetupColorGrading("WaterIndoor", "textures/colorgrading/grading_default.dds");
+		//Map_Preset_SetupColorGrading("WaterIndoor", "textures/colorgrading/grading_04_01.dds");
 		
 		//Map_SetEnvironmentParticlesActive(false);
 		//Map_SetEnvironmentParticleVisible("*", false);
