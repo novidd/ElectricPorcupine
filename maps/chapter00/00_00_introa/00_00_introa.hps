@@ -137,7 +137,6 @@ class cScrMap : iScrMap
 		//Particle init
 		ParticleSystem_SetActive("exti_airlock_flood_effects_*", false);
 		ParticleSystem_SetActive("exti_airlock_flood_effects2_*", false);
-		ParticleSystem_SetActive("exti_airlock_flood_effects3_*", false);
 		ParticleSystem_SetActive("exti_airlock_flood_effects4_*", false);
 		
 		//////////////////////////////////
@@ -421,12 +420,10 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(4))
 			{
 				ParticleSystem_SetActive("exti_airlock_flood_effects_*", true);
-				ParticleSystem_SetActive("exti_airlock_flood_effects3_*", true);
 			}
 			if (Sequence_DoStepAndWait(2))
 			{
 				ParticleSystem_Destroy("exti_airlock_flood_effects_*");
-				ParticleSystem_Destroy("exti_airlock_flood_effects3_*"); 
 				ParticleSystem_SetActive("exti_airlock_flood_effects2_*", true);
 				
 			}
@@ -438,7 +435,17 @@ class cScrMap : iScrMap
 			{
 				ParticleSystem_Destroy("exti_airlock_flood_effects2_*");
 				
+				//ADD SCREENSHAKE
+				//KILL POWER
+				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "Player", 1.f, false, 1.0f);
+			}
+			if (Sequence_DoStepAndWait(1))
+			{
 				Voice_Play("HelperJane_PluggedIn_BadPower");
+			}
+			if (Sequence_DoStepAndWait(2))
+			{
+				SlideDoor_SetClosed("AirlockDoor", false, false);
 			}
 			Sequence_End();
 		}
@@ -477,17 +484,7 @@ class cScrMap : iScrMap
 			Sound_Stop("AirlockDrainingPumpLoopUW", 1.25f);
 			
 			Sound_CreateAtEntity("AirlockUW", "Entities_OceanBottom/airlock/uw/water/filling/end", "Player", 1.f, false, 1.0f);
-			Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "Player", 1.f, false, 1.0f);
 			Sound_CreateAtEntity("PumpUWLeadOut", "Entities_OceanBottom/airlock/uw/pump/pump_end", "Area_OmniTool", 0.0f, false, 1.0f);
-			
-			Map_AddTimer("OpenAirlockDoor", 7.0f, "OpenAirlockDoor");
-		}
-		
-		//-------------------------------------------------------
-		
-		void OpenAirlockDoor(const tString &in asTimer)
-		{
-			SlideDoor_SetClosed("AirlockDoor", false, false);
 		}
 		
 		//-------------------------------------------------------
