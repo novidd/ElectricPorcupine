@@ -140,11 +140,12 @@ class cScrMap : iScrMap
 		ParticleSystem_SetActive("exti_airlock_flood_effects4_*", false);
 		
 		//////////////////////////////////
-		// Exit airlock lights
-		//Entity_FadeEffectBaseColor("exit_airlock_lamp_1", cColor(1,0.515,0.055,1), 1);
-		//Entity_FadeEffectBaseColor("exit_airlock_lamp_2", cColor(1,0.515,0.055,1), 1);
-		//Entity_FadeEffectBaseColor("exit_airlock_lamp_3", cColor(1,0.515,0.055,1), 1);
-		//Entity_FadeEffectBaseColor("exit_airlock_lamp_4", cColor(1,0.515,0.055,1), 1);
+		// Exit airlock light
+		Entity_StopAnimation("AirlockLamp");
+		
+		Light_FadeTo("Station_AirLockLight_1", cColor(0,0,0,0.467), 6, 0.1f); // Light hex: FF000077
+		Light_SetFlickerActive("Station_AirLockLight_1", false);
+
 		
 		/////////////////////////
 		// Debug
@@ -219,7 +220,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test4)
 		{
-			SequenceIntro("");
+			Entity_PlayAnimation("AirlockLamp", "spin", 0.1f, true);
 		}
 		
 		if(alAction == eAction_Test5)
@@ -407,11 +408,6 @@ class cScrMap : iScrMap
 				Button_SetSwitchedOn("AirlockActivateButton", true, true);
 				Sound_Stop("side_airlock_idle", 1.0f);
 				SlideDoor_SetClosed("AirlockOceanDoor", true, false);
-				
-				// Target light color: cColor(1,0.082,0.082,1)
-				// Lamp EffectColor and IllumColor hex: F11D1DFF
-				Entity_FadeEffectBaseColor("exit_airlock_lamp_*", cColor(0.945,0.114,0.114,1), 0.5f);
-				Light_FadeTo("Station_AirLockLight_1", cColor(1,0.082,0.082,1), -1, 0.5f);
 			}
 			if (Sequence_DoStepAndWait(2.0f))
 			{
@@ -421,6 +417,9 @@ class cScrMap : iScrMap
 			{
 				Lamp_SetLit("AirlockLamp", true, true);
 				Sound_Play("Light_spin", 0.1f);
+				Entity_PlayAnimation("AirlockLamp", "spin", 0.1f, true);
+				Light_FadeTo("Station_AirLockLight_1", cColor(1,0,0,0.467), 6, 0.5f); // Light hex: FF000077
+				Light_SetFlickerActive("Station_AirLockLight_1", true);
 				
 				Sound_CreateAtEntity("AirlockFailAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "AirlockAlarmSoundSource");
 				ParticleSystem_SetActive("exti_airlock_flood_effects4_*", true);
