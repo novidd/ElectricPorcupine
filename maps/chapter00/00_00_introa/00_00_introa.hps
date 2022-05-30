@@ -413,7 +413,7 @@ class cScrMap : iScrMap
 				Entity_FadeEffectBaseColor("exit_airlock_lamp_*", cColor(0.945,0.114,0.114,1), 0.5f);
 				Light_FadeTo("Station_AirLockLight_1", cColor(1,0.082,0.082,1), -1, 0.5f);
 			}
-			if (Sequence_DoStepAndWait(1.0f))
+			if (Sequence_DoStepAndWait(2.0f))
 			{
 				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
 			}
@@ -438,23 +438,31 @@ class cScrMap : iScrMap
 				
 				ParticleSystem_SetActive("exti_airlock_flood_effects_*", true);
 			}
-			if (Sequence_DoStepAndWait(2))
+			if (Sequence_DoStepAndWait(11))
 			{
 				ParticleSystem_Destroy("exti_airlock_flood_effects_*");
 				ParticleSystem_SetActive("exti_airlock_flood_effects2_*", true);
 				
 			}
-			if (Sequence_DoStepAndWait(9))
-			{
-				//ParticleSystem_SetActive("exti_airlock_flood_effects4_*", true);
-			}
-			if (Sequence_DoStepAndWait(8))
+			if (Sequence_DoStepAndWait(2)) // 8.0f
 			{
 				ParticleSystem_Destroy("exti_airlock_flood_effects2_*");
 				
 				//ADD SCREENSHAKE
-				//KILL POWER
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "Player", 1.f, false, 1.0f);
+			}
+			if (Sequence_DoStepAndWait(0.1f)) // ENABLE / DISABLE SPINNING LIGHT ANIMATION
+			{
+				// TRY TO OPEN DOOR
+				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.05, false);
+				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
+				
+				//KILL POWER
+				//ADD SCREENSHAKE
+			}
+			if (Sequence_DoStepAndWait(6)) // 2.0f
+			{
+				// REBOOT POWER
 			}
 			if (Sequence_DoStepAndWait(1))
 			{
@@ -462,7 +470,8 @@ class cScrMap : iScrMap
 			}
 			if (Sequence_DoStepAndWait(2))
 			{
-				SlideDoor_SetClosed("AirlockDoor", false, false);
+				// SUCCESSFULLY OPEN THE AIRLOCK DOOR
+				SlideDoor_SetClosed("AirlockStationDoor", false, false);
 			}
 			Sequence_End();
 		}
