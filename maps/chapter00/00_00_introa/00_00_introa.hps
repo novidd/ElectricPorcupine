@@ -143,7 +143,7 @@ class cScrMap : iScrMap
 		// Exit airlock light
 		Entity_StopAnimation("AirlockLamp");
 		
-		Light_FadeTo("Station_AirLockLight_1", cColor(0,0,0,0.467), 6, 0.1f); // Light hex: FF000077
+		Light_FadeTo("Station_AirLockLight_1", cColor(0,0,0,0.467), 6, 0.01f); // Light hex: FF000077
 		Light_SetFlickerActive("Station_AirLockLight_1", false);
 
 		
@@ -447,7 +447,7 @@ class cScrMap : iScrMap
 			{
 				ParticleSystem_Destroy("exti_airlock_flood_effects2_*");
 				
-				//ADD SCREENSHAKE
+				// ADD SCREENSHAKE
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "Player", 1.f, false, 1.0f);
 			}
 			if (Sequence_DoStepAndWait(0.1f)) // ENABLE / DISABLE SPINNING LIGHT ANIMATION
@@ -456,10 +456,15 @@ class cScrMap : iScrMap
 				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.05, false);
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
 				
-				//KILL POWER
-				//ADD SCREENSHAKE
+				// KILL POWER
+				
+				// MONSTER PASSES DOOR??
+				
+				// ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "Airlock_Control", true);s
+				
+				// ADD SCREENSHAKE
 			}
-			if (Sequence_DoStepAndWait(6)) // 2.0f
+			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
 			{
 				// REBOOT POWER
 			}
