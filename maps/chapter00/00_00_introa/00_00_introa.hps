@@ -411,7 +411,7 @@ class cScrMap : iScrMap
 			}
 			if (Sequence_DoStepAndWait(2.0f))
 			{
-				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
+				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "AirlockSoundSource");
 			}
 			if (Sequence_DoStepAndWait(1.0f))
 			{
@@ -428,8 +428,8 @@ class cScrMap : iScrMap
 			{
 				
 				AirlockEffectsFillWithWater();
-				//Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
-				Sound_CreateAtEntity("AirlockUWPump", "Entities_OceanBottom/airlock/uw/pump/pump_loop", "Area_OmniTool");
+				//Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "AirlockSoundSource");
+				Sound_CreateAtEntity("AirlockUWPump", "Entities_OceanBottom/airlock/uw/pump/pump_loop", "AirlockSoundSource");
 			}
 			if (Sequence_DoStepAndWait(4))
 			{
@@ -498,7 +498,7 @@ class cScrMap : iScrMap
 			
 			///////////////////
 			//Pump Sounds
-			Sound_CreateAtEntity("AirlockDrainingPumpLoopUW", "Entities_OceanBottom/airlock/uw/pump/pump_loop_nointro", "Area_OmniTool", 0.0f, false, 1.0f);
+			Sound_CreateAtEntity("AirlockDrainingPumpLoopUW", "Entities_OceanBottom/airlock/uw/pump/pump_loop_nointro", "AirlockSoundSource", 0.0f, false, 1.0f);
 			Sound_Stop("AirlockUWPump", 0.5f);
 			
 			Map_AddTimer("AirlockFillingLoopUWStopTimer", 7.0f, "AirlockFillingLoopUWStop");
@@ -514,7 +514,7 @@ class cScrMap : iScrMap
 			Sound_Stop("AirlockDrainingPumpLoopUW", 1.25f);
 			
 			Sound_CreateAtEntity("AirlockUW", "Entities_OceanBottom/airlock/uw/water/filling/end", "Player", 1.f, false, 1.0f);
-			Sound_CreateAtEntity("PumpUWLeadOut", "Entities_OceanBottom/airlock/uw/pump/pump_end", "Area_OmniTool", 0.0f, false, 1.0f);
+			Sound_CreateAtEntity("PumpUWLeadOut", "Entities_OceanBottom/airlock/uw/pump/pump_end", "AirlockSoundSource", 0.0f, false, 1.0f);
 		}
 		
 		//-------------------------------------------------------
