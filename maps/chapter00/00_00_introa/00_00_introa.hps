@@ -135,20 +135,12 @@ class cScrMap : iScrMap
 		
 		///////////////////////
 		//Particle init
-		ParticleSystem_SetActive("exti_airlock_flood_effects_*", false);
-		ParticleSystem_SetActive("exti_airlock_flood_effects2_*", false);
-		ParticleSystem_SetActive("exti_airlock_flood_effects4_*", false);
-		
 		ParticleSystem_SetActive("first_airlock_drain_particles_*", false);
 		ParticleSystem_SetActive("second_airlock_drain_particles_*", false);
 		
 		//////////////////////////////////
 		// Exit airlock light
-		Entity_StopAnimation("AirlockLamp");
-		
-		Light_FadeTo("Station_AirLockLight_1", cColor(0,0,0,0.467), 6, 0.01f); // Light hex: FF000077
-		Light_SetFlickerActive("Station_AirLockLight_1", false);
-
+		StationLampHandler("AirlockLamp", false);
 		
 		/////////////////////////
 		// Debug
@@ -228,7 +220,8 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test5)
 		{
-			SequenceAirlockExit("");
+			Button_SetSwitchedOn("AirlockActivateButton", true, true);
+			SequenceAirlockEnter("");
 		}
 	}
 
@@ -588,6 +581,8 @@ class cScrMap : iScrMap
 	 
 		/*Put any variables that are only used in Scene X, Event X here.*/
 		
+		bool mbAirlockFlushed = false;
+		
 		//-------------------------------------------------------
 	 
 		/*Put any functions that are only used in Scene X, Event X here.*/
@@ -598,45 +593,47 @@ class cScrMap : iScrMap
 		{
 			StationGuiBG_Scanlines();
 			StationGuiBG_Backdrop();
+			
+			if (Button_IsSwitchedOn("AirlockActivateButton") && mbAirlockFlushed == false)
+			{
+				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushing!");
+			}
+			
+			if (mbAirlockFlushed)
+			{
+				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushed!");
+			}
 		}
 		
 		//-------------------------------------------------------
 		
 		void ActiveAirlock(const tString &in asEntity)
 		{
-			SequenceAirlockExit("");
+			SequenceAirlockEnter("");
 		}
 		
 		//-------------------------------------------------------
 		
-		cSequenceStatesData mSequenceAirlockExit;
-		void SequenceAirlockExit(const tString &in asName)
+		cSequenceStatesData mSequenceAirlockEnter;
+		void SequenceAirlockEnter(const tString &in asName)
 		{
-			Sequence_Begin("SequenceAirlockExit", mSequenceAirlockExit);
+			Sequence_Begin("SequenceAirlockEnter", mSequenceAirlockEnter);
 			
 			if (Sequence_DoStepAndWait(1.f))
 			{
-				//////////////////////////
-				// Fade out scan trails
-				//Effect_ImageTrail_FadeOut(mlIDScanTrails,3.0f);
+				// UPDATE TERMINAL GUI
 				
-				Button_SetSwitchedOn("AirlockActivateButton", true, true);
 				SlideDoor_SetClosed("AirlockOceanDoor", true, false);
 			}
-			if (Sequence_DoStepAndWait(2.0f))
+			if (Sequence_DoStepAndWait(2.f))
 			{
 				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "FauxAirlockMotorSource");
 			}
 			if (Sequence_DoStepAndWait(1.0f))
 			{
-				Lamp_SetLit("AirlockLamp", true, true);
-				Sound_Play("Light_spin", 0.1f);
-				Entity_PlayAnimation("AirlockLamp", "spin", 0.1f, true);
-				Light_FadeTo("Station_AirLockLight_1", cColor(1,0,0,0.467), 6, 0.5f); // Light hex: FF000077
-				Light_SetFlickerActive("Station_AirLockLight_1", true);
+				StationLampHandler("AirlockLamp", true);
 				
-				Sound_CreateAtEntity("AirlockFailAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "AirlockAlarmSoundSource");
-				ParticleSystem_SetActive("exti_airlock_flood_effects4_*", true);
+				Sound_CreateAtEntity("AirlockAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "AirlockAlarmSoundSource");
 			}
 			if (Sequence_DoStepAndWait(3.5f)) // 1.5f
 			{
@@ -683,6 +680,10 @@ class cScrMap : iScrMap
 				
 				// KILL POWER
 				
+				// UPDATE TERMINAL GUI
+				// KILL TERMINAL GUI -- HAVE GLITCH EFFECTS MOMENTS BEFORE
+				StationLampHandler("AirlockLamp", false);
+				
 				// MONSTER PASSES DOOR??
 				
 				// ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "Airlock_Control", true);s
@@ -692,6 +693,11 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
 			{
 				// REBOOT POWER
+				
+				// UPDATE TERMINAL GUI
+				// REBOOT TERMINAL GUI -- HAVE GLITCH EFFECTS
+				
+				// DISABLE AIRLOCK ACTIVATE BUTTON - RED LIGHT COLOR
 			}
 			if (Sequence_DoStepAndWait(1))
 			{
@@ -703,6 +709,30 @@ class cScrMap : iScrMap
 				SlideDoor_SetClosed("AirlockStationDoor", false, false);
 			}
 			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		void StationLampHandler(const tString &in asEntity, bool abOn)
+		{
+			if (abOn)
+			{
+				Sound_Play("Light_spin", 1.0f);
+				Entity_PlayAnimation(asEntity, "spin", 0.1f, true);
+				Light_FadeTo("Station_AirLockLight_1", cColor(1,0,0,0.467), 6, 0.5f);
+			}
+			else
+			{
+				Sound_Stop("Light_spin", 0.1f);
+				Entity_StopAnimation(asEntity);
+				Light_FadeTo("Station_AirLockLight_1", cColor(0,0,0,1), 6, 0.5f);
+			}
+			
+			ParticleSystem_SetActive("AirlockLamp_PS", abOn);
+			ParticleSystem_SetVisible("AirlockLamp_PS", abOn);
+			
+			Lamp_SetLit(asEntity, abOn, true);
+			Light_SetFlickerActive("Station_AirLockLight_1", abOn);
 		}
 		
 		//-------------------------------------------------------
@@ -757,6 +787,8 @@ class cScrMap : iScrMap
 			Sound_CreateAtEntity("PumpAirLeadOut", "Entities_OceanBottom/airlock/air/pump/pump_end", "FauxAirlockMotorSource", 0.0f, false, 1.0f);
 			
 			Sound_Play("side_airlock_idle_air", 0.1f);
+			
+			mbAirlockFlushed = true;
 		}
 		
 		//-------------------------------------------------------
@@ -772,6 +804,9 @@ class cScrMap : iScrMap
 				ParticleSystem_SetVisible("first_airlock_drain_particles_*", true);
 				ParticleSystem_SetVisible("second_airlock_drain_particles_*", true);
 				
+				ParticleSystem_SetActive("AirlockLamp_PS", false);
+				ParticleSystem_SetVisible("AirlockLamp_PS", false);
+				
 				for (int i = 1; Entity_Exists("EndAirlockSplashPSArea_"+i); i++)
 				{
 					if (ParticleSystem_Exists("EndAirlockSplashParticles_"+i))
@@ -785,8 +820,7 @@ class cScrMap : iScrMap
 					ParticleSystem_SetVisible("AuxAirlockBubbleArea_"+i, false);
 				}
 				
-				//Map_Preset_Fade("3.2Preset", 0.25);
-				//Map_AddTimer("FadeGlobal", 0.5, "PreloadTimer");
+				// CHANGE MAP PRESET
 				
 				Entity_SetActive("AMB_AirlockAir", true);
 				Entity_SetActive("AMB_AirlockWater", false);
@@ -794,8 +828,6 @@ class cScrMap : iScrMap
 				Map_SetEnvironmentParticlesActive(false);
 				
 				Depth_Audio_PlayLeaveWater();
-				
-				// CHANGE DEPTH OF FIELD
 			}
 			
 			else
@@ -819,6 +851,44 @@ class cScrMap : iScrMap
 				Depth_Audio_PlayEnterWater();
 			}
 		}
+	
+		//} END Event *Player activates the airlock*
+		
+	//} END SCENE X
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE X *Station Entrance*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+ 
+		/////////////////////////////////////////
+		// General
+		//{//////////////////////////////////////
+		 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are used by many events in Scene X here.*/
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are used in more than one event in Scene X here.*/
+	 
+		//-------------------------------------------------------
+		
+		//} END General	
+	 
+		/////////////////////////////////////////
+		// Event *Player enters the station*
+		//{//////////////////////////////////////
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are only used in Scene X, Event X here.*/
 		
 		//-------------------------------------------------------
 		
@@ -827,7 +897,7 @@ class cScrMap : iScrMap
 			cLux_AddDebugMessage("Player entered station...");
 		}
 	
-		//} END Event *Player activates the airlock*
+		//} END Event *Player enters the station*
 		
 	//} END SCENE X
 	
@@ -859,7 +929,7 @@ class cScrMap : iScrMap
 	
 	//} END TERMINALS
 	
-	//////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
 	// AUDIO
 	// ==============
