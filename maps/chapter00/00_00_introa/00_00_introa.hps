@@ -398,32 +398,39 @@ class cScrMap : iScrMap
 		{
 			Sequence_Begin("SequenceAirlockExit", mSequenceAirlockExit);
 			
-			if (Sequence_DoStepAndWait(2.5f))
+			if (Sequence_DoStepAndWait(1.f))
 			{
 				//////////////////////////
 				// Fade out scan trails
 				//Effect_ImageTrail_FadeOut(mlIDScanTrails,3.0f);
 				
-				Entity_SetActive("ToolArea_AirlockStart",false);
-				
-				Button_SetSwitchedOn("AirlockPanel", true, true);
+				Button_SetSwitchedOn("AirlockActivateButton", true, true);
 				Sound_Stop("side_airlock_idle", 1.0f);
-				SlideDoor_SetClosed("slidedoor_airlock_4",true,false);
-				Entity_FadeEffectBaseColor("exit_airlock_lamp_*", cColor(1, 0.1, 0.0, 1), 0.5f);
-				Light_FadeTo("AirLockLight_*", cColor(1, 0.1, 0.0, 1), 4, 0.5f);
+				SlideDoor_SetClosed("AirlockOceanDoor", true, false);
 				
-				Sound_FadeGlobalVolume(1.0f, 3.0f, eSoundEntryType_World);
-				Sound_FadeGlobalVolume(1.0f, 3.0f, eSoundEntryType_WorldClean);
+				// Target light color: cColor(1,0.082,0.082,1)
+				// Lamp EffectColor and IllumColor hex: F11D1DFF
+				Entity_FadeEffectBaseColor("exit_airlock_lamp_*", cColor(0.945,0.114,0.114,1), 0.5f);
+				Light_FadeTo("Station_AirLockLight_1", cColor(1,0.082,0.082,1), -1, 0.5f);
+			}
+			if (Sequence_DoStepAndWait(1.0f))
+			{
+				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
+			}
+			if (Sequence_DoStepAndWait(1.0f))
+			{
+				Lamp_SetLit("AirlockLamp", true, true);
+				Sound_Play("Light_spin", 0.1f);
+				
+				Sound_CreateAtEntity("AirlockFailAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "AirlockAlarmSoundSource");
+				ParticleSystem_SetActive("exti_airlock_flood_effects4_*", true);
 			}
 			if (Sequence_DoStepAndWait(1.5f))
 			{
 				
 				AirlockEffectsFillWithWater();
-				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
+				//Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
 				Sound_CreateAtEntity("AirlockUWPump", "Entities_OceanBottom/airlock/uw/pump/pump_loop", "Area_OmniTool");
-				
-				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "Area_OmniTool");
-				
 			}
 			if (Sequence_DoStepAndWait(4))
 			{
@@ -439,7 +446,7 @@ class cScrMap : iScrMap
 			}
 			if (Sequence_DoStepAndWait(9))
 			{
-				ParticleSystem_SetActive("exti_airlock_flood_effects4_*", true);
+				//ParticleSystem_SetActive("exti_airlock_flood_effects4_*", true);
 			}
 			if (Sequence_DoStepAndWait(8))
 			{
@@ -472,10 +479,10 @@ class cScrMap : iScrMap
 		void AirlockFillingAirStop(const tString &in asTimer)
 		{
 			cLux_AddDebugMessage("Underwater airlock sounds start");
-				
+			
 			Sound_CreateAtEntity("AirlockDrainingLoopUW", "Entities_OceanBottom/airlock/uw/water/drain/loop", "Player", 1.f, false, 1.0f);
 			Depth_Audio_AirlockDrainLoopAirStop();
-				
+			
 			///////////////////
 			//Pump Sounds
 			Sound_CreateAtEntity("AirlockDrainingPumpLoopUW", "Entities_OceanBottom/airlock/uw/pump/pump_loop_nointro", "Area_OmniTool", 0.0f, false, 1.0f);
@@ -540,9 +547,9 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void SoundStinger_OnPlayerLookAt(const tString &in asEntity, int alState)
+		void Trigger_EnterStation(const tString &in asParent, const tString &in asChild, int alState)
 		{
-			cLux_AddDebugMessage("Playing stinger...");
+			cLux_AddDebugMessage("Player entered station...");
 		}
 		
 		//} End INTRO
