@@ -40,6 +40,14 @@
 /*Place any global values here. These must be const variables as they will not be saved*/
 /*This is also the place for enums and classes, but these should be avoided whenever possible*/
 
+enum ePowerState
+{
+	ePowerState_On,
+	ePowerState_Off,
+	ePowerState_Unreliable,
+	ePowerState_Flicker
+}
+
 //--------------------------------------------------
 
 class cScrMap : iScrMap
@@ -139,7 +147,9 @@ class cScrMap : iScrMap
 		ParticleSystem_SetActive("second_airlock_drain_particles_*", false);
 		
 		//////////////////////////////////
-		// Exit airlock light
+		// Airlock
+		Light_SetVisible("Station_AirLockBoxNoPower", false);
+		Light_SetVisible("Station_AirLockBoxPower", true);
 		StationLampHandler("AirlockLamp", false);
 		
 		/////////////////////////
@@ -278,12 +288,6 @@ class cScrMap : iScrMap
 		if (asEntity=="GatePanel")
 		{
 			CathTool_UseOnPanel(asTool, asEntity);
-			return false;
-		}
-		if (asEntity=="AirlockPanel")
-		{
-			CathTool_UseOnPanel(asTool, asEntity);
-			Map_AddTimer("SequenceAirlockExit", 2.75f, "SequenceAirlockExit");
 			return false;
 		}
 		return false;
@@ -582,6 +586,7 @@ class cScrMap : iScrMap
 		/*Put any variables that are only used in Scene X, Event X here.*/
 		
 		bool mbAirlockFlushed = false;
+		bool mbAirlockPowerOff = false;
 		
 		//-------------------------------------------------------
 	 
@@ -602,6 +607,11 @@ class cScrMap : iScrMap
 			if (mbAirlockFlushed)
 			{
 				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushed!");
+			}
+			
+			if (mbAirlockPowerOff)
+			{
+				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock power off!");
 			}
 		}
 		
@@ -667,28 +677,32 @@ class cScrMap : iScrMap
 			{
 				ParticleSystem_Destroy("second_airlock_drain_particles_*");
 			}
-			if (Sequence_DoStepAndWait(2)) // 8.0f
+			if (Sequence_DoStepAndWait(3)) // 8.0f
 			{
 				// ADD SCREENSHAKE
-				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "Player", 1.f, false, 1.0f);
+				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "AirlockPowerSource", 1.f, false, 1.0f);
 			}
 			if (Sequence_DoStepAndWait(0.1f)) // ENABLE / DISABLE SPINNING LIGHT ANIMATION
 			{
 				// TRY TO OPEN DOOR
-				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.05, false);
+				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.1, false);
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
 				
 				// KILL POWER
+				// ADD SCREENSHAKE
+				// HEARTBEAT AND BREATH
 				
 				// UPDATE TERMINAL GUI
 				// KILL TERMINAL GUI -- HAVE GLITCH EFFECTS MOMENTS BEFORE
 				StationLampHandler("AirlockLamp", false);
+				Light_SetVisible("Station_AirLockBoxPower", false);
+				Light_SetVisible("Station_AirLockBoxNoPower", true);
 				
 				// MONSTER PASSES DOOR??
 				
 				// ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "Airlock_Control", true);s
 				
-				// ADD SCREENSHAKE
+				//SLOWLY FADE IN SCARY MUSIC
 			}
 			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
 			{
@@ -699,7 +713,7 @@ class cScrMap : iScrMap
 				
 				// DISABLE AIRLOCK ACTIVATE BUTTON - RED LIGHT COLOR
 			}
-			if (Sequence_DoStepAndWait(1))
+			if (Sequence_DoStepAndWait(1)) // ALWAYS 1.0f from voice line to door opening
 			{
 				Voice_Play("HelperJane_PluggedIn_BadPower");
 			}
