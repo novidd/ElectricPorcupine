@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="CBAFC9E0C7AF6CE3B960B11F33F9327387DE8B38" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="462">
+        <FileIndex_Entities NumOfFiles="463">
             <File Id="0" Path="entities/creatures/fish/shark_scalloped_hammerhead/shark_scalloped_hammerhead.ent" />
             <File Id="1" Path="entities/oceanbottom/ornaments/rotten_photo/rotten_photo.ent" />
             <File Id="2" Path="entities/oceanbottom/ornaments_wall/photos_corals/photo_coral_01.ent" />
@@ -463,6 +463,7 @@
             <File Id="459" Path="entities/station/valves/tech_pipe_valve/tech_pipe_brown_valve.ent" />
             <File Id="460" Path="entities/station/tech/airlock_wall_meters/airlock_wall_meters_03.ent" />
             <File Id="461" Path="entities/station/lamp/wall_small/wall_small_animated_effects.ent" />
+            <File Id="462" Path="entities/station/lamp/wall_small/wall_small_05_01_dome_special.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435585" Name="hammerhead" CreStamp="1653340772" ModStamp="1653343112" WorldPos="-103.875 0.25 -8.125" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 86 268435585">
@@ -3456,7 +3457,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438378" Name="AirlockActivateButton" CreStamp="1653838673" ModStamp="1653839726" WorldPos="1.47981 1.19398 -0.75" Rotation="0 -20.4204 0" Scale="1 1 1" FileIndex="409" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 735 268438378">
+            <Entity ID="268438378" Name="AirlockActivateButton" CreStamp="1653838673" ModStamp="1653932662" WorldPos="1.47981 1.19398 -0.75" Rotation="0 -20.4204 0" Scale="1 1 1" FileIndex="409" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 735 268438378">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -3483,7 +3484,7 @@
                     <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
                     <Var Name="PlayerLookAtMaxDistance" Value="-1" />
                     <Var Name="PlayerLookAtCallbackDelay" Value="0" />
-                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallback" Value="ActiveAirlock" />
                     <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
                     <Var Name="RecieveMessageCallback" Value="" />
                     <Var Name="CC_Entities" Value="" />
@@ -3876,7 +3877,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438619" Name="AirlockLamp" CreStamp="1653926931" ModStamp="1653927436" WorldPos="-1.25 2.28071 -0.75" Rotation="-1.16079 1.5708 -1.16079" Scale="0.5 0.5 0.5" FileIndex="461" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 779 268438619">
+            <Entity ID="268438619" Name="AirlockLamp" CreStamp="1653926931" ModStamp="1653927436" WorldPos="-1.25 2.28071 -0.75" Rotation="-1.16079 1.5708 -1.16079" Scale="0.5 0.5 0.5" FileIndex="461" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 779 268438619">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />

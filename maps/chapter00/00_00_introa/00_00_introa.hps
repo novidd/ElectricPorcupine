@@ -139,6 +139,9 @@ class cScrMap : iScrMap
 		ParticleSystem_SetActive("exti_airlock_flood_effects2_*", false);
 		ParticleSystem_SetActive("exti_airlock_flood_effects4_*", false);
 		
+		ParticleSystem_SetActive("first_airlock_drain_particles_*", false);
+		ParticleSystem_SetActive("second_airlock_drain_particles_*", false);
+		
 		//////////////////////////////////
 		// Exit airlock light
 		Entity_StopAnimation("AirlockLamp");
@@ -301,7 +304,7 @@ class cScrMap : iScrMap
  
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *INTRO*
+	// SCENE X *Intro*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
@@ -324,7 +327,7 @@ class cScrMap : iScrMap
 		//} END General	
 	 
 		/////////////////////////////////////////
-		// Event *WHAT HAPPENS IN THE INTRO*
+		// *INTRO*
 		//{//////////////////////////////////////
 	 
 		//-------------------------------------------------------
@@ -334,20 +337,6 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	 
 		/*Put any functions that are only used in Scene X, Event X here.*/
-		
-		//-------------------------------------------------------
-		
-		/////////////////////////////////////////
-		// INTRO
-		//{//////////////////////////////////////
-
-		//-------------------------------------------------------
-		
-		void OnGuiStartAirlock(const tString&in asEntityName, float afTimeStep)
-		{
-			StationGuiBG_Scanlines();
-			StationGuiBG_Backdrop();
-		}
 		
 		//-------------------------------------------------------
 		
@@ -392,183 +381,10 @@ class cScrMap : iScrMap
 			Sequence_End();
 		}
 		
-		//-------------------------------------------------------
-		
-		cSequenceStatesData mSequenceAirlockExit;
-		void SequenceAirlockExit(const tString &in asName)
-		{
-			Sequence_Begin("SequenceAirlockExit", mSequenceAirlockExit);
-			
-			if (Sequence_DoStepAndWait(1.f))
-			{
-				//////////////////////////
-				// Fade out scan trails
-				//Effect_ImageTrail_FadeOut(mlIDScanTrails,3.0f);
-				
-				Button_SetSwitchedOn("AirlockActivateButton", true, true);
-				Sound_Stop("side_airlock_idle", 1.0f);
-				SlideDoor_SetClosed("AirlockOceanDoor", true, false);
-			}
-			if (Sequence_DoStepAndWait(2.0f))
-			{
-				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "AirlockSoundSource");
-			}
-			if (Sequence_DoStepAndWait(1.0f))
-			{
-				Lamp_SetLit("AirlockLamp", true, true);
-				Sound_Play("Light_spin", 0.1f);
-				Entity_PlayAnimation("AirlockLamp", "spin", 0.1f, true);
-				Light_FadeTo("Station_AirLockLight_1", cColor(1,0,0,0.467), 6, 0.5f); // Light hex: FF000077
-				Light_SetFlickerActive("Station_AirLockLight_1", true);
-				
-				Sound_CreateAtEntity("AirlockFailAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "AirlockAlarmSoundSource");
-				ParticleSystem_SetActive("exti_airlock_flood_effects4_*", true);
-			}
-			if (Sequence_DoStepAndWait(1.5f))
-			{
-				
-				AirlockEffectsFillWithWater();
-				//Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "AirlockSoundSource");
-				Sound_CreateAtEntity("AirlockUWPump", "Entities_OceanBottom/airlock/uw/pump/pump_loop", "AirlockSoundSource");
-			}
-			if (Sequence_DoStepAndWait(4))
-			{
-				LiquidArea_MoveLinearTo("LiquidArea_1", "LiquidArea_Target", 0.1, 0.5, 0.5);
-				
-				ParticleSystem_SetActive("exti_airlock_flood_effects_*", true);
-			}
-			if (Sequence_DoStepAndWait(11))
-			{
-				ParticleSystem_Destroy("exti_airlock_flood_effects_*");
-				ParticleSystem_SetActive("exti_airlock_flood_effects2_*", true);
-				
-			}
-			if (Sequence_DoStepAndWait(2)) // 8.0f
-			{
-				ParticleSystem_Destroy("exti_airlock_flood_effects2_*");
-				
-				// ADD SCREENSHAKE
-				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "Player", 1.f, false, 1.0f);
-			}
-			if (Sequence_DoStepAndWait(0.1f)) // ENABLE / DISABLE SPINNING LIGHT ANIMATION
-			{
-				// TRY TO OPEN DOOR
-				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.05, false);
-				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
-				
-				// KILL POWER
-				
-				// MONSTER PASSES DOOR??
-				
-				// ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "Airlock_Control", true);s
-				
-				// ADD SCREENSHAKE
-			}
-			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
-			{
-				// REBOOT POWER
-			}
-			if (Sequence_DoStepAndWait(1))
-			{
-				Voice_Play("HelperJane_PluggedIn_BadPower");
-			}
-			if (Sequence_DoStepAndWait(2))
-			{
-				// SUCCESSFULLY OPEN THE AIRLOCK DOOR
-				SlideDoor_SetClosed("AirlockStationDoor", false, false);
-			}
-			Sequence_End();
-		}
-		
-		//-------------------------------------------------------
-		//Airlock audio
-		void AirlockEffectsFillWithWater()
-		{
-			Depth_Audio_AirlockDrainLeadInUW();
-			Depth_Audio_AirlockDrainLoopAir();
-			Map_AddTimer("AirlockFillingAirStopTimer", 3.65f, "AirlockFillingAirStop");
-		}
-
-		void AirlockFillingAirStop(const tString &in asTimer)
-		{
-			cLux_AddDebugMessage("Underwater airlock sounds start");
-			
-			Sound_CreateAtEntity("AirlockDrainingLoopUW", "Entities_OceanBottom/airlock/uw/water/drain/loop", "Player", 1.f, false, 1.0f);
-			Depth_Audio_AirlockDrainLoopAirStop();
-			
-			///////////////////
-			//Pump Sounds
-			Sound_CreateAtEntity("AirlockDrainingPumpLoopUW", "Entities_OceanBottom/airlock/uw/pump/pump_loop_nointro", "AirlockSoundSource", 0.0f, false, 1.0f);
-			Sound_Stop("AirlockUWPump", 0.5f);
-			
-			Map_AddTimer("AirlockFillingLoopUWStopTimer", 7.0f, "AirlockFillingLoopUWStop");
-		}
-			
-		void AirlockFillingLoopUWStop(const tString &in asTimer)
-		{
-			cLux_AddDebugMessage("Underwater airlock sounds stop");
-				
-			///////////////////
-			//Pump Sounds
-			Sound_Stop("AirlockDrainingLoopUW", 1.25f);			
-			Sound_Stop("AirlockDrainingPumpLoopUW", 1.25f);
-			
-			Sound_CreateAtEntity("AirlockUW", "Entities_OceanBottom/airlock/uw/water/filling/end", "Player", 1.f, false, 1.0f);
-			Sound_CreateAtEntity("PumpUWLeadOut", "Entities_OceanBottom/airlock/uw/pump/pump_end", "AirlockSoundSource", 0.0f, false, 1.0f);
-		}
-		
-		//-------------------------------------------------------
-		
-		void CollideAirlockWater(int alState)
-		{
-			cLux_AddDebugMessage("Splush!");
-			
-			if(alState == -1)
-			{
-				Entity_SetActive("AMB_AirlockEnd_Water", false);
-				Entity_SetActive("AMB_AirlockEnd", true);
-				
-				Map_SetEnvironmentParticlesActive(false);
-				Map_SetEnvironmentParticleVisible("*", false);
-				cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
-				
-				Light_SetVisible("NextLevelBoxLIght", false);
-				
-				Player_SetAmbientLight_Indoors(true);
-				
-				Depth_Audio_PlayLeaveWater();
-			}
-			
-			else
-			{
-				Map_AddTimer("FadeGlobal", 0, "PreloadTimer");
-				
-				Entity_SetActive("AMB_AirlockEnd", false);
-				Entity_SetActive("AMB_AirlockEnd_Water", true);
-				
-				Map_SetEnvironmentParticlesActive(true);
-				Map_SetEnvironmentParticleVisible("*", true);
-				cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(false);
-				
-				Light_SetVisible("NextLevelBoxLIght", true);
-				
-				Player_SetAmbientLight_Indoors(true);
-				
-				Depth_Audio_PlayEnterWater();
-			}
-		}
-		
-		//-------------------------------------------------------
-		
-		void Trigger_EnterStation(const tString &in asParent, const tString &in asChild, int alState)
-		{
-			cLux_AddDebugMessage("Player entered station...");
-		}
-		
 		//} End INTRO
 		
 		/////////////////////////////////////////
-		// OPEN GATE
+		// *OPEN GATE*
 		//{//////////////////////////////////////
 		
 		int mlGateShakeID;
@@ -738,12 +554,283 @@ class cScrMap : iScrMap
 			Entity_StopAnimation("ThetaGate_Right");
 		}
 		
-		//} End OPEN GAATE
-	 
-		//} END Event *Name Of Event*
+		//} End OPEN GATE
 		
-	//} END SCENE 1
+	//} END SCENE X
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE X *Airlock*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
  
+		/////////////////////////////////////////
+		// General
+		//{//////////////////////////////////////
+		 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are used by many events in Scene X here.*/
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are used in more than one event in Scene X here.*/
+	 
+		//-------------------------------------------------------
+		
+		//} END General	
+	 
+		/////////////////////////////////////////
+		// Event *Player activates the airlock*
+		//{//////////////////////////////////////
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+
+		void OnGuiStartAirlock(const tString&in asEntityName, float afTimeStep)
+		{
+			StationGuiBG_Scanlines();
+			StationGuiBG_Backdrop();
+		}
+		
+		//-------------------------------------------------------
+		
+		void ActiveAirlock(const tString &in asEntity)
+		{
+			SequenceAirlockExit("");
+		}
+		
+		//-------------------------------------------------------
+		
+		cSequenceStatesData mSequenceAirlockExit;
+		void SequenceAirlockExit(const tString &in asName)
+		{
+			Sequence_Begin("SequenceAirlockExit", mSequenceAirlockExit);
+			
+			if (Sequence_DoStepAndWait(1.f))
+			{
+				//////////////////////////
+				// Fade out scan trails
+				//Effect_ImageTrail_FadeOut(mlIDScanTrails,3.0f);
+				
+				Button_SetSwitchedOn("AirlockActivateButton", true, true);
+				SlideDoor_SetClosed("AirlockOceanDoor", true, false);
+			}
+			if (Sequence_DoStepAndWait(2.0f))
+			{
+				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "FauxAirlockMotorSource");
+			}
+			if (Sequence_DoStepAndWait(1.0f))
+			{
+				Lamp_SetLit("AirlockLamp", true, true);
+				Sound_Play("Light_spin", 0.1f);
+				Entity_PlayAnimation("AirlockLamp", "spin", 0.1f, true);
+				Light_FadeTo("Station_AirLockLight_1", cColor(1,0,0,0.467), 6, 0.5f); // Light hex: FF000077
+				Light_SetFlickerActive("Station_AirLockLight_1", true);
+				
+				Sound_CreateAtEntity("AirlockFailAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "AirlockAlarmSoundSource");
+				ParticleSystem_SetActive("exti_airlock_flood_effects4_*", true);
+			}
+			if (Sequence_DoStepAndWait(3.5f)) // 1.5f
+			{
+				Sound_Stop("side_airlock_idle", 1.0f);
+				Sound_CreateAtEntity("FauxPump", "Entities_OceanBottom/airlock/uw/pump/pump_loop", "AirlockSoundSource");
+				AirlockEffectsFlushWaterFinalAirlock();
+				
+				Entity_SetActive("LiquidArea_1", true);
+				FogArea_SetVisible("LiquidArea_1_Fog", false);
+				
+				for (int i = 1; Entity_Exists("AuxAirlockBubbleArea_"+i);i++)
+				{
+					Map_AddTimer("AuxAirlockBubbleArea_"+i, cMath_RandRectf(0, 1), "TimerCreateEndFlushBubbles");
+				}
+			}
+			if (Sequence_DoStepAndWait(5.0f)) // 1.5f
+			{
+				LiquidArea_MoveLinearTo("LiquidArea_1", "LiquidArea_Target", 0.5, 0.5, 1);
+			}
+			else if (Sequence_DoStepAndWait(4.0))
+			{
+				Map_SetUnderwater(false);
+				
+				ParticleSystem_Destroy("first_airlock_drain_particles_*");
+				Entity_SetActive("AMB_AirlockWater", false);
+				Entity_SetActive("AMB_AirlockAir", true);
+				
+				cLux_AddDebugMessage("Air area activated...");
+			}
+			else if (Sequence_DoStepAndWait(7.5))
+			{
+				ParticleSystem_Destroy("second_airlock_drain_particles_*");
+			}
+			if (Sequence_DoStepAndWait(2)) // 8.0f
+			{
+				// ADD SCREENSHAKE
+				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "Player", 1.f, false, 1.0f);
+			}
+			if (Sequence_DoStepAndWait(0.1f)) // ENABLE / DISABLE SPINNING LIGHT ANIMATION
+			{
+				// TRY TO OPEN DOOR
+				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.05, false);
+				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
+				
+				// KILL POWER
+				
+				// MONSTER PASSES DOOR??
+				
+				// ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "Airlock_Control", true);s
+				
+				// ADD SCREENSHAKE
+			}
+			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
+			{
+				// REBOOT POWER
+			}
+			if (Sequence_DoStepAndWait(1))
+			{
+				Voice_Play("HelperJane_PluggedIn_BadPower");
+			}
+			if (Sequence_DoStepAndWait(2))
+			{
+				// SUCCESSFULLY OPEN THE AIRLOCK DOOR
+				SlideDoor_SetClosed("AirlockStationDoor", false, false);
+			}
+			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		void TimerCreateEndFlushBubbles(const tString &in asTimer)
+		{
+			int lIndex = cString_GetNumericSuffixInt(asTimer);
+			ParticleSystem_CreateAtEntityExt(asTimer, "loop_waterbubbles_medium_stream.ps", "AuxAirlockBubbleArea_"+lIndex, false, cColor(0.487,0.628,0.7,0.25), 0.25);
+			Map_AddTimer(asTimer, 0.75, "TimerDestroyParticleSystem"); 
+			cLux_AddDebugMessage("TimerCreateEndFlushBubbles");
+		}
+		
+		//-------------------------------------------------------
+		
+		void TimerDestroyParticleSystem(const tString &in asTimer)
+		{
+			ParticleSystem_Destroy(asTimer);
+		}
+		
+		//-------------------------------------------------------
+		//Airlock audio
+		
+		void AirlockEffectsFlushWaterFinalAirlock()
+		{
+			Depth_Audio_AirlockDrainLeadInUW();
+			Depth_Audio_AirlockDrainLoopUW();
+			Map_AddTimer("AirlockDrainUWStopTimer", 8.75f, "AirlockDrainUWStopFinalAirlock");
+		}
+		
+		//-------------------------------------------------------
+		
+		void AirlockDrainUWStopFinalAirlock(const tString &in asTimer)
+		{
+			Depth_Audio_PlayLeaveWater();
+			Sound_Stop("FauxPump", 0.55f);
+			Sound_CreateAtEntity("PumpingAirLoop", "Entities_OceanBottom/airlock/air/pump/pump_loop_nointro", "FauxAirlockMotorSource", 0.55f, false, 1.0f);
+			
+			Depth_Audio_AirlockDrainLoopUWStop();
+			Depth_Audio_AirlockDrainLoopAir();
+			
+			Map_AddTimer("AirlockDrainingAirStopTimer", 3.0f, "AirlockDrainingAirStopFinalAirlock");
+		}
+		
+		//-------------------------------------------------------
+		
+		void AirlockDrainingAirStopFinalAirlock(const tString &in asTimer)
+		{
+			Depth_Audio_AirlockDrainLoopAirStop();
+			Depth_Audio_AirlockDrainLeadOutAir();
+			
+			Sound_Stop("PumpingAirLoop", 0.25f);
+			Sound_CreateAtEntity("PumpAirLeadOut", "Entities_OceanBottom/airlock/air/pump/pump_end", "FauxAirlockMotorSource", 0.0f, false, 1.0f);
+			
+			Sound_Play("side_airlock_idle_air", 0.1f);
+		}
+		
+		//-------------------------------------------------------
+		
+		void CollideAirlockWater(int alState)
+		{
+			cLux_AddDebugMessage("Splush!");
+			
+			if(alState == -1)
+			{
+				ParticleSystem_SetActive("first_airlock_drain_particles_*", true);
+				ParticleSystem_SetActive("second_airlock_drain_particles_*", true);
+				ParticleSystem_SetVisible("first_airlock_drain_particles_*", true);
+				ParticleSystem_SetVisible("second_airlock_drain_particles_*", true);
+				
+				for (int i = 1; Entity_Exists("EndAirlockSplashPSArea_"+i); i++)
+				{
+					if (ParticleSystem_Exists("EndAirlockSplashParticles_"+i))
+						continue;
+
+					ParticleSystem_CreateAtEntity("EndAirlockSplashParticles_"+i, "03_01_substation_leak_impact", "EndAirlockSplashPSArea_"+i, true);
+				}
+				
+				for (int i = 1; ParticleSystem_Exists("AuxAirlockBubbleArea_"+i); i++)
+				{
+					ParticleSystem_SetVisible("AuxAirlockBubbleArea_"+i, false);
+				}
+				
+				//Map_Preset_Fade("3.2Preset", 0.25);
+				//Map_AddTimer("FadeGlobal", 0.5, "PreloadTimer");
+				
+				Entity_SetActive("AMB_AirlockAir", true);
+				Entity_SetActive("AMB_AirlockWater", false);
+				
+				Map_SetEnvironmentParticlesActive(false);
+				
+				Depth_Audio_PlayLeaveWater();
+				
+				// CHANGE DEPTH OF FIELD
+			}
+			
+			else
+			{
+				ParticleSystem_SetVisible("first_airlock_drain_particles_*", false);
+				ParticleSystem_SetVisible("second_airlock_drain_particles_*", false);
+				
+				if (ParticleSystem_Exists("EndAirlockSplashParticles_1"))
+					ParticleSystem_SetVisible("EndAirlockSplashParticles_*", false);
+				
+				for (int i = 1; ParticleSystem_Exists("AuxAirlockBubbleArea_"+i); i++)
+				{
+					ParticleSystem_SetVisible("AuxAirlockBubbleArea_"+i, true);
+				}
+				
+				Entity_SetActive("AMB_AirlockWater", true);
+				Entity_SetActive("AMB_AirlockAir", false);
+				
+				Map_SetEnvironmentParticlesActive(true);
+				
+				Depth_Audio_PlayEnterWater();
+			}
+		}
+		
+		//-------------------------------------------------------
+		
+		void Trigger_EnterStation(const tString &in asParent, const tString &in asChild, int alState)
+		{
+			cLux_AddDebugMessage("Player entered station...");
+		}
+	
+		//} END Event *Player activates the airlock*
+		
+	//} END SCENE X
+	
 	/////////////////////////////////////////
 	// ==============
 	// TERMINALS
