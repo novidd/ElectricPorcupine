@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="CBAFC9E0C7AF6CE3B960B11F33F9327387DE8B38" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="459">
+        <FileIndex_Entities NumOfFiles="461">
             <File Id="0" Path="entities/creatures/fish/shark_scalloped_hammerhead/shark_scalloped_hammerhead.ent" />
             <File Id="1" Path="entities/oceanbottom/ornaments/rotten_photo/rotten_photo.ent" />
             <File Id="2" Path="entities/oceanbottom/ornaments_wall/photos_corals/photo_coral_01.ent" />
@@ -460,6 +460,8 @@
             <File Id="456" Path="entities/oceanbottom/terminals/high_pressure_terminal/high_pressure_terminal_cracked.ent" />
             <File Id="457" Path="entities/station/special/01_01_communication_dome/01_01_communication_dome_glass_cracked00.ent" />
             <File Id="458" Path="entities/station/special/01_01_communication_dome/01_01_communication_dome_glass_cracked01.ent" />
+            <File Id="459" Path="entities/station/valves/tech_pipe_valve/tech_pipe_brown_valve.ent" />
+            <File Id="460" Path="entities/station/tech/airlock_wall_meters/airlock_wall_meters_03.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435585" Name="hammerhead" CreStamp="1653340772" ModStamp="1653343112" WorldPos="-103.875 0.25 -8.125" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 86 268435585">
@@ -3581,7 +3583,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438389" Name="airlock_wall_meters_04_1" CreStamp="1653841116" ModStamp="1653841289" WorldPos="-1.55 1.5 -0.75" Rotation="0 -20.4204 0" Scale="1 1 1" FileIndex="411" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 796 268438389">
+            <Entity ID="268438389" Name="airlock_wall_meters_04_1" CreStamp="1653841116" ModStamp="1653841289" WorldPos="-1.55 1.5 -0.75" Rotation="0 -20.4204 0" Scale="1 1 1" FileIndex="411" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 379 268438389">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -3863,6 +3865,39 @@
                     <Var Name="Page_6_TextCategory" Value="" />
                     <Var Name="Page_6_TextEntry" Value="" />
                     <Var Name="Page_6_Image" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438543" Name="tech_pipe_brown_valve_1" CreStamp="1653915055" ModStamp="1653915112" WorldPos="-0.875 0.952 -0.750517" Rotation="4.5278e-008 -1.5005e-008 -1.25079" Scale="0.5 0.5 0.5" FileIndex="459" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 384 268438543">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="0.65490198135375977 0.57254904508590698 0.47058826684951782 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438549" Name="airlock_wall_meters_04_2" CreStamp="1653915927" ModStamp="1653916124" WorldPos="-0.767897 0.949334 -0.0352373" Rotation="0.305433 -1.5708 0" Scale="1 1 1" FileIndex="460" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 796 268438549">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="0.65098041296005249 0.56862747669219971 0.47058826684951782 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438550" Name="airlock_wall_meters_04_3" CreStamp="1653915960" ModStamp="1653916018" WorldPos="-1.50313 1.20015 -4.26528e-007" Rotation="0.305433 -1.5708 0" Scale="1 1 1" FileIndex="460" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 378 268438550">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="0.65098041296005249 0.56862747669219971 0.47058826684951782 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
