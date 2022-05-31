@@ -72,9 +72,6 @@ class cScrMap : iScrMap
 		// Outdoor preset
 		Map_Preset_SetupBloom("Ocean", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
 		Map_Preset_SetupDepthOfField("Ocean", true, 0, 2, 1.0);
-		//Map_Preset_SetupBloom("Ocean", 128, 0.75, 0.1, cColor(1, 1, 1, 0.0));
-		//Map_Preset_SetupDepthOfField("Ocean", false, 1, 12, 1.0);
-		
 		//Map_Preset_SetupFog("Ocean", true, 1, 40, 1, cColor(0.004,0.004,0.004,1), 1, false, true);
 		//Map_Preset_SetupSecondaryFog("Ocean", false);
 		
@@ -87,11 +84,6 @@ class cScrMap : iScrMap
 		
 		//////////////////////////
 		// Indoor preset
-		//Effect_Bloom_FadeBrightPass(0.75f, 2);
-		//Effect_Bloom_FadeBloomWidth(128, 2);
-		//Effect_Bloom_FadeBloomFalloff(0.5f, 2);
-		//Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
-		
 		Map_Preset_SetupBloom("Indoor", 128, 0.75f, 0.5f, cColor(1, 1, 1, 2));
 		Map_Preset_SetupDepthOfField("Indoor", true, 0, 12, 1.0);
 		Map_Preset_SetupSkybox("Indoor", cColor(0.471,0.902,1,1), 0.6);
