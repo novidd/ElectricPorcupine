@@ -585,25 +585,44 @@ class cScrMap : iScrMap
 		/*Put any functions that are only used in Scene X, Event X here.*/
 		
 		//-------------------------------------------------------
-
+		
+		bool mbLockdownOverridden = true;
+		
 		void OnGuiStartAirlock(const tString&in asEntityName, float afTimeStep)
 		{
+			ImGui_SetTransCategory("03_01_omicron_outside");
+				
 			StationGuiBG_Scanlines();
 			StationGuiBG_Backdrop();
 			
+			cStationGui_BigStatusMessageSettings statusMessage;
 			if (Button_IsSwitchedOn("AirlockActivateButton") && mbAirlockFlushed == false)
 			{
 				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushing!");
+
+				statusMessage.mfTextSizeMul = 2;
+				StationGui_BigStatusMessage("AirlockFlushing", statusMessage);
 			}
 			
-			if (mbAirlockFlushed)
+			else if (mbAirlockFlushed)
 			{
 				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushed!");
+				
+				StationGui_BigStatusMessage("NoPower", statusMessage);
 			}
 			
-			if (mbAirlockPowerOff)
+			else if (mbAirlockPowerOff)
 			{
 				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock power off!");
+				
+				statusMessage.mfTextSizeMul = 2;
+				StationGui_BigStatusMessage("NoPower", statusMessage);
+			}
+			else
+			{
+				statusMessage.mColor = gStationGuiColor_Highlight;
+				statusMessage.mfTextSizeMul = 2;
+				StationGui_BigStatusMessage("AirlockReady", statusMessage);
 			}
 		}
 		
@@ -676,16 +695,22 @@ class cScrMap : iScrMap
 				
 				Effect_Shake_Start(0.1, 0.4, 0.1, 0.25, cVector3f(1, 0.25, 1), 32);
 				Effect_Shake_Start(0.01, 0.5, 0.2, 3.0, cVector3f(1, 0.25, 1), 32);
-				Effect_Sway_FadeIn(0.1, 1, 1, 0, 1, 0.25f, 0.995f, 0);
+				Effect_Sway_FadeIn(0.2, 1, 1, 0, 1, 0.25f, 0.995f, 0);
 				Effect_VideoDistortion_Start(0.3f, 3.0f, 0.1f, 0.1f);
+				
+				Music_Stop(0.1f, eMusicPrio_BgAmb);
 			}
 			if (Sequence_DoStepAndWait(6.5f)) // ALWAYS EIGHT SECONDS TILL DOOR TRIES TO OPEN
 			{
 				// KILL POWER
+				mbAirlockPowerOff = true;
+				
+				// Update the power state --> ePowerState_Unreliable
 				
 				// UPDATE TERMINAL GUI
 				// KILL TERMINAL GUI -- HAVE GLITCH EFFECTS MOMENTS BEFORE
 				
+				// AIR LOCK LAMP
 				AirlockLampHandler("AirlockLamp", false);
 				
 				Light_SetVisible("Station_AirLockBoxPower", false);
@@ -703,6 +728,10 @@ class cScrMap : iScrMap
 				Lamp_SetLit("TerminalLamp", false, false);
 				
 				//SLOWLY FADE IN SCARY MUSIC
+				Music_Play("NPC_construct_short2.ogg", 0.5, false, eMusicPrio_BigEvent);
+				
+				if (Player_GetFlashlightActive())
+					Player_SetFlashlightActive(true);
 			}
 			if (Sequence_DoStepAndWait(0.5f))
 			{
@@ -710,21 +739,21 @@ class cScrMap : iScrMap
 				Depth_Audio_Fear_MediumIntensity();
 				Effect_VideoDistortion_Start(0.4f, 15.0f, 0.1f, 1.0f);
 			}
-			if (Sequence_DoStepAndWait(1.0f))
+			if (Sequence_DoStepAndWait(2.0f))
 			{
 				// TRY TO OPEN DOOR
 				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.1, false);
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
-				// ELECTRIC SPARK ON DOOR COLLISION (USE TRIGGER AREA) -- THAT WAY IT'S INDEPENDANT ON TIMINGS IN THE SEQUENCE
 				ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "AirlockDoorSpark", true);
 			}
 			if (Sequence_DoStepAndWait(0.1f))
 			{				
 				// MONSTER PASSES DOOR??
+				// MUSIC ?
 			}
 			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
 			{
-				// REBOOT POWER
+				// REBOOT TO UNRELIABLE POWER
 				
 				// UPDATE TERMINAL GUI
 				// REBOOT TERMINAL GUI -- HAVE GLITCH EFFECTS
@@ -852,7 +881,7 @@ class cScrMap : iScrMap
 					ParticleSystem_SetVisible("AuxAirlockBubbleArea_"+i, false);
 				}
 				
-				Map_Preset_Fade("Indoor", 5.0);
+				Map_Preset_Fade("Indoor", 15.0);
 				
 				Entity_SetActive("AMB_AirlockAir", true);
 				Entity_SetActive("AMB_AirlockWater", false);
@@ -927,6 +956,8 @@ class cScrMap : iScrMap
 		void Trigger_EnterStation(const tString &in asParent, const tString &in asChild, int alState)
 		{
 			cLux_AddDebugMessage("Player entered station...");
+			
+			// START THE AUDIO HANDLER FOR THE STATION
 		}
 	
 		//} END Event *Player enters the station*
