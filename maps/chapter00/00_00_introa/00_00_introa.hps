@@ -302,7 +302,7 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	bool mbPlayerIsUnderwater=true;
+	bool mbPlayerIsUnderwater = true;
  
 	//-------------------------------------------------------
  
@@ -632,8 +632,6 @@ class cScrMap : iScrMap
 	 
 		/*Put any variables that are only used in Scene X, Event X here.*/
 		
-		bool mbAirlockFlushed = false;
-		
 		int mlAirlockShakeID = -1;
 		int mlDistortionAirlockID = -1;
 		
@@ -643,7 +641,7 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		bool mbLockdownOverridden = true;
+		bool mbAirlockFlushed = false;
 		
 		void OnGuiStartAirlock(const tString&in asEntityName, float afTimeStep)
 		{
@@ -679,7 +677,7 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void ActiveAirlock(const tString &in asEntity)
+		void ActivateAirlock(const tString &in asEntity)
 		{
 			SequenceAirlockEnter("");
 		}
@@ -804,11 +802,6 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
 			{
 				// REBOOT TO UNRELIABLE POWER
-				
-				// UPDATE TERMINAL GUI
-				// REBOOT TERMINAL GUI -- HAVE GLITCH EFFECTS
-				
-				// DISABLE AIRLOCK ACTIVATE BUTTON - RED LIGHT COLOR
 			}
 			if (Sequence_DoStepAndWait(1)) // ALWAYS 1.0f from voice line to door opening
 			{
