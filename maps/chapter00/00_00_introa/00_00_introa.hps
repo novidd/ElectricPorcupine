@@ -150,7 +150,7 @@ class cScrMap : iScrMap
 		// Airlock
 		Light_SetVisible("Station_AirLockBoxNoPower", false);
 		Light_SetVisible("Station_AirLockBoxPower", true);
-		StationLampHandler("AirlockLamp", false);
+		AirlockLampHandler("AirlockLamp", false);
 		
 		/////////////////////////
 		// Debug
@@ -588,6 +588,8 @@ class cScrMap : iScrMap
 		bool mbAirlockFlushed = false;
 		bool mbAirlockPowerOff = false;
 		
+		int mlAirlockShakeID = -1;
+		
 		//-------------------------------------------------------
 	 
 		/*Put any functions that are only used in Scene X, Event X here.*/
@@ -641,7 +643,7 @@ class cScrMap : iScrMap
 			}
 			if (Sequence_DoStepAndWait(1.0f))
 			{
-				StationLampHandler("AirlockLamp", true);
+				AirlockLampHandler("AirlockLamp", true);
 				
 				Sound_CreateAtEntity("AirlockAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "AirlockAlarmSoundSource");
 			}
@@ -673,36 +675,62 @@ class cScrMap : iScrMap
 				
 				cLux_AddDebugMessage("Air area activated...");
 			}
-			else if (Sequence_DoStepAndWait(7.5))
+			else if (Sequence_DoStepAndWait(5.5)) // 7.5f
 			{
 				ParticleSystem_Destroy("second_airlock_drain_particles_*");
 			}
-			if (Sequence_DoStepAndWait(3)) // 8.0f
+			else if (Sequence_DoStepAndWait(1.0))
 			{
-				// ADD SCREENSHAKE
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "AirlockPowerSource", 1.f, false, 1.0f);
+				Sound_CreateAtEntity("AirlockTremor", "03_01_omicron_outside/SFX/special/dome_tremor", "AirlockPowerSource", 1.f, false, 1.0f);
+				
+				Effect_Shake_Start(0.1, 0.4, 0.1, 0.25, cVector3f(1, 0.25, 1), 32);
+				Effect_Shake_Start(0.01, 0.5, 0.2, 3.0, cVector3f(1, 0.25, 1), 32);
+				Effect_Sway_FadeIn(0.1, 1, 1, 0, 1, 0.25f, 0.995f, 0);
+				Effect_VideoDistortion_Start(0.3f, 3.0f, 0.1f, 0.1f);
 			}
-			if (Sequence_DoStepAndWait(0.1f)) // ENABLE / DISABLE SPINNING LIGHT ANIMATION
+			if (Sequence_DoStepAndWait(6.5f)) // ALWAYS EIGHT SECONDS TILL DOOR TRIES TO OPEN
+			{
+				// KILL POWER
+				
+				// UPDATE TERMINAL GUI
+				// KILL TERMINAL GUI -- HAVE GLITCH EFFECTS MOMENTS BEFORE
+				
+				AirlockLampHandler("AirlockLamp", false);
+				
+				Light_SetVisible("Station_AirLockBoxPower", false);
+				Light_SetVisible("Station_AirLockBoxNoPower", true);
+				
+				// HANDLE AIRLOCK BUTTON
+				Light_SetVisible("Station_AirLockButtonLight_1", false);
+				Entity_SetActive("AirlockActivateButton", false);
+				Entity_SetActive("AirlockActivateButtonOff", true);
+				
+				// TERMINAL
+				Entity_SetActive("AirlockTerminalGUI", false);
+				Entity_SetActive("AirlockTerminalNoPower", true);
+				
+				Lamp_SetLit("TerminalLamp", false, false);
+				
+				//SLOWLY FADE IN SCARY MUSIC
+			}
+			if (Sequence_DoStepAndWait(0.5f))
+			{
+				// HEARTBEAT AND BREATH
+				Depth_Audio_Fear_MediumIntensity();
+				Effect_VideoDistortion_Start(0.4f, 15.0f, 0.1f, 1.0f);
+			}
+			if (Sequence_DoStepAndWait(1.0f))
 			{
 				// TRY TO OPEN DOOR
 				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.1, false);
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
-				
-				// KILL POWER
-				// ADD SCREENSHAKE
-				// HEARTBEAT AND BREATH
-				
-				// UPDATE TERMINAL GUI
-				// KILL TERMINAL GUI -- HAVE GLITCH EFFECTS MOMENTS BEFORE
-				StationLampHandler("AirlockLamp", false);
-				Light_SetVisible("Station_AirLockBoxPower", false);
-				Light_SetVisible("Station_AirLockBoxNoPower", true);
-				
+				// ELECTRIC SPARK ON DOOR COLLISION (USE TRIGGER AREA) -- THAT WAY IT'S INDEPENDANT ON TIMINGS IN THE SEQUENCE
+				// ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "Airlock_Control", true);
+			}
+			if (Sequence_DoStepAndWait(0.1f))
+			{				
 				// MONSTER PASSES DOOR??
-				
-				// ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "Airlock_Control", true);s
-				
-				//SLOWLY FADE IN SCARY MUSIC
 			}
 			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
 			{
@@ -727,7 +755,7 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void StationLampHandler(const tString &in asEntity, bool abOn)
+		void AirlockLampHandler(const tString &in asEntity, bool abOn)
 		{
 			if (abOn)
 			{
@@ -745,7 +773,7 @@ class cScrMap : iScrMap
 			ParticleSystem_SetActive("AirlockLamp_PS", abOn);
 			ParticleSystem_SetVisible("AirlockLamp_PS", abOn);
 			
-			Lamp_SetLit(asEntity, abOn, true);
+			Lamp_SetLit(asEntity, abOn, false);
 			Light_SetFlickerActive("Station_AirLockLight_1", abOn);
 		}
 		
