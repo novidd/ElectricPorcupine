@@ -261,6 +261,8 @@ class cScrMap : iScrMap
 	//-------------------------------------------------------
  
 	/*Put any variables that are used in more than one scene here.*/
+	
+	int mlPowerState = -1;
  
 	//-------------------------------------------------------
  
@@ -626,6 +628,7 @@ class cScrMap : iScrMap
 		bool mbAirlockFlushed = false;
 		
 		int mlAirlockShakeID = -1;
+		int mlDistortionAirlockID = -1;
 		
 		//-------------------------------------------------------
 	 
@@ -657,6 +660,8 @@ class cScrMap : iScrMap
 				
 				statusMessage.mfTextSizeMul = 2;
 				StationGui_BigStatusMessage("NoPower", statusMessage);
+				
+				// ADD VIDEO DISTORTION EFFECT
 			}
 			else
 			{
@@ -728,7 +733,7 @@ class cScrMap : iScrMap
 			{
 				ParticleSystem_Destroy("second_airlock_drain_particles_*");
 			}
-			else if (Sequence_DoStepAndWait(1.0))
+			else if (Sequence_DoStepAndWait(1.5))
 			{
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "AirlockPowerSource", 1.f, false, 1.0f);
 				Sound_CreateAtEntity("AirlockTremor", "03_01_omicron_outside/SFX/special/dome_tremor", "AirlockPowerSource", 1.f, false, 1.0f);
@@ -736,20 +741,18 @@ class cScrMap : iScrMap
 				Effect_Shake_Start(0.1, 0.4, 0.1, 0.25, cVector3f(1, 0.25, 1), 32);
 				Effect_Shake_Start(0.01, 0.5, 0.2, 3.0, cVector3f(1, 0.25, 1), 32);
 				Effect_Sway_FadeIn(0.2, 1, 1, 0, 1, 0.25f, 0.995f, 0);
-				Effect_VideoDistortion_Start(0.3f, 3.0f, 0.1f, 0.1f);
+				mlDistortionAirlockID = Effect_VideoDistortion_Start(0.3f, 8.0f, 0.1f, 0.1f);
+				
+				mbAirlockFlushed = true;
 				
 				Music_Stop(0.1f, eMusicPrio_BgAmb);
 			}
 			if (Sequence_DoStepAndWait(6.5f)) // ALWAYS EIGHT SECONDS TILL DOOR TRIES TO OPEN
 			{
-				mbAirlockFlushed = true;
 				// KILL POWER
 				//mbAirlockPowerOff = true;
 				
-				// Update the power state --> ePowerState_Unreliable
-				
-				// UPDATE TERMINAL GUI
-				// KILL TERMINAL GUI -- HAVE GLITCH EFFECTS MOMENTS BEFORE
+				mlPowerState = ePowerState_Unreliable;
 				
 				// AIR LOCK LAMP
 				AirlockLampHandler("AirlockLamp", false);
@@ -772,13 +775,12 @@ class cScrMap : iScrMap
 				Music_Play("NPC_construct_short2.ogg", 0.5, false, eMusicPrio_BigEvent);
 				
 				if (Player_GetFlashlightActive())
-					Player_SetFlashlightActive(true);
+					Player_SetFlashlightActive(false);
 			}
 			if (Sequence_DoStepAndWait(0.5f))
 			{
-				// HEARTBEAT AND BREATH
 				Depth_Audio_Fear_MediumIntensity();
-				Effect_VideoDistortion_Start(0.4f, 15.0f, 0.1f, 1.0f);
+				mlDistortionAirlockID = Effect_VideoDistortion_Start(0.4f, 15.0f, 0.1f, 1.0f);
 			}
 			if (Sequence_DoStepAndWait(2.0f))
 			{
@@ -813,6 +815,7 @@ class cScrMap : iScrMap
 			{
 				// SUCCESSFULLY OPEN THE AIRLOCK DOOR
 				SlideDoor_SetClosed("AirlockStationDoor", false, false);
+				Effect_VideoDistortion_FadeOut(mlDistortionAirlockID, 5.0f);
 			}
 			Sequence_End();
 		}
