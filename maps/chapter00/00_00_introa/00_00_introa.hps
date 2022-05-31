@@ -201,8 +201,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			Map_AddTimer("StartOpenGateTimer", 2, "SequenceOpenThetame");
-			Audio_ThetaGateStart();
+			cLux_AddDebugMessage("Current station power stage ID:"+mlPowerState);
 		}
 		
 		if(alAction == eAction_Test2)
@@ -245,9 +244,17 @@ class cScrMap : iScrMap
 	
 	void OnGui(float afTimeStep)
 	{
-		
+		// ADD SO CURRENT POWERSTAGE ID IS PRINTED ON SCREEN -- MOVE TO ONGUI FUNC
+		// ADD SO THE TEXT SAYS "On", "Off", "Unreliable", "Flicker" DEPENDING ON THE STATE
 	}
  
+	//-------------------------------------------------------
+	
+	void PrintPowerState()
+	{
+		
+	}
+	
 	//-------------------------------------------------------
  
 	//} END MAIN CALLBACKS
@@ -262,7 +269,7 @@ class cScrMap : iScrMap
  
 	/*Put any variables that are used in more than one scene here.*/
 	
-	int mlPowerState = -1;
+	int mlPowerState = ePowerState_On;
  
 	//-------------------------------------------------------
  
@@ -653,7 +660,6 @@ class cScrMap : iScrMap
 				statusMessage.mfTextSizeMul = 2;
 				StationGui_BigStatusMessage("AirlockFlushing", statusMessage);
 			}
-			
 			else if (mbAirlockFlushed)
 			{
 				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushed!");
@@ -687,13 +693,11 @@ class cScrMap : iScrMap
 			
 			if (Sequence_DoStepAndWait(1.f))
 			{
-				// UPDATE TERMINAL GUI
-				
 				SlideDoor_SetClosed("AirlockOceanDoor", true, false);
 			}
-			if (Sequence_DoStepAndWait(2.f))
+			if (Sequence_DoStepAndWait(0.f)) // 2.0f
 			{
-				Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "FauxAirlockMotorSource");
+				//Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "FauxAirlockMotorSource");
 			}
 			if (Sequence_DoStepAndWait(1.0f))
 			{
@@ -750,12 +754,11 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(6.5f)) // ALWAYS EIGHT SECONDS TILL DOOR TRIES TO OPEN
 			{
 				// KILL POWER
-				//mbAirlockPowerOff = true;
-				
 				mlPowerState = ePowerState_Unreliable;
 				
 				// AIR LOCK LAMP
 				AirlockLampHandler("AirlockLamp", false);
+				// Destroy lamp -- add particle
 				
 				Light_SetVisible("Station_AirLockBoxPower", false);
 				Light_SetVisible("Station_AirLockBoxNoPower", true);
@@ -771,7 +774,7 @@ class cScrMap : iScrMap
 				
 				Lamp_SetLit("TerminalLamp", false, false);
 				
-				//SLOWLY FADE IN SCARY MUSIC
+				//FADE IN STINGER
 				Music_Play("NPC_construct_short2.ogg", 0.5, false, eMusicPrio_BigEvent);
 				
 				if (Player_GetFlashlightActive())
