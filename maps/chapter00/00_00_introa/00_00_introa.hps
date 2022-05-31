@@ -86,10 +86,13 @@ class cScrMap : iScrMap
 		// Indoor preset
 		Map_Preset_SetupBloom("Indoor", 128, 0.75f, 0.5f, cColor(1, 1, 1, 2));
 		Map_Preset_SetupDepthOfField("Indoor", true, 0, 12, 1.0);
-		Map_Preset_SetupSkybox("Indoor", cColor(0.471,0.902,1,1), 0.6);
-		Map_Preset_SetupFog("Indoor", true, 0, 10, 1, cColor(0.188,0.188,0.188,0.016), 1, false, false);
+		Map_Preset_SetupSkybox("Indoor", cColor(0.742,0.742,0.742,1), 1);
+		Map_SetSkyBoxTexture("02_04_shallow_fog.dds");
+		//Map_Preset_SetupFog("Indoor", true, 0, 10, 1, cColor(0.188,0.188,0.188,0.016), 1, false, false);
+		Map_Preset_SetupFog("Indoor", true, 1, 40, 1, cColor(0.002,0.002,0.002,1), 1, false, true);
 		Map_Preset_SetupSecondaryFog("Indoor", false, 0, 50, 0.15, cColor(0.075,0.086,0.085,1));
-		Map_Preset_SetupColorGrading("Indoor", "textures/colorgrading/grading_01_01.dds");
+		//Map_Preset_SetupColorGrading("Indoor", "textures/colorgrading/grading_01_01.dds");
+		Map_Preset_SetupColorGrading("Indoor", "textures/colorgrading/grading_03_02.dds");
 		
 		CathTool_ResetScreen(eCathToolVariant_HelperJane);
 	}
@@ -137,7 +140,7 @@ class cScrMap : iScrMap
 		
 		//////////////////////////////////
 		// Airlock
-		Light_SetVisible("Station_AirLockBoxNoPower", false);
+		Light_SetVisible("xray_tv_Light_2", false);
 		Light_SetVisible("Station_AirLockBoxPower", true);
 		AirlockLampHandler("AirlockLamp", false);
 		
@@ -204,13 +207,16 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test2)
 		{
-			Effect_VideoDistortion_Start(1.0f, 5.0f, 1.0f, 1.0f, 1.0f);
+			SlideDoor_SetOpenAmount("AirlockStationDoor", 1);
+			Light_SetVisible("Station_AirLockBoxPower", false);
+			Light_SetVisible("xray_tv_Light_2", true);
 		}
 		
 		if(alAction == eAction_Test3)
 		{
-			SlideDoor_SetClosed("Shutter_*", false, false);
-			cLux_AddDebugMessage("Opening shutters...");
+			SlideDoor_SetOpenAmount("AirlockStationDoor", 0.25);
+			Light_SetVisible("Station_AirLockBoxPower", false);
+			Light_SetVisible("xray_tv_Light_2", true);
 		}
 		
 		if(alAction == eAction_Test4)
@@ -736,6 +742,7 @@ class cScrMap : iScrMap
 			}
 			if (Sequence_DoStepAndWait(6.5f)) // ALWAYS EIGHT SECONDS TILL DOOR TRIES TO OPEN
 			{
+				mbAirlockFlushed = true;
 				// KILL POWER
 				//mbAirlockPowerOff = true;
 				
@@ -776,7 +783,11 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(2.0f))
 			{
 				// TRY TO OPEN DOOR
-				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.1, false);
+				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.2, false);
+				
+				Light_SetVisible("xray_tv_Light_2", true);
+				Light_SetVisible("Station_AirLockBoxNoPower", false);
+				
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
 				ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "AirlockDoorSpark", true);
 			}
@@ -882,8 +893,6 @@ class cScrMap : iScrMap
 			Sound_CreateAtEntity("PumpAirLeadOut", "Entities_OceanBottom/airlock/air/pump/pump_end", "FauxAirlockMotorSource", 0.0f, false, 1.0f);
 			
 			Sound_Play("side_airlock_idle_air", 0.1f);
-			
-			mbAirlockFlushed = true;
 		}
 		
 		//-------------------------------------------------------
