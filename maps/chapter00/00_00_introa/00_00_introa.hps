@@ -797,7 +797,7 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(0.1f))
 			{				
 				// MONSTER PASSES DOOR??
-				// MUSIC ?
+				// BIG EVENT MUSIC ?
 			}
 			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
 			{
@@ -812,6 +812,8 @@ class cScrMap : iScrMap
 				// SUCCESSFULLY OPEN THE AIRLOCK DOOR
 				SlideDoor_SetClosed("AirlockStationDoor", false, false);
 				Effect_VideoDistortion_FadeOut(mlDistortionAirlockID, 5.0f);
+				
+				// START AMBIENCE MUSIC -- USE AN AUDIO HANDLER
 			}
 			Sequence_End();
 		}
