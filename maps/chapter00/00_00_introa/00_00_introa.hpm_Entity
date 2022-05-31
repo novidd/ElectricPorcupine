@@ -4068,7 +4068,7 @@
                     <Var Name="InteractDisablesStaticPhysics" Value="true" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438683" Name="xray_lightbox_theta_1" CreStamp="1654015931" ModStamp="1654016105" WorldPos="0.0565333 4.19778 -6.50342" Rotation="0.523599 -6.99382e-007 0" Scale="0.665 0.67 0.7" FileIndex="465" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 272 268438683">
+            <Entity ID="268438683" Name="xray_tv" CreStamp="1654015931" ModStamp="1654018880" WorldPos="0.0565333 4.19778 -6.50342" Rotation="0.523599 -6.99382e-007 0" Scale="0.665 0.67 0.7" FileIndex="465" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 272 268438683">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -4083,7 +4083,7 @@
                     <Var Name="EffectColorMul" Value="1 1 1 1" />
                     <Var Name="EffectBrightnessMul" Value="1" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
-                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IllumBrightness" Value="0.5" />
                     <Var Name="IsAffectedByDecal" Value="false" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="UpdateBonesWhenCulled" Value="false" />
@@ -4114,19 +4114,19 @@
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
                     <Var Name="ConnectionLightType" Value="Mul" />
-                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectedLight" Value="xray_tv_SpotLight_1" />
                     <Var Name="ExtraConnectionLightAmount" Value="1" />
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="Lit" Value="true" />
-                    <Var Name="FlickerActive" Value="false" />
-                    <Var Name="UseCustomFlickerSettings" Value="false" />
+                    <Var Name="FlickerActive" Value="true" />
+                    <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.05" />
                     <Var Name="FlickerMaxOnTime" Value="1" />
                     <Var Name="FlickerMinOffTime" Value="0.025" />
-                    <Var Name="FlickerMaxOffTime" Value="0.15" />
-                    <Var Name="FlickerFade" Value="false" />
+                    <Var Name="FlickerMaxOffTime" Value="0.05" />
+                    <Var Name="FlickerFade" Value="true" />
                     <Var Name="FlickerOnSound" Value="" />
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
