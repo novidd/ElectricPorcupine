@@ -215,7 +215,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test4)
 		{
-			Entity_PlayAnimation("AirlockLamp", "spin", 0.1f, true);
+			SetPlayerIsUnderwater(false, 0.01f);
 		}
 		
 		if(alAction == eAction_Test5)
@@ -284,6 +284,48 @@ class cScrMap : iScrMap
 	}
 
 	//} End omnitool
+	
+	//-------------------------------------------------------
+	
+	bool mbPlayerIsUnderwater=true;
+ 
+	//-------------------------------------------------------
+ 
+	void SetPlayerIsUnderwater(bool abX, float afFadeTime)
+	{
+		mbPlayerIsUnderwater = abX;
+		
+		//////////////////////////////
+		//Underwater
+		if(mbPlayerIsUnderwater)
+		{
+			Map_SetUnderwater(true);
+			Player_SetAmbientLight_Outdoors(true);
+			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
+			Map_Preset_Fade("Ocean", afFadeTime);
+			
+			Map_SetEnvironmentParticlesActive(true);
+
+			//////////////
+			// Enable all visibility areas and critters
+			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", true);
+		}
+		//////////////////////////////
+		//In Air
+		else
+		{
+			Map_SetUnderwater(false);
+			Player_SetAmbientLight_Indoors(true);
+			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(false);
+			Map_Preset_Fade("Indoor", afFadeTime);
+			
+			Map_SetEnvironmentParticlesActive(false);
+
+			////////////////
+			// Disable visibility areas and critters
+			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", false);
+		}
+	}
 	
 	//-------------------------------------------------------
  
@@ -576,7 +618,6 @@ class cScrMap : iScrMap
 		/*Put any variables that are only used in Scene X, Event X here.*/
 		
 		bool mbAirlockFlushed = false;
-		bool mbAirlockPowerOff = false;
 		
 		int mlAirlockShakeID = -1;
 		
@@ -590,7 +631,7 @@ class cScrMap : iScrMap
 		
 		void OnGuiStartAirlock(const tString&in asEntityName, float afTimeStep)
 		{
-			ImGui_SetTransCategory("03_01_omicron_outside");
+			ImGui_SetTransCategory("00_00_introa");
 				
 			StationGuiBG_Scanlines();
 			StationGuiBG_Backdrop();
@@ -607,13 +648,6 @@ class cScrMap : iScrMap
 			else if (mbAirlockFlushed)
 			{
 				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushed!");
-				
-				StationGui_BigStatusMessage("NoPower", statusMessage);
-			}
-			
-			else if (mbAirlockPowerOff)
-			{
-				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock power off!");
 				
 				statusMessage.mfTextSizeMul = 2;
 				StationGui_BigStatusMessage("NoPower", statusMessage);
@@ -703,7 +737,7 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(6.5f)) // ALWAYS EIGHT SECONDS TILL DOOR TRIES TO OPEN
 			{
 				// KILL POWER
-				mbAirlockPowerOff = true;
+				//mbAirlockPowerOff = true;
 				
 				// Update the power state --> ePowerState_Unreliable
 				
