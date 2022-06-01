@@ -70,6 +70,8 @@ class cScrMap : iScrMap
 	{
 		//////////////////////////
 		// Outdoor preset
+		// Level editor: MiddleGrey: 0.5, Exposure: 0.25, WhitePoint: 2
+		Map_Preset_SetupToneMapping("Indoor", 0.5f, 0, 3.5);
 		Map_Preset_SetupBloom("Ocean", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
 		Map_Preset_SetupDepthOfField("Ocean", true, 0, 2, 1.0);
 		
@@ -86,8 +88,12 @@ class cScrMap : iScrMap
 		
 		//////////////////////////
 		// Indoor preset
+		// Level editor: MiddleGrey: 0.5, Exposure: 0, WhitePoint: 3.5
+		
+		Map_Preset_SetupToneMapping("Indoor", 0.5f, 0, 3.5);
 		Map_Preset_SetupBloom("Indoor", 128, 0.75f, 0.5f, cColor(1, 1, 1, 2));
-		Map_Preset_SetupDepthOfField("Indoor", true, 0, 12, 1.0);
+		Map_Preset_SetupDepthOfField("Indoor", true, 0, 8, 1.0);
+		
 		Map_Preset_SetupColorGrading("Indoor", "textures/colorgrading/grading_03_02.dds");
 		
 		Map_Preset_SetupSkybox("Indoor", cColor(0.742,0.742,0.742,1), 1);
