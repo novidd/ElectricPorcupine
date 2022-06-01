@@ -72,27 +72,28 @@ class cScrMap : iScrMap
 		// Outdoor preset
 		Map_Preset_SetupBloom("Ocean", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
 		Map_Preset_SetupDepthOfField("Ocean", true, 0, 2, 1.0);
-		//Map_Preset_SetupFog("Ocean", true, 1, 40, 1, cColor(0.004,0.004,0.004,1), 1, false, true);
-		//Map_Preset_SetupSecondaryFog("Ocean", false);
 		
-		//Map_Preset_SetupSkybox("Ocean", cColor(0.741,0.741,0.741,1), 1.0);
-		
+		Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_default.dds");
 		//Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_03_02.dds");
 		//Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_02_04.dds");
-		Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_default.dds");
 		//Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_04_01.dds");
+		
+		Map_Preset_SetupSkybox("Ocean", cColor(0.742,0.742,0.742,1), 1);
+		Map_SetSkyBoxTexture("grayscale_gradient_1_3.dds");
+		
+		Map_Preset_SetupFog("Ocean", true, 1, 40, 1, cColor(0.016,0.031,0.035,1), 1, false, true);
+		Map_Preset_SetupSecondaryFog("Ocean", false, 0, 80, 0.15, cColor(0.004,0.004,0.004,0.004));
 		
 		//////////////////////////
 		// Indoor preset
 		Map_Preset_SetupBloom("Indoor", 128, 0.75f, 0.5f, cColor(1, 1, 1, 2));
 		Map_Preset_SetupDepthOfField("Indoor", true, 0, 12, 1.0);
+		Map_Preset_SetupColorGrading("Indoor", "textures/colorgrading/grading_03_02.dds");
+		
 		Map_Preset_SetupSkybox("Indoor", cColor(0.742,0.742,0.742,1), 1);
-		Map_SetSkyBoxTexture("02_04_shallow_fog.dds");
-		//Map_Preset_SetupFog("Indoor", true, 0, 10, 1, cColor(0.188,0.188,0.188,0.016), 1, false, false);
+		
 		Map_Preset_SetupFog("Indoor", true, 1, 40, 1, cColor(0.002,0.002,0.002,1), 1, false, true);
 		Map_Preset_SetupSecondaryFog("Indoor", false, 0, 50, 0.15, cColor(0.075,0.086,0.085,1));
-		//Map_Preset_SetupColorGrading("Indoor", "textures/colorgrading/grading_01_01.dds");
-		Map_Preset_SetupColorGrading("Indoor", "textures/colorgrading/grading_03_02.dds");
 		
 		CathTool_ResetScreen(eCathToolVariant_HelperJane);
 	}
@@ -132,6 +133,11 @@ class cScrMap : iScrMap
 		
 		/////////////////////////
 		// Level setup
+		Map_SetUnderwater(true);
+		Map_Preset_Fade("Ocean", 0.001f);
+		Map_SetEnvironmentParticlesActive(true);
+		
+		Player_SetFlashlightEnvParticleMul(10);
 		
 		///////////////////////
 		//Particle init
@@ -167,12 +173,7 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		Map_SetUnderwater(true);
 		
-		Player_SetFlashlightEnvParticleMul(10);
-		
-		Map_Preset_Fade("Ocean", 0.1);
-		//Map_Preset_Fade("Indoor", 0.1);
 	}
 
 	//-------------------------------------------------------
@@ -319,6 +320,8 @@ class cScrMap : iScrMap
 			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
 			Map_Preset_Fade("Ocean", afFadeTime);
 			
+			Map_SetSkyBoxTexture("grayscale_gradient_1_3.dds");
+			
 			Map_SetEnvironmentParticlesActive(true);
 
 			//////////////
@@ -333,6 +336,8 @@ class cScrMap : iScrMap
 			Player_SetAmbientLight_Indoors(true);
 			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(false);
 			Map_Preset_Fade("Indoor", afFadeTime);
+			
+			Map_SetSkyBoxTexture("02_04_shallow_fog.dds");
 			
 			Map_SetEnvironmentParticlesActive(false);
 
@@ -794,14 +799,12 @@ class cScrMap : iScrMap
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
 				ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "AirlockDoorSpark", true);
 			}
-			if (Sequence_DoStepAndWait(0.1f))
-			{				
-				// MONSTER PASSES DOOR??
-				// BIG EVENT MUSIC ?
-			}
 			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
 			{
 				// REBOOT TO UNRELIABLE POWER
+				
+				//TURN ON TV
+				// BIG EVENT MUSIC
 			}
 			if (Sequence_DoStepAndWait(1)) // ALWAYS 1.0f from voice line to door opening
 			{
