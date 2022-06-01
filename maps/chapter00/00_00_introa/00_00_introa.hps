@@ -214,7 +214,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
-			SlideDoor_SetOpenAmount("AirlockStationDoor", 0.25);
+			SlideDoor_SetOpenAmount("AirlockStationDoor", 0.33);
 			Light_SetVisible("Station_AirLockBoxPower", false);
 			Light_SetVisible("xray_tv_Light_2", true);
 		}
@@ -791,7 +791,7 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(2.0f))
 			{
 				// TRY TO OPEN DOOR
-				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.2, false);
+				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.33, false);
 				
 				Light_SetVisible("xray_tv_Light_2", true);
 				Light_SetVisible("Station_AirLockBoxNoPower", false);
