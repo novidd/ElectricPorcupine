@@ -1,5 +1,5 @@
 # ElectricPorcupine
-![[SOMA.png|264]]
+![SOMA.png|250](doc/icons/SOMA.png)
  A mod for SOMA.
 
 ---
@@ -11,4 +11,4 @@
 - [ ] Add an image/gif(s) on the front page.
 
 ![LevelEditor|250](doc/icons/LevelEditor.png)
-![[ModelEditor.png|250]]
+![ModelEditor|250](doc/icons/ModelEditor.png)
