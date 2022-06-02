@@ -9,3 +9,9 @@
 - [ ] Add a section about the game engine (CODING + EDITORS).
 - [x] Add the image icons for the editors to documentation folder.
 - [ ] Add an image/gif(s) on the front page.
+
+<style>
+    p, ul{
+        color: red;
+    }
+</style>
