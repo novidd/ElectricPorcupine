@@ -1,6 +1,6 @@
 # ElectricPorcupine
 
- A mod for SOMA.
+ 'ElectricPorcupine' is the project name for a total converstion mod in SOMA, a game developed and published by Frictional Games.
 
 ---
 
