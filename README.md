@@ -1,4 +1,12 @@
 # ElectricPorcupine
  A mod for SOMA.
 
--Add a 2 gifs of intro here (one of introa other of introb)-
+---
+
+## To-do(s)
+
+- [ ] Add a section about the game engine (CODING + EDITORS).
+- [ ] Add the image icons for the editors to documentation folder.
+- [ ] Add an image/gif(s) on the front page.
+
+![[documentation/test.png]]
