@@ -10,5 +10,5 @@
 - [x] Add the image icons for the editors to documentation folder.
 - [ ] Add an image/gif(s) on the front page.
 
-![[LevelEditor.png|250]]
+![LevelEditor|250](doc/icons/LevelEditor.png)
 ![[ModelEditor.png|250]]
