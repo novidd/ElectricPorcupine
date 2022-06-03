@@ -179,7 +179,9 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		
+		SetPlayerIsUnderwater(false, 0.01f);
+		Light_SetVisible("Station_AirLockBoxPower", false);
+		Light_SetVisible("Station_AirLockBoxNoPower_*", true);
 	}
 
 	//-------------------------------------------------------
