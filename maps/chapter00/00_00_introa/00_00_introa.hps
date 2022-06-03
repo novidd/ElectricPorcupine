@@ -128,7 +128,7 @@ class cScrMap : iScrMap
 	{
 		/////////////////////////
 		// Setup Entities
-		SetupArrivalOutsideTheta();
+		SetupStationPower();
 		
 		Tool_PickUp("CathTool", false, false);
 		
@@ -152,7 +152,7 @@ class cScrMap : iScrMap
 		
 		//////////////////////////////////
 		// Airlock
-		Light_SetVisible("xray_tv_Light_2", false);
+		Light_SetVisible("Station_AirLockBoxNoPower_*", false);
 		Light_SetVisible("Station_AirLockBoxPower", true);
 		AirlockLampHandler("AirlockLamp", false);
 		
@@ -222,12 +222,14 @@ class cScrMap : iScrMap
 		{
 			SlideDoor_SetOpenAmount("AirlockStationDoor", 0.33);
 			Light_SetVisible("Station_AirLockBoxPower", false);
-			Light_SetVisible("xray_tv_Light_2", true);
+			Light_SetVisible("Station_AirLockBoxNoPower_*", true);
 		}
 		
 		if(alAction == eAction_Test4)
 		{
 			SetPlayerIsUnderwater(false, 0.01f);
+			Light_SetVisible("Station_AirLockBoxPower", false);
+			Light_SetVisible("Station_AirLockBoxNoPower_*", true);
 		}
 		
 		if(alAction == eAction_Test5)
@@ -305,9 +307,11 @@ class cScrMap : iScrMap
 		return false;
 	}
 
-	//} End omnitool
+	//} End Omnitool
 	
-	//-------------------------------------------------------
+	/////////////////////////////////////////
+	// Water and indoor transition
+	//{//////////////////////////////////////
 	
 	bool mbPlayerIsUnderwater = true;
  
@@ -353,8 +357,26 @@ class cScrMap : iScrMap
 		}
 	}
 	
+	//} End Water and indoor transition
+	
+	/////////////////////////////////////////
+	// Power management
+	//{//////////////////////////////////////
+	
+	void SetupStationPower()
+	{
+		 SetupControllableLights();
+	}
+	
 	//-------------------------------------------------------
- 
+	
+	void SetupControllableLights()
+	{
+		Lamp_SetLit("station_power_control_*", false, false);
+	}
+	
+	//} Power management
+	
 	//} END MAIN FUNCTIONS
  
 	/////////////////////////////////////////////////////////////////////////////////////////
@@ -799,7 +821,7 @@ class cScrMap : iScrMap
 				// TRY TO OPEN DOOR
 				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.33, false);
 				
-				Light_SetVisible("xray_tv_Light_2", true);
+				Light_SetVisible("Station_AirLockBoxNoPower_*", true);
 				Light_SetVisible("Station_AirLockBoxNoPower", false);
 				
 				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
