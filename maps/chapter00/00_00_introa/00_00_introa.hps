@@ -129,6 +129,7 @@ class cScrMap : iScrMap
 		/////////////////////////
 		// Setup Entities
 		SetupStationPower();
+		SetupRobotEvent();
 		
 		Tool_PickUp("CathTool", false, false);
 		
@@ -238,6 +239,11 @@ class cScrMap : iScrMap
 		{
 			Button_SetSwitchedOn("AirlockActivateButton", true, true);
 			SequenceAirlockEnter("");
+		}
+		
+		if(alAction == eAction_Test6)
+		{
+			
 		}
 	}
 
@@ -1011,7 +1017,7 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 	 
 		/*Put any functions that are used in more than one event in Scene X here.*/
-	 
+		
 		//-------------------------------------------------------
 		
 		//} END General	
@@ -1035,6 +1041,46 @@ class cScrMap : iScrMap
 			cLux_AddDebugMessage("Player entered station...");
 			
 			// START THE AUDIO HANDLER FOR THE STATION
+		}
+		
+		//-------------------------------------------------------
+		
+		void SetupRobotEvent() 
+		{
+			Map_AddTimer("open", 0.1f, "Timer_RobotDoorMove");
+		}
+		
+		//-------------------------------------------------------
+		
+		float mfDoorOpenMax = 0.2f;
+		float mfDoorOpenMin = 0.1f;
+		float mfDoorCurrentOpenAmount;
+		float mfDoorOpenModifier;
+		
+		void Timer_RobotDoorMove(const tString &in asTimer)
+		{
+			if (asTimer == "open")
+			{
+				mfDoorOpenModifier = cMath_RandRectf(0.015, 0.03);
+				
+				Map_AddTimer("close", cMath_RandRectf(1.75f, 2.5f), "Timer_RobotDoorMove");
+			}
+			else if (asTimer == "close")
+			{
+				mfDoorOpenModifier = cMath_RandRectf(-0.025, -0.045);
+				
+				Map_AddTimer("open", cMath_RandRectf(1.75f, 2.5f), "Timer_RobotDoorMove");
+			}
+			
+			mfDoorCurrentOpenAmount = SlideDoor_GetOpenAmount("stationstart_door_robot");
+			float fDoorOpenAmount = mfDoorCurrentOpenAmount + mfDoorOpenModifier;
+			
+			if (fDoorOpenAmount > mfDoorOpenMax)
+				fDoorOpenAmount = mfDoorOpenMax;
+			else if (fDoorOpenAmount < mfDoorOpenMin)
+				fDoorOpenAmount = mfDoorOpenMin;
+			
+			SlideDoor_SetOpenAmount("stationstart_door_robot", fDoorOpenAmount, false);
 		}
 	
 		//} END Event *Player enters the station*
