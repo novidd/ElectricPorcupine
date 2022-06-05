@@ -1,0 +1,1192 @@
+
+#include "interfaces/Map_Interface.hps"
+#include "base/AchievementHandler_Types.hps"
+#include "base/InputHandler_Types.hps"
+#include "base/RichPresenceHandler_Types.hps"
+
+#include "helpers/helper_game.hps"
+#include "helpers/helper_effects.hps"
+#include "helpers/helper_map.hps"
+#include "helpers/helper_props.hps"
+#include "helpers/helper_audio.hps"
+#include "helpers/helper_sequences.hps"
+#include "helpers/helper_modules.hps"
+#include "helpers/helper_imgui.hps"
+#include "helpers/helper_areas.hps"
+#include "helpers/helper_ai.hps"
+#include "helpers/helper_player.hps"
+
+#include "helper_imgui_station.hps"
+#include "helper_imgui_station_app_error.hps"
+#include "helper_imgui_station_app_audioplayback.hps"
+#include "helper_imgui_station_app_photoviewer.hps"
+#include "helper_imgui_cath_portrait.hps"
+#include "helper_imgui_station_basics.hps"
+
+#include "helper_custom_depth.hps"
+#include "helper_custom_depth_ai.hps"
+#include "helper_custom_depth_ai_fleshers.hps"
+#include "helper_custom_depth_imgui.hps"
+#include "helper_custom_depth_audio.hps"
+
+#include "custom_depth/helper_custom_depth_audio.hps"
+
+#include "helper_font.hps"
+
+#include "player/Player_Types.hps"
+
+//--------------------------------------------------
+ 
+/*Place any global values here. These must be const variables as they will not be saved*/
+/*This is also the place for enums and classes, but these should be avoided whenever possible*/
+
+enum ePowerState
+{
+	ePowerState_On,
+	ePowerState_Off,
+	ePowerState_Unreliable,
+	ePowerState_Flicker
+}
+
+//--------------------------------------------------
+
+class cScrMap : iScrMap
+{
+	//--------------------------------------------
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN CALLBACKS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+ 
+	//-------------------------------------------------------
+	
+	//-------------------------------------------------------
+ 
+	////////////////////////////
+	// Set up map environment
+	void Setup()
+	{
+		//////////////////////////
+		// Outdoor preset
+		// Level editor: MiddleGrey: 0.5, Exposure: 0.25, WhitePoint: 2
+		Map_Preset_SetupToneMapping("Indoor", 0.5f, 0, 3.5);
+		Map_Preset_SetupBloom("Ocean", 160, 0.00001, 0, cColor(0.3, 0.3, 0.3, 0.0));
+		Map_Preset_SetupDepthOfField("Ocean", true, 0, 2, 1.0);
+		
+		Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_default.dds");
+		//Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_03_02.dds");
+		//Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_02_04.dds");
+		//Map_Preset_SetupColorGrading("Ocean", "textures/colorgrading/grading_04_01.dds");
+		
+		Map_Preset_SetupSkybox("Ocean", cColor(0.742,0.742,0.742,1), 1);
+		//Map_SetSkyBoxTexture("grayscale_gradient_1_3.dds");
+		
+		Map_Preset_SetupFog("Ocean", true, 1, 40, 1, cColor(0.016,0.031,0.035,1), 1, false, true);
+		Map_Preset_SetupSecondaryFog("Ocean", false, 0, 80, 0.15, cColor(0.004,0.004,0.004,0.004));
+		
+		//////////////////////////
+		// Indoor preset
+		// Level editor: MiddleGrey: 0.5, Exposure: 0, WhitePoint: 3.5
+		
+		Map_Preset_SetupToneMapping("Indoor", 0.5f, 0, 3.5);
+		Map_Preset_SetupBloom("Indoor", 128, 0.75f, 0.5f, cColor(1, 1, 1, 2));
+		Map_Preset_SetupDepthOfField("Indoor", true, 0, 12, 1.0);
+		
+		Map_Preset_SetupColorGrading("Indoor", "textures/colorgrading/grading_03_02.dds");
+		
+		Map_Preset_SetupSkybox("Indoor", cColor(0.742,0.742,0.742,1), 1);
+		
+		Map_Preset_SetupFog("Indoor", true, 1, 40, 1, cColor(0.002,0.002,0.002,1), 1, false, true);
+		Map_Preset_SetupSecondaryFog("Indoor", false, 0, 50, 0.15, cColor(0.075,0.086,0.085,1));
+		
+		CathTool_ResetScreen(eCathToolVariant_HelperJane);
+	}
+	
+	//-------------------------------------------------------
+
+	void PreloadData()
+	{
+		//////////////////////////
+		// Particles
+		
+		/////////////////
+		// Preload gui
+		OmnitoolGui_Preload();
+		
+		/////////////////
+		// Preload X
+		PlayerHands_PreloadHandModel_Diving();
+	}
+	
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run first time starting map
+	void OnStart()
+	{
+		/////////////////////////
+		// Setup Entities
+		SetupStationPower();
+		SetupRobotEvent();
+		
+		Tool_PickUp("CathTool", false, false);
+		
+		/////////////////////////
+		// Player setup
+		Player_SetAmbientLight_Indoors();
+		PlayerHands_SetHandModel_Diving();
+		
+		/////////////////////////
+		// Level setup
+		Map_SetUnderwater(true);
+		Map_Preset_Fade("Ocean", 0.001f);
+		Map_SetEnvironmentParticlesActive(true);
+		
+		Player_SetFlashlightEnvParticleMul(10);
+		
+		///////////////////////
+		//Particle init
+		ParticleSystem_SetActive("first_airlock_drain_particles_*", false);
+		ParticleSystem_SetActive("second_airlock_drain_particles_*", false);
+		
+		//////////////////////////////////
+		// Airlock
+		Light_SetVisible("Station_AirLockBoxNoPower_*", false);
+		Light_SetVisible("Station_AirLockBoxPower", true);
+		AirlockLampHandler("AirlockLamp", false);
+		
+		/////////////////////////
+		// Debug
+		if(cLux_ScriptDebugOn()) 
+		{
+			mbRunIntro = false;
+			
+			cLux_AddDebugMessage("Debug on.");
+		}
+		
+		AudioHandler("Start");
+		
+		if(mbRunIntro)
+		{
+			SequenceIntro("");
+		}
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when entering map
+	void OnEnter()
+	{
+		SetPlayerIsUnderwater(false, 0.01f);
+		Light_SetVisible("Station_AirLockBoxPower", false);
+		Light_SetVisible("Station_AirLockBoxNoPower_*", true);
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when leaving map
+	void OnLeave()
+	{
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// The player has died.
+	void OnPlayerKilled(int alRecentDeaths, const tString&in asSource)
+	{
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// To get when player makes input (mostly used for debug)
+	void OnAction(int alAction, bool abPressed) 
+	{
+		if(abPressed==false) return;
+		
+		if(alAction == eAction_Test1)
+		{
+			cLux_AddDebugMessage("Current station power stage ID:"+mlPowerState);
+		}
+		
+		if(alAction == eAction_Test2)
+		{
+			SlideDoor_SetOpenAmount("AirlockStationDoor", 1);
+			Light_SetVisible("Station_AirLockBoxPower", false);
+			Light_SetVisible("xray_tv_Light_2", true);
+		}
+		
+		if(alAction == eAction_Test3)
+		{
+			SlideDoor_SetOpenAmount("AirlockStationDoor", 0.33);
+			Light_SetVisible("Station_AirLockBoxPower", false);
+			Light_SetVisible("Station_AirLockBoxNoPower_*", true);
+		}
+		
+		if(alAction == eAction_Test4)
+		{
+			SetPlayerIsUnderwater(false, 0.01f);
+			Light_SetVisible("Station_AirLockBoxPower", false);
+			Light_SetVisible("Station_AirLockBoxNoPower_*", true);
+		}
+		
+		if(alAction == eAction_Test5)
+		{
+			Button_SetSwitchedOn("AirlockActivateButton", true, true);
+			SequenceAirlockEnter("");
+		}
+		
+		if(alAction == eAction_Test6)
+		{
+			
+		}
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// This only used for pure debug purposes when info needs to printed.
+	float DrawDebugOutput(cGuiSet @apSet,iFontData @apFont,float afY)
+	{
+		//afY = cLux_DrawDebugText("My Debug value:"+..., afY);
+		return afY;
+	}
+	
+	//-------------------------------------------------------
+	
+	void OnGui(float afTimeStep)
+	{
+		// ADD SO CURRENT POWERSTAGE ID IS PRINTED ON SCREEN -- MOVE TO ONGUI FUNC
+		// ADD SO THE TEXT SAYS "On", "Off", "Unreliable", "Flicker" DEPENDING ON THE STATE
+	}
+ 
+	//-------------------------------------------------------
+	
+	void PrintPowerState()
+	{
+		
+	}
+	
+	//-------------------------------------------------------
+ 
+	//} END MAIN CALLBACKS
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN FUNCTIONS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+ 
+	//-------------------------------------------------------
+ 
+	/*Put any variables that are used in more than one scene here.*/
+	
+	int mlPowerState = ePowerState_On;
+ 
+	//-------------------------------------------------------
+ 
+	/*Put any functions that are used in more than one scene here.*/
+	
+	/////////////////////////////////////////
+	// Omnitool
+	//{//////////////////////////////////////
+
+	//-------------------------------------------------------
+	
+	bool CanUseCathTool(const tString &in asTool, const tString &in asEntity)
+	{
+		return CathTool_CanUse(asTool, asEntity);
+	}
+		
+	//------------------------------------------------------------
+		
+	bool OnUseCathTool(const tString &in asTool, const tString &in asEntity)
+	{			
+		if (asEntity=="GatePanel")
+		{
+			CathTool_UseOnPanel(asTool, asEntity);
+			return false;
+		}
+		return false;
+	}
+
+	//} End Omnitool
+	
+	/////////////////////////////////////////
+	// Water and indoor transition
+	//{//////////////////////////////////////
+	
+	bool mbPlayerIsUnderwater = true;
+ 
+	//-------------------------------------------------------
+ 
+	void SetPlayerIsUnderwater(bool abX, float afFadeTime)
+	{
+		mbPlayerIsUnderwater = abX;
+		
+		//////////////////////////////
+		//Underwater
+		if(mbPlayerIsUnderwater)
+		{
+			Map_SetUnderwater(true);
+			Player_SetAmbientLight_Outdoors(true);
+			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(true);
+			Map_Preset_Fade("Ocean", afFadeTime);
+			
+			Map_SetSkyBoxTexture("grayscale_gradient_1_3.dds");
+			
+			Map_SetEnvironmentParticlesActive(true);
+
+			//////////////
+			// Enable all visibility areas and critters
+			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", true);
+		}
+		//////////////////////////////
+		//In Air
+		else
+		{
+			Map_SetUnderwater(false);
+			Player_SetAmbientLight_Indoors(true);
+			cLux_GetCurrentMap().GetWorld().SetDirectionalLightActive(false);
+			Map_Preset_Fade("Indoor", afFadeTime);
+			
+			Map_SetSkyBoxTexture("02_04_shallow_fog.dds");
+			
+			Map_SetEnvironmentParticlesActive(false);
+
+			////////////////
+			// Disable visibility areas and critters
+			//Visibility_SetAreaActive("VisibilityAreaArea_outside*", false);
+		}
+	}
+	
+	//} End Water and indoor transition
+	
+	/////////////////////////////////////////
+	// Power management
+	//{//////////////////////////////////////
+	
+	void SetupStationPower()
+	{
+		 SetupControllableLights();
+	}
+	
+	//-------------------------------------------------------
+	
+	void SetupControllableLights()
+	{
+		Lamp_SetLit("station_power_control_*", false, false);
+	}
+	
+	//} Power management
+	
+	//} END MAIN FUNCTIONS
+ 
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE X *Intro*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+ 
+		/////////////////////////////////////////
+		// General
+		//{//////////////////////////////////////
+		 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are used by many events in Scene X here.*/
+		
+		bool mbRunIntro = true;
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are used in more than one event in Scene X here.*/
+	 
+		//-------------------------------------------------------
+		
+		//} END General	
+	 
+		/////////////////////////////////////////
+		// *INTRO*
+		//{//////////////////////////////////////
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+		
+		cSequenceStatesData mIntroSequence;
+		void SequenceIntro(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceIntro", mIntroSequence);
+			
+			if (Sequence_DoStepAndWait(0.1f))
+			{
+				cLux_AddDebugMessage("!!INTRO START!!");
+				
+				Sound_FadeGlobalVolume(0.0f, 0.25f, eSoundEntryType_WorldAll);
+				Sound_FadeGlobalVolume(0.0f, 0.25f, eSoundEntryType_GuiWorld);
+				
+				Effect_Fade_Out(0.001f);
+			}
+			else if(Sequence_DoStepAndWait(0.1f))
+			{
+				Player_Teleport("PlayerStartArea_1");
+				
+				Player_SetActive(false);
+				Player_ShowCrossHairIcons(false);
+				
+				Player_SetHealth(0.75f);
+				Player_SetFlashlightActive(false,true);
+				Player_SetFlashlightDisabled(true);
+			}
+			////////////////////////////
+			// INTRO A
+			
+			////////////////////////////
+			// INTRO B
+			else if(Sequence_DoStepAndWait(0.1f))
+			{
+				//Voice_Play("HelperJane_PluggedIn_GoodPower");
+			}
+			else if(Sequence_DoStepAndWait(0.1f))
+			{
+				//OnUseCathTool("CathTool", "AirlockPanel");
+			}
+			Sequence_End();
+		}
+		
+		//} End INTRO
+		
+		/////////////////////////////////////////
+		// *OPEN GATE*
+		//{//////////////////////////////////////
+		
+		int mlGateShakeID;
+		
+		void OpenGate(const tString &in asEntity, int alState)
+		{
+			if(alState != 1) return;
+			
+			Entity_SetActive("IntroToolArea", false);
+			
+			Entity_SetInteractionDisabled(asEntity, true);
+			
+			// If the GUI isn't on, turn it on
+			Terminal_SetGuiActive("Airlock2GUI",true);
+			Entity_SetActive("Airlock2GUI", true);
+			
+			Map_RemoveTimer("TimerTurnOffGUI");
+			Map_AddTimer("TimerTurnOffGUI",10.0f,"TimerTurnOffGUI");
+			
+			//SequenceOpenThetame();
+		}
+		
+		void TimerTurnOffGUI(const tString& in asTimer)
+		{
+			Terminal_SetGuiActive("Airlock2GUI",false);
+			Entity_SetActive("Airlock2GUI", false);
+		}
+		
+		void OnGuiAirlock2(const tString&in asEntityName, float afTimeStep)
+		{
+			ImGui_SetTransCategory("01_04_transport_station");
+		
+			StationGuiBG_Scanlines();
+			StationGuiBG_Backdrop();
+			
+			StationGui_BigStatusMessage_Old("GUIAirlockFixed", gStationGuiColor_Highlight, 1.75, true);
+		}
+		
+		//-------------------------------------------------------
+		
+		cSequenceStatesData mOpenThetameSequence;
+	
+		void SequenceOpenThetame(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceOpenThetame", mOpenThetameSequence);
+			
+			if (Sequence_DoStepAndWait(1))
+			{
+				SlideDoor_SetOpenAmount("ThetaWarningLight_Gate_*", 1, false);
+			}
+			else if (Sequence_DoStepAndWait(2))
+			{
+				MoveObject_SetState("ThetaWarningLight_Base_*", 1);
+			}
+			else if (Sequence_DoStepAndWait(1))
+			{
+				/////////////////////////////////////////////
+				// TUrn off some lamps to put focus on door
+				Map_AddTimer("ThetaGateLamp_Top_1", 0, "TimerSetLampUnlit");
+				Map_AddTimer("ThetaGateLamp_Top_2", 0.4, "TimerSetLampUnlit");
+				Map_AddTimer("ThetaGateLamp_OverrideBox", 1, "TimerSetLampUnlit");
+				Map_AddTimer("ThetaGateLamp_OverrideBox_Spotlight", 1, "TimerFadeLightToBlack");
+				Map_AddTimer("ThetaGateLamp_OverrideBox_Pointlight", 1, "TimerFadeLightToBlack");
+				
+				/////////////////////////////////////////////
+				// Turn on spinning warning lights
+				Lamp_SetLit("ThetaWarningLight_Lamp_*", true, true);
+				Prop_RotateToSpeed("ThetaWarningLight_Lamp_1", 5, 7.5, cVector3f(0, 0, 1), true, "");
+				Prop_RotateToSpeed("ThetaWarningLight_Lamp_2", 5, 7.5, cVector3f(0, 0, -1), true, "");
+			}		
+			else if (Sequence_DoStepAndWait(8.5))
+			{			
+				mlGateShakeID = Effect_Shake_Start(0.005, -1, 2, 0);
+				Effect_Shake_SetSourceEntity(mlGateShakeID, "ThetaGate_Down", 10, 25);
+				
+				Entity_PlayAnimation("ThetaGate_Up", "Open", 0);
+				Entity_PlayAnimation("ThetaGate_Down", "Open", 0);
+				Map_AddTimer("ThetaGate_ClutchPS_1", 2, "TimerThetaGateClutchRelease");
+				Map_AddTimer("ThetaGate_ClutchPS_2", 3, "TimerThetaGateClutchRelease");
+				Map_AddTimer("ThetaGate_ClutchPS_3", 5, "TimerThetaGateClutchRelease");
+				Map_AddTimer("ThetaGate_ClutchPS_4", 6, "TimerThetaGateClutchRelease");
+			}
+			else if (Sequence_DoStepAndWait(0.25))
+			{
+				for (int i = 1; Entity_Exists("ThetaGate_BubblePS_" + i); i++)
+				{
+					Map_AddTimer("ThetaGate_BubblePS_" + i, cMath_RandRectf(0, 0.5),"TimerThetaGatePSDelay");
+				}
+			}
+			else if (Sequence_DoStepAndWait(11))
+			{			
+				Effect_Shake_FadeOut(mlGateShakeID, 1);
+				mlGateShakeID = Effect_Shake_Start(0.0075, -1, 2, 0);
+				Effect_Shake_SetSourceEntity(mlGateShakeID, "ThetaGate_Down", 10, 25);
+				
+				SlideDoor_SetOpenAmount("ThetaGate_Up", 1, false);
+				SlideDoor_SetOpenAmount("ThetaGate_Down", 0.875, false);
+				
+				for (int i = 1; Entity_Exists("ThetaGate_DustFallPS_" + i); i++)
+				{
+					Map_AddTimer("ThetaGate_DustFallPS_" + i, cMath_RandRectf(0.4, 0.75),"TimerThetaGatePSDelay");
+				}
+			}
+			else if (Sequence_DoStepAndWait(1))
+			{
+				Effect_Shake_FadeOut(mlGateShakeID, 0.5);
+				Lever_SetAutoMoveEnabled("ThetaGate_Walkboard", true);
+				Lever_SetAutoMoveTarget("ThetaGate_Walkboard", 1);
+			}
+			else if (Sequence_DoStepAndWait(1))
+			{
+				Entity_PlayAnimation("ThetaGate_Left", "Open", 0);
+				Entity_PlayAnimation("ThetaGate_Right", "Open", 0);
+			}
+			else if (Sequence_DoStepAndWait(7))
+			{
+				mlGateShakeID = Effect_Shake_Start(0.0075, -1, 2, 0);
+				Effect_Shake_SetSourceEntity(mlGateShakeID, "ThetaGate_Down", 10, 25);
+				
+				SlideDoor_SetOpenAmount("ThetaGate_Left", 1, false);
+				SlideDoor_SetOpenAmount("ThetaGate_Right", 1, false);
+			}
+			else if (Sequence_DoStepAndWait(0.5))
+			{
+				Effect_Shake_FadeOut(mlGateShakeID, 1);
+				
+				Lamp_SetLit("ThetaWarningLight_Lamp_*", false, true);
+				Prop_RotateToSpeed("ThetaWarningLight_Lamp_1", 5, 0, cVector3f(0, 0, 1), false, "");
+				Prop_RotateToSpeed("ThetaWarningLight_Lamp_2", 5, 0, cVector3f(0, 0, -1), false, "");
+			}
+			else if (Sequence_DoStepAndWait(2))
+			{
+				MoveObject_SetState("ThetaWarningLight_Base_*", 0);
+			}
+			else if (Sequence_DoStepAndWait(2))
+			{
+				SlideDoor_SetOpenAmount("ThetaWarningLight_Gate_*", 0, false);
+			}
+			
+			Sequence_End();
+		}
+
+		//-------------------------------------------------------
+		
+		void TimerThetaGateClutchRelease(const tString &in asTimer)
+		{
+			/////////////////////
+			// Effects 
+			ParticleSystem_CreateAtEntity(asTimer + "_Particles", "oneshot_sand_cascade.ps", asTimer, false);
+		}
+
+		//-------------------------------------------------------
+		
+		void TimerThetaGatePSDelay(const tString &in asTimer)
+		{
+			// Create the particle system specified in the UserVar of the area
+			ParticleSystem_CreateAtEntity(asTimer + "_Particles", Entity_GetVarString(asTimer, ""), asTimer, false);
+		}
+		
+		//-------------------------------------------------------
+		
+		void SetupArrivalOutsideTheta()
+		{
+			Entity_StopAnimation("ThetaGate_Up");
+			Entity_StopAnimation("ThetaGate_Down");
+			Entity_StopAnimation("ThetaGate_Left");
+			Entity_StopAnimation("ThetaGate_Right");
+		}
+		
+		//} End OPEN GATE
+		
+	//} END SCENE X
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE X *Airlock*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+ 
+		/////////////////////////////////////////
+		// General
+		//{//////////////////////////////////////
+		 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are used by many events in Scene X here.*/
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are used in more than one event in Scene X here.*/
+	 
+		//-------------------------------------------------------
+		
+		//} END General	
+	 
+		/////////////////////////////////////////
+		// Event *Player activates the airlock*
+		//{//////////////////////////////////////
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are only used in Scene X, Event X here.*/
+		
+		int mlAirlockShakeID = -1;
+		int mlDistortionAirlockID = -1;
+		
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+		
+		bool mbAirlockFlushed = false;
+		
+		void OnGuiStartAirlock(const tString&in asEntityName, float afTimeStep)
+		{
+			ImGui_SetTransCategory("00_00_introa");
+				
+			StationGuiBG_Scanlines();
+			StationGuiBG_Backdrop();
+			
+			cStationGui_BigStatusMessageSettings statusMessage;
+			if (Button_IsSwitchedOn("AirlockActivateButton") && mbAirlockFlushed == false)
+			{
+				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushing!");
+
+				statusMessage.mfTextSizeMul = 2;
+				StationGui_BigStatusMessage("AirlockFlushing", statusMessage);
+			}
+			else if (mbAirlockFlushed)
+			{
+				cLux_AddDebugMessage("!!UPDATE TERMINAL GUI!! -- Airlock flushed!");
+				
+				statusMessage.mfTextSizeMul = 2;
+				StationGui_BigStatusMessage("NoPower", statusMessage);
+				
+				// ADD VIDEO DISTORTION EFFECT
+			}
+			else
+			{
+				statusMessage.mColor = gStationGuiColor_Highlight;
+				statusMessage.mfTextSizeMul = 2;
+				StationGui_BigStatusMessage("AirlockReady", statusMessage);
+			}
+		}
+		
+		//-------------------------------------------------------
+		
+		void ActivateAirlock(const tString &in asEntity)
+		{
+			SequenceAirlockEnter("");
+		}
+		
+		//-------------------------------------------------------
+		
+		cSequenceStatesData mSequenceAirlockEnter;
+		void SequenceAirlockEnter(const tString &in asName)
+		{
+			Sequence_Begin("SequenceAirlockEnter", mSequenceAirlockEnter);
+			
+			if (Sequence_DoStepAndWait(1.f))
+			{
+				SlideDoor_SetClosed("AirlockOceanDoor", true, false);
+			}
+			if (Sequence_DoStepAndWait(0.f)) // 2.0f
+			{
+				//Sound_CreateAtEntity("DrainingAlarm", "Entities_OceanBottom/airlock/alarms/draining_alarm", "FauxAirlockMotorSource");
+			}
+			if (Sequence_DoStepAndWait(1.0f))
+			{
+				AirlockLampHandler("AirlockLamp", true);
+				
+				Sound_CreateAtEntity("AirlockAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "AirlockAlarmSoundSource");
+			}
+			if (Sequence_DoStepAndWait(3.5f)) // 1.5f
+			{
+				Sound_Stop("side_airlock_idle", 1.0f);
+				Sound_CreateAtEntity("FauxPump", "Entities_OceanBottom/airlock/uw/pump/pump_loop", "AirlockSoundSource");
+				AirlockEffectsFlushWaterFinalAirlock();
+				
+				Entity_SetActive("LiquidArea_1", true);
+				FogArea_SetVisible("LiquidArea_1_Fog", false);
+				
+				for (int i = 1; Entity_Exists("AuxAirlockBubbleArea_"+i);i++)
+				{
+					Map_AddTimer("AuxAirlockBubbleArea_"+i, cMath_RandRectf(0, 1), "TimerCreateEndFlushBubbles");
+				}
+			}
+			if (Sequence_DoStepAndWait(5.0f)) // 1.5f
+			{
+				LiquidArea_MoveLinearTo("LiquidArea_1", "LiquidArea_Target", 0.5, 0.5, 1);
+			}
+			else if (Sequence_DoStepAndWait(4.0))
+			{
+				Map_SetUnderwater(false);
+				
+				ParticleSystem_Destroy("first_airlock_drain_particles_*");
+				Entity_SetActive("AMB_AirlockWater", false);
+				Entity_SetActive("AMB_AirlockAir", true);
+				
+				cLux_AddDebugMessage("Air area activated...");
+			}
+			else if (Sequence_DoStepAndWait(5.5)) // 7.5f
+			{
+				ParticleSystem_Destroy("second_airlock_drain_particles_*");
+			}
+			else if (Sequence_DoStepAndWait(1.5))
+			{
+				Sound_CreateAtEntity("AirlockDrainLargeSweet", "Entities_OceanBottom/airlock/uw/water/drain/large_sweet", "AirlockPowerSource", 1.f, false, 1.0f);
+				Sound_CreateAtEntity("AirlockTremor", "03_01_omicron_outside/SFX/special/dome_tremor", "AirlockPowerSource", 1.f, false, 1.0f);
+				
+				Effect_Shake_Start(0.1, 0.4, 0.1, 0.25, cVector3f(1, 0.25, 1), 32);
+				Effect_Shake_Start(0.01, 0.5, 0.2, 3.0, cVector3f(1, 0.25, 1), 32);
+				Effect_Sway_FadeIn(0.2, 1, 1, 0, 1, 0.25f, 0.995f, 0);
+				mlDistortionAirlockID = Effect_VideoDistortion_Start(0.3f, 8.0f, 0.1f, 0.1f);
+				
+				mbAirlockFlushed = true;
+				
+				Music_Stop(0.1f, eMusicPrio_BgAmb);
+			}
+			if (Sequence_DoStepAndWait(6.5f)) // ALWAYS EIGHT SECONDS TILL DOOR TRIES TO OPEN
+			{
+				// KILL POWER
+				mlPowerState = ePowerState_Unreliable;
+				
+				// AIR LOCK LAMP
+				AirlockLampHandler("AirlockLamp", false);
+				// Destroy lamp -- add particle
+				
+				Light_SetVisible("Station_AirLockBoxPower", false);
+				Light_SetVisible("Station_AirLockBoxNoPower", true);
+				
+				// HANDLE AIRLOCK BUTTON
+				Light_SetVisible("Station_AirLockButtonLight_1", false);
+				Entity_SetActive("AirlockActivateButton", false);
+				Entity_SetActive("AirlockActivateButtonOff", true);
+				
+				// TERMINAL
+				Entity_SetActive("AirlockTerminalGUI", false);
+				Entity_SetActive("AirlockTerminalNoPower", true);
+				
+				Lamp_SetLit("TerminalLamp", false, false);
+				
+				//FADE IN STINGER
+				Music_Play("NPC_construct_short2.ogg", 0.5, false, eMusicPrio_BigEvent);
+				
+				if (Player_GetFlashlightActive())
+					Player_SetFlashlightActive(false);
+			}
+			if (Sequence_DoStepAndWait(0.5f))
+			{
+				Depth_Audio_Fear_MediumIntensity();
+				mlDistortionAirlockID = Effect_VideoDistortion_Start(0.4f, 15.0f, 0.1f, 1.0f);
+			}
+			if (Sequence_DoStepAndWait(2.0f))
+			{
+				// TRY TO OPEN DOOR
+				SlideDoor_SetOpenAmount("AirlockStationDoor", 0.33, false);
+				
+				Light_SetVisible("Station_AirLockBoxNoPower_*", true);
+				Light_SetVisible("Station_AirLockBoxNoPower", false);
+				
+				Sound_CreateAtEntity("AirlockDrainLargeSweet", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_fail", "AirlockDoorSoundSource", 1.f, false, 1.0f);
+				ParticleSystem_CreateAtEntity("AirlockSparks", "elec_spark_oneshot.ps", "AirlockDoorSpark", true);
+			}
+			if (Sequence_DoStepAndWait(6)) // 2.0f -- Increase time
+			{
+				// REBOOT TO UNRELIABLE POWER
+				
+				//TURN ON TV
+				// BIG EVENT MUSIC
+			}
+			if (Sequence_DoStepAndWait(1)) // ALWAYS 1.0f from voice line to door opening
+			{
+				Voice_Play("HelperJane_PluggedIn_BadPower");
+			}
+			if (Sequence_DoStepAndWait(2))
+			{
+				// SUCCESSFULLY OPEN THE AIRLOCK DOOR
+				SlideDoor_SetClosed("AirlockStationDoor", false, false);
+				Effect_VideoDistortion_FadeOut(mlDistortionAirlockID, 5.0f);
+				
+				// START AMBIENCE MUSIC -- USE AN AUDIO HANDLER
+			}
+			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		void AirlockLampHandler(const tString &in asEntity, bool abOn)
+		{
+			if (abOn)
+			{
+				Sound_Play("Light_spin", 1.0f);
+				Entity_PlayAnimation(asEntity, "spin", 0.1f, true);
+				Light_FadeTo("Station_AirLockLight_1", cColor(1,0,0,0.467), 6, 0.5f);
+			}
+			else
+			{
+				Sound_Stop("Light_spin", 0.1f);
+				Entity_StopAnimation(asEntity);
+				Light_FadeTo("Station_AirLockLight_1", cColor(0,0,0,1), 6, 0.5f);
+			}
+			
+			ParticleSystem_SetActive("AirlockLamp_PS", abOn);
+			ParticleSystem_SetVisible("AirlockLamp_PS", abOn);
+			
+			Lamp_SetLit(asEntity, abOn, false);
+			Light_SetFlickerActive("Station_AirLockLight_1", abOn);
+		}
+		
+		//-------------------------------------------------------
+		
+		void TimerCreateEndFlushBubbles(const tString &in asTimer)
+		{
+			int lIndex = cString_GetNumericSuffixInt(asTimer);
+			ParticleSystem_CreateAtEntityExt(asTimer, "loop_waterbubbles_medium_stream.ps", "AuxAirlockBubbleArea_"+lIndex, false, cColor(0.487,0.628,0.7,0.25), 0.25);
+			Map_AddTimer(asTimer, 0.75, "TimerDestroyParticleSystem"); 
+			cLux_AddDebugMessage("TimerCreateEndFlushBubbles");
+		}
+		
+		//-------------------------------------------------------
+		
+		void TimerDestroyParticleSystem(const tString &in asTimer)
+		{
+			ParticleSystem_Destroy(asTimer);
+		}
+		
+		//-------------------------------------------------------
+		//Airlock audio
+		
+		void AirlockEffectsFlushWaterFinalAirlock()
+		{
+			Depth_Audio_AirlockDrainLeadInUW();
+			Depth_Audio_AirlockDrainLoopUW();
+			Map_AddTimer("AirlockDrainUWStopTimer", 8.75f, "AirlockDrainUWStopFinalAirlock");
+		}
+		
+		//-------------------------------------------------------
+		
+		void AirlockDrainUWStopFinalAirlock(const tString &in asTimer)
+		{
+			Depth_Audio_PlayLeaveWater();
+			Sound_Stop("FauxPump", 0.55f);
+			Sound_CreateAtEntity("PumpingAirLoop", "Entities_OceanBottom/airlock/air/pump/pump_loop_nointro", "FauxAirlockMotorSource", 0.55f, false, 1.0f);
+			
+			Depth_Audio_AirlockDrainLoopUWStop();
+			Depth_Audio_AirlockDrainLoopAir();
+			
+			Map_AddTimer("AirlockDrainingAirStopTimer", 3.0f, "AirlockDrainingAirStopFinalAirlock");
+		}
+		
+		//-------------------------------------------------------
+		
+		void AirlockDrainingAirStopFinalAirlock(const tString &in asTimer)
+		{
+			Depth_Audio_AirlockDrainLoopAirStop();
+			Depth_Audio_AirlockDrainLeadOutAir();
+			
+			Sound_Stop("PumpingAirLoop", 0.25f);
+			Sound_CreateAtEntity("PumpAirLeadOut", "Entities_OceanBottom/airlock/air/pump/pump_end", "FauxAirlockMotorSource", 0.0f, false, 1.0f);
+			
+			Sound_Play("side_airlock_idle_air", 0.1f);
+		}
+		
+		//-------------------------------------------------------
+		
+		void CollideAirlockWater(int alState)
+		{
+			cLux_AddDebugMessage("Splush!");
+			
+			if(alState == -1)
+			{
+				ParticleSystem_SetActive("first_airlock_drain_particles_*", true);
+				ParticleSystem_SetActive("second_airlock_drain_particles_*", true);
+				ParticleSystem_SetVisible("first_airlock_drain_particles_*", true);
+				ParticleSystem_SetVisible("second_airlock_drain_particles_*", true);
+				
+				ParticleSystem_SetActive("AirlockLamp_PS", false);
+				ParticleSystem_SetVisible("AirlockLamp_PS", false);
+				
+				for (int i = 1; Entity_Exists("EndAirlockSplashPSArea_"+i); i++)
+				{
+					if (ParticleSystem_Exists("EndAirlockSplashParticles_"+i))
+						continue;
+
+					ParticleSystem_CreateAtEntity("EndAirlockSplashParticles_"+i, "03_01_substation_leak_impact", "EndAirlockSplashPSArea_"+i, true);
+				}
+				
+				for (int i = 1; ParticleSystem_Exists("AuxAirlockBubbleArea_"+i); i++)
+				{
+					ParticleSystem_SetVisible("AuxAirlockBubbleArea_"+i, false);
+				}
+				
+				Map_Preset_Fade("Indoor", 15.0);
+				
+				Entity_SetActive("AMB_AirlockAir", true);
+				Entity_SetActive("AMB_AirlockWater", false);
+				
+				Map_SetEnvironmentParticlesActive(false);
+				
+				Depth_Audio_PlayLeaveWater();
+			}
+			
+			else
+			{
+				ParticleSystem_SetVisible("first_airlock_drain_particles_*", false);
+				ParticleSystem_SetVisible("second_airlock_drain_particles_*", false);
+				
+				if (ParticleSystem_Exists("EndAirlockSplashParticles_1"))
+					ParticleSystem_SetVisible("EndAirlockSplashParticles_*", false);
+				
+				for (int i = 1; ParticleSystem_Exists("AuxAirlockBubbleArea_"+i); i++)
+				{
+					ParticleSystem_SetVisible("AuxAirlockBubbleArea_"+i, true);
+				}
+				
+				Entity_SetActive("AMB_AirlockWater", true);
+				Entity_SetActive("AMB_AirlockAir", false);
+				
+				Map_SetEnvironmentParticlesActive(true);
+				
+				Depth_Audio_PlayEnterWater();
+			}
+		}
+	
+		//} END Event *Player activates the airlock*
+		
+	//} END SCENE X
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE X *Station Entrance*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+ 
+		/////////////////////////////////////////
+		// General
+		//{//////////////////////////////////////
+		 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are used by many events in Scene X here.*/
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are used in more than one event in Scene X here.*/
+		
+		//-------------------------------------------------------
+		
+		//} END General	
+	 
+		/////////////////////////////////////////
+		// Event *Player enters the station*
+		//{//////////////////////////////////////
+	 
+		//-------------------------------------------------------
+	 
+		/*Put any variables that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+	 
+		/*Put any functions that are only used in Scene X, Event X here.*/
+		
+		//-------------------------------------------------------
+		
+		void Trigger_EnterStation(const tString &in asParent, const tString &in asChild, int alState)
+		{
+			cLux_AddDebugMessage("Player entered station...");
+			
+			// START THE AUDIO HANDLER FOR THE STATION
+		}
+		
+		//-------------------------------------------------------
+		
+		void SetupRobotEvent() 
+		{
+			Map_AddTimer("open", 0.1f, "Timer_RobotDoorMove");
+		}
+		
+		//-------------------------------------------------------
+		
+		float mfDoorOpenMax = 0.2f;
+		float mfDoorOpenMin = 0.1f;
+		float mfDoorCurrentOpenAmount;
+		float mfDoorOpenModifier;
+		
+		void Timer_RobotDoorMove(const tString &in asTimer)
+		{
+			if (asTimer == "open")
+			{
+				mfDoorOpenModifier = cMath_RandRectf(0.015, 0.03);
+				
+				Map_AddTimer("close", cMath_RandRectf(1.75f, 2.5f), "Timer_RobotDoorMove");
+			}
+			else if (asTimer == "close")
+			{
+				mfDoorOpenModifier = cMath_RandRectf(-0.025, -0.045);
+				
+				Map_AddTimer("open", cMath_RandRectf(1.75f, 2.5f), "Timer_RobotDoorMove");
+			}
+			
+			mfDoorCurrentOpenAmount = SlideDoor_GetOpenAmount("stationstart_door_robot");
+			float fDoorOpenAmount = mfDoorCurrentOpenAmount + mfDoorOpenModifier;
+			
+			if (fDoorOpenAmount > mfDoorOpenMax)
+				fDoorOpenAmount = mfDoorOpenMax;
+			else if (fDoorOpenAmount < mfDoorOpenMin)
+				fDoorOpenAmount = mfDoorOpenMin;
+			
+			SlideDoor_SetOpenAmount("stationstart_door_robot", fDoorOpenAmount, false);
+		}
+	
+		//} END Event *Player enters the station*
+		
+	//} END SCENE X
+	
+	/////////////////////////////////////////
+	// ==============
+	// TERMINALS
+	// ==============
+	//{//////////////////////////////////////
+ 
+		//-------------------------------------------------------
+	
+		/////////////////////////////////////////
+		// Terminal *TERMINAL X*
+		//{//////////////////////////////////////
+		
+	 
+		 //-------------------------------------------------------
+	
+		/*Put any variables that are only used Terminal here.*/
+	
+		//-------------------------------------------------------
+	
+		/*Put any functions that are only used Terminal here.*/
+		
+	
+		//-------------------------------------------------------
+	
+		//} END Terminal *Name Of Terminal*
+	
+	//} END TERMINALS
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// AUDIO
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	void AudioHandler(const tString &in asTimer)
+	{
+		if(asTimer=="FadeInAudio")
+		{
+			Sound_FadeGlobalVolume(1.0f, 3.0f, eSoundEntryType_WorldAll);
+			Music_FadeVolumeMul(1.0f, 3.0f);
+		}
+		if(asTimer=="FadeDownDoorSeq")
+		{
+			Sound_FadeGlobalVolume(0.4f, 3.0f, eSoundEntryType_WorldAll);
+			Map_AddTimer("FadeUpDoorSeq", 20.f, "AudioHandler");
+		}
+		if(asTimer=="FadeUpDoorSeq")
+		{
+			Sound_FadeGlobalVolume(1.0f, 8.0f, eSoundEntryType_WorldAll);
+		}
+		if(asTimer=="Start" && mbRunIntro)
+		{
+			Sound_FadeGlobalVolume(0.0f, 0.25f, eSoundEntryType_WorldAll);
+			Sound_FadeGlobalVolume(0.0f, 0.25f, eSoundEntryType_GuiWorld);
+		}
+		else
+		{
+			Sound_FadeGlobalVolume(1.0f, 0.25f, eSoundEntryType_WorldAll);
+			Sound_FadeGlobalVolume(1.0f, 0.25f, eSoundEntryType_GuiWorld);
+		}
+	}
+	
+	//-------------------------------------------------------
+	
+	//Gate sequence
+	void Audio_ThetaGateStart()
+	{
+		Sound_CreateAtEntity("ThetaGateSequence", "02_04_theta_outside/SFX/theta_door_Sequence", "ThetaGateSoundSource");
+		Map_AddTimer("ThetaGateSequenceMusic", 15.f, "ThetaGateSequence");
+		Map_AddTimer("FadeDownDoorSeq", 6.0f, "AudioHandler");
+		//Map_AddTimer("StopAmbientMusicQuickly", 1.0f, "AmbientMusicHandler");
+		//mbAmbientMusicAllowed = false;
+		
+		//Remove anything that might overlap
+		//Entity_SetActive("GraveyardTrigger", false);
+		//Map_RemoveTimer("TimerGraveyardMusic");
+		//Music_Stop(3.0f, eMusicPrio_BgAmb);
+	}
+	
+	//-------------------------------------------------------
+	
+	void ThetaGateSequence (const tString &in asTimer)
+	{
+		//Start music and fade sound
+		if(asTimer=="ThetaGateSequenceMusic")
+		{
+			cLux_AddDebugMessage("Fading Down Theta Gate");
+			//Music_PlayExt("02_04_gate", false, 0.85, 1, 0, 0, eMusicPrio_BigEvent, true);
+			Sound_Fade("ThetaGateSequence", 0.85f, 10.0f);
+			Map_AddTimer("ThetaGateFadeUp", 12.0f, "ThetaGateSequence");
+		}
+		//Fade up gate sound after music
+		else if(asTimer=="ThetaGateFadeUp")
+		{
+			cLux_AddDebugMessage("Fading Up Theta Gate");
+			Sound_Fade("ThetaGateSequence", 1.f, 4.0f);
+		}
+	}
+	
+	//} END AUDIO
+}
