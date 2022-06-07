@@ -91,8 +91,12 @@ class cScrMap : iScrMap
 		{
 			cLux_AddDebugMessage("Debug on.");
 			
-			//Player_SetFlashlightDisabled(false);
+			mbStartIntro = false;
+			
+			Player_SetFlashlightDisabled(false);
 		}
+		
+		SimulationSequence("");
 	}
 
 	//-------------------------------------------------------
@@ -101,7 +105,7 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		Player_SetFlashlightDisabled(true);
+		//Player_SetFlashlightDisabled(false);
 	}
 
 	//-------------------------------------------------------
@@ -179,14 +183,6 @@ class cScrMap : iScrMap
 		/////////////////////////////////////////
 		// General
 		//{//////////////////////////////////////
-		 
-		//-------------------------------------------------------
-	 
-		/*Put any variables that are used by many events in Scene 1 here.*/
-		
-		//-------------------------------------------------------
-	 
-		/*Put any functions that are used in more than one event in Scene 1 here.*/
 	 
 		//-------------------------------------------------------
 		
@@ -195,16 +191,21 @@ class cScrMap : iScrMap
 		/////////////////////////////////////////
 		// *Mark wakes up in the scan chair*
 		//{//////////////////////////////////////
-	 
-		//-------------------------------------------------------
-	 
-		/*Put any variables that are only used in Scene 1, Event X here.*/
 		
-		//-------------------------------------------------------
-	 
-		/*Put any functions that are only used in Scene 1, Event X here.*/
+		bool mbStartIntro = true;
 		
 		// Dialogue with Simon and Catherine
+		
+		cSequenceStatesData mSecondDunbatControlChangedSequence;
+		void SimulationSequence(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceSecondDunbatControlChanged", mSecondDunbatControlChangedSequence);
+			if (Sequence_DoStepAndWait(4.0f))
+			{
+				
+			}
+			Sequence_End();
+		}
 		
 		//-------------------------------------------------------
 		
