@@ -1,10 +1,6 @@
 ----------------------------------------------------------------------------------------------------------
 
--Check sound effect used to unlocking door in lab. It's the progress sound effect. Use this when player progress through a puzzle/pick up important item.
--Have a monster sound like they are on the other side of where the player has to go--Instantly uncomfortable, power off too (maybe?).
--Red light along pipes running through the cieling and floor.
-
--Have a sticky note say, "don't your fucking dare" on it
+-Have a sticky note say, "don't you fucking dare" on it
 
 -Use the voice lines of the guy that screams for his life when he is being tortured because the power is off.
 
@@ -12,40 +8,46 @@
 
 -Reuse the stun weapon somehow. Maybe to recharge things with power, use them one the WAU healingstations?
 
--Reuse the coms. telephone. There is also a radio to use.
-
--A long bridge, like omicron bridge but across a valley,
-cables are attached to it's sides like a normal bridge would have.
-The sound of creaking metal. Add a sway area.
-The sound of a distant whale's howling.
-Add a scare event. Sound of a cable snapping?
-A hammerheadshark passes in the distance (the curie boat map).
-Blue light billboards along the sides and above the bridge, simulating the sunlight from above the ocean.
-Have weak lights along the bridge path (red/orange/yellow?).
-A light centered at the top of the scaffolding holding both ends of th bridge.
-
-"(I've found) A place where I can be without remorse."
-
-Mod name: os:profiles/sec_% (CAM_01)
-
-Entities_Station/object/robot_bear/bear_music_01 in kids room
-
-Interface/gameplay/progression_hit when progressing
+-Reuse the coms and telephone, there is also a radio to use.
 
 A hub room with a large window wall looking into the ocean, (Dead Space + Alien Isolation for insperation). 
 In the middle of this room-toward the window-a two staircases meet from left and right leading down below the large window.
 There is a tiny control room here with several terminals the player can control + datapad. There is a window here too (dunbat chassis for inspiration).
 This is going to have to be built very much manually by hand with smaller assets (Use theta?).
 
+
+- Add so the player can toggle the crosshair in the main menu (only affects the white dot, all other icons remain in effect).
+- Add toggle view bob too.
+
+
+Upload mod to ModDB and Steam Workshop.
 ----------------------------------------------------------------------------------------------------------
+
+02_07_theta_exit_a/SFX/intro/glitch_post_crash
+
+Interface/gameplay/progression_hit when progressing
+
+Entities_Station/object/robot_bear/bear_music_01 in kids room
+
+Mod name: os:profiles/sec_% (CAM_01)
 
 THE STORY:
 
--They arrived through a large uboat/ship. The intro sequence is where this is located.
+"(I've found) A place where I can be without remorse."
 
--The protagonist's kid has gone missing a while a go (he has turned into a monster).
+-The protagonist is the fellow (Mark?) that Simon and Catherine used in the simulations. The idea is after the simulation his copy is still 'alive'.
+
+
+-The game starts in the chair. After his copy gets left behind in the simulation, there is only silence.
+-The player will eventually be able to move.
+
+-You use the terminal behind - the terminal in the original game where you can access the copies (where you find Simon's copy).
+-You look at some entries, there is a "reset systems" button.
+-When the player clicks on it.
+
+-The protagonist has a kid in this parallel universe missing a while a go (he has turned into a monster).
 His notes will be in the computers and such. Make it emotional, and heartbreaking. 
-The player will eventually find the kid as a monster, he touches his cheek--end.
+The player will eventually find *His girlfriend (she is in the simulation scene)* as a monster, he touches her cheek--end.
 
 -Establish as early as possible that his son is gone, use a picture maybe?
 -His son is underground through a scholarship because of his potential, raw ability and academic achievements.
@@ -53,10 +55,50 @@ The player will eventually find the kid as a monster, he touches his cheek--end.
 "Then I wouldn't had to live through that pain." (Rather selfish) The WAU records the players dialogue and uses it against him later.
 
 /////////////////////////////////////////
-// LEVEL 1
+// INTRO
 
-/////////////////////////////////////////
-// INTRO A
+-The protagonist starts with sitting in the chair which is an exact replica of the room used in the simulation in the original game.
+-Simon and Catherine speak to the protagonist, he gets mad (reuse the voice lines).
+
+-The game starts in the chair. After his copy gets left behind in the simulation, there is only silence.
+-The player will eventually be able to move.
+
+-You use the terminal behind - the terminal in the original game where you can access the copies (where you find Simon's copy).
+-You look at some original game entries (you can click load on the others but the screen resets). 
+-You find yourself you clicking load on yourself, a "reset systems" button.
+
+-A short story shows up.
+-It uses the 2nd perspective.
+-It tells the player what do to.
+
+STORY:
+
+A place where I can be without remorse.
+
+-The reboot 'accept' button shows up.
+
+-When the player clicks on it, a loading bar shows and loads slowly (computer whirrs when loading).
+-A wall has appeared behind you, you can't leave.
+-It gets stuck (the sound of the computer freezes like in windows like a blue screen). 
+-Screen breaks.
+-The power shuts down (fade screen out when darkness is reached)
+(add effects and music).
+-Teleport the player in the darkness. Silence for some times. Creeping sound effects fade in.
+-The player will move around. Randomally fade the screen in (disable black plane entity).
+-The player can see refractions from a distance (depth of field makes it blurrier).
+-Player approaches, *his wife's voice call out to him* it get's brighter and brighter (have a lensflare coming from the portal).
+-Pieces of floor whoosh in front of the player.
+-The beeping from a hospital looping, then baby cry, then baby laughter and so on (his parallel life is flashing before him).
+-Objects from the parallel world float and refract in the air as if passing through a portal (underwater?).
+
+////////////////////////////////////////
+// AFTER INTRO
+
+-The player will later find thier own room, here is where the player will find out about the child in this parallel universe.
+-
+
+----------------------------------------------------------------------------------------------------------
+
 
 -Fade out.
 -Add screen effects (chromatic abberation, image trail etc).
