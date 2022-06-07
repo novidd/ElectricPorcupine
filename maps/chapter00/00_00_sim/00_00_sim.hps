@@ -90,6 +90,8 @@ class cScrMap : iScrMap
 		if(cLux_ScriptDebugOn()) 
 		{
 			cLux_AddDebugMessage("Debug on.");
+			
+			//Player_SetFlashlightDisabled(false);
 		}
 	}
 
@@ -99,7 +101,7 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		
+		Player_SetFlashlightDisabled(true);
 	}
 
 	//-------------------------------------------------------
@@ -215,7 +217,7 @@ class cScrMap : iScrMap
 	// TERMINALS
 	// ==============
 	//{//////////////////////////////////////
- 
+
 		//-------------------------------------------------------
 	
 		/////////////////////////////////////////
