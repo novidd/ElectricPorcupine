@@ -63,15 +63,19 @@ The player will eventually find *His girlfriend (she is in the simulation scene)
 -The game starts in the chair. After his copy gets left behind in the simulation, there is only silence.
 -The player will eventually be able to move.
 
+
+!! VITAL !!
+-Use music and effects to reel the player in.
+
 -You use the terminal behind - the terminal in the original game where you can access the copies (where you find Simon's copy).
 -You look at some original game entries (you can click load on the others but the screen resets). 
 -You find yourself you clicking load on yourself, a "reset systems" button.
 
--A short story shows up.
+-A short story shows up (multiple pages will be needed).
 -It uses the 2nd perspective.
 -It tells the player what do to.
 
-STORY:
+STORY TEXT:
 
 A place where I can be without remorse.
 
@@ -162,52 +166,4 @@ A place where I can be without remorse.
 -The protagonist came here to pick up some item they need for their research.
 -The player is on their way back to their base.
 -The player will have to use the subway to escape to their base.
-
-/////////////////////////////////////////
-// LEVEL 2
-
--The player is now on their way to the comms tower--their base.
-----------------------------------------------------------------------------------------------------------
-
-/////////////////////////////////////////
-// THE CHESS PUZZLE
-
--Copy the chess gui from delta.
-
--A terminal with chess somewhere.
--The chessboard is setup so the WAU does the first move.
--It always wins no matter what move the player does for their first move. The player cannot win against the WAU. It then resets on a loop.
--The player has to consume the WAU flower in the same room. It's attached to a person, they chuckle each time you lose and that person's name shows up as the winner.
--When they've done this, the chess game is winnable.
--A new prompt shows up that the last session was restored.
-
--When the player fails with the finishing move, the program throws an error and says its corrupted. 
-It restarts from the same cached session in loop till the player wins.
-
-----------------------------------------------------------------------------------------------------------
-
-/////////////////////////////////////////
-// THE BRIDGE
-
--The player will cross the bridge on railway with some sort of transport vehicle.
--The vehicle will have a terminal on it. It scans for nearby networks. Each end of the bridge has one (+ the middle).
-	- Have a spinning thing when it searches (don't connect immediately, have delay of ~2-5s (yellow connecting status)).
-	- Set current network depending on the transport vechile's location. Use areas, set on collision (Use 1 handler for this).
-	- Each one of these networks give the terminal unique functionality.
-	- When the player reaches the middle part of the bridge, it's network is inactive. The player needs to activate it (show on terminal).
-
---THE PEACEFUL HOME BASE--
-
--When in base use human hands.
-
-"After some point in time, the unending water leaking into the dome became as comforting as a fan blowing in the summer heat -- cooling my skin."
-
--There are pictures on the walls.
--Old research notes.
--Calculations.
--A Terminal.
--The player has to place the item and it's container in a fridge for safe keeping.
-
--After a certain amount of time the player gets a transmission from somewhere.
--This is the inciting incident!!
 
