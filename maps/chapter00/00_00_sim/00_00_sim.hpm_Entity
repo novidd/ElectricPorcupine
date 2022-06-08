@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="74AC7B143DD60257C4A1E1F33870A9F12F073925" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="77">
+        <FileIndex_Entities NumOfFiles="81">
             <File Id="0" Path="entities/station/tech/computer_parts_xx/computer_parts_chassis_default.ent" />
             <File Id="1" Path="entities/station/tech/sensor_env_ceil_large/sensor_env_ceil_large.ent" />
             <File Id="2" Path="entities/character/robot/maintenance/maintenance_rigid.ent" />
@@ -78,6 +78,10 @@
             <File Id="74" Path="entities/station/furniture/chair_scan/chair_scan_helmet.ent" />
             <File Id="75" Path="entities/station/furniture/chair_scan/chair_scan_rail.ent" />
             <File Id="76" Path="entities/character/player/hands/hands_human_chair_scan.ent" />
+            <File Id="77" Path="entities/character/station/brandon_corpse/brandon_corpse_id.ent" />
+            <File Id="78" Path="entities/character/station/brandon/brandon.ent" />
+            <File Id="79" Path="entities/character/station/brandon_corpse/brandon_corpse.ent" />
+            <File Id="80" Path="entities/character/station/alice/alice.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435464" Name="computer_parts_chassis_default_1" CreStamp="1654609957" ModStamp="1654609997" WorldPos="-69.75 15.316 -23.5" Rotation="-3.14159 1.57114 -0" Scale="0.75 0.952 0.675" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 51 268435464">
@@ -594,7 +598,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435492" Name="speaker_wall_mount_29" CreStamp="1654611273" ModStamp="1654691277" WorldPos="-66.313 13 -25.483" Rotation="-8.61327e-005 -1.34067 0.000122173" Scale="1 1 1" FileIndex="9" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 88 268435492">
+            <Entity ID="268435492" Name="speaker_wall_mount_29" CreStamp="1654611273" ModStamp="1654714164" WorldPos="-67.2973 13 -15.985" Rotation="3.5089e-013 3.76477 -2.66444e-012" Scale="1 1 1" FileIndex="9" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 88 268435492">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2218,7 +2222,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435692" Name="ScanChair_1" CreStamp="1654619059" ModStamp="1654699608" WorldPos="-69.75 10.516 -23.893" Rotation="0 0 0" Scale="1.2 1.2 1.2" FileIndex="36" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 240 268435692">
+            <Entity ID="268435692" Name="ScanChair_1" CreStamp="1654619059" ModStamp="1654711546" WorldPos="-69.75 10.516 -23.93" Rotation="0 0 0" Scale="1.025 1.3 1.3" FileIndex="36" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 240 268435692">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -5387,7 +5391,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435957" Name="SimonHands" CreStamp="1654699716" ModStamp="1654699789" WorldPos="-69.75 10.3258 -24.5" Rotation="0 0 0" Scale="1.25 1.25 1.25" FileIndex="76" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 241 268435957">
+            <Entity ID="268435957" Name="SimonHands" CreStamp="1654699716" ModStamp="1654699789" WorldPos="-69.75 10.3258 -24.5" Rotation="0 5.56363e-008 0" Scale="1.25 1.25 1.25" FileIndex="76" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 241 268435957">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -5550,6 +5554,86 @@
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268435975" Name="Brandon_ScanRoom" CreStamp="1654709226" ModStamp="1654711581" WorldPos="-69.75 10.716 -23.9" Rotation="0.0872665 -0 0" Scale="1.25 1.26 1.25" FileIndex="78" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 487 268435975">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="AutoDisableWhenOutOfSight" Value="false" />
+                    <Var Name="AutoDisableWhenOutOfSightMinDist" Value="10" />
+                    <Var Name="AutoDisableCallback" Value="" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="UpdateWhenInvisible" Value="false" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="SensesActive" Value="true" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="VoiceName" Value="" />
+                    <Var Name="StaticCollider" Value="true" />
+                    <Var Name="CanBeTalkedTo" Value="true" />
+                    <Var Name="MainAnimation" Value="" />
+                    <Var Name="MainAnimationGlobalSpace" Value="false" />
+                    <Var Name="HeadTracker_TargetEntity" Value="" />
+                    <Var Name="HeadTracker_Active" Value="true" />
+                    <Var Name="WallAvoidActive" Value="false" />
+                    <Var Name="DynamicObjectAvoidActive" Value="false" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268435977" Name="Alice_ScanRoom" CreStamp="1654712244" ModStamp="1654712412" WorldPos="-71.165 10.5 -22.25" Rotation="-0 2.57436 -0" Scale="1.3 1.3 1.3" FileIndex="80" Active="false" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 486 268435977">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="AutoDisableWhenOutOfSight" Value="false" />
+                    <Var Name="AutoDisableWhenOutOfSightMinDist" Value="10" />
+                    <Var Name="AutoDisableCallback" Value="" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="UpdateWhenInvisible" Value="false" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="SensesActive" Value="true" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="VoiceName" Value="" />
+                    <Var Name="StaticCollider" Value="true" />
+                    <Var Name="CanBeTalkedTo" Value="true" />
+                    <Var Name="MainAnimation" Value="" />
+                    <Var Name="MainAnimationGlobalSpace" Value="false" />
+                    <Var Name="HeadTracker_TargetEntity" Value="" />
+                    <Var Name="HeadTracker_Active" Value="true" />
+                    <Var Name="WallAvoidActive" Value="false" />
+                    <Var Name="DynamicObjectAvoidActive" Value="false" />
                 </UserVariables>
             </Entity>
         </Objects>
