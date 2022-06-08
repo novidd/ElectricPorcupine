@@ -333,15 +333,18 @@ class cScrMap : iScrMap
 				
 				CameraAnimation_Begin("IntroAnim", "", true);
 				CameraAnimationNode_SetInteractiveMovement("IntroAnim_1", false);
+				CameraAnimationNode_SetInteractiveMovement("IntroAnim_2", false);
 				Player_FadeMoveSpeedMulTo(mfPlayerSpeedOnWakeup,0.1f);
 				
 				/////////////////////////////
 				// Fade out DOF effects
-				Effect_DoF_FadeFalloff(mlDoFEffectID, 0, 2.5f);
+				// EDIT EFFECTS FOR SITTING IN THE CHAIR DURING DIALOGUE
+				Effect_DoF_FadeFalloff(mlDoFEffectID, 0.75, 30.0f);
+				Effect_DoF_FadeFocus(mlDoFEffectID, 0, 12, 30.0f);
 					
 				Effect_Fade_In(3.0f);
 			}
-			else if (Sequence_DoStepAndWait(0.5f))
+			else if (Sequence_DoStepAndWait(2.0f))
 			{
 				//////////////////////////////////////////
 				// Lift the helmet
@@ -350,17 +353,12 @@ class cScrMap : iScrMap
 				Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_1", 0.35, 1, 0.25, true, "MoveTo_ScanHelmet1");
 				Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_1",0.35,1,0.25,true,"");
 			}
-			else if (Sequence_DoStepAndWait(1.5f))
-			{
-				Effect_DoF_FadeFalloff(mlDoFEffectID, 0, 6.f);
-				// EDIT EFFECTS FOR SITTING IN THE CHAIR DURING DIALOGUE
-			}
 			else if (Sequence_DoStepAndWait(0.0f))
 			{
 				CameraAnimationNode_SetInteractiveMovement("IntroAnim_1", true);
 			}
 			
-			//WHEN DIALOGUE OVER RUN CameraAnimationNode_SetInteractiveMovement("IntroAnim_2", true);
+			//WHEN DIALOGUE OVER AND POWER OFF RUN CameraAnimationNode_SetInteractiveMovement("IntroAnim_2", true);
 			
 			Sequence_End();
 		}
