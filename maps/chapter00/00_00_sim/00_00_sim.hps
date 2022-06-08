@@ -81,22 +81,31 @@ class cScrMap : iScrMap
 		Player_SetAmbientLight_Indoors();
 		PlayerHands_SetHandModel_Human();
 		
+		Player_SetFlashlightDisabled(true);
+		
 		/////////////////////////
 		// Level setup
 		//Map_Preset_Fade("Ocean", 0.001f);
+		
+		Effect_Fade_Out(0);
+		bool bDoIntro = true;
+		////////////////////
+		//Audio
+		Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
+		Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
 		
 		/////////////////////////
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			cLux_AddDebugMessage("Debug on.");
+			bDoIntro = true;
 			
-			mbStartIntro = false;
-			
-			Player_SetFlashlightDisabled(false);
+			//Effect_Fade_In(1);
+			//Sound_FadeGlobalVolume(1.0f, 1.0f);
+			//Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_GuiAll);
 		}
 		
-		SimulationSequence("");
+		if (bDoIntro) Map_AddTimer("timer_kickoffintro", 0.01, "TimerKickoffIntro");
 	}
 
 	//-------------------------------------------------------
@@ -114,6 +123,12 @@ class cScrMap : iScrMap
 	// Run when leaving map
 	void OnLeave()
 	{
+		if(mlImageTrailID>=0)
+		{
+			cLux_AddDebugMessage("FadeOutImageTrail!");
+			Effect_ImageTrail_FadeOut(mlImageTrailID,10.0f);
+			mlImageTrailID=-1;
+		}
 	}
 
 	//-------------------------------------------------------
@@ -163,53 +178,270 @@ class cScrMap : iScrMap
 	// MAIN FUNCTIONS
 	// ==============
 	//{///////////////////////////////////////////////////////////////////////////////////////
- 
-	//-------------------------------------------------------
- 
-	/*Put any variables that are used in more than one scene here.*/
+	
+	float mfPlayerSpeedOnWakeup = 1.0f;
+	
+	int mlImageTrailID = -1;
+	int mlDOFLightsOn = -1;
+	
+	void Timer_RemoveImageTrail(const tString&in asTimer)
+	{
+		if(mlImageTrailID>=0)
+		{
+			cLux_AddDebugMessage("FadeOutImageTrail!");
+			Effect_ImageTrail_FadeOut(mlImageTrailID,10.0f);
+			mlImageTrailID=-1;
+		}
+	}
+	
+	///////////////////////////////
+	// Checkpoints
+	///////////////////////////////
 	
 	//-------------------------------------------------------
- 
-	/*Put any functions that are used in more than one scene here.*/
 	
 	//} END MAIN FUNCTIONS
  
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *Intro*
+	// SCENE 1 *INTRO WAKE UP*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
 		/////////////////////////////////////////
-		// General
-		//{//////////////////////////////////////
-	 
-		//-------------------------------------------------------
-		
-		//} END General	
-	 
-		/////////////////////////////////////////
-		// *Mark wakes up in the scan chair*
+		// *Brandon wakes up in the scan chair*
 		//{//////////////////////////////////////
 		
-		bool mbStartIntro = true;
+		int mlCurrentImageTrailEffectID = 0;
+		int mlDoFEffectID = 0;
 		
-		// Dialogue with Simon and Catherine
+		bool mbPlayerStoodUp = false;
 		
-		cSequenceStatesData mSecondDunbatControlChangedSequence;
-		void SimulationSequence(const tString &in asTimer)
+		void TimerKickoffIntro(const tString &in asTimer)
 		{
-			Sequence_Begin("SequenceSecondDunbatControlChanged", mSecondDunbatControlChangedSequence);
-			if (Sequence_DoStepAndWait(4.0f))
-			{
-				
-			}
-			Sequence_End();
+			SetupIntro();
 		}
 		
 		//-------------------------------------------------------
 		
-		//} End Mark wakes up in the scan chair
+		void SetupIntro()
+		{
+			Player_Teleport("PlayerStartArea_1",true);
+			//Entity_SetActive("SimonLegs",true);
+			Entity_SetActive("SimonHands",true);
+			
+			Entity_PlayAnimation("SimonHands", "chair_00_03_scan", 0.0, true);
+			
+			Light_SetVisible("ScannerLight_*", false);
+			
+			///////////////////
+			// Visual setup
+			Effect_Fade_Out(0.1);
+			Player_FadeFOVMulTo(0.75f, 0);
+			mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
+			mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
+			
+			///////////////////
+			// Animation
+			CameraAnimation_Begin("WakeupAnim", "", false);
+					
+			//////////////////////////////////////
+			// Start intro after a short delay
+			Map_AddTimer("", 1.0f, "SequenceIntro");
+			
+			mlImageTrailID = Effect_ImageTrail_Start(0.5f, 0, -1, 15.0f);
+			Map_AddTimer("RemoveImageTrail", 20, "Timer_RemoveImageTrail");
+		}
+		
+		/////////////////////////////////////////
+		// INTRO SEQUENCE
+		//////////////////////////////////////////
+	
+	
+		// POWER OFF
+		//Effect_DoF_FadeFocus(mlDOFLightsOn, 0.0, 0.1, 0.4);
+		
+		//Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 30, 8);
+		//Effect_DoF_FadeOut(mlDOFLightsOn,7.0f);
+		
+		//mlDOFLightsOn = Effect_DoF_Start(0.2, 2,1, 0.01);
+		//Effect_DoF_FadeFocus(mlDOFLightsOn,0.2,2,0.01);
+		
+		/////////////////////////////
+		// Fade out DOF effects
+		//Effect_DoF_FadeFalloff(mlDoFEffectID, 0, 2.5f);
+		
+					//Dialog_Begin("Simulation");
+					//	Dialog_AddBranch("3_AloneScanRoom");
+					//		Dialog_AddSubject("3_AloneScanRoom_1", "SimCallback_AloneScanRoom"); // Where did Alice go?
+					//		Dialog_AddSubject("3_AloneScanRoom_2", "SimCallback_AloneScanRoom"); // It's over now
+					//		Dialog_AddSubject("3_AloneScanRoom_3", "SimCallback_AloneScanRoom"); // Chun? I feel strange.
+					//		Dialog_AddSubject("3_AloneScanRoom_4", "SimCallback_AloneScanRoom"); // I need the cipher for the mainframe.
+					//		Dialog_AddSubject("3_AloneScanRoom_5", "SimCallback_AloneScanRoom"); // This is a trick!
+					//		Dialog_AddSubject("3_AloneScanRoom_6", "SimCallback_AloneScanRoom"); // Please, Mr. Wan...
+					//		Dialog_AddSubject("3_AloneScanRoom_7", "SimCallback_AloneScanRoom"); // *Scream*
+					//Dialog_End();
+		
+		//-------------------------------------------------------
+		bool mbHelmetPhaseTwoStarted = false;
+		//-------------------------------------------------------
+
+		cSequenceStatesData mIntroSequenceState;
+		
+		void SequenceIntro(const tString &in asName)
+		{
+			Sequence_Begin("SequenceIntro", mIntroSequenceState);
+
+			if (Sequence_DoStepAndWait(3.0f))
+			{
+				//////////////////////////////////
+				// Wakeup sounds and audio effects
+				Sound_PlayGui("01_01_upsilon_awake/sfx/wake_up/wake_up_event", 1.0f, eSoundEntryType_Gui);
+				
+				//////////////////////////////////
+				// Camera Effects
+				Player_FadeFOVMulTo(1.0f, 0.25f);
+				Effect_Fade_In(1.5f);
+				
+				// visual fx
+				mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
+				Effect_DoF_FadeFocus(mlDOFLightsOn,0.2,2,0.01);
+				
+				Effect_ImageTrail_Start(2, 0.001, 4, 6);
+			}
+			else if (Sequence_DoStepAndWait(1.5f))
+			{
+				///////////////////////////
+				// Start dialog
+				//Voice_Play("1A_WakeUp");
+				
+				// Catherines voice one line
+				
+				Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 9.0f, 0.0f, eMusicPrio_MinorEvent, false);
+			}
+			else if (Sequence_DoStepAndWait(2.5f))
+			{
+				/////////////////////////////////
+				// Low pass fade
+				Effect_Fade_Out(2.0f);
+			}
+			else if (Sequence_DoStepAndWait(2.0f))
+			{
+				///////////////////////////////
+				// Switch to the stand up animation
+				CameraAnimation_End();
+				
+				CameraAnimation_Begin("IntroAnim", "", true);
+				CameraAnimationNode_SetInteractiveMovement("IntroAnim_1", false);
+				Player_FadeMoveSpeedMulTo(mfPlayerSpeedOnWakeup,0.1f);
+				
+				/////////////////////////////
+				// Fade out DOF effects
+				Effect_DoF_FadeFalloff(mlDoFEffectID, 0, 2.5f);
+					
+				Effect_Fade_In(3.0f);
+			}
+			else if (Sequence_DoStepAndWait(0.5f))
+			{
+				//////////////////////////////////////////
+				// Lift the helmet
+				Sound_FadeGlobalVolume(1.0f, 3.0f, eSoundEntryType_GuiWorld);
+				Sound_FadeGlobalVolume(1.0f, 6.0f, eSoundEntryType_WorldAll);
+				Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_1", 0.35, 1, 0.25, true, "MoveTo_ScanHelmet1");
+				Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_1",0.35,1,0.25,true,"");
+			}
+			else if (Sequence_DoStepAndWait(1.5f))
+			{
+				Effect_DoF_FadeFalloff(mlDoFEffectID, 0, 6.f);
+				// EDIT EFFECTS FOR SITTING IN THE CHAIR DURING DIALOGUE
+			}
+			else if (Sequence_DoStepAndWait(0.0f))
+			{
+				CameraAnimationNode_SetInteractiveMovement("IntroAnim_1", true);
+			}
+			
+			//WHEN DIALOGUE OVER RUN CameraAnimationNode_SetInteractiveMovement("IntroAnim_2", true);
+			
+			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+	
+		void MoveTo_ScanHelmet1(const tString &in asProp)
+		{
+			if (mbHelmetPhaseTwoStarted) return;
+			
+			Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_2", 1, 1, 0.25, true, "MoveTo_ScanHelmet1");
+			Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_2",0.35,1,0.25,true,"");
+			mbHelmetPhaseTwoStarted = true;
+		}
+		
+		//-------------------------------------------------------
+		
+		bool EventGettingUp(const tString &in asEntity, int alDirection)
+		{
+			if (alDirection == 1)
+			{
+				cLux_AddDebugMessage("**EVENT GETTING UP**");
+				
+				/////////////////////////////////////
+				// When getting up, fade out the image trails and give the player some small dizzyness
+				if (Map_TimerExists("timer_dizzy")== false)
+				{
+					//Map_AddTimer("timer_dizzy",4.0f,"TimerDizzy");
+					Effect_ImageTrail_FadeOut(mlCurrentImageTrailEffectID, 6.0f);
+					Entity_SetActive("SimonLegs",false);
+					Entity_SetActive("SimonHands",false);
+				}
+				mbPlayerStoodUp = true;
+			}
+			return true;
+		}
+			
+		//-------------------------------------------------------
+		
+		bool mbStandUpSoundTriggered = false;
+		bool mbNervousBreathingPlaying = false;
+		bool StandUpSound(const tString &in asEntity, int alDirection)
+		{
+			if (asEntity == "IntroAnim_1" && alDirection == 1)
+			{
+				cLux_AddDebugMessage("Stand Up Animation Sound Start");
+				if(mbStandUpSoundTriggered==false)
+				{
+					Sound_CreateAtEntity("StandUpAnimation", "01_01_upsilon_awake/sfx/wake_up/stand_up_chair", "Player", 0.0f, false, 1.0f);	
+					mbStandUpSoundTriggered = true;
+				}
+				
+				if(mbNervousBreathingPlaying == false)
+				{
+					Emotion_PlayEventBreath("01_01_upsilon_awake/sfx/wake_up/nervous", 0);
+					Map_AddTimer("nervousbreathing", 12.7, "timer_nervousbreathing");
+					mbNervousBreathingPlaying = true;
+				}
+
+				return true;
+			}
+			
+			else if (asEntity == "IntroAnim_*" && alDirection == -1)
+			{
+				cLux_AddDebugMessage("Stand Up Animation Sound Stop");
+				Sound_Stop("StandUpAnimation", 0.25f);
+				mbStandUpSoundTriggered = false;
+				return true;
+			}
+			return true;
+		}
+		
+		//-------------------------------------------------------
+		
+		void timer_nervousbreathing(const tString &in asTimer)
+		{
+			Map_AddTimer("nervousbreathing", 13.0, "timer_nervousbreathing");
+			Emotion_PlayEventBreath("01_01_upsilon_awake/sfx/wake_up/nervous", 0);
+		}
+		
+		//} End Brandon wakes up in the scan chair
 		
 	//} END SCENE 1
 	
