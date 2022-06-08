@@ -204,7 +204,7 @@ class cScrMap : iScrMap
  
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *INTRO WAKE UP*
+	// SCENE 1 *INTRO*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
@@ -214,6 +214,7 @@ class cScrMap : iScrMap
 		
 		int mlCurrentImageTrailEffectID = 0;
 		int mlDoFEffectID = 0;
+		
 		tString msCurrentSequence;
 		tString msSimBrandon = "Brandon_ScanRoom";
 		tString msSimAlice = "Alice_ScanRoom";
@@ -240,8 +241,8 @@ class cScrMap : iScrMap
 			Light_SetVisible("ScannerLight_*", false);
 			
 			Voice_SetSource("Catherine", msCurrentCathSource, 3, 55, true, -1, 22000, 1250, eLuxVoiceSourceFreqencyFlag_LowPass);
-			Voice_SetSource("Wan",msSimBrandon,1000, 1000, true, 1000);
-			Voice_SetSource("Alice",msSimAlice,1000, 1000, true, 1000);
+			Voice_SetSource("Wan", msSimBrandon, 1000, 1000, true, 1000);
+			Voice_SetSource("Alice", msSimAlice, 1000, 1000, true, 1000);
 			
 			///////////////////
 			// Visual setup
@@ -302,7 +303,6 @@ class cScrMap : iScrMap
 				//////////////////////////////////
 				// Camera Effects
 				Player_FadeFOVMulTo(1.0f, 0.25f);
-				Effect_Fade_In(1.5f);
 				
 				// visual fx
 				mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
@@ -310,7 +310,7 @@ class cScrMap : iScrMap
 				
 				Effect_ImageTrail_Start(2, 0.001, 4, 6);
 			}
-			else if (Sequence_DoStepAndWait(1.5f))
+			else if (Sequence_DoStepAndWait(1.75f))
 			{
 				///////////////////////////
 				// Start dialog
@@ -333,8 +333,8 @@ class cScrMap : iScrMap
 				CameraAnimation_End();
 				
 				CameraAnimation_Begin("IntroAnim", "", true);
-				//CameraAnimationNode_SetInteractiveMovement("IntroAnim_1", false);
-				//CameraAnimationNode_SetInteractiveMovement("IntroAnim_2", false);
+				CameraAnimationNode_SetInteractiveMovement("IntroAnim_1", false);
+				CameraAnimationNode_SetInteractiveMovement("IntroAnim_2", false);
 				
 				Player_FadeMoveSpeedMulTo(mfPlayerSpeedOnWakeup,0.1f);
 				
@@ -346,7 +346,7 @@ class cScrMap : iScrMap
 					
 				Effect_Fade_In(3.0f);
 			}
-			else if (Sequence_DoStepAndWait(2.0f))
+			else if (Sequence_DoStepAndWait(3.0f))
 			{
 				//////////////////////////////////////////
 				// Lift the helmet
@@ -354,10 +354,6 @@ class cScrMap : iScrMap
 				Sound_FadeGlobalVolume(1.0f, 6.0f, eSoundEntryType_WorldAll);
 				Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_1", 0.35, 1, 0.25, true, "MoveTo_ScanHelmet1");
 				Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_1",0.35,1,0.25,true,"");
-			}
-			else if (Sequence_DoStepAndWait(1.0f))
-			{
-				CameraAnimationNode_SetInteractiveMovement("IntroAnim_1", true);
 			}
 			else if (Sequence_DoStepAndWait(0.0f))
 			{
@@ -372,7 +368,7 @@ class cScrMap : iScrMap
 			Sequence_End();
 		}
 		
-				bool EventGettingUp(const tString &in asEntity, int alDirection)
+		bool EventGettingUp(const tString &in asEntity, int alDirection)
 		{
 			if (alDirection == 1)
 			{
@@ -393,6 +389,17 @@ class cScrMap : iScrMap
 			return true;
 		}
 			
+		//-------------------------------------------------------
+		
+		void MoveTo_ScanHelmet1(const tString &in asProp)
+		{
+			if (mbHelmetPhaseTwoStarted) return;
+			
+			Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_2", 1, 1, 0.25, true, "MoveTo_ScanHelmet1");
+			Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_2",0.35,1,0.25,true,"");
+			mbHelmetPhaseTwoStarted = true;
+		}
+		
 		//-------------------------------------------------------
 		
 		bool mbStandUpSoundTriggered = false;
@@ -437,7 +444,7 @@ class cScrMap : iScrMap
 		}
 		
 		/////////////////////////////////////////
-		// DIALOGUE SEQUENCE
+		// Dialogue with Alice
 		//////////////////////////////////////////
 		
 		//-------------------------------------------------------
@@ -520,17 +527,6 @@ class cScrMap : iScrMap
 			if (!abStart)
 				return;
 			NPC_PlayExtraAnimation(msSimAlice, "stand_calm_talking_extra0"+cMath_RandRectl(1,3));
-		}
-		
-		//-------------------------------------------------------
-	
-		void MoveTo_ScanHelmet1(const tString &in asProp)
-		{
-			if (mbHelmetPhaseTwoStarted) return;
-			
-			Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_2", 1, 1, 0.25, true, "MoveTo_ScanHelmet1");
-			Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_2",0.35,1,0.25,true,"");
-			mbHelmetPhaseTwoStarted = true;
 		}
 		
 		//} End Brandon wakes up in the scan chair
