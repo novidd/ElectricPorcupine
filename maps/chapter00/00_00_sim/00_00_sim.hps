@@ -87,12 +87,9 @@ class cScrMap : iScrMap
 		// Level setup
 		//Map_Preset_Fade("Ocean", 0.001f);
 		
-		Effect_Fade_Out(0);
 		bool bDoIntro = true;
 		////////////////////
 		//Audio
-		Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
-		Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
 		
 		/////////////////////////
 		// Debug
@@ -105,7 +102,14 @@ class cScrMap : iScrMap
 			//Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_GuiAll);
 		}
 		
-		if (bDoIntro) Map_AddTimer("timer_kickoffintro", 0.01, "TimerKickoffIntro");
+		if (bDoIntro)
+		{
+			Effect_Fade_Out(0);
+			Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
+			Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
+			
+			Map_AddTimer("timer_kickoffintro", 0.01, "TimerKickoffIntro");
+		}
 	}
 
 	//-------------------------------------------------------
@@ -220,8 +224,6 @@ class cScrMap : iScrMap
 		tString msSimAlice = "Alice_ScanRoom";
 		tString msCurrentCathSource = "speaker_wall_mount_29";
 		
-		bool mbPlayerStoodUp = false;
-		
 		void TimerKickoffIntro(const tString &in asTimer)
 		{
 			SetupIntro();
@@ -300,6 +302,8 @@ class cScrMap : iScrMap
 				// Wakeup sounds and audio effects
 				Sound_PlayGui("01_01_upsilon_awake/sfx/wake_up/wake_up_event", 1.0f, eSoundEntryType_Gui);
 				
+				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_Gui);
+				
 				//////////////////////////////////
 				// Camera Effects
 				Player_FadeFOVMulTo(1.0f, 0.25f);
@@ -340,11 +344,13 @@ class cScrMap : iScrMap
 				
 				/////////////////////////////
 				// Fade out DOF effects
-				// EDIT EFFECTS FOR SITTING IN THE CHAIR DURING DIALOGUE
 				Effect_DoF_FadeFalloff(mlDoFEffectID, 0.5, 30.0f);
 				Effect_DoF_FadeFocus(mlDoFEffectID, 0, 12, 30.0f);
+				
+				// FADE OUT IMAGETRAIL
 					
 				Effect_Fade_In(3.0f);
+				StressHeartBeep(1.0f, 0.3f, 1, -1);
 			}
 			else if (Sequence_DoStepAndWait(3.0f))
 			{
@@ -364,9 +370,38 @@ class cScrMap : iScrMap
 						Dialog_AddSubject("3_AliceScanRoom_3", "SimCallback_AliceScanRoom");
 				Dialog_End();
 			}
+			else if (Sequence_DoStepAndWait(2.0f))
+			{
+				// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER IS REVEALED
+				
+				// A BLUE LIGHT IN THE DARKNESS LIGHTING IN CORRESPONDENCE WITH CHUN'S VOICE
+				
+				// Brandon: What...Where did...Alice?
+				// Catherine: Mr Wan. I need your help.
+				// Brandon: Chun? What happened. I can't see anything. There's nothing here.
+				// Catherine: It's okay. It's all a part of the scan.
+				// Brandon: What...how did I get here?
+				// Brandon: It's empty. It's too empty. There's something really wrong with this place.
+				// Brandon: It's not real. This isn't real! I have to get out of here!
+				
+				// MUSIC SWELLS UP DURING THE DIALOGUE
+				
+				// Catherine says one more line, the end of her voice line "melts"--gets lower pitch like its corrupted
+				
+				// MUSIC FADES OUT
+				
+			}
+			else if (Sequence_DoStepAndWait(0.0f))
+			{
+				// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP ALONG WITH ALL THE LIGHTS
+				// THE SCREEN TURN ON AS IF THE PLAYER A TERMINAL COVERS THE WHOLE SCREEN.
+				// A PROMPT SHOWS UP
+			}
 			
 			Sequence_End();
 		}
+		
+		//-------------------------------------------------------
 		
 		bool EventGettingUp(const tString &in asEntity, int alDirection)
 		{
@@ -374,16 +409,6 @@ class cScrMap : iScrMap
 			{
 				cLux_AddDebugMessage("**EVENT GETTING UP**");
 				
-				/////////////////////////////////////
-				// When getting up, fade out the image trails and give the player some small dizzyness
-				if (Map_TimerExists("timer_dizzy")== false)
-				{
-					//Map_AddTimer("timer_dizzy",4.0f,"TimerDizzy");
-					Effect_ImageTrail_FadeOut(mlCurrentImageTrailEffectID, 6.0f);
-					Entity_SetActive("SimonLegs",false);
-					Entity_SetActive("SimonHands",false);
-				}
-				mbPlayerStoodUp = true;
 				Entity_SetActive(msSimBrandon, false);
 			}
 			return true;
@@ -443,25 +468,38 @@ class cScrMap : iScrMap
 			Emotion_PlayEventBreath("01_01_upsilon_awake/sfx/wake_up/nervous", 0);
 		}
 		
-		/////////////////////////////////////////
-		// Dialogue with Alice
-		//////////////////////////////////////////
-		
 		//-------------------------------------------------------
 		
 		void ShutdownPower()
 		{
-			
+			// THE SOUND OF POWER SHUTTING DOWN
 		}
 		
 		//-------------------------------------------------------
-		
-		void StressHeartBeep()
+		int mbHeartBeatID = -1;
+		void StressHeartBeep(float afTimeBetweenBeats, float afVolume, int alPrio, float afDuration = -1, bool abPlayBeep = true)
 		{
-			// PLAY HEARTBEAT SOUND
+			if (mbHeartBeatID < 0)
+			{
+				Emotion_StopHeartbeat(mbHeartBeatID);
+				mbHeartBeatID = -1;
+			}
+			
+			mbHeartBeatID = Emotion_StartHeartbeat(afTimeBetweenBeats, afVolume, alPrio, afDuration);
+			
+			if (abPlayBeep)
+			{
+				// STOP LAST BEEP
+				
+				// ADD THE BEEP SOUND EFFECT - StressHeartBeepSource
+			}
 		}
 		
 		//-------------------------------------------------------
+		
+		/////////////////////////////////////////
+		// Dialogue with Alice
+		//////////////////////////////////////////
 		
 		void SimCallback_AliceScanRoom(const tString &in asSubject, bool abStartOfSubject)
 		{
@@ -469,7 +507,6 @@ class cScrMap : iScrMap
 			{
 				if (abStartOfSubject)
 				{
-					StressHeartBeep();
 					Map_AddTimer("sit_calm_extra02",5.0f,"TimerBrandonPlayExtraAnimation");
 					Map_AddTimer("sit_calm_extra03",15.0f,"TimerBrandonPlayExtraAnimation");
 					Map_AddTimer("sit_calm_extra02",27.0f,"TimerBrandonPlayExtraAnimation");
@@ -480,19 +517,22 @@ class cScrMap : iScrMap
 			{
 				if (abStartOfSubject)
 				{
-					StressHeartBeep();
+					// START CREEPY MUSIC
+					StressHeartBeep(0.75f, 0.4f, 1, 6.0f);
 				}
 				else
 				{
-					ShutdownPower();
+					// LINED UP WITH A STINGER
+					
 					Entity_SetActive("Alice_*",false);
+					ShutdownPower();
 				}
 			}
 			else if (asSubject=="3_AliceScanRoom_3")
 			{
 				if (abStartOfSubject)
 				{
-					StressHeartBeep();
+					//StressHeartBeep();
 					Map_AddTimer("sit_panic",0.1f,"TimerBrandonSetMainAnimation");
 					Map_AddTimer("sit_panic_extra02",0.2f,"TimerBrandonPlayExtraAnimation");
 					
