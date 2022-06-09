@@ -368,6 +368,9 @@ class cScrMap : iScrMap
 				
 				// !! ADD CATHERINE VOICE LINE !!
 				
+				// This clues the player in that this is set in Theta in the original game
+				
+				
 				Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 9.0f, 0.0f, eMusicPrio_MinorEvent, false);
 			}
 			else if (Sequence_DoStepAndWait(2.5f))
@@ -443,6 +446,11 @@ class cScrMap : iScrMap
 				
 				// THE SCREEN TURN ON AS IF THE PLAYER A TERMINAL COVERS THE WHOLE SCREEN.
 				// A PROMPT SHOWS UP
+				
+				// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
+				// "01_01_interact_wauflower.ogg"
+				// "01_01_lightsout.ogg" - Discovering the bodies
+				// "01_01_talking_door.ogg" - Distant noise
 			}
 			
 			Sequence_End();
@@ -517,15 +525,19 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void ShutdownPower()
+		void ShutdownSimulation()
 		{
 			// THE SOUND OF POWER SHUTTING DOWN
 			Entity_SetActive(msSimAlice,false);
 			
-			Effect_VideoDistortion_Start(.85f, 2.0f, 0.1f, 0.1f);
+			Effect_VideoDistortion_Start(.85f, 4.0f, 0.1f, 0.1f);
 			
 			Emotion_StopHeartbeat(mbHeartBeatID);
 			mbStressTrackerActive = false;
+			
+			// MUSIC CONTENDERS
+			// "01_01_construct_smashing_about.ogg" - On simulation shutdown
+			// "01_01_thick_air.ogg" - After power over
 		}
 		
 		/////////////////////////////////////////
@@ -548,13 +560,11 @@ class cScrMap : iScrMap
 			{
 				if (abStartOfSubject)
 				{
-					// START CREEPY MUSIC
 					Map_AddTimer("HeartStressDelay", 1.0f, "HeartStressDelay");
 				}
 				else
 				{
-					// LINED UP WITH A STINGER
-					ShutdownPower();
+					ShutdownSimulation();
 				}
 			}
 			else if (asSubject=="3_AliceScanRoom_3")
