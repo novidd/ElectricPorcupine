@@ -134,6 +134,31 @@ class cScrMap : iScrMap
 			mlImageTrailID=-1;
 		}
 	}
+	
+	//-------------------------------------------------------
+	
+	float mfHeartBeatTimer = 0; // Value gets incremented by afTimeStep untill reached mfTimeBetweenBeats
+	
+	void Update(float afTimeStep)
+	{
+		// Stress tracker
+		//cLux_AddDebugMessage("Time between beats: " + mfTimeBetweenBeats);
+		//cLux_AddDebugMessage("Time left untill beep: " +  (mfTimeBetweenBeats-mfHeartBeatTimer));
+		
+		if (mbStressTrackerActive)
+		{
+			mfHeartBeatTimer+=afTimeStep;
+			
+			if (mfHeartBeatTimer >= mfTimeBetweenBeats)
+			{
+				if (!Sound_Exists("HeartBeepSound"))
+				{
+					Sound_CreateAtEntity("HeartBeepSound", "Entities_Station/tech/life_support/heart_beep", "StressHeartBeepSource", 0.0f, false, 0.5f);
+					mfHeartBeatTimer = 0;
+				}
+			}
+		}
+	}
 
 	//-------------------------------------------------------
 
@@ -198,6 +223,38 @@ class cScrMap : iScrMap
 		}
 	}
 	
+	//-------------------------------------------------------
+	
+	///////////////////////////////
+	// Heart stress
+	///////////////////////////////
+	
+	int mbHeartBeatID = -1;
+	float mfTimeBetweenBeats;
+	bool mbStressTrackerActive = false;
+	void StressHeartBeep(float afTimeBetweenBeats, float afVolume, int alPrio, 
+						 float afDuration = -1, bool abPlayBeep = true, float afFadeInTime = 3.0f, float afFadeOutTime = 3.0f)
+	{
+		mbHeartBeatID = Emotion_StartHeartbeat(afTimeBetweenBeats, afVolume, alPrio, afDuration, afFadeInTime, afFadeOutTime);
+		mbStressTrackerActive = abPlayBeep;
+		mfTimeBetweenBeats = afTimeBetweenBeats;
+	}
+		
+	//-------------------------------------------------------
+		
+	void HeartBeatSound(const tString &in asTimer)
+	{
+		Sound_CreateAtEntity("HeartBeepSound", "Entities_Station/tech/life_support/heart_beep", "StressHeartBeepSource", 0.0f, false, 0.5f);
+		Map_RestartCurrentTimer(mfTimeBetweenBeats);
+	}
+		
+	//-------------------------------------------------------
+		
+	void HeartStressDelay(const tString &in asTimer)
+	{
+		StressHeartBeep(0.75f, 0.4f, 1, 6.0f, true, 5.0f, 1.0f);
+	}	
+	
 	///////////////////////////////
 	// Checkpoints
 	///////////////////////////////
@@ -219,10 +276,12 @@ class cScrMap : iScrMap
 		int mlCurrentImageTrailEffectID = 0;
 		int mlDoFEffectID = 0;
 		
+		tString msVoidBrandon = "Brandon_Void";
+		
 		tString msCurrentSequence;
 		tString msSimBrandon = "Brandon_ScanRoom";
 		tString msSimAlice = "Alice_ScanRoom";
-		tString msCurrentCathSource = "speaker_wall_mount_29";
+		tString msCurrentCathSource = "ChunVoid";
 		
 		void TimerKickoffIntro(const tString &in asTimer)
 		{
@@ -233,8 +292,22 @@ class cScrMap : iScrMap
 		
 		void SetupIntro()
 		{
-			Player_Teleport("PlayerStartArea_1",true);
+			Player_Teleport("PlayerStartArea_1", true);
 			
+			///////////////////
+			// Void
+			Entity_SetActive(msCurrentCathSource, true);
+			Voice_SetSource("Catherine", msCurrentCathSource, 3, 55, true, -1, 22000, 1250, eLuxVoiceSourceFreqencyFlag_LowPass);
+			
+			NPC_SetMainAnimation(msVoidBrandon, "sit_confused");
+			Entity_SetActive(msVoidBrandon, true);
+			
+			///////////////////
+			// Animation
+			CameraAnimation_Begin("VoidAnim", "", false);
+			
+			///////////////////
+			// Scan room
 			Entity_SetActive(msSimBrandon, true);
 			Entity_SetActive(msSimAlice, true);
 			
@@ -242,7 +315,6 @@ class cScrMap : iScrMap
 			
 			Light_SetVisible("ScannerLight_*", false);
 			
-			Voice_SetSource("Catherine", msCurrentCathSource, 3, 55, true, -1, 22000, 1250, eLuxVoiceSourceFreqencyFlag_LowPass);
 			Voice_SetSource("Wan", msSimBrandon, 1000, 1000, true, 1000);
 			Voice_SetSource("Alice", msSimAlice, 1000, 1000, true, 1000);
 			
@@ -255,6 +327,7 @@ class cScrMap : iScrMap
 			
 			///////////////////
 			// Animation
+			// MOVE TO PROPER STEP
 			CameraAnimation_Begin("WakeupAnim", "", false);
 					
 			//////////////////////////////////////
@@ -295,8 +368,21 @@ class cScrMap : iScrMap
 		void SequenceIntro(const tString &in asTimer)
 		{
 			Sequence_Begin("SequenceIntro", mIntroSequenceState);
-
-			if (Sequence_DoStepAndWait(3.0f))
+			
+			if (Sequence_DoStepAndWait(0.0f))
+			{
+				// THE DIALOGUE BETWEEN SIMON AND CATHERINE DIALOGUE BEFORE THE SIMULATION STARTS
+				
+				// USE THE CATH VOID LAMP FOR WHEN SHE SPEAKS
+				
+				// THE COMPUTER INPUT SOUND AND OTHER EFFECTS WHEN STARTING THE SIMULATION
+			}
+			else if (Sequence_DoStepAndWait(0.0f))
+			{
+				// MOVE TO SIM ROOM
+				Player_Teleport("Start_Sim", true);
+			}
+			else if (Sequence_DoStepAndWait(3.0f))
 			{
 				//////////////////////////////////
 				// Wakeup sounds and audio effects
@@ -348,11 +434,11 @@ class cScrMap : iScrMap
 				// Fade out DOF effects
 				Effect_DoF_FadeFalloff(mlDoFEffectID, 0.5, 30.0f);
 				Effect_DoF_FadeFocus(mlDoFEffectID, 0, 12, 30.0f);
-				
+				Effect_ImageTrail_FadeOut(mlCurrentImageTrailEffectID, 60.0f);
 				// FADE OUT IMAGETRAIL
 					
 				Effect_Fade_In(3.0f);
-				StressHeartBeep(1.0f, 0.3f, 1, -1);
+				StressHeartBeep(1.0f, 0.25f, 1, -1, true);
 			}
 			else if (Sequence_DoStepAndWait(3.0f))
 			{
@@ -374,6 +460,8 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
+				//StressHeartBeep(0.5f, 0.5f, 1, 6.0f, false, 2.0f, 1.0f);
+				
 				// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER IS REVEALED
 				
 				// A BLUE LIGHT IN THE DARKNESS LIGHTING IN CORRESPONDENCE WITH CHUN'S VOICE
@@ -388,6 +476,10 @@ class cScrMap : iScrMap
 				
 				// MUSIC SWELLS UP DURING THE DIALOGUE
 				
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
+				
 				// Catherine says one more line, the end of her voice line "melts"--gets lower pitch like its corrupted
 				
 				// MUSIC FADES OUT
@@ -396,6 +488,10 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(0.0f))
 			{
 				// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP ALONG WITH ALL THE LIGHTS
+				// 02_05_theta/sfx/soma_terminal/soma_start
+				// 02_05_theta/sfx/soma_terminal/soma_loop
+				// 02_05_theta/sfx/soma_terminal/soma_stop
+				
 				// THE SCREEN TURN ON AS IF THE PLAYER A TERMINAL COVERS THE WHOLE SCREEN.
 				// A PROMPT SHOWS UP
 			}
@@ -475,29 +571,11 @@ class cScrMap : iScrMap
 		void ShutdownPower()
 		{
 			// THE SOUND OF POWER SHUTTING DOWN
-		}
-		
-		//-------------------------------------------------------
-		int mbHeartBeatID = -1;
-		void StressHeartBeep(float afTimeBetweenBeats, float afVolume, int alPrio, float afDuration = -1, bool abPlayBeep = true)
-		{
-			if (mbHeartBeatID < 0)
-			{
-				Emotion_StopHeartbeat(mbHeartBeatID);
-				mbHeartBeatID = -1;
-			}
+			Entity_SetActive(msSimAlice,false);
 			
-			mbHeartBeatID = Emotion_StartHeartbeat(afTimeBetweenBeats, afVolume, alPrio, afDuration);
-			
-			if (abPlayBeep)
-			{
-				// STOP LAST BEEP
-				
-				// ADD THE BEEP SOUND EFFECT - StressHeartBeepSource
-			}
+			Emotion_StopHeartbeat(mbHeartBeatID);
+			mbStressTrackerActive = false;
 		}
-		
-		//-------------------------------------------------------
 		
 		/////////////////////////////////////////
 		// Dialogue with Alice
@@ -520,13 +598,11 @@ class cScrMap : iScrMap
 				if (abStartOfSubject)
 				{
 					// START CREEPY MUSIC
-					StressHeartBeep(0.75f, 0.4f, 1, 6.0f);
+					Map_AddTimer("HeartStressDelay", 1.0f, "HeartStressDelay");
 				}
 				else
 				{
 					// LINED UP WITH A STINGER
-					
-					Entity_SetActive("Alice_*",false);
 					ShutdownPower();
 				}
 			}
@@ -534,7 +610,6 @@ class cScrMap : iScrMap
 			{
 				if (abStartOfSubject)
 				{
-					//StressHeartBeep();
 					Map_AddTimer("sit_panic",0.1f,"TimerBrandonSetMainAnimation");
 					Map_AddTimer("sit_panic_extra02",0.2f,"TimerBrandonPlayExtraAnimation");
 					
