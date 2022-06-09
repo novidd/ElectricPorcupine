@@ -320,22 +320,22 @@ class cScrMap : iScrMap
 			
 			///////////////////
 			// Visual setup
-			Effect_Fade_Out(0.1);
-			Player_FadeFOVMulTo(0.75f, 0);
-			mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
-			mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
+			//Effect_Fade_Out(0.1);
+			//Player_FadeFOVMulTo(0.75f, 0);
+			//mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
+			//mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
 			
 			///////////////////
 			// Animation
 			// MOVE TO PROPER STEP
-			CameraAnimation_Begin("WakeupAnim", "", false);
+			//CameraAnimation_Begin("WakeupAnim", "", false);
 					
 			//////////////////////////////////////
 			// Start intro after a short delay
-			Map_AddTimer("", 1.0f, "SequenceIntro");
+			Map_AddTimer("", 1.0f, "SequenceVoid");
 			
-			mlImageTrailID = Effect_ImageTrail_Start(0.5f, 0, -1, 15.0f);
-			Map_AddTimer("RemoveImageTrail", 20, "Timer_RemoveImageTrail");
+			//mlImageTrailID = Effect_ImageTrail_Start(0.5f, 0, -1, 15.0f);
+			//Map_AddTimer("RemoveImageTrail", 20, "Timer_RemoveImageTrail");
 		}
 		
 		bool OnCathTalking(const tString &in asCharacter, bool abStartedTalking)
@@ -353,34 +353,89 @@ class cScrMap : iScrMap
 			}
 			 
 			return true;
-		 }
-		
-		/////////////////////////////////////////
-		// INTRO SEQUENCE
+		}
+		 
+		//////////////////////////////////////////
+		// VOID SEQUENCE
 		//////////////////////////////////////////
 		
-		//-------------------------------------------------------
-		bool mbHelmetPhaseTwoStarted = false;
-		//-------------------------------------------------------
-
-		cSequenceStatesData mIntroSequenceState;
-		
-		void SequenceIntro(const tString &in asTimer)
+		cSequenceStatesData mSequenceVoidState;
+		void SequenceVoid(const tString &in asTimer)
 		{
-			Sequence_Begin("SequenceIntro", mIntroSequenceState);
-			
-			if (Sequence_DoStepAndWait(0.0f))
+			Sequence_Begin("SequenceVoid", mSequenceVoidState);
+			if (Sequence_DoStepAndWait(300.0f))
 			{
+				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_WorldAll);
+				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_GuiWorld);
+				
+				Effect_Fade_In(1.0f);
+				
+				// A strong video distortion effect as the screens pop up
+				// Intense music too
+				//Effect_VideoDistortion_Start(1.0, 1.0f, 0.0f, 0.0f);
+				
 				// THE DIALOGUE BETWEEN SIMON AND CATHERINE DIALOGUE BEFORE THE SIMULATION STARTS
 				
 				// USE THE CATH VOID LAMP FOR WHEN SHE SPEAKS
 				
 				// THE COMPUTER INPUT SOUND AND OTHER EFFECTS WHEN STARTING THE SIMULATION
 			}
-			else if (Sequence_DoStepAndWait(0.0f))
+			
+				//StressHeartBeep(0.5f, 0.5f, 1, 6.0f, false, 2.0f, 1.0f);
+				
+				// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER IS REVEALED
+				
+				// A BLUE LIGHT IN THE DARKNESS LIGHTING IN CORRESPONDENCE WITH CHUN'S VOICE
+				
+				// Brandon: What...Where did...Alice?
+				// Catherine: Mr Wan. I need your help.
+				// Brandon: Chun? What happened. I can't see anything. There's nothing here.
+				// Catherine: It's okay. It's all a part of the scan.
+				// Brandon: What...how did I get here?
+				// Brandon: It's empty. It's too empty. There's something really wrong with this place.
+				// Brandon: It's not real. This isn't real! I have to get out of here!
+				
+				// MUSIC SWELLS UP DURING THE DIALOGUE
+				
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
+				
+				// Catherine says one more line, the end of her voice line "melts"--gets lower pitch like its corrupted
+				
+				// MUSIC FADES OUT
+			Sequence_End();
+		}
+		
+		//////////////////////////////////////////
+		// SCAN ROOM SEQUENCE
+		//////////////////////////////////////////
+		
+		//-------------------------------------------------------
+		bool mbHelmetPhaseTwoStarted = false;
+		//-------------------------------------------------------
+
+		cSequenceStatesData mSequenceScanRoomState;
+		void SequenceScanRoom(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceScanRoom", mSequenceScanRoomState);
+			
+			if (Sequence_DoStepAndWait(0.0f))
 			{
 				// MOVE TO SIM ROOM
 				Player_Teleport("Start_Sim", true);
+				
+				CameraAnimation_Begin("WakeupAnim", "", false);
+				
+				///////////////////
+				// Visual setup
+				Effect_Fade_Out(0.1);
+				Player_FadeFOVMulTo(0.75f, 0);
+				mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
+				mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
+				
+				mlImageTrailID = Effect_ImageTrail_Start(0.5f, 0, -1, 15.0f);
+				Map_AddTimer("RemoveImageTrail", 20, "Timer_RemoveImageTrail");
 			}
 			else if (Sequence_DoStepAndWait(3.0f))
 			{
@@ -460,34 +515,11 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
-				//StressHeartBeep(0.5f, 0.5f, 1, 6.0f, false, 2.0f, 1.0f);
-				
-				// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER IS REVEALED
-				
-				// A BLUE LIGHT IN THE DARKNESS LIGHTING IN CORRESPONDENCE WITH CHUN'S VOICE
-				
-				// Brandon: What...Where did...Alice?
-				// Catherine: Mr Wan. I need your help.
-				// Brandon: Chun? What happened. I can't see anything. There's nothing here.
-				// Catherine: It's okay. It's all a part of the scan.
-				// Brandon: What...how did I get here?
-				// Brandon: It's empty. It's too empty. There's something really wrong with this place.
-				// Brandon: It's not real. This isn't real! I have to get out of here!
-				
-				// MUSIC SWELLS UP DURING THE DIALOGUE
-				
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
-				
-				// Catherine says one more line, the end of her voice line "melts"--gets lower pitch like its corrupted
-				
-				// MUSIC FADES OUT
 				
 			}
 			else if (Sequence_DoStepAndWait(0.0f))
 			{
-				// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP ALONG WITH ALL THE LIGHTS
+				// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP BEHIND THE PLAYER ALONG WITH ALL THE LIGHTS
 				// 02_05_theta/sfx/soma_terminal/soma_start
 				// 02_05_theta/sfx/soma_terminal/soma_loop
 				// 02_05_theta/sfx/soma_terminal/soma_stop
