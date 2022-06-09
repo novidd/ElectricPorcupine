@@ -295,18 +295,6 @@ class cScrMap : iScrMap
 			Player_Teleport("PlayerStartArea_1", true);
 			
 			///////////////////
-			// Void
-			Entity_SetActive(msCurrentCathSource, true);
-			Voice_SetSource("Catherine", msCurrentCathSource, 3, 55, true, -1, 22000, 1250, eLuxVoiceSourceFreqencyFlag_LowPass);
-			
-			NPC_SetMainAnimation(msVoidBrandon, "sit_confused");
-			Entity_SetActive(msVoidBrandon, true);
-			
-			///////////////////
-			// Animation
-			CameraAnimation_Begin("VoidAnim", "", false);
-			
-			///////////////////
 			// Scan room
 			Entity_SetActive(msSimBrandon, true);
 			Entity_SetActive(msSimAlice, true);
@@ -320,91 +308,22 @@ class cScrMap : iScrMap
 			
 			///////////////////
 			// Visual setup
-			//Effect_Fade_Out(0.1);
-			//Player_FadeFOVMulTo(0.75f, 0);
-			//mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
-			//mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
+			Effect_Fade_Out(0.1);
+			Player_FadeFOVMulTo(0.75f, 0);
+			mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
+			mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
 			
 			///////////////////
 			// Animation
 			// MOVE TO PROPER STEP
-			//CameraAnimation_Begin("WakeupAnim", "", false);
+			CameraAnimation_Begin("WakeupAnim", "", false);
 					
 			//////////////////////////////////////
 			// Start intro after a short delay
-			Map_AddTimer("", 1.0f, "SequenceVoid");
+			Map_AddTimer("", 1.0f, "SequenceScanRoom");
 			
-			//mlImageTrailID = Effect_ImageTrail_Start(0.5f, 0, -1, 15.0f);
-			//Map_AddTimer("RemoveImageTrail", 20, "Timer_RemoveImageTrail");
-		}
-		
-		bool OnCathTalking(const tString &in asCharacter, bool abStartedTalking)
-		{
-			Lamp_SetLit(msCurrentCathSource, abStartedTalking, true);
-			Lamp_SetFlickerActive(msCurrentCathSource, abStartedTalking);
-			 
-			if(abStartedTalking)
-			{
-				Sound_CreateAtEntity("PALoop", "02_01_ms_curie_outside/SFX/cathbot/pa_loop", msCurrentCathSource, 0.05f, false, 1.0f);
-			}
-			else
-			{
-				Sound_Stop("PALoop", 0.05f);
-			}
-			 
-			return true;
-		}
-		 
-		//////////////////////////////////////////
-		// VOID SEQUENCE
-		//////////////////////////////////////////
-		
-		cSequenceStatesData mSequenceVoidState;
-		void SequenceVoid(const tString &in asTimer)
-		{
-			Sequence_Begin("SequenceVoid", mSequenceVoidState);
-			if (Sequence_DoStepAndWait(300.0f))
-			{
-				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_WorldAll);
-				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_GuiWorld);
-				
-				Effect_Fade_In(1.0f);
-				
-				// A strong video distortion effect as the screens pop up
-				// Intense music too
-				//Effect_VideoDistortion_Start(1.0, 1.0f, 0.0f, 0.0f);
-				
-				// THE DIALOGUE BETWEEN SIMON AND CATHERINE DIALOGUE BEFORE THE SIMULATION STARTS
-				
-				// USE THE CATH VOID LAMP FOR WHEN SHE SPEAKS
-				
-				// THE COMPUTER INPUT SOUND AND OTHER EFFECTS WHEN STARTING THE SIMULATION
-			}
-			
-				//StressHeartBeep(0.5f, 0.5f, 1, 6.0f, false, 2.0f, 1.0f);
-				
-				// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER IS REVEALED
-				
-				// A BLUE LIGHT IN THE DARKNESS LIGHTING IN CORRESPONDENCE WITH CHUN'S VOICE
-				
-				// Brandon: What...Where did...Alice?
-				// Catherine: Mr Wan. I need your help.
-				// Brandon: Chun? What happened. I can't see anything. There's nothing here.
-				// Catherine: It's okay. It's all a part of the scan.
-				// Brandon: What...how did I get here?
-				// Brandon: It's empty. It's too empty. There's something really wrong with this place.
-				// Brandon: It's not real. This isn't real! I have to get out of here!
-				
-				// MUSIC SWELLS UP DURING THE DIALOGUE
-				
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
-				
-				// Catherine says one more line, the end of her voice line "melts"--gets lower pitch like its corrupted
-				
-				// MUSIC FADES OUT
-			Sequence_End();
+			mlImageTrailID = Effect_ImageTrail_Start(0.5f, 0, -1, 15.0f);
+			Map_AddTimer("RemoveImageTrail", 20, "Timer_RemoveImageTrail");
 		}
 		
 		//////////////////////////////////////////
@@ -420,24 +339,7 @@ class cScrMap : iScrMap
 		{
 			Sequence_Begin("SequenceScanRoom", mSequenceScanRoomState);
 			
-			if (Sequence_DoStepAndWait(0.0f))
-			{
-				// MOVE TO SIM ROOM
-				Player_Teleport("Start_Sim", true);
-				
-				CameraAnimation_Begin("WakeupAnim", "", false);
-				
-				///////////////////
-				// Visual setup
-				Effect_Fade_Out(0.1);
-				Player_FadeFOVMulTo(0.75f, 0);
-				mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
-				mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
-				
-				mlImageTrailID = Effect_ImageTrail_Start(0.5f, 0, -1, 15.0f);
-				Map_AddTimer("RemoveImageTrail", 20, "Timer_RemoveImageTrail");
-			}
-			else if (Sequence_DoStepAndWait(3.0f))
+			if (Sequence_DoStepAndWait(3.0f))
 			{
 				//////////////////////////////////
 				// Wakeup sounds and audio effects
@@ -448,6 +350,7 @@ class cScrMap : iScrMap
 				//////////////////////////////////
 				// Camera Effects
 				Player_FadeFOVMulTo(1.0f, 0.25f);
+				Effect_Fade_In(1.0f);
 				
 				// visual fx
 				mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
@@ -513,16 +416,30 @@ class cScrMap : iScrMap
 						Dialog_AddSubject("3_AliceScanRoom_3", "SimCallback_AliceScanRoom");
 				Dialog_End();
 			}
-			else if (Sequence_DoStepAndWait(2.0f))
-			{
-				
-			}
 			else if (Sequence_DoStepAndWait(0.0f))
 			{
+				// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER LIGHT IS REVEALED
+				
 				// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP BEHIND THE PLAYER ALONG WITH ALL THE LIGHTS
+				
 				// 02_05_theta/sfx/soma_terminal/soma_start
 				// 02_05_theta/sfx/soma_terminal/soma_loop
 				// 02_05_theta/sfx/soma_terminal/soma_stop
+				
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
+				//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
+				
+				// soma_1_001_catherine_001
+				// soma_2_001_catherine_001
+				// soma_3_001_catherine_001
+				// soma_4_001_catherine_001
+				
+				// Catherine says these lines one after another (still need to edit them)
+				// All voice lines have a lower pitch (deep voice)
+				// The end of her final voice line "melts"--gets lower pitch like its corrupted
+				
+				// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
 				
 				// THE SCREEN TURN ON AS IF THE PLAYER A TERMINAL COVERS THE WHOLE SCREEN.
 				// A PROMPT SHOWS UP
@@ -604,6 +521,8 @@ class cScrMap : iScrMap
 		{
 			// THE SOUND OF POWER SHUTTING DOWN
 			Entity_SetActive(msSimAlice,false);
+			
+			Effect_VideoDistortion_Start(.85f, 2.0f, 0.1f, 0.1f);
 			
 			Emotion_StopHeartbeat(mbHeartBeatID);
 			mbStressTrackerActive = false;
