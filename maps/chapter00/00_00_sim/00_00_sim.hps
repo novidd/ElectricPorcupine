@@ -522,6 +522,30 @@ class cScrMap : iScrMap
 			NPC_PlayExtraAnimation(msSimAlice, "stand_calm_talking_extra0"+cMath_RandRectl(1,3));
 		}
 		
+		//-------------------------------------------------------
+		
+		void FlashEvent(const tString &in asTimer)
+		{
+			// ADD BLINK AND DISTANT ALARM DURING BLINK HERE
+			// SOUNDS:
+			// 04_02_tau_inside/SFX/ross_airlock/ross_enters_alarm
+			// 03_02_omicron_inside/SFX/lockdown_release/alarm
+			// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon
+					
+			// 1.0f betweem fade in and out
+			
+			if (asTimer == "closeeye")
+			{
+				Effect_Fade_Out(1.0f);
+			}
+			else if (asTimer == "openeye")
+			{
+				Effect_Fade_In(1.0f);
+			}
+		}
+		
+		//-------------------------------------------------------
+		
 		void SimCallback_AliceScanRoom(const tString &in asSubject, bool abStartOfSubject)
 		{
 			if (asSubject=="3_AliceScanRoom_1")
@@ -532,15 +556,20 @@ class cScrMap : iScrMap
 					Map_AddTimer("sit_calm_extra03",15.0f,"TimerBrandonPlayExtraAnimation");
 					Map_AddTimer("sit_calm_extra02",27.0f,"TimerBrandonPlayExtraAnimation");
 					Map_AddTimer("sit_calm_extra01",32.0f,"TimerBrandonPlayExtraAnimation");
+					
+					
+					Map_AddTimer("openeye", 18.0f, "FlashEvent");
 				}
 			}
 			else if (asSubject=="3_AliceScanRoom_2")
 			{
 				if (abStartOfSubject)
 				{
-					// MUSIC CONTENDERS
-					// - Builds up till power off
-					//Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);
+					// MUSIC CONTENDERS - Builds up till power off
+					//
+					// 03_02_omicron_inside/SFX/escalation/escalation_event_01
+					//Sound_PlayGui("", 1.0f);
+					//Music_PlayOverlay("", 0.25f);
 					
 					// ADD THE SOUND OF THE DISTANT ALARM FADE INTO THE BACKGROUND
 					
@@ -599,6 +628,8 @@ class cScrMap : iScrMap
 			Map_AddTimer("StartWakeUp", 3.0f, "SequenceWakeUpStart");
 		}
 		
+		//-------------------------------------------------------
+		
 		void ScreenFX(const tString &in asTimer)
 		{
 			Effect_VideoDistortion_Start(.85f, 2.0f, 0.1f, 0.1f);
@@ -633,9 +664,13 @@ class cScrMap : iScrMap
 				
 				// START CAMERA ANIMATION
 				
-				// PLAYER BLINKS
-				// ORIGAMI ROTATE AND DANGLE
-				// THEN ORIGAMI GONE
+				// PLAYER BLINKS -> LOOKING AT FAN  ORIGAMI ROTATE AND DANGLE
+				// PLAYER BLINKS -> ORIGAMI GONE
+				// PLAYER BLINKS -> LOOKING AT FLOOR, PLAYER CAN NOW MOVE
+				
+				// Distant lights off - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
+				
+				// When player has control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
 			}
 			else if (Sequence_DoStepAndWait(0.0f))
 			{
