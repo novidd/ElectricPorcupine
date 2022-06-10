@@ -79,7 +79,7 @@ class cScrMap : iScrMap
 		/////////////////////////
 		// Player setup
 		Player_SetAmbientLight_Indoors();
-		PlayerHands_SetHandModel_Human();
+		PlayerHands_SetHandModel_DeepSea();
 		
 		Player_SetFlashlightDisabled(true);
 		
@@ -232,12 +232,14 @@ class cScrMap : iScrMap
 	int mbHeartBeatID = -1;
 	float mfTimeBetweenBeats;
 	bool mbStressTrackerActive = false;
-	void StressHeartBeep(float afTimeBetweenBeats, float afVolume, int alPrio, 
+	int StressHeartBeep(float afTimeBetweenBeats, float afVolume, int alPrio, 
 						 float afDuration = -1, bool abPlayBeep = true, float afFadeInTime = 3.0f, float afFadeOutTime = 3.0f)
 	{
 		mbHeartBeatID = Emotion_StartHeartbeat(afTimeBetweenBeats, afVolume, alPrio, afDuration, afFadeInTime, afFadeOutTime);
 		mbStressTrackerActive = abPlayBeep;
 		mfTimeBetweenBeats = afTimeBetweenBeats;
+		
+		return mbHeartBeatID;
 	}
 		
 	//-------------------------------------------------------
@@ -252,7 +254,7 @@ class cScrMap : iScrMap
 		
 	void HeartStressDelay(const tString &in asTimer)
 	{
-		StressHeartBeep(0.75f, 0.4f, 1, 6.0f, true, 5.0f, 1.0f);
+		mbHeartBeatID = StressHeartBeep(0.65f, 0.4f, 1, 6.0f, true, 5.0f, 1.0f);
 	}	
 	
 	///////////////////////////////
@@ -344,6 +346,7 @@ class cScrMap : iScrMap
 				//////////////////////////////////
 				// Wakeup sounds and audio effects
 				Sound_PlayGui("01_01_upsilon_awake/sfx/wake_up/wake_up_event", 1.0f, eSoundEntryType_Gui);
+				Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/loop", 0.175f, eSoundEntryType_Gui);
 				
 				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_Gui);
 				
@@ -396,12 +399,11 @@ class cScrMap : iScrMap
 				Effect_DoF_FadeFalloff(mlDoFEffectID, 0.5, 30.0f);
 				Effect_DoF_FadeFocus(mlDoFEffectID, 0, 12, 30.0f);
 				Effect_ImageTrail_FadeOut(mlCurrentImageTrailEffectID, 60.0f);
-				// FADE OUT IMAGETRAIL
 					
 				Effect_Fade_In(3.0f);
 				StressHeartBeep(1.0f, 0.25f, 1, -1, true);
 			}
-			else if (Sequence_DoStepAndWait(3.0f))
+			else if (Sequence_DoStepAndWait(2.0f)) // 3.0f
 			{
 				//////////////////////////////////////////
 				// Lift the helmet
@@ -409,6 +411,10 @@ class cScrMap : iScrMap
 				Sound_FadeGlobalVolume(1.0f, 6.0f, eSoundEntryType_WorldAll);
 				Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_1", 0.35, 1, 0.25, true, "MoveTo_ScanHelmet1");
 				Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_1",0.35,1,0.25,true,"");
+			}
+			else if (Sequence_DoStepAndWait(1.0f))
+			{
+				Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/start", 0.3f);
 			}
 			else if (Sequence_DoStepAndWait(0.0f))
 			{
@@ -419,40 +425,6 @@ class cScrMap : iScrMap
 						Dialog_AddSubject("3_AliceScanRoom_3", "SimCallback_AliceScanRoom");
 				Dialog_End();
 			}
-			else if (Sequence_DoStepAndWait(0.0f))
-			{
-				// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER LIGHT IS REVEALED
-				
-				// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP BEHIND THE PLAYER ALONG WITH ALL THE LIGHTS
-				
-				// 02_05_theta/sfx/soma_terminal/soma_start
-				// 02_05_theta/sfx/soma_terminal/soma_loop
-				// 02_05_theta/sfx/soma_terminal/soma_stop
-				
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
-				//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
-				
-				// soma_1_001_catherine_001
-				// soma_2_001_catherine_001
-				// soma_3_001_catherine_001
-				// soma_4_001_catherine_001
-				
-				// Catherine says these lines one after another (still need to edit them)
-				// All voice lines have a lower pitch (deep voice)
-				// The end of her final voice line "melts"--gets lower pitch like its corrupted
-				
-				// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
-				
-				// THE SCREEN TURN ON AS IF THE PLAYER A TERMINAL COVERS THE WHOLE SCREEN.
-				// A PROMPT SHOWS UP
-				
-				// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
-				// "01_01_interact_wauflower.ogg"
-				// "01_01_lightsout.ogg" - Discovering the bodies
-				// "01_01_talking_door.ogg" - Distant noise
-			}
-			
 			Sequence_End();
 		}
 		
@@ -525,66 +497,9 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void ShutdownSimulation()
-		{
-			// THE SOUND OF POWER SHUTTING DOWN
-			Entity_SetActive(msSimAlice,false);
-			
-			Effect_VideoDistortion_Start(.85f, 4.0f, 0.1f, 0.1f);
-			
-			Emotion_StopHeartbeat(mbHeartBeatID);
-			mbStressTrackerActive = false;
-			
-			// MUSIC CONTENDERS
-			// "01_01_construct_smashing_about.ogg" - On simulation shutdown
-			// "01_01_thick_air.ogg" - After power over
-		}
-		
 		/////////////////////////////////////////
 		// Dialogue with Alice
 		//////////////////////////////////////////
-		
-		void SimCallback_AliceScanRoom(const tString &in asSubject, bool abStartOfSubject)
-		{
-			if (asSubject=="3_AliceScanRoom_1")
-			{
-				if (abStartOfSubject)
-				{
-					Map_AddTimer("sit_calm_extra02",5.0f,"TimerBrandonPlayExtraAnimation");
-					Map_AddTimer("sit_calm_extra03",15.0f,"TimerBrandonPlayExtraAnimation");
-					Map_AddTimer("sit_calm_extra02",27.0f,"TimerBrandonPlayExtraAnimation");
-					Map_AddTimer("sit_calm_extra01",32.0f,"TimerBrandonPlayExtraAnimation");
-				}
-			}
-			else if (asSubject=="3_AliceScanRoom_2")
-			{
-				if (abStartOfSubject)
-				{
-					Map_AddTimer("HeartStressDelay", 1.0f, "HeartStressDelay");
-				}
-				else
-				{
-					ShutdownSimulation();
-				}
-			}
-			else if (asSubject=="3_AliceScanRoom_3")
-			{
-				if (abStartOfSubject)
-				{
-					Map_AddTimer("sit_panic",0.1f,"TimerBrandonSetMainAnimation");
-					Map_AddTimer("sit_panic_extra02",0.2f,"TimerBrandonPlayExtraAnimation");
-					
-					cLux_AddDebugMessage("Continue cameraanim");
-					
-					CameraAnimationNode_SetAutoMove("IntroAnim_1", 1);
-					CameraAnimationNode_SetAutoMove("IntroAnim_2", 1);
-				}
-				else
-				SequenceStates_Resume(msCurrentSequence);
-			}
-		}
-		
-		//-------------------------------------------------------
 		
 		void TimerBrandonSetMainAnimation(const tString& in asAnimation)
 		{
@@ -607,7 +522,157 @@ class cScrMap : iScrMap
 			NPC_PlayExtraAnimation(msSimAlice, "stand_calm_talking_extra0"+cMath_RandRectl(1,3));
 		}
 		
+		void SimCallback_AliceScanRoom(const tString &in asSubject, bool abStartOfSubject)
+		{
+			if (asSubject=="3_AliceScanRoom_1")
+			{
+				if (abStartOfSubject)
+				{
+					Map_AddTimer("sit_calm_extra02",5.0f,"TimerBrandonPlayExtraAnimation");
+					Map_AddTimer("sit_calm_extra03",15.0f,"TimerBrandonPlayExtraAnimation");
+					Map_AddTimer("sit_calm_extra02",27.0f,"TimerBrandonPlayExtraAnimation");
+					Map_AddTimer("sit_calm_extra01",32.0f,"TimerBrandonPlayExtraAnimation");
+				}
+			}
+			else if (asSubject=="3_AliceScanRoom_2")
+			{
+				if (abStartOfSubject)
+				{
+					// MUSIC CONTENDERS
+					// - Builds up till power off
+					//Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);
+					
+					// ADD THE SOUND OF THE DISTANT ALARM FADE INTO THE BACKGROUND
+					
+					Map_AddTimer("ShutdownSimulation", 8.0f, "ShutdownSimulation");
+					Map_AddTimer("ScreenFX", 7.0f, "ScreenFX");
+					Map_AddTimer("HeartStressDelay", 4.5f, "HeartStressDelay");
+				}
+				else
+				{
+					
+				}
+			}
+			else if (asSubject=="3_AliceScanRoom_3")
+			{
+				if (abStartOfSubject)
+				{
+					Map_AddTimer("sit_panic",0.1f,"TimerBrandonSetMainAnimation");
+					Map_AddTimer("sit_panic_extra02",0.2f,"TimerBrandonPlayExtraAnimation");
+					
+					cLux_AddDebugMessage("Continue cameraanim");
+					
+					CameraAnimationNode_SetAutoMove("IntroAnim_1", 1);
+					CameraAnimationNode_SetAutoMove("IntroAnim_2", 1);
+				}
+				else
+				SequenceStates_Resume(msCurrentSequence);
+			}
+		}
+		
+		//-------------------------------------------------------
+		
+		void ShutdownSimulation(const tString &in asTimer)
+		{
+			// SET POWER OFF
+			Sound_PlayGui("02_06_theta_tunnels/sweeteners/lights_out", 1.0f);
+			Sound_PlayGui("02_06_theta_tunnels/sweeteners/lights_out_room_shake", 1.0f);
+			Sound_FadeGlobalVolume(0.6f, 0.75f, eSoundEntryType_World);
+			
+			// EFFECTS
+			Effect_Fade_Out(0.1f);
+			
+			Emotion_StopHeartbeat(mbHeartBeatID);
+			mbStressTrackerActive = false;
+			
+			Sound_StopGui("04_03_tau_escape/SFX/ross/conversation/tunnel/loop", 0.1f, false);
+			Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/stop", 0.2f);
+			
+			// MUSIC CONTENDERS
+			Music_Stop(0, eMusicPrio_MinorEvent);
+			Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);
+			Music_PlayExt("01_01_thick_air", true, 0.5f, 1.0f, cMath_RandRectf(3.f,5.f), 0.0f, eMusicPrio_BgAmb, true);
+			
+			
+			Sound_FadeGlobalVolume(0.67f, 0.1f, eSoundEntryType_GuiWorld);
+			Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
+			Map_AddTimer("StartWakeUp", 3.0f, "SequenceWakeUpStart");
+		}
+		
+		void ScreenFX(const tString &in asTimer)
+		{
+			Effect_VideoDistortion_Start(.85f, 2.0f, 0.1f, 0.1f);
+			Effect_TimeGlitch_Start(1.0f, 0.5f, 0.1f, true);
+		}
+		
 		//} End Brandon wakes up in the scan chair
+		
+		/////////////////////////////////////////
+		// *Brandon wakes up in the parallel world*
+		//{//////////////////////////////////////
+		
+		cSequenceStatesData mSequenceWakeUpStartState;
+		void SequenceWakeUpStart(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceWakeUpStart", mSequenceWakeUpStartState);
+			
+			if (Sequence_DoStepAndWait(4.0f))
+			{
+				cLux_AddDebugMessage("!! STARTING WAKE UP!!");
+				
+				Player_SetHealth(0.65f);
+				
+				Player_Teleport("Start_WakeUp");
+				
+				//Sound_FadeGlobalVolume(0.2f, 0.1f, eSoundEntryType_GuiWorld);
+				//Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
+				
+				// CATHERINE SPEAKS TO SIMON IN DARKNESS WHEN THEY'RE FINISHED WITH THE SCAN
+				
+				// "01_01_interact_wauflower.ogg" - Screen back till waking up (on stinger open eyes) Fade in after 4-5 seconds
+				
+				// START CAMERA ANIMATION
+				
+				// PLAYER BLINKS
+				// ORIGAMI ROTATE AND DANGLE
+				// THEN ORIGAMI GONE
+			}
+			else if (Sequence_DoStepAndWait(0.0f))
+			{
+				Effect_Fade_In(3.0f);
+			}
+			Sequence_End();
+		}
+		
+		// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER LIGHT IS REVEALED
+				
+		// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP BEHIND THE PLAYER ALONG WITH ALL THE LIGHTS
+				
+		// 02_05_theta/sfx/soma_terminal/soma_start
+		// 02_05_theta/sfx/soma_terminal/soma_loop
+		// 02_05_theta/sfx/soma_terminal/soma_stop
+				
+		//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
+		//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
+		//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
+				
+		// soma_1_001_catherine_001
+		// soma_2_001_catherine_001
+		// soma_3_001_catherine_001
+		// soma_4_001_catherine_001
+				
+		// Catherine says these lines one after another (still need to edit them)
+		// All voice lines have a lower pitch (deep voice)
+		// The end of her final voice line "melts"--gets lower pitch like its corrupted
+				
+		// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
+				
+		// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
+		// "01_01_interact_wauflower.ogg"
+		// "01_01_lightsout.ogg" - Discovering the bodies
+		// "01_01_talking_door.ogg" - Distant noise	
+		
+		//} End Brandon wakes up in the parallel world
 		
 	//} END SCENE 1
 	
