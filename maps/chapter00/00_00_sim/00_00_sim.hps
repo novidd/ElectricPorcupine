@@ -229,17 +229,17 @@ class cScrMap : iScrMap
 	// Heart stress
 	///////////////////////////////
 	
-	int mbHeartBeatID = -1;
+	int mlHeartBeatID = -1;
 	float mfTimeBetweenBeats;
 	bool mbStressTrackerActive = false;
 	int StressHeartBeep(float afTimeBetweenBeats, float afVolume, int alPrio, 
 						 float afDuration = -1, bool abPlayBeep = true, float afFadeInTime = 3.0f, float afFadeOutTime = 3.0f)
 	{
-		mbHeartBeatID = Emotion_StartHeartbeat(afTimeBetweenBeats, afVolume, alPrio, afDuration, afFadeInTime, afFadeOutTime);
+		mlHeartBeatID = Emotion_StartHeartbeat(afTimeBetweenBeats, afVolume, alPrio, afDuration, afFadeInTime, afFadeOutTime);
 		mbStressTrackerActive = abPlayBeep;
 		mfTimeBetweenBeats = afTimeBetweenBeats;
 		
-		return mbHeartBeatID;
+		return mlHeartBeatID;
 	}
 		
 	//-------------------------------------------------------
@@ -250,13 +250,6 @@ class cScrMap : iScrMap
 		Map_RestartCurrentTimer(mfTimeBetweenBeats);
 	}
 		
-	//-------------------------------------------------------
-		
-	void HeartStressDelay(const tString &in asTimer)
-	{
-		mbHeartBeatID = StressHeartBeep(0.65f, 0.4f, 1, 6.0f, true, 5.0f, 1.0f);
-	}	
-	
 	///////////////////////////////
 	// Checkpoints
 	///////////////////////////////
@@ -528,31 +521,29 @@ class cScrMap : iScrMap
 		{
 			Sequence_Begin("SequenceFlashes", mSequenceFlashesState);
 			
-			// TOTAL OF 10s window
-			
 			if (Sequence_DoStepAndWait(1.0f))
 			{
 				cLux_AddDebugMessage("!! STARTING FLASHES !!");
 				
 				// SOUND EFFECT LIKE ENTERING IN AND OUT OF DIMENSIONS
 				
-				mlVideoDistortionFlashesID = Effect_VideoDistortion_Start(0.65f, 4.0f, 1.0f, 1.0f);
+				// TELEPORT PLAYER TO THE PLACE HE WAKES UP IN.
 				
-				//Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 1.0f);
+				// PULL FOV IN AND OUT LIKE IN WHEN SIMON USES THE SCAN CHAIR IN TORONTO
+				
+				mlVideoDistortionFlashesID = Effect_VideoDistortion_Start(0.65f, 3.0f, 1.0f, 1.0f);
+				
+				Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.33f);
 				
 			}
-			else if (Sequence_DoStepAndWait(0.0f))
+			else if (Sequence_DoStepAndWait(1.0f))
 			{
-				Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.5f);
+				Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.1f);
+				
+				StressHeartBeep(0.85f, 0.25f, 1, -1, true);
 			}
 			Sequence_End();
 			
-			// ADD BLINK AND DISTANT ALARM DURING BLINK HERE
-			// SOUNDS:
-			// 04_02_tau_inside/SFX/ross_airlock/ross_enters_alarm
-			// 03_02_omicron_inside/SFX/lockdown_release/alarm
-			// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon - best sound
-					
 			// Maybe instead of closing eyes, add chromatic abberation effect / radial blur / imagetrail
 		}
 		
@@ -570,7 +561,8 @@ class cScrMap : iScrMap
 					Map_AddTimer("sit_calm_extra01",32.0f,"TimerBrandonPlayExtraAnimation");
 					
 					
-					Map_AddTimer("", 18.0f, "SequenceFlashes");
+					// TRY IMPLEMENTING THE FLASH 
+					//Map_AddTimer("", 18.0f, "SequenceFlashes");
 				}
 			}
 			else if (asSubject=="3_AliceScanRoom_2")
@@ -581,7 +573,7 @@ class cScrMap : iScrMap
 					Music_Stop(1.0f, eMusicPrio_MinorEvent);
 					Music_PlayExt("01_01_thick_air", true, 0.5f, 1.0f, 7.0f, 0.0f, eMusicPrio_BgAmb, true);
 					
-					Map_AddTimer("whispers", 3.5f, "WhispersEscalation");
+					Map_AddTimer("escalation", 3.5f, "Escalation");
 					Map_AddTimer("ShutdownSimulation", 8.0f, "ShutdownSimulation");
 					Map_AddTimer("ScreenFX", 7.0f, "ScreenFX");
 					Map_AddTimer("HeartStressDelay", 4.5f, "HeartStressDelay");
@@ -616,11 +608,13 @@ class cScrMap : iScrMap
 			// EFFECTS
 			Effect_Fade_Out(0.1f);
 			
-			Emotion_StopHeartbeat(mbHeartBeatID);
+			Emotion_StopHeartbeat(mlHeartBeatID);
 			mbStressTrackerActive = false;
 			
 			Sound_StopGui("04_03_tau_escape/SFX/ross/conversation/tunnel/loop", 0.1f, false);
 			Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/stop", 0.2f);
+			
+			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.1f);
 			
 			// MUSIC IMPACT
 			Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);			
@@ -632,7 +626,7 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void WhispersEscalation(const tString &in asTimer)
+		void Escalation(const tString &in asTimer)
 		{
 			Sound_PlayGui("03_02_omicron_inside/SFX/escalation/escalation_event_01", 0.33);
 		}
@@ -643,6 +637,14 @@ class cScrMap : iScrMap
 		{
 			Effect_VideoDistortion_Start(.85f, 2.0f, 0.1f, 0.1f);
 		}
+		
+		void HeartStressDelay(const tString &in asTimer)
+		{
+			mlHeartBeatID = StressHeartBeep(0.65f, 0.4f, 1, 6.0f, true, 5.0f, 1.0f);
+			Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.5f);
+		}
+		
+		//-------------------------------------------------------
 		
 		//} End Brandon wakes up in the scan chair
 		
@@ -675,6 +677,7 @@ class cScrMap : iScrMap
 				
 				// START CAMERA ANIMATION
 				
+				// The spinning of a fan
 				// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon loop in the background
 				
 				// PLAYER BLINKS -> LOOKING AT FAN  ORIGAMI ROTATE AND DANGLE
