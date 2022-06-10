@@ -363,8 +363,6 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(1.75f))
 			{
-				///////////////////////////
-				// Start dialog
 				//Voice_Play("1A_WakeUp");
 				
 				// Catherines voice one line
@@ -373,7 +371,7 @@ class cScrMap : iScrMap
 				
 				// This clues the player in that this is set in Theta in the original game
 				
-				
+				// MUSIC
 				Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 9.0f, 0.0f, eMusicPrio_MinorEvent, false);
 			}
 			else if (Sequence_DoStepAndWait(2.5f))
@@ -524,27 +522,41 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void FlashEvent(const tString &in asTimer)
+		int mlVideoDistortionFlashesID = -1;
+		cSequenceStatesData mSequenceFlashesState;
+		void SequenceFlashes(const tString &in asTimer)
 		{
+			Sequence_Begin("SequenceFlashes", mSequenceFlashesState);
+			
+			// TOTAL OF 10s window
+			
+			if (Sequence_DoStepAndWait(1.0f))
+			{
+				cLux_AddDebugMessage("!! STARTING FLASHES !!");
+				
+				// SOUND EFFECT LIKE ENTERING IN AND OUT OF DIMENSIONS
+				
+				mlVideoDistortionFlashesID = Effect_VideoDistortion_Start(0.65f, 4.0f, 1.0f, 1.0f);
+				
+				//Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 1.0f);
+				
+			}
+			else if (Sequence_DoStepAndWait(0.0f))
+			{
+				Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.5f);
+			}
+			Sequence_End();
+			
 			// ADD BLINK AND DISTANT ALARM DURING BLINK HERE
 			// SOUNDS:
 			// 04_02_tau_inside/SFX/ross_airlock/ross_enters_alarm
 			// 03_02_omicron_inside/SFX/lockdown_release/alarm
-			// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon
+			// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon - best sound
 					
-			// 1.0f betweem fade in and out
-			
-			if (asTimer == "closeeye")
-			{
-				Effect_Fade_Out(1.0f);
-			}
-			else if (asTimer == "openeye")
-			{
-				Effect_Fade_In(1.0f);
-			}
+			// Maybe instead of closing eyes, add chromatic abberation effect / radial blur / imagetrail
 		}
 		
-		//-------------------------------------------------------
+		//-------------------------------------------------------s
 		
 		void SimCallback_AliceScanRoom(const tString &in asSubject, bool abStartOfSubject)
 		{
@@ -558,28 +570,21 @@ class cScrMap : iScrMap
 					Map_AddTimer("sit_calm_extra01",32.0f,"TimerBrandonPlayExtraAnimation");
 					
 					
-					Map_AddTimer("openeye", 18.0f, "FlashEvent");
+					Map_AddTimer("", 18.0f, "SequenceFlashes");
 				}
 			}
 			else if (asSubject=="3_AliceScanRoom_2")
 			{
 				if (abStartOfSubject)
 				{
-					// MUSIC CONTENDERS - Builds up till power off
-					//
-					// 03_02_omicron_inside/SFX/escalation/escalation_event_01
-					//Sound_PlayGui("", 1.0f);
-					//Music_PlayOverlay("", 0.25f);
+					// MUSIC
+					Music_Stop(1.0f, eMusicPrio_MinorEvent);
+					Music_PlayExt("01_01_thick_air", true, 0.5f, 1.0f, 7.0f, 0.0f, eMusicPrio_BgAmb, true);
 					
-					// ADD THE SOUND OF THE DISTANT ALARM FADE INTO THE BACKGROUND
-					
+					Map_AddTimer("whispers", 3.5f, "WhispersEscalation");
 					Map_AddTimer("ShutdownSimulation", 8.0f, "ShutdownSimulation");
 					Map_AddTimer("ScreenFX", 7.0f, "ScreenFX");
 					Map_AddTimer("HeartStressDelay", 4.5f, "HeartStressDelay");
-				}
-				else
-				{
-					
 				}
 			}
 			else if (asSubject=="3_AliceScanRoom_3")
@@ -617,15 +622,19 @@ class cScrMap : iScrMap
 			Sound_StopGui("04_03_tau_escape/SFX/ross/conversation/tunnel/loop", 0.1f, false);
 			Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/stop", 0.2f);
 			
-			// MUSIC CONTENDERS
-			Music_Stop(0, eMusicPrio_MinorEvent);
-			Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);
-			Music_PlayExt("01_01_thick_air", true, 0.5f, 1.0f, cMath_RandRectf(3.f,5.f), 0.0f, eMusicPrio_BgAmb, true);
-			
+			// MUSIC IMPACT
+			Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);			
 			
 			Sound_FadeGlobalVolume(0.67f, 0.1f, eSoundEntryType_GuiWorld);
-			Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
+			Sound_FadeGlobalVolume(0.67f, 0.75f, eSoundEntryType_WorldAll);
 			Map_AddTimer("StartWakeUp", 3.0f, "SequenceWakeUpStart");
+		}
+		
+		//-------------------------------------------------------
+		
+		void WhispersEscalation(const tString &in asTimer)
+		{
+			Sound_PlayGui("03_02_omicron_inside/SFX/escalation/escalation_event_01", 0.33);
 		}
 		
 		//-------------------------------------------------------
@@ -633,7 +642,6 @@ class cScrMap : iScrMap
 		void ScreenFX(const tString &in asTimer)
 		{
 			Effect_VideoDistortion_Start(.85f, 2.0f, 0.1f, 0.1f);
-			Effect_TimeGlitch_Start(1.0f, 0.5f, 0.1f, true);
 		}
 		
 		//} End Brandon wakes up in the scan chair
@@ -651,26 +659,39 @@ class cScrMap : iScrMap
 			{
 				cLux_AddDebugMessage("!! STARTING WAKE UP!!");
 				
+				Player_Teleport("Start_WakeUp");
 				Player_SetHealth(0.65f);
 				
-				Player_Teleport("Start_WakeUp");
+				Sound_FadeGlobalVolume(0.0f, 0.1f, eSoundEntryType_WorldAll);
 				
 				//Sound_FadeGlobalVolume(0.2f, 0.1f, eSoundEntryType_GuiWorld);
 				//Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
 				
 				// CATHERINE SPEAKS TO SIMON IN DARKNESS WHEN THEY'RE FINISHED WITH THE SCAN
 				
+				// Radial blur and imagetrail so catherine lamp lasts for several frames on screen
+				
 				// "01_01_interact_wauflower.ogg" - Screen back till waking up (on stinger open eyes) Fade in after 4-5 seconds
 				
 				// START CAMERA ANIMATION
 				
+				// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon loop in the background
+				
 				// PLAYER BLINKS -> LOOKING AT FAN  ORIGAMI ROTATE AND DANGLE
-				// PLAYER BLINKS -> ORIGAMI GONE
+				// PLAYER BLINKS -> ORIGAMI GONE -> DISTANT METRO SCORPION LIKE NOISES
 				// PLAYER BLINKS -> LOOKING AT FLOOR, PLAYER CAN NOW MOVE
 				
 				// Distant lights off - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
+				// After turn off 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon
 				
-				// When player has control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
+				// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
+				
+				// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
+				// "01_01_interact_wauflower.ogg"
+				// "01_01_lightsout.ogg" - Discovering the bodies
+				// "01_01_talking_door.ogg" - Distant noise	
+				
+				// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
 			}
 			else if (Sequence_DoStepAndWait(0.0f))
 			{
