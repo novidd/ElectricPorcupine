@@ -1,0 +1,781 @@
+
+#include "interfaces/Map_Interface.hps"
+#include "base/AchievementHandler_Types.hps"
+#include "base/InputHandler_Types.hps"
+#include "base/RichPresenceHandler_Types.hps"
+
+#include "helpers/helper_game.hps"
+#include "helpers/helper_effects.hps"
+#include "helpers/helper_map.hps"
+#include "helpers/helper_props.hps"
+#include "helpers/helper_audio.hps"
+#include "helpers/helper_sequences.hps"
+#include "helpers/helper_modules.hps"
+#include "helpers/helper_imgui.hps"
+#include "helpers/helper_areas.hps"
+#include "helpers/helper_ai.hps"
+#include "helpers/helper_player.hps"
+
+#include "helper_imgui_station.hps"
+#include "helper_imgui_station_app_error.hps"
+#include "helper_imgui_station_app_audioplayback.hps"
+#include "helper_imgui_station_app_photoviewer.hps"
+#include "helper_imgui_cath_portrait.hps"
+#include "helper_imgui_station_basics.hps"
+
+#include "helper_custom_depth.hps"
+#include "helper_custom_depth_ai.hps"
+#include "helper_custom_depth_ai_fleshers.hps"
+#include "helper_custom_depth_imgui.hps"
+#include "helper_custom_depth_audio.hps"
+
+#include "custom_depth/helper_custom_depth_audio.hps"
+
+#include "helper_font.hps"
+
+#include "player/Player_Types.hps"
+
+//--------------------------------------------------
+ 
+/*Place any global values here. These must be const variables as they will not be saved*/
+/*This is also the place for enums and classes, but these should be avoided whenever possible*/
+
+//--------------------------------------------------
+
+class cScrMap : iScrMap
+{
+	//--------------------------------------------
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN CALLBACKS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+ 
+	//-------------------------------------------------------
+	
+	//-------------------------------------------------------
+ 
+	////////////////////////////
+	// Set up map environment
+	void Setup()
+	{
+		// Effect init
+		Effect_Bloom_FadeBrightPass(0.75f, 2);
+        Effect_Bloom_FadeBloomWidth(128, 2);
+        Effect_Bloom_FadeBloomFalloff(0.5f, 2);
+        Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
+	}
+	
+	//-------------------------------------------------------
+
+	void PreloadData()
+	{
+		PlayerHands_PreloadHandModel_DeepSea();
+	}
+	
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run first time starting map
+	void OnStart()
+	{
+		/////////////////////////
+		// Player setup
+		Player_SetAmbientLight_Indoors();
+		PlayerHands_SetHandModel_DeepSea();
+		
+		Player_SetFlashlightDisabled(true);
+		
+		/////////////////////////
+		// Level setup
+		//Map_Preset_Fade("Ocean", 0.001f);
+		
+		bool bDoIntro = true;
+		////////////////////
+		//Audio
+		
+		/////////////////////////
+		// Debug
+		if(cLux_ScriptDebugOn()) 
+		{
+			bDoIntro = false;
+			
+			Player_SetFlashlightDisabled(false);
+			
+			//Effect_Fade_In(1);
+			//Sound_FadeGlobalVolume(1.0f, 1.0f);
+			//Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_GuiAll);
+		}
+		
+		if (bDoIntro)
+		{
+			Effect_Fade_Out(0);
+			Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
+			Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
+			
+			Map_AddTimer("timer_kickoffintro", 0.01, "TimerKickoffIntro");
+		}
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when entering map
+	void OnEnter()
+	{
+		//Player_SetFlashlightDisabled(false);
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when leaving map
+	void OnLeave()
+	{
+		if(mlImageTrailID>=0)
+		{
+			cLux_AddDebugMessage("FadeOutImageTrail!");
+			Effect_ImageTrail_FadeOut(mlImageTrailID,10.0f);
+			mlImageTrailID=-1;
+		}
+	}
+	
+	//-------------------------------------------------------
+	
+	float mfHeartBeatTimer = 0; // Value gets incremented by afTimeStep untill reached mfTimeBetweenBeats
+	
+	void Update(float afTimeStep)
+	{
+		// Stress tracker
+		//cLux_AddDebugMessage("Time between beats: " + mfTimeBetweenBeats);
+		//cLux_AddDebugMessage("Time left untill beep: " +  (mfTimeBetweenBeats-mfHeartBeatTimer));
+		
+		if (mbStressTrackerActive)
+		{
+			mfHeartBeatTimer+=afTimeStep;
+			
+			if (mfHeartBeatTimer >= mfTimeBetweenBeats)
+			{
+				if (!Sound_Exists("HeartBeepSound"))
+				{
+					Sound_CreateAtEntity("HeartBeepSound", "Entities_Station/tech/life_support/heart_beep", "StressHeartBeepSource", 0.0f, false, 0.5f);
+					mfHeartBeatTimer = 0;
+				}
+			}
+		}
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// The player has died.
+	void OnPlayerKilled(int alRecentDeaths, const tString&in asSource)
+	{
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// To get when player makes input (mostly used for debug)
+	void OnAction(int alAction, bool abPressed) 
+	{
+		if(abPressed==false) return;
+		
+		if(alAction == eAction_Test1)
+		{
+			// SCREEN EFFECTS FOR WHEN PLAYER WAKES UP
+		}
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// This only used for pure debug purposes when info needs to printed.
+	float DrawDebugOutput(cGuiSet @apSet,iFontData @apFont,float afY)
+	{
+		//afY = cLux_DrawDebugText("My Debug value:"+..., afY);
+		return afY;
+	}
+	
+	//-------------------------------------------------------
+	
+	void OnGui(float afTimeStep)
+	{
+		// ADD SO CURRENT POWERSTAGE ID IS PRINTED ON SCREEN -- MOVE TO ONGUI FUNC
+		// ADD SO THE TEXT SAYS "On", "Off", "Unreliable", "Flicker" DEPENDING ON THE STATE
+	}
+ 
+	//} END MAIN CALLBACKS
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN FUNCTIONS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+	
+	float mfPlayerSpeedOnWakeup = 1.0f;
+	
+	int mlImageTrailID = -1;
+	int mlDOFLightsOn = -1;
+	
+	void Timer_RemoveImageTrail(const tString&in asTimer)
+	{
+		if(mlImageTrailID>=0)
+		{
+			cLux_AddDebugMessage("FadeOutImageTrail!");
+			Effect_ImageTrail_FadeOut(mlImageTrailID,10.0f);
+			mlImageTrailID=-1;
+		}
+	}
+	
+	//-------------------------------------------------------
+	
+	///////////////////////////////
+	// Heart stress
+	///////////////////////////////
+	
+	int mlHeartBeatID = -1;
+	float mfTimeBetweenBeats;
+	bool mbStressTrackerActive = false;
+	int StressHeartBeep(float afTimeBetweenBeats, float afVolume, int alPrio, 
+						 float afDuration = -1, bool abPlayBeep = true, float afFadeInTime = 3.0f, float afFadeOutTime = 3.0f)
+	{
+		mlHeartBeatID = Emotion_StartHeartbeat(afTimeBetweenBeats, afVolume, alPrio, afDuration, afFadeInTime, afFadeOutTime);
+		mbStressTrackerActive = abPlayBeep;
+		mfTimeBetweenBeats = afTimeBetweenBeats;
+		
+		return mlHeartBeatID;
+	}
+		
+	//-------------------------------------------------------
+		
+	void HeartBeatSound(const tString &in asTimer)
+	{
+		Sound_CreateAtEntity("HeartBeepSound", "Entities_Station/tech/life_support/heart_beep", "StressHeartBeepSource", 0.0f, false, 0.5f);
+		Map_RestartCurrentTimer(mfTimeBetweenBeats);
+	}
+		
+	///////////////////////////////
+	// Checkpoints
+	///////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	//} END MAIN FUNCTIONS
+ 
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE 1 *INTRO*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+ 
+		/////////////////////////////////////////
+		// *Brandon wakes up in the scan chair*
+		//{//////////////////////////////////////
+		
+		int mlCurrentImageTrailEffectID = 0;
+		int mlDoFEffectID = 0;
+		
+		tString msVoidBrandon = "Brandon_Void";
+		
+		tString msCurrentSequence;
+		tString msSimBrandon = "Brandon_ScanRoom";
+		tString msSimAlice = "Alice_ScanRoom";
+		tString msCurrentCathSource = "ChunVoid";
+		
+		void TimerKickoffIntro(const tString &in asTimer)
+		{
+			SetupIntro();
+		}
+		
+		//-------------------------------------------------------
+		
+		void SetupIntro()
+		{
+			Player_Teleport("PlayerStartArea_1", true);
+			
+			///////////////////
+			// Scan room
+			Entity_SetActive(msSimBrandon, true);
+			Entity_SetActive(msSimAlice, true);
+			
+			NPC_SetMainAnimation(msSimBrandon, "sit_confused");
+			
+			Light_SetVisible("ScannerLight_*", false);
+			
+			Voice_SetSource("Wan", msSimBrandon, 1000, 1000, true, 1000);
+			Voice_SetSource("Alice", msSimAlice, 1000, 1000, true, 1000);
+			
+			///////////////////
+			// Visual setup
+			Effect_Fade_Out(0.1);
+			Player_FadeFOVMulTo(0.75f, 0);
+			mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
+			mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
+			
+			///////////////////
+			// Animation
+			// MOVE TO PROPER STEP
+			CameraAnimation_Begin("WakeupAnim", "", false);
+					
+			//////////////////////////////////////
+			// Start intro after a short delay
+			Map_AddTimer("", 1.0f, "SequenceScanRoom");
+			
+			mlImageTrailID = Effect_ImageTrail_Start(0.5f, 0, -1, 15.0f);
+			Map_AddTimer("RemoveImageTrail", 20, "Timer_RemoveImageTrail");
+		}
+		
+		//////////////////////////////////////////
+		// SCAN ROOM SEQUENCE
+		//////////////////////////////////////////
+		
+		//-------------------------------------------------------
+		bool mbHelmetPhaseTwoStarted = false;
+		//-------------------------------------------------------
+
+		cSequenceStatesData mSequenceScanRoomState;
+		void SequenceScanRoom(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceScanRoom", mSequenceScanRoomState);
+			
+			if (Sequence_DoStepAndWait(3.0f))
+			{
+				//////////////////////////////////
+				// Wakeup sounds and audio effects
+				Sound_PlayGui("01_01_upsilon_awake/sfx/wake_up/wake_up_event", 1.0f, eSoundEntryType_Gui);
+				Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/loop", 0.175f, eSoundEntryType_Gui);
+				
+				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_Gui);
+				
+				//////////////////////////////////
+				// Camera Effects
+				Player_FadeFOVMulTo(1.0f, 0.25f);
+				Effect_Fade_In(1.0f);
+				
+				// visual fx
+				mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
+				Effect_DoF_FadeFocus(mlDOFLightsOn,0.2,2,0.01);
+				
+				Effect_ImageTrail_Start(2, 0.001, 4, 6);
+			}
+			else if (Sequence_DoStepAndWait(1.75f))
+			{
+				//Voice_Play("1A_WakeUp");
+				
+				// Catherines voice one line
+				
+				// !! ADD CATHERINE VOICE LINE !!
+				
+				// This clues the player in that this is set in Theta in the original game
+				
+				// MUSIC
+				Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 9.0f, 0.0f, eMusicPrio_MinorEvent, false);
+			}
+			else if (Sequence_DoStepAndWait(2.5f))
+			{
+				/////////////////////////////////
+				// Low pass fade
+				Effect_Fade_Out(2.0f);
+			}
+			else if (Sequence_DoStepAndWait(2.0f))
+			{
+				///////////////////////////////
+				// Switch to the stand up animation
+				CameraAnimation_End();
+				
+				CameraAnimation_Begin("IntroAnim", "", true);
+				CameraAnimationNode_SetInteractiveMovement("IntroAnim_1", false);
+				CameraAnimationNode_SetInteractiveMovement("IntroAnim_2", false);
+				
+				Player_FadeMoveSpeedMulTo(mfPlayerSpeedOnWakeup,0.1f);
+				
+				/////////////////////////////
+				// Fade out DOF effects
+				Effect_DoF_FadeFalloff(mlDoFEffectID, 0.5, 30.0f);
+				Effect_DoF_FadeFocus(mlDoFEffectID, 0, 12, 30.0f);
+				Effect_ImageTrail_FadeOut(mlCurrentImageTrailEffectID, 60.0f);
+					
+				Effect_Fade_In(3.0f);
+				StressHeartBeep(1.0f, 0.25f, 1, -1, true);
+			}
+			else if (Sequence_DoStepAndWait(2.0f)) // 3.0f
+			{
+				//////////////////////////////////////////
+				// Lift the helmet
+				Sound_FadeGlobalVolume(1.0f, 3.0f, eSoundEntryType_GuiWorld);
+				Sound_FadeGlobalVolume(1.0f, 6.0f, eSoundEntryType_WorldAll);
+				Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_1", 0.35, 1, 0.25, true, "MoveTo_ScanHelmet1");
+				Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_1",0.35,1,0.25,true,"");
+			}
+			else if (Sequence_DoStepAndWait(1.0f))
+			{
+				Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/start", 0.3f);
+			}
+			else if (Sequence_DoStepAndWait(0.0f))
+			{
+				Dialog_Begin("Simulation");
+					Dialog_AddBranch("3_AliceScanRoom");
+						Dialog_AddSubject("3_AliceScanRoom_1", "SimCallback_AliceScanRoom");
+						Dialog_AddSubject("3_AliceScanRoom_2", "SimCallback_AliceScanRoom");
+						Dialog_AddSubject("3_AliceScanRoom_3", "SimCallback_AliceScanRoom");
+				Dialog_End();
+			}
+			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		bool EventGettingUp(const tString &in asEntity, int alDirection)
+		{
+			if (alDirection == 1)
+			{
+				cLux_AddDebugMessage("**EVENT GETTING UP**");
+				
+				Entity_SetActive(msSimBrandon, false);
+			}
+			return true;
+		}
+			
+		//-------------------------------------------------------
+		
+		void MoveTo_ScanHelmet1(const tString &in asProp)
+		{
+			if (mbHelmetPhaseTwoStarted) return;
+			
+			Prop_MoveLinearTo("chair_scan_helmet", "chair_scan_helmet_target_2", 1, 1, 0.25, true, "MoveTo_ScanHelmet1");
+			Prop_AlignRotation("chair_scan_helmet","chair_scan_helmet_target_2",0.35,1,0.25,true,"");
+			mbHelmetPhaseTwoStarted = true;
+		}
+		
+		//-------------------------------------------------------
+		
+		bool mbStandUpSoundTriggered = false;
+		bool mbNervousBreathingPlaying = false;
+		bool StandUpSound(const tString &in asEntity, int alDirection)
+		{
+			if (asEntity == "IntroAnim_1" && alDirection == 1)
+			{
+				cLux_AddDebugMessage("Stand Up Animation Sound Start");
+				if(mbStandUpSoundTriggered==false)
+				{
+					Sound_CreateAtEntity("StandUpAnimation", "01_01_upsilon_awake/sfx/wake_up/stand_up_chair", "Player", 0.0f, false, 1.0f);	
+					mbStandUpSoundTriggered = true;
+				}
+				
+				if(mbNervousBreathingPlaying == false)
+				{
+					Emotion_PlayEventBreath("01_01_upsilon_awake/sfx/wake_up/nervous", 0);
+					Map_AddTimer("nervousbreathing", 12.7, "timer_nervousbreathing");
+					mbNervousBreathingPlaying = true;
+				}
+
+				return true;
+			}
+			
+			else if (asEntity == "IntroAnim_*" && alDirection == -1)
+			{
+				cLux_AddDebugMessage("Stand Up Animation Sound Stop");
+				Sound_Stop("StandUpAnimation", 0.25f);
+				mbStandUpSoundTriggered = false;
+				return true;
+			}
+			return true;
+		}
+		
+		//-------------------------------------------------------
+		
+		void timer_nervousbreathing(const tString &in asTimer)
+		{
+			Map_AddTimer("nervousbreathing", 13.0, "timer_nervousbreathing");
+			Emotion_PlayEventBreath("01_01_upsilon_awake/sfx/wake_up/nervous", 0);
+		}
+		
+		//-------------------------------------------------------
+		
+		/////////////////////////////////////////
+		// Dialogue with Alice
+		//////////////////////////////////////////
+		
+		void TimerBrandonSetMainAnimation(const tString& in asAnimation)
+		{
+			NPC_SetMainAnimation(msSimBrandon, asAnimation);
+		}
+		
+		//-------------------------------------------------------
+		
+		void TimerBrandonPlayExtraAnimation(const tString& in asAnimation)
+		{
+			NPC_PlayExtraAnimation(msSimBrandon, asAnimation);
+		}
+		
+		//-------------------------------------------------------
+		
+		void Line_AliceScanRoomCalm(const tString &in asParent, const tString &in asChild, int alState, bool abStart)
+		{
+			if (!abStart)
+				return;
+			NPC_PlayExtraAnimation(msSimAlice, "stand_calm_talking_extra0"+cMath_RandRectl(1,3));
+		}
+		
+		//-------------------------------------------------------
+		
+		int mlVideoDistortionFlashesID = -1;
+		cSequenceStatesData mSequenceFlashesState;
+		void SequenceFlashes(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceFlashes", mSequenceFlashesState);
+			
+			if (Sequence_DoStepAndWait(1.0f))
+			{
+				cLux_AddDebugMessage("!! STARTING FLASHES !!");
+				
+				// SOUND EFFECT LIKE ENTERING IN AND OUT OF DIMENSIONS
+				
+				// TELEPORT PLAYER TO THE PLACE HE WAKES UP IN.
+				
+				// PULL FOV IN AND OUT LIKE IN WHEN SIMON USES THE SCAN CHAIR IN TORONTO
+				
+				mlVideoDistortionFlashesID = Effect_VideoDistortion_Start(0.65f, 3.0f, 1.0f, 1.0f);
+				
+				Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.33f);
+				
+			}
+			else if (Sequence_DoStepAndWait(1.0f))
+			{
+				Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.1f);
+				
+				StressHeartBeep(0.85f, 0.25f, 1, -1, true);
+			}
+			Sequence_End();
+			
+			// Maybe instead of closing eyes, add chromatic abberation effect / radial blur / imagetrail
+		}
+		
+		//-------------------------------------------------------s
+		
+		void SimCallback_AliceScanRoom(const tString &in asSubject, bool abStartOfSubject)
+		{
+			if (asSubject=="3_AliceScanRoom_1")
+			{
+				if (abStartOfSubject)
+				{
+					Map_AddTimer("sit_calm_extra02",5.0f,"TimerBrandonPlayExtraAnimation");
+					Map_AddTimer("sit_calm_extra03",15.0f,"TimerBrandonPlayExtraAnimation");
+					Map_AddTimer("sit_calm_extra02",27.0f,"TimerBrandonPlayExtraAnimation");
+					Map_AddTimer("sit_calm_extra01",32.0f,"TimerBrandonPlayExtraAnimation");
+					
+					
+					// TRY IMPLEMENTING THE FLASH 
+					//Map_AddTimer("", 18.0f, "SequenceFlashes");
+				}
+			}
+			else if (asSubject=="3_AliceScanRoom_2")
+			{
+				if (abStartOfSubject)
+				{
+					// MUSIC
+					Music_Stop(1.0f, eMusicPrio_MinorEvent);
+					Music_PlayExt("01_01_thick_air", true, 0.5f, 1.0f, 7.0f, 0.0f, eMusicPrio_BgAmb, true);
+					
+					Map_AddTimer("escalation", 3.5f, "Escalation");
+					Map_AddTimer("ShutdownSimulation", 8.0f, "ShutdownSimulation");
+					Map_AddTimer("ScreenFX", 7.0f, "ScreenFX");
+					Map_AddTimer("HeartStressDelay", 4.5f, "HeartStressDelay");
+				}
+			}
+			else if (asSubject=="3_AliceScanRoom_3")
+			{
+				if (abStartOfSubject)
+				{
+					Map_AddTimer("sit_panic",0.1f,"TimerBrandonSetMainAnimation");
+					Map_AddTimer("sit_panic_extra02",0.2f,"TimerBrandonPlayExtraAnimation");
+					
+					cLux_AddDebugMessage("Continue cameraanim");
+					
+					CameraAnimationNode_SetAutoMove("IntroAnim_1", 1);
+					CameraAnimationNode_SetAutoMove("IntroAnim_2", 1);
+				}
+				else
+				SequenceStates_Resume(msCurrentSequence);
+			}
+		}
+		
+		//-------------------------------------------------------
+		
+		void ShutdownSimulation(const tString &in asTimer)
+		{
+			// SET POWER OFF
+			Sound_PlayGui("02_06_theta_tunnels/sweeteners/lights_out", 1.0f);
+			Sound_PlayGui("02_06_theta_tunnels/sweeteners/lights_out_room_shake", 1.0f);
+			Sound_FadeGlobalVolume(0.6f, 0.75f, eSoundEntryType_World);
+			
+			// EFFECTS
+			Effect_Fade_Out(0.1f);
+			
+			Emotion_StopHeartbeat(mlHeartBeatID);
+			mbStressTrackerActive = false;
+			
+			Sound_StopGui("04_03_tau_escape/SFX/ross/conversation/tunnel/loop", 0.1f, false);
+			Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/stop", 0.2f);
+			
+			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.1f);
+			
+			// MUSIC IMPACT
+			Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);			
+			
+			Sound_FadeGlobalVolume(0.67f, 0.1f, eSoundEntryType_GuiWorld);
+			Sound_FadeGlobalVolume(0.67f, 0.75f, eSoundEntryType_WorldAll);
+			Map_AddTimer("StartWakeUp", 3.0f, "SequenceWakeUpStart");
+		}
+		
+		//-------------------------------------------------------
+		
+		void Escalation(const tString &in asTimer)
+		{
+			Sound_PlayGui("03_02_omicron_inside/SFX/escalation/escalation_event_01", 0.33);
+		}
+		
+		//-------------------------------------------------------
+		
+		void ScreenFX(const tString &in asTimer)
+		{
+			Effect_VideoDistortion_Start(.85f, 2.0f, 0.1f, 0.1f);
+		}
+		
+		void HeartStressDelay(const tString &in asTimer)
+		{
+			mlHeartBeatID = StressHeartBeep(0.65f, 0.4f, 1, 6.0f, true, 5.0f, 1.0f);
+			Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.5f);
+		}
+		
+		//-------------------------------------------------------
+		
+		//} End Brandon wakes up in the scan chair
+		
+		/////////////////////////////////////////
+		// *Brandon wakes up in the parallel world*
+		//{//////////////////////////////////////
+		
+		cSequenceStatesData mSequenceWakeUpStartState;
+		void SequenceWakeUpStart(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceWakeUpStart", mSequenceWakeUpStartState);
+			
+			if (Sequence_DoStepAndWait(4.0f))
+			{
+				cLux_AddDebugMessage("!! STARTING WAKE UP!!");
+				
+				Player_Teleport("Start_WakeUp");
+				Player_SetHealth(0.65f);
+				
+				Sound_FadeGlobalVolume(0.0f, 0.1f, eSoundEntryType_WorldAll);
+				
+				//Sound_FadeGlobalVolume(0.2f, 0.1f, eSoundEntryType_GuiWorld);
+				//Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
+				
+				// CATHERINE SPEAKS TO SIMON IN DARKNESS WHEN THEY'RE FINISHED WITH THE SCAN
+				
+				// Radial blur and imagetrail so catherine lamp lasts for several frames on screen
+				
+				// "01_01_interact_wauflower.ogg" - Screen back till waking up (on stinger open eyes) Fade in after 4-5 seconds
+				
+				// START CAMERA ANIMATION
+				
+				// The spinning of a fan
+				// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon loop in the background
+				
+				// PLAYER BLINKS -> LOOKING AT FAN  ORIGAMI ROTATE AND DANGLE
+				// PLAYER BLINKS -> ORIGAMI GONE -> DISTANT METRO SCORPION LIKE NOISES
+				// PLAYER BLINKS -> LOOKING AT FLOOR, PLAYER CAN NOW MOVE
+				
+				// Distant lights off - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
+				// After turn off 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon
+				
+				// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
+				
+				// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
+				// "01_01_interact_wauflower.ogg"
+				// "01_01_lightsout.ogg" - Discovering the bodies
+				// "01_01_talking_door.ogg" - Distant noise	
+				
+				// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
+			}
+			else if (Sequence_DoStepAndWait(0.0f))
+			{
+				Effect_Fade_In(3.0f);
+			}
+			Sequence_End();
+		}
+		
+		// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER LIGHT IS REVEALED
+				
+		// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP BEHIND THE PLAYER ALONG WITH ALL THE LIGHTS
+				
+		// 02_05_theta/sfx/soma_terminal/soma_start
+		// 02_05_theta/sfx/soma_terminal/soma_loop
+		// 02_05_theta/sfx/soma_terminal/soma_stop
+				
+		//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
+		//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
+		//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
+				
+		// soma_1_001_catherine_001
+		// soma_2_001_catherine_001
+		// soma_3_001_catherine_001
+		// soma_4_001_catherine_001
+				
+		// Catherine says these lines one after another (still need to edit them)
+		// All voice lines have a lower pitch (deep voice)
+		// The end of her final voice line "melts"--gets lower pitch like its corrupted
+				
+		// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
+				
+		// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
+		// "01_01_interact_wauflower.ogg"
+		// "01_01_lightsout.ogg" - Discovering the bodies
+		// "01_01_talking_door.ogg" - Distant noise	
+		
+		//} End Brandon wakes up in the parallel world
+		
+	//} END SCENE 1
+	
+	/////////////////////////////////////////
+	// ==============
+	// TERMINALS
+	// ==============
+	//{//////////////////////////////////////
+
+		//-------------------------------------------------------
+	
+		/////////////////////////////////////////
+		// Terminal *TERMINAL X*
+		//{//////////////////////////////////////
+		
+		//-------------------------------------------------------
+	
+		/*Put any variables that are only used Terminal here.*/
+	
+		//-------------------------------------------------------
+	
+		/*Put any functions that are only used Terminal here.*/
+	
+		//-------------------------------------------------------
+	
+		//} END Terminal *Name Of Terminal*
+	
+	//} END TERMINALS
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// AUDIO
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	//-------------------------------------------------------
+	
+	//} END AUDIO
+}
