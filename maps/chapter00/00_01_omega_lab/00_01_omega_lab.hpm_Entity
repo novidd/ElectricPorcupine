@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="74AC7B143DD60257C4A1E1F33870A9F12F073925" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="671">
+        <FileIndex_Entities NumOfFiles="677">
             <File Id="0" Path="entities/station/tech/computer_parts_xx/computer_parts_chassis_default.ent" />
             <File Id="1" Path="entities/station/tech/sensor_env_ceil_large/sensor_env_ceil_large.ent" />
             <File Id="2" Path="entities/character/robot/maintenance/maintenance_rigid.ent" />
@@ -672,6 +672,12 @@
             <File Id="668" Path="entities/station/special/02_06_elevator/02_06_elevator_hatch_nogravity.ent" />
             <File Id="669" Path="entities/station/lamp/ceiling_spot_hanging/ceiling_spot_hanging_short_sway.ent" />
             <File Id="670" Path="entities/station/lamp/fluorescent_ceil_cabin_large/fluorescent_ceil_cabin_large.ent" />
+            <File Id="671" Path="entities/robot/debris/wau_lump/wau_lump05.ent" />
+            <File Id="672" Path="entities/robot/debris/wau_lump/wau_lump06.ent" />
+            <File Id="673" Path="entities/robot/debris/wau_lump/wau_lump03.ent" />
+            <File Id="674" Path="entities/robot/debris/wau_lump/wau_lump02.ent" />
+            <File Id="675" Path="entities/robot/detail/wire_net/wire_net01.ent" />
+            <File Id="676" Path="entities/robot/special/tentacle_weapon_posable/tentacle_weapon_posable.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268436001" Name="02_02_apocalypse_screen_greengraph_1" CreStamp="1654726145" ModStamp="1654794036" WorldPos="-7 12.5 70.125" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="85" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 380 268436001">
@@ -9441,7 +9447,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440144" Name="slidedoor_large_bulkhead_vertical_2" CreStamp="1655657704" ModStamp="1655657716" WorldPos="0 -54 0" Rotation="0 0 0" Scale="0.75 1 0.75" FileIndex="435" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1400 268440144">
+            <Entity ID="268440144" Name="slidedoor_large_bulkhead_vertical_2" CreStamp="1655657704" ModStamp="1655755482" WorldPos="0 -54 0" Rotation="0 0 0" Scale="0.75 1 0.75" FileIndex="435" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1400 268440144">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9495,7 +9501,7 @@
                     <Var Name="OpenableByAgent" Value="true" />
                     <Var Name="InteractToOpen" Value="false" />
                     <Var Name="AutoCloseTime" Value="0" />
-                    <Var Name="OpenAmount" Value="0" />
+                    <Var Name="OpenAmount" Value="0.167" />
                 </UserVariables>
             </Entity>
             <Entity ID="268440184" Name="fluorescent_tube_slidedoor_medium_nosound_1" CreStamp="1655661780" ModStamp="1655674695" WorldPos="0 -42.7361 -0.276809" Rotation="0 0 0" Scale="1 1 1" FileIndex="413" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1461 268440184">
@@ -10703,6 +10709,61 @@
                     <Var Name="InteractToOpen" Value="false" />
                     <Var Name="AutoCloseTime" Value="0" />
                     <Var Name="OpenAmount" Value="1" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440471" Name="wau_lump02_1" CreStamp="1655749746" ModStamp="1655749870" WorldPos="-0.0939871 -50.75 4" Rotation="1.77688e-007 4.45059 -3.12494" Scale="1.5 1.5 1.5" FileIndex="674" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1277 268440471">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440472" Name="wau_lump02_2" CreStamp="1655749842" ModStamp="1655749868" WorldPos="-0.0939871 -49.75 4" Rotation="5.01539e-007 4.62006 -3.12494" Scale="1.059 1.2 1.2" FileIndex="673" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1401 268440472">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440473" Name="wau_lump02_3" CreStamp="1655749900" ModStamp="1655749950" WorldPos="-0.0939871 -52.5 4" Rotation="-1.5708 1.309 1.93237" Scale="1.059 1.2 1.2" FileIndex="673" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1389 268440473">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440477" Name="wau_lump02_5" CreStamp="1655750074" ModStamp="1655750095" WorldPos="-0.846629 -52.3595 4" Rotation="2.22832 1.4089 -2.14826" Scale="0.559 0.7 0.7" FileIndex="673" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1263 268440477">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440478" Name="wau_lump02_6" CreStamp="1655750138" ModStamp="1655750163" WorldPos="-1.03567 -52.3595 3.94937" Rotation="-1.44068 -0.682102 0.0669896" Scale="0.559 0.7 0.7" FileIndex="673" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1264 268440478">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
