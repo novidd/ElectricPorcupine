@@ -143,7 +143,8 @@ class cScrMap : iScrMap
 	
 	void Update(float afTimeStep)
 	{
-
+		// Do elevator tremors here
+		UpdateElevatorTremors();
 	}
 
 	//-------------------------------------------------------
@@ -199,7 +200,31 @@ class cScrMap : iScrMap
 	// MAIN FUNCTIONS
 	// ==============
 	//{///////////////////////////////////////////////////////////////////////////////////////
+	
+	///////////////////////////////
+	// Elevator Shaft Tremors
+	///////////////////////////////
+	
+	bool mbPlayerInElevatorShaft;
+	
+	void UpdateElevatorTremors()
+	{
+		// If player in elevator shaft then do shake/sway effects
+		// The rest of the code will always run
 		
+		if (mbPlayerInElevatorShaft)
+		{
+			cLux_AddDebugMessage("Player in elevator shaft");
+		}
+	}
+	
+	bool OnCollide_PlayerInElevatorShaft(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		mbPlayerInElevatorShaft = alState == 1;
+		
+		return true;
+	}
+	
 	///////////////////////////////
 	// Checkpoints
 	///////////////////////////////
