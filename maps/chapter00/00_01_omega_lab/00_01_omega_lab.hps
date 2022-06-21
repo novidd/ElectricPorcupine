@@ -144,7 +144,7 @@ class cScrMap : iScrMap
 	void Update(float afTimeStep)
 	{
 		// Do elevator tremors here
-		UpdateElevatorTremors();
+		UpdateElevatorTremors(afTimeStep);
 	}
 
 	//-------------------------------------------------------
@@ -187,10 +187,36 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
+	tString msMessageText = "";
+	float mfMessageTimer = 0.0f;
+	
+	void DrawText(const tString asString, float afTime = 2.0f)
+	{
+		msMessageText = asString;
+		mfMessageTimer = afTime;
+	}
+	
 	void OnGui(float afTimeStep)
 	{
-		// ADD SO CURRENT POWERSTAGE ID IS PRINTED ON SCREEN -- MOVE TO ONGUI FUNC
-		// ADD SO THE TEXT SAYS "On", "Off", "Unreliable", "Flicker" DEPENDING ON THE STATE
+		if (cLux_ScriptDebugOn() == false) return;
+		
+		cImGuiFont textLineFont;
+		textLineFont.mvSize = ImGui_NrmSizeKeepRatio(0.02f);
+		textLineFont.mColor = cColor(1.0f, 1.0f, 0.0f, 1.0f);
+		// TA: TremorsAllowed, TUE: TimeUntilTremor, PIES: PlayerInElevatorShaft, 
+		ImGui_DrawFontW("TA: " + mbTremorsAllowed + ", TUE: " + (mfTimeRunTremor - mfTremorCounter) + ", PIES: " + mbPlayerInElevatorShaft, textLineFont, ImGui_NrmPos(0.72f, 0.95f, 0.1f), eFontAlign_Left);
+		
+		if (mfMessageTimer > 0.0f)
+		{
+			mfMessageTimer -= afTimeStep;
+			
+			cImGuiTextFrameData textData;
+			textData.mColorBase = cColor(0.0f, 0.0f, 0.0f, 0.0f);
+			textData.mFont.mvSize = cVector2f(20.0f, 20.0f);
+			textData.mFontAlign = eFontAlign_Center;
+			
+			ImGui_DoTextFrameExt(msMessageText, cVector2f(0.0f, 0.0f), 0.0f, 0.0f, textData, cVector3f(0.0f, ImGui_GetSize().y / 2.0f, 1.0f), cVector2f(ImGui_GetSize().x - 450.0f, 500.0f));
+		}
 	}
  
 	//} END MAIN CALLBACKS
@@ -206,15 +232,44 @@ class cScrMap : iScrMap
 	///////////////////////////////
 	
 	bool mbPlayerInElevatorShaft;
+	bool mbElevatorPowerOn = true;
+	bool mbTremorsAllowed = true;
 	
-	void UpdateElevatorTremors()
+	float mfTimeRunTremor = cMath_RandRectf(4.35f, 11.5f);
+	float mfTremorCounter = 0;
+	
+	void UpdateElevatorTremors(float afTimeStep)
 	{
-		// If player in elevator shaft then do shake/sway effects
-		// The rest of the code will always run
+		mfTremorCounter+=afTimeStep;
 		
-		if (mbPlayerInElevatorShaft)
+		if (mbTremorsAllowed)
 		{
-			cLux_AddDebugMessage("Player in elevator shaft");
+			if (mfTremorCounter >= mfTimeRunTremor)
+			{
+				cLux_AddDebugMessage("Start tremor event");
+				
+				mfTimeRunTremor = cMath_RandRectf(25.0f, 35.f);
+				mfTremorCounter = 0;
+				
+				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy_quieter
+				// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
+				Sound_PlayGui("level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy_quieter", 1.0f);
+				
+				// Do dust sound effect on timer
+				
+				// Always make the red guidelighs flicker even if power off
+				
+				// Made the lights flicker if elevator shaft power on
+				if (mbElevatorPowerOn)
+				{
+					
+				}
+				// If player in elevator shaft then do shake/sway effects
+				if (mbPlayerInElevatorShaft)
+				{
+					cLux_AddDebugMessage("Player in elevator shaft");
+				}	
+			}
 		}
 	}
 	
