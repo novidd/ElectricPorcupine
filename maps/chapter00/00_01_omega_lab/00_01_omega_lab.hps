@@ -171,6 +171,7 @@ class cScrMap : iScrMap
 		if(alAction == eAction_Test2)
 		{
 			Lamp_SetLit("elevatorshaft_power_elevatorlamp_*", false, false);
+			ParticleSystem_SetBrightness("elevatorlamp_ps", 0.0f);
 			LensFlare_SetVisible("elevatorlamp_flare_*", false);
 		}
 	}
@@ -254,7 +255,9 @@ class cScrMap : iScrMap
 				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy_quieter
 				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
 				// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
+				
 				Sound_PlayGui("level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", 0.75f);
+				// After shock rattling on timer
 				
 				// Do dust sound effect on timer
 				
