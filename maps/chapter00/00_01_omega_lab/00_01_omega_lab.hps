@@ -232,7 +232,7 @@ class cScrMap : iScrMap
 	// Elevator Shaft Tremors
 	///////////////////////////////
 	
-	bool mbPlayerInElevatorShaft;
+	bool mbPlayerInElevatorShaft = false;
 	bool mbElevatorPowerOn = true;
 	bool mbTremorsAllowed = true;
 	
@@ -256,8 +256,6 @@ class cScrMap : iScrMap
 				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
 				// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
 				
-				Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "ElevatorShaftGroan");
-				
 				// After shock rattling on timer
 				
 				// Do dust sound effect on timer
@@ -272,8 +270,13 @@ class cScrMap : iScrMap
 				// If player in elevator shaft then do shake/sway effects
 				if (mbPlayerInElevatorShaft)
 				{
+					Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "ElevatorShaftGroan");
 					cLux_AddDebugMessage("Player in elevator shaft");
-				}	
+				}
+				else
+				{
+					// DO OTHER TREMORS FOR OTHER LOCATIONS IN THE GAME
+				}
 			}
 		}
 	}
@@ -386,22 +389,48 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	bool mbFirstTimeOpenMaintenanceBulkhead = true;
+	bool mbFirstMaintenanceBulkheadInteract = true;
 		
 	void MaintenanceBulkStateChange(const tString &in asEntity, int alState)
 	{
-		cLux_AddDebugMessage("Maintenance Door State: "+alState);
-		
-		if (alState == 1 && mbFirstTimeOpenMaintenanceBulkhead)
+		if (alState == 1 && mbFirstMaintenanceBulkheadInteract)
 		{
-			mbFirstTimeOpenMaintenanceBulkhead = false;
-			Map_AddTimer("", 3.0f, "OnTimer_DistantMonster");
+			mbFirstMaintenanceBulkheadInteract = false;
+			
+			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
+			Map_AddTimer("first", 2.5f, "BulkheadStutter");
 		}
 	}
 	
-	void OnTimer_DistantMonster(const tString &in asTimer)
+	void BulkheadStutter(const tString &in asTimer)
 	{
-		// Ontimer play distant monster noise
+		if (asTimer == "first")
+		{
+			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.525f);
+			Map_AddTimer("second", 0.15f, "BulkheadStutter");
+		}
+		if (asTimer == "second")
+		{
+			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
+			Entity_SetActive("MaintenanceBulkheadCrawlArea", true);
+		}
+	}
+	
+	//-------------------------------------------------------
+	
+	bool OnColOnCollide_AkersBreakCable(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		Sound_CreateAtEntity("AkersSound", "02_06_theta_tunnels/sweeteners/akers_stuff/akers_vent", "AkersSoundSource");
+		
+		// DO SUDDEN POWER OUTAGE
+		// SCREEN PITCH BLACK
+		// DO SHAKES
+		// START THE CABLE FLICKERING
+		// ADD DUST PARTICLES ABOVE THE FLOOR BY CABLE
+		//Entity_SetActive("MaintenanceBulkheadCrawlArea", false);
+		
+		Map_AddTimer("MaintenanceFear", 2.0f, "MaintenanceFearSound");
+		return false;
 	}
 	
 	void MaintenanceFearSound(const tString &in asTimer)
