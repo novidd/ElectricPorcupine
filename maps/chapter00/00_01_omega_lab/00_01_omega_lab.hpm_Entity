@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="74AC7B143DD60257C4A1E1F33870A9F12F073925" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="682">
+        <FileIndex_Entities NumOfFiles="684">
             <File Id="0" Path="entities/station/tech/computer_parts_xx/computer_parts_chassis_default.ent" />
             <File Id="1" Path="entities/station/tech/sensor_env_ceil_large/sensor_env_ceil_large.ent" />
             <File Id="2" Path="entities/character/robot/maintenance/maintenance_rigid.ent" />
@@ -683,6 +683,8 @@
             <File Id="679" Path="entities/station/special/01_04_amy_cable/01_04_amy_cable02.ent" />
             <File Id="680" Path="entities/station/cables/lab_cable_thick_posable/lab_cable_thick_posable.ent" />
             <File Id="681" Path="entities/robot/cables/sleved_open_animated01_sound_long_falloff.ent" />
+            <File Id="682" Path="entities/station/lamp/wall_medium/wall_medium_flare.ent" />
+            <File Id="683" Path="entities/station/lamp/wall_medium/wall_medium_nolight.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268436001" Name="02_02_apocalypse_screen_greengraph_1" CreStamp="1654726145" ModStamp="1654794036" WorldPos="-7 12.5 70.125" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="85" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 380 268436001">
@@ -8867,7 +8869,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440087" Name="elevatorshaft_power_guidelight_1" CreStamp="1655651282" ModStamp="1655757376" WorldPos="-2.71509 -52.75 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 467 268440087">
+            <Entity ID="268440087" Name="elevatorshaft_power_guidelight_1" CreStamp="1655651282" ModStamp="1656170717" WorldPos="-2.71509 -52.75 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 467 268440087">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -8908,7 +8910,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_1" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -8932,7 +8934,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440088" Name="elevatorshaft_power_guidelight_2" CreStamp="1655651354" ModStamp="1655757382" WorldPos="-2.71509 -50 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 141 268440088">
+            <Entity ID="268440088" Name="elevatorshaft_power_guidelight_2" CreStamp="1655651354" ModStamp="1656170723" WorldPos="-2.71509 -50 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 141 268440088">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -8973,7 +8975,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_2" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -8997,7 +8999,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440089" Name="elevatorshaft_power_guidelight_3" CreStamp="1655651365" ModStamp="1655757386" WorldPos="-2.71509 -47.5 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 142 268440089">
+            <Entity ID="268440089" Name="elevatorshaft_power_guidelight_3" CreStamp="1655651365" ModStamp="1656170726" WorldPos="-2.71509 -47.5 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 142 268440089">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9038,7 +9040,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_3" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -9062,7 +9064,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440090" Name="elevatorshaft_power_guidelight_4" CreStamp="1655651370" ModStamp="1655757390" WorldPos="-2.71509 -44.75 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 138 268440090">
+            <Entity ID="268440090" Name="elevatorshaft_power_guidelight_4" CreStamp="1655651370" ModStamp="1656170730" WorldPos="-2.71509 -44.75 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 138 268440090">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9103,7 +9105,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_4" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -9127,7 +9129,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440091" Name="elevatorshaft_power_guidelight_5" CreStamp="1655651378" ModStamp="1655757402" WorldPos="-2.71509 -42 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 139 268440091">
+            <Entity ID="268440091" Name="elevatorshaft_power_guidelight_5" CreStamp="1655651378" ModStamp="1656170739" WorldPos="-2.71509 -42 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 139 268440091">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9168,7 +9170,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_5" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -9192,7 +9194,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440092" Name="elevatorshaft_power_guidelight_6" CreStamp="1655651382" ModStamp="1655757406" WorldPos="-2.71509 -39.5 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 137 268440092">
+            <Entity ID="268440092" Name="elevatorshaft_power_guidelight_6" CreStamp="1655651382" ModStamp="1656170756" WorldPos="-2.71509 -39.5 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 137 268440092">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9233,7 +9235,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_6" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -9257,7 +9259,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440093" Name="elevatorshaft_power_guidelight_7" CreStamp="1655651389" ModStamp="1655757413" WorldPos="-2.71509 -36.75 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 135 268440093">
+            <Entity ID="268440093" Name="elevatorshaft_power_guidelight_7" CreStamp="1655651389" ModStamp="1656170766" WorldPos="-2.71509 -36.75 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 135 268440093">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9298,7 +9300,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_7" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -9322,7 +9324,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440094" Name="elevatorshaft_power_guidelight_8" CreStamp="1655651402" ModStamp="1655757418" WorldPos="-2.71509 -34 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 136 268440094">
+            <Entity ID="268440094" Name="elevatorshaft_power_guidelight_8" CreStamp="1655651402" ModStamp="1656170769" WorldPos="-2.71509 -34 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 136 268440094">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9363,7 +9365,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_8" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -9387,7 +9389,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440095" Name="elevatorshaft_power_guidelight_9" CreStamp="1655651405" ModStamp="1655757422" WorldPos="-2.71509 -31.5 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 134 268440095">
+            <Entity ID="268440095" Name="elevatorshaft_power_guidelight_9" CreStamp="1655651405" ModStamp="1656170775" WorldPos="-2.71509 -31.5 0.375" Rotation="3.14159 3.14159 1.5708" Scale="1 1 1" FileIndex="72" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 134 268440095">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9428,7 +9430,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="elevatorshaft_power_guidelight_light_9" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -9452,7 +9454,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440144" Name="bulkhead_maintenance" CreStamp="1655657704" ModStamp="1656162247" WorldPos="0 -54 -0.130859" Rotation="0 0 0" Scale="0.75 1 0.75" FileIndex="435" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1400 268440144">
+            <Entity ID="268440144" Name="bulkhead_maintenance" CreStamp="1655657704" ModStamp="1656171350" WorldPos="0 -54 -0.125" Rotation="0 0 0" Scale="0.75 1 0.75" FileIndex="435" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1400 268440144">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -10950,7 +10952,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440832" Name="block_box_1" CreStamp="1656167711" ModStamp="1656167748" WorldPos="-2.5 -53.25 -1.75" Rotation="0 0 0" Scale="1 1.25 1" FileIndex="433" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1802 268440832">
+            <Entity ID="268440838" Name="wall_medium_1" CreStamp="1656168882" ModStamp="1656170585" WorldPos="0 -50.3049 -0.5" Rotation="-0.785398 -0 0" Scale="1 1 1" FileIndex="404" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1725 268440838">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -10962,10 +10964,10 @@
                     <Var Name="InteractionDisabled" Value="false" />
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="ColorMul" Value="1 1 1 1" />
-                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectColorMul" Value="0.97254908084869385 0.82352948188781738 0.58823531866073608 1" />
                     <Var Name="EffectBrightnessMul" Value="1" />
-                    <Var Name="IllumColor" Value="1 1 1 1" />
-                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IllumColor" Value="0.97254908084869385 0.82352948188781738 0.58823531866073608 1" />
+                    <Var Name="IllumBrightness" Value="1.3" />
                     <Var Name="IsAffectedByDecal" Value="false" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="UpdateBonesWhenCulled" Value="false" />
@@ -10991,7 +10993,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="bulkhead_maintenance_light_*" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -11001,8 +11003,18 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="CanInteractWithoutCallback" Value="false" />
-                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                    <Var Name="Lit" Value="false" />
+                    <Var Name="FlickerActive" Value="false" />
+                    <Var Name="UseCustomFlickerSettings" Value="false" />
+                    <Var Name="FlickerMinOnTime" Value="0.05" />
+                    <Var Name="FlickerMaxOnTime" Value="1" />
+                    <Var Name="FlickerMinOffTime" Value="0.025" />
+                    <Var Name="FlickerMaxOffTime" Value="0.15" />
+                    <Var Name="FlickerFade" Value="false" />
+                    <Var Name="FlickerOnSound" Value="" />
+                    <Var Name="FlickerOffSound" Value="" />
+                    <Var Name="FlickerOnPS" Value="" />
+                    <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
