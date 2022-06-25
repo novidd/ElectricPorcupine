@@ -71,6 +71,18 @@ class cScrMap : iScrMap
 
 	void PreloadData()
 	{
+		///////////////
+		// Preload particles
+		ParticleSystem_Preload("elec_spark_lightning_oneshot_small.ps");
+		ParticleSystem_Preload("elec_spark_physics_oneshot.ps");
+		ParticleSystem_Preload("splash_continuous_small.ps");
+		ParticleSystem_Preload("splash_continuous_small.ps");
+		ParticleSystem_Preload("spray_cone_airlockpipe_broken.ps");
+		ParticleSystem_Preload("spray_shower.ps");
+		ParticleSystem_Preload("fog_ambient_light_soft.ps");
+		ParticleSystem_Preload("drops_small_continuous.ps");
+		ParticleSystem_Preload("drops_med_continuous_collision.ps");
+		
 		PlayerHands_PreloadHandModel_DeepSea();
 	}
 	
@@ -90,6 +102,7 @@ class cScrMap : iScrMap
 		/////////////////////////
 		// Level setup
 		//Map_Preset_Fade("Ocean", 0.001f);
+		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", false);
 		
 		bool bDoIntro = true;
 		
@@ -393,27 +406,41 @@ class cScrMap : iScrMap
 		
 	void MaintenanceBulkStateChange(const tString &in asEntity, int alState)
 	{
+		
+		// Break the panel
+		//Sound_CreateAtEntity("LightSnapping", "", "PanelBreakSound", 0.0f, false, 1.0f);
+		
+		// Run this code below when the player pulls out the cord
 		if (alState == 1 && mbFirstMaintenanceBulkheadInteract)
 		{
 			mbFirstMaintenanceBulkheadInteract = false;
 			
 			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
-			Map_AddTimer("first", 2.5f, "BulkheadStutter");
+			Map_AddTimer("", 2.75f, "SequenceBulkheadStutter");
 		}
 	}
 	
-	void BulkheadStutter(const tString &in asTimer)
+	cSequenceStatesData mSequenceBulkheadStutterState;
+	void SequenceBulkheadStutter(const tString &in asTimer)
 	{
-		if (asTimer == "first")
+		Sequence_Begin("SequenceBulkheadStutter", mSequenceBulkheadStutterState);
+		
+		if (Sequence_DoStepAndWait(0.15f))
 		{
 			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.525f);
-			Map_AddTimer("second", 0.15f, "BulkheadStutter");
+			
+			// ADD SPARK SOUND EFFECT
 		}
-		if (asTimer == "second")
+		else if (Sequence_DoStepAndWait(0.15f))
 		{
 			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
 			Entity_SetActive("MaintenanceBulkheadCrawlArea", true);
 		}
+		else if (Sequence_DoStepAndWait(0.15f))
+		{
+			Sound_CreateAtEntity("BulkheadGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "bulkhead_maintenance");
+		}
+		Sequence_End();
 	}
 	
 	//-------------------------------------------------------
