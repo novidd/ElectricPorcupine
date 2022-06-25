@@ -9452,7 +9452,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440144" Name="slidedoor_large_bulkhead_vertical_2" CreStamp="1655657704" ModStamp="1655760858" WorldPos="0 -54 -0.130859" Rotation="0 0 0" Scale="0.75 1 0.75" FileIndex="435" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1400 268440144">
+            <Entity ID="268440144" Name="bulkhead_maintenance" CreStamp="1655657704" ModStamp="1656162247" WorldPos="0 -54 -0.130859" Rotation="0 0 0" Scale="0.75 1 0.75" FileIndex="435" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1400 268440144">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9484,7 +9484,7 @@
                     <Var Name="RecieveMessageCallback" Value="" />
                     <Var Name="CC_Entities" Value="" />
                     <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntity" Value="bulkhead_maintenance_panel" />
                     <Var Name="ConnectedEntityInvertState" Value="false" />
                     <Var Name="ConnectedEntityStatesUsed" Value="0" />
                     <Var Name="ParentAttachEntity" Value="" />
@@ -10771,7 +10771,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440639" Name="panel_large_inside_1" CreStamp="1655758417" ModStamp="1655760858" WorldPos="1.15045 -52.6818 0.119141" Rotation="0 0 0" Scale="1 1 1" FileIndex="677" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1728 268440639">
+            <Entity ID="268440639" Name="bulkhead_maintenance_panel" CreStamp="1655758417" ModStamp="1656162345" WorldPos="1.15045 -52.6818 0.119141" Rotation="0 0 0" Scale="1 1 1" FileIndex="677" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1728 268440639">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -10791,7 +10791,7 @@
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="UpdateBonesWhenCulled" Value="false" />
                     <Var Name="OnBreakCallbackFunc" Value="" />
-                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="MaintenanceBulkStateChange" />
                     <Var Name="PlayerLookAtCallback" Value="" />
                     <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
                     <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
@@ -10803,7 +10803,7 @@
                     <Var Name="RecieveMessageCallback" Value="" />
                     <Var Name="CC_Entities" Value="" />
                     <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntity" Value="bulkhead_maintenance" />
                     <Var Name="ConnectedEntityInvertState" Value="false" />
                     <Var Name="ConnectedEntityStatesUsed" Value="0" />
                     <Var Name="ParentAttachEntity" Value="" />
@@ -10895,7 +10895,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440680" Name="sleved_open_animated01_sound_long_falloff_1" CreStamp="1655826714" ModStamp="1655826722" WorldPos="0 -54 -10" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="681" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1562 268440680">
+            <Entity ID="268440680" Name="sleved_open_animated01_sound_long_falloff_1" CreStamp="1655826714" ModStamp="1656163021" WorldPos="4.75 -50 -13.5" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="681" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1562 268440680">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />

@@ -256,7 +256,8 @@ class cScrMap : iScrMap
 				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
 				// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
 				
-				Sound_PlayGui("level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", 0.75f);
+				Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "ElevatorShaftGroan");
+				
 				// After shock rattling on timer
 				
 				// Do dust sound effect on timer
@@ -298,92 +299,119 @@ class cScrMap : iScrMap
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
-		/////////////////////////////////////////
-		// *Brandon wakes up in the bottom of the elevator shaft*
-		//{//////////////////////////////////////
+	/////////////////////////////////////////
+	// *Brandon wakes up in the bottom of the elevator shaft*
+	//{//////////////////////////////////////
 		
-		//-------------------------------------------------------
+	//-------------------------------------------------------
 		
-		cSequenceStatesData mSequenceWakeUpStartState;
-		void SequenceWakeUpStart(const tString &in asTimer)
+	cSequenceStatesData mSequenceWakeUpStartState;
+	void SequenceWakeUpStart(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceWakeUpStart", mSequenceWakeUpStartState);
+		
+		if (Sequence_DoStepAndWait(4.0f))
 		{
-			Sequence_Begin("SequenceWakeUpStart", mSequenceWakeUpStartState);
+			cLux_AddDebugMessage("!! STARTING WAKE UP!!");
+				
+			Player_Teleport("Start_WakeUp");
+			Player_SetHealth(0.65f);
 			
-			if (Sequence_DoStepAndWait(4.0f))
-			{
-				cLux_AddDebugMessage("!! STARTING WAKE UP!!");
-				
-				Player_Teleport("Start_WakeUp");
-				Player_SetHealth(0.65f);
-				
-				Sound_FadeGlobalVolume(0.0f, 0.1f, eSoundEntryType_WorldAll);
-				
-				//Sound_FadeGlobalVolume(0.2f, 0.1f, eSoundEntryType_GuiWorld);
-				//Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
-				
-				// CATHERINE SPEAKS TO SIMON IN DARKNESS WHEN THEY'RE FINISHED WITH THE SCAN
-				
-				// Radial blur and imagetrail so catherine lamp lasts for several frames on screen
-				
-				// "01_01_interact_wauflower.ogg" - Screen back till waking up (on stinger open eyes) Fade in after 4-5 seconds
-				
-				// START CAMERA ANIMATION
-				
-				// The spinning of a fan
-				// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon loop in the background
-				
-				// PLAYER BLINKS -> LOOKING AT FAN  ORIGAMI ROTATE AND DANGLE
-				// PLAYER BLINKS -> ORIGAMI GONE -> DISTANT METRO SCORPION LIKE NOISES
-				// PLAYER BLINKS -> LOOKING AT FLOOR, PLAYER CAN NOW MOVE
-				
-				// Distant lights off - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
-				// After turn off 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon
-				
-				// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
-				
-				// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
-				// "01_01_interact_wauflower.ogg"
-				// "01_01_lightsout.ogg" - Discovering the bodies
-				// "01_01_talking_door.ogg" - Distant noise	
-				
-				// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
-			}
-			else if (Sequence_DoStepAndWait(0.0f))
-			{
-				Effect_Fade_In(3.0f);
-			}
-			Sequence_End();
+			Sound_FadeGlobalVolume(0.0f, 0.1f, eSoundEntryType_WorldAll);
+			
+			//Sound_FadeGlobalVolume(0.2f, 0.1f, eSoundEntryType_GuiWorld);
+			//Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
+			
+			// CATHERINE SPEAKS TO SIMON IN DARKNESS WHEN THEY'RE FINISHED WITH THE SCAN
+			
+			// Radial blur and imagetrail so catherine lamp lasts for several frames on screen
+			
+			// "01_01_interact_wauflower.ogg" - Screen back till waking up (on stinger open eyes) Fade in after 4-5 seconds
+			
+			// START CAMERA ANIMATION
+			
+			// The spinning of a fan
+			// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon loop in the background
+			
+			// PLAYER BLINKS -> LOOKING AT FAN  ORIGAMI ROTATE AND DANGLE
+			// PLAYER BLINKS -> ORIGAMI GONE -> DISTANT METRO SCORPION LIKE NOISES
+			// PLAYER BLINKS -> LOOKING AT FLOOR, PLAYER CAN NOW MOVE
+			
+			// Distant lights off - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
+			// After turn off 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon
+			
+			// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
+			
+			// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
+			// "01_01_interact_wauflower.ogg"
+			// "01_01_lightsout.ogg" - Discovering the bodies
+			// "01_01_talking_door.ogg" - Distant noise	
+			
+			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
 		}
+		else if (Sequence_DoStepAndWait(0.0f))
+		{
+			Effect_Fade_In(3.0f);
+		}
+		Sequence_End();
+	}
 		
-		// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER LIGHT IS REVEALED
+	// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER LIGHT IS REVEALED
 				
-		// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP BEHIND THE PLAYER ALONG WITH ALL THE LIGHTS
+	// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP BEHIND THE PLAYER ALONG WITH ALL THE LIGHTS
 				
-		// 02_05_theta/sfx/soma_terminal/soma_start
-		// 02_05_theta/sfx/soma_terminal/soma_loop
-		// 02_05_theta/sfx/soma_terminal/soma_stop
+	// 02_05_theta/sfx/soma_terminal/soma_start
+	// 02_05_theta/sfx/soma_terminal/soma_loop
+	// 02_05_theta/sfx/soma_terminal/soma_stop
 				
-		//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
-		//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
-		//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
+	//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
+	//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
+	//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
 				
-		// soma_1_001_catherine_001
-		// soma_2_001_catherine_001
-		// soma_3_001_catherine_001
-		// soma_4_001_catherine_001
+	// soma_1_001_catherine_001
+	// soma_2_001_catherine_001
+	// soma_3_001_catherine_001
+	// soma_4_001_catherine_001
 				
-		// Catherine says these lines one after another (still need to edit them)
-		// All voice lines have a lower pitch (deep voice)
-		// The end of her final voice line "melts"--gets lower pitch like its corrupted
+	// Catherine says these lines one after another (still need to edit them)
+	// All voice lines have a lower pitch (deep voice)
+	// The end of her final voice line "melts"--gets lower pitch like its corrupted
 				
-		// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
+	// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
 				
-		// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
-		// "01_01_interact_wauflower.ogg"
-		// "01_01_lightsout.ogg" - Discovering the bodies
-		// "01_01_talking_door.ogg" - Distant noise	
+	// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
+	// "01_01_interact_wauflower.ogg"
+	// "01_01_lightsout.ogg" - Discovering the bodies
+	// "01_01_talking_door.ogg" - Distant noise	
+	
+	//-------------------------------------------------------
+	
+	bool mbFirstTimeOpenMaintenanceBulkhead = true;
 		
-		//} End Brandon wakes up in the bottom of the elevator shaft
+	void MaintenanceBulkStateChange(const tString &in asEntity, int alState)
+	{
+		cLux_AddDebugMessage("Maintenance Door State: "+alState);
+		
+		if (alState == 1 && mbFirstTimeOpenMaintenanceBulkhead)
+		{
+			mbFirstTimeOpenMaintenanceBulkhead = false;
+			Map_AddTimer("", 3.0f, "OnTimer_DistantMonster");
+		}
+	}
+	
+	void OnTimer_DistantMonster(const tString &in asTimer)
+	{
+		// Ontimer play distant monster noise
+	}
+	
+	void MaintenanceFearSound(const tString &in asTimer)
+	{
+		Depth_Audio_Fear_MediumIntensity();
+	}
+	
+	//-------------------------------------------------------
+	
+	//} End Brandon wakes up in the bottom of the elevator shaft
 		
 	//} END SCENE 1
 	
