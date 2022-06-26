@@ -217,8 +217,8 @@ class cScrMap : iScrMap
 		cImGuiFont textLineFont;
 		textLineFont.mvSize = ImGui_NrmSizeKeepRatio(0.02f);
 		textLineFont.mColor = cColor(1.0f, 1.0f, 0.0f, 1.0f);
-		// TA: TremorsAllowed, TUE: TimeUntilTremor, PIES: PlayerInElevatorShaft, 
-		ImGui_DrawFontW("TA: " + mbTremorsAllowed + ", TUE: " + (mfTimeRunTremor - mfTremorCounter) + ", PIES: " + mbPlayerInElevatorShaft, textLineFont, ImGui_NrmPos(0.72f, 0.95f, 0.1f), eFontAlign_Left);
+		// ETA: mbElevatorTremorsAllowed, TUE: TimeUntilTremor, PIES: PlayerInElevatorShaft, 
+		ImGui_DrawFontW("ETA: " + mbElevatorTremorsAllowed + ", TUE: " + (mfTimeRunTremor - mfTremorCounter) + ", PIES: " + mbPlayerInElevatorShaft, textLineFont, ImGui_NrmPos(0.72f, 0.95f, 0.1f), eFontAlign_Left);
 		
 		if (mfMessageTimer > 0.0f)
 		{
@@ -251,6 +251,8 @@ class cScrMap : iScrMap
 	
 	float mfTimeRunTremor = cMath_RandRectf(4.35f, 11.5f);
 	float mfTremorCounter = 0;
+	
+	float mfElevatorTremorID = -1;
 	
 	void UpdateElevatorTremors(float afTimeStep)
 	{
