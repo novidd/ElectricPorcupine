@@ -84,6 +84,7 @@ class cScrMap : iScrMap
 		ParticleSystem_Preload("drops_med_continuous_collision.ps");
 		
 		PlayerHands_PreloadHandModel_DeepSea();
+		PlayerHands_PreloadHandModel_Diving();
 	}
 	
 	//-------------------------------------------------------
@@ -95,18 +96,13 @@ class cScrMap : iScrMap
 		/////////////////////////
 		// Player setup
 		Player_SetAmbientLight_Indoors();
-		PlayerHands_SetHandModel_DeepSea();
-		
-		Player_SetFlashlightDisabled(true);
+		PlayerHands_SetHandModel_Diving();
 		
 		/////////////////////////
 		// Level setup
-		//Map_Preset_Fade("Ocean", 0.001f);
 		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", false);
 		
 		bool bDoIntro = true;
-		
-		Player_SetHealth(0.75f);
 		
 		////////////////////
 		//Audio
@@ -115,7 +111,7 @@ class cScrMap : iScrMap
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			bDoIntro = false;
+			bDoIntro = true;
 			
 			Player_SetFlashlightDisabled(false);
 			
@@ -130,7 +126,10 @@ class cScrMap : iScrMap
 			Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
 			Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
 			
-			//Map_AddTimer("timer_kickoffintro", 0.01, "TimerKickoffIntro");
+			Player_SetFlashlightDisabled(true);
+			
+			SetupWakeUp();
+			Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
 		}
 	}
 
@@ -140,7 +139,7 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		//Player_SetFlashlightDisabled(false);
+		
 	}
 
 	//-------------------------------------------------------
@@ -156,7 +155,6 @@ class cScrMap : iScrMap
 	
 	void Update(float afTimeStep)
 	{
-		// Do elevator tremors here
 		UpdateElevatorTremors(afTimeStep);
 	}
 
@@ -327,10 +325,11 @@ class cScrMap : iScrMap
 		{
 			cLux_AddDebugMessage("!! STARTING WAKE UP!!");
 				
-			Player_Teleport("Start_WakeUp");
+			Player_Teleport("PlayerStartArea_1");
 			Player_SetHealth(0.65f);
 			
-			Sound_FadeGlobalVolume(0.0f, 0.1f, eSoundEntryType_WorldAll);
+			//Wake_SetAsleep(true);
+			//Effect_Flash_Start(0.25, 0.25, 0.5);
 			
 			//Sound_FadeGlobalVolume(0.2f, 0.1f, eSoundEntryType_GuiWorld);
 			//Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
@@ -364,10 +363,18 @@ class cScrMap : iScrMap
 			
 			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
 		}
-		else if (Sequence_DoStepAndWait(0.0f))
+		else if (Sequence_DoStepAndWait(1.0f))
 		{
 			Effect_Fade_In(3.0f);
+			
+			Sound_FadeGlobalVolume(0.45f, 3.0f);
 		}
+		else if (Sequence_DoStepAndWait(0.0f))
+		{
+			
+		}
+		
+		// WauBreak_Start();
 		Sequence_End();
 	}
 		
@@ -398,6 +405,129 @@ class cScrMap : iScrMap
 	// "01_01_interact_wauflower.ogg"
 	// "01_01_lightsout.ogg" - Discovering the bodies
 	// "01_01_talking_door.ogg" - Distant noise	
+	
+	//-------------------------------------------------------
+	
+	void SetupWakeUp()
+	{
+		Entity_PlayAnimation("SimonArms", "event_escape_coral_infection", 0.0, false, false);
+		Entity_SetAnimationPaused("SimonArms", "event_escape_coral_infection");
+	}
+	
+	//-------------------------------------------------------
+	
+	int mlCoralTrailID = 0;
+	int mlCoralDOF = 0;
+
+	void WauBreak_Start()
+	{
+		CameraAnimation_Begin("IntroEndAnim", "", false);
+		//mlCoralTrailID = Effect_ImageTrail_Start(3.0f,0.0f,-1,0.0f);
+		//mlCoralDOF = Effect_DoF_Start(0, 0.5, 1, 0);
+		EyeTracking_SetExtendedViewMul(0.0f);
+	}
+		
+	//-------------------------------------------------------
+		
+	bool OnBreakCoral(const tString &in asEntity, int alDirection)
+	{
+		CameraAnimation_End();
+		CoralBreak_PlayAnim();
+		CoralBreak_StartParticles();
+		Map_AddTimer("CoralRumble0", 0.5f, "Timer_CoralRumbleLongShake");
+		Map_AddTimer("CoralRumble1", 7.9f, "Timer_CoralRumbleMedium");
+		Map_AddTimer("CoralRumble2", 10.5f, "Timer_CoralRumbleLarge");
+		Map_AddTimer("CoralRumble2", 11.6f, "Timer_CoralRumbleMedium");
+		return false;
+	}
+		
+	//---------------------------------------------------------------------
+
+	void CoralBreak_StartParticles()
+	{
+		Map_AddTimer("CoralPSArea_1", 3.3f, "CoralBreak_TimerErupt");
+		Map_AddTimer("CoralPSArea_2", 3.8f, "CoralBreak_TimerErupt");
+		Map_AddTimer("CoralPSArea_3", 4.5f, "CoralBreak_TimerErupt");
+		Map_AddTimer("CoralPSArea_4", 5.5f, "CoralBreak_TimerErupt");
+		Map_AddTimer("CoralPSArea_5", 6.3f, "CoralBreak_TimerErupt");
+		Map_AddTimer("CoralPSArea_6", 6.7f, "CoralBreak_TimerErupt");
+	}
+		
+	void Timer_CoralRumbleLongShake(const tString&in asTimer)
+	{
+		Effect_Rumble_Start(0.25, 13, 3, 1);
+	}
+		
+	void Timer_CoralRumbleMedium(const tString&in asTimer)
+	{
+		Effect_Rumble_Start(0.8, 1, 0, 0.3);
+	}
+		
+	void Timer_CoralRumbleLarge(const tString&in asTimer)
+	{
+		Effect_Rumble_Start(1.5, 2, 0, 0.3);
+	}
+		
+	//---------------------------------------------------------------------
+		
+	void CoralBreak_TimerErupt(const tString& in asName)
+	{
+		ParticleSystem_CreateAtEntity(asName+"_PS", "mindcoral_escape.ps", asName, true);
+		Effect_Rumble_Start(0.6, 0.7f, 0.1f, 0.1f);
+	}
+		
+	//---------------------------------------------------------------------
+				
+	void CoralBreak_PlayAnim()
+	{					
+		PlayerHands_SetUseCustomPosition(true);
+		PlayerHands_SetCustomPositionFromEntity("CoralAnim");
+		PlayerHands_SetUseCustomRotation(true);	
+		PlayerHands_SetCustomRotationFromEntity("CoralAnim");
+		PlayerHands_PlayAnimation("event_escape_coral_infection",false,true,0.0f,"");
+		
+		Entity_SetActive("SimonArms", false);
+		PlayerHands_AttachCameraToSocket("Socket_Camera", 2.0f, "CoralBreak_CameraAttachDone", true,true,1.0f);
+	}
+	//---------------------------------------------------------------------
+	
+	void CoralBreak_CameraAttachDone()
+	{
+		PlayerHands_SetAnimationOverCallback("CoralBreak_HandAnimOver");
+		Effect_DoF_FadeOut(mlCoralDOF, 20.0f);
+		Effect_ImageTrail_FadeOut(mlCoralTrailID,25.0f);
+		Player_Teleport("CoralAnimEnd");
+	}
+		
+	//---------------------------------------------------------------------
+		
+	void CoralBreak_HandAnimOver(const tString&in asAnim)
+	{
+		Entity_SetActive("SimonDivingSuit", false);
+		Entity_SetActive("CoralBlock_*",true);
+		Map_AddTimer("CamBreak_TimerResetPos",5.0f,"CamBreak_TimerResetPos");
+		
+		Map_AddTimer("SimonCommentBreakOut", 1.0f, "SimonCommentsBreakOut");
+		Sound_FadeGlobalVolume(1.0f, 2.5f);
+		EyeTracking_SetExtendedViewMul(1.0f);
+	}
+				
+	//---------------------------------------------------------------------
+		
+	void SimonCommentsBreakOut(const tString &in asTimer)
+	{
+		Emotion_StartBackgroundBreath(eBreathType_Normal, 0.6f, 3, 8, 0, 3);
+	}
+	
+	//---------------------------------------------------------------------
+	
+	void CamBreak_TimerResetPos(const tString&in asName)
+	{
+		PlayerHands_SetUseCustomPosition(false);
+		PlayerHands_SetUseCustomRotation(false);	
+		
+		Game_AutoSave();
+	}
 	
 	//-------------------------------------------------------
 	
