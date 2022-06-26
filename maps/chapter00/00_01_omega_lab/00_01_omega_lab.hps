@@ -122,13 +122,13 @@ class cScrMap : iScrMap
 		
 		if (bDoIntro)
 		{
+			Effect_Fade_Out(0);
 			Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
 			Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
 			
 			Player_SetFlashlightDisabled(true);
 			
 			SetupWakeUp();
-			Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
 		}
 	}
 
@@ -175,7 +175,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			Lamp_SetLit("preairlock_*", false, false);
+			
 		}
 		
 		if(alAction == eAction_Test2)
@@ -246,7 +246,7 @@ class cScrMap : iScrMap
 	bool mbElevatorPowerOn = true;
 	bool mbElevatorTremorsAllowed = true;
 	
-	float mfTimeRunTremor = cMath_RandRectf(4.35f, 11.5f);
+	float mfTimeRunTremor = cMath_RandRectf(6.35f, 8.5f);
 	float mfTremorCounter = 0;
 	
 	float mfElevatorTremorID = -1;
@@ -317,6 +317,36 @@ class cScrMap : iScrMap
 	
 	int mlImageTrailID = -1;
 	int mlRadialBlurID = -1;
+	int mlDoFID = -1;
+	
+	void SetupWakeUp()
+	{
+		// Coral Animation
+		Entity_PlayAnimation("SimonArms", "event_escape_coral_infection", 0.0, false, false);
+		Entity_SetAnimationPaused("SimonArms", "event_escape_coral_infection");
+		
+		Player_Teleport("PlayerStartArea_1");
+		Player_SetHealth(0.15f);
+			
+		Wake_SetAsleep(true);
+		Effect_Fade_In(0.0f);
+			
+		CameraAnimation_Begin("IntroAnim", "", false);
+			
+		Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_WorldAll);
+		Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_GuiWorld);
+		
+		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.45f);
+		
+		// Effects
+		mlImageTrailID = Effect_ImageTrail_Start(1.0, 0.5, -1, 2);
+		mlRadialBlurID = Effect_RadialBlur_Start(0.5f, 0.55f, 0.35f, 0.5f);
+		mlDoFID = Effect_DoF_Start(4.0f, 8.0f, 0.5f, 0.0f);
+		
+		Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
+	}
+	
+	//-------------------------------------------------------
 		
 	cSequenceStatesData mSequenceWakeUpStartState;
 	void SequenceWakeUpStart(const tString &in asTimer)
@@ -326,70 +356,54 @@ class cScrMap : iScrMap
 		if (Sequence_DoStepAndWait(1.0f))
 		{
 			cLux_AddDebugMessage("!! STARTING WAKE UP!!");
-				
-			Player_Teleport("PlayerStartArea_1");
-			Player_SetHealth(0.65f);
-			Effect_Fade_Out(0);
-			
-			
-			
-			Entity_SetActive("origami_*", true);
-			
-			Wake_SetAsleep(true);
-			Effect_Fade_In(0.0f);
-			
-			CameraAnimation_Begin("IntroAnim", "", false);
-			
-			Sound_FadeGlobalVolume(0.45f, 12.0f);
-			
-			mlImageTrailID = Effect_ImageTrail_Start(1.0, 0.5, -1, 2);
-			mlRadialBlurID = Effect_RadialBlur_Start(0.5f, 0.55f, 0.35f, 0.5f);
-			
-			
-			//Sound_FadeGlobalVolume(0.2f, 0.1f, eSoundEntryType_GuiWorld);
-			//Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
 			
 			// CATHERINE SPEAKS TO SIMON IN DARKNESS WHEN THEY'RE FINISHED WITH THE SCAN
+			// Distant lights off exactly when catherine's final line ends - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
+			// Here throw the player into the WauBreak sequence without player control
+			// Run OnBreakCoral code instantly from here
 			
-			// Radial blur and imagetrail so catherine lamp lasts for several frames on screen
-			
-			// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
-			// "01_01_interact_wauflower.ogg"
-			// "01_01_lightsout.ogg" - Discovering the bodies
-			// "01_01_talking_door.ogg" - Distant noise	
-//			Music_PlayExt("", false, 0.25f, 1.0f, 9.0f, 0.0f, eMusicPrio_MinorEvent, false);
+			Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 6.0f, 0.0f, eMusicPrio_MinorEvent, false);
 			Music_PlayOverlay("01_01_interact_wauflower", 0.25f);
-			
-			// START CAMERA ANIMATION
-			
-			// The spinning of a fan
-			// 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon loop in the background
-			
-			// PLAYER BLINKS -> LOOKING AT FAN  ORIGAMI ROTATE AND DANGLE
-			// PLAYER BLINKS -> ORIGAMI GONE -> DISTANT METRO SCORPION LIKE NOISES
-			// PLAYER BLINKS -> LOOKING AT FLOOR, PLAYER CAN NOW MOVE
-			
-			// JANE UNRELIABLE POWER VOICE LINE
-			
-			// Distant lights off - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
-			// After turn off 02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon
-			
-			// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
-			
-			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
 		}
-		else if (Sequence_DoStepAndWait(12.0f))
+		else if (Sequence_DoStepAndWait(8.0f)) // 12.0f
 		{
 			Wake_StartWakeup(5.0f);
 			Effect_Flash_Start(2.5f, 1.0f, 3.5f);
 			
-			Sound_FadeGlobalVolume(0.45f, 3.0f);
+			Sound_FadeGlobalVolume(0.65f, 3.0f);
 		}
-		else if (Sequence_DoStepAndWait(0.5f))
+		else if (Sequence_DoStepAndWait(4.0f))
+		{
+			// HELPER JANE DISTANT UNRELIABLE POWER VOICE LINE
+		}
+		else if (Sequence_DoStepAndWait(1.5f))
 		{
 			Effect_Fade_Out(1.5f);
+			
+			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 1.f);
+			
+			Sound_FadeGlobalVolume(0.0f, 6.0f);
+			
+			// SOME STRANGE FLUTTERING SOUND EFFECT
+			
+			Player_SetHealth(0.65f);
+		}
+		else if (Sequence_DoStepAndWait(4.0f))
+		{
+			Player_SetHealth(0.5f);
+			
+			// EDIT THE SCREEN EFFECTS - KEEP THE SCREEN PRETTY MESSED UP TILL THE PLAYER INTERACTS WITH THE FLOWER
+			// IMAGE TRAIL
+			// RADIAL BLUR
+			// DOF
+			
+			Effect_Fade_In(0.1f);
+			
+			// HELPER JANE DISTANT UNRELIABLE POWER VOICE LINE
+			WauBreak_Start();
 		}
 		
+		// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
 		// WauBreak_Start();
 		Sequence_End();
 	}
@@ -414,32 +428,12 @@ class cScrMap : iScrMap
 	// Catherine says these lines one after another (still need to edit them)
 	// All voice lines have a lower pitch (deep voice)
 	// The end of her final voice line "melts"--gets lower pitch like its corrupted
-				
-	// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
-				
-	// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
-	// "01_01_interact_wauflower.ogg"
-	// "01_01_lightsout.ogg" - Discovering the bodies
-	// "01_01_talking_door.ogg" - Distant noise	
 	
 	//-------------------------------------------------------
 	
-	void SetupWakeUp()
-	{
-		Entity_PlayAnimation("SimonArms", "event_escape_coral_infection", 0.0, false, false);
-		Entity_SetAnimationPaused("SimonArms", "event_escape_coral_infection");
-	}
-	
-	//-------------------------------------------------------
-	
-	int mlCoralTrailID = 0;
-	int mlCoralDOF = 0;
-
 	void WauBreak_Start()
 	{
 		CameraAnimation_Begin("IntroEndAnim", "", false);
-		//mlCoralTrailID = Effect_ImageTrail_Start(3.0f,0.0f,-1,0.0f);
-		//mlCoralDOF = Effect_DoF_Start(0, 0.5, 1, 0);
 		EyeTracking_SetExtendedViewMul(0.0f);
 	}
 		
@@ -545,7 +539,11 @@ class cScrMap : iScrMap
 		Game_AutoSave();
 	}
 	
-	//-------------------------------------------------------
+	//} End Brandon wakes up in the bottom of the elevator shaft
+	
+	/////////////////////////////////////////
+	// *The player gets the power running*
+	//{//////////////////////////////////////
 	
 	bool mbFirstMaintenanceBulkheadInteract = true;
 		
@@ -615,11 +613,13 @@ class cScrMap : iScrMap
 	void wau_flower_elevator_Callback(const tString &in asEntity)
 	{
 		// TURN ON POWER FOR THE PANEL IF THE POWER GENERATOR IS ON TOO
+		
+		// DECREASE TO INTENSITY OF THE SCREEN EFFECTS FROM THE INTRO
 	}
 	
 	//-------------------------------------------------------
 	
-	//} End Brandon wakes up in the bottom of the elevator shaft
+	//} End The player gets the power running
 		
 	//} END SCENE 1
 	
