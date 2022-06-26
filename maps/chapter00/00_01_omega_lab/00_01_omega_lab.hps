@@ -365,69 +365,69 @@ class cScrMap : iScrMap
 			Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 6.0f, 0.0f, eMusicPrio_MinorEvent, false);
 			Music_PlayOverlay("01_01_interact_wauflower", 0.25f);
 		}
-		else if (Sequence_DoStepAndWait(8.0f)) // 12.0f
+		else if (Sequence_DoStepAndWait(5.0f)) // 12.0f
 		{
 			Wake_StartWakeup(5.0f);
 			Effect_Flash_Start(2.5f, 1.0f, 3.5f);
 			
-			Sound_FadeGlobalVolume(0.65f, 3.0f);
+			Sound_PlayGui("03_02_omicron_inside/SFX/sweetener/centre_room", 1.0f);
+			
+			Sound_FadeGlobalVolume(0.87f, 5.0f);
 		}
-		else if (Sequence_DoStepAndWait(4.0f))
+		else if (Sequence_DoStepAndWait(7.0f))
 		{
 			// HELPER JANE DISTANT UNRELIABLE POWER VOICE LINE
 		}
-		else if (Sequence_DoStepAndWait(1.5f))
+		else if (Sequence_DoStepAndWait(2.0f))
 		{
 			Effect_Fade_Out(1.5f);
 			
-			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 1.f);
+			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 1.f, true);
 			
-			Sound_FadeGlobalVolume(0.0f, 6.0f);
+			Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
+			
+			// HAVE A STINGER HERE AT ENDS AS THE SCREEN FADES OUT
+			// THEN START CATHERINE SPEAKING
 			
 			// SOME STRANGE FLUTTERING SOUND EFFECT
 			
+			// prewakeup_1_catherine_001
+			// prewakeup_1_catherine_002
+			// prewakeup_1_catherine_003 - Make this voice line melt at the end
+			
 			Player_SetHealth(0.65f);
 		}
-		else if (Sequence_DoStepAndWait(4.0f))
+		else if (Sequence_DoStepAndWait(4.5f))
 		{
-			Player_SetHealth(0.5f);
+			Player_SetHealth(0.35f);
+			Sound_FadeGlobalVolume(0.0f, 0.0f, eSoundEntryType_GuiWorld);
 			
 			// EDIT THE SCREEN EFFECTS - KEEP THE SCREEN PRETTY MESSED UP TILL THE PLAYER INTERACTS WITH THE FLOWER
 			// IMAGE TRAIL
 			// RADIAL BLUR
 			// DOF
 			
-			Effect_Fade_In(0.1f);
+			// STOP MUSIC
+			// CHANGE TO MORE INTENSE MUSIC
+			
+			CameraAnimation_End();
+			WauBreak_Start();
+			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room when akers shows up
 			
 			// HELPER JANE DISTANT UNRELIABLE POWER VOICE LINE
-			WauBreak_Start();
 		}
-		
-		// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
-		// WauBreak_Start();
+		else if (Sequence_DoStepAndWait(0.5f))
+		{
+			Sound_FadeGlobalVolume(1.0f, 0.5f, eSoundEntryType_WorldAll);
+			Sound_FadeGlobalVolume(1.0f, 0.5f, eSoundEntryType_GuiWorld);
+		}
+		else if (Sequence_DoStepAndWait(2.0f))
+		{
+			Effect_Fade_In(0.1f);
+			Effect_Flash_Start(0.25, 0.25, 0.5);
+		}
 		Sequence_End();
 	}
-		
-	// START LOW LEVEL MUSIC FOR THE SILENCE UNTIL THE COMPUTER LIGHT IS REVEALED
-				
-	// THE SOUND OF A THE LEGACY COMPUTER EVENTUALLY BOOTS UP BEHIND THE PLAYER ALONG WITH ALL THE LIGHTS
-				
-	// 02_05_theta/sfx/soma_terminal/soma_start
-	// 02_05_theta/sfx/soma_terminal/soma_loop
-	// 02_05_theta/sfx/soma_terminal/soma_stop
-				
-	//-04_03_tau_escape/SFX/ross/conversation/tunnel/start
-	//-04_03_tau_escape/SFX/ross/conversation/tunnel/loop
-	//-04_03_tau_escape/SFX/ross/conversation/tunnel/stop
-				
-	// soma_1_001_catherine_001
-	// soma_2_001_catherine_001
-	// soma_3_001_catherine_001
-	// soma_4_001_catherine_001
-				
-	// Catherine says these lines one after another (still need to edit them)
-	// All voice lines have a lower pitch (deep voice)
-	// The end of her final voice line "melts"--gets lower pitch like its corrupted
 	
 	//-------------------------------------------------------
 	
@@ -504,8 +504,6 @@ class cScrMap : iScrMap
 	void CoralBreak_CameraAttachDone()
 	{
 		PlayerHands_SetAnimationOverCallback("CoralBreak_HandAnimOver");
-		Effect_DoF_FadeOut(mlCoralDOF, 20.0f);
-		Effect_ImageTrail_FadeOut(mlCoralTrailID,25.0f);
 		Player_Teleport("CoralAnimEnd");
 	}
 		
@@ -526,7 +524,7 @@ class cScrMap : iScrMap
 		
 	void SimonCommentsBreakOut(const tString &in asTimer)
 	{
-		Emotion_StartBackgroundBreath(eBreathType_Normal, 0.6f, 3, 8, 0, 3);
+		Emotion_StartBackgroundBreath(eBreathType_Normal, 0.8f, 3, 16, 0, 3);
 	}
 	
 	//---------------------------------------------------------------------
