@@ -214,8 +214,8 @@ class cScrMap : iScrMap
 		cImGuiFont textLineFont;
 		textLineFont.mvSize = ImGui_NrmSizeKeepRatio(0.02f);
 		textLineFont.mColor = cColor(1.0f, 1.0f, 0.0f, 1.0f);
-		// ETA: mbElevatorTremorsAllowed, TUE: TimeUntilTremor, PIES: PlayerInElevatorShaft, 
-		ImGui_DrawFontW("ETA: " + mbElevatorTremorsAllowed + ", TUE: " + (mfTimeRunTremor - mfTremorCounter) + ", PIES: " + mbPlayerInElevatorShaft, textLineFont, ImGui_NrmPos(0.72f, 0.95f, 0.1f), eFontAlign_Left);
+		// ETA: mbElevatorTremorsAllowed, TUT: TimeUntilTremor, PIES: PlayerInElevatorShaft, 
+		ImGui_DrawFontW("ETA: " + mbElevatorTremorsAllowed + ", TUT: " + (mfTimeRunTremor - mfTremorCounter) + ", PIES: " + mbPlayerInElevatorShaft, textLineFont, ImGui_NrmPos(0.72f, 0.95f, 0.1f), eFontAlign_Left);
 		
 		if (mfMessageTimer > 0.0f)
 		{
@@ -329,7 +329,7 @@ class cScrMap : iScrMap
 		Player_SetHealth(0.15f);
 			
 		Wake_SetAsleep(true);
-		Effect_Fade_In(0.0f);
+		Effect_Fade_In(1.0f);
 			
 		CameraAnimation_Begin("IntroAnim", "", false);
 			
@@ -469,6 +469,8 @@ class cScrMap : iScrMap
 			CameraAnimation_End();
 			WauBreak_Start();
 			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room when akers shows up
+			
+			// JADE UNRELIABLE WHEN ON FLOOR
 			
 			// HELPER JANE DISTANT UNRELIABLE POWER VOICE LINE
 		}
@@ -669,6 +671,7 @@ class cScrMap : iScrMap
 		// TURN ON POWER FOR THE PANEL IF THE POWER GENERATOR IS ON TOO
 		
 		// DECREASE TO INTENSITY OF THE SCREEN EFFECTS FROM THE INTRO
+		// ALLOW CAN CLIMB LADDER
 	}
 	
 	//-------------------------------------------------------
