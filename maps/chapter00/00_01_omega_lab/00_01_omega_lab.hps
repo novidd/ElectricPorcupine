@@ -122,7 +122,6 @@ class cScrMap : iScrMap
 		
 		if (bDoIntro)
 		{
-			Effect_Fade_Out(0);
 			Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
 			Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
 			
@@ -315,21 +314,37 @@ class cScrMap : iScrMap
 	//{//////////////////////////////////////
 		
 	//-------------------------------------------------------
+	
+	int mlImageTrailID = -1;
+	int mlRadialBlurID = -1;
 		
 	cSequenceStatesData mSequenceWakeUpStartState;
 	void SequenceWakeUpStart(const tString &in asTimer)
 	{
 		Sequence_Begin("SequenceWakeUpStart", mSequenceWakeUpStartState);
 		
-		if (Sequence_DoStepAndWait(4.0f))
+		if (Sequence_DoStepAndWait(1.0f))
 		{
 			cLux_AddDebugMessage("!! STARTING WAKE UP!!");
 				
 			Player_Teleport("PlayerStartArea_1");
 			Player_SetHealth(0.65f);
+			Effect_Fade_Out(0);
 			
-			//Wake_SetAsleep(true);
-			//Effect_Flash_Start(0.25, 0.25, 0.5);
+			
+			
+			Entity_SetActive("origami_*", true);
+			
+			Wake_SetAsleep(true);
+			Effect_Fade_In(0.0f);
+			
+			CameraAnimation_Begin("IntroAnim", "", false);
+			
+			Sound_FadeGlobalVolume(0.45f, 12.0f);
+			
+			mlImageTrailID = Effect_ImageTrail_Start(1.0, 0.5, -1, 2);
+			mlRadialBlurID = Effect_RadialBlur_Start(0.5f, 0.55f, 0.35f, 0.5f);
+			
 			
 			//Sound_FadeGlobalVolume(0.2f, 0.1f, eSoundEntryType_GuiWorld);
 			//Sound_FadeGlobalVolume(0.0f, 1.0f, eSoundEntryType_WorldAll);
@@ -338,7 +353,12 @@ class cScrMap : iScrMap
 			
 			// Radial blur and imagetrail so catherine lamp lasts for several frames on screen
 			
-			// "01_01_interact_wauflower.ogg" - Screen back till waking up (on stinger open eyes) Fade in after 4-5 seconds
+			// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
+			// "01_01_interact_wauflower.ogg"
+			// "01_01_lightsout.ogg" - Discovering the bodies
+			// "01_01_talking_door.ogg" - Distant noise	
+//			Music_PlayExt("", false, 0.25f, 1.0f, 9.0f, 0.0f, eMusicPrio_MinorEvent, false);
+			Music_PlayOverlay("01_01_interact_wauflower", 0.25f);
 			
 			// START CAMERA ANIMATION
 			
@@ -356,22 +376,18 @@ class cScrMap : iScrMap
 			
 			// GIVE A HINT IF THE PLAYER DOESN'T MOVE AFTER A CERTAIN AMOUNT OF TIME
 			
-			// MUSIC CONTENDERS FOR PLAYER WAKE AFTER INTRO
-			// "01_01_interact_wauflower.ogg"
-			// "01_01_lightsout.ogg" - Discovering the bodies
-			// "01_01_talking_door.ogg" - Distant noise	
-			
 			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room
 		}
-		else if (Sequence_DoStepAndWait(1.0f))
+		else if (Sequence_DoStepAndWait(12.0f))
 		{
-			Effect_Fade_In(3.0f);
+			Wake_StartWakeup(5.0f);
+			Effect_Flash_Start(2.5f, 1.0f, 3.5f);
 			
 			Sound_FadeGlobalVolume(0.45f, 3.0f);
 		}
-		else if (Sequence_DoStepAndWait(0.0f))
+		else if (Sequence_DoStepAndWait(0.5f))
 		{
-			
+			Effect_Fade_Out(1.5f);
 		}
 		
 		// WauBreak_Start();
@@ -505,7 +521,7 @@ class cScrMap : iScrMap
 	{
 		Entity_SetActive("SimonDivingSuit", false);
 		Entity_SetActive("CoralBlock_*",true);
-		Map_AddTimer("CamBreak_TimerResetPos",5.0f,"CamBreak_TimerResetPos");
+		Map_AddTimer("CamBreak_TimerResetPos", 5.0f, "CamBreak_TimerResetPos");
 		
 		Map_AddTimer("SimonCommentBreakOut", 1.0f, "SimonCommentsBreakOut");
 		Sound_FadeGlobalVolume(1.0f, 2.5f);
