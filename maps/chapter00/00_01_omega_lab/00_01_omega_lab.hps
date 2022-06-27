@@ -130,6 +130,8 @@ class cScrMap : iScrMap
 			
 			SetupWakeUp();
 		}
+		
+		Map_AddTimer("preload", 4, "TimerBeginPreload");
 	}
 
 	//-------------------------------------------------------
@@ -356,7 +358,7 @@ class cScrMap : iScrMap
 	void SequenceSystemDiagnostics(const tString &in asTimer)
 	{
 		Sequence_Begin("SequenceSystemDiagnostics", mSequenceSystemDiagnostics);
-		if (Sequence_DoStepAndWait(1.5f))
+		if (Sequence_DoStepAndWait(1.75f))
 		{
 			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/start", 1.0f);
 			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_pass/mechanism_pass", 1.0f);
@@ -368,7 +370,7 @@ class cScrMap : iScrMap
 			
 			Voice_Play("HelperJane_PluggedIn_GoodPower");
 		}
-		else if (Sequence_DoStepAndWait(4.0f))
+		else if (Sequence_DoStepAndWait(6.0f))
 		{
 			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_fail/skin_fail", 1.0f);
 			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_pass/pulse_pass", 1.0f);
@@ -417,7 +419,7 @@ class cScrMap : iScrMap
 			
 			mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(2,1),  1, 0.1, 900, 0.1);
 		}
-		else if (Sequence_DoStepAndWait(8.0f)) // 13.5f until the flash to Catherine dialogue
+		else if (Sequence_DoStepAndWait(10.0f)) // 13.5f until the flash to Catherine dialogue
 		{
 			Wake_StartWakeup(5.0f);
 			Effect_Flash_Start(2.5f, 1.0f, 3.5f);
@@ -440,7 +442,7 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(1.0f))
 		{
-			//Effect_Fade_Out(0.5f);
+			Effect_Fade_Out(0.5f);
 			Effect_Flash_Start(0.25, 0.25, 0.5);
 			
 			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 1.0f, true);
@@ -478,11 +480,26 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(0.5f))
 		{
+			///////////////////////////
+			// Reset values
 			CameraAnimation_End();
 			
-			Player_FadeFOVMulTo(1.0f, 25.0f);
+			Player_ChangeStateToNormal();
+			//Player_FadeFOVMulTo(1.0f, 25.0f);
+			Player_SetHealth(1.0f);
+			
+			Effect_ImageTrail_FadeOut(mlImageTrailID, 0);
+			Effect_RadialBlur_FadeOut(mlRadialBlurID, 0);
+			Effect_DoF_FadeOut(mlDoFID, 0);
+			
 			Effect_Screen_FadeOut(mlid_ScanLines, 0.0);
-			//Player_ShowCrossHairIcons(false);
+			
+			/////////////////////////
+			// Change map
+			cLux_AddDebugMessage("Switching scene...");
+			
+			LoadScreen_SetUseSmallIcon(false);
+			Map_ChangeMap("00_00_sim.hpm", "PlayerStartArea_1", "", "");
 			
 			// Switch to new map
 		}
@@ -504,6 +521,8 @@ class cScrMap : iScrMap
 //			WauBreak_Start();
 //			// Lower the player fov
 //			// Play the line below when the player has control
+//
+//			// Make Catherines subtitles move slowly
 //			Voice_Play("CatherineScan");
 //			
 //			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room when akers shows up
@@ -747,6 +766,79 @@ class cScrMap : iScrMap
 		//} END Terminal *Name Of Terminal*
 	
 	//} END TERMINALS
+	
+	/////////////////////////////////////////
+	// PRELOADING
+	//{///////////////////////////////////////
+
+	//-------------------------------------------------------
+
+	bool PreloadDisabled(bool abCheckIfPreloading = true)
+	{
+		if(cLux_ScriptDebugOn())
+		{
+			cLux_AddDebugMessage("PRELOAD DISABLED!"); 
+			
+			return true;
+		}
+		
+		if(abCheckIfPreloading && Map_IsPreloading() == false)
+			return true;
+			
+		return false;
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerBeginPreload(const tString &in asTimer)
+	{
+		Preload();
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Begin preload.
+	void Preload()
+	{
+		if(PreloadDisabled(false)) return;
+		cLux_AddDebugMessage("Preloading");
+		
+		Map_Preload("00_00_sim.hpm", eWorldStreamPriority_Low);
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityLow()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_Low);
+	}	
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityNormal()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_Normal);
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityVeryHigh()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_VeryHigh);
+	}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============

@@ -95,7 +95,7 @@ class cScrMap : iScrMap
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			bDoIntro = false;
+			bDoIntro = true;
 			
 			Player_SetFlashlightDisabled(false);
 			
@@ -306,7 +306,8 @@ class cScrMap : iScrMap
 			///////////////////
 			// Visual setup
 			Effect_Fade_Out(0.1);
-			Player_FadeFOVMulTo(0.75f, 0);
+			//Player_FadeFOVMulTo(0.75f, 0);
+			Player_FadeFOVMulTo(1.75f, 25.0f);
 			mlCurrentImageTrailEffectID = Effect_ImageTrail_Start(0.8f, 0, 1500.0f, 15.0f);
 			mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
 			
@@ -347,7 +348,7 @@ class cScrMap : iScrMap
 				
 				//////////////////////////////////
 				// Camera Effects
-				Player_FadeFOVMulTo(1.0f, 0.25f);
+				//Player_FadeFOVMulTo(1.0f, 0.25f);
 				Effect_Fade_In(1.0f);
 				
 				// visual fx
@@ -358,14 +359,6 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(1.75f))
 			{
-				//Voice_Play("1A_WakeUp");
-				
-				// Catherines voice one line
-				
-				// !! ADD CATHERINE VOICE LINE !!
-				
-				// This clues the player in that this is set in Theta of the original game
-				
 				// MUSIC
 				Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 9.0f, 0.0f, eMusicPrio_MinorEvent, false);
 			}
@@ -392,8 +385,16 @@ class cScrMap : iScrMap
 				Effect_DoF_FadeFalloff(mlDoFEffectID, 0.5, 30.0f);
 				Effect_DoF_FadeFocus(mlDoFEffectID, 0, 12, 30.0f);
 				Effect_ImageTrail_FadeOut(mlCurrentImageTrailEffectID, 60.0f);
-					
-				Effect_Fade_In(3.0f);
+				
+				// !!--------------------------------------------!!
+				// !! CUT THE INTRO TO WHEN THE HELMET IS LIFTED !!
+				// !!--------------------------------------------!!
+				
+				Effect_Fade_In(0.5f);
+				Effect_Flash_Start(0.25, 0.25, 0.5);
+				// 5.5f before play the scan stinger
+				Player_FadeFOVMulTo(1.0f, 25.0f);
+				
 				StressHeartBeep(1.0f, 0.25f, 1, -1, true);
 			}
 			else if (Sequence_DoStepAndWait(2.0f)) // 3.0f
@@ -609,6 +610,7 @@ class cScrMap : iScrMap
 			
 			// EFFECTS
 			Effect_Fade_Out(0.1f);
+			// ADD FLASH
 			
 			// ADD SCREEN FLASH EFFECT
 			
