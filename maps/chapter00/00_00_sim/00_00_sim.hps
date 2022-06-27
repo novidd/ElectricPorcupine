@@ -577,7 +577,7 @@ class cScrMap : iScrMap
 					
 					Map_AddTimer("escalation", 3.5f, "Escalation");
 					Map_AddTimer("ShutdownSimulation", 8.0f, "ShutdownSimulation");
-					Map_AddTimer("ScreenFX", 7.0f, "ScreenFX");
+					Map_AddTimer("ScreenFX", 2.5f, "ScreenFX");
 					Map_AddTimer("HeartStressDelay", 4.5f, "HeartStressDelay");
 				}
 			}
@@ -610,6 +610,8 @@ class cScrMap : iScrMap
 			// EFFECTS
 			Effect_Fade_Out(0.1f);
 			
+			// ADD SCREEN FLASH EFFECT
+			
 			Emotion_StopHeartbeat(mlHeartBeatID);
 			mbStressTrackerActive = false;
 			
@@ -619,7 +621,7 @@ class cScrMap : iScrMap
 			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.1f);
 			
 			// MUSIC IMPACT
-			Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);			
+			Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);
 			
 			Sound_FadeGlobalVolume(0.67f, 0.1f, eSoundEntryType_GuiWorld);
 			Sound_FadeGlobalVolume(0.67f, 0.75f, eSoundEntryType_WorldAll);
@@ -638,6 +640,9 @@ class cScrMap : iScrMap
 		void ScreenFX(const tString &in asTimer)
 		{
 			Effect_VideoDistortion_Start(.85f, 2.0f, 0.1f, 0.1f);
+			
+			// FADE IN SCANLINES
+			//Sound_CreateAtEntity("PlayerTransfer", "Entities_Special/Equipment/scanner/urban/scan_sequence", "Player", 0, true);
 		}
 		
 		void HeartStressDelay(const tString &in asTimer)
