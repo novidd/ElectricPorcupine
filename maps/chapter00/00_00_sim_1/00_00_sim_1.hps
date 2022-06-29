@@ -329,6 +329,7 @@ class cScrMap : iScrMap
 		Entity_PlayAnimation("SimonArms", "event_escape_coral_infection", 0.0, false, false);
 		Entity_SetAnimationPaused("SimonArms", "event_escape_coral_infection");
 		
+		Player_ShowCrossHairIcons(false);
 		Player_Teleport("PlayerStartArea_1");
 		Player_SetHealth(0.15f);
 		Player_SetJumpDisabled(true);
@@ -337,9 +338,6 @@ class cScrMap : iScrMap
 		Effect_Fade_In(1.0f);
 			
 		CameraAnimation_Begin("IntroAnim", "", false);
-			
-		Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_WorldAll);
-		Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_GuiWorld);
 		
 		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.45f);
 		
@@ -348,9 +346,7 @@ class cScrMap : iScrMap
 		mlRadialBlurID = Effect_RadialBlur_Start(0.5f, 0.55f, 0.35f, 0.5f);
 		mlDoFID = Effect_DoF_Start(4.0f, 8.0f, 0.5f, 0.0f);
 		
-		Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
-		
-		// Preload scan room map
+		Map_AddTimer("timer_kickoffintro", 3.0, "SequenceWakeUpStart");
 	}
 	
 	//-------------------------------------------------------
@@ -412,6 +408,9 @@ class cScrMap : iScrMap
 		if (Sequence_DoStepAndWait(1.0f))
 		{
 			cLux_AddDebugMessage("!! STARTING WAKE UP!!");
+			
+			Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_WorldAll);
+			Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_GuiWorld);
 			
 			Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 6.0f, 0.0f, eMusicPrio_MinorEvent, false);
 			Music_PlayOverlay("01_01_interact_wauflower", 0.25f);

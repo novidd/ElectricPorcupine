@@ -315,6 +315,7 @@ class cScrMap : iScrMap
 			mlDoFEffectID = Effect_DoF_Start(0.1f, 0.5f, 1, 0);
 			
 			mlRadialBlurID = Effect_RadialBlur_Start(0.15f, 0.25f, 0.35f, 0.5f);
+			mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(2,1),  1, 0.1, 900, 0.1);
 			
 			///////////////////
 			// Animation
@@ -350,7 +351,6 @@ class cScrMap : iScrMap
 				Sound_PlayGui("04_03_tau_escape/SFX/ross/conversation/tunnel/loop", 0.175f, eSoundEntryType_Gui);
 				
 				Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_Gui);
-				
 				PreloadPriorityNormal();
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
@@ -376,6 +376,7 @@ class cScrMap : iScrMap
 				Effect_Fade_In(0.5f);
 				Effect_Flash_Start(0.25, 0.25, 0.5);
 				Player_FadeFOVMulTo(1.0f, 25.0f);
+				Effect_Screen_FadeOut(mlid_ScanLines, 5.0f);
 				
 				Effect_Rumble_Start(0.5, 0.7, 0.25f);
 				
@@ -592,9 +593,11 @@ class cScrMap : iScrMap
 		void ShutdownSimulation(const tString &in asTimer)
 		{
 			// SET POWER OFF
-			Sound_PlayGui("02_06_theta_tunnels/sweeteners/lights_out", 1.0f);
-			Sound_PlayGui("02_06_theta_tunnels/sweeteners/lights_out_room_shake", 1.0f);
-			Sound_FadeGlobalVolume(0.6f, 0.75f, eSoundEntryType_World);
+			//Sound_PlayGui("02_06_theta_tunnels/sweeteners/lights_out", 1.0f);
+			//Sound_PlayGui("02_06_theta_tunnels/sweeteners/lights_out_room_shake", 1.0f);
+			
+			Sound_FadeGlobalVolume(0.0f, 0.1f, eSoundEntryType_GuiWorld);
+			Sound_FadeGlobalVolume(0.0f, 0.75f, eSoundEntryType_WorldAll);
 			
 			// EFFECTS
 			Effect_Fade_Out(0.5f);
@@ -614,9 +617,6 @@ class cScrMap : iScrMap
 			
 			// MUSIC IMPACT
 			Music_PlayOverlay("01_01_construct_smashing_about", 0.25f);
-			
-			Sound_FadeGlobalVolume(0.0f, 0.1f, eSoundEntryType_GuiWorld);
-			Sound_FadeGlobalVolume(0.0f, 0.75f, eSoundEntryType_WorldAll);
 			Map_AddTimer("ChangeMap", 1.0f, "ChangeMap");
 		}
 		
@@ -661,7 +661,9 @@ class cScrMap : iScrMap
 			mlDoFEffectID = Effect_DoF_Start(4.0f, 8.0f, 0.5f, 5.5f);
 			
 			// FADE IN SCANLINES
-			//mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  10.0f, 0.1, 900, 0.1);
+			mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  10.0f, 0.1, 900, 0.1);
+			Effect_Screen_FadeAlpha(mlid_ScanLines, 0.0f, 0);
+			Effect_Screen_FadeAlpha(mlid_ScanLines, 1.0f, 3.0f);
 			Sound_CreateAtEntity("PlayerTransfer", "Entities_Special/Equipment/scanner/urban/scan_sequence", "Player", 0, true);
 		}
 		

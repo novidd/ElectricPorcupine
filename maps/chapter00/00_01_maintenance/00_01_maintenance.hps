@@ -97,6 +97,7 @@ class cScrMap : iScrMap
 		// Player setup
 		Player_SetAmbientLight_Indoors();
 		PlayerHands_SetHandModel_Diving();
+		Player_SetHealth(0.2f);
 		
 		/////////////////////////
 		// Level setup
@@ -337,16 +338,70 @@ class cScrMap : iScrMap
 			
 		Wake_SetAsleep(true);
 		
-		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.45f);
+		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.25f);
 		
 		// Effects
-		mlImageTrailID = Effect_ImageTrail_Start(0.65, 0.5, -1, 2);
-		mlRadialBlurID = Effect_RadialBlur_Start(0.25f, 0.267f, 0.35f, 0.5f);
-		mlDoFID = Effect_DoF_Start(4.0f, 8.0f, 0.5f, 0.0f);
+		mlImageTrailID = Effect_ImageTrail_Start(0.75, 0.5, -1, 2);
+		mlRadialBlurID = Effect_RadialBlur_Start(0.35f, 0.267f, 0.35f, 0.5f);
+		mlDoFID = Effect_DoF_Start(1.0f, 2.0f, 0.45f, 0.0f);
 		
 		Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
 		
 		// Preload scan room map
+	}
+	
+	//-------------------------------------------------------
+	
+	int mlIntroDiagnosticDistortionLoop = -1;
+	
+	cSequenceStatesData mSequenceSystemDiagnostics;
+	void SequenceSystemDiagnostics(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceSystemDiagnostics", mSequenceSystemDiagnostics);
+		if (Sequence_DoStepAndWait(1.75f))
+		{
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/start", 1.0f);
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_pass/mechanism_pass", 1.0f);
+			
+			Effect_VideoDistortion_Start(0.65f, 1.25f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(1.0f))
+		{
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 1.0f);
+			Effect_VideoDistortion_Start(0.5f, 1.0f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(6.0f))
+		{
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_fail/skin_fail", 1.0f);
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_pass/pulse_pass", 1.0f);
+			Effect_VideoDistortion_Start(0.65f, 0.85f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(1.0f))
+		{
+			
+		}
+		else if (Sequence_DoStepAndWait(1.3f))
+		{
+			Effect_VideoDistortion_Start(0.65f, 0.65f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(1.35f))
+		{
+			Effect_VideoDistortion_Start(0.65f, 1.25f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(1.8f))
+		{
+			Effect_VideoDistortion_Start(0.45f, 1.865f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(2))
+		{
+			Effect_VideoDistortion_Start(0.5f, 1.8f, 0.1f, 0.1f);
+			Voice_Play("HelperJane_PluggedIn_BadPower");
+		}
+		else if (Sequence_DoStepAndWait(2))
+		{
+			mlIntroDiagnosticDistortionLoop = Effect_VideoDistortion_Start(0.25f, -1, 0.1f, 0.1f);
+		}
+		Sequence_End();
 	}
 	
 	//-------------------------------------------------------
@@ -358,7 +413,7 @@ class cScrMap : iScrMap
 	{
 		Sequence_Begin("SequenceWakeUpStart", mSequenceWakeUpStartState);
 		
-		if (Sequence_DoStepAndWait(0.5f))
+		if (Sequence_DoStepAndWait(6.0f))
 		{
 			cLux_AddDebugMessage("!! STARTING WAKE UP!!");
 			
@@ -388,8 +443,7 @@ class cScrMap : iScrMap
 			
 			Sound_PlayGui("03_02_omicron_inside/SFX/sweetener/centre_room", 1.0f);
 			
-			// DO DIAGNOSTICS AGAIN
-			
+			Map_AddTimer("SystemDiagnostics", 0.1f, "SequenceSystemDiagnostics");
 		}
 		else if (Sequence_DoStepAndWait(2.0f))
 		{
@@ -411,8 +465,6 @@ class cScrMap : iScrMap
 			// Sound_CreateAtEntity("PlayerTransfer", "Entities_Special/Equipment/scanner/omicron/omicron_scan_seq_success", "Player", 0, true);
 			
 			// Distant lights off exactly when catherine's final line ends - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
-			// Here throw the player into the WauBreak sequence without player control
-			// Run OnBreakCoral code instantly from here
 			
 			// prewakeup_1_catherine_001
 			// prewakeup_1_catherine_002
@@ -424,10 +476,6 @@ class cScrMap : iScrMap
 			//Voice_Play("CatherineScan");
 			
 			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room when akers shows up
-			
-			// JADE UNRELIABLE WHEN ON FLOOR
-			
-			// HELPER JANE DISTANT UNRELIABLE POWER VOICE LINE
 		}
 		else if (Sequence_DoStepAndWait(4.5f))
 		{
@@ -621,14 +669,20 @@ class cScrMap : iScrMap
 	{
 		// TURN ON POWER FOR THE PANEL IF THE POWER GENERATOR IS ON TOO
 		
+		// DO ELEVATOR SHAFT POWER OUTAGE
+		// PLAYER NEED TO RESET GENERATOR
+		
 		// DECREASE TO INTENSITY OF THE SCREEN EFFECTS FROM THE INTRO
-		// ALLOW CAN CLIMB LADDER
+		Entity_SetActive("ElevatorLadder", true);
 		
-		// Increase player fov
+		// Increase player fov temporarily then decrease
 		
-		// Effect_Screen_FadeOut(mlid_ScanLines, 8.0); maybe lower alpha??
+		Effect_Screen_FadeOut(mlid_ScanLines, 3.0);
 		
-//		Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.1f);
+		Effect_VideoDistortion_FadeOut(mlIntroDiagnosticDistortionLoop, 3.0f);
+		
+		Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.1f);
+		Sound_StopGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 3.0f);
 	}
 	
 	//-------------------------------------------------------
