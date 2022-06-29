@@ -1,0 +1,623 @@
+
+#include "interfaces/Map_Interface.hps"
+#include "base/AchievementHandler_Types.hps"
+#include "base/InputHandler_Types.hps"
+#include "base/RichPresenceHandler_Types.hps"
+
+#include "helpers/helper_game.hps"
+#include "helpers/helper_effects.hps"
+#include "helpers/helper_map.hps"
+#include "helpers/helper_props.hps"
+#include "helpers/helper_audio.hps"
+#include "helpers/helper_sequences.hps"
+#include "helpers/helper_modules.hps"
+#include "helpers/helper_imgui.hps"
+#include "helpers/helper_areas.hps"
+#include "helpers/helper_ai.hps"
+#include "helpers/helper_player.hps"
+
+#include "helper_imgui_station.hps"
+#include "helper_imgui_station_app_error.hps"
+#include "helper_imgui_station_app_audioplayback.hps"
+#include "helper_imgui_station_app_photoviewer.hps"
+#include "helper_imgui_cath_portrait.hps"
+#include "helper_imgui_station_basics.hps"
+
+#include "helper_custom_depth.hps"
+#include "helper_custom_depth_ai.hps"
+#include "helper_custom_depth_ai_fleshers.hps"
+#include "helper_custom_depth_imgui.hps"
+#include "helper_custom_depth_audio.hps"
+
+#include "custom_depth/helper_custom_depth_audio.hps"
+
+#include "helper_font.hps"
+
+#include "player/Player_Types.hps"
+
+//--------------------------------------------------
+ 
+/*Place any global values here. These must be const variables as they will not be saved*/
+/*This is also the place for enums and classes, but these should be avoided whenever possible*/
+
+//--------------------------------------------------
+
+class cScrMap : iScrMap
+{
+	//--------------------------------------------
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN CALLBACKS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+ 
+	//-------------------------------------------------------
+	
+	//-------------------------------------------------------
+ 
+	////////////////////////////
+	// Set up map environment
+	void Setup()
+	{
+		// Effect init
+		Effect_Bloom_FadeBrightPass(0.65f, 2);
+        Effect_Bloom_FadeBloomWidth(128, 2);
+        Effect_Bloom_FadeBloomFalloff(0.5f, 2);
+        Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
+	}
+	
+	//-------------------------------------------------------
+
+	void PreloadData()
+	{
+		///////////////
+		// Preload particles
+		ParticleSystem_Preload("elec_spark_lightning_oneshot_small.ps");
+		ParticleSystem_Preload("elec_spark_physics_oneshot.ps");
+		ParticleSystem_Preload("splash_continuous_small.ps");
+		ParticleSystem_Preload("splash_continuous_small.ps");
+		ParticleSystem_Preload("spray_cone_airlockpipe_broken.ps");
+		ParticleSystem_Preload("spray_shower.ps");
+		ParticleSystem_Preload("fog_ambient_light_soft.ps");
+		ParticleSystem_Preload("drops_small_continuous.ps");
+		ParticleSystem_Preload("drops_med_continuous_collision.ps");
+		
+		PlayerHands_PreloadHandModel_DeepSea();
+		PlayerHands_PreloadHandModel_Diving();
+	}
+	
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run first time starting map
+	void OnStart()
+	{
+		/////////////////////////
+		// Player setup
+		Player_SetAmbientLight_Indoors();
+		PlayerHands_SetHandModel_Diving();
+		
+		/////////////////////////
+		// Level setup
+		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", false);
+		
+		bool bDoIntro = true;
+		
+		////////////////////
+		//Audio
+		
+		/////////////////////////
+		// Debug
+		if(cLux_ScriptDebugOn()) 
+		{
+			bDoIntro = true;
+			
+			Player_SetFlashlightDisabled(false);
+			
+			//Effect_Fade_In(1);
+			//Sound_FadeGlobalVolume(1.0f, 1.0f);
+			//Sound_FadeGlobalVolume(1.0f, 1.0f, eSoundEntryType_GuiAll);
+		}
+		
+		if (bDoIntro)
+		{
+			Effect_Fade_Out(0);
+			Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
+			Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
+			
+			Player_SetFlashlightDisabled(true);
+			
+			SetupWakeUp();
+		}
+		
+		Map_AddTimer("preload", 2, "TimerBeginPreload");
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when entering map
+	void OnEnter()
+	{
+		
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when leaving map
+	void OnLeave()
+	{
+		
+	}
+	
+	//-------------------------------------------------------
+	
+	void Update(float afTimeStep)
+	{
+		UpdateElevatorTremors(afTimeStep);
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// The player has died.
+	void OnPlayerKilled(int alRecentDeaths, const tString&in asSource)
+	{
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// To get when player makes input (mostly used for debug)
+	void OnAction(int alAction, bool abPressed) 
+	{
+		if(abPressed==false) return;
+		
+		if(alAction == eAction_Test1)
+		{
+			Voice_Play("CatherineScan");
+		}
+		
+		if(alAction == eAction_Test2)
+		{
+			Lamp_SetLit("elevatorshaft_power_elevatorlamp_*", false, false);
+			ParticleSystem_SetBrightness("elevatorlamp_ps", 0.0f);
+			LensFlare_SetVisible("elevatorlamp_flare_*", false);
+		}
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// This only used for pure debug purposes when info needs to printed.
+	float DrawDebugOutput(cGuiSet @apSet,iFontData @apFont,float afY)
+	{
+		//afY = cLux_DrawDebugText("My Debug value:"+..., afY);
+		return afY;
+	}
+	
+	//-------------------------------------------------------
+	
+	tString msMessageText = "";
+	float mfMessageTimer = 0.0f;
+	
+	void DrawText(const tString asString, float afTime = 2.0f)
+	{
+		msMessageText = asString;
+		mfMessageTimer = afTime;
+	}
+	
+	void OnGui(float afTimeStep)
+	{
+		if (cLux_ScriptDebugOn() == false) return;
+		
+		cImGuiFont textLineFont;
+		textLineFont.mvSize = ImGui_NrmSizeKeepRatio(0.02f);
+		textLineFont.mColor = cColor(1.0f, 1.0f, 0.0f, 1.0f);
+		// ETA: mbElevatorTremorsAllowed, TUT: TimeUntilTremor, PIES: PlayerInElevatorShaft, 
+		ImGui_DrawFontW("ETA: " + mbElevatorTremorsAllowed + ", TUT: " + (mfTimeRunTremor - mfTremorCounter) + ", PIES: " + mbPlayerInElevatorShaft, textLineFont, ImGui_NrmPos(0.72f, 0.95f, 0.1f), eFontAlign_Left);
+		
+		if (mfMessageTimer > 0.0f)
+		{
+			mfMessageTimer -= afTimeStep;
+			
+			cImGuiTextFrameData textData;
+			textData.mColorBase = cColor(0.0f, 0.0f, 0.0f, 0.0f);
+			textData.mFont.mvSize = cVector2f(20.0f, 20.0f);
+			textData.mFontAlign = eFontAlign_Center;
+			
+			ImGui_DoTextFrameExt(msMessageText, cVector2f(0.0f, 0.0f), 0.0f, 0.0f, textData, cVector3f(0.0f, ImGui_GetSize().y / 2.0f, 1.0f), cVector2f(ImGui_GetSize().x - 450.0f, 500.0f));
+		}
+	}
+ 
+	//} END MAIN CALLBACKS
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN FUNCTIONS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+	
+	///////////////////////////////
+	// Elevator Shaft Tremors
+	///////////////////////////////
+	
+	bool mbPlayerInElevatorShaft = false;
+	bool mbElevatorPowerOn = true;
+	bool mbElevatorTremorsAllowed = true;
+	
+	float mfTimeRunTremor = cMath_RandRectf(6.35f, 8.5f);
+	float mfTremorCounter = 0;
+	
+	float mfElevatorTremorID = -1;
+	
+	void UpdateElevatorTremors(float afTimeStep)
+	{
+		if (mbElevatorTremorsAllowed)
+		{
+			mfTremorCounter+=afTimeStep;
+			
+			if (mfTremorCounter >= mfTimeRunTremor)
+			{
+				cLux_AddDebugMessage("Start tremor event");
+				
+				mfTimeRunTremor = cMath_RandRectf(14.10f, 20.0f);
+				mfTremorCounter = 0;
+				
+				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy_quieter
+				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
+				// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
+				
+				// After shock rattling on timer
+				
+				// Do dust sound effect on timer
+				
+				// Always make the red guidelighs flicker even if power off
+				
+				// Made the lights flicker if elevator shaft power on
+				if (mbElevatorPowerOn)
+				{
+					
+				}
+				// If player in elevator shaft then do shake/sway effects
+				if (mbPlayerInElevatorShaft)
+				{
+					Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
+					cLux_AddDebugMessage("Player in elevator shaft");
+				}
+			}
+		}
+	}
+	
+	bool OnCollide_PlayerInElevatorShaft(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		mbPlayerInElevatorShaft = alState == 1;
+		return true;
+	}
+	
+	///////////////////////////////
+	// Checkpoints
+	///////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	//} END MAIN FUNCTIONS
+ 
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE 1 *INTRO*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+ 
+	/////////////////////////////////////////
+	// *Brandon wakes up in the bottom of the elevator shaft*
+	//{//////////////////////////////////////
+		
+	//-------------------------------------------------------
+	
+	int mlImageTrailID = -1;
+	int mlRadialBlurID = -1;
+	int mlDoFID = -1;
+	
+	void SetupWakeUp()
+	{
+		// Coral Animation
+		Entity_SetActive("SimonArms", true);
+		Entity_SetActive("SimonDivingSuit", true);
+		Entity_PlayAnimation("SimonArms", "event_escape_coral_infection", 0.0, false, false);
+		Entity_SetAnimationPaused("SimonArms", "event_escape_coral_infection");
+		
+		Player_Teleport("PlayerStartArea_1");
+		Player_SetHealth(0.15f);
+		Player_SetJumpDisabled(true);
+			
+		Wake_SetAsleep(true);
+		Effect_Fade_In(1.0f);
+			
+		CameraAnimation_Begin("IntroAnim", "", false);
+			
+		Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_WorldAll);
+		Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_GuiWorld);
+		
+		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.45f);
+		
+		// Effects
+		mlImageTrailID = Effect_ImageTrail_Start(1.0, 0.5, -1, 2);
+		mlRadialBlurID = Effect_RadialBlur_Start(0.5f, 0.55f, 0.35f, 0.5f);
+		mlDoFID = Effect_DoF_Start(4.0f, 8.0f, 0.5f, 0.0f);
+		
+		Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
+		
+		// Preload scan room map
+	}
+	
+	//-------------------------------------------------------
+	
+	cSequenceStatesData mSequenceSystemDiagnostics;
+	void SequenceSystemDiagnostics(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceSystemDiagnostics", mSequenceSystemDiagnostics);
+		if (Sequence_DoStepAndWait(1.75f))
+		{
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/start", 1.0f);
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_pass/mechanism_pass", 1.0f);
+		}
+		else if (Sequence_DoStepAndWait(1.0f))
+		{
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 1.0f);
+			Effect_VideoDistortion_Start(0.5f, 1.0f, 0.1f, 0.1f);
+			
+			Voice_Play("HelperJane_PluggedIn_GoodPower");
+		}
+		else if (Sequence_DoStepAndWait(6.0f))
+		{
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_fail/skin_fail", 1.0f);
+			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_pass/pulse_pass", 1.0f);
+			Effect_VideoDistortion_Start(0.65f, 0.85f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(1.0f))
+		{
+			Voice_Play("HelperJane_PluggedIn_BadPower");
+		}
+		else if (Sequence_DoStepAndWait(1.3f))
+		{
+			Effect_VideoDistortion_Start(0.65f, 0.65f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(1.35f))
+		{
+			Effect_VideoDistortion_Start(0.45f, 1.25f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(1.8f))
+		{
+			Effect_VideoDistortion_Start(0.25f, 1.865f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(0))
+		{
+			Effect_VideoDistortion_Start(0.35f, 1.8f, 0.1f, 0.1f);
+		}
+		Sequence_End();
+	}
+	
+	//-------------------------------------------------------
+	
+	int mlid_ScanLines;
+	
+	cSequenceStatesData mSequenceWakeUpStartState;
+	void SequenceWakeUpStart(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceWakeUpStart", mSequenceWakeUpStartState);
+		
+		if (Sequence_DoStepAndWait(1.0f))
+		{
+			cLux_AddDebugMessage("!! STARTING WAKE UP!!");
+			
+			Music_PlayExt("01_01_awakendrone", true, 0.25f, 1.0f, 6.0f, 0.0f, eMusicPrio_MinorEvent, false);
+			Music_PlayOverlay("01_01_interact_wauflower", 0.25f);
+			
+			PreloadPriorityVeryHigh();
+			
+			// ADD HEARTBEAT
+			
+			mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(2,1),  1, 0.1, 900, 0.1);
+		}
+		else if (Sequence_DoStepAndWait(10.0f)) // 13.5f until the flash to Catherine dialogue
+		{
+			Wake_StartWakeup(5.0f);
+			Effect_Flash_Start(2.5f, 1.0f, 3.5f);
+			
+			Effect_Rumble_Start(0.9, 0.7, 0.25f);
+			Effect_Shake_Start(0.05, 4.5, 0, 0.7f);
+			
+			Sound_PlayGui("03_02_omicron_inside/SFX/sweetener/centre_room", 1.0f);
+			
+			Map_AddTimer("SystemDiagnostics", 1.0f, "SequenceSystemDiagnostics");
+			
+			Sound_FadeGlobalVolume(0.87f, 5.0f);
+		}
+		else if (Sequence_DoStepAndWait(5.5f)) // 5.5f after scan sequence starts
+		{
+			Sound_CreateAtEntity("PlayerTransfer", "Entities_Special/Equipment/scanner/urban/scan_sequence", "Player", 0, true);
+			
+			Effect_Rumble_Start(0.9, 0.7, 0.25f);
+			Effect_Shake_Start(0.08,6.75,1.0,0.1);
+		}
+		else if (Sequence_DoStepAndWait(1.0f))
+		{
+			Effect_Fade_Out(0.5f);
+			Effect_Flash_Start(0.25, 0.25, 0.5);
+			
+			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 1.0f, true);
+			Sound_StopGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 1.0f);
+			
+			Player_FadeFOVMulTo(1.75f, 25.0f);
+			Sound_FadeGlobalVolume(0.0f, 0.5f, eSoundEntryType_WorldAll);
+			//Sound_FadeGlobalVolume(0.45f, 12.0f, eSoundEntryType_GuiWorld);
+			
+			Music_StopAll(0.5f);
+			// WUB WUB BACKGROUND NOISE WHEN DURING CATHERINE DIALOGUE WHILE PLAYER HAS CONTROL
+			
+			Sound_CreateAtEntity("WakeupDrone", "Entities_Special/Equipment/scanner/omicron/omicron_wake_up_drone", "Player");
+			// MUSIC HERE TOO
+			
+			// START CATHERINE SPEAKING
+			
+			// SOME STRANGE FLUTTERING SOUND EFFECT
+			
+			// CATHERINE SPEAKS TO SIMON WHILE THE PLAYER HAS CONTROL
+			
+			// Run the sound effect below 5.5f before the transfer
+			
+			// Choose one of the sound effects
+			// Sound_CreateAtEntity("PlayerTransfer", "Entities_Special/Equipment/scanner/urban/scan_sequence", "Player", 0, true);
+			// Sound_CreateAtEntity("PlayerTransfer", "Entities_Special/Equipment/scanner/omicron/omicron_scan_seq_success", "Player", 0, true);
+			
+			// Distant lights off exactly when catherine's final line ends - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
+			// Here throw the player into the WauBreak sequence without player control
+			// Run OnBreakCoral code instantly from here
+			
+			// prewakeup_1_catherine_001
+			// prewakeup_1_catherine_002
+			// prewakeup_1_catherine_003 - Make this voice line melt at the end
+		}
+		else if (Sequence_DoStepAndWait(0.5f))
+		{
+			///////////////////////////
+			// Reset values
+			CameraAnimation_End();
+			
+			Player_ChangeStateToNormal();
+			//Player_FadeFOVMulTo(1.0f, 25.0f);
+			Player_SetHealth(1.0f);
+			
+			Effect_ImageTrail_FadeOut(mlImageTrailID, 0);
+			Effect_RadialBlur_FadeOut(mlRadialBlurID, 0);
+			Effect_DoF_FadeOut(mlDoFID, 0);
+			
+			Effect_Screen_FadeOut(mlid_ScanLines, 0.0);
+			
+			/////////////////////////
+			// Change map
+			cLux_AddDebugMessage("Switching scene...");
+			
+			LoadScreen_SetUseSmallIcon(false);
+			Map_ChangeMap("00_00_sim_2.hpm", "PlayerStartArea_1", "", "");
+		}
+	}
+	
+	//} End Brandon wakes up in the bottom of the elevator shaft
+		
+	//} END SCENE 1
+	
+	/////////////////////////////////////////
+	// ==============
+	// TERMINALS
+	// ==============
+	//{//////////////////////////////////////
+
+		//-------------------------------------------------------
+	
+		/////////////////////////////////////////
+		// Terminal *TERMINAL X*
+		//{//////////////////////////////////////
+		
+		//-------------------------------------------------------
+	
+		/*Put any variables that are only used Terminal here.*/
+	
+		//-------------------------------------------------------
+	
+		/*Put any functions that are only used Terminal here.*/
+	
+		//-------------------------------------------------------
+	
+		//} END Terminal *Name Of Terminal*
+	
+	//} END TERMINALS
+	
+	/////////////////////////////////////////
+	// PRELOADING
+	//{///////////////////////////////////////
+
+	//-------------------------------------------------------
+
+	bool PreloadDisabled(bool abCheckIfPreloading = true)
+	{
+		if(cLux_ScriptDebugOn())
+		{
+			cLux_AddDebugMessage("PRELOAD DISABLED!"); 
+			
+			return true;
+		}
+		
+		if(abCheckIfPreloading && Map_IsPreloading() == false)
+			return true;
+			
+		return false;
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerBeginPreload(const tString &in asTimer)
+	{
+		Preload();
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Begin preload.
+	void Preload()
+	{
+		if(PreloadDisabled(false)) return;
+		cLux_AddDebugMessage("Preloading");
+		
+		Map_Preload("00_00_sim_2.hpm", eWorldStreamPriority_Low);
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityLow()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_Low);
+	}	
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityNormal()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_Normal);
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityVeryHigh()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_VeryHigh);
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// AUDIO
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	//-------------------------------------------------------
+	
+	//} END AUDIO
+}
