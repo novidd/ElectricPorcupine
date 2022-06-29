@@ -112,7 +112,7 @@ class cScrMap : iScrMap
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			bDoIntro = true;
+			bDoIntro = false;
 			
 			Player_SetFlashlightDisabled(false);
 			
@@ -243,7 +243,7 @@ class cScrMap : iScrMap
 	
 	///////////////////////////////
 	// Elevator Shaft Tremors
-	///////////////////////////////
+	//{////////////////////////////
 	
 	bool mbPlayerInElevatorShaft = false;
 	bool mbElevatorPowerOn = true;
@@ -287,10 +287,35 @@ class cScrMap : iScrMap
 				{
 					Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
 					cLux_AddDebugMessage("Player in elevator shaft");
+					
+					Map_AddTimer("ElevatorTremor", 0.1f, "SequenceElevatorTremor");
 				}
 			}
 		}
 	}
+	
+	//-------------------------------------------------------
+	
+	cSequenceStatesData mSequenceElevatorTremor;
+	void SequenceElevatorTremor(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceElevatorTremor", mSequenceElevatorTremor);
+		if (Sequence_DoStepAndWait(1.0f))
+		{
+			Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
+		}
+		else if (Sequence_DoStepAndWait(4.75f))
+		{
+			Effect_Rumble_Start(0.9, 0.7f, 0.25f);
+			mfElevatorTremorID = Effect_Shake_Start(0.00864f, 1.657f, 2.6, 3.9f);
+		}
+		else if (Sequence_DoStepAndWait(1.0f))
+		{
+			
+		}
+		Sequence_End();
+	}
+	//-------------------------------------------------------
 	
 	bool OnCollide_PlayerInElevatorShaft(const tString &in asParent, const tString &in asChild, int alState)
 	{
@@ -298,9 +323,13 @@ class cScrMap : iScrMap
 		return true;
 	}
 	
+	//} END Elevator Shaft Tremors
+	
 	///////////////////////////////
 	// Checkpoints
-	///////////////////////////////
+	//{////////////////////////////
+	
+	//} END Checkpoints
 	
 	//-------------------------------------------------------
 	
@@ -370,15 +399,11 @@ class cScrMap : iScrMap
 			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 1.0f);
 			Effect_VideoDistortion_Start(0.5f, 1.0f, 0.1f, 0.1f);
 		}
-		else if (Sequence_DoStepAndWait(6.0f))
+		else if (Sequence_DoStepAndWait(7.0f))
 		{
 			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_fail/skin_fail", 1.0f);
 			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/suit_pass/pulse_pass", 1.0f);
 			Effect_VideoDistortion_Start(0.65f, 0.85f, 0.1f, 0.1f);
-		}
-		else if (Sequence_DoStepAndWait(1.0f))
-		{
-			
 		}
 		else if (Sequence_DoStepAndWait(1.3f))
 		{
