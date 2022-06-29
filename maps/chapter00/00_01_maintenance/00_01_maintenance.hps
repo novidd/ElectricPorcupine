@@ -371,13 +371,13 @@ class cScrMap : iScrMap
 			
 			mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(5, 1),  1, 0.1, 900, 0.1);
 		}
-		else if (Sequence_DoStepAndWait(5.0f))
+		else if (Sequence_DoStepAndWait(0.5f))
 		{
 			Music_Play("04_03_ross_kill_intro", 0.55f, false, eMusicPrio_BigEvent);
 			
-			Wake_StartWakeup(3.0f);
+			Wake_StartWakeup(0.5f);
 			
-			Effect_Flash_Start(2.5f, 1.0f, 3.5f);
+			Effect_Flash_Start(0.25, 0.25, 0.5);
 			Effect_Rumble_Start(0.9, 0.7, 0.25f);
 			Effect_Shake_Start(0.05, 4.5, 0, 0.7f);
 			
@@ -388,11 +388,13 @@ class cScrMap : iScrMap
 			
 			Sound_PlayGui("03_02_omicron_inside/SFX/sweetener/centre_room", 1.0f);
 			
+			// DO DIAGNOSTICS AGAIN
+			
 		}
 		else if (Sequence_DoStepAndWait(2.0f))
 		{
 			Effect_Fade_In(0.5f);
-			Player_FadeFOVMulTo(1.0f, 12.0f);
+			Player_FadeFOVMulTo(1.0f, 25.0f);
 			
 			WauBreak_Start();
 			
