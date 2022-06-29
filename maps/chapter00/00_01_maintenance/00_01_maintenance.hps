@@ -304,14 +304,15 @@ class cScrMap : iScrMap
 		{
 			Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
 		}
-		else if (Sequence_DoStepAndWait(4.75f))
+		else if (Sequence_DoStepAndWait(2.0f))
 		{
 			Effect_Rumble_Start(0.9, 0.7f, 0.25f);
-			mfElevatorTremorID = Effect_Shake_Start(0.00864f, 1.657f, 2.6, 3.9f);
+			mfElevatorTremorID = Effect_Shake_Start(0.00864f, 1.857f, 2.3, 3.0f);
 		}
 		else if (Sequence_DoStepAndWait(1.0f))
 		{
-			
+			// Make the elevator lights flicker
+			// Make the guidelights flicker
 		}
 		Sequence_End();
 	}
