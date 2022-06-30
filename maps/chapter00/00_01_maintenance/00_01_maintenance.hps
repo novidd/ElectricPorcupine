@@ -361,6 +361,7 @@ class cScrMap : iScrMap
 		// Coral Animation
 		Entity_SetActive("SimonArms", true);
 		Entity_SetActive("SimonDivingSuit", true);
+		Entity_SetActive("IntroTentacle", false);
 		Entity_PlayAnimation("SimonArms", "event_escape_coral_infection", 0.0, false, false);
 		Entity_SetAnimationPaused("SimonArms", "event_escape_coral_infection");
 		
@@ -375,9 +376,9 @@ class cScrMap : iScrMap
 		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.25f);
 		
 		// Effects
-		mlImageTrailID = Effect_ImageTrail_Start(0.75, 0.5, -1, 2);
-		mlRadialBlurID = Effect_RadialBlur_Start(0.35f, 0.267f, 0.35f, 0.5f);
-		mlDoFID = Effect_DoF_Start(1.0f, 2.0f, 0.45f, 0.0f);
+//		mlImageTrailID = Effect_ImageTrail_Start(0.75, 0.5, -1, 2);
+//		mlRadialBlurID = Effect_RadialBlur_Start(0.35f, 0.267f, 0.35f, 0.5f);
+//		mlDoFID = Effect_DoF_Start(1.0f, 2.0f, 0.45f, 0.0f);
 		
 		Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
 		
@@ -478,7 +479,7 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndWait(2.0f))
 		{
 			Effect_Fade_In(0.5f);
-			Player_FadeFOVMulTo(1.0f, 25.0f);
+			Player_FadeFOVMulTo(1.0f, 15.0f);
 			
 			WauBreak_Start();
 			
@@ -599,12 +600,14 @@ class cScrMap : iScrMap
 	void CoralBreak_HandAnimOver(const tString&in asAnim)
 	{
 		Entity_SetActive("SimonDivingSuit", false);
-		Entity_SetActive("CoralBlock_*",true);
+		Entity_SetActive("WauBlock_*",true);
 		Map_AddTimer("CamBreak_TimerResetPos", 5.0f, "CamBreak_TimerResetPos");
 		
 		Map_AddTimer("SimonCommentBreakOut", 1.0f, "SimonCommentsBreakOut");
 		Sound_FadeGlobalVolume(1.0f, 2.5f);
 		EyeTracking_SetExtendedViewMul(1.0f);
+		
+		Entity_SetActive("IntroTentacle", true);
 	}
 				
 	//---------------------------------------------------------------------
