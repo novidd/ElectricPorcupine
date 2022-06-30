@@ -179,7 +179,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			Voice_Play("CatherineScan");
+			IntroEffects(false);
 		}
 		
 		if(alAction == eAction_Test2)
@@ -367,23 +367,52 @@ class cScrMap : iScrMap
 		Entity_SetAnimationPaused("SimonArms", "event_escape_coral_infection");
 		
 		Player_Teleport("PlayerStartArea_1");
-		Player_SetHealth(0.2f);
-		Player_SetJumpDisabled(true);
-		Player_FadeFOVMulTo(1.75f, 25.0f);
-		Player_ShowCrossHairIcons(false);
+		IntroEffects(true);
 			
 		Wake_SetAsleep(true);
 		
 		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.25f);
 		
-		// Effects
-//		mlImageTrailID = Effect_ImageTrail_Start(0.75, 0.5, -1, 2);
-//		mlRadialBlurID = Effect_RadialBlur_Start(0.35f, 0.267f, 0.35f, 0.5f);
-//		mlDoFID = Effect_DoF_Start(1.0f, 2.0f, 0.45f, 0.0f);
-		
 		Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
 		
 		// Preload scan room map
+	}
+	
+	//-------------------------------------------------------
+	
+	void IntroEffects(bool abRunEffects)
+	{
+		if (abRunEffects)
+		{
+			// Player settings
+			Player_SetHealth(0.2f);
+			Player_SetJumpDisabled(true);
+			Player_FadeFOVMulTo(1.75f, 25.0f);
+			Player_ShowCrossHairIcons(false);
+			Player_SetMoveSpeedMul(0.5f);
+			Player_SetRunSpeedMul(0.0f);
+			
+			// Effects
+			mlImageTrailID = Effect_ImageTrail_Start(0.75, 0.5, -1, 2);
+			mlRadialBlurID = Effect_RadialBlur_Start(0.35f, 0.267f, 0.35f, 0.5f);
+			mlDoFID = Effect_DoF_Start(1.0f, 2.0f, 0.45f, 0.0f);
+		}
+		else
+		{
+			// Player settings
+			Player_SetHealth(0.5f);
+			Player_SetJumpDisabled(false);
+			Player_FadeFOVMulTo(1.0f, 25.0f);
+			Player_ShowCrossHairIcons(true);
+			Player_SetRunSpeedMul(0.67f);
+			Player_SetMoveSpeedMul(1.0f);
+			
+			// Effects
+			// These will be the same as the settings after interacting with the wau
+			mlImageTrailID = Effect_ImageTrail_Start(0.75, 0.5, -1, 2);
+			mlRadialBlurID = Effect_RadialBlur_Start(0.35f, 0.267f, 0.35f, 0.5f);
+			mlDoFID = Effect_DoF_Start(1.0f, 2.0f, 0.45f, 0.0f);
+		}
 	}
 	
 	//-------------------------------------------------------
