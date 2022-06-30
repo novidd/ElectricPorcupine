@@ -114,7 +114,7 @@ class cScrMap : iScrMap
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			bDoIntro = false;
+			bDoIntro = true;
 			
 			Player_SetFlashlightDisabled(false);
 			
@@ -288,7 +288,6 @@ class cScrMap : iScrMap
 				if (mbPlayerInElevatorShaft)
 				{
 					Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
-					cLux_AddDebugMessage("Player in elevator shaft");
 					
 					Map_AddTimer("ElevatorTremor", 0.1f, "SequenceElevatorTremor");
 				}
@@ -392,6 +391,8 @@ class cScrMap : iScrMap
 	int mlImageTrailID = -1;
 	int mlRadialBlurID = -1;
 	int mlDoFID = -1;
+	int mlid_ScanLines;
+	int mlid_Infection;
 	
 	void SetupWakeUp()
 	{
@@ -409,8 +410,6 @@ class cScrMap : iScrMap
 			
 		Wake_SetAsleep(true);
 		
-		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.25f);
-		
 		Map_AddTimer("timer_kickoffintro", 0.01, "SequenceWakeUpStart");
 		
 		// Preload scan room map
@@ -425,9 +424,9 @@ class cScrMap : iScrMap
 			// Player settings
 			if (abDoPlayerSettings)
 			{
-				Player_SetHealth(0.2f);
+				Player_SetHealth(0.4f);
 				Player_SetJumpDisabled(true);
-				Player_SetMoveSpeedMul(1.0f);
+				Player_SetMoveSpeedMul(0.85f);
 				Player_SetRunSpeedMul(0.0f);
 			}
 			
@@ -438,7 +437,8 @@ class cScrMap : iScrMap
 				mlRadialBlurID = Effect_RadialBlur_Start(0.35f, 0.267f, 0.35f, 0.5f);
 				mlDoFID = Effect_DoF_Start(1.0f, 2.0f, 0.45f, 0.0f);
 				
-				mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(5, 1),  1, 0.1, 900, 0.1);
+				mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  1, 0.1, 900, 0.1);
+				mlid_Infection = Effect_Screen_Start("damage_steam_screen.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  0.25f, 0.5, 9000, 0);
 			}
 		}
 		else
@@ -511,18 +511,15 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndWait(2))
 		{
 			Effect_VideoDistortion_Start(0.5f, 1.8f, 0.1f, 0.1f);
-			Voice_Play("HelperJane_PluggedIn_BadPower");
 		}
 		else if (Sequence_DoStepAndWait(2))
 		{
-			mlIntroDiagnosticDistortionLoop = Effect_VideoDistortion_Start(0.25f, -1, 0.1f, 0.1f);
+			mlIntroDiagnosticDistortionLoop = Effect_VideoDistortion_Start(0.5f, -1, 0.1f, 0.1f);
 		}
 		Sequence_End();
 	}
 	
 	//-------------------------------------------------------
-	
-	int mlid_ScanLines;
 	
 	cSequenceStatesData mSequenceWakeUpStartState;
 	void SequenceWakeUpStart(const tString &in asTimer)
@@ -555,46 +552,58 @@ class cScrMap : iScrMap
 			Sound_FadeGlobalVolume(1.0f, 0.5f, eSoundEntryType_WorldAll);
 			Sound_FadeGlobalVolume(1.0f, 0.5f, eSoundEntryType_GuiWorld);
 			
-			Sound_PlayGui("03_02_omicron_inside/SFX/sweetener/centre_room", 1.0f);
-			
 			Map_AddTimer("SystemDiagnostics", 0.1f, "SequenceSystemDiagnostics");
 		}
-		else if (Sequence_DoStepAndWait(2.0f))
+		else if (Sequence_DoStepAndWait(10.0f)) // 12.75f time until player falls on the floor
 		{
 			Effect_Fade_In(0.5f);
-			Player_FadeFOVMulTo(1.0f, 15.0f);
+			Player_FadeFOVMulTo(1.0f, 5.0f);
+			
+			Sound_PlayGui("03_02_omicron_inside/SFX/sweetener/centre_room", 1.0f);
+			Sound_PlayGui("Player/UI/Suit/gui/pressure_alarm_medium", 0.5f);
 			
 			WauBreak_Start();
+		}
+		else if (Sequence_DoStepAndWait(2.75f))
+		{
+			Effect_VideoDistortion_Start(0.75f, 4.0f, 0.1f, 0.1f);
+		}
+		else if (Sequence_DoStepAndWait(2.5f)) // Player falls on floor
+		{
+			Player_SetHealth(0.2f);
+			Effect_Screen_FadeAlpha(mlid_Infection, 0.75f, 0.5);
 			
+			Effect_Rumble_Start(0.8, 1, 0, 0.3);
+			
+			Sound_PlayGui("Player/reaction/air/hurt", 1.0f);
+			Sound_PlayGui("Puppet/Akers/attack", 2.0f);
+			
+			// PLAY THE SOUND OF DRIPPING LIQUID
+		}
+		else if (Sequence_DoStepAndWait(4.5f))
+		{
+			// MUFFLE JANES VOICE, IT PLAYS IN THE BACKGROUND WHILE CATHERINE SPEAKS
+			Voice_Play("HelperJane_PluggedIn_BadPower");
+		}
+		else if (Sequence_DoStepAndWait(4.5f))
+		{
 			// START CATHERINE SPEAKING
 			
 			// SOME STRANGE FLUTTERING SOUND EFFECT
 			
 			// CATHERINE SPEAKS TO SIMON WHILE THE PLAYER HAS CONTROL
 			
-			// Run the sound effect below 5.5f before the transfer
-			
-			// Choose one of the sound effects
-			// Sound_CreateAtEntity("PlayerTransfer", "Entities_Special/Equipment/scanner/urban/scan_sequence", "Player", 0, true);
-			// Sound_CreateAtEntity("PlayerTransfer", "Entities_Special/Equipment/scanner/omicron/omicron_scan_seq_success", "Player", 0, true);
-			
-			// Distant lights off exactly when catherine's final line ends - 05_01_phi_inside/SFX/spacegun_sequence/shutdown_lights
-			
+			// ADD A FILTER ON HER VOICE, AS IF TALKING FROM ANOTHER DIMENSION
 			// prewakeup_1_catherine_001
 			// prewakeup_1_catherine_002
 			// prewakeup_1_catherine_003 - Make this voice line melt at the end
 			
 			// Play the line below when the player has control
-
+			
 			// Make Catherines subtitles move slowly
-			//Voice_Play("CatherineScan");
-			
+			//Voice_Play("CatherineScan");	
+		}
 			// When player has full control - 03_02_omicron_inside/SFX/sweetener/enter_start_room when akers shows up
-		}
-		else if (Sequence_DoStepAndWait(4.5f))
-		{
-			
-		}
 		Sequence_End();
 	}
 	
@@ -692,7 +701,7 @@ class cScrMap : iScrMap
 		
 		Entity_SetActive("IntroTentacle", true);
 	}
-				
+	
 	//---------------------------------------------------------------------
 		
 	void SimonCommentsBreakOut(const tString &in asTimer)
@@ -721,21 +730,29 @@ class cScrMap : iScrMap
 	void wau_flower_elevator_Callback(const tString &in asEntity)
 	{
 		mbWauInteracted = true;
+		mbElevatorTremorsAllowed = false;
 		KillElevatorPower();
 		
 		// THE PLAYER NEEDS TO PULL THE GENERATOR LEVER UP AND DOWN TO RESET IT
 		// USE A VARIABLE TO CHECK THIS
+		// Run Interface/gameplay/progression_hit when the panel gets turned on
+		
+		// Temporarily disable the elevator tremors for this sequence, then reenable again
 		
 		// Increase player fov temporarily then decrease
 		
 		// Effects
-		Effect_Screen_FadeOut(mlid_ScanLines, 3.0);
-		Effect_VideoDistortion_FadeOut(mlIntroDiagnosticDistortionLoop, 3.0f);
+		Effect_Screen_FadeOut(mlid_ScanLines, 5.0);
+		Effect_Screen_FadeOut(mlid_Infection, 5.0);
+		Effect_VideoDistortion_FadeOut(mlIntroDiagnosticDistortionLoop, 5.0f);
 		// DECREASE TO INTENSITY OF THE SCREEN EFFECTS FROM THE INTRO
 		
 		// Sounds
-		Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.1f);
-		Sound_StopGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 3.0f);
+		Sound_StopGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 0.1f);
+		
+		// RUN SEQUENCE TIMER FOR ANOTHER SYSTEMS DIAGNOSTICS
+		// PLACE THE LINE BELOW INTO THE SEQUENCE
+		Sound_StopGui("Player/UI/Suit/gui/pressure_alarm_medium", 0.1f);
 		
 		Light_SetBrightness("WauLight_1", 0.01f);
 		
@@ -752,6 +769,9 @@ class cScrMap : iScrMap
 	void KillElevatorPower()
 	{
 		mbElevatorPowerOn = false;
+		
+		Lamp_SetLit("elevatorshaft_power_pipelight_*", false, false);
+		Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", false);
 	}
 	
 	//-------------------------------------------------------

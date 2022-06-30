@@ -339,7 +339,7 @@ class cScrMap : iScrMap
 			
 		CameraAnimation_Begin("IntroAnim", "", false);
 		
-		Sound_PlayGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 0.45f);
+		Sound_PlayGui("Player/UI/Suit/gui/pressure_alarm_medium", 0.5f);
 		
 		// Effects
 		mlImageTrailID = Effect_ImageTrail_Start(1.0, 0.5, -1, 2);
@@ -399,6 +399,7 @@ class cScrMap : iScrMap
 	//-------------------------------------------------------
 	
 	int mlid_ScanLines;
+	int mlid_Infection;
 	
 	cSequenceStatesData mSequenceWakeUpStartState;
 	void SequenceWakeUpStart(const tString &in asTimer)
@@ -420,6 +421,7 @@ class cScrMap : iScrMap
 			// ADD HEARTBEAT
 			
 			mlid_ScanLines = Effect_Screen_Start("00_04_scan_noise.mat", cVector2f(0.5, 0.5), cVector2f(2,1),  1, 0.1, 900, 0.1);
+			mlid_Infection = Effect_Screen_Start("damage_steam_screen.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  0.5f, 0.5, 9000, 0);
 		}
 		else if (Sequence_DoStepAndWait(10.0f)) // 13.5f until the flash to Catherine dialogue
 		{
@@ -447,7 +449,7 @@ class cScrMap : iScrMap
 			Effect_Fade_Out(0.5f);
 			Effect_Flash_Start(0.25, 0.25, 0.5);
 			
-			Sound_StopGui("02_07_theta_exit_a/SFX/flood_sequence/flush_valve_klaxon", 1.0f, true);
+			Sound_StopGui("Player/UI/Suit/gui/pressure_alarm_medium", 1.0f, true);
 			Sound_StopGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 1.0f);
 			
 			Player_FadeFOVMulTo(1.75f, 25.0f);
