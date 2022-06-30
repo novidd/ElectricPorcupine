@@ -308,21 +308,30 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(2.0f))
 		{
+			float fShakeAmount = cMath_RandRectf(0.0224f, 0.0350f);
+			float fShakeTime = 1.857f + (50*fShakeAmount);
+			mlElevatorShakeID = Effect_Shake_Start(fShakeAmount, fShakeTime, 2.3, 3.0f);
 			Effect_Rumble_Start(0.9, 0.7f, 0.25f);
-			mlElevatorShakeID = Effect_Shake_Start(0.00864f, 1.857f, 2.3, 3.0f);
 		}
-		else if (Sequence_DoStepAndWait(1.0f))
+		else if (Sequence_DoStepAndWait(0))
 		{
-			// Make the elevator lights flicker
-			// Elevator lights radius 26 - 18 during flicker
-			
 			for (int i = 1; Entity_Exists("elevatorshaft_power_guidelight_"+i); i++)
 			{
 				float fMinDelay = 0.2*(i-1);
-				LightFlickeringLamp("elevatorshaft_power_guidelight_"+i, fMinDelay, fMinDelay+0.2, 0.5, 1.5);
+				LightFlickeringLamp("elevatorshaft_power_guidelight_"+i, fMinDelay, fMinDelay+0.2, 1.75, 2.5);
 			}
 			
-			// Add sound of popping pipes
+			if (mbElevatorPowerOn)
+			{
+				for (int i = 1; Entity_Exists("elevatorshaft_power_pipelight_"+i); i++)
+				{
+					float fMinDelay = 0.2*(i-1);
+					LightFlickeringLamp("elevatorshaft_power_pipelight_"+i, fMinDelay, fMinDelay+0.2, 1.75, 2.5);
+				}
+				
+				// FLICKER ELEVATOR LIGHT
+				// Elevator lights radius 26 - 18 during flicker
+			}
 		}
 		Sequence_End();
 	}
@@ -341,8 +350,6 @@ class cScrMap : iScrMap
 	//{////////////////////////////
 	
 	//} END Checkpoints
-	
-	//-------------------------------------------------------
 	
 	void LightFlickeringLamp(const tString &in asLamp, float afMinDelay, float afMaxDelay, float afMinFlickerTime, float afMaxFlickerTime)
 	{
@@ -367,8 +374,6 @@ class cScrMap : iScrMap
 	{
 		Lamp_SetFlickerActive(asTimer, false);
 	}
-	
-	//-------------------------------------------------------
 	
 	//} END MAIN FUNCTIONS
  
@@ -711,8 +716,16 @@ class cScrMap : iScrMap
 	// *The player gets the power running*
 	//{//////////////////////////////////////
 	
+	bool mbWauInteracted = false;
+	
 	void wau_flower_elevator_Callback(const tString &in asEntity)
 	{
+		mbWauInteracted = true;
+		KillElevatorPower();
+		
+		// THE PLAYER NEEDS TO PULL THE GENERATOR LEVER UP AND DOWN TO RESET IT
+		// USE A VARIABLE TO CHECK THIS
+		
 		// Increase player fov temporarily then decrease
 		
 		// Effects
@@ -736,21 +749,35 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
+	void KillElevatorPower()
+	{
+		mbElevatorPowerOn = false;
+	}
+	
+	//-------------------------------------------------------
+	
+	bool mbPowerGeneratorOn = true;
 	bool mbFirstMaintenanceBulkheadInteract = true;
 		
 	void MaintenanceBulkStateChange(const tString &in asEntity, int alState)
 	{
-		
-		// Break the panel
-		//Sound_CreateAtEntity("LightSnapping", "", "PanelBreakSound", 0.0f, false, 1.0f);
-		
-		// Run this code below when the player pulls out the cord
-		if (alState == 1 && mbFirstMaintenanceBulkheadInteract)
+		if (mbWauInteracted && mbPowerGeneratorOn)
 		{
-			mbFirstMaintenanceBulkheadInteract = false;
+			// Break the panel
+			//Sound_CreateAtEntity("LightSnapping", "", "PanelBreakSound", 0.0f, false, 1.0f);
 			
-			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
-			Map_AddTimer("", 2.75f, "SequenceBulkheadStutter");
+			// Run this code below when the player pulls out the cord
+			if (alState == 1 && mbFirstMaintenanceBulkheadInteract)
+			{
+				mbFirstMaintenanceBulkheadInteract = false;
+				
+				SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
+				Map_AddTimer("", 2.75f, "SequenceBulkheadStutter");
+			}
+		}
+		else if (mbWauInteracted && !mbPowerGeneratorOn)
+		{
+			// IF POWER GENERATOR NOT ON PROPERLY BREAK PANEL AND HURT PLAYER 
 		}
 	}
 	
@@ -775,6 +802,8 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
 			Sound_CreateAtEntity("BulkheadGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "bulkhead_maintenance");
+			
+			// Break the panel
 		}
 		Sequence_End();
 	}
@@ -793,7 +822,7 @@ class cScrMap : iScrMap
 		// Maybe add this sweetener 02_06_theta_tunnels/sfx/vent_sweetener
 		
 		// DO SUDDEN POWER OUTAGE
-		// SCREEN PITCH BLACK
+		// DARK POWER TEMPORARILY OFF
 		// DO SHAKES
 		// START THE CABLE FLICKERING
 		// ADD DUST PARTICLES ABOVE THE FLOOR BY CABLE
