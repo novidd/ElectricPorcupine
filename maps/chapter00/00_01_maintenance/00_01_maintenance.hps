@@ -346,9 +346,11 @@ class cScrMap : iScrMap
 						LightFlickeringLamp("elevatorshaft_power_shaftdoors_"+i, fMinDelay, fMinDelay+0.2, 2.25, 3.0);	
 					}
 				}
-				
-				// FLICKER ELEVATOR LIGHT
-				// Elevator lights radius 26 - 18 during flicker
+				else
+				{
+					float fMinDelay = 0.2*(2-1);
+					LightFlickeringLamp("elevatorshaft_power_shaftdoors_2", fMinDelay, fMinDelay+0.2, 2.25, 3.0);	
+				}
 			}
 		}
 		Sequence_End();
@@ -384,11 +386,7 @@ class cScrMap : iScrMap
 	
 	void TimerSetLampLit(const tString &in asTimer)
 	{
-		if (asTimer == "elevatorshaft_power_elevatorlamp_1" || asTimer == "elevatorshaft_power_elevatorlamp_2")
-		{
-			
-		}
-		
+		Sound_CreateAtEntity("ElevatorFlickerSound_"+asTimer, "level_amb_shared_machines/misc/lights/fluorescent_light_flicker", asTimer);
 		Lamp_SetLit(asTimer, true, true);
 	}
 		
