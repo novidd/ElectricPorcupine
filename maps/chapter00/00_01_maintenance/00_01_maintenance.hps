@@ -314,6 +314,7 @@ class cScrMap : iScrMap
 		Sequence_Begin("SequenceElevatorLights", mSequenceElevatorLights);
 		if (Sequence_DoStepAndWait(0))
 		{
+			cLux_AddDebugMessage("Flicker elevator lights");
 			// Guide lights
 			for (int i = 1; Entity_Exists("elevatorshaft_power_guidelight_"+i); i++)
 			{
@@ -350,6 +351,7 @@ class cScrMap : iScrMap
 				// Elevator lights radius 26 - 18 during flicker
 			}
 		}
+		Sequence_End();
 	}
 	
 	//-------------------------------------------------------
