@@ -269,14 +269,6 @@ class cScrMap : iScrMap
 				mfTimeRunTremor = cMath_RandRectf(14.10f, 24.0f);
 				mfTremorCounter = 0;
 				
-				// After shock rattling on timer
-				
-				// Do dust sound effect on timer
-				
-				if (mbElevatorPowerOn)
-				{
-					
-				}
 				// If player in elevator shaft then do shake/sway effects
 				if (mbPlayerInElevatorShaft)
 				{
@@ -284,8 +276,11 @@ class cScrMap : iScrMap
 					// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
 					// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
 					
-					Map_AddTimer("ElevatorTremor", 0.1f, "SequenceElevatorTremor");
+					Sound_PlayGui("level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", 2.0f);
+					
+					Map_AddTimer("ElevatorTremor", 1.0f, "SequenceElevatorTremor");
 				}
+				Map_AddTimer("ElevatorLights", 3.0f, "SequenceElevatorLights");
 			}
 		}
 	}
@@ -296,16 +291,7 @@ class cScrMap : iScrMap
 	void SequenceElevatorTremor(const tString &in asTimer)
 	{
 		Sequence_Begin("SequenceElevatorTremor", mSequenceElevatorTremor);
-		if (Sequence_DoStepAndWait(1.0f))
-		{
-			// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy_quieter
-			// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
-			// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
-			
-//			Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
-			Sound_PlayGui("level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", 2.0f);
-		}
-		else if (Sequence_DoStepAndWait(2.0f))
+		if (Sequence_DoStepAndWait(2.0f))
 		{
 			Sound_PlayGui("level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", 1.25f);
 			
@@ -314,7 +300,19 @@ class cScrMap : iScrMap
 			mlElevatorShakeID = Effect_Shake_Start(fShakeAmount, fShakeTime, 2.2, 3.0f);
 			Effect_Rumble_Start(0.9, 0.7f, 0.25f);
 		}
-		else if (Sequence_DoStepAndWait(0))
+		else if (Sequence_DoStepAndWait(2.0f))
+		{
+			// Do dust sound effect on timer
+		}
+		Sequence_End();
+	}
+	//-------------------------------------------------------
+	
+	cSequenceStatesData mSequenceElevatorLights;
+	void SequenceElevatorLights(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceElevatorLights", mSequenceElevatorLights);
+		if (Sequence_DoStepAndWait(0))
 		{
 			// Guide lights
 			for (int i = 1; Entity_Exists("elevatorshaft_power_guidelight_"+i); i++)
@@ -352,8 +350,8 @@ class cScrMap : iScrMap
 				// Elevator lights radius 26 - 18 during flicker
 			}
 		}
-		Sequence_End();
 	}
+	
 	//-------------------------------------------------------
 	
 	bool OnCollide_PlayerInElevatorShaft(const tString &in asParent, const tString &in asChild, int alState)
@@ -386,8 +384,7 @@ class cScrMap : iScrMap
 	{
 		if (asTimer == "elevatorshaft_power_elevatorlamp_1" || asTimer == "elevatorshaft_power_elevatorlamp_2")
 		{
-			// Play loud shutter light sound ElevatorLightsOn
-			Sound_CreateAtEntity("ElevatorLightsOn", "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_stop", "ElevatorLightsOn");
+			
 		}
 		
 		Lamp_SetLit(asTimer, true, true);
@@ -602,6 +599,7 @@ class cScrMap : iScrMap
 			Effect_Rumble_Start(0.8, 1, 0, 0.3);
 			
 			Sound_PlayGui("Player/reaction/air/hurt", 1.0f);
+			Sound_PlayGui("03_02_omicron_inside/SFX/Pass2/brain_suit_insert", 1.0f);
 			Sound_PlayGui("Puppet/Akers/attack", 2.0f);
 			
 			// PLAY THE SOUND OF DRIPPING LIQUID
