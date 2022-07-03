@@ -269,17 +269,10 @@ class cScrMap : iScrMap
 				mfTimeRunTremor = cMath_RandRectf(14.10f, 24.0f);
 				mfTremorCounter = 0;
 				
-				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy_quieter
-				// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
-				// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
-				
 				// After shock rattling on timer
 				
 				// Do dust sound effect on timer
 				
-				// Always make the red guidelighs flicker even if power off
-				
-				// Made the lights flicker if elevator shaft power on
 				if (mbElevatorPowerOn)
 				{
 					
@@ -287,7 +280,9 @@ class cScrMap : iScrMap
 				// If player in elevator shaft then do shake/sway effects
 				if (mbPlayerInElevatorShaft)
 				{
-					Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
+					// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy_quieter
+					// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
+					// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
 					
 					Map_AddTimer("ElevatorTremor", 0.1f, "SequenceElevatorTremor");
 				}
@@ -303,17 +298,25 @@ class cScrMap : iScrMap
 		Sequence_Begin("SequenceElevatorTremor", mSequenceElevatorTremor);
 		if (Sequence_DoStepAndWait(1.0f))
 		{
-			Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
+			// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy_quieter
+			// level_amb_shared_interior/amb/sfx/metal/metal_groan_heavy
+			// level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat
+			
+//			Sound_CreateAtEntity("ElevShaftGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", "ElevatorShaftGroan");
+			Sound_PlayGui("level_amb_shared_interior/amb/sfx/metal/metal_groan_deep_fat", 2.0f);
 		}
 		else if (Sequence_DoStepAndWait(2.0f))
 		{
-			float fShakeAmount = cMath_RandRectf(0.0224f, 0.0350f);
-			float fShakeTime = 1.857f + (50*fShakeAmount);
-			mlElevatorShakeID = Effect_Shake_Start(fShakeAmount, fShakeTime, 2.3, 3.0f);
+			Sound_PlayGui("level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", 1.25f);
+			
+			float fShakeAmount = cMath_RandRectf(0.0150f, 0.02f);
+			float fShakeTime = 1.857f + (15*fShakeAmount);
+			mlElevatorShakeID = Effect_Shake_Start(fShakeAmount, fShakeTime, 2.2, 3.0f);
 			Effect_Rumble_Start(0.9, 0.7f, 0.25f);
 		}
 		else if (Sequence_DoStepAndWait(0))
 		{
+			// Guide lights
 			for (int i = 1; Entity_Exists("elevatorshaft_power_guidelight_"+i); i++)
 			{
 				float fMinDelay = 0.2*(i-1);
@@ -322,10 +325,27 @@ class cScrMap : iScrMap
 			
 			if (mbElevatorPowerOn)
 			{
+				// Pipe lights
 				for (int i = 1; Entity_Exists("elevatorshaft_power_pipelight_"+i); i++)
 				{
 					float fMinDelay = 0.2*(i-1);
 					LightFlickeringLamp("elevatorshaft_power_pipelight_"+i, fMinDelay, fMinDelay+0.2, 1.75, 2.5);
+				}
+				
+				// Elevator light
+				for (int i = 1; Entity_Exists("elevatorshaft_power_elevatorlamp_"+i); i++)
+				{
+					float fMinDelay = 0.2*(i-1);
+					LightFlickeringLamp("elevatorshaft_power_elevatorlamp_"+i, fMinDelay, fMinDelay+0.2, 1.75, 2.5);
+				}
+				
+				// Elevator door lights
+				if (mbPowerReset) {
+					for (int i = 1; Entity_Exists("elevatorshaft_power_shaftdoors_"+i); i++)
+					{
+						float fMinDelay = 0.2*(i-1);
+						LightFlickeringLamp("elevatorshaft_power_shaftdoors_"+i, fMinDelay, fMinDelay+0.2, 2.25, 3.0);	
+					}
 				}
 				
 				// FLICKER ELEVATOR LIGHT
@@ -364,6 +384,12 @@ class cScrMap : iScrMap
 	
 	void TimerSetLampLit(const tString &in asTimer)
 	{
+		if (asTimer == "elevatorshaft_power_elevatorlamp_1" || asTimer == "elevatorshaft_power_elevatorlamp_2")
+		{
+			// Play loud shutter light sound ElevatorLightsOn
+			Sound_CreateAtEntity("ElevatorLightsOn", "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_stop", "ElevatorLightsOn");
+		}
+		
 		Lamp_SetLit(asTimer, true, true);
 	}
 		
@@ -733,6 +759,12 @@ class cScrMap : iScrMap
 		mbElevatorTremorsAllowed = false;
 		KillElevatorPower();
 		
+		// Play 01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor on power on and/or off
+		// Play 02_05_theta/sweeteners/wau_flower_lights_out when power out
+		// Play 01_04_transport_station/Special/Enter_Station/enter_station_quake
+		// Then play this below (use a sequence)
+		// Play 01_04_transport_station/SFX/tunnel/scare/level_start when power turns off
+		
 		// THE PLAYER NEEDS TO PULL THE GENERATOR LEVER UP AND DOWN TO RESET IT
 		// USE A VARIABLE TO CHECK THIS
 		// Run Interface/gameplay/progression_hit when the panel gets turned on
@@ -770,6 +802,11 @@ class cScrMap : iScrMap
 	{
 		mbElevatorPowerOn = false;
 		
+		
+		// Elevator lights
+		LensFlare_SetVisible("elevatorlamp_flare_*", false);
+		
+		// Pipe lights
 		Lamp_SetLit("elevatorshaft_power_pipelight_*", false, false);
 		Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", false);
 	}
@@ -778,6 +815,7 @@ class cScrMap : iScrMap
 	
 	bool mbPowerGeneratorOn = true;
 	bool mbFirstMaintenanceBulkheadInteract = true;
+	bool mbPowerReset = false;
 		
 	void MaintenanceBulkStateChange(const tString &in asEntity, int alState)
 	{
@@ -840,6 +878,9 @@ class cScrMap : iScrMap
 	{
 		Sound_CreateAtEntity("AkersSound", "02_06_theta_tunnels/sweeteners/akers_stuff/akers_vent", "AkersSoundSource");
 		// Maybe add this sweetener 02_06_theta_tunnels/sfx/vent_sweetener
+		// Tremor 01_02_upsilon_inside_02/sfx/hall/tremor
+		
+		Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, 1, 0.25, 10);
 		
 		// DO SUDDEN POWER OUTAGE
 		// DARK POWER TEMPORARILY OFF
