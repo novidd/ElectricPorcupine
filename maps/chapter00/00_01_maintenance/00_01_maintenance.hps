@@ -386,7 +386,10 @@ class cScrMap : iScrMap
 	
 	void TimerSetLampLit(const tString &in asTimer)
 	{
-		Sound_CreateAtEntity("ElevatorFlickerSound_"+asTimer, "level_amb_shared_machines/misc/lights/fluorescent_light_flicker", asTimer);
+		if (asTimer != "elevatorshaft_power_shaftdoors_1" || asTimer != "elevatorshaft_power_shaftdoors_2")
+		{
+			Sound_CreateAtEntity("ElevatorFlickerSound_"+asTimer, "level_amb_shared_machines/misc/lights/fluorescent_light_flicker", asTimer);
+		}
 		Lamp_SetLit(asTimer, true, true);
 	}
 		
