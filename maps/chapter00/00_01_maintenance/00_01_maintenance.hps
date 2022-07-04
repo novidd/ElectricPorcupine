@@ -204,6 +204,11 @@ class cScrMap : iScrMap
 		{
 			Map_AddTimer("RebootPower", 0.25f, "SequenceRebootElevatorPower");
 		}
+		
+		if(alAction == eAction_Test5)
+		{
+			Decal_SetVisibleInArea(false, "AreaName", "MaterialName");
+		}
 	}
 
 	//-------------------------------------------------------
