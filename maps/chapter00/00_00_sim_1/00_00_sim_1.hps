@@ -339,8 +339,6 @@ class cScrMap : iScrMap
 			
 		CameraAnimation_Begin("IntroAnim", "", false);
 		
-		Sound_PlayGui("Player/UI/Suit/gui/pressure_alarm_medium", 0.5f);
-		
 		// Effects
 		mlImageTrailID = Effect_ImageTrail_Start(1.0, 0.5, -1, 2);
 		mlRadialBlurID = Effect_RadialBlur_Start(0.5f, 0.55f, 0.35f, 0.5f);
@@ -362,6 +360,7 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(1.0f))
 		{
+			Sound_PlayGui("Player/UI/Suit/gui/pressure_alarm_medium", 0.5f);
 			Sound_PlayGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 1.0f);
 			Effect_VideoDistortion_Start(0.5f, 1.0f, 0.1f, 0.1f);
 			

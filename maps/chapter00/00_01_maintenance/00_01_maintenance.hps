@@ -450,7 +450,7 @@ class cScrMap : iScrMap
 			// Player settings
 			if (abDoPlayerSettings)
 			{
-				Player_SetHealth(0.4f);
+				Player_SetHealth(0.2f);
 				Player_SetJumpDisabled(true);
 				Player_SetMoveSpeedMul(0.85f);
 				Player_SetRunSpeedMul(0.0f);
@@ -756,40 +756,40 @@ class cScrMap : iScrMap
 	
 	void wau_flower_elevator_Callback(const tString &in asEntity)
 	{
+		cLux_AddDebugMessage("Player interacted with elevator Wau.");
+		
+		// Do music (look at music when interacting with first Wau in upsilon)
+		
 		mbWauInteracted = true;
 		mbElevatorTremorsAllowed = false;
-		KillElevatorPower();
+		mbElevatorPowerOn = false;
+		Map_AddTimer("KillElevatorPower", 0.1f, "SequenceKillElevatorPower");
 		
-		// Play 01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor on power on and/or off
-		// Play 02_05_theta/sweeteners/wau_flower_lights_out when power out
-		// Play 01_04_transport_station/Special/Enter_Station/enter_station_quake
-		// Then play this below (use a sequence)
-		// Play 01_04_transport_station/SFX/tunnel/scare/level_start when power turns off
+		// Player settings
+		Player_SetJumpDisabled(false);
+		Player_SetMoveSpeedMul(1.0f);
+		Player_SetRunSpeedMul(1.0f);
+		
+		// Effects
+		Effect_Screen_FadeOut(mlid_ScanLines, 3.0);
+		Effect_Screen_FadeOut(mlid_Infection, 3.0);
+		Effect_VideoDistortion_FadeOut(mlIntroDiagnosticDistortionLoop, 35.0f);
+		// DECREASE TO INTENSITY OF THE REST OF THE SCREEN EFFECTS FROM THE INTRO
+		
+		// System diagnostics sounds
+		Sound_StopGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 0.1f);
+		Sound_StopGui("Player/UI/Suit/gui/pressure_alarm_medium", 0.1f);
+		
+		// Entities
+		Light_SetBrightness("WauLight_*", 0.01f);
+		
+		Entity_SetActive("ElevatorLadder", true);
 		
 		// THE PLAYER NEEDS TO PULL THE GENERATOR LEVER UP AND DOWN TO RESET IT
 		// USE A VARIABLE TO CHECK THIS
 		// Run Interface/gameplay/progression_hit when the panel gets turned on
 		
 		// Temporarily disable the elevator tremors for this sequence, then reenable again
-		
-		// Increase player fov temporarily then decrease
-		
-		// Effects
-		Effect_Screen_FadeOut(mlid_ScanLines, 5.0);
-		Effect_Screen_FadeOut(mlid_Infection, 5.0);
-		Effect_VideoDistortion_FadeOut(mlIntroDiagnosticDistortionLoop, 5.0f);
-		// DECREASE TO INTENSITY OF THE SCREEN EFFECTS FROM THE INTRO
-		
-		// Sounds
-		Sound_StopGui("03_02_omicron_inside/SFX/suit_diagnostics/motor/loop", 0.1f);
-		
-		// RUN SEQUENCE TIMER FOR ANOTHER SYSTEMS DIAGNOSTICS
-		// PLACE THE LINE BELOW INTO THE SEQUENCE
-		Sound_StopGui("Player/UI/Suit/gui/pressure_alarm_medium", 0.1f);
-		
-		Light_SetBrightness("WauLight_1", 0.01f);
-		
-		Entity_SetActive("ElevatorLadder", true);
 		
 		// TURN ON POWER FOR THE PANEL IF THE POWER GENERATOR IS ON TOO
 		
@@ -799,13 +799,57 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	void KillElevatorPower()
+	cSequenceStatesData mSequenceSequenceKillElevatorPower;
+	void SequenceKillElevatorPower(const tString &in asTimer)
 	{
-		mbElevatorPowerOn = false;
+		Sequence_Begin("SequenceKillElevatorPower", mSequenceSequenceKillElevatorPower);
+		if (Sequence_DoStepAndWait(1.0f)) // 4.0f until kill power
+		{
+			// Power attempts to reboot
+			Sound_CreateAtEntity("PowerFail", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Bad", "Player", 0.0f, false, 1.0f);
+		}
+		else if (Sequence_DoStepAndWait(3.0f))
+		{
+			// RUN SEQUENCE TIMER FOR ANOTHER SYSTEMS DIAGNOSTICS
+		}
+		else if (Sequence_DoStepAndWait(0.75f))
+		{
+			// Power fails
+			KillElevatorPowerMisc();
+			
+			Effect_Shake_FadeOut(mlElevatorShakeID, 0);
+			Effect_Shake_Start(0.036f, 4.5f, 0.3f, 1.15f);
+			
+			Sound_CreateAtEntity("PowerInitialTremor", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player", 0.0f, false, 1.0f);
+		}
+		else if (Sequence_DoStepAndWait(5.0f))
+		{
+			mbElevatorTremorsAllowed = true;
+			
+			Sound_CreateAtEntity("PowerQuake", "01_04_transport_station/Special/Enter_Station/enter_station_quake", "Player", 0.0f, false, 1.0f);
+		}
+		else if (Sequence_DoStepAndWait(0.15f))
+		{
+			
+			Sound_CreateAtEntity("PowerQuakeSweetener", "01_04_transport_station/Special/Enter_Station/enter_station_sweetener", "Player", 0.0f, false, 1.0f);
+			Sound_CreateAtEntity("PowerQuakeDistantNoises", "01_04_transport_station/SFX/tunnel/scare/level_start", "Player", 0.0f, false, 1.0f);
+		}
+		Sequence_End();
+	}
+	
+	void KillElevatorPowerMisc()
+	{
+		cLux_AddDebugMessage("!! Kill elevator power !!");
 		
+		// Break the door panel spark
+		// Flicker a light for the spark
+		
+		// Elevator door light
+		Lamp_SetLit("elevatorshaft_power_shaftdoors_2", false, false);
 		
 		// Elevator lights
 		LensFlare_SetVisible("elevatorlamp_flare_*", false);
+		Lamp_SetLit("elevatorshaft_power_elevatorlamp_*", false, false);
 		
 		// Pipe lights
 		Lamp_SetLit("elevatorshaft_power_pipelight_*", false, false);
