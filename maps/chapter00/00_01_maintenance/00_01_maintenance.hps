@@ -80,7 +80,7 @@ class cScrMap : iScrMap
 		ParticleSystem_Preload("spray_cone_airlockpipe_broken.ps");
 		ParticleSystem_Preload("spray_shower.ps");
 		ParticleSystem_Preload("fog_ambient_light_soft.ps");
-		ParticleSystem_Preload("fog_ambient_light_hard_small.ps.ps");
+		ParticleSystem_Preload("fog_ambient_light_hard_small.ps");
 		ParticleSystem_Preload("drops_small_continuous.ps");
 		ParticleSystem_Preload("drops_med_continuous_collision.ps");
 		
@@ -103,7 +103,11 @@ class cScrMap : iScrMap
 		
 		/////////////////////////
 		// Level setup
+		
+		// Elevator panel break
 		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", false);
+		ParticleSystem_SetActive("bulkhead_maintenance_panel_spark_*", false);
+		Light_FadeTo("panel_break_light", cColor(0,0,0,0), 0.286f, 0);
 		
 		bool bDoIntro = true;
 		
@@ -188,6 +192,16 @@ class cScrMap : iScrMap
 			Lamp_SetLit("elevatorshaft_power_elevatorlamp_*", false, false);
 			ParticleSystem_SetBrightness("elevatorlamp_ps", 0.0f);
 			LensFlare_SetVisible("elevatorlamp_flare_*", false);
+		}
+		
+		if(alAction == eAction_Test3)
+		{
+			BreakBulkHeadPanel();
+		}
+		
+		if(alAction == eAction_Test4)
+		{
+			Map_AddTimer("RebootPower", 0.25f, "SequenceRebootElevatorPower");
 		}
 	}
 
@@ -767,7 +781,7 @@ class cScrMap : iScrMap
 		
 		// Player settings
 		Player_SetJumpDisabled(false);
-		Player_SetMoveSpeedMul(1.0f);
+		Player_SetMoveSpeedMul(0.85f);
 		Player_SetRunSpeedMul(1.0f);
 		
 		// Effects
@@ -799,10 +813,10 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	cSequenceStatesData mSequenceSequenceKillElevatorPower;
+	cSequenceStatesData mSequenceKillElevatorPower;
 	void SequenceKillElevatorPower(const tString &in asTimer)
 	{
-		Sequence_Begin("SequenceKillElevatorPower", mSequenceSequenceKillElevatorPower);
+		Sequence_Begin("SequenceKillElevatorPower", mSequenceKillElevatorPower);
 		if (Sequence_DoStepAndWait(1.0f)) // 4.0f until kill power
 		{
 			// Power attempts to reboot
@@ -815,10 +829,10 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndWait(0.75f))
 		{
 			// Power fails
-			KillElevatorPowerMisc();
+			KillElevatorPower();
 			
 			Effect_Shake_FadeOut(mlElevatorShakeID, 0);
-			Effect_Shake_Start(0.036f, 4.5f, 0.3f, 1.15f);
+			Effect_Shake_Start(0.036f, 4.5f, 0.5f, 1.15f);
 			
 			Sound_CreateAtEntity("PowerInitialTremor", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player", 0.0f, false, 1.0f);
 		}
@@ -830,19 +844,18 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
-			
 			Sound_CreateAtEntity("PowerQuakeSweetener", "01_04_transport_station/Special/Enter_Station/enter_station_sweetener", "Player", 0.0f, false, 1.0f);
 			Sound_CreateAtEntity("PowerQuakeDistantNoises", "01_04_transport_station/SFX/tunnel/scare/level_start", "Player", 0.0f, false, 1.0f);
 		}
 		Sequence_End();
 	}
 	
-	void KillElevatorPowerMisc()
+	void KillElevatorPower()
 	{
 		cLux_AddDebugMessage("!! Kill elevator power !!");
 		
-		// Break the door panel spark
-		// Flicker a light for the spark
+		// Break the door panel instead when the level has been pulled
+		BreakBulkHeadPanel();
 		
 		// Elevator door light
 		Lamp_SetLit("elevatorshaft_power_shaftdoors_2", false, false);
@@ -850,10 +863,86 @@ class cScrMap : iScrMap
 		// Elevator lights
 		LensFlare_SetVisible("elevatorlamp_flare_*", false);
 		Lamp_SetLit("elevatorshaft_power_elevatorlamp_*", false, false);
+		ParticleSystem_SetVisible("elevatorlamp_ps", false);
 		
 		// Pipe lights
 		Lamp_SetLit("elevatorshaft_power_pipelight_*", false, false);
 		Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void BreakBulkHeadPanel()
+	{
+		Light_FadeTo("panel_break_light", cColor(0.765,0.945,1,0), 1.0f, 0.1f); // Hex: C3F1FF00
+		Light_SetFlickerActive("panel_break_light", true);
+			
+		ParticleSystem_SetActive("bulkhead_maintenance_panel_spark_*", true);
+			
+		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", true);
+			
+		// Add glass break sound
+		Sound_CreateAtEntity("PanelBreakGlass", "01_01_upsilon_awake/sfx/window_smash/glass_crack", "bulkhead_maintenance_panel");
+		Sound_CreateAtEntity("PanelBreakElectricity", "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_start", "bulkhead_maintenance_panel");		
+	}
+	
+	//-------------------------------------------------------
+	
+	void OnChangeElevatorLever(const tString &in asEntity, int alState)
+	{
+		if (alState == 0) return;
+		
+		Lever_SetAutoMoveTarget(asEntity, alState);
+		
+		if (alState == 1)
+		{
+			if (!mbWauInteracted) return;
+			cLux_AddDebugMessage("Elevator power grounded.");
+			mbPowerReset = true;
+		}
+		else
+		{
+			if (mbWauInteracted == false && mbPowerReset == false) return;
+			mbElevatorPowerOn = true;
+			Map_AddTimer("RebootPower", 0.25f, "SequenceRebootElevatorPower");
+		}
+	}
+	
+	//-------------------------------------------------------
+	
+	cSequenceStatesData mSequenceRebootElevatorPower;
+	void SequenceRebootElevatorPower(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceRebootElevatorPower", mSequenceRebootElevatorPower);
+		if (Sequence_DoStepAndWait(1.0f))
+		{
+			cLux_AddDebugMessage("Elevator power restarting.");
+			
+			// SOUND OF POWER BOOTING UP
+			// SCREEN SHAKES
+		}
+		else if (Sequence_DoStepAndWait(1.0f))
+		{
+			// After power has been reset reenable all lights and so on
+			Button_SetLocked("bulkhead_maintenance_panel", false);
+			Lamp_SetLit("elevatorshaft_power_shaftdoors_1", true, true);
+			
+			// Elevator door light
+			Lamp_SetLit("elevatorshaft_power_shaftdoors_2", true, true);
+			
+			// Elevator lights
+			// THE ELEVATOR LIGHTS TURN ON LAST
+			Sound_CreateAtEntity("ElevatorLightsOn", "level_amb_shared_machines/misc/industrial_lights/breaker_large_on", "elevatorshaft_power_elevatorlamp_1");
+			
+			LensFlare_SetVisible("elevatorlamp_flare_*", true);
+			Lamp_SetLit("elevatorshaft_power_elevatorlamp_*", true, true);
+			ParticleSystem_SetVisible("elevatorlamp_ps", true);
+		
+			// Pipe lights
+			Lamp_SetLit("elevatorshaft_power_pipelight_*", true, true);
+			Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", true);
+		}
+		Sequence_End();
 	}
 	
 	//-------------------------------------------------------
@@ -864,23 +953,15 @@ class cScrMap : iScrMap
 		
 	void MaintenanceBulkStateChange(const tString &in asEntity, int alState)
 	{
-		if (mbWauInteracted && mbPowerGeneratorOn)
-		{
-			// Break the panel
-			//Sound_CreateAtEntity("LightSnapping", "", "PanelBreakSound", 0.0f, false, 1.0f);
+		cLux_AddDebugMessage("Wau interacted and powerreset.");
 			
-			// Run this code below when the player pulls out the cord
-			if (alState == 1 && mbFirstMaintenanceBulkheadInteract)
-			{
-				mbFirstMaintenanceBulkheadInteract = false;
-				
-				SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
-				Map_AddTimer("", 2.75f, "SequenceBulkheadStutter");
-			}
-		}
-		else if (mbWauInteracted && !mbPowerGeneratorOn)
+		// Run this code below when the player pulls out the cord
+		if (alState == 1 && mbFirstMaintenanceBulkheadInteract)
 		{
-			// IF POWER GENERATOR NOT ON PROPERLY BREAK PANEL AND HURT PLAYER 
+			mbFirstMaintenanceBulkheadInteract = false;
+				
+			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
+			Map_AddTimer("", 2.75f, "SequenceBulkheadStutter");
 		}
 	}
 	
@@ -904,9 +985,9 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
-			Sound_CreateAtEntity("BulkheadGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "bulkhead_maintenance");
+			// FLICKER BULKHEAD LIGHT IF NO TREMOR
 			
-			// Break the panel
+			//Sound_CreateAtEntity("BulkheadGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "bulkhead_maintenance");
 		}
 		Sequence_End();
 	}
