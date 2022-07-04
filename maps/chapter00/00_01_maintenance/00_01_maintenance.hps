@@ -833,24 +833,31 @@ class cScrMap : iScrMap
 		{
 			// RUN SEQUENCE TIMER FOR ANOTHER SYSTEMS DIAGNOSTICS
 		}
-		else if (Sequence_DoStepAndWait(0.75f))
+		else if (Sequence_DoStepAndWait(0.5f))
 		{
 			// Power fails
 			KillElevatorPower();
 			
 			Effect_Shake_FadeOut(mlElevatorShakeID, 0);
-			Effect_Shake_Start(0.036f, 4.5f, 0.5f, 1.15f);
+			Effect_Shake_Start(0.065f, 4.5f, 1.0f, 1.75f);
 			
 			Sound_CreateAtEntity("PowerInitialTremor", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player", 0.0f, false, 1.0f);
 		}
-		else if (Sequence_DoStepAndWait(5.0f))
+		else if (Sequence_DoStepAndWait(7.0f))
 		{
 			mbElevatorTremorsAllowed = true;
 			
 			Sound_CreateAtEntity("PowerQuake", "01_04_transport_station/Special/Enter_Station/enter_station_quake", "Player", 0.0f, false, 1.0f);
+			
+			// Start the alarm
+			// Look for a good alarm sound
+			Lamp_SetLit("elevator_emergencylamp_1", true, true);
+			Sound_Play("elevalarm_motor", 0);
+			Sound_CreateAtEntity("ElevAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "ElevAlarmSoundSource");
 		}
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
+			// INSTEAD DO THESE SWEETENERS WHEN THE PLAYER HAS TURNED ON THE POWER
 			Sound_CreateAtEntity("PowerQuakeSweetener", "01_04_transport_station/Special/Enter_Station/enter_station_sweetener", "Player", 0.0f, false, 1.0f);
 			Sound_CreateAtEntity("PowerQuakeDistantNoises", "01_04_transport_station/SFX/tunnel/scare/level_start", "Player", 0.0f, false, 1.0f);
 		}
@@ -1016,6 +1023,10 @@ class cScrMap : iScrMap
 	/////////////////////////////////////////
 	// *Akers shows up*
 	//{//////////////////////////////////////
+	
+	// DO THIS EVENT A LITTLE LATER
+	// !! NOT DIRECTLY AFTER THE ELEVATOR SCENE !!
+	// (TOO MUCH HAPPENING AT ONCE -- PACING IS KEY)
 	
 	bool OnColOnCollide_AkersBreakCable(const tString &in asParent, const tString &in asChild, int alState)
 	{
