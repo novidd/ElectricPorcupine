@@ -797,7 +797,8 @@ class cScrMap : iScrMap
 		// Entities
 		Light_SetBrightness("WauLight_*", 0.01f);
 		
-		Entity_SetActive("ElevatorLadder", true);
+		Entity_SetActive("ElevatorLadder_Closed", true);
+		Entity_SetActive("ElevatorLadder_Open_Aux", true);
 		
 		// THE PLAYER NEEDS TO PULL THE GENERATOR LEVER UP AND DOWN TO RESET IT
 		// USE A VARIABLE TO CHECK THIS

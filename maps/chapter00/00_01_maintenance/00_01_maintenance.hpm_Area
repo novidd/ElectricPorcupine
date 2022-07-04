@@ -509,10 +509,10 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268440399" Name="ElevatorLadder" CreStamp="1655675806" ModStamp="1656586563" WorldPos="-2.125 -49.8995 0.25" Rotation="0 0 0" Scale="1 7.5 0.5" Active="true" Mesh="" UID="16 1539 268440399" AreaType="Ladder">
+            <Area ID="268440399" Name="ElevatorLadder_Closed" CreStamp="1655675806" ModStamp="1656950139" WorldPos="-2.125 -42.4 0.25" Rotation="0 0 0" Scale="1 22.5 0.5" Active="true" Mesh="" UID="16 979 268440399" AreaType="Ladder">
                 <UserVariables>
                     <Var Name="Material" Value="metal" />
-                    <Var Name="Exit_Top" Value="ElevatorLadder_Top" />
+                    <Var Name="Exit_Top" Value="" />
                     <Var Name="Exit_TopCrouching" Value="False" />
                     <Var Name="Exit_Bottom" Value="ElevatorLadder_Bottom" />
                     <Var Name="Exit_BottomCrouching" Value="False" />
@@ -569,9 +569,9 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268440620" Name="InteractAuxArea_1" CreStamp="1655757177" ModStamp="1656530590" WorldPos="-2.125 -45.5147 0.499998" Rotation="0 0 0" Scale="1 2 0.75" Active="true" Mesh="" UID="16 1747 268440620" AreaType="InteractAux">
+            <Area ID="268440620" Name="ElevatorLadder_Open_Aux" CreStamp="1655757177" ModStamp="1656950032" WorldPos="-2.125 -45.5147 0.499998" Rotation="0 0 0" Scale="1 2 0.75" Active="false" Mesh="" UID="16 1747 268440620" AreaType="InteractAux">
                 <UserVariables>
-                    <Var Name="InteractParent" Value="ElevatorLadder" />
+                    <Var Name="InteractParent" Value="ElevatorLadder_Open" />
                     <Var Name="UseParentMainBody" Value="true" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                 </UserVariables>
@@ -1988,6 +1988,18 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268441945" Name="ElevatorLadder_Open" CreStamp="1656949934" ModStamp="1656949950" WorldPos="-2.125 -49.8995 0.25" Rotation="0 0 0" Scale="1 7.5 0.5" Active="false" Mesh="" UID="16 1539 268441945" AreaType="Ladder">
+                <UserVariables>
+                    <Var Name="Material" Value="metal" />
+                    <Var Name="Exit_Top" Value="ElevatorLadder_Top" />
+                    <Var Name="Exit_TopCrouching" Value="False" />
+                    <Var Name="Exit_Bottom" Value="ElevatorLadder_Bottom" />
+                    <Var Name="Exit_BottomCrouching" Value="False" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
                 </UserVariables>
             </Area>
         </Objects>
