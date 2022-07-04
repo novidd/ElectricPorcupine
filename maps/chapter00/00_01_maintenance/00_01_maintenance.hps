@@ -104,12 +104,15 @@ class cScrMap : iScrMap
 		/////////////////////////
 		// Level setup
 		
-		// Elevator panel break
+		// Elevator shaft
 		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", false);
 		Billboard_SetVisible("bulkhead_maintenance_panel_brokenscreen", false);
 		ParticleSystem_SetActive("bulkhead_maintenance_panel_spark_*", false);
 		Light_FadeTo("panel_break_light", cColor(0,0,0,0), 0.286f, 0);
 		
+		ElevAlarmLampHandler("elevator_emergencylamp_1", false);
+		
+		// Intro
 		bool bDoIntro = true;
 		
 		////////////////////
@@ -862,6 +865,11 @@ class cScrMap : iScrMap
 	{
 		cLux_AddDebugMessage("!! Kill elevator power !!");
 		
+		// DO WAU SPARKS HERE
+		// USE A TINY SEQUENCE JUST FOR THIS
+		// ps_powerout_*
+		
+		
 		// Break the door panel instead when the level has been pulled
 		//BreakBulkHeadPanel();
 		
@@ -879,9 +887,37 @@ class cScrMap : iScrMap
 		
 		// Start the alarm
 		// Look for a good alarm sound
-		Lamp_SetLit("elevator_emergencylamp_1", true, true);
-		Sound_Play("elevalarm_motor", 0);
+		ElevAlarmLampHandler("elevator_emergencylamp_1", true);
 		Sound_CreateAtEntity("ElevAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "ElevAlarmSoundSource");
+		
+		// !! IF I HAVE TIME !!
+		// IF PLAYER DOESN'T TURN THE POWER BACK ON WITHIN A CERTAIN TIME INTERVAL THE SHAFT WILL EXPLODE
+		// THE PLAYER WILL RESPAWN IN ANOTHER WAU ROOM (MAKE THIS PLACE CURSED) PAST THE BLAST DOOR THE MAP WILL HAVE CHANGED JUST FOR THIS EVENT
+		// ON RETURN LATER ON THE GENERATOR IS BROKEN, WATER IS POURING FROM HOLES IN THE WALLS AND THE POWER IS PERMANENTLY OFF
+	}
+	
+	//-------------------------------------------------------
+	
+	void ElevAlarmLampHandler(const tString &in asEntity, bool abOn)
+	{
+		if (abOn)
+		{
+			Sound_Play("elevalarm_motor", 0.1f);
+			Entity_PlayAnimation(asEntity, "spin", 0.1f, true);
+			Light_FadeTo("elevator_emergencylamp_1_light_1", cColor(0.369,0,0,0.235), 6, 0.5f); // New: 1,0,0,0.467 -- Old: 0.369,0,0,0.235
+		}
+		else
+		{
+			Sound_Stop("elevalarm_motor", 0.1f);
+			Entity_StopAnimation(asEntity);
+			Light_FadeTo("elevator_emergencylamp_1_light_1", cColor(0,0,0,1), 6, 0.5f);
+		}
+			
+//		ParticleSystem_SetActive("AirlockLamp_PS", abOn);
+//		ParticleSystem_SetVisible("AirlockLamp_PS", abOn);
+		
+		Lamp_SetLit(asEntity, abOn, false);
+		Light_SetFlickerActive("elevator_emergencylamp_1_light_1", abOn);
 	}
 	
 	//-------------------------------------------------------
@@ -895,7 +931,6 @@ class cScrMap : iScrMap
 			
 		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", true);
 			
-		// Add glass break sound
 		Sound_CreateAtEntity("PanelBreakGlass", "01_01_upsilon_awake/sfx/window_smash/glass_crack", "bulkhead_maintenance_panel");
 		Sound_CreateAtEntity("PanelBreakElectricity", "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_start", "bulkhead_maintenance_panel");		
 	}
@@ -939,6 +974,7 @@ class cScrMap : iScrMap
 		{
 			// MAKE THE LIGHTS AT THE BOTTOM OF THE ELEVATOR SHAFT FLICKER RIGHT AS THEY TURN ON
 			
+			// Change illum color of the generator light from red to green
 			
 			// After power has been reset reenable all lights and so on
 			Button_SetLocked("bulkhead_maintenance_panel", false);
@@ -975,12 +1011,10 @@ class cScrMap : iScrMap
 	{
 		cLux_AddDebugMessage("Wau interacted and powerreset.");
 			
-		// Run this code below when the player pulls out the cord
 		if (alState == 1 && mbFirstMaintenanceBulkheadInteract)
 		{
 			mbFirstMaintenanceBulkheadInteract = false;
 				
-			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
 			Map_AddTimer("", 2.75f, "SequenceBulkheadStutter");
 		}
 	}
@@ -995,8 +1029,6 @@ class cScrMap : iScrMap
 		if (Sequence_DoStepAndWait(0.15f))
 		{
 			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.525f);
-			
-			// ADD SPARK SOUND EFFECT
 		}
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
