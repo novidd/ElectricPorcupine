@@ -106,6 +106,7 @@ class cScrMap : iScrMap
 		
 		// Elevator panel break
 		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", false);
+		Billboard_SetVisible("bulkhead_maintenance_panel_brokenscreen", false);
 		ParticleSystem_SetActive("bulkhead_maintenance_panel_spark_*", false);
 		Light_FadeTo("panel_break_light", cColor(0,0,0,0), 0.286f, 0);
 		
@@ -856,7 +857,7 @@ class cScrMap : iScrMap
 		cLux_AddDebugMessage("!! Kill elevator power !!");
 		
 		// Break the door panel instead when the level has been pulled
-		BreakBulkHeadPanel();
+		//BreakBulkHeadPanel();
 		
 		// Elevator door light
 		Lamp_SetLit("elevatorshaft_power_shaftdoors_2", false, false);
@@ -988,13 +989,16 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
 			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
-			Entity_SetActive("MaintenanceBulkheadCrawlArea", true);
 		}
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
+			Sound_Play("panel_broken", 0.1f);
+			Billboard_SetVisible("bulkhead_maintenance_panel_brokenscreen", true);
+			BreakBulkHeadPanel();
 			// FLICKER BULKHEAD LIGHT IF NO TREMOR
 			
 			//Sound_CreateAtEntity("BulkheadGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "bulkhead_maintenance");
+			Entity_SetActive("MaintenanceBulkheadCrawlArea", true);
 		}
 		Sequence_End();
 	}
