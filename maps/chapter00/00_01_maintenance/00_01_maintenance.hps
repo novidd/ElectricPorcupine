@@ -999,6 +999,7 @@ class cScrMap : iScrMap
 			
 			//Sound_CreateAtEntity("BulkheadGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "bulkhead_maintenance");
 			Entity_SetActive("MaintenanceBulkheadCrawlArea", true);
+			Button_SetDisabled("bulkhead_maintenance_panel", true);
 		}
 		Sequence_End();
 	}
