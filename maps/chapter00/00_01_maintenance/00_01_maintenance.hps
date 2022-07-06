@@ -111,6 +111,7 @@ class cScrMap : iScrMap
 		Light_FadeTo("panel_break_light", cColor(0,0,0,0), 0.286f, 0);
 		
 		ElevAlarmLampHandler("elevator_emergencylamp_1", false);
+//		CreateWauLightSettings();
 		
 		// Intro
 		bool bDoIntro = true;
@@ -210,7 +211,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test5)
 		{
-			Decal_SetVisibleInArea(false, "AreaName", "MaterialName");
+			
 		}
 	}
 
@@ -363,17 +364,24 @@ class cScrMap : iScrMap
 				
 				// Elevator door lights
 				if (mbPowerReset) {
+					
+					// Elevator shaftdoor lights
 					for (int i = 1; Entity_Exists("elevatorshaft_power_shaftdoors_"+i); i++)
 					{
 						float fMinDelay = 0.2*(i-1);
 						LightFlickeringLamp("elevatorshaft_power_shaftdoors_"+i, fMinDelay, fMinDelay+0.2, 2.25, 3.0);	
 					}
+					
+					// Elevator generator light
+					float fMinDelay = 0.2*(2-1);
+					LightFlickeringLamp("ElevatorPowerFlowLamp", fMinDelay, fMinDelay+0.2, 2.25, 3.0);
 				}
 				else
 				{
 					float fMinDelay = 0.2*(2-1);
 					LightFlickeringLamp("elevatorshaft_power_shaftdoors_2", fMinDelay, fMinDelay+0.2, 2.25, 3.0);	
 				}
+				
 			}
 		}
 		Sequence_End();
@@ -846,7 +854,7 @@ class cScrMap : iScrMap
 			
 			Sound_CreateAtEntity("PowerInitialTremor", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player", 0.0f, false, 1.0f);
 		}
-		else if (Sequence_DoStepAndWait(7.0f))
+		else if (Sequence_DoStepAndWait(0.5f))
 		{
 			mbElevatorTremorsAllowed = true;
 			
@@ -854,21 +862,77 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
-			// INSTEAD DO THESE SWEETENERS WHEN THE PLAYER HAS TURNED ON THE POWER
-			Sound_CreateAtEntity("PowerQuakeSweetener", "01_04_transport_station/Special/Enter_Station/enter_station_sweetener", "Player", 0.0f, false, 1.0f);
-			Sound_CreateAtEntity("PowerQuakeDistantNoises", "01_04_transport_station/SFX/tunnel/scare/level_start", "Player", 0.0f, false, 1.0f);
+			
 		}
 		Sequence_End();
 	}
 	
+	//-------------------------------------------------------
+	
+	tID WauBreakLightID;
+	
+	void CreateWauLightSettings(const tString &in asArea)
+	{
+		cLightPoint@ pFlashLight = cLux_GetCurrentMap().GetWorld().CreateLightPoint("DWFlash_"+asArea, "", false);
+		pFlashLight.SetBrightness(1);
+		pFlashLight.SetRadius(0.286);
+		pFlashLight.SetFlicker(cColor(0,0,0,1), 0.286f, 0.02f, 0.05f, "level_amb_shared_interior/amb/spot/sparks/small_erratic", "elec_spark_physics_few_oneshot.ps", 0.5f, 2.5f, "", "", false, 0, 0, 0, 0);
+		pFlashLight.SetFlickerActive(true);
+		pFlashLight.SetDiffuseColor(cColor(0.765,0.945,1,0));
+		WauBreakLightID = pFlashLight.GetID();
+	}
+	
+	void KillWauElectricity()
+	{
+		for(int i = 1; i <= 4; i++)
+		{
+			cLux_GetCurrentMap().GetWorld().GetLight("DWFlash_ps_powerout_"+i).SetActive(false);
+		}		
+	}
+	
+	void WauElectricity(const tString &in asArea)
+	{
+		CreateWauLightSettings(asArea);
+		
+		iLight@ pFlashLight = cLux_ID_Light(WauBreakLightID);
+		pFlashLight.SetPosition(Map_GetEntity(asArea).GetPosition());
+		
+		Sound_CreateAtEntity("wau_electricity_"+asArea, "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_start", asArea);
+		ParticleSystem_CreateAtEntity("wau_electricity_spark_physics_"+asArea, "elec_spark_physics_oneshot.ps", asArea, false);
+		ParticleSystem_CreateAtEntity("wau_electricity_spark_"+asArea, "elec_spark_medium_bright_fast_oneshot.ps.ps", asArea, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	cSequenceStatesData mSequenceWauElectricity;
+	void SequenceWauElectricity(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceWauElectricity", mSequenceWauElectricity);
+		if (Sequence_DoStepAndWait(0.85f))
+		{
+			WauElectricity("ps_powerout_1");
+		}
+		else if (Sequence_DoStepAndWait(0.35f))
+		{
+			WauElectricity("ps_powerout_2");
+		}
+		else if (Sequence_DoStepAndWait(0.45f))
+		{
+			WauElectricity("ps_powerout_3");
+		}
+		else if (Sequence_DoStepAndWait(0.25f))
+		{
+			WauElectricity("ps_powerout_4");
+		}
+		Sequence_End();
+	}
+	//-------------------------------------------------------
+	
 	void KillElevatorPower()
 	{
+		Map_AddTimer("WauElectricity", 0, "SequenceWauElectricity");
+		
 		cLux_AddDebugMessage("!! Kill elevator power !!");
-		
-		// DO WAU SPARKS HERE
-		// USE A TINY SEQUENCE JUST FOR THIS
-		// ps_powerout_*
-		
 		
 		// Break the door panel instead when the level has been pulled
 		//BreakBulkHeadPanel();
@@ -889,6 +953,8 @@ class cScrMap : iScrMap
 		// Look for a good alarm sound
 		ElevAlarmLampHandler("elevator_emergencylamp_1", true);
 		Sound_CreateAtEntity("ElevAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "ElevAlarmSoundSource");
+		
+		// DO CONSTANT TREMORS THAT NEVER END TILL EXPLOSION IF PLAYER IS TOO SLOW
 		
 		// !! IF I HAVE TIME !!
 		// IF PLAYER DOESN'T TURN THE POWER BACK ON WITHIN A CERTAIN TIME INTERVAL THE SHAFT WILL EXPLODE
@@ -918,21 +984,6 @@ class cScrMap : iScrMap
 		
 		Lamp_SetLit(asEntity, abOn, false);
 		Light_SetFlickerActive("elevator_emergencylamp_1_light_1", abOn);
-	}
-	
-	//-------------------------------------------------------
-	
-	void BreakBulkHeadPanel()
-	{
-		Light_FadeTo("panel_break_light", cColor(0.765,0.945,1,0), 1.0f, 0.1f); // Hex: C3F1FF00
-		Light_SetFlickerActive("panel_break_light", true);
-			
-		ParticleSystem_SetActive("bulkhead_maintenance_panel_spark_*", true);
-			
-		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", true);
-			
-		Sound_CreateAtEntity("PanelBreakGlass", "01_01_upsilon_awake/sfx/window_smash/glass_crack", "bulkhead_maintenance_panel");
-		Sound_CreateAtEntity("PanelBreakElectricity", "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_start", "bulkhead_maintenance_panel");		
 	}
 	
 	//-------------------------------------------------------
@@ -970,8 +1021,11 @@ class cScrMap : iScrMap
 			// SOUND OF POWER BOOTING UP
 			// SCREEN SHAKES
 		}
-		else if (Sequence_DoStepAndWait(1.0f))
+		else if (Sequence_DoStepAndWait(5.0f))
 		{
+			KillWauElectricity();
+			ElevAlarmLampHandler("elevator_emergencylamp_1", false);
+			
 			// MAKE THE LIGHTS AT THE BOTTOM OF THE ELEVATOR SHAFT FLICKER RIGHT AS THEY TURN ON
 			
 			// Change illum color of the generator light from red to green
@@ -981,7 +1035,7 @@ class cScrMap : iScrMap
 			Lamp_SetLit("elevatorshaft_power_shaftdoors_1", true, true);
 			
 			// Generator light
-			Lamp_SetLit("desk_lamp_theta_1", true, true);
+			Lamp_SetLit("ElevatorPowerFlowLamp", true, true);
 			
 			// Elevator door light
 			Lamp_SetLit("elevatorshaft_power_shaftdoors_2", true, true);
@@ -997,6 +1051,11 @@ class cScrMap : iScrMap
 			// Pipe lights
 			Lamp_SetLit("elevatorshaft_power_pipelight_*", true, true);
 			Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", true);
+		}
+		else if (Sequence_DoStepAndWait(1.0f))
+		{
+			Sound_CreateAtEntity("PowerQuakeSweetener", "01_04_transport_station/Special/Enter_Station/enter_station_sweetener", "Player", 0.0f, false, 1.0f);
+			Sound_CreateAtEntity("PowerQuakeDistantNoises", "01_04_transport_station/SFX/tunnel/scare/level_start", "Player", 0.0f, false, 1.0f);
 		}
 		Sequence_End();
 	}
@@ -1014,9 +1073,24 @@ class cScrMap : iScrMap
 		if (alState == 1 && mbFirstMaintenanceBulkheadInteract)
 		{
 			mbFirstMaintenanceBulkheadInteract = false;
-				
-			Map_AddTimer("", 2.75f, "SequenceBulkheadStutter");
+			
+			Map_AddTimer("", 0.0f, "SequenceBulkheadStutter");
 		}
+	}
+	
+	//-------------------------------------------------------
+	
+	void BreakBulkHeadPanel()
+	{
+		Light_FadeTo("panel_break_light", cColor(0.765,0.945,1,0), 1.0f, 0.1f); // Hex: C3F1FF00
+		Light_SetFlickerActive("panel_break_light", true);
+			
+		ParticleSystem_SetActive("bulkhead_maintenance_panel_spark_*", true);
+			
+		Billboard_SetVisible("bulkhead_maintenance_panel_brokenglass", true);
+			
+		Sound_CreateAtEntity("PanelBreakGlass", "01_01_upsilon_awake/sfx/window_smash/glass_crack", "bulkhead_maintenance_panel");
+		Sound_CreateAtEntity("PanelBreakElectricity", "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_start", "bulkhead_maintenance_panel");		
 	}
 	
 	//-------------------------------------------------------
@@ -1026,7 +1100,11 @@ class cScrMap : iScrMap
 	{
 		Sequence_Begin("SequenceBulkheadStutter", mSequenceBulkheadStutterState);
 		
-		if (Sequence_DoStepAndWait(0.15f))
+		if (Sequence_DoStepAndWait(2.75f))
+		{
+			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
+		}
+		else if (Sequence_DoStepAndWait(0.15f))
 		{
 			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.525f);
 		}
