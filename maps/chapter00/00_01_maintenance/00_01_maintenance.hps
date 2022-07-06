@@ -808,7 +808,7 @@ class cScrMap : iScrMap
 		Effect_ImageTrail_FadeOut(mlImageTrailID, 0);
 		mlImageTrailID = Effect_ImageTrail_Start(0.40, 3.0, -1, 3);
 		
-		Effect_RadialBlur_SetDirect(0.10f, 0.2f, 0.2f);
+		Effect_RadialBlur_SetDirect(0.05f, 0.2f, 0.1f);
 		Effect_RadialBlur_FadeOut(mlRadialBlurID, 3.0f);
 		
 		Effect_DoF_FadeFocus(mlDoFID, 1.0f, 4.0f, 3.0f);
@@ -882,7 +882,7 @@ class cScrMap : iScrMap
 		for(int i = 1; i <= 4; i++)
 		{
 			cLux_GetCurrentMap().GetWorld().GetLight("DWFlash_ps_powerout_"+i).SetActive(false);
-		}		
+		}
 	}
 	
 	void WauElectricity(const tString &in asArea)
@@ -930,8 +930,6 @@ class cScrMap : iScrMap
 	{
 		Map_AddTimer("WauElectricity", 0, "SequenceWauElectricity");
 		
-		// Do sway effect
-		
 		cLux_AddDebugMessage("!! Kill elevator power !!");
 		
 		// Elevator door light
@@ -947,9 +945,17 @@ class cScrMap : iScrMap
 		Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", false);
 		
 		// Start the alarm
-		// Look for a good alarm sound
 		ElevAlarmLampHandler("elevator_emergencylamp_1", true);
-		Sound_CreateAtEntity("ElevAlarm", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "ElevAlarmSoundSource");
+		Sound_CreateAtEntity("ElevAlarmOn", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "ElevAlarmSoundSource");
+		Sound_CreateAtEntity("ElevAlarmLoop", "01_02_upsilon_inside_02/special/collapse_sequence/alarm", "ElevAlarmSoundSource");
+		
+		// Change elevator generator light color
+		//Entity_SetActive("ElevatorPowerFlowLeverNoPower", true);
+		//Entity_SetActive("ElevatorPowerFlowLeverPower", false);
+		
+		// When the time gets below a certain number run this sound effect, make the text red (the time text becomes red and such)
+		// Play this sound effect during that condition: 01_02_upsilon_inside_02/amb/spot/comm_room_alarm
+		// Sound_CreateAtEntity("ElevTerminal", "01_02_upsilon_inside_02/amb/spot/comm_room_alarm", "ElevStatusTerminal");
 		
 		// DO CONSTANT TREMORS THAT NEVER END TILL EXPLOSION IF PLAYER IS TOO SLOW
 		
@@ -957,6 +963,8 @@ class cScrMap : iScrMap
 		// IF PLAYER DOESN'T TURN THE POWER BACK ON WITHIN A CERTAIN TIME INTERVAL THE SHAFT WILL EXPLODE
 		// THE PLAYER WILL RESPAWN IN ANOTHER WAU ROOM (MAKE THIS PLACE CURSED) PAST THE BLAST DOOR THE MAP WILL HAVE CHANGED JUST FOR THIS EVENT
 		// ON RETURN LATER ON THE GENERATOR IS BROKEN, WATER IS POURING FROM HOLES IN THE WALLS AND THE POWER IS PERMANENTLY OFF
+		
+		// Use 01_02_upsilon_inside_02/special/collapse_sequence for sound effects during the different stages of collapse
 	}
 	
 	//-------------------------------------------------------
@@ -1007,19 +1015,32 @@ class cScrMap : iScrMap
 	void SequenceRebootElevatorPower(const tString &in asTimer)
 	{
 		Sequence_Begin("SequenceRebootElevatorPower", mSequenceRebootElevatorPower);
-		if (Sequence_DoStepAndWait(3.5f)) // 3.5f till power on
+		if (Sequence_DoStepAndWait(4.0f)) // total of 9.5f till "PowerOn"
 		{
 			cLux_AddDebugMessage("Elevator power restarting.");
 			
-			// SCREEN SHAKES
-			Effect_Shake_Start(0.08f, 1.5f, 3.5f, 2.4f);
+			Effect_Shake_Start(0.065f, 5.5f, 8.0f, 0);
 			Effect_Rumble_Start(0.9, 0.7f, 0.25f);
 			
+			Sound_CreateAtEntity("PowerOnBuildUp", "01_02_upsilon_inside_02/special/power_sequence/power_sequence_stage_01", "Player");
+			Sound_CreateAtEntity("PowerOnTremor1", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player");
+			
+			Sound_CreateAtEntity("ElevAlarmOff", "01_02_upsilon_inside_02/sfx/bulkhead_broken/bulkhead_alarm", "ElevAlarmSoundSource");
+		}
+		else if (Sequence_DoStepAndWait(5.5f))
+		{
+			Sound_CreateAtEntity("PowerOnTremor2", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player");
+		}
+		else if (Sequence_DoStepAndWait(3.5f)) // + 3.5f
+		{
 			Sound_CreateAtEntity("PowerOn", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Good", "Player");
-			Sound_CreateAtEntity("PowerOnTremor", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player");
+			Sound_CreateAtEntity("PowerOnTremor3", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player");
+			Effect_Shake_Start(0.08f, 1.5f, 3.5f, 6.14);
 		}
 		else if (Sequence_DoStepAndWait(5.0f))
 		{
+			Sound_Stop("ElevAlarmLoop", 0);
+			
 			mbElevatorPowerOn = true;
 			
 			// !! CONGRATULATIONS !!
@@ -1123,6 +1144,7 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
 			SlideDoor_SetOpenAmount("bulkhead_maintenance", 0.55f);
+			Sound_CreateAtEntity("BulkheadStop", "01_04_transport_station/SFX/train/emergency_hatch_unlock", "bulkhead_maintenance");
 		}
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
@@ -1131,7 +1153,6 @@ class cScrMap : iScrMap
 			BreakBulkHeadPanel();
 			// FLICKER BULKHEAD LIGHT IF NO TREMOR
 			
-			//Sound_CreateAtEntity("BulkheadGroan", "level_amb_shared_interior/amb/sfx/metal/metal_groan_clear", "bulkhead_maintenance");
 			Entity_SetActive("MaintenanceBulkheadCrawlArea", true);
 			Button_SetDisabled("bulkhead_maintenance_panel", true);
 		}
