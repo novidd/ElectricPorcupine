@@ -1061,7 +1061,9 @@ class cScrMap : iScrMap
 			
 			// MAKE THE LIGHTS AT THE BOTTOM OF THE ELEVATOR SHAFT FLICKER RIGHT AS THEY TURN ON
 			
-			// Change illum color of the generator light from red to green
+			// !! ADD APPROPRIATE MUSIC FOR THIS WHOLE SCENE !!
+			// !! ADD APPROPRIATE MUSIC FOR THIS WHOLE SCENE !!
+			// !! ADD APPROPRIATE MUSIC FOR THIS WHOLE SCENE !!
 			
 			// 1 Generator light
 			Lamp_SetLit("ElevatorPowerFlowLamp", true, true);
@@ -1081,7 +1083,9 @@ class cScrMap : iScrMap
 			// 4 Elevator door light
 			Lamp_SetLit("elevatorshaft_power_shaftdoors_2", true, true);
 			
+			// 5
 			// After power has been reset reenable all lights and so on
+			// Play a sound effect when turning on the panel (on update for the terminal screen)
 			Button_SetLocked("bulkhead_maintenance_panel", false);
 			Lamp_SetLit("elevatorshaft_power_shaftdoors_1", true, true);
 		}
