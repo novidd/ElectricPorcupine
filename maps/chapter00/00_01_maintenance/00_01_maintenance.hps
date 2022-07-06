@@ -895,6 +895,9 @@ class cScrMap : iScrMap
 		Sound_CreateAtEntity("wau_electricity_"+asArea, "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_start", asArea);
 		ParticleSystem_CreateAtEntity("wau_electricity_spark_physics_"+asArea, "elec_spark_physics_oneshot.ps", asArea, false);
 		ParticleSystem_CreateAtEntity("wau_electricity_spark_"+asArea, "elec_spark_medium_bright_fast_oneshot.ps", asArea, false);
+		
+		Effect_Shake_Start(0.135f, 0, 0.5f, 0);
+		Effect_Rumble_Start(0.9, 0.1f, 0.1f);
 	}
 	
 	//-------------------------------------------------------
@@ -926,6 +929,8 @@ class cScrMap : iScrMap
 	void KillElevatorPower()
 	{
 		Map_AddTimer("WauElectricity", 0, "SequenceWauElectricity");
+		
+		// Do sway effect
 		
 		cLux_AddDebugMessage("!! Kill elevator power !!");
 		
@@ -992,7 +997,6 @@ class cScrMap : iScrMap
 		else
 		{
 			if (mbWauInteracted == false && mbPowerReset == false) return;
-			mbElevatorPowerOn = true;
 			Map_AddTimer("RebootPower", 0.25f, "SequenceRebootElevatorPower");
 		}
 	}
@@ -1008,7 +1012,7 @@ class cScrMap : iScrMap
 			cLux_AddDebugMessage("Elevator power restarting.");
 			
 			// SCREEN SHAKES
-			Effect_Shake_Start(0.08f, 1.5f, 3.5f, 2.1f);
+			Effect_Shake_Start(0.08f, 1.5f, 3.5f, 2.4f);
 			Effect_Rumble_Start(0.9, 0.7f, 0.25f);
 			
 			Sound_CreateAtEntity("PowerOn", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Good", "Player");
@@ -1016,44 +1020,49 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(5.0f))
 		{
-			Sound_CreateAtEntity("PowerOnQuake", "01_04_transport_station/Special/Enter_Station/enter_station_quake", "Player");
+			mbElevatorPowerOn = true;
 			
 			// !! CONGRATULATIONS !!
 			// RUN THIS WHEN POWER IS FULLY ON
 			Sound_CreateAtEntity("", "Interface/gameplay/progression_hit", "Player");
 			
+			Sound_CreateAtEntity("PowerOnQuake", "01_04_transport_station/Special/Enter_Station/enter_station_quake", "Player");
+			
 			// Effects
 			Effect_ImageTrail_Clear();
 			Effect_DoF_FadeFocus(mlDoFID, 1.0f, 8.0f, 3.0f);
 			
+			// Remove Wau sparks
 			KillWauElectricity();
+			
+			// Turn off the alarm
 			ElevAlarmLampHandler("elevator_emergencylamp_1", false);
 			
 			// MAKE THE LIGHTS AT THE BOTTOM OF THE ELEVATOR SHAFT FLICKER RIGHT AS THEY TURN ON
 			
 			// Change illum color of the generator light from red to green
 			
-			// After power has been reset reenable all lights and so on
-			Button_SetLocked("bulkhead_maintenance_panel", false);
-			Lamp_SetLit("elevatorshaft_power_shaftdoors_1", true, true);
-			
-			// Generator light
+			// 1 Generator light
 			Lamp_SetLit("ElevatorPowerFlowLamp", true, true);
 			
-			// Elevator door light
-			Lamp_SetLit("elevatorshaft_power_shaftdoors_2", true, true);
+			// 2 Pipe lights
+			Lamp_SetLit("elevatorshaft_power_pipelight_*", true, true);
+			Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", true);
 			
-			// Elevator lights
-			// THE ELEVATOR LIGHTS TURN ON LAST
+			// 3 Elevator lights
+			// THE ELEVATOR LIGHTS TURN ON
 			Sound_CreateAtEntity("ElevatorLightsOn", "level_amb_shared_machines/misc/industrial_lights/breaker_large_on", "elevatorshaft_power_elevatorlamp_1");
 			
 			LensFlare_SetVisible("elevatorlamp_flare_*", true);
 			Lamp_SetLit("elevatorshaft_power_elevatorlamp_*", true, true);
 			ParticleSystem_SetVisible("elevatorlamp_ps", true);
-		
-			// Pipe lights
-			Lamp_SetLit("elevatorshaft_power_pipelight_*", true, true);
-			Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", true);
+			
+			// 4 Elevator door light
+			Lamp_SetLit("elevatorshaft_power_shaftdoors_2", true, true);
+			
+			// After power has been reset reenable all lights and so on
+			Button_SetLocked("bulkhead_maintenance_panel", false);
+			Lamp_SetLit("elevatorshaft_power_shaftdoors_1", true, true);
 		}
 		else if (Sequence_DoStepAndWait(1.0f))
 		{
