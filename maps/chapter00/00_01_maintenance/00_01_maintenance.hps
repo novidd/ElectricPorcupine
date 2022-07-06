@@ -211,7 +211,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test5)
 		{
-			
+			SequenceRebootElevatorPower("");
 		}
 	}
 
@@ -822,17 +822,6 @@ class cScrMap : iScrMap
 		
 		Entity_SetActive("ElevatorLadder_Closed", true);
 		Entity_SetActive("ElevatorLadder_Open_Aux", true);
-		
-		// THE PLAYER NEEDS TO PULL THE GENERATOR LEVER UP AND DOWN TO RESET IT
-		// USE A VARIABLE TO CHECK THIS
-		// Run Interface/gameplay/progression_hit when the panel gets turned on
-		
-		// Temporarily disable the elevator tremors for this sequence, then reenable again
-		
-		// TURN ON POWER FOR THE PANEL IF THE POWER GENERATOR IS ON TOO
-		
-		// DO ELEVATOR SHAFT POWER OUTAGE
-		// PLAYER NEED TO RESET GENERATOR
 	}
 	
 	//-------------------------------------------------------
@@ -844,7 +833,7 @@ class cScrMap : iScrMap
 		if (Sequence_DoStepAndWait(1.0f)) // 4.0f until kill power
 		{
 			// Power attempts to reboot
-			Sound_CreateAtEntity("PowerFail", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Bad", "Player", 0.0f, false, 1.0f);
+			Sound_CreateAtEntity("PowerFail", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Bad", "Player");
 		}
 		else if (Sequence_DoStepAndWait(3.0f))
 		{
@@ -858,13 +847,13 @@ class cScrMap : iScrMap
 			Effect_Shake_FadeOut(mlElevatorShakeID, 0);
 			Effect_Shake_Start(0.065f, 4.5f, 0.5f, 1.75f);
 			
-			Sound_CreateAtEntity("PowerInitialTremor", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player", 0.0f, false, 1.0f);
+			Sound_CreateAtEntity("PowerInitialTremor", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player");
 		}
 		else if (Sequence_DoStepAndWait(0.5f))
 		{
 			mbElevatorTremorsAllowed = true;
 			
-			Sound_CreateAtEntity("PowerQuake", "01_04_transport_station/Special/Enter_Station/enter_station_quake", "Player", 0.0f, false, 1.0f);
+			Sound_CreateAtEntity("PowerQuake", "01_04_transport_station/Special/Enter_Station/enter_station_quake", "Player");
 		}
 		else if (Sequence_DoStepAndWait(0.15f))
 		{
@@ -880,7 +869,7 @@ class cScrMap : iScrMap
 	void CreateWauLightSettings(const tString &in asArea)
 	{
 		cLightPoint@ pFlashLight = cLux_GetCurrentMap().GetWorld().CreateLightPoint("DWFlash_"+asArea, "", false);
-		pFlashLight.SetBrightness(1);
+		pFlashLight.SetBrightness(10);
 		pFlashLight.SetRadius(0.286);
 		pFlashLight.SetFlicker(cColor(0,0,0,1), 0.286f, 0.02f, 0.05f, "level_amb_shared_interior/amb/spot/sparks/small_erratic", "elec_spark_physics_few_oneshot.ps", 0.5f, 2.5f, "", "", false, 0, 0, 0, 0);
 		pFlashLight.SetFlickerActive(true);
@@ -905,7 +894,7 @@ class cScrMap : iScrMap
 		
 		Sound_CreateAtEntity("wau_electricity_"+asArea, "01_02_upsilon_inside_02/sfx/carl_torture_event/electricity_start", asArea);
 		ParticleSystem_CreateAtEntity("wau_electricity_spark_physics_"+asArea, "elec_spark_physics_oneshot.ps", asArea, false);
-		ParticleSystem_CreateAtEntity("wau_electricity_spark_"+asArea, "elec_spark_medium_bright_fast_oneshot.ps.ps", asArea, false);
+		ParticleSystem_CreateAtEntity("wau_electricity_spark_"+asArea, "elec_spark_medium_bright_fast_oneshot.ps", asArea, false);
 	}
 	
 	//-------------------------------------------------------
@@ -939,9 +928,6 @@ class cScrMap : iScrMap
 		Map_AddTimer("WauElectricity", 0, "SequenceWauElectricity");
 		
 		cLux_AddDebugMessage("!! Kill elevator power !!");
-		
-		// Break the door panel instead when the level has been pulled
-		//BreakBulkHeadPanel();
 		
 		// Elevator door light
 		Lamp_SetLit("elevatorshaft_power_shaftdoors_2", false, false);
@@ -984,9 +970,6 @@ class cScrMap : iScrMap
 			Entity_StopAnimation(asEntity);
 			Light_FadeTo("elevator_emergencylamp_1_light_1", cColor(0,0,0,1), 6, 0.5f);
 		}
-			
-//		ParticleSystem_SetActive("AirlockLamp_PS", abOn);
-//		ParticleSystem_SetVisible("AirlockLamp_PS", abOn);
 		
 		Lamp_SetLit(asEntity, abOn, false);
 		Light_SetFlickerActive("elevator_emergencylamp_1_light_1", abOn);
@@ -1020,15 +1003,25 @@ class cScrMap : iScrMap
 	void SequenceRebootElevatorPower(const tString &in asTimer)
 	{
 		Sequence_Begin("SequenceRebootElevatorPower", mSequenceRebootElevatorPower);
-		if (Sequence_DoStepAndWait(1.0f))
+		if (Sequence_DoStepAndWait(3.5f)) // 3.5f till power on
 		{
 			cLux_AddDebugMessage("Elevator power restarting.");
 			
-			// SOUND OF POWER BOOTING UP
 			// SCREEN SHAKES
+			Effect_Shake_Start(0.08f, 1.5f, 3.5f, 2.1f);
+			Effect_Rumble_Start(0.9, 0.7f, 0.25f);
+			
+			Sound_CreateAtEntity("PowerOn", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Good", "Player");
+			Sound_CreateAtEntity("PowerOnTremor", "01_04_transport_station/Special/Station_PowerOn/PowerOn_Tremor", "Player");
 		}
 		else if (Sequence_DoStepAndWait(5.0f))
 		{
+			Sound_CreateAtEntity("PowerOnQuake", "01_04_transport_station/Special/Enter_Station/enter_station_quake", "Player");
+			
+			// !! CONGRATULATIONS !!
+			// RUN THIS WHEN POWER IS FULLY ON
+			Sound_CreateAtEntity("", "Interface/gameplay/progression_hit", "Player");
+			
 			// Effects
 			Effect_ImageTrail_Clear();
 			Effect_DoF_FadeFocus(mlDoFID, 1.0f, 8.0f, 3.0f);
