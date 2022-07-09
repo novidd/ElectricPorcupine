@@ -414,14 +414,14 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268439264" Name="AMB_ElevatorShaft" CreStamp="1655638870" ModStamp="1656166802" WorldPos="0 -42 3" Rotation="0 0 0" Scale="10 25 7.25" Active="true" Mesh="" UID="16 444 268439264" AreaType="Soundscape">
+            <Area ID="268439264" Name="AMB_ElevatorShaft" CreStamp="1655638870" ModStamp="1657387224" WorldPos="0 -42 1.75" Rotation="0 0 0" Scale="10 25 8" Active="true" Mesh="" UID="16 444 268439264" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="ExtraReflectiveInt" />
-                    <Var Name="ReverbPrio" Value="0" />
+                    <Var Name="ReverbPrio" Value="2" />
                     <Var Name="ReverbAmount" Value="1" />
                     <Var Name="ReverbFadeTime" Value="1" />
-                    <Var Name="Prio" Value="0" />
+                    <Var Name="Prio" Value="2" />
                     <Var Name="Level" Value="2: Room" />
                     <Var Name="BG_Sound" Value="level_amb_shared_interior/amb/background/theta/research_base/elevator_shaft" />
                     <Var Name="BG_Volume" Value="1" />
@@ -912,14 +912,14 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268440824" Name="AMB_MaintenanceCorridor_1" CreStamp="1656165547" ModStamp="1656166967" WorldPos="0 -52 -6.25" Rotation="0 0 0" Scale="4 4 12" Active="true" Mesh="" UID="16 1810 268440824" AreaType="Soundscape">
+            <Area ID="268440824" Name="AMB_MaintenanceCorridor_1" CreStamp="1656165547" ModStamp="1657387228" WorldPos="0 -52 -6.25" Rotation="0 0 0" Scale="4 4 12" Active="true" Mesh="" UID="16 1810 268440824" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="ExtraRoomLarge" />
                     <Var Name="ReverbPrio" Value="0" />
                     <Var Name="ReverbAmount" Value="1.15" />
                     <Var Name="ReverbFadeTime" Value="1" />
-                    <Var Name="Prio" Value="1" />
+                    <Var Name="Prio" Value="0" />
                     <Var Name="Level" Value="2: Room" />
                     <Var Name="BG_Sound" Value="level_amb_shared_interior/amb/background/upsilon/thermal_reactor_corridor" />
                     <Var Name="BG_Volume" Value="1" />
@@ -2104,6 +2104,30 @@
                 </UserVariables>
             </Area>
             <Area ID="268442403" Name="Flicker" CreStamp="1657386017" ModStamp="1657386021" WorldPos="0 -50.75 -17.75" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 772 268442403" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268442406" Name="HeadGrownIntoDeskWau" CreStamp="1657386333" ModStamp="1657386373" WorldPos="10.75 -53 -11.5" Rotation="0 1.5708 0" Scale="1 1 1" Active="true" Mesh="" UID="16 769 268442406" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
