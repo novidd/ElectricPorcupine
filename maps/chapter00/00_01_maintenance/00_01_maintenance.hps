@@ -794,6 +794,8 @@ class cScrMap : iScrMap
 		mbElevatorPowerOn = false;
 		Map_AddTimer("KillElevatorPower", 0.1f, "SequenceKillElevatorPower");
 		
+		Voice_StopAll();
+		
 		// Player settings
 		Player_SetJumpDisabled(false);
 		Player_SetMoveSpeedMul(0.85f);
@@ -1068,17 +1070,17 @@ class cScrMap : iScrMap
 			// 1 Generator light
 			Lamp_SetLit("ElevatorPowerFlowLamp", true, true);
 			
-			// 2 Pipe lights
-			Lamp_SetLit("elevatorshaft_power_pipelight_*", true, true);
-			Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", true);
-			
-			// 3 Elevator lights
+			// 2 Elevator lights
 			// THE ELEVATOR LIGHTS TURN ON
 			Sound_CreateAtEntity("ElevatorLightsOn", "level_amb_shared_machines/misc/industrial_lights/breaker_large_on", "elevatorshaft_power_elevatorlamp_1");
 			
 			LensFlare_SetVisible("elevatorlamp_flare_*", true);
 			Lamp_SetLit("elevatorshaft_power_elevatorlamp_*", true, true);
 			ParticleSystem_SetVisible("elevatorlamp_ps", true);
+
+			// 3 Pipe lights
+			Lamp_SetLit("elevatorshaft_power_pipelight_*", true, true);
+			Billboard_SetVisible("elevatorshaft_power_pipelight_glow_*", true);
 			
 			// 4 Elevator door light
 			Lamp_SetLit("elevatorshaft_power_shaftdoors_2", true, true);
