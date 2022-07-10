@@ -1173,7 +1173,7 @@ class cScrMap : iScrMap
 	//} END SCENE 1
 	
 	/////////////////////////////////////////
-	// *Akers shows up*
+	// *Akers screams*
 	//{//////////////////////////////////////
 	
 	// DO THIS EVENT A LITTLE LATER
@@ -1197,6 +1197,7 @@ class cScrMap : iScrMap
 		
 		
 		Map_AddTimer("MaintenanceFear", 2.0f, "MaintenanceFearSound");
+		LightFlickeringLamp("BridgeLamp", 4.0f, 5.5f, 1.25, 2.0);
 		return false;
 	}
 	
