@@ -454,7 +454,7 @@
                     <Var Name="ConnectedAreas3" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="268440188" Name="visarea_maintenance" CreStamp="1655663484" ModStamp="1656165532" WorldPos="0 -52 -10" Rotation="0 0 0" Scale="20 5 20" Active="true" Mesh="" UID="16 1473 268440188" AreaType="VisibilityArea">
+            <Area ID="268440188" Name="visarea_maintenance" CreStamp="1655663484" ModStamp="1657467297" WorldPos="0 -51.25 -17.5" Rotation="0 0 0" Scale="21.75 8 35" Active="true" Mesh="" UID="16 1473 268440188" AreaType="VisibilityArea">
                 <UserVariables>
                     <Var Name="AddPartialIntersectingObjects" Value="false" />
                     <Var Name="MinObjectsPerNode" Value="-1" />
@@ -744,7 +744,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268440824" Name="AMB_MaintenanceCorridor_1" CreStamp="1656165547" ModStamp="1657447723" WorldPos="0 -52 -5.25" Rotation="0 0 0" Scale="11.5 4 10.25" Active="true" Mesh="" UID="16 1810 268440824" AreaType="Soundscape">
+            <Area ID="268440824" Name="AMB_PostElevator" CreStamp="1656165547" ModStamp="1657469884" WorldPos="0 -52 -5.25" Rotation="0 0 0" Scale="11.5 4 10.25" Active="true" Mesh="" UID="16 1810 268440824" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="ExtraRoomLarge" />
@@ -2031,7 +2031,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268442857" Name="Trigger_CatherineSimon" CreStamp="1657460563" ModStamp="1657462281" WorldPos="7.75 -52 -17.25" Rotation="0 1.5708 0" Scale="0.5 4 4" Active="true" Mesh="" UID="16 505 268442857" AreaType="Trigger">
+            <Area ID="268442857" Name="Trigger_CatherineSimonVoices" CreStamp="1657460563" ModStamp="1657465142" WorldPos="7.75 -52 -16.5" Rotation="0 1.5708 0" Scale="0.5 4 4" Active="true" Mesh="" UID="16 505 268442857" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2152,6 +2152,104 @@
                 </UserVariables>
             </Area>
             <Area ID="268442918" Name="WaterLeakingWindow" CreStamp="1657464407" ModStamp="1657464440" WorldPos="9.5 -50 -23.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 412 268442918" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268442930" Name="PlayerCollapse" CreStamp="1657465125" ModStamp="1657465134" WorldPos="7.75 -52.25 -16.5" Rotation="0 1.5708 0" Scale="1 1 1" Active="true" Mesh="" UID="16 388 268442930" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268442983" Name="RedLightFloor" CreStamp="1657467363" ModStamp="1657467375" WorldPos="3.5 -54 -12.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 2042 268442983" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268442991" Name="AMB_MaintenanceCorridor_1" CreStamp="1657469863" ModStamp="1657470125" WorldPos="0 -52 -12.5" Rotation="0 0 0" Scale="11.5 4 4" Active="true" Mesh="" UID="16 2037 268442991" AreaType="Soundscape">
+                <UserVariables>
+                    <Var Name="UseReverb" Value="true" />
+                    <Var Name="ReverbType" Value="ExtraWarehouse" />
+                    <Var Name="ReverbPrio" Value="2" />
+                    <Var Name="ReverbAmount" Value="1.05" />
+                    <Var Name="ReverbFadeTime" Value="1" />
+                    <Var Name="Prio" Value="1" />
+                    <Var Name="Level" Value="2: Room" />
+                    <Var Name="BG_Sound" Value="level_amb_shared_interior/amb/background/theta/undergound/hall_corridor" />
+                    <Var Name="BG_Volume" Value="1" />
+                    <Var Name="BG_FadeInTime" Value="3" />
+                    <Var Name="BG_FadeOutTime" Value="3" />
+                    <Var Name="BG_FadeTransitionSpeed" Value="1" />
+                    <Var Name="BG_ParentVolMul" Value="1" />
+                    <Var Name="SoundEnt_InNames" Value="" />
+                    <Var Name="SoundEnt_OutNames" Value="" />
+                    <Var Name="SoundEnt_FadeInTime" Value="1" />
+                    <Var Name="SoundEnt_FadeOutTime" Value="1" />
+                    <Var Name="SoundPrefixPrio" Value="0" />
+                    <Var Name="SoundPrefix" Value="[None]" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                </UserVariables>
+            </Area>
+            <Area ID="268443029" Name="Lamp" CreStamp="1657472471" ModStamp="1657472477" WorldPos="10 -51 -12.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 864 268443029" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
