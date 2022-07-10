@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="74AC7B143DD60257C4A1E1F33870A9F12F073925" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="819">
+        <FileIndex_Entities NumOfFiles="820">
             <File Id="0" Path="entities/station/tech/computer_parts_xx/computer_parts_chassis_default.ent" />
             <File Id="1" Path="entities/station/tech/sensor_env_ceil_large/sensor_env_ceil_large.ent" />
             <File Id="2" Path="entities/character/robot/maintenance/maintenance_rigid.ent" />
@@ -820,6 +820,7 @@
             <File Id="816" Path="entities/organic/water/pouring/pouring_sheet_large.ent" />
             <File Id="817" Path="entities/organic/plants/vallisneria/straw_small_vallisneria03.ent" />
             <File Id="818" Path="entities/oceanbottom/caustics_skydome/caustics_plane.ent" />
+            <File Id="819" Path="entities/organic/plants/kelp/kelp.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268436029" Name="SimonArms" CreStamp="1654777816" ModStamp="1656354105" WorldPos="-2.20765 -52.6021 4.03949" Rotation="-0 2.47561 -0" Scale="1 1 1" FileIndex="103" Active="false" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 530 268436029">
@@ -9690,6 +9691,28 @@
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
                     <Var Name="ColorMul" Value="0.16862745583057404 0.23529413342475891 0.20000001788139343 0.066666670143604279" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268443219" Name="kelp_1" CreStamp="1657486982" ModStamp="1657487070" WorldPos="8.86512 -47 -13.0435" Rotation="0 1.00822 0" Scale="1 1 1" FileIndex="819" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2076 268443219">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268443220" Name="kelp_2" CreStamp="1657487012" ModStamp="1657487070" WorldPos="8.78327 -47.5 -12.6775" Rotation="-0 2.07285 -0" Scale="1 1 1" FileIndex="819" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2077 268443220">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
                     <Var Name="IllumBrightness" Value="1" />
                     <Var Name="IsOccluder" Value="false" />
