@@ -2729,7 +2729,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268443514" Name="ThetaExitWaterArea" CreStamp="1657604150" ModStamp="1657604161" WorldPos="1.25 -58.5 -12.5" Rotation="0 0 0" Scale="4 4 4" Active="true" Mesh="" UID="16 904 268443514" AreaType="Trigger">
+            <Area ID="268443514" Name="LiquidPool" CreStamp="1657604150" ModStamp="1657663360" WorldPos="1 -59.5 -12.5" Rotation="0 0 0" Scale="15 6 5" Active="true" Mesh="" UID="16 904 268443514" AreaType="Liquid">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2740,17 +2740,33 @@
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="PlayerLookAtCallback" Value="" />
-                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
-                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
-                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
-                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
-                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
-                    <Var Name="PlayerInteractCallback" Value="" />
-                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
-                    <Var Name="CanInteractWithoutCallback" Value="false" />
-                    <Var Name="MaxFocusDistance" Value="-1" />
-                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                    <Var Name="Density" Value="100" />
+                    <Var Name="LinearViscosity" Value="0.2" />
+                    <Var Name="AngularViscosity" Value="0.2" />
+                    <Var Name="PhysicsMaterial" Value="Water" />
+                    <Var Name="PlayerSpeedMul" Value="0.8" />
+                    <Var Name="HasWaves" Value="false" />
+                    <Var Name="WaveAmp" Value="0.01" />
+                    <Var Name="WaveFreq" Value="1.5" />
+                    <Var Name="MaxWaveDistance" Value="25" />
+                    <Var Name="UpperMaterial" Value="waterplane_theta_cavern_cube.mat" />
+                    <Var Name="LowerMaterial" Value="waterplane_below_brown.mat" />
+                    <Var Name="GridSize" Value="8" />
+                    <Var Name="TextureTileSize" Value="6" />
+                    <Var Name="StaticMesh" Value="true" />
+                    <Var Name="EnvParticlesToClip" Value="" />
+                    <Var Name="UseFog" Value="true" />
+                    <Var Name="FogColor" Value="0.10196079313755035 0.074509806931018829 0.054901964962482452 0.86274516582489014" />
+                    <Var Name="FogStart" Value="0" />
+                    <Var Name="FogEnd" Value="8" />
+                    <Var Name="FogFalloffExp" Value="0.01" />
+                    <Var Name="FogBrightness" Value="0.5" />
+                    <Var Name="FogUnderwater" Value="false" />
+                    <Var Name="FogSkybox" Value="false" />
+                    <Var Name="EffectOnExit" Value="true" />
+                    <Var Name="CameraCollideCallback" Value="" />
+                    <Var Name="CameraEnterEffectPreset" Value="" />
+                    <Var Name="CameraExitEffectPreset" Value="" />
                 </UserVariables>
             </Area>
             <Area ID="268443515" Name="Barracks" CreStamp="1657604431" ModStamp="1657604441" WorldPos="0 -52.75 -28" Rotation="0 0 0" Scale="4 4 4" Active="true" Mesh="" UID="16 427 268443515" AreaType="Trigger">
