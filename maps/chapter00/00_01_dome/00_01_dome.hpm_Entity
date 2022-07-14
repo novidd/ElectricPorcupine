@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="2CE806B1CE2FEDAC5F9A942A870B4D7E66DD3EB0" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="64">
+        <FileIndex_Entities NumOfFiles="67">
             <File Id="0" Path="entities/oceanbottom/lamp/round_large/round_large_effects.ent" />
             <File Id="1" Path="entities/oceanbottom/lamp/round_large/round_large.ent" />
             <File Id="2" Path="entities/shipwreck/ornaments_wall/sign_ladder/sign_ladder.ent" />
@@ -65,6 +65,9 @@
             <File Id="61" Path="entities/oceanbottom/gameplay/04_01_lever_blacksmokers/04_01_lever_blacksmokers.ent" />
             <File Id="62" Path="entities/oceanbottom/gameplay/button_round_small_rusty/button_round_small_rusty.ent" />
             <File Id="63" Path="entities/oceanbottom/lamp/wall_large_thetagate_overgrown/wall_large_thetagate_overgrown.ent" />
+            <File Id="64" Path="entities/oceanbottom/tech/computer_parts_station/computer_parts_station_chassis_default.ent" />
+            <File Id="65" Path="entities/oceanbottom/tech/02_04_computer_relaystation/02_04_computer_relaystation_broken.ent" />
+            <File Id="66" Path="entities/oceanbottom/tech/02_04_computer_relaystation/02_04_computer_relaystation.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435474" Name="sign_ladder_1" CreStamp="1657809982" ModStamp="1657810073" WorldPos="-0.934338 1.75 1" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="2" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 82 268435474">
@@ -339,7 +342,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435595" Name="ceiling_large_single_nocable_2" CreStamp="1657810173" ModStamp="1657820220" WorldPos="1.30319 3.90683 1.66931" Rotation="0.362755 0.524449 0.397165" Scale="1.144 1 0.829" FileIndex="3" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 172 268435595">
+            <Entity ID="268435595" Name="ceiling_large_single_nocable_2" CreStamp="1657810173" ModStamp="1657824795" WorldPos="0.875357 3.90683 1.8991" Rotation="0.317101 0.424671 0.376275" Scale="1.144 1 0.829" FileIndex="3" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 172 268435595">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -404,7 +407,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435651" Name="delta_ceiling_large_1" CreStamp="1657814161" ModStamp="1657822181" WorldPos="1.5 1.75 3.5" Rotation="-0.878962 4.06906 -2.15613" Scale="0.25 0.25 0.25" FileIndex="14" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 191 268435651">
+            <Entity ID="268435651" Name="delta_ceiling_large_1" CreStamp="1657814161" ModStamp="1657824648" WorldPos="1.39743 1.95281 3.30263" Rotation="-0.878962 4.06906 -2.15613" Scale="0.25 0.25 0.25" FileIndex="14" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 191 268435651">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -469,7 +472,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435657" Name="spare_parts_flesher_03_2" CreStamp="1657814317" ModStamp="1657814428" WorldPos="1.79472 5.5 1.40641" Rotation="-1.5708 3.14159 -0" Scale="1 1 1" FileIndex="15" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 199 268435657">
+            <Entity ID="268435657" Name="spare_parts_flesher_03_2" CreStamp="1657814317" ModStamp="1657814428" WorldPos="1.3923 5.5 1.69057" Rotation="-1.5708 3.03388 -0" Scale="1 1 1" FileIndex="15" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 199 268435657">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -523,7 +526,7 @@
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435660" Name="spare_parts_flesher_03_3" CreStamp="1657814317" ModStamp="1657814428" WorldPos="0.705278 5.5 2.0882" Rotation="-1.5708 3.14159 -0" Scale="1 1 1" FileIndex="15" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 200 268435660">
+            <Entity ID="268435660" Name="spare_parts_flesher_03_3" CreStamp="1657814317" ModStamp="1657814428" WorldPos="0.235877 5.5 2.25128" Rotation="-1.5708 3.03388 -0" Scale="1 1 1" FileIndex="15" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 200 268435660">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -898,6 +901,28 @@
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268435805" Name="computer_parts_station_chassis_default_1" CreStamp="1657824503" ModStamp="1657824724" WorldPos="1.32982 0 3.25912" Rotation="0 -1.1781 0" Scale="1 1 1" FileIndex="65" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 165 268435805">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268435809" Name="computer_parts_station_chassis_default_2" CreStamp="1657824970" ModStamp="1657825289" WorldPos="-2.16662 0 -2.24967" Rotation="-0 2.14676 -0" Scale="1 1 1" FileIndex="66" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 198 268435809">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
