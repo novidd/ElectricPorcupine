@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="2CE806B1CE2FEDAC5F9A942A870B4D7E66DD3EB0" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="71">
+        <FileIndex_Entities NumOfFiles="72">
             <File Id="0" Path="entities/oceanbottom/lamp/round_large/round_large_effects.ent" />
             <File Id="1" Path="entities/oceanbottom/lamp/round_large/round_large.ent" />
             <File Id="2" Path="entities/shipwreck/ornaments_wall/sign_ladder/sign_ladder.ent" />
@@ -72,6 +72,7 @@
             <File Id="68" Path="entities/shipwreck/tech/server_rack/server_rack04_rigid.ent" />
             <File Id="69" Path="entities/oceanbottom/mscurie/rusted_ship_debris/debris_ship_small_01.ent" />
             <File Id="70" Path="entities/shipwreck/debris/scrap_junk/scrap_junk_03.ent" />
+            <File Id="71" Path="entities/oceanbottom/mscurie/rusted_ship_generator/rusted_ship_generatorsmall.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435474" Name="sign_ladder_1" CreStamp="1657809982" ModStamp="1657810073" WorldPos="-0.934338 1.75 1" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="2" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 82 268435474">
@@ -864,7 +865,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435885" Name="server_rack02_rigid_1" CreStamp="1657877307" ModStamp="1657877558" WorldPos="3.61976 0 0.591726" Rotation="-0 4.49259 -0" Scale="0.85 0.85 0.85" FileIndex="67" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 261 268435885">
+            <Entity ID="268435885" Name="server_rack02_rigid_1" CreStamp="1657877307" ModStamp="1657889316" WorldPos="3.61976 0 0.591726" Rotation="-0 4.49259 -0" Scale="0.85 0.85 0.85" FileIndex="67" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 261 268435885">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1093,7 +1094,7 @@
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435933" Name="debris_ship_small_01_2" CreStamp="1657883743" ModStamp="1657883771" WorldPos="3.39815 0.596046 -0.886285" Rotation="0.741539 1.66922 2.64183" Scale="2 2 2" FileIndex="70" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 100 268435933">
+            <Entity ID="268435933" Name="debris_ship_small_01_2" CreStamp="1657883743" ModStamp="1657889277" WorldPos="3.22661 0.0217918 -0.716506" Rotation="2.95125 4.04033 -3.02029" Scale="2 2 2" FileIndex="70" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 100 268435933">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1145,6 +1146,17 @@
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268435979" Name="rusted_ship_generatorsmall_1" CreStamp="1657890431" ModStamp="1657890573" WorldPos="1.51582 0.343413 2.49345" Rotation="8.45984e-008 0.392699 2.45622e-007" Scale="0.15 0.2 0.15" FileIndex="71" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 378 268435979">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="0.4901961088180542 0.4901961088180542 0.4901961088180542 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
