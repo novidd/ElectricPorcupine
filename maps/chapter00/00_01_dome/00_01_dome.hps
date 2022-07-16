@@ -95,6 +95,12 @@ class cScrMap : iScrMap
 		Map_SetUnderwater(true);
 		
 		
+		// Server racks
+		Billboard_SetVisible("serverwave_glow_*", false);
+		Billboard_SetVisible("serverwave_glow_*", false);
+		
+		Light_SetBrightness("serverwave_light_1", 0);
+		
 		// Intro
 		bool bDoIntro = true;
 		
