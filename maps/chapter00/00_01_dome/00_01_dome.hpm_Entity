@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="2CE806B1CE2FEDAC5F9A942A870B4D7E66DD3EB0" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="112">
+        <FileIndex_Entities NumOfFiles="114">
             <File Id="0" Path="entities/oceanbottom/lamp/round_large/round_large_effects.ent" />
             <File Id="1" Path="entities/oceanbottom/lamp/round_large/round_large.ent" />
             <File Id="2" Path="entities/shipwreck/ornaments_wall/sign_ladder/sign_ladder.ent" />
@@ -113,6 +113,8 @@
             <File Id="109" Path="entities/organic/plants/vallisneria/straw_small_vallisneria01.ent" />
             <File Id="110" Path="entities/organic/plants/vallisneria/straw_small_vallisneria02.ent" />
             <File Id="111" Path="entities/organic/plants/vallisneria/straw_small_vallisneria03_rigid.ent" />
+            <File Id="112" Path="entities/oceanbottom/building/lambda/sign_lambda.ent" />
+            <File Id="113" Path="entities/oceanbottom/building/tower_signal_plates/tower_signal_cover.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435474" Name="sign_ladder_1" CreStamp="1657809982" ModStamp="1658152988" WorldPos="-0.67498 1.75 0.674979" Rotation="-0 2.35619 -0" Scale="1 1 1" FileIndex="2" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 82 268435474">
@@ -1418,7 +1420,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436195" Name="lamp_wall_deepsea_1" CreStamp="1658084083" ModStamp="1658151237" WorldPos="1.75 4 -1.75" Rotation="1.0472 -0.785398 4.13367e-009" Scale="1 1 1" FileIndex="100" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 359 268436195">
+            <Entity ID="268436195" Name="lamp_wall_deepsea_1" CreStamp="1658084083" ModStamp="1658162414" WorldPos="1.75 4 -1.75" Rotation="1.0472 -0.785398 4.13367e-009" Scale="1 1 1" FileIndex="100" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 359 268436195">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1429,7 +1431,7 @@
                     <Var Name="EffectsActive" Value="true" />
                     <Var Name="InteractionDisabled" Value="false" />
                     <Var Name="CastShadows" Value="true" />
-                    <Var Name="ColorMul" Value="0.626953125 0.49985200166702271 0.2693939208984375 1" />
+                    <Var Name="ColorMul" Value="0.20705154538154602 0.271484375 0.0572662353515625 1" />
                     <Var Name="EffectColorMul" Value="0.97254908084869385 0.99215692281723022 0.62352943420410156 1" />
                     <Var Name="EffectBrightnessMul" Value="1" />
                     <Var Name="IllumColor" Value="0.85490202903747559 1 0.49803924560546875 1" />
@@ -2293,6 +2295,17 @@
                 </UserVariables>
             </Entity>
             <Entity ID="268436280" Name="sign_ladder_2" CreStamp="1658152989" ModStamp="1658152991" WorldPos="-0.67498 1.75 0.674979" Rotation="0 -0.785403 0" Scale="1 1 1" FileIndex="2" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 481 268436280">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268436441" Name="tower_signal_broken_1" CreStamp="1658160980" ModStamp="1658160980" WorldPos="26.4173 3.75369 -31.2925" Rotation="0 -4.71239 0" Scale="1 1 1" FileIndex="28" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 507 268436441">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
