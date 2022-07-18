@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="2CE806B1CE2FEDAC5F9A942A870B4D7E66DD3EB0" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="108">
+        <FileIndex_Entities NumOfFiles="112">
             <File Id="0" Path="entities/oceanbottom/lamp/round_large/round_large_effects.ent" />
             <File Id="1" Path="entities/oceanbottom/lamp/round_large/round_large.ent" />
             <File Id="2" Path="entities/shipwreck/ornaments_wall/sign_ladder/sign_ladder.ent" />
@@ -109,6 +109,10 @@
             <File Id="105" Path="entities/shipwreck/lamp/sunken_warning/sunken_warning01.ent" />
             <File Id="106" Path="entities/creatures/fish/blue_runner/blue_runner.ent" />
             <File Id="107" Path="entities/creatures/fish/shark_scalloped_hammerhead/shark_scalloped_hammerhead.ent" />
+            <File Id="108" Path="entities/organic/plants/vallisneria/straw_small_vallisneria03.ent" />
+            <File Id="109" Path="entities/organic/plants/vallisneria/straw_small_vallisneria01.ent" />
+            <File Id="110" Path="entities/organic/plants/vallisneria/straw_small_vallisneria02.ent" />
+            <File Id="111" Path="entities/organic/plants/vallisneria/straw_small_vallisneria03_rigid.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435474" Name="sign_ladder_1" CreStamp="1657809982" ModStamp="1657893695" WorldPos="-0.75 1.75 0.75" Rotation="-0 2.35619 -0" Scale="1 1 1" FileIndex="2" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 82 268435474">
@@ -2286,6 +2290,17 @@
                     <Var Name="TowardsCenterMul" Value="2" />
                     <Var Name="ExtraEscapeMul" Value="1" />
                     <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268436258" Name="straw_small_vallisneria03_1" CreStamp="1658147956" ModStamp="1658148187" WorldPos="3.83496 3.53315 -0.07232" Rotation="-1.5708 -0.09945 0.451219" Scale="1.083 1 1.155" FileIndex="108" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 324 268436258">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="0.81568634510040283 0.66666668653488159 0.4745098352432251 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
