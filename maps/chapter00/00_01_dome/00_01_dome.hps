@@ -256,17 +256,26 @@ class cScrMap : iScrMap
  
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *SCENE* -- INTRO
+	// SCENE 1 *Power relay station*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
- 
+	
 	/////////////////////////////////////////
-	// *EVENT*
+	// *Open and enter the dome*
 	//{//////////////////////////////////////
 	
 	//-------------------------------------------------------
 	
+	bool mbPlayerInFrontOfLadder = false;
 	
+	bool OnCollide_InFrontOfLadder(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		mbPlayerInFrontOfLadder = alState == 1;
+		
+		Entity_SetActive("DomeStationLadderAux", mbPlayerInFrontOfLadder);
+		
+		return true;
+	}
 	
 	//-------------------------------------------------------
 		
