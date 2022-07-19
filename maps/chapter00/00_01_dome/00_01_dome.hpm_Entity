@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="2CE806B1CE2FEDAC5F9A942A870B4D7E66DD3EB0" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="189">
+        <FileIndex_Entities NumOfFiles="191">
             <File Id="0" Path="entities/oceanbottom/lamp/round_large/round_large_effects.ent" />
             <File Id="1" Path="entities/oceanbottom/lamp/round_large/round_large.ent" />
             <File Id="2" Path="entities/shipwreck/ornaments_wall/sign_ladder/sign_ladder.ent" />
@@ -190,6 +190,8 @@
             <File Id="186" Path="entities/station/lamp/lamp_roof_small/lamp_roof_small.ent" />
             <File Id="187" Path="entities/station/lamp/lamp_roof_small/lamp_roof_small_red.ent" />
             <File Id="188" Path="entities/shipwreck/doors/shipwreck_slidedoor_large/shipwreck_slidedoor_large_nosound.ent" />
+            <File Id="189" Path="entities/organic/vines/vines_hanging01.ent" />
+            <File Id="190" Path="entities/shipwreck/storage/cable_roll_shipwreck/cable_roll_shipwreck.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435474" Name="sign_ladder_1" CreStamp="1657809982" ModStamp="1658152988" WorldPos="-0.67498 1.75 0.674979" Rotation="-0 2.35619 -0" Scale="1 1 1" FileIndex="2" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 82 268435474">
@@ -2753,7 +2755,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436690" Name="vines_hanging03_1" CreStamp="1658173645" ModStamp="1658173678" WorldPos="0.5 -1.25 -0.5" Rotation="0 -32.2013 0" Scale="0.85 0.85 0.85" FileIndex="185" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 695 268436690">
+            <Entity ID="268436690" Name="vines_hanging03_1" CreStamp="1658173645" ModStamp="1658173678" WorldPos="0.5 -1.25 -0.5" Rotation="0 -32.2013 0" Scale="0.85 0.85 0.85" FileIndex="185" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 695 268436690">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -2873,6 +2875,17 @@
                     <Var Name="InteractToOpen" Value="false" />
                     <Var Name="AutoCloseTime" Value="0" />
                     <Var Name="OpenAmount" Value="0" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268436788" Name="cable_roll_shipwreck_1" CreStamp="1658228886" ModStamp="1658228934" WorldPos="-2.93571 0 2.29708" Rotation="0 -0.785398 0" Scale="1 1 1" FileIndex="190" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 746 268436788">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
