@@ -94,6 +94,18 @@ class cScrMap : iScrMap
 		// Underwater
 		Map_SetUnderwater(true);
 		
+		// Relay power station
+		Lamp_SetLit("DomeLadderLamp_*", false, false);
+		Billboard_SetVisible("DomeLadderLamp_2_lightray_*", false);
+		Billboard_SetVisible("DomeLadderLamp_1_lightray_*", false);
+		
+		Lamp_SetLit("DomeSeaLamp_1", false, false);
+		Billboard_SetVisible("DomeSeaLamp_1_lightray_*", false);
+		LensFlare_SetVisible("DomeFlare", false);
+		
+		Lamp_SetLit("DomeTerminalLamp", false, false);
+		LensFlare_SetVisible("DomeTerminalFlare", false);
+		
 		
 		// Server racks
 		Billboard_SetVisible("serverwave_glow_*", false);
@@ -177,7 +189,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			
+			LensFlare_SetVisible("DomeFlare", false);
 		}
 		
 	}
