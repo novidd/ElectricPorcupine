@@ -242,6 +242,39 @@ class cScrMap : iScrMap
 	
 	//} END Checkpoints
 	
+	///////////////////////////////
+	// Critters
+	//{////////////////////////////
+	
+	bool CollisionTurtlePathChange(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		if (alState == -1) return true;
+		
+		int lTarget = cString_GetNumericSuffixInt(asParent)+1;
+		if (lTarget > 5) return false;
+		
+		Critter_SetGroupEntity("Turtle", "TurtleTarget_"+lTarget);
+		
+		if (lTarget == 5)
+		{
+			Map_RemoveTimer("TurtleCommentTimer");
+			Entity_SetPlayerLookAtCallback("Turtle", "LookAtFishDespawn", false, false, false);
+		}
+		
+		return true;
+	}
+	
+	//-------------------------------------------------------
+	
+	bool CollisionTurtleSpawn(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		Entity_SetActive("Turtle", true);
+			
+		return false;
+	}
+	
+	//} END Critters
+	
 	//} END MAIN FUNCTIONS
  
 	/////////////////////////////////////////////////////////////////////////////////////////
