@@ -1,3 +1,25 @@
 <HPLMapTrack_Terrain ID="2CE806B1CE2FEDAC5F9A942A870B4D7E66DD3EB0" Version="1.00">
-    <Terrain Active="false" GeometryPatchSize="32" TexturePatchSize="32" HeightMapSize="64" MaxHeight="10" UnitSize="1" UndergrowthGridSize="10" UndergrowthFadeStart="18" UndergrowthFadeEnd="20" />
+    <Terrain Active="true" GeometryPatchSize="32" TexturePatchSize="32" HeightMapSize="512" MaxHeight="256" UnitSize="1" UndergrowthGridSize="10" UndergrowthFadeStart="28" UndergrowthFadeEnd="30" BaseMaterialFile="textures/terrain/sand/sand_wavy.mat" BaseMaterialTileAmount="0.25" BaseMaterialStartFadeValue="0" BaseMaterialDetailTextureAmount="1 0 0" BaseMaterialHeightMapScale="0" MaterialSpecularPower="1" CliffTextureDiffuse="textures/terrain/rock/rockwall_rock_blend.dds" CliffTextureNMap="textures/terrain/rock/rockwall_rock_blend_nrm.dds" CliffTextureSize="0.5" CliffTextureFadeAngleMul="0.5">
+        <DetailTextures DetailFadeStart="9" DetailFadeEnd="12">
+            <DetailTexture ID="0" File="textures/terrain/sand/sand_detail_diff.dds" Scale="0.25" />
+            <DetailTexture ID="1" File="" Scale="1" />
+            <DetailTexture ID="2" File="" Scale="1" />
+        </DetailTextures>
+        <BlendLayers>
+            <BlendLayer ID="0">
+                <Material File="textures/terrain/sand/sand_path.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+                <Material File="textures/terrain/sand/sand_undergrowth_heavy.mat" TileAmount="0.15" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+                <Material File="textures/terrain/undergrowth/seaweed.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+                <Material File="" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+            </BlendLayer>
+        </BlendLayers>
+        <Sections>
+            <Section Name="lucas@LUCASPC">
+                <FileIndex_TerrainDecals NumOfFiles="0" />
+                <Decals />
+                <FileIndex_UndergrowthMaterials NumOfFiles="0" />
+                <Undergrowth />
+            </Section>
+        </Sections>
+    </Terrain>
 </HPLMapTrack_Terrain>
