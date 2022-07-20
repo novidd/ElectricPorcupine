@@ -96,32 +96,7 @@ class cScrMap : iScrMap
 		
 		//////////////////////////
 		// Relay power station
-		
-		// Relay door starts open
-		Entity_SetInteractionDisabled("RelayStationHatchWheel", true);
-		Entity_SetInteractionDisabled("RelayStationHatch", true);
-		SwingDoor_SetDisableAutoClose("RelayStationHatch", true);
-		SwingDoor_SetLocked("RelayStationHatch", false, true);
-		SwingDoor_SetClosed("RelayStationHatch", false, true);
-		
-		Prop_SetStaticPhysics("RelayStationLadder", false);
-		
-		Lamp_SetLit("DomeLadderLamp_*", false, false);
-		Billboard_SetVisible("DomeLadderLamp_2_lightray_*", false);
-		Billboard_SetVisible("DomeLadderLamp_1_lightray_*", false);
-		
-		Lamp_SetLit("DomeSeaLamp_1", false, false);
-		Billboard_SetVisible("DomeSeaLamp_1_lightray_*", false);
-		LensFlare_SetVisible("DomeFlare", false);
-		
-		Lamp_SetLit("DomeTerminalLamp", false, false);
-		LensFlare_SetVisible("DomeTerminalFlare", false);
-		
-		// Server racks
-		Billboard_SetVisible("serverwave_glow_*", false);
-		Billboard_SetVisible("serverwave_glow_*", false);
-		
-		Light_SetBrightness("serverwave_light_1", 0);
+		SetupRelayStation();
 		
 		// Intro
 		bool bDoIntro = true;
@@ -199,7 +174,12 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			LensFlare_SetVisible("DomeFlare", false);
+			SequenceActivateRelayStationComputer("");
+		}
+		
+		if(alAction == eAction_Test2)
+		{
+			cLux_AddDebugMessage("Terminal Y pos:"+Map_GetEntity("RelayStationComputer").GetPosition().y);
 		}
 		
 	}
@@ -283,8 +263,48 @@ class cScrMap : iScrMap
 		return true;
 	}
 	
+	//-------------------------------------------------------
+	
+	void SetupRelayStation()
+	{
+		// Relay terminal
+		Light_FadeTo("RelayStationComputerLight_*", cColor(0,0,0,0), -1, 0);
+		
+		// Relay door starts open
+		Entity_SetInteractionDisabled("RelayStationHatchWheel", true);
+		Entity_SetInteractionDisabled("RelayStationHatch", true);
+		SwingDoor_SetDisableAutoClose("RelayStationHatch", true);
+		SwingDoor_SetLocked("RelayStationHatch", false, true);
+		SwingDoor_SetClosed("RelayStationHatch", false, true);
+		
+		Prop_SetStaticPhysics("RelayStationLadder", false);
+		
+		SetupRelayStationPower();
+	}
+	
+	void SetupRelayStationPower()
+	{
+		// Server racks
+		Billboard_SetVisible("serverwave_glow_*", false);
+		Billboard_SetVisible("serverwave_glow_*", false);
+		
+		Light_SetBrightness("serverwave_light_1", 0);
+		
+		// Lamps
+		Lamp_SetLit("DomeLadderLamp_*", false, false);
+		Billboard_SetVisible("DomeLadderLamp_2_lightray_*", false);
+		Billboard_SetVisible("DomeLadderLamp_1_lightray_*", false);
+		
+		Lamp_SetLit("DomeSeaLamp_1", false, false);
+		Billboard_SetVisible("DomeSeaLamp_1_lightray_*", false);
+		LensFlare_SetVisible("DomeFlare", false);
+		
+		Lamp_SetLit("DomeTerminalLamp", false, false);
+		LensFlare_SetVisible("DomeTerminalFlare", false);
+	}
+	
 	/////////////////////////////////////////
-	// *Open and enter the dome*
+	// Scene 1 Event A *Enter the dome*
 	//{//////////////////////////////////////
 	
 	//-------------------------------------------------------
@@ -301,8 +321,56 @@ class cScrMap : iScrMap
 	}
 	
 	//-------------------------------------------------------
+	
+	bool CollideRelayInterior(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		// DO STRANGE MUSIC
+		cLux_AddDebugMessage("Player entered the relay station.");
+		return false;
+	}
+	
+	//-------------------------------------------------------
 		
-	//} EVENT
+	//} Event A
+	
+	/////////////////////////////////////////
+	// Scene 1 Event B *Boot up relay terminal*
+	//{//////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	cSequenceStatesData mActivateBackupPowerSequence;
+	void SequenceActivateRelayStationComputer(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceActivateRelayStationComputer", mActivateBackupPowerSequence);
+			
+		if (Sequence_DoStepAndWait(1.f))
+		{
+			Entity_SetVarBool("RelayStationComputer", "FadeIn", false);
+			Prop_MoveLinearTo("RelayStationComputer", "RelayStationScreenTargetPos", 1.5, 0.5, 0.2f, true);
+			Sound_CreateAtEntity("ScreenRise", "02_03_delta/SFX/terminals/screen_rise", "RelayStationComputer", 0.0f, false, 1.0f);
+			
+		}
+		else if (Sequence_DoStepAndWait(0.05f))
+		{
+			Terminal_SetGuiActive("RelayStationComputer", true, 1);
+			Sound_CreateAtEntity("RelayStationHumStart", "Entities_OceanBottom/tech/terminal/start", "RelayStationComputer", 0.0f, true, 1.0f);
+			Sound_CreateAtEntity("RelayStationHum", "Entities_OceanBottom/tech/terminal/loop", "RelayStationComputer", 0.0f, true, 1.0f);
+		}
+		else if (Sequence_DoStepAndWait(0.95f))
+		{
+			Light_FadeTo("RelayStationComputerLight_*", cColor(0.518,0.765,1,1), -1, 0.75f); // Hex: 84C3FFFF cColor: 0.518,0.765,1,1
+		}
+		else if (Sequence_DoStepAndWait(0))
+		{
+			Entity_SetInteractionDisabled("RelayStationComputer", false);
+		}
+		Sequence_End();
+	}
+	
+	//-------------------------------------------------------
+	
+	//} Event B
 		
 	//} END SCENE 1
 	
@@ -312,23 +380,88 @@ class cScrMap : iScrMap
 	// ==============
 	//{//////////////////////////////////////
 
-		//-------------------------------------------------------
+    /////////////////////////////////////////
+    // Relay station
+    /////////////////////////////////////////
+ 
+    //-------------------------------------------------------
 	
-		/////////////////////////////////////////
-		// Terminal *TERMINAL X*
-		//{//////////////////////////////////////
+	void OnGuiRelayMap(const tString&in asEntityName, float afTimeStep)
+	{
+		ImGui_SetTransCategory("02_03_delta");
 		
-		//-------------------------------------------------------
+		StationGuiBG_Scanlines();
+		StationGuiBG_Backdrop();
+		StationGuiBG_Taskbar("delta");
+		
+		OnGuiLaunchBunkerTerminal_Map(cVector2f(0.53, 0.51), cVector2f(0.72, 0.4225));
+	}
 	
-		/*Put any variables that are only used Terminal here.*/
-	
-		//-------------------------------------------------------
-	
-		/*Put any functions that are only used Terminal here.*/
-	
-		//-------------------------------------------------------
-	
-		//} END Terminal *Name Of Terminal*
+	void OnGuiLaunchBunkerTerminal_Map(const cVector2f &in vZoomOutPos, const cVector2f &in vZoomInPos)
+	{
+		// Map to power station
+		// Use you are here icon
+		// StationGui_YouAreHereIcon(ImGui_NrmPosGroup(cVector3f(vZoomOutPos.x, vZoomOutPos.y, 1.2)), ImGui_NrmSizeGroupKeepRatio(0.15));
+		
+		
+		bool bZoomedIn = ImGui_GetStateBool("ZoomedIn", false);
+		
+		cImGuiGfx image;
+		if (bZoomedIn)
+		{
+			image = cImGuiGfx("map_delta", eImGuiGfx_Texture);
+			image.mvUVMax = cVector2f(1, 0.84); // compensate for image not being centered due to power of 2. 
+		}
+		else
+		{
+			image = cImGuiGfx("zeppelin_map", eImGuiGfx_Texture);
+			//image.mvUVMax = cVector2f(1, 0.84);
+		}
+		
+		tString sZoomEntry = bZoomedIn ? "BunkerMapZoom_Out" : "BunkerMapZoom_In";
+		
+		ImGui_DoWindowStart("BunkerApp_Map", StationGui_CreateDefaultWindowData(), 
+							ImGui_NrmPos(cVector3f(0.02, 0.02, 1)), ImGui_NrmSize(cVector2f(0.96, 0.775f)));
+				
+				cVector2f vImageSize = ImGui_GetRatioCorrectSizeByRect(image, ImGui_NrmSizeGroup(0.6, 0.95), true);
+				
+				cVector3f vImagePos = cVector3f_Forward;
+				vImagePos = ImGui_NrmPosGroup(cVector3f(0.05, 0, 1));
+				vImagePos.y += (ImGui_GetCurrentGroupSize().y-vImageSize.y)*0.5f;
+				vImagePos.x += (ImGui_GetCurrentGroupSize().x*0.65-vImageSize.x)*0.5f;
+				
+				ImGui_GroupBegin(vImagePos, vImageSize);
+				
+				if (bZoomedIn==false)
+				{
+					//ImGui_SetModColorMul(cColor_White*0.9);
+					StationGui_YouAreHereIcon(ImGui_NrmPosGroup(cVector3f(vZoomOutPos.x, vZoomOutPos.y, 1.2)), ImGui_NrmSizeGroupKeepRatio(0.15));
+					ImGui_SetModColorMul(cColor_White);
+				}
+				else
+				{
+					StationGui_YouAreHereIcon(ImGui_NrmPosGroup(cVector3f(vZoomInPos.x, vZoomInPos.y, 1.2)), ImGui_NrmSizeGroupKeepRatio(0.125));
+				}
+				
+				//vImagePos.x = (vImagePos.x-vImageSize.x)*0.5f;
+				ImGui_DoImage(image, 0, ImGui_NrmSizeGroup(1));
+				ImGui_GroupEnd();
+				
+				cVector3f vButtonPos = ImGui_NrmPosGroup(cVector3f(0.70, 0.75, 1.2));
+				cVector2f vButtonSize = ImGui_NrmSizeGroup(0.975, 0.15)-(cVector2f_Right*vButtonPos.x);
+				cImGuiButtonData button = StationGui_CreateDefaultButtonData();
+				button.mbClipText = false;
+				button.mFont.mvSize = ImGui_NrmSizeKeepRatio(0.05);
+				ImGui_ResizeFontToFit(sZoomEntry, button.mFont, vButtonSize.x*0.8);
+				if(ImGui_DoButtonExt("ZoomButton", sZoomEntry, button, 
+									 vButtonPos, vButtonSize))
+				{
+					if (!bZoomedIn) Depth_Audio_Terminal_Forward(ImGui_GetName());
+					else			Depth_Audio_Terminal_Back(ImGui_GetName());
+					ImGui_SetStateBool("ZoomedIn", !bZoomedIn);
+				}
+		ImGui_DoWindowEnd();
+	}
 	
 	//} END TERMINALS
 	
