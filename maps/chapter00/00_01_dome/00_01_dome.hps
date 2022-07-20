@@ -357,8 +357,11 @@ class cScrMap : iScrMap
 	
 	bool CollideRelayInterior(const tString &in asParent, const tString &in asChild, int alState)
 	{
-		// DO STRANGE MUSIC
+		// DO STRANGE MUSIC FIRST TIME ENTERING
 		cLux_AddDebugMessage("Player entered the relay station.");
+		
+		// DISABLE/ENABLE THE HAMMERHEAD SHARK ON ENTER/LEAVE
+		
 		return false;
 	}
 	
