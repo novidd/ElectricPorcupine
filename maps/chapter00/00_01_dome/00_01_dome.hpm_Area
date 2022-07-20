@@ -490,12 +490,12 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436218" Name="DomeLadderDown" CreStamp="1658144787" ModStamp="1658146910" WorldPos="0 -5.75 0" Rotation="0 -0.785395 0" Scale="1.664 0.404 1.793" Active="true" Mesh="" UID="16 269 268436218" AreaType="Trigger">
+            <Area ID="268436218" Name="DomeLadderDown" CreStamp="1658144787" ModStamp="1658320782" WorldPos="0 -5.75 0" Rotation="0 -0.785395 0" Scale="1.664 0.404 1.793" Active="true" Mesh="" UID="16 269 268436218" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="UserVar" Value="" />
-                    <Var Name="CC_Entities" Value="DomeLadder" />
+                    <Var Name="CC_Entities" Value="RelayStationLadder" />
                     <Var Name="CC_Funcs" Value="CollisionRelayStationLadderDown" />
                     <Var Name="ParentAttachEntity" Value="" />
                     <Var Name="ParentAttachUseRotation" Value="true" />
@@ -514,10 +514,10 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436223" Name="DomeStationLadderArea" CreStamp="1658145487" ModStamp="1658147022" WorldPos="0.25 -2.785 -0.25" Rotation="0 -0.785398 0" Scale="1.237 5 0.22" Active="false" Mesh="" UID="16 265 268436223" AreaType="Ladder">
+            <Area ID="268436223" Name="RelayStationLadderArea" CreStamp="1658145487" ModStamp="1658320670" WorldPos="0.25 -2.785 -0.25" Rotation="0 -0.785398 0" Scale="1.237 5 0.22" Active="false" Mesh="" UID="16 265 268436223" AreaType="Ladder">
                 <UserVariables>
                     <Var Name="Material" Value="metal" />
-                    <Var Name="Exit_Top" Value="DomeStationLadderArea_Top" />
+                    <Var Name="Exit_Top" Value="RelayStationLadderArea_Top" />
                     <Var Name="Exit_TopCrouching" Value="False" />
                     <Var Name="Exit_Bottom" Value="" />
                     <Var Name="Exit_BottomCrouching" Value="False" />
@@ -526,13 +526,12 @@
                     <Var Name="ParentAttachBody" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="268436224" Name="Trigger_LadderSound" CreStamp="1658145932" ModStamp="1658145943" WorldPos="0 -2.75 0" Rotation="0 -0.785395 0" Scale="1 0.108 1" Active="false" Mesh="" UID="16 360 268436224" AreaType="Trigger">
+            <Area ID="268436224" Name="Trigger_LadderSound" CreStamp="1658145932" ModStamp="1658320769" WorldPos="0 -2.75 0" Rotation="0 -0.785395 0" Scale="1 0.108 1" Active="false" Mesh="" UID="16 360 268436224" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="UserVar" Value="" />
-                    <Var Name="CC_Entities" Value="DomeLadder" />
-                    <Var Name="CC_Funcs" Value="CollisionRelayStationLadderDown" />
+                    <Var Name="CC_Entities" Value="RelayStationLadder" />
                     <Var Name="ParentAttachEntity" Value="" />
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
@@ -550,7 +549,31 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436234" Name="Trigger_EnableLadderSound" CreStamp="1658146740" ModStamp="1658146816" WorldPos="0.726 -3.625 -0.742" Rotation="-0 3.92699 -0" Scale="0.25 0.75 1" Active="true" Mesh="" UID="16 83 268436234" AreaType="Trigger">
+            <Area ID="268436234" Name="Trigger_EnableLadderSound" CreStamp="1658146740" ModStamp="1658320911" WorldPos="0.726 -3.625 -0.742" Rotation="-0 3.92699 -0" Scale="0.25 0.75 1" Active="true" Mesh="" UID="16 83 268436234" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="RelayStationHatch" />
+                    <Var Name="CC_Funcs" Value="Trigger_EnableLadderSound" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268436236" Name="RelayStationLadderArea_Top" CreStamp="1658146933" ModStamp="1658320674" WorldPos="0.855241 0 -0.855241" Rotation="0 0.785399 0" Scale="1 1 1" Active="true" Mesh="" UID="16 23 268436236" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -574,33 +597,9 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436236" Name="DomeStationLadderArea_Top" CreStamp="1658146933" ModStamp="1658147027" WorldPos="0.855241 0 -0.855241" Rotation="0 0.785399 0" Scale="1 1 1" Active="true" Mesh="" UID="16 23 268436236" AreaType="Trigger">
+            <Area ID="268436237" Name="RelayStationLadderAux" CreStamp="1658147053" ModStamp="1658320851" WorldPos="0 0 0" Rotation="0 -0.785398 0" Scale="1.524 1 1.45" Active="false" Mesh="" UID="16 24 268436237" AreaType="InteractAux">
                 <UserVariables>
-                    <Var Name="BlocksLineOfSight" Value="false" />
-                    <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="UserVar" Value="" />
-                    <Var Name="CC_Entities" Value="" />
-                    <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
-                    <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="PlayerLookAtCallback" Value="" />
-                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
-                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
-                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
-                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
-                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
-                    <Var Name="PlayerInteractCallback" Value="" />
-                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
-                    <Var Name="CanInteractWithoutCallback" Value="false" />
-                    <Var Name="MaxFocusDistance" Value="-1" />
-                    <Var Name="CustomInteractIcon" Value="PushButton" />
-                </UserVariables>
-            </Area>
-            <Area ID="268436237" Name="DomeStationLadderAux" CreStamp="1658147053" ModStamp="1658167790" WorldPos="0 0 0" Rotation="0 -0.785398 0" Scale="1.524 1 1.45" Active="false" Mesh="" UID="16 24 268436237" AreaType="InteractAux">
-                <UserVariables>
-                    <Var Name="InteractParent" Value="DomeStationLadderArea" />
+                    <Var Name="InteractParent" Value="RelayStationLadderArea" />
                     <Var Name="UseParentMainBody" Value="true" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                 </UserVariables>
@@ -846,6 +845,30 @@
                 </UserVariables>
             </Area>
             <Area ID="268436970" Name="StairsAndOrHill" CreStamp="1658257922" ModStamp="1658257947" WorldPos="-15.75 -6.25 7.75" Rotation="0 1.5708 0" Scale="6 12 12" Active="true" Mesh="" UID="16 286 268436970" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268437015" Name="MakePathOldAndUsed" CreStamp="1658315434" ModStamp="1658315478" WorldPos="-15.75 1.5 7.75" Rotation="0 1.5708 0" Scale="4 4 4" Active="true" Mesh="" UID="16 138 268437015" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />

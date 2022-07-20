@@ -94,7 +94,18 @@ class cScrMap : iScrMap
 		// Underwater
 		Map_SetUnderwater(true);
 		
+		//////////////////////////
 		// Relay power station
+		
+		// Relay door starts open
+		Entity_SetInteractionDisabled("RelayStationHatchWheel", true);
+		Entity_SetInteractionDisabled("RelayStationHatch", true);
+		SwingDoor_SetDisableAutoClose("RelayStationHatch", true);
+		SwingDoor_SetLocked("RelayStationHatch", false, true);
+		SwingDoor_SetClosed("RelayStationHatch", false, true);
+		
+		Prop_SetStaticPhysics("RelayStationLadder", false);
+		
 		Lamp_SetLit("DomeLadderLamp_*", false, false);
 		Billboard_SetVisible("DomeLadderLamp_2_lightray_*", false);
 		Billboard_SetVisible("DomeLadderLamp_1_lightray_*", false);
@@ -259,6 +270,19 @@ class cScrMap : iScrMap
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
+	void OnChangeRelayStationHatchWheel(const tString &in asEntity, int alState)
+	{
+		if (alState != 1) return;
+	}
+	
+	//-------------------------------------------------------
+	
+	bool CollisionRelayStationLadderDown(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		Entity_SetActive("RelayStationLadderArea", true);
+		return true;
+	}
+	
 	/////////////////////////////////////////
 	// *Open and enter the dome*
 	//{//////////////////////////////////////
@@ -271,7 +295,7 @@ class cScrMap : iScrMap
 	{
 		mbPlayerInFrontOfLadder = alState == 1;
 		
-		Entity_SetActive("DomeStationLadderAux", mbPlayerInFrontOfLadder);
+		Entity_SetActive("RelayStationLadderAux", mbPlayerInFrontOfLadder);
 		
 		return true;
 	}
