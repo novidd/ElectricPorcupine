@@ -275,6 +275,72 @@ class cScrMap : iScrMap
 	
 	//} END Critters
 	
+	///////////////////////////////
+	// Generic timers
+	//{////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	void TimerEnableInteraction(const tString &in asTimer)
+	{
+		Entity_SetInteractionDisabled(asTimer, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void Timer_RemoveParticleSystem(const tString &in asTimer)
+	{
+		ParticleSystem_Destroy(asTimer);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOnEffects(const tString &in asTimer)
+	{
+		Entity_SetEffectsActive(asTimer, true, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOffEffects(const tString &in asTimer)
+	{
+		Entity_SetEffectsActive(asTimer, false, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOnLamp(const tString &in asTimer)
+	{
+		Lamp_SetLit(asTimer, true, true);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOffLamp(const tString &in asTimer)
+	{
+		Lamp_SetLit(asTimer, false, true);
+	}
+	
+	//} END Generic timers
+	
+	///////////////////////////////
+	// Path markers
+	//{////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	bool CollidePathHelper(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		Sound_CreateAtEntity("LightsOn", "01_03_upsilon_outside/SFX/light_pole/light_on", "Lamp"+asChild, 0.0f, false, 1.0f);
+		Lamp_SetLit("Lamp"+asChild, true, true);
+		
+		return false;
+	}
+	
+	//-------------------------------------------------------
+	
+	//} END Path markers
+	
 	//} END MAIN FUNCTIONS
  
 	/////////////////////////////////////////////////////////////////////////////////////////
