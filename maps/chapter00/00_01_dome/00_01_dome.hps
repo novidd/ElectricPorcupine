@@ -183,7 +183,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test2)
 		{
-			cLux_AddDebugMessage("Terminal Y pos:"+Map_GetEntity("RelayStationComputer").GetPosition().y);
+			SequenceOpenThetame("");
 		}
 		
 	}
@@ -360,6 +360,89 @@ class cScrMap : iScrMap
 	{
 		Entity_StopAnimation("ThetaGate_Left");
 		Entity_StopAnimation("ThetaGate_Right");
+	}
+	
+	//-------------------------------------------------------
+	
+	int mlGateShakeID = -1;
+	
+	cSequenceStatesData mOpenThetameSequence;
+	void SequenceOpenThetame(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceOpenThetame", mOpenThetameSequence);
+		
+		if (Sequence_DoStepAndWait(1))
+		{
+			Entity_PlayAnimation("ThetaGate_Left", "Open", 0);
+			Entity_PlayAnimation("ThetaGate_Right", "Open", 0);
+		}
+		else if (Sequence_DoStepAndWait(0.25f))
+		{
+			mlGateShakeID = Effect_Shake_Start(0.0075, -1, 2, 0);
+			
+			SlideDoor_SetOpenAmount("ThetaGate_Left", 1, false);
+			SlideDoor_SetOpenAmount("ThetaGate_Right", 1, false);
+			
+			/////////////////////////////////////////////
+			// TUrn off some lamps to put focus on door
+//			Map_AddTimer("ThetaGateLamp_Top_1", 0, "TimerSetLampUnlit");
+//			Map_AddTimer("ThetaGateLamp_Top_2", 0.4, "TimerSetLampUnlit");
+//			Map_AddTimer("ThetaGateLamp_OverrideBox", 1, "TimerSetLampUnlit");
+//			Map_AddTimer("ThetaGateLamp_OverrideBox_Spotlight", 1, "TimerFadeLightToBlack");
+//			Map_AddTimer("ThetaGateLamp_OverrideBox_Pointlight", 1, "TimerFadeLightToBlack");
+			
+			/////////////////////////////////////////////
+			// Turn on spinning warning lights
+//			Lamp_SetLit("ThetaWarningLight_Lamp_*", true, true);
+//			Prop_RotateToSpeed("ThetaWarningLight_Lamp_1", 5, 7.5, cVector3f(0, 0, 1), true, "");
+//			Prop_RotateToSpeed("ThetaWarningLight_Lamp_2", 5, 7.5, cVector3f(0, 0, -1), true, "");
+		}
+		else if (Sequence_DoStepAndWait(4))
+		{	
+			for (int i = 1; Entity_Exists("ThetaGate_DustFallPS_" + i); i++)
+			{
+				Map_AddTimer("ThetaGate_DustFallPS_" + i, cMath_RandRectf(0.4, 0.75),"TimerThetaGatePSDelay");
+			}
+			
+			for (int i = 1; Entity_Exists("ThetaGate_BubblePS_" + i); i++)
+			{
+				Map_AddTimer("ThetaGate_BubblePS_" + i, cMath_RandRectf(0, 0.5),"TimerThetaGatePSDelay");
+			}
+		}
+		else if (Sequence_DoStepAndWait(4))
+		{
+			Effect_Shake_FadeOut(mlGateShakeID, 1.0);
+			mlGateShakeID = Effect_Shake_Start(0.005, -1, 2, 0);
+			Effect_Shake_SetSourceEntity(mlGateShakeID, "ThetaGate_Right", 10, 25);
+		}
+		else if (Sequence_DoStepAndWait(0))
+		{
+			Effect_Shake_FadeOut(mlGateShakeID, 0.5);
+		}
+		else if (Sequence_DoStepAndWait(0))
+		{
+//			Effect_Shake_FadeOut(mlGateShakeID, 0.5);
+			Lever_SetAutoMoveEnabled("ThetaGate_Walkboard", true);
+			Lever_SetAutoMoveTarget("ThetaGate_Walkboard", 1);
+		}
+		Sequence_End();
+	}
+
+	//-------------------------------------------------------
+	
+	void TimerThetaGateClutchRelease(const tString &in asTimer)
+	{
+		/////////////////////
+		// Effects 
+		ParticleSystem_CreateAtEntity(asTimer + "_Particles", "oneshot_sand_cascade.ps", asTimer, false);
+	}
+
+	//-------------------------------------------------------
+	
+	void TimerThetaGatePSDelay(const tString &in asTimer)
+	{
+		// Create the particle system specified in the UserVar of the area
+		ParticleSystem_CreateAtEntity(asTimer + "_Particles", Entity_GetVarString(asTimer, ""), asTimer, false);
 	}
 	
 	//} END SCENE 1
