@@ -409,32 +409,23 @@ class cScrMap : iScrMap
 				Map_AddTimer("ThetaGate_BubblePS_" + i, cMath_RandRectf(0, 0.5),"TimerThetaGatePSDelay");
 			}
 		}
-		else if (Sequence_DoStepAndWait(4))
+		else if (Sequence_DoStepAndWait(5))
 		{
 			Effect_Shake_FadeOut(mlGateShakeID, 1.0);
 			mlGateShakeID = Effect_Shake_Start(0.005, -1, 2, 0);
 			Effect_Shake_SetSourceEntity(mlGateShakeID, "ThetaGate_Right", 10, 25);
 		}
-		else if (Sequence_DoStepAndWait(0))
+		else if (Sequence_DoStepAndWait(1))
 		{
-			Effect_Shake_FadeOut(mlGateShakeID, 0.5);
+			Effect_Shake_FadeOut(mlGateShakeID, 1.0);
 		}
 		else if (Sequence_DoStepAndWait(0))
 		{
-//			Effect_Shake_FadeOut(mlGateShakeID, 0.5);
+			// Lower these when the platform has moved all the way up
 			Lever_SetAutoMoveEnabled("ThetaGate_Walkboard", true);
 			Lever_SetAutoMoveTarget("ThetaGate_Walkboard", 1);
 		}
 		Sequence_End();
-	}
-
-	//-------------------------------------------------------
-	
-	void TimerThetaGateClutchRelease(const tString &in asTimer)
-	{
-		/////////////////////
-		// Effects 
-		ParticleSystem_CreateAtEntity(asTimer + "_Particles", "oneshot_sand_cascade.ps", asTimer, false);
 	}
 
 	//-------------------------------------------------------
