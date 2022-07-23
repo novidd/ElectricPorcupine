@@ -95,6 +95,10 @@ class cScrMap : iScrMap
 		Map_SetUnderwater(true);
 		
 		//////////////////////////
+		// Start area
+		SetupElevator();
+		
+		//////////////////////////
 		// Relay power station
 		SetupRelayStation();
 		
@@ -351,6 +355,12 @@ class cScrMap : iScrMap
 	
 	// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
 	// 02_04_stormends when the doors open
+	
+	void SetupElevator()
+	{
+		Entity_StopAnimation("ThetaGate_Left");
+		Entity_StopAnimation("ThetaGate_Right");
+	}
 	
 	//} END SCENE 1
 	
