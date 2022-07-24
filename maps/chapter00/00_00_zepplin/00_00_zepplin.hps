@@ -36,8 +36,9 @@
 
 //--------------------------------------------------
  
-/*Place any global values here. These must be const variables as they will not be saved*/
-/*This is also the place for enums and classes, but these should be avoided whenever possible*/
+const float gfDofMax = 3.0f;
+
+const float gfFogNormal = 45.0f;
 
 //--------------------------------------------------
 
@@ -50,27 +51,54 @@ class cScrMap : iScrMap
 	// MAIN CALLBACKS
 	// ==============
 	//{///////////////////////////////////////////////////////////////////////////////////////
- 
-	//-------------------------------------------------------
 	
 	//-------------------------------------------------------
- 
+	
+	int mlDofID = -1;
+	
+	//-------------------------------------------------------
+	
+	void PreloadData()
+	{
+		// Gui
+		OmnitoolGui_Preload();
+		
+		// Player hands
+		PlayerHands_PreloadHandModel_Diving();
+		
+		// Particles
+		ParticleSystem_Preload("");
+	}
+	
+	//-------------------------------------------------------
+	
 	////////////////////////////
 	// Set up map environment
 	void Setup()
 	{
-		
-	}
-	
-	//-------------------------------------------------------
+		//GetBase().SetDisplayNameEntry("02-04-theta-outside");
 
-	void PreloadData()
-	{
-		///////////////
-		// Preload particles
-		ParticleSystem_Preload("");
+//		Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
+//		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
+//		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets red tint to bloom
+//		
+//		Effect_DoF_Start(0, 12, 1.0f, 0);
+
+		mlDofID = Effect_DoF_Start(0.0f, gfDofMax, 0.5, 0.0);
 		
-		PlayerHands_PreloadHandModel_Diving();
+		Effect_Bloom_FadeBrightPass(0.00001, 0);
+		Effect_Bloom_FadeBloomWidth(64, 0);
+		Effect_Bloom_FadeBloomTint(0.6, 0.4, 0.4, 0);
+		Map_SetUnderwater(true);
+		Map_FadeFogEnd(gfFogNormal, 0.0f);
+		Effect_RadialBlur_SetDirect(0.1, 0.75, 0.1);
+		
+		cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
+		
+		//////////////////////
+		//Level start
+		CathTool_ResetScreen(eCathToolVariant_CathDelta);
+		CathTool_Insert("CathTool", "ZeppelinCathTerminal", false);
 	}
 	
 	//-------------------------------------------------------
@@ -79,23 +107,33 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
+		bool bDoIntro = true;
+		
 		/////////////////////////
 		// Player setup
 		Player_SetAmbientLight_Outdoors();
 		PlayerHands_SetHandModel_Diving();
-		//Player_SetHealth(0.2f);
 		
-		/////////////////////////
-		// Level setup
+		PlayerEnergy_SetFlowerSwallows(true);
 		
 		/////////////////////////
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			
+			bDoIntro = false;
 		}
 		
-		//Map_AddTimer("preload", 2, "TimerBeginPreload");
+		if (bDoIntro)
+		{
+			SequenceIntro("");
+		}
+		else
+		{
+			//Map_SetSkyBoxColor(cColor(0.471,0.902,1,1));
+			//Map_SetFogProperties(0, 100, 0.3, cColor(0.047,0.086,0.098,1), true);
+		}
+		
+		SetupZeppelinCrash();
 	}
 
 	//-------------------------------------------------------
@@ -104,7 +142,9 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-
+		Map_SetUnderwater(true);
+		
+//		Map_AddTimer("TimerStartPreload",10.0f,"TimerStartPreload");
 	}
 
 	//-------------------------------------------------------
@@ -120,7 +160,11 @@ class cScrMap : iScrMap
 	
 	void Update(float afTimeStep)
 	{
-		
+		cVector3f vToLanding = Map_GetEntity("ZeppelinPlatform").GetPosition() - 
+								mvLandingPos;
+		mfDistToLanding = vToLanding.Length()-0.2f;
+		if (mfTotalDistToLanding==-1.0f)
+			mfTotalDistToLanding = mfDistToLanding;
 	}
 
 	//-------------------------------------------------------
@@ -213,33 +257,6 @@ class cScrMap : iScrMap
 	// Critters
 	//{////////////////////////////
 	
-	bool CollisionTurtlePathChange(const tString &in asParent, const tString &in asChild, int alState)
-	{
-		if (alState == -1) return true;
-		
-		int lTarget = cString_GetNumericSuffixInt(asParent)+1;
-		if (lTarget > 5) return false;
-		
-		Critter_SetGroupEntity("Turtle", "TurtleTarget_"+lTarget);
-		
-		if (lTarget == 5)
-		{
-			Map_RemoveTimer("TurtleCommentTimer");
-			Entity_SetPlayerLookAtCallback("Turtle", "LookAtFishDespawn", false, false, false);
-		}
-		
-		return true;
-	}
-	
-	//-------------------------------------------------------
-	
-	bool CollisionTurtleSpawn(const tString &in asParent, const tString &in asChild, int alState)
-	{
-		Entity_SetActive("Turtle", true);
-			
-		return false;
-	}
-	
 	//} END Critters
 	
 	///////////////////////////////
@@ -294,23 +311,89 @@ class cScrMap : iScrMap
 	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *Simon and Catherine ride the zepplin*
+	// SCENE 1 *ZEPPLIN CRASH SITE*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
+	float mfDistToLanding;
+	float mfTotalDistToLanding;
+	cVector3f mvLandingPos;
+	cVector3f mvStartingPos;
+	
+	//-------------------------------------------------------
+	
+	void SetupZeppelinCrash()
+	{
+		if(cScript_GetGlobalVarBool("TransitionFrom2.3") == false) Entity_PlaceAtEntity("ZeppelinPlatform", "AreaStartZepHere", cVector3f_Zero, false);
+		 
+		Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
+		
+		mfTotalDistToLanding = -1.0f;
+		mvLandingPos = Map_GetEntity("ZeppelinLandPos").GetPosition();
+		mvStartingPos = Map_GetEntity("ZeppelinPlatform").GetPosition();
+		mlZepInfoImage=1;
+		mfZepInfoTimer=0.0f;
+	}
+	
+	//-------------------------------------------------------
+	
 	// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
-	// 02_04_stormends when the player wakes up next level
+	// 02_04_stormends when the player wakes up
+	
+	// Zepplin code: 049
 	
 //		// Do damage on crash
 //		Player_GiveDamage(1, 0, eDamageType_Hit, "");
 //		Player_MoveHeadPos(cVector3f_Down*0.375, 9, 4, 0);
 //		Depth_Audio_PlayerTakeDamage();
 	
+	// Mod premice --
+	// This mod plays on the idea that there are multiple Simons in the world
+	// Two "alive" Simons will communicate in the final scene in the mod (The other Simon is the original game one in Phi).
+	// All of the corpses that the player has passed throughout the mod are other Simons.
+	// They're all stuck in a loop, in control by the WAU for life to survive by any means necessary.
+	
+	// Scene 1 --
+	// Located at the bottom of the trench beside the cliff which at the top leads to Theta.
+	// The crash is in the trench between Delta and Theta, therefore the storm is quieter here.
+	// The player can hear distant fishes here.
+	
+	// level_amb_shared_underwater/amb/spots/scary/eerie_tone_01 in the background
+	
+	// When the valley opens up the storm gets heavier.
+	
+	// Do light cracking and heavy breathing and heartbeat sound effects because the player is deep in the ocean trench on a timer
+	
+	// Player is laying on their back after zepplin has crashed
+	// Play the dialogue as the colorful jellyfish pass the screen
+	// Loud horn of a zepplin can be heard from far away
+	
+	// Terminal A is still running but glitched. The player can see the distance away from Theta (4000+ meters)
+	// Play dialogue when the player looks at the completely broken omnitool.
+	// Add sparks accompanied with bubbles
+	
+	// Voice_SetSource("Catherine", "CathTool2", 3, 20, true, 20);
+	// Voice_Play("1_CatherineGivesDirections");
+	
 	/////////////////////////////////////////
     // SCENE 1 EVENT A - *Simon and Cathrine converse*
     //{///////////////////////////////////////
 	
+	//-------------------------------------------------------
 	
+	cSequenceStatesData mIntroSequence;
+	void SequenceIntro(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceIntro", mIntroSequence);
+			
+		if (Sequence_DoStepAndWait(2))
+		{
+			
+		}
+		Sequence_End();
+	}
+	
+	//-------------------------------------------------------
 	
 	//} END EVENT A
 	
@@ -327,6 +410,122 @@ class cScrMap : iScrMap
     /////////////////////////////////////////
  
     //-------------------------------------------------------
+	
+	/////////////////////////////////////////
+	// Terminal *Zeppelin A*
+	/////////////////////////////////////////
+
+	//-------------------------------------------------------
+	
+	void OnGuiZeppelinA(const tString&in asEntityName, float afTimeStep)
+	{
+		ImGui_SetTransCategory("02_04_theta_outside");
+	
+		cImGuiLabelData label;
+		label.mFont.SetFile(Helper_Font_GetFontName(eLuxFontType_Sansation_Medium));
+		label.mFont.mvSize = cVector2f(50, 50);
+	
+		StationGuiBG_Scanlines();
+		StationGuiBG_Backdrop();
+		
+		if (mfTotalDistToLanding<0.0f)
+			return;
+			
+		float fDist = 1.0f-(mfDistToLanding/mfTotalDistToLanding);
+		cVector3f vMapStart = cVector3f(-345,-300,1.0f);
+		cVector3f vMapEnd = cVector3f(-425.0f,-120.0f,1.0f);
+		cVector3f vOffs = (vMapEnd-vMapStart)*fDist;
+		cVector3f vMapCurrent = vMapStart+vOffs;
+		
+		float fDepth=144.0f+(mvStartingPos.y-mvLandingPos.y)*fDist;
+		
+		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
+		
+		////////////////////
+		// Map		
+		ImGui_DoImage(cImGuiGfx("zepmap", eImGuiGfx_Texture), 
+			vMapCurrent, ImGui_NrmSizeGroup(cVector2f(1.75f,1.75f)) );
+		
+		////////////////////
+		// Cross
+		ImGui_DoImage(cImGuiGfx("zepcross", eImGuiGfx_Texture), 
+			ImGui_NrmPosGroup(cVector3f(0.4,0.4,2.0f)), ImGui_NrmSizeGroup(cVector2f(0.2f,0.2f)) );
+
+		////////////////////
+		// Distance
+		tString sDist = ""+mfDistToLanding;
+		int lDotPos = cString_GetLastCharPos(sDist, '.');
+		sDist = cString_Sub(sDist, 0, lDotPos+3);
+		
+		tString sDepth = ""+fDepth;
+		lDotPos = cString_GetLastCharPos(sDepth, '.');
+		sDepth = cString_Sub(sDepth, 0, lDotPos+3);
+
+		ImGui_DoLabelExt("ZepGui_Dest", label, cVector3f(120.0f,420.0f,1.0f), cVector2f_MinusOne, 1.0f);
+		
+		tWString sDistMsg = cResources_Translate("02_04_theta_outside", "ZepGui_DistanceDepth");
+		
+		// Resize for translation here to get a constant font size instead of one that changes depending on dist/depth
+		ImGui_ResizeFontToFit(sDistMsg, label.mFont, ImGui_GetCurrentGroupSize().x-240);
+		
+		sDistMsg = cString_ReplaceStringToW(sDistMsg, cString_To16Char("%dist"), cString_To16Char(sDist));
+		sDistMsg = cString_ReplaceStringToW(sDistMsg, cString_To16Char("%depth"), cString_To16Char(sDepth));
+		
+		ImGui_SetTextOverride(sDistMsg);
+		ImGui_DoLabelExt("", label, cVector3f(120.0f,480.0f,1.0f), cVector2f_MinusOne, 1.0f);
+			
+		ImGui_GroupEnd();
+	}
+	
+	//-------------------------------------------------------
+
+	/////////////////////////////////////////
+	// Terminal *Zeppelin B*
+	/////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	int mlZepInfoImage;
+	float mfZepInfoTimer;
+	
+	//-------------------------------------------------------
+	
+	void OnGuiZeppelinB(const tString&in asEntityName, float afTimeStep)
+	{
+		ImGui_SetTransCategory("02_04_theta_outside");
+		
+		StationGuiBG_Scanlines();
+		StationGuiBG_Backdrop();
+		
+		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
+		
+		mfZepInfoTimer+=afTimeStep;
+		if (mfZepInfoTimer>2.0f)
+		{
+			mfZepInfoTimer-=2.0f;
+			mlZepInfoImage++;
+			if (mlZepInfoImage>4)
+			{
+				mlZepInfoImage=1;
+			}
+		}
+
+		////////////////////
+		// Map		
+		ImGui_DoImage(cImGuiGfx("zepinfo"+mlZepInfoImage+".dds", eImGuiGfx_Texture), 
+			cVector3f(0,0,10), ImGui_NrmSizeGroup(cVector2f_One) );
+			
+		ImGui_GroupEnd();
+	}
+
+	//-------------------------------------------------------
+	
+	void OnGuiZepCath(const tString&in asEntityName, float afTimeStep)
+	{
+		StationGuiBG_Scanlines();
+		Depth_ImGui_CathPortrait(afTimeStep);
+	}
+
+	//-------------------------------------------------------
 	
 	//} END TERMINALS
 	
