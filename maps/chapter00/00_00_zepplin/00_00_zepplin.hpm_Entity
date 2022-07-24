@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="BDBD12717F17B880F1195EA51F622636AB94AC99" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="49">
+        <FileIndex_Entities NumOfFiles="50">
             <File Id="0" Path="entities/character/robot/zeppelin/zeppelin_platform.ent" />
             <File Id="1" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_south.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_east.ent" />
@@ -50,9 +50,10 @@
             <File Id="46" Path="entities/shipwreck/tech/bridge/monitor_flat.ent" />
             <File Id="47" Path="entities/shipwreck/tech/computer_cargo_terminal/computer_cargo_terminal_support.ent" />
             <File Id="48" Path="entities/shipwreck/tech/power_pylon/power_pylon.ent" />
+            <File Id="49" Path="mods/ElectricPorcupine/assets/e_entities/zeppelin_platform_destroyed_rigid.ent" />
         </FileIndex_Entities>
         <Objects>
-            <Entity ID="268435456" Name="ZeppelinPlatform" CreStamp="1658670781" ModStamp="1658683378" WorldPos="19.9363 228.966 -16.1269" Rotation="-0 3.09482 -0" Scale="1.5 1.5 1.5" FileIndex="0" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 15 268435456">
+            <Entity ID="268435456" Name="ZeppelinLandPos_Dummy" CreStamp="1658670781" ModStamp="1658698250" WorldPos="19.9363 228.966 -16.1269" Rotation="-0 3.09482 -0" Scale="1.5 1.5 1.5" FileIndex="0" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 15 268435456">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2032,15 +2033,59 @@
                     <Var Name="VerticalFOV" Value="70" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435532" Name="zeppelin_platform_destroyed_1" CreStamp="1658691748" ModStamp="1658691794" WorldPos="11.5921 224.809 -36.2947" Rotation="3.12493 -0.381467 -3.1367" Scale="1.5 1.5 1.5" FileIndex="35" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 81 268435532">
+            <Entity ID="268435532" Name="ZeppelinLandPos" CreStamp="1658691748" ModStamp="1658698251" WorldPos="11.5921 224.809 -36.2947" Rotation="3.12493 -0.381467 -3.1367" Scale="1.5 1.5 1.5" FileIndex="49" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 81 268435532">
                 <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="false" />
                     <Var Name="CastShadows" Value="true" />
-                    <Var Name="IsAffectedByDecal" Value="true" />
                     <Var Name="ColorMul" Value="0.66666668653488159 0.60000002384185791 0.5058823823928833 1" />
+                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectBrightnessMul" Value="1" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
                     <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
                     <Var Name="IsOccluder" Value="false" />
-                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
             <Entity ID="268435533" Name="zeppelin_platform_destroyed_2" CreStamp="1658691817" ModStamp="1658691824" WorldPos="11.5921 224.809 -36.2947" Rotation="3.12493 -0.381467 -3.1367" Scale="1.5 1.5 1.5" FileIndex="36" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 80 268435533">
@@ -2146,7 +2191,7 @@
                     <Var Name="EatTime" Value="3" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435543" Name="ZepTerminalB" CreStamp="1658692572" ModStamp="1658693812" WorldPos="13.5919 224.803 -39.7356" Rotation="0.012501 -0.409359 -0.00985252" Scale="1 1 1" FileIndex="6" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 47 268435543">
+            <Entity ID="268435543" Name="ZepTerminalB" CreStamp="1658692572" ModStamp="1658698599" WorldPos="13.5919 224.803 -39.7356" Rotation="0.012501 -0.409359 -0.00985252" Scale="1 1 1" FileIndex="6" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 47 268435543">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2203,7 +2248,7 @@
                     <Var Name="ShowMouse" Value="true" />
                     <Var Name="AllowInteraction" Value="false" />
                     <Var Name="UpdateWhenOutOfView" Value="false" />
-                    <Var Name="GuiActive" Value="true" />
+                    <Var Name="GuiActive" Value="false" />
                     <Var Name="CacheAtScreenSize" Value="0.05f" />
                     <Var Name="PlayerPosEntity" Value="" />
                     <Var Name="FPSWhenIdle" Value="30" />
@@ -2842,7 +2887,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435571" Name="power_pylon_1" CreStamp="1658693180" ModStamp="1658693293" WorldPos="0.653898 225.561 -50.0108" Rotation="0 -0 0" Scale="1 1 1" FileIndex="48" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 87 268435571">
+            <Entity ID="268435571" Name="power_pylon_1" CreStamp="1658693180" ModStamp="1658700767" WorldPos="0.653898 225.561 -50.0108" Rotation="0 -0 0" Scale="1 1 1" FileIndex="48" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 87 268435571">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2857,7 +2902,7 @@
                     <Var Name="EffectColorMul" Value="1 1 1 1" />
                     <Var Name="EffectBrightnessMul" Value="1" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
-                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IllumBrightness" Value="0" />
                     <Var Name="IsAffectedByDecal" Value="false" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="UpdateBonesWhenCulled" Value="false" />

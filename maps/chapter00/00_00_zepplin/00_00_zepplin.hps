@@ -76,7 +76,7 @@ class cScrMap : iScrMap
 	// Set up map environment
 	void Setup()
 	{
-		//GetBase().SetDisplayNameEntry("02-04-theta-outside");
+		//GetBase().SetDisplayNameEntry("00-00-XXX");
 
 //		Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
 //		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
@@ -116,6 +116,9 @@ class cScrMap : iScrMap
 		
 		PlayerEnergy_SetFlowerSwallows(true);
 		
+		//Map setup
+		SetupZeppelinCrash();
+		
 		/////////////////////////
 		// Debug
 		if(cLux_ScriptDebugOn()) 
@@ -127,13 +130,6 @@ class cScrMap : iScrMap
 		{
 			SequenceIntro("");
 		}
-		else
-		{
-			//Map_SetSkyBoxColor(cColor(0.471,0.902,1,1));
-			//Map_SetFogProperties(0, 100, 0.3, cColor(0.047,0.086,0.098,1), true);
-		}
-		
-		SetupZeppelinCrash();
 	}
 
 	//-------------------------------------------------------
@@ -324,8 +320,6 @@ class cScrMap : iScrMap
 	
 	void SetupZeppelinCrash()
 	{
-		if(cScript_GetGlobalVarBool("TransitionFrom2.3") == false) Entity_PlaceAtEntity("ZeppelinPlatform", "AreaStartZepHere", cVector3f_Zero, false);
-		 
 		Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
 		
 		mfTotalDistToLanding = -1.0f;
@@ -428,6 +422,8 @@ class cScrMap : iScrMap
 		StationGuiBG_Scanlines();
 		StationGuiBG_Backdrop();
 		
+		// ADD GLITCH LINES
+		
 		if (mfTotalDistToLanding<0.0f)
 			return;
 			
@@ -437,7 +433,7 @@ class cScrMap : iScrMap
 		cVector3f vOffs = (vMapEnd-vMapStart)*fDist;
 		cVector3f vMapCurrent = vMapStart+vOffs;
 		
-		float fDepth=144.0f+(mvStartingPos.y-mvLandingPos.y)*fDist;
+		float fDepth=3534.0f+(mvStartingPos.y-mvLandingPos.y)*fDist;
 		
 		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
 		
@@ -449,7 +445,7 @@ class cScrMap : iScrMap
 		////////////////////
 		// Cross
 		ImGui_DoImage(cImGuiGfx("zepcross", eImGuiGfx_Texture), 
-			ImGui_NrmPosGroup(cVector3f(0.4,0.4,2.0f)), ImGui_NrmSizeGroup(cVector2f(0.2f,0.2f)) );
+			ImGui_NrmPosGroup(cVector3f(0.525,0.325,2.0f)), ImGui_NrmSizeGroup(cVector2f(0.125f,0.2f)) );
 
 		////////////////////
 		// Distance
