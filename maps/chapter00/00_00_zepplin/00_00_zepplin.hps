@@ -1,0 +1,417 @@
+#include "interfaces/Map_Interface.hps"
+#include "base/AchievementHandler_Types.hps"
+#include "base/InputHandler_Types.hps"
+#include "base/RichPresenceHandler_Types.hps"
+
+#include "helpers/helper_game.hps"
+#include "helpers/helper_effects.hps"
+#include "helpers/helper_map.hps"
+#include "helpers/helper_props.hps"
+#include "helpers/helper_audio.hps"
+#include "helpers/helper_sequences.hps"
+#include "helpers/helper_modules.hps"
+#include "helpers/helper_imgui.hps"
+#include "helpers/helper_areas.hps"
+#include "helpers/helper_ai.hps"
+#include "helpers/helper_player.hps"
+
+#include "helper_imgui_station.hps"
+#include "helper_imgui_station_app_error.hps"
+#include "helper_imgui_station_app_audioplayback.hps"
+#include "helper_imgui_station_app_photoviewer.hps"
+#include "helper_imgui_cath_portrait.hps"
+#include "helper_imgui_station_basics.hps"
+
+#include "helper_custom_depth.hps"
+#include "helper_custom_depth_ai.hps"
+#include "helper_custom_depth_ai_fleshers.hps"
+#include "helper_custom_depth_imgui.hps"
+#include "helper_custom_depth_audio.hps"
+
+#include "custom_depth/helper_custom_depth_audio.hps"
+
+#include "helper_font.hps"
+
+#include "player/Player_Types.hps"
+
+//--------------------------------------------------
+ 
+/*Place any global values here. These must be const variables as they will not be saved*/
+/*This is also the place for enums and classes, but these should be avoided whenever possible*/
+
+//--------------------------------------------------
+
+class cScrMap : iScrMap
+{
+	//--------------------------------------------
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN CALLBACKS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+ 
+	//-------------------------------------------------------
+	
+	//-------------------------------------------------------
+ 
+	////////////////////////////
+	// Set up map environment
+	void Setup()
+	{
+		
+	}
+	
+	//-------------------------------------------------------
+
+	void PreloadData()
+	{
+		///////////////
+		// Preload particles
+		ParticleSystem_Preload("");
+		
+		PlayerHands_PreloadHandModel_Diving();
+	}
+	
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run first time starting map
+	void OnStart()
+	{
+		/////////////////////////
+		// Player setup
+		Player_SetAmbientLight_Outdoors();
+		PlayerHands_SetHandModel_Diving();
+		//Player_SetHealth(0.2f);
+		
+		/////////////////////////
+		// Level setup
+		
+		/////////////////////////
+		// Debug
+		if(cLux_ScriptDebugOn()) 
+		{
+			
+		}
+		
+		//Map_AddTimer("preload", 2, "TimerBeginPreload");
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when entering map
+	void OnEnter()
+	{
+
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when leaving map
+	void OnLeave()
+	{
+		
+	}
+	
+	//-------------------------------------------------------
+	
+	void Update(float afTimeStep)
+	{
+		
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// The player has died.
+	void OnPlayerKilled(int alRecentDeaths, const tString&in asSource)
+	{
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// To get when player makes input (mostly used for debug)
+	void OnAction(int alAction, bool abPressed) 
+	{
+		if(abPressed==false) return;
+		
+		if(alAction == eAction_Test1)
+		{
+			
+		}
+		
+		if(alAction == eAction_Test2)
+		{
+			
+		}
+		
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// This only used for pure debug purposes when info needs to printed.
+	float DrawDebugOutput(cGuiSet @apSet,iFontData @apFont,float afY)
+	{
+		//afY = cLux_DrawDebugText("My Debug value:"+..., afY);
+		return afY;
+	}
+	
+	//-------------------------------------------------------
+	
+	tString msMessageText = "";
+	float mfMessageTimer = 0.0f;
+	
+	void DrawText(const tString asString, float afTime = 2.0f)
+	{
+		msMessageText = asString;
+		mfMessageTimer = afTime;
+	}
+	
+	void OnGui(float afTimeStep)
+	{
+		if (cLux_ScriptDebugOn() == false) return;
+		
+		cImGuiFont textLineFont;
+		textLineFont.mvSize = ImGui_NrmSizeKeepRatio(0.02f);
+		textLineFont.mColor = cColor(1.0f, 1.0f, 0.0f, 1.0f);
+		// ETA: mbElevatorTremorsAllowed, TUT: TimeUntilTremor, PIES: PlayerInElevatorShaft, 
+		//ImGui_DrawFontW("ETA: " + mbElevatorTremorsAllowed + ", TUT: " + (mfTimeRunTremor - mfTremorCounter) + ", PIES: " + mbPlayerInElevatorShaft, textLineFont, ImGui_NrmPos(0.72f, 0.95f, 0.1f), eFontAlign_Left);
+		
+		if (mfMessageTimer > 0.0f)
+		{
+			mfMessageTimer -= afTimeStep;
+			
+			cImGuiTextFrameData textData;
+			textData.mColorBase = cColor(0.0f, 0.0f, 0.0f, 0.0f);
+			textData.mFont.mvSize = cVector2f(20.0f, 20.0f);
+			textData.mFontAlign = eFontAlign_Center;
+			
+			ImGui_DoTextFrameExt(msMessageText, cVector2f(0.0f, 0.0f), 0.0f, 0.0f, textData, cVector3f(0.0f, ImGui_GetSize().y / 2.0f, 1.0f), cVector2f(ImGui_GetSize().x - 450.0f, 500.0f));
+		}
+	}
+ 
+	//} END MAIN CALLBACKS
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN FUNCTIONS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+	
+	///////////////////////////////
+	// Checkpoints
+	//{////////////////////////////
+	
+	//} END Checkpoints
+	
+	///////////////////////////////
+	// Critters
+	//{////////////////////////////
+	
+	bool CollisionTurtlePathChange(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		if (alState == -1) return true;
+		
+		int lTarget = cString_GetNumericSuffixInt(asParent)+1;
+		if (lTarget > 5) return false;
+		
+		Critter_SetGroupEntity("Turtle", "TurtleTarget_"+lTarget);
+		
+		if (lTarget == 5)
+		{
+			Map_RemoveTimer("TurtleCommentTimer");
+			Entity_SetPlayerLookAtCallback("Turtle", "LookAtFishDespawn", false, false, false);
+		}
+		
+		return true;
+	}
+	
+	//-------------------------------------------------------
+	
+	bool CollisionTurtleSpawn(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		Entity_SetActive("Turtle", true);
+			
+		return false;
+	}
+	
+	//} END Critters
+	
+	///////////////////////////////
+	// Generic timers
+	//{////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	void TimerEnableInteraction(const tString &in asTimer)
+	{
+		Entity_SetInteractionDisabled(asTimer, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void Timer_RemoveParticleSystem(const tString &in asTimer)
+	{
+		ParticleSystem_Destroy(asTimer);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOnEffects(const tString &in asTimer)
+	{
+		Entity_SetEffectsActive(asTimer, true, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOffEffects(const tString &in asTimer)
+	{
+		Entity_SetEffectsActive(asTimer, false, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOnLamp(const tString &in asTimer)
+	{
+		Lamp_SetLit(asTimer, true, true);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOffLamp(const tString &in asTimer)
+	{
+		Lamp_SetLit(asTimer, false, true);
+	}
+	
+	//} END Generic timers
+
+	//} END MAIN FUNCTIONS
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE 1 *Simon and Catherine ride the zepplin*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
+	// 02_04_stormends when the player wakes up next level
+	
+	/////////////////////////////////////////
+    // SCENE 1 EVENT A - *Simon and Cathrine converse*
+    //{///////////////////////////////////////
+	
+	
+	
+	//} END EVENT A
+	
+	//} END SCENE 1
+	
+	/////////////////////////////////////////
+	// ==============
+	// TERMINALS
+	// ==============
+	//{//////////////////////////////////////
+
+    /////////////////////////////////////////
+    // XX
+    /////////////////////////////////////////
+ 
+    //-------------------------------------------------------
+	
+	//} END TERMINALS
+	
+	/////////////////////////////////////////
+	// PRELOADING
+	//{///////////////////////////////////////
+
+	//-------------------------------------------------------
+
+	bool PreloadDisabled(bool abCheckIfPreloading = true)
+	{
+		if(cLux_ScriptDebugOn())
+		{
+			cLux_AddDebugMessage("PRELOAD DISABLED!"); 
+			
+			return true;
+		}
+		
+		if(abCheckIfPreloading && Map_IsPreloading() == false)
+			return true;
+			
+		return false;
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerBeginPreload(const tString &in asTimer)
+	{
+		Preload();
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Begin preload.
+	void Preload()
+	{
+		if(PreloadDisabled(false)) return;
+		cLux_AddDebugMessage("Preloading");
+		
+//		Map_Preload("00_01_XXX.hpm", eWorldStreamPriority_Low);
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityLow()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_Low);
+	}	
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityNormal()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_Normal);
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityVeryHigh()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_VeryHigh);
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// AUDIO
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	void AudioManager()
+	{
+		
+	}
+	
+	//-------------------------------------------------------
+	
+	//} END AUDIO
+}
