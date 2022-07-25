@@ -123,7 +123,7 @@ class cScrMap : iScrMap
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-			bDoIntro = false;
+//			bDoIntro = false;
 		}
 		
 		if (bDoIntro)
@@ -357,8 +357,9 @@ class cScrMap : iScrMap
 	// When the valley opens up the storm gets heavier.
 	
 	// Do light cracking and heavy breathing and heartbeat sound effects because the player is deep in the ocean trench on a timer
+	// Use different stages depending on how deep in the level the player is. Use collide areas that set the enum for this.
 	
-	// Player is laying on their back after zepplin has crashed
+	// Player is laying on their back after zepplin has crashed (set low hp) in a basin
 	// Play the dialogue as the colorful jellyfish pass the screen
 	// Loud horn of a zepplin can be heard from far away
 	
@@ -397,6 +398,8 @@ class cScrMap : iScrMap
 	// Voice_SetSource("Catherine", "CathTool2", 3, 20, true, 20);
 	// Voice_Play("1_CatherineGivesDirections");
 	
+	// StormTrigger_1 with CollisionIncreaseStormStrength callback on 04_01_tau_outside for inspecting how the storm will work
+	
 	/////////////////////////////////////////
     // SCENE 1 EVENT A - *Simon and Cathrine converse*
     //{///////////////////////////////////////
@@ -410,7 +413,7 @@ class cScrMap : iScrMap
 			
 		if (Sequence_DoStepAndWait(2))
 		{
-			
+			Player_SetHealth(0.1f);
 		}
 		Sequence_End();
 	}
