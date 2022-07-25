@@ -1,3 +1,36 @@
 <HPLMapTrack_Terrain ID="BDBD12717F17B880F1195EA51F622636AB94AC99" Version="1.00">
-    <Terrain Active="false" GeometryPatchSize="32" TexturePatchSize="32" HeightMapSize="64" MaxHeight="10" UnitSize="1" UndergrowthGridSize="10" UndergrowthFadeStart="18" UndergrowthFadeEnd="20" />
+    <Terrain Active="true" GeometryPatchSize="32" TexturePatchSize="32" HeightMapSize="1024" MaxHeight="300" UnitSize="1" UndergrowthGridSize="10" UndergrowthFadeStart="40" UndergrowthFadeEnd="50" BaseMaterialFile="textures/terrain/sand/sand_rough_abyss.mat" BaseMaterialTileAmount="0.125" BaseMaterialStartFadeValue="0" BaseMaterialDetailTextureAmount="0.7 0 0" BaseMaterialHeightMapScale="0" MaterialSpecularPower="0.3" CliffTextureDiffuse="static_objects/environment/rocks_abyss/rock_huge_abyss.dds" CliffTextureNMap="static_objects/environment/rocks_abyss/rock_huge_abyss_nrm.dds" CliffTextureSize="0.1" CliffTextureFadeAngleMul="1.44">
+        <DetailTextures DetailFadeStart="10" DetailFadeEnd="20">
+            <DetailTexture ID="0" File="textures/terrain/sand/sand_detail_diff.dds" Scale="0.1" />
+            <DetailTexture ID="1" File="" Scale="1" />
+            <DetailTexture ID="2" File="" Scale="1" />
+        </DetailTextures>
+        <BlendLayers>
+            <BlendLayer ID="0">
+                <Material File="textures/terrain/sand/sand_flat.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="0.5 0.5 0.5" HeightMapScale="0" />
+                <Material File="textures/terrain/sand/sand_undergrowth_heavy.mat" TileAmount="0.1" StartFadeValue="0.25" DetailTextureAmount="0 0 1" HeightMapScale="0" />
+                <Material File="textures/terrain/rock/rock_sand_blend.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 1 0" HeightMapScale="0" />
+                <Material File="textures/terrain/rock/rockwall_rock_blend.mat" TileAmount="0.05" StartFadeValue="0.25" DetailTextureAmount="0 1 0" HeightMapScale="0" />
+            </BlendLayer>
+        </BlendLayers>
+        <Sections>
+            <Section Name="lucas@LUCASPC">
+                <FileIndex_TerrainDecals NumOfFiles="0" />
+                <Decals />
+                <FileIndex_UndergrowthMaterials NumOfFiles="1">
+                    <File Id="0" Path="undergrowth/rocks/jagged_rocks_abyss_100%.tum" />
+                </FileIndex_UndergrowthMaterials>
+                <Undergrowth>
+                    <Circle ID="268435640" Name="Circle_1" CreStamp="1658765100" ModStamp="1658765100" WorldPos="10.0417 224.055 -31.4141" Rotation="0 0 0" Scale="7.1754 7.1754 7.1754" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="10.0417 -31.4141" Radius="7.1754" UID="16 116 268435640" BlendType="Add" />
+                    <Circle ID="268435642" Name="Circle_2" CreStamp="1658765102" ModStamp="1658765102" WorldPos="16.3394 223.973 -37.55" Rotation="0 0 0" Scale="6.15333 6.15333 6.15333" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="16.3394 -37.55" Radius="6.15333" UID="16 115 268435642" BlendType="Add" />
+                    <Circle ID="268435644" Name="Circle_3" CreStamp="1658765108" ModStamp="1658765108" WorldPos="10.9236 224.328 -38.2427" Rotation="0 0 0" Scale="6.66794 6.66794 6.66794" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="10.9236 -38.2427" Radius="6.66794" UID="16 114 268435644" BlendType="Add" />
+                    <Circle ID="268435647" Name="Circle_4" CreStamp="1658765112" ModStamp="1658765112" WorldPos="26.6443 224.555 -31.3922" Rotation="0 0 0" Scale="8.01355 8.01355 8.01355" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="26.6443 -31.3922" Radius="8.01355" UID="16 112 268435647" BlendType="Add" />
+                    <Circle ID="268435649" Name="Circle_5" CreStamp="1658765115" ModStamp="1658765115" WorldPos="18.1066 224.537 -20.364" Rotation="0 0 0" Scale="9.21476 9.21476 9.21476" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="18.1066 -20.364" Radius="9.21476" UID="16 113 268435649" BlendType="Add" />
+                    <Circle ID="268435651" Name="Circle_6" CreStamp="1658765147" ModStamp="1658765147" WorldPos="17.7493 224.134 -43.0518" Rotation="0 0 0" Scale="7.14133 7.14133 7.14133" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="17.7493 -43.0518" Radius="7.14133" UID="16 109 268435651" BlendType="Add" />
+                    <Circle ID="268435652" Name="Circle_7" CreStamp="1658765149" ModStamp="1658765149" WorldPos="5.06238 224.487 -41.9345" Rotation="0 0 0" Scale="8.07207 8.07207 8.07207" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="5.06238 -41.9345" Radius="8.07207" UID="16 110 268435652" BlendType="Add" />
+                    <Circle ID="268435653" Name="Circle_8" CreStamp="1658765152" ModStamp="1658765152" WorldPos="-4.21274 224.584 -28.4424" Rotation="0 0 0" Scale="11.4482 11.4482 11.4482" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="-4.21274 -28.4424" Radius="11.4482" UID="16 111 268435653" BlendType="Add" />
+                </Undergrowth>
+            </Section>
+        </Sections>
+    </Terrain>
 </HPLMapTrack_Terrain>
