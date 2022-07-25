@@ -368,6 +368,32 @@ class cScrMap : iScrMap
 	
 	// The player needs to go to a suit recharge station, there the player can rest from the abbys and continue on later with a deep diving suit.
 	
+	// In station tower after crash read text (console) conversation about someone who almost fell down into the abyss.
+	// Make this conversation show up on screen line after line.
+	// Function parameters: 
+	// (const tString &in asTextCategory, const tString &in asTextEntry (maybe use a suffix+prefix system), float afMsgTimestamp, float afMsgDelay)
+	// Other person makes a joke. The other types "fuck off not funny", and understandably so.
+	
+	// A: Hello and good morning *station*, you there B?
+	// B: of course, and as natural, things are covered in perpetual darkness
+	// A: How's your legs, still shaking?
+	// B: ha good one
+	// B: i was just starting to feel good about myself
+	// A: I'm glad I always crash the party
+	
+	// A: Anyway
+	// A: Yeah my dad used to do that to me
+	// B: really?
+	// A: Yeah
+	// (longer delay)
+	// B: fuck off
+	// A: Yeah, thanks. 
+	// A: I will.
+	// B: if only you could get out of that suit
+	// A: Wow, you got me there...
+	
+	// Simon comments on their banter at end of dialogue how to seem to be good friends
+	
 	// Voice_SetSource("Catherine", "CathTool2", 3, 20, true, 20);
 	// Voice_Play("1_CatherineGivesDirections");
 	
