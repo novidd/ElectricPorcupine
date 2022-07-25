@@ -186,7 +186,10 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test2)
 		{
-			
+			// Do damage on crash
+			Player_GiveDamage(0, 0, eDamageType_Hit, "");
+//			Player_MoveHeadPos(cVector3f_Down*0.375, 9, 4, 0);
+			Depth_Audio_PlayerTakeDamage();
 		}
 		
 	}
@@ -413,7 +416,7 @@ class cScrMap : iScrMap
 			
 		if (Sequence_DoStepAndWait(2))
 		{
-			Player_SetHealth(0.1f);
+//			Player_SetHealth(0.1f);
 		}
 		Sequence_End();
 	}
