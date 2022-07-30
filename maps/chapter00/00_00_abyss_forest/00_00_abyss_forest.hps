@@ -338,6 +338,12 @@ class cScrMap : iScrMap
 		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Bubbles", "loop_waterbubbles_small_stream.ps", "ZeppelinOmniToolBubblePos", false, cColor_White, 1);
 		Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
 		Sound_CreateAtEntity("BrokenCathtoolBubbles", "02_03_delta/AMB/Spot/omnitool_bubble_sparks", "ZeppelinOmniToolBubblePos");
+		
+//		//Remove broken chip effects
+//		Map_RemoveTimer("OmniToolFlash");
+//		Map_RemoveTimer("StopFlash");
+//		ParticleSystem_Destroy("ZeppelinOmniToolPS_*");
+//		Sound_Stop("BrokenCathtoolBubbles", 0.25f);
 	}
 	
 	//-------------------------------------------------------
