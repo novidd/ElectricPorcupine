@@ -1,0 +1,707 @@
+#include "interfaces/Map_Interface.hps"
+#include "base/AchievementHandler_Types.hps"
+#include "base/InputHandler_Types.hps"
+#include "base/RichPresenceHandler_Types.hps"
+
+#include "helpers/helper_game.hps"
+#include "helpers/helper_effects.hps"
+#include "helpers/helper_map.hps"
+#include "helpers/helper_props.hps"
+#include "helpers/helper_audio.hps"
+#include "helpers/helper_sequences.hps"
+#include "helpers/helper_modules.hps"
+#include "helpers/helper_imgui.hps"
+#include "helpers/helper_areas.hps"
+#include "helpers/helper_ai.hps"
+#include "helpers/helper_player.hps"
+
+#include "helper_imgui_station.hps"
+#include "helper_imgui_station_app_error.hps"
+#include "helper_imgui_station_app_audioplayback.hps"
+#include "helper_imgui_station_app_photoviewer.hps"
+#include "helper_imgui_cath_portrait.hps"
+#include "helper_imgui_station_basics.hps"
+
+#include "helper_custom_depth.hps"
+#include "helper_custom_depth_ai.hps"
+#include "helper_custom_depth_ai_fleshers.hps"
+#include "helper_custom_depth_imgui.hps"
+#include "helper_custom_depth_audio.hps"
+
+#include "custom_depth/helper_custom_depth_audio.hps"
+
+#include "helper_font.hps"
+
+#include "player/Player_Types.hps"
+
+//--------------------------------------------------
+ 
+const float gfDofMax = 3.0f;
+
+const float gfFogNormal = 45.0f;
+
+//--------------------------------------------------
+
+class cScrMap : iScrMap
+{
+	//--------------------------------------------
+ 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN CALLBACKS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	int mlDofID = -1;
+	
+	//-------------------------------------------------------
+	
+	void PreloadData()
+	{
+		// Gui
+		OmnitoolGui_Preload();
+		
+		// Player hands
+		PlayerHands_PreloadHandModel_Diving();
+		
+		// Particles
+		ParticleSystem_Preload("");
+	}
+	
+	//-------------------------------------------------------
+	
+	////////////////////////////
+	// Set up map environment
+	void Setup()
+	{
+		//GetBase().SetDisplayNameEntry("00-00-XXX");
+
+//		Effect_Bloom_FadeBrightPass(0.00001, 0); //sets pixels over 127 (255 * 0.5) to add to bloom
+//		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best within 32 - 512 pixels.
+//		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets red tint to bloom
+//		
+//		Effect_DoF_Start(0, 12, 1.0f, 0);
+
+		mlDofID = Effect_DoF_Start(0.0f, gfDofMax, 0.5, 0.0);
+		
+		Effect_Bloom_FadeBrightPass(0.00001, 0);
+		Effect_Bloom_FadeBloomWidth(64, 0);
+		Effect_Bloom_FadeBloomTint(0.6, 0.4, 0.4, 0);
+		Map_SetUnderwater(true);
+		Map_FadeFogEnd(gfFogNormal, 0.0f);
+		Effect_RadialBlur_SetDirect(0.1, 0.75, 0.1);
+		
+		cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
+		
+		//////////////////////
+		//Level start
+		CathTool_ResetScreen(eCathToolVariant_CathDelta);
+		CathTool_Insert("CathTool", "ZeppelinCathTerminal", false);
+	}
+	
+	//-------------------------------------------------------
+	
+	////////////////////////////
+	// Run first time starting map
+	void OnStart()
+	{
+		bool bDoIntro = true;
+		
+		/////////////////////////
+		// Player setup
+//		Player_SetAmbientLight_Outdoors();
+		PlayerHands_SetHandModel_Diving();
+		
+		PlayerEnergy_SetFlowerSwallows(true);
+		
+		//Map setup
+		SetupZeppelinCrash();
+		
+		/////////////////////////
+		// Debug
+		if(cLux_ScriptDebugOn()) 
+		{
+//			bDoIntro = false;
+		}
+		
+		if (bDoIntro)
+		{
+			SequenceIntro("");
+		}
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when entering map
+	void OnEnter()
+	{
+		Map_SetUnderwater(true);
+		
+//		Map_AddTimer("TimerStartPreload",10.0f,"TimerStartPreload");
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// Run when leaving map
+	void OnLeave()
+	{
+		
+	}
+	
+	//-------------------------------------------------------
+	
+	void Update(float afTimeStep)
+	{
+		cVector3f vToLanding = Map_GetEntity("ZeppelinPlatform").GetPosition() - 
+								mvLandingPos;
+		mfDistToLanding = vToLanding.Length()-0.2f;
+		if (mfTotalDistToLanding==-1.0f)
+			mfTotalDistToLanding = mfDistToLanding;
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// The player has died.
+	void OnPlayerKilled(int alRecentDeaths, const tString&in asSource)
+	{
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// To get when player makes input (mostly used for debug)
+	void OnAction(int alAction, bool abPressed) 
+	{
+		if(abPressed==false) return;
+		
+		if(alAction == eAction_Test1)
+		{
+			
+		}
+		
+		if(alAction == eAction_Test2)
+		{
+			// Do damage on crash
+			Player_GiveDamage(0, 0, eDamageType_Hit, "");
+//			Player_MoveHeadPos(cVector3f_Down*0.375, 9, 4, 0);
+			Depth_Audio_PlayerTakeDamage();
+		}
+		
+	}
+
+	//-------------------------------------------------------
+
+	////////////////////////////
+	// This only used for pure debug purposes when info needs to printed.
+	float DrawDebugOutput(cGuiSet @apSet,iFontData @apFont,float afY)
+	{
+		//afY = cLux_DrawDebugText("My Debug value:"+..., afY);
+		return afY;
+	}
+	
+	//-------------------------------------------------------
+	
+	tString msMessageText = "";
+	float mfMessageTimer = 0.0f;
+	
+	void DrawText(const tString asString, float afTime = 2.0f)
+	{
+		msMessageText = asString;
+		mfMessageTimer = afTime;
+	}
+	
+	void OnGui(float afTimeStep)
+	{
+		if (cLux_ScriptDebugOn() == false) return;
+		
+		cImGuiFont textLineFont;
+		textLineFont.mvSize = ImGui_NrmSizeKeepRatio(0.02f);
+		textLineFont.mColor = cColor(1.0f, 1.0f, 0.0f, 1.0f);
+		// ETA: mbElevatorTremorsAllowed, TUT: TimeUntilTremor, PIES: PlayerInElevatorShaft, 
+		//ImGui_DrawFontW("ETA: " + mbElevatorTremorsAllowed + ", TUT: " + (mfTimeRunTremor - mfTremorCounter) + ", PIES: " + mbPlayerInElevatorShaft, textLineFont, ImGui_NrmPos(0.72f, 0.95f, 0.1f), eFontAlign_Left);
+		
+		if (mfMessageTimer > 0.0f)
+		{
+			mfMessageTimer -= afTimeStep;
+			
+			cImGuiTextFrameData textData;
+			textData.mColorBase = cColor(0.0f, 0.0f, 0.0f, 0.0f);
+			textData.mFont.mvSize = cVector2f(20.0f, 20.0f);
+			textData.mFontAlign = eFontAlign_Center;
+			
+			ImGui_DoTextFrameExt(msMessageText, cVector2f(0.0f, 0.0f), 0.0f, 0.0f, textData, cVector3f(0.0f, ImGui_GetSize().y / 2.0f, 1.0f), cVector2f(ImGui_GetSize().x - 450.0f, 500.0f));
+		}
+	}
+ 
+	//} END MAIN CALLBACKS
+
+	//////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// MAIN FUNCTIONS
+	// ==============
+	//{///////////////////////////////////////////////////////////////////////////////////////
+	
+	///////////////////////////////
+	// Checkpoints
+	//{////////////////////////////
+	
+	//} END Checkpoints
+	
+	///////////////////////////////
+	// Critters
+	//{////////////////////////////
+	
+	//} END Critters
+	
+	///////////////////////////////
+	// Generic timers
+	//{////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	void TimerEnableInteraction(const tString &in asTimer)
+	{
+		Entity_SetInteractionDisabled(asTimer, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void Timer_RemoveParticleSystem(const tString &in asTimer)
+	{
+		ParticleSystem_Destroy(asTimer);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOnEffects(const tString &in asTimer)
+	{
+		Entity_SetEffectsActive(asTimer, true, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOffEffects(const tString &in asTimer)
+	{
+		Entity_SetEffectsActive(asTimer, false, false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOnLamp(const tString &in asTimer)
+	{
+		Lamp_SetLit(asTimer, true, true);
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerTurnOffLamp(const tString &in asTimer)
+	{
+		Lamp_SetLit(asTimer, false, true);
+	}
+	
+	//} END Generic timers
+
+	//} END MAIN FUNCTIONS
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE 1 *ZEPPLIN CRASH SITE*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	float mfDistToLanding;
+	float mfTotalDistToLanding;
+	cVector3f mvLandingPos;
+	cVector3f mvStartingPos;
+	
+	//-------------------------------------------------------
+	
+	void SetupZeppelinCrash()
+	{
+		Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
+		
+		mfTotalDistToLanding = -1.0f;
+		mvLandingPos = Map_GetEntity("ZeppelinLandPos").GetPosition();
+		mvStartingPos = Map_GetEntity("ZeppelinPlatform").GetPosition();
+		mlZepInfoImage=1;
+		mfZepInfoTimer=0.0f;
+	}
+	
+	//-------------------------------------------------------
+	
+	// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
+	// 02_04_stormends when the player wakes up
+	
+	// Zepplin code: 049
+	
+//		// Do damage on leviathan pick up
+//		Player_GiveDamage(1, 0, eDamageType_Hit, "");
+//		Player_MoveHeadPos(cVector3f_Down*0.375, 9, 4, 0);
+//		Depth_Audio_PlayerTakeDamage();
+	
+	// Mod premice --
+	// This mod plays on the idea that there are multiple Simons in the world
+	// Two "alive" Simons will communicate in the final scene in the mod (The other Simon is the original game one in Phi).
+	// All of the corpses that the player has passed throughout the mod are other Simons.
+	// They're all stuck in a loop, in control by the WAU for life to survive by any means necessary.
+	
+	// Map: 00_00_abyss_forest
+	
+	// Scene 1 --
+	// Music: 04_01_village (while wandering in the abyss)
+	// 04_01_stormstart for long scary moment (when the player is walking in the kelp forest)
+	// The storm (lightning) is in the background
+	
+	// Located at the bottom of the trench beside the cliff which at the top leads to Theta.
+	// The crash is in the trench between Delta and Theta, therefore the storm is quieter here.
+	// The player has crashed in a kelp forest (it's slanted to proceed deeper and deeper).
+	
+	// The crash site is in a small clearing.
+	
+	// There are points of interest that move the player in the right direction (lights and small stations and stuff).
+	// Have an angler fish(es) in the forest
+	
+	// The station's back entrance gets revealed on the other end if the forest
+	// The storm is blowing hard here 
+	
+	// -- MAIN PUZZLE --
+	// The player utilizes with a terminal to move object(s) with functioning zepplin across the field
+	// This way the player can enter the station
+	
+	// Make player choose landing spot with the mouse on the terminal on a map (need to determine of landing spot is clear or not)
+	
+	
+	// level_amb_shared_underwater/amb/spots/scary/eerie_tone_01 in the background
+	
+	// Do light cracking and heavy breathing and heartbeat sound effects because the player is deep in the ocean trench on a timer
+	// Use different stages depending on how deep in the level the player is. Use collide areas that set the enum for this.
+	
+	// Player is laying on their back after zepplin has crashed (set low hp) in a basin
+	// Play the dialogue as the colorful jellyfish pass the screen
+	// Loud scream of the leviathan can be heard from far away
+	// When player opens eyes the fishes are gone
+	
+	// Terminal A is still running but glitched. The player can see the distance away from Theta (4000+ meters)
+	// Play dialogue when the player looks at the completely broken omnitool.
+	// Add sparks accompanied with bubbles
+	
+	// Simon thinks that Cath is completely fucked (but she is still functioning, she will reveal herself in the final scene to be still here)
+	// She will say that she is an asshole for losing hope so quickly (fade out to black).
+	// Simon says "Catherine...?"
+	// She mentions how it felt like the blink of an eye for her, (then run the credits).
+	
+	// The colorful fishies guide the player forward into the abyss
+	
+	// The player needs to go to a suit recharge station, there the player can rest from the abbys and continue on later with a deep diving suit.
+	
+	// Use Intercom_Pedersen_1 when using the communications terminal
+	
+	// Scene 2 --
+	// The station is placed at the edge of the valley is opening (the player came from the caverns)
+	
+	// The player enters the backend of the station
+	
+	// The whole station is fucked nothing works
+	// He pulls a power switch on lever falls off, Simon comments on that he doesn't even care anymore
+	
+	// Simon loses his hope (phi omega space gun dialogue will probably work well here)
+	// This is why he decides to walk into the storm as a final "fuck this" (this is suicide -- actually pretty dark wtf I didn't even realize that)
+	
+	// In station tower (TVS-h) after crash read text (console) conversation about someone who almost fell down into the abyss.
+	// Make this conversation show up on screen line after line.
+	// Function parameters: 
+	// (const tString &in asTextCategory, const tString &in asTextEntry (maybe use a suffix+prefix system), float afMsgTimestamp, float afMsgDelay)
+	// Other person makes a joke. The other types "fuck off not funny", and understandably so.
+	
+	// A: Hello and good morning *station*, you there B?
+	// B: of course, and as natural, things are covered in perpetual darkness
+	// A: How's your legs, still shaking?
+	// B: ha good one
+	// B: i was just starting to feel good about myself
+	// A: I'm glad I always crash the party
+	
+	// A: Anyway
+	// A: Yeah my dad used to do that to me
+	// B: really?
+	// A: Yeah
+	// (longer delay)
+	// B: fuck off
+	// A: Yeah, thanks. 
+	// A: I will.
+	// B: if only you could get out of that suit
+	// A: Wow, you got me there...
+	
+	// Simon comments on their banter at end of dialogue how to seem to be good friends
+	// He also comments on that Catherine is no longer here
+	
+	// Voice_SetSource("Catherine", "CathTool2", 3, 20, true, 20);
+	// Voice_Play("1_CatherineGivesDirections");
+	
+	// StormTrigger_1 with CollisionIncreaseStormStrength callback on 04_01_tau_outside for inspecting how the storm will work
+	
+	// Scene 3 --
+	// The player goes deep into the abyss
+	// The storm increases in intensity
+	// The player sees the distant point of interest (the obelisk)
+	
+	// The leviathan shows up and "kills" the player (it actually wants to help the player)
+	// Inspect the code when the bot gets picked up by the leviathan (maybe you can place the player there instead?)
+	
+	// Convey this through subtle story telling in the texts and world building
+	
+	// Scene 4 --
+	// The player wakes up from a beeping katebot (it followed the player because of the zeppelin crash)
+	// Simon notices the leviathan didn't hurt him (in dialogue)
+	//
+	
+	/////////////////////////////////////////
+    // SCENE 1 EVENT A - *Simon and Cathrine converse*
+    //{///////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	cSequenceStatesData mIntroSequence;
+	void SequenceIntro(const tString &in asTimer)
+	{
+		Sequence_Begin("SequenceIntro", mIntroSequence);
+			
+		if (Sequence_DoStepAndWait(2))
+		{
+//			Player_SetHealth(0.1f);
+		}
+		Sequence_End();
+	}
+	
+	//-------------------------------------------------------
+	
+	//} END EVENT A
+	
+	//} END SCENE 1
+	
+	/////////////////////////////////////////
+	// ==============
+	// TERMINALS
+	// ==============
+	//{//////////////////////////////////////
+
+    /////////////////////////////////////////
+    // XX
+    /////////////////////////////////////////
+ 
+    //-------------------------------------------------------
+	
+	/////////////////////////////////////////
+	// Terminal *Zeppelin A*
+	/////////////////////////////////////////
+
+	//-------------------------------------------------------
+	
+	void OnGuiZeppelinA(const tString&in asEntityName, float afTimeStep)
+	{
+		ImGui_SetTransCategory("02_04_theta_outside");
+	
+		cImGuiLabelData label;
+		label.mFont.SetFile(Helper_Font_GetFontName(eLuxFontType_Sansation_Medium));
+		label.mFont.mvSize = cVector2f(50, 50);
+	
+		StationGuiBG_Scanlines();
+		StationGuiBG_Backdrop();
+		
+		// ADD GLITCH LINES
+		
+		if (mfTotalDistToLanding<0.0f)
+			return;
+			
+		float fDist = 1.0f-(mfDistToLanding/mfTotalDistToLanding);
+		cVector3f vMapStart = cVector3f(-345,-300,1.0f);
+		cVector3f vMapEnd = cVector3f(-425.0f,-120.0f,1.0f);
+		cVector3f vOffs = (vMapEnd-vMapStart)*fDist;
+		cVector3f vMapCurrent = vMapStart+vOffs;
+		
+		float fDepth=3534.0f+(mvStartingPos.y-mvLandingPos.y)*fDist;
+		
+		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
+		
+		////////////////////
+		// Map		
+		ImGui_DoImage(cImGuiGfx("zepmap", eImGuiGfx_Texture), 
+			vMapCurrent, ImGui_NrmSizeGroup(cVector2f(1.75f,1.75f)) );
+		
+		////////////////////
+		// Cross
+		ImGui_DoImage(cImGuiGfx("zepcross", eImGuiGfx_Texture), 
+			ImGui_NrmPosGroup(cVector3f(0.525,0.325,2.0f)), ImGui_NrmSizeGroup(cVector2f(0.125f,0.2f)) );
+
+		////////////////////
+		// Distance
+		tString sDist = ""+mfDistToLanding;
+		int lDotPos = cString_GetLastCharPos(sDist, '.');
+		sDist = cString_Sub(sDist, 0, lDotPos+3);
+		
+		tString sDepth = ""+fDepth;
+		lDotPos = cString_GetLastCharPos(sDepth, '.');
+		sDepth = cString_Sub(sDepth, 0, lDotPos+3);
+
+		ImGui_DoLabelExt("ZepGui_Dest", label, cVector3f(120.0f,420.0f,1.0f), cVector2f_MinusOne, 1.0f);
+		
+		tWString sDistMsg = cResources_Translate("02_04_theta_outside", "ZepGui_DistanceDepth");
+		
+		// Resize for translation here to get a constant font size instead of one that changes depending on dist/depth
+		ImGui_ResizeFontToFit(sDistMsg, label.mFont, ImGui_GetCurrentGroupSize().x-240);
+		
+		sDistMsg = cString_ReplaceStringToW(sDistMsg, cString_To16Char("%dist"), cString_To16Char(sDist));
+		sDistMsg = cString_ReplaceStringToW(sDistMsg, cString_To16Char("%depth"), cString_To16Char(sDepth));
+		
+		ImGui_SetTextOverride(sDistMsg);
+		ImGui_DoLabelExt("", label, cVector3f(120.0f,480.0f,1.0f), cVector2f_MinusOne, 1.0f);
+			
+		ImGui_GroupEnd();
+	}
+	
+	//-------------------------------------------------------
+
+	/////////////////////////////////////////
+	// Terminal *Zeppelin B*
+	/////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	int mlZepInfoImage;
+	float mfZepInfoTimer;
+	
+	//-------------------------------------------------------
+	
+	void OnGuiZeppelinB(const tString&in asEntityName, float afTimeStep)
+	{
+		ImGui_SetTransCategory("02_04_theta_outside");
+		
+		StationGuiBG_Scanlines();
+		StationGuiBG_Backdrop();
+		
+		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
+		
+		mfZepInfoTimer+=afTimeStep;
+		if (mfZepInfoTimer>2.0f)
+		{
+			mfZepInfoTimer-=2.0f;
+			mlZepInfoImage++;
+			if (mlZepInfoImage>4)
+			{
+				mlZepInfoImage=1;
+			}
+		}
+
+		////////////////////
+		// Map		
+		ImGui_DoImage(cImGuiGfx("zepinfo"+mlZepInfoImage+".dds", eImGuiGfx_Texture), 
+			cVector3f(0,0,10), ImGui_NrmSizeGroup(cVector2f_One) );
+			
+		ImGui_GroupEnd();
+	}
+
+	//-------------------------------------------------------
+	
+	void OnGuiZepCath(const tString&in asEntityName, float afTimeStep)
+	{
+		StationGuiBG_Scanlines();
+		Depth_ImGui_CathPortrait(afTimeStep);
+	}
+
+	//-------------------------------------------------------
+	
+	//} END TERMINALS
+	
+	/////////////////////////////////////////
+	// PRELOADING
+	//{///////////////////////////////////////
+
+	//-------------------------------------------------------
+
+	bool PreloadDisabled(bool abCheckIfPreloading = true)
+	{
+		if(cLux_ScriptDebugOn())
+		{
+			cLux_AddDebugMessage("PRELOAD DISABLED!"); 
+			
+			return true;
+		}
+		
+		if(abCheckIfPreloading && Map_IsPreloading() == false)
+			return true;
+			
+		return false;
+	}
+	
+	//-------------------------------------------------------
+	
+	void TimerBeginPreload(const tString &in asTimer)
+	{
+		Preload();
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Begin preload.
+	void Preload()
+	{
+		if(PreloadDisabled(false)) return;
+		cLux_AddDebugMessage("Preloading");
+		
+//		Map_Preload("00_01_XXX.hpm", eWorldStreamPriority_Low);
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityLow()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_Low);
+	}	
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityNormal()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_Normal);
+	}
+	
+	//-------------------------------------------------------
+	
+	//////////////////////
+	//Change preload prio to normal
+	void PreloadPriorityVeryHigh()
+	{
+		if(PreloadDisabled()) return;
+		
+		Map_SetPreloadPriority(eWorldStreamPriority_VeryHigh);
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// AUDIO
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	void AudioManager()
+	{
+		
+	}
+	
+	//-------------------------------------------------------
+	
+	//} END AUDIO
+}
