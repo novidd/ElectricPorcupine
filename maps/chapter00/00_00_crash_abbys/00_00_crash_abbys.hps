@@ -111,7 +111,7 @@ class cScrMap : iScrMap
 		
 		/////////////////////////
 		// Player setup
-		Player_SetAmbientLight_Outdoors();
+//		Player_SetAmbientLight_Outdoors();
 		PlayerHands_SetHandModel_Diving();
 		
 		PlayerEnergy_SetFlowerSwallows(true);
@@ -339,7 +339,7 @@ class cScrMap : iScrMap
 	
 	// Zepplin code: 049
 	
-//		// Do damage on crash
+//		// Do damage on leviathan pick up
 //		Player_GiveDamage(1, 0, eDamageType_Hit, "");
 //		Player_MoveHeadPos(cVector3f_Down*0.375, 9, 4, 0);
 //		Depth_Audio_PlayerTakeDamage();
@@ -351,9 +351,21 @@ class cScrMap : iScrMap
 	// They're all stuck in a loop, in control by the WAU for life to survive by any means necessary.
 	
 	// Scene 1 --
+	// Music: 04_01_village (while wandering in the abyss)
+	// 04_01_stormstart for long scary moment (when the player is walking in the kelp field)
+	// The storm (lightning) is in the background
+	
 	// Located at the bottom of the trench beside the cliff which at the top leads to Theta.
 	// The crash is in the trench between Delta and Theta, therefore the storm is quieter here.
-	// The player can hear distant fishes here.
+	// The player has crashed in a kelp forest (it's slanted to proceed deeper and deeper).
+	
+	// The crash site is in a small clearing.
+	
+	// There are points of interest that move the player in the right direction (lights and small stations and stuff).
+	// Have an angler fish(es) in the forest
+	
+	// The station's back entrance gets revealed on the other end if the forest
+	// The storm is blowing hard here 
 	
 	// level_amb_shared_underwater/amb/spots/scary/eerie_tone_01 in the background
 	
@@ -371,10 +383,29 @@ class cScrMap : iScrMap
 	// Play dialogue when the player looks at the completely broken omnitool.
 	// Add sparks accompanied with bubbles
 	
+	// Simon thinks that Cath is completely fucked (but she is still functioning, she will reveal herself in the final scene to be still here)
+	// She will say that she is an asshole for losing hope so quickly (fade out to black).
+	// Simon says "Catherine...?"
+	// She mentions how it felt like the blink of an eye for her, (then run the credits).
+	
+	// The colorful fishies guide the player forward into the abyss
+	
 	// The player needs to go to a suit recharge station, there the player can rest from the abbys and continue on later with a deep diving suit.
 	
+	// Use Intercom_Pedersen_1 when using the communications terminal
+	
 	// Scene 2 --
-	// In station tower after crash read text (console) conversation about someone who almost fell down into the abyss.
+	// The station is placed at the edge of the valley is opening (the player came from the caverns)
+	
+	// The player enters the backend of the station
+	
+	// The whole station is fucked nothing works
+	// He pulls a power switch on lever falls off, Simon comments on that he doesn't even care anymore
+	
+	// Simon loses his hope (phi omega space gun dialogue will probably work well here)
+	// This is why he decides to walk into the storm as a final "fuck this" (this is suicide -- actually pretty dark wtf I didn't even realize that)
+	
+	// In station tower (TVS-h) after crash read text (console) conversation about someone who almost fell down into the abyss.
 	// Make this conversation show up on screen line after line.
 	// Function parameters: 
 	// (const tString &in asTextCategory, const tString &in asTextEntry (maybe use a suffix+prefix system), float afMsgTimestamp, float afMsgDelay)
@@ -399,6 +430,7 @@ class cScrMap : iScrMap
 	// A: Wow, you got me there...
 	
 	// Simon comments on their banter at end of dialogue how to seem to be good friends
+	// He also comments on that Catherine is no longer here
 	
 	// Voice_SetSource("Catherine", "CathTool2", 3, 20, true, 20);
 	// Voice_Play("1_CatherineGivesDirections");
@@ -409,7 +441,10 @@ class cScrMap : iScrMap
 	// The player goes deep into the abyss
 	// The storm increases in intensity
 	// The player sees the distant point of interest (the obelisk)
+	
 	// The leviathan shows up and "kills" the player (it actually wants to help the player)
+	// Inspect the code when the bot gets picked up by the leviathan (maybe you can place the player there instead?)
+	
 	// Convey this through subtle story telling in the texts and world building
 	
 	// Scene 4 --
