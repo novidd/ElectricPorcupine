@@ -323,6 +323,7 @@ class cScrMap : iScrMap
 	
 	void SetupZeppelinCrash()
 	{
+		// Zeppelin data
 		Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
 		
 		mfTotalDistToLanding = -1.0f;
@@ -330,6 +331,44 @@ class cScrMap : iScrMap
 		mvStartingPos = Map_GetEntity("ZeppelinPlatform").GetPosition();
 		mlZepInfoImage=1;
 		mfZepInfoTimer=0.0f;
+		
+		// Omnitool
+		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Sparks", "elec_sparks_tiny_continous.ps", "ZeppelinOmniToolSparkPos", false, cColor_White, 2);
+		ParticleSystem_SetVisible("ZeppelinOmniToolPS_Sparks", false);
+		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Bubbles", "loop_waterbubbles_small_stream.ps", "ZeppelinOmniToolBubblePos", false, cColor_White, 1);
+		Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
+		Sound_CreateAtEntity("BrokenCathtoolBubbles", "02_03_delta/AMB/Spot/omnitool_bubble_sparks", "ZeppelinOmniToolBubblePos");
+	}
+	
+	//-------------------------------------------------------
+	
+	void Timer_ZeppelinOmniToolFlash(const tString &in asTimer)
+	{
+		if (asTimer == "StopFlash")
+		{
+			OmniToolSparkEffect_Stop("Zeppelin");
+			Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
+			return;
+		}
+		float fTime = OmniToolSparkEffect_Start("Zeppelin");
+		Map_AddTimer("StopFlash", fTime, "Timer_ZeppelinOmniToolFlash");
+	}
+	
+	//-------------------------------------------------------
+	
+	float OmniToolSparkEffect_Start(const tString &in asPrefix)
+	{
+		ParticleSystem_SetVisible(asPrefix+"OmniToolPS_Sparks", true);
+		float fTime = cMath_RandRectf(0.013, 0.04);
+		LightFlash_Add(fTime, 0.01, 0.01, asPrefix+"OmniToolSparkPos", cColor(0.438,0.829,1,0.03), 0.5, 10);
+		return fTime;
+	}
+ 
+    //-------------------------------------------------------
+	
+	void OmniToolSparkEffect_Stop(const tString &in asPrefix)
+	{
+		ParticleSystem_SetVisible(asPrefix+"OmniToolPS_Sparks", false);
 	}
 	
 	//-------------------------------------------------------
