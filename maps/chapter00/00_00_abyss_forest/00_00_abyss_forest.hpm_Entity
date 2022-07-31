@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="BDBD12717F17B880F1195EA51F622636AB94AC99" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="273">
+        <FileIndex_Entities NumOfFiles="276">
             <File Id="0" Path="entities/character/robot/zeppelin/zeppelin_platform.ent" />
             <File Id="1" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_south.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_east.ent" />
@@ -274,6 +274,9 @@
             <File Id="270" Path="entities/character/robot/kate_soma/kate_soma.ent" />
             <File Id="271" Path="entities/oceanbottom/lamp/delta_ceiling_large/delta_ceiling_large.ent" />
             <File Id="272" Path="entities/oceanbottom/lamp/wall_medium_overgrown/wall_medium_overgrown_noFX.ent" />
+            <File Id="273" Path="entities/organic/invertibrate/ridgeia_piscesae/ridgeia_piscesae_group2.ent" />
+            <File Id="274" Path="entities/organic/invertibrate/ridgeia_piscesae/ridgeia_piscesae_group3.ent" />
+            <File Id="275" Path="entities/organic/invertibrate/ridgeia_piscesae/ridgeia_piscesae_group1.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435456" Name="ZeppelinLandPos_Dummy" CreStamp="1658670781" ModStamp="1658847493" WorldPos="-99.1158 239.144 159.78" Rotation="0 1.52402 0" Scale="1.5 1.5 1.5" FileIndex="0" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 15 268435456">
@@ -8635,7 +8638,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438375" Name="black_smoker_hill_1" CreStamp="1659295239" ModStamp="1659295256" WorldPos="33.25 225 342.25" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="218" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1330 268438375">
+            <Entity ID="268438375" Name="black_smoker_hill_1" CreStamp="1659295239" ModStamp="1659303204" WorldPos="14.25 225 329" Rotation="0 -1.5708 0" Scale="1.15 1.15 1.15" FileIndex="218" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1330 268438375">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -8649,8 +8652,8 @@
                     <Var Name="ColorMul" Value="1 1 1 1" />
                     <Var Name="EffectColorMul" Value="1 1 1 1" />
                     <Var Name="EffectBrightnessMul" Value="1" />
-                    <Var Name="IllumColor" Value="1 1 1 1" />
-                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IllumColor" Value="1 0.51372551918029785 0 1" />
+                    <Var Name="IllumBrightness" Value="2" />
                     <Var Name="IsAffectedByDecal" Value="false" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="UpdateBonesWhenCulled" Value="false" />
@@ -8698,6 +8701,39 @@
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438393" Name="ridgeia_piscesae_group2_1" CreStamp="1659304335" ModStamp="1659304335" WorldPos="13 225 327" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="273" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1353 268438393">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438394" Name="ridgeia_piscesae_group2_2" CreStamp="1659304342" ModStamp="1659304385" WorldPos="12.5 225 327.5" Rotation="0 -1.5708 0" Scale="1.3 1.3 1.3" FileIndex="274" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1351 268438394">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438395" Name="ridgeia_piscesae_group2_3" CreStamp="1659304357" ModStamp="1659304359" WorldPos="12.25 225 328" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="275" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1352 268438395">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
