@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="BDBD12717F17B880F1195EA51F622636AB94AC99" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="276">
+        <FileIndex_Entities NumOfFiles="277">
             <File Id="0" Path="entities/character/robot/zeppelin/zeppelin_platform.ent" />
             <File Id="1" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_south.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_east.ent" />
@@ -277,6 +277,7 @@
             <File Id="273" Path="entities/organic/invertibrate/ridgeia_piscesae/ridgeia_piscesae_group2.ent" />
             <File Id="274" Path="entities/organic/invertibrate/ridgeia_piscesae/ridgeia_piscesae_group3.ent" />
             <File Id="275" Path="entities/organic/invertibrate/ridgeia_piscesae/ridgeia_piscesae_group1.ent" />
+            <File Id="276" Path="entities/creatures/crust/vent_shrimp/vent_shrimp.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435456" Name="ZeppelinLandPos_Dummy" CreStamp="1658670781" ModStamp="1658847493" WorldPos="-99.1158 239.144 159.78" Rotation="0 1.52402 0" Scale="1.5 1.5 1.5" FileIndex="0" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 15 268435456">
@@ -8638,7 +8639,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438375" Name="black_smoker_hill_1" CreStamp="1659295239" ModStamp="1659303204" WorldPos="14.25 225 329" Rotation="0 -1.5708 0" Scale="1.15 1.15 1.15" FileIndex="218" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1330 268438375">
+            <Entity ID="268438375" Name="black_smoker_hill_1" CreStamp="1659295239" ModStamp="1659354090" WorldPos="14.25 225.269 329" Rotation="0 -1.5708 0" Scale="1.15 1.15 1.15" FileIndex="218" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1337 268438375">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -8732,6 +8733,269 @@
                     <Var Name="ColorMul" Value="1 1 1 1" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
                     <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438404" Name="vent_shrimp_1" CreStamp="1659353859" ModStamp="1659354016" WorldPos="25.3328 219.205 340.17" Rotation="0 -0 0" Scale="1.5 1.5 1.5" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1341 268438404">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438405" Name="vent_shrimp_2" CreStamp="1659353907" ModStamp="1659354012" WorldPos="25.1571 219.317 339.965" Rotation="0 0 0" Scale="1 1 1" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1342 268438405">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="1.5" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438406" Name="vent_shrimp_3" CreStamp="1659353928" ModStamp="1659354026" WorldPos="25.4105 219.134 340.066" Rotation="0 0 0" Scale="1 1 1" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1349 268438406">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="1.5" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438407" Name="vent_shrimp_4" CreStamp="1659353953" ModStamp="1659354019" WorldPos="25.444 219.173 340.394" Rotation="0 0 0" Scale="1.5 1.5 1.5" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1340 268438407">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438408" Name="vent_shrimp_5" CreStamp="1659353958" ModStamp="1659354021" WorldPos="25.2455 219.271 339.998" Rotation="0 0 0" Scale="1.5 1.5 1.5" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1348 268438408">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438409" Name="vent_shrimp_6" CreStamp="1659353962" ModStamp="1659353992" WorldPos="25.0897 219.118 340.188" Rotation="0 0 0" Scale="1 1 1" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1347 268438409">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="1.5" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438410" Name="vent_shrimp_7" CreStamp="1659353966" ModStamp="1659354029" WorldPos="25.2822 219.368 340.419" Rotation="0 0 0" Scale="1.5 1.5 1.5" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1339 268438410">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438411" Name="vent_shrimp_8" CreStamp="1659353976" ModStamp="1659354005" WorldPos="25.3604 219.328 340.314" Rotation="0 0 0" Scale="1 1 1" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1338 268438411">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="1.5" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438412" Name="vent_shrimp_9" CreStamp="1659353987" ModStamp="1659354002" WorldPos="25.1615 219.328 340.227" Rotation="0 0 0" Scale="1 1 1" FileIndex="276" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1346 268438412">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="shrimp_interest_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="1.5" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438413" Name="black_smoker_hill_2" CreStamp="1659354060" ModStamp="1659354111" WorldPos="14.25 225 323.266" Rotation="0 -1.5708 0" Scale="1.15 1.15 1.15" FileIndex="72" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1330 268438413">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 0.51372551918029785 0 1" />
+                    <Var Name="IllumBrightness" Value="2" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
