@@ -444,6 +444,7 @@ class cScrMap : iScrMap
 	
 	// (THE PLAYER DOES NOT SPAWN BY THE RAVINE)
 	// The player getsdragged into some small nest in a cave
+	// Distant fishes can be seen in the distance (attracted to light of something the player will go to later, the fishes are then gone cus storm)
 	// The storm is raving outside (thunder strikes in the background)
 	// At the nest enterance cutebot arrives
 	// You can see cutebot looking at the player (the storm particles fly past her)
@@ -597,7 +598,7 @@ class cScrMap : iScrMap
 		cVector3f vOffs = (vMapEnd-vMapStart)*fDist;
 		cVector3f vMapCurrent = vMapStart+vOffs;
 		
-		float fDepth=3534.0f+(mvStartingPos.y-mvLandingPos.y)*fDist;
+		float fDepth=2534.0f+(mvStartingPos.y-mvLandingPos.y)*fDist;
 		
 		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
 		
