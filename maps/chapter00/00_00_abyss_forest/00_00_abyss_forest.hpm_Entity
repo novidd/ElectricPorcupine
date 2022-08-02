@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="BDBD12717F17B880F1195EA51F622636AB94AC99" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="325">
+        <FileIndex_Entities NumOfFiles="328">
             <File Id="0" Path="entities/character/robot/zeppelin/zeppelin_platform.ent" />
             <File Id="1" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_south.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_east.ent" />
@@ -326,6 +326,9 @@
             <File Id="322" Path="entities/organic/gibs/brain_chunk_xx/brain_chunk_01.ent" />
             <File Id="323" Path="entities/organic/gibs/brain_chunk_xx/brain_chunk_06_rigid.ent" />
             <File Id="324" Path="entities/organic/skeleton/skeleton_parts_arm_silent.ent" />
+            <File Id="325" Path="entities/character/deepsea_diver/deepsea_diver_arm_left_corpse.ent" />
+            <File Id="326" Path="entities/character/deepsea_diver/deepsea_diver_arm_right_corpse.ent" />
+            <File Id="327" Path="entities/character/deepsea_diver/deepsea_diver_arm_right.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435456" Name="ZeppelinLandPos_Dummy" CreStamp="1658670781" ModStamp="1658847493" WorldPos="-99.1158 239.144 159.78" Rotation="0 1.52402 0" Scale="1.5 1.5 1.5" FileIndex="0" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 15 268435456">
@@ -9765,16 +9768,16 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438826" Name="brain_chunk_06_rigid_1" CreStamp="1659477724" ModStamp="1659477773" WorldPos="23.9401 210.255 347.65" Rotation="0.436595 4.05763 0.0105547" Scale="1 1 1" FileIndex="323" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 495 268438826">
+            <Entity ID="268438826" Name="brain_chunk_06_rigid_1" CreStamp="1659477724" ModStamp="1659479867" WorldPos="23.9401 210.255 347.65" Rotation="-2.705 -0.916033 -3.13104" Scale="1 1 1" FileIndex="323" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 495 268438826">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
-                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="StaticPhysics" Value="true" />
                     <Var Name="EffectsActive" Value="true" />
-                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="InteractionDisabled" Value="true" />
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="ColorMul" Value="1 1 1 1" />
                     <Var Name="EffectColorMul" Value="1 1 1 1" />
@@ -9930,7 +9933,171 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438829" Name="deepsea_diver_torso_corpse_4" CreStamp="1659477996" ModStamp="1659478041" WorldPos="23.4425 210.276 347.583" Rotation="1.51228 0.119609 -0.436206" Scale="0.9 0.9 0.9" FileIndex="303" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 492 268438829">
+            <Entity ID="268438829" Name="deepsea_diver_torso_corpse_4" CreStamp="1659477996" ModStamp="1659478998" WorldPos="23.4959 210.213 347.362" Rotation="1.44776 -0.338865 -0.408713" Scale="0.9 0.9 0.9" FileIndex="303" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 474 268438829">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="true" />
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="ColorMul" Value="0.086274512112140656 0.086274512112140656 0.08235294371843338 1" />
+                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectBrightnessMul" Value="1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
+                    <Var Name="InteractDisablesStaticPhysics" Value="false" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438940" Name="deepsea_diver_torso_corpse_5" CreStamp="1659478813" ModStamp="1659478974" WorldPos="23.5064 210.191 347.317" Rotation="-0.427999 1.38383 -0.411183" Scale="0.95 0.95 0.95" FileIndex="325" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 475 268438940">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="-player" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectBrightnessMul" Value="1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="0" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438941" Name="deepsea_diver_torso_corpse_6" CreStamp="1659479008" ModStamp="1659479042" WorldPos="23.5949 210.221 348.22" Rotation="2.99655 1.25404 2.83501" Scale="0.95 0.95 0.95" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 473 268438941">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="-player" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectBrightnessMul" Value="1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="0" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438942" Name="deepsea_diver_torso_corpse_7" CreStamp="1659479048" ModStamp="1659479141" WorldPos="23.5976 210.169 348.212" Rotation="-1.34505 0.478654 -0.195011" Scale="0.9 0.9 0.9" FileIndex="303" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 492 268438942">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />

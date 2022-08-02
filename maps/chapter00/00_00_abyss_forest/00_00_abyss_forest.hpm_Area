@@ -2077,30 +2077,6 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268438696" Name="DeltaCopy" CreStamp="1659456581" ModStamp="1659456586" WorldPos="24.25 210.25 347.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 346 268438696" AreaType="Trigger">
-                <UserVariables>
-                    <Var Name="BlocksLineOfSight" Value="false" />
-                    <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="UserVar" Value="" />
-                    <Var Name="CC_Entities" Value="" />
-                    <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
-                    <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="PlayerLookAtCallback" Value="" />
-                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
-                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
-                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
-                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
-                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
-                    <Var Name="PlayerInteractCallback" Value="" />
-                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
-                    <Var Name="CanInteractWithoutCallback" Value="false" />
-                    <Var Name="MaxFocusDistance" Value="-1" />
-                    <Var Name="CustomInteractIcon" Value="PushButton" />
-                </UserVariables>
-            </Area>
             <Area ID="268438721" Name="RavineHeatProximity_Near" CreStamp="1659457135" ModStamp="1659457190" WorldPos="21.25 212 335.75" Rotation="0 0 0" Scale="4 4 4" Active="true" Mesh="" UID="16 1242 268438721" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
@@ -2171,6 +2147,26 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268438946" Name="DistortionArea_1" CreStamp="1659479274" ModStamp="1659479302" WorldPos="24.25 210.75 347.5" Rotation="0 0 0" Scale="5 3 4" Active="true" Mesh="" UID="16 470 268438946" AreaType="Distortion">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="EffectAmount" Value="0.3" />
+                    <Var Name="FadeInTime" Value="2" />
+                    <Var Name="FadeOutTime" Value="3" />
+                    <Var Name="Volume" Value="0.8" />
+                    <Var Name="SourceEntity" Value="deepsea_diver_torso_corpse_1" />
+                    <Var Name="SourceEntityMinDist" Value="1" />
+                    <Var Name="SourceEntityMaxDist" Value="-1" />
                 </UserVariables>
             </Area>
         </Objects>
