@@ -1,0 +1,36 @@
+<Material>
+    <Main Type="projectedUV" DepthTest="true" ForceFullScaleTextures="false" UVSubDivs="1 1" UseAlpha="false" PhysicsMaterial="dirt" BlendMode="Add" />
+    <TextureUnits>
+        <DiffuseSide MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/caves_walls_01.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <DiffuseTop MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/caves_ground2.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <DiffuseBottom MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/rocks_caves_jagged.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <NMapSide MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/caves_walls_01_nrm.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <NMapTop MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/caves_ground_nrm.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <NMapBottom MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/rocks_caves_jagged_nrm.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <SpecularSide MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/caves_walls_01_spec.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <SpecularTop MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/caves_ground2_spec.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <SpecularBottom MipMaps="true" Compress="true" File="static_objects/caves/cave_modules/rocks_caves_jagged_spec.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <HeightSide MipMaps="true" Compress="false" File="static_objects/caves/cave_modules/caves_walls_01_height.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <HeightTop MipMaps="true" Compress="false" File="static_objects/caves/cave_modules/caves_ground2_height.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <HeightBottom MipMaps="true" Compress="false" File="static_objects/caves/cave_modules/rocks_caves_jagged_height.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+    </TextureUnits>
+    <SpecificVariables>
+        <Var Name="TextureUVScaleSide" Value="9" />
+        <Var Name="TextureUVScaleTop" Value="6" />
+        <Var Name="TextureUVScaleBottom" Value="5" />
+        <Var Name="TextureUVOffset" Value="0 0 0" />
+        <Var Name="PlanarUVRotation" Value="0 0 0" />
+        <Var Name="BlendSmoothness" Value="0.25" />
+        <Var Name="NormalMapBlendImpact" Value="0.5" />
+        <Var Name="HeightMapScaleSide" Value="0.01" />
+        <Var Name="HeightMapBiasSide" Value="0.5" />
+        <Var Name="HeightMapScaleTop" Value="-0.01" />
+        <Var Name="HeightMapBiasTop" Value="0.5" />
+        <Var Name="HeightMapScaleBottom" Value="0.02" />
+        <Var Name="HeightMapBiasBottom" Value="0" />
+        <Var Name="DetailTextureActive" Value="false" />
+        <Var Name="DetailTextureUVScale" Value="0.3" />
+        <Var Name="DetailBlendWeight" Value="0.5" />
+        <Var Name="DetailBlendMode" Value="Alpha" />
+    </SpecificVariables>
+</Material>
