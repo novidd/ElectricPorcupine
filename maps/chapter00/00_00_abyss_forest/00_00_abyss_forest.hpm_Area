@@ -56,7 +56,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268435572" Name="StormAudio_TriggerFirstThunder" CreStamp="1658695747" ModStamp="1659537023" WorldPos="154.25 230.25 197.375" Rotation="0 1.00931e-006 0" Scale="31 11 1.25" Active="true" Mesh="" UID="16 84 268435572" AreaType="Trigger">
+            <Area ID="268435572" Name="StormAudio_TriggerFirstThunder" CreStamp="1658695747" ModStamp="1659539334" WorldPos="154.25 205.516 197.375" Rotation="0 1.00931e-006 0" Scale="31 11 1.25" Active="true" Mesh="" UID="16 84 268435572" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2005,7 +2005,7 @@
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
             </Area>
-            <Area ID="268438469" Name="CaveStart" CreStamp="1659437192" ModStamp="1659537023" WorldPos="154.5 228 189.875" Rotation="0 0 0" Scale="10 10 10" Active="true" Mesh="" UID="16 421 268438469" AreaType="Trigger">
+            <Area ID="268438469" Name="LargeAmountOfWau" CreStamp="1659437192" ModStamp="1659539334" WorldPos="153 207.766 192.75" Rotation="0 0 0" Scale="4 4 4" Active="true" Mesh="" UID="16 421 268438469" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2217,7 +2217,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268439096" Name="Cave" CreStamp="1659533767" ModStamp="1659537023" WorldPos="156 225.75 186.125" Rotation="1.5149e-006 -3.24405e-006 9.05991e-006" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 330 268439096" AreaType="PlayerStart">
+            <Area ID="268439096" Name="Cave" CreStamp="1659533767" ModStamp="1659539334" WorldPos="153.25 201.016 185.5" Rotation="1.5149e-006 -3.24405e-006 9.05991e-006" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 330 268439096" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
@@ -2246,7 +2246,31 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268439116" Name="PlayerClimbUpUpsilonOut" CreStamp="1659535072" ModStamp="1659537023" WorldPos="153.5 226.75 194.125" Rotation="0 -0.261799 0" Scale="3 4 1" Active="true" Mesh="" UID="16 1604 268439116" AreaType="Trigger">
+            <Area ID="268439116" Name="PlayerClimbUpUpsilonOut" CreStamp="1659535072" ModStamp="1659539334" WorldPos="153.592 203.516 194.459" Rotation="-0.20944 -0.174532 0" Scale="3 4.5 1" Active="true" Mesh="" UID="16 1604 268439116" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="AreaClimbHole_OnPlayerInteract" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="6" />
+                    <Var Name="CustomInteractIcon" Value="ClimbLedge" />
+                </UserVariables>
+            </Area>
+            <Area ID="268439138" Name="StormParticleAreaCaveEntrance" CreStamp="1659536237" ModStamp="1659539334" WorldPos="153.5 204.797 199.875" Rotation="0 0 0" Scale="1.5 0.5 1.5" Active="true" Mesh="" UID="16 1616 268439138" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2270,7 +2294,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268439138" Name="StormParticleAreaCaveEntrance" CreStamp="1659536237" ModStamp="1659537023" WorldPos="153.5 228.125 199.875" Rotation="0 0 0" Scale="1.5 0.5 1.5" Active="true" Mesh="" UID="16 1616 268439138" AreaType="Trigger">
+            <Area ID="268439145" Name="WauTentacleHoleAlpha" CreStamp="1659539199" ModStamp="1659539334" WorldPos="153 200.766 180" Rotation="0 0 0" Scale="4 4 4" Active="true" Mesh="" UID="16 1648 268439145" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
