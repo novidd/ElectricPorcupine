@@ -183,7 +183,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			
+			Player_SetHealth(0.65f);
 		}
 		
 		if(alAction == eAction_Test2)
@@ -549,7 +549,7 @@ class cScrMap : iScrMap
 			
 		if (Sequence_DoStepAndWait(2))
 		{
-//			Player_SetHealth(0.1f);
+			Player_SetHealth(0.65f);
 		}
 		Sequence_End();
 	}
