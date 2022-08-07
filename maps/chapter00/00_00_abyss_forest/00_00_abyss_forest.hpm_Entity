@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="BDBD12717F17B880F1195EA51F622636AB94AC99" Version="1.00">
     <Section Name="lucas@LUCASPC">
-        <FileIndex_Entities NumOfFiles="333">
+        <FileIndex_Entities NumOfFiles="337">
             <File Id="0" Path="entities/character/robot/zeppelin/zeppelin_platform.ent" />
             <File Id="1" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_south.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin/zeppelin_platform_barrier_east.ent" />
@@ -334,6 +334,10 @@
             <File Id="330" Path="entities/oceanbottom/gameplay/02_04_ladder_relay_station/02_04_ladder_relay_station.ent" />
             <File Id="331" Path="entities/oceanbottom/gameplay/02_04_ladder_relay_station/02_04_ladder_holder_relay_station.ent" />
             <File Id="332" Path="entities/station/lamp/lamp_wall_deepsea/lamp_wall_deepsea.ent" />
+            <File Id="333" Path="entities/station/lamp/spotlight_tripod_flesher/spotlight_tripod_flesher_lamp_fishsphere.ent" />
+            <File Id="334" Path="entities/station/lamp/spotlight_tripod_flesher/spotlight_tripod_flesher_lamp.ent" />
+            <File Id="335" Path="entities/station/tech/theodolit/theodolit.ent" />
+            <File Id="336" Path="entities/station/tech/pressuregauge/pressuregauge.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435456" Name="ZeppelinLandPos_Dummy" CreStamp="1658670781" ModStamp="1658847493" WorldPos="-99.1158 239.144 159.78" Rotation="0 1.52402 0" Scale="1.5 1.5 1.5" FileIndex="0" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 15 268435456">
@@ -10200,7 +10204,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440242" Name="high_pressure_terminal_2" CreStamp="1659893533" ModStamp="1659897618" WorldPos="154.5 201 188.75" Rotation="0.785398 2.14186e-007 4.3706e-009" Scale="0.75 0.75 0.75" FileIndex="34" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2103 268440242">
+            <Entity ID="268440242" Name="high_pressure_terminal_2" CreStamp="1659893533" ModStamp="1659908767" WorldPos="148.25 201.5 189.75" Rotation="0.785398 0.785398 0" Scale="0.75 0.75 0.75" FileIndex="34" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2103 268440242">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -10266,7 +10270,7 @@
                     <Var Name="VerticalFOV" Value="70" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440323" Name="lamp_wall_deepsea_1" CreStamp="1659905740" ModStamp="1659905746" WorldPos="150.5 203.75 186.75" Rotation="0.261799 2.87979 -0" Scale="1 1 1" FileIndex="332" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2270 268440323">
+            <Entity ID="268440323" Name="lamp_wall_deepsea_1" CreStamp="1659905740" ModStamp="1659908545" WorldPos="149.75 199 179.75" Rotation="-1.0472 2.0944 4.52646e-008" Scale="1 1 1" FileIndex="332" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2270 268440323">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -10394,6 +10398,72 @@
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440372" Name="theodolit_1" CreStamp="1659909310" ModStamp="1659909365" WorldPos="154.443 205.793 195.969" Rotation="-2.09439 2.61799 -3.14159" Scale="2 2 2" FileIndex="335" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2310 268440372">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectBrightnessMul" Value="1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440375" Name="theodolit_2" CreStamp="1659909623" ModStamp="1659909671" WorldPos="154.591 206.167 196.506" Rotation="-0.982794 2.69376 -1.28976" Scale="1.25 1.25 1.25" FileIndex="336" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 2313 268440375">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
