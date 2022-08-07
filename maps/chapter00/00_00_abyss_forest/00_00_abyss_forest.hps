@@ -535,6 +535,17 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
+	bool mbResearchCaveLadderIsDown = false;
+	
+	bool CheckLadderIsDown(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		mbResearchCaveLadderIsDown = alState == 1;
+		
+		Entity_SetActive(asChild+"Area", mbResearchCaveLadderIsDown);
+		
+		return true;
+	}
+	
 	//} END EVENT A
 	
 	//} END SCENE 1
