@@ -40,6 +40,9 @@ const float gfDofMax = 3.0f;
 
 const float gfFogNormal = 45.0f;
 
+const float gfDirLightOutsideBrightness = 0.1f;
+const float gfDirLightInsideBrightness = 0.05f;
+
 //--------------------------------------------------
 
 class cScrMap : iScrMap
@@ -310,78 +313,7 @@ class cScrMap : iScrMap
 
 	//} END MAIN FUNCTIONS
 	
-	/////////////////////////////////////////////////////////////////////////////////////////
-	// ==============
-	// SCENE 1 *ZEPPLIN CRASH SITE*
-	// ==============
-	//{//////////////////////////////////////////////////////////////////////////////////////
-	
-	float mfDistToLanding;
-	float mfTotalDistToLanding;
-	cVector3f mvLandingPos;
-	cVector3f mvStartingPos;
-	
-	//-------------------------------------------------------
-	
-	void SetupZeppelinCrash()
-	{
-		// Zeppelin data
-		Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
-		
-		mfTotalDistToLanding = -1.0f;
-		mvLandingPos = Map_GetEntity("ZeppelinLandPos").GetPosition();
-		mvStartingPos = Map_GetEntity("ZeppelinPlatform").GetPosition();
-		mlZepInfoImage=1;
-		mfZepInfoTimer=0.0f;
-		
-		// Omnitool
-		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Sparks", "elec_sparks_tiny_continous.ps", "ZeppelinOmniToolSparkPos", false, cColor_White, 2);
-		ParticleSystem_SetVisible("ZeppelinOmniToolPS_Sparks", false);
-		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Bubbles", "loop_waterbubbles_small_stream.ps", "ZeppelinOmniToolBubblePos", false, cColor_White, 1);
-		Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
-		Sound_CreateAtEntity("BrokenCathtoolBubbles", "02_03_delta/AMB/Spot/omnitool_bubble_sparks", "ZeppelinOmniToolBubblePos");
-		
-//		//Remove broken chip effects
-//		Map_RemoveTimer("OmniToolFlash");
-//		Map_RemoveTimer("StopFlash");
-//		ParticleSystem_Destroy("ZeppelinOmniToolPS_*");
-//		Sound_Stop("BrokenCathtoolBubbles", 0.25f);
-	}
-	
-	//-------------------------------------------------------
-	
-	void Timer_ZeppelinOmniToolFlash(const tString &in asTimer)
-	{
-		if (asTimer == "StopFlash")
-		{
-			OmniToolSparkEffect_Stop("Zeppelin");
-			Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
-			return;
-		}
-		float fTime = OmniToolSparkEffect_Start("Zeppelin");
-		Map_AddTimer("StopFlash", fTime, "Timer_ZeppelinOmniToolFlash");
-	}
-	
-	//-------------------------------------------------------
-	
-	float OmniToolSparkEffect_Start(const tString &in asPrefix)
-	{
-		ParticleSystem_SetVisible(asPrefix+"OmniToolPS_Sparks", true);
-		float fTime = cMath_RandRectf(0.013, 0.04);
-		LightFlash_Add(fTime, 0.01, 0.01, asPrefix+"OmniToolSparkPos", cColor(0.438,0.829,1,0.03), 0.5, 10);
-		return fTime;
-	}
- 
-    //-------------------------------------------------------
-	
-	void OmniToolSparkEffect_Stop(const tString &in asPrefix)
-	{
-		ParticleSystem_SetVisible(asPrefix+"OmniToolPS_Sparks", false);
-	}
-	
-	//-------------------------------------------------------
-	
-	// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
+		// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
 	// 02_04_stormends when the player wakes up
 	
 	// Zepplin code: 049
@@ -402,6 +334,7 @@ class cScrMap : iScrMap
 	// When the player has stood to close to the rave for too their suit starts to beep (red around screen at beep)
 	// Katebot will go deep into the abyss to repair something, on a terminal the player can see Katebot's position moving (green circle)
 	// The signal is cut off (the cirlce no no longer moves/or disappears). The player finds Katebot destroyed or covered in rocks
+	// Use 01_03_upsilon_outside/katebot/kate_trapped_alarm to locate Katebot more easily
 	// In a later scene Katebot has to sacricife herself so the player can proceed forward.
 	
 	// Map: 00_00_abyss_forest
@@ -565,11 +498,11 @@ class cScrMap : iScrMap
 	// When the player has zoned in, Simon shoutes "Catherine!", The response is from a voice too familiar (Simon's own voice)
 	// --THE END--
 	
-	/////////////////////////////////////////
-    // SCENE 1 EVENT A - *Simon and Cathrine converse*
-    //{///////////////////////////////////////
-	
-	//-------------------------------------------------------
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE 1 *ZEPPELIN CRASHES*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
 	
 	cSequenceStatesData mIntroSequence;
 	void SequenceIntro(const tString &in asTimer)
@@ -583,11 +516,138 @@ class cScrMap : iScrMap
 		Sequence_End();
 	}
 	
+	//} END SCENE 1
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE 2 *CAVE NEST*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	/////////////////////////////////////////
+    // SCENE 2 EVENT A - *Climb out of cave*
+    //{///////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	bool CollideHoleArea(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		/////////////////////////////////
+		// When near the hole activate the climbable area
+		// When leaving it - disable it!
+		cLux_AddDebugMessage("CollideHoleArea");
+		bool bClimbActive = alState == 1 ? true : false;
+		Entity_SetActive("AreaClimbHole", bClimbActive);
+		
+		///////////////////////////////////
+		// Always preserve this trigger in case the player comes back inside
+		return true;
+	}
+	
+	//-------------------------------------------------------
+	
+	void AreaClimbHole_OnPlayerInteract(const tString &in asEntity)
+	{		
+		Entity_AttachToEntity("ExitStartAnimation_2", "ExitStartAnimation_1", "", true);
+		CameraAnimation_Begin("ExitStartAnimation", "", false);
+		//PlayerHands_PlayAnimation("event_climb_of_dome_start_1_3", false, false, 0,"", false,1,-1);
+		
+		Sound_CreateAtEntity("PreClimb", "01_03_upsilon_outside/SFX/intro/player_preclimbout", "Player");
+		Sound_CreateAtEntity("PreClimbVO", "01_03_upsilon_outside/SFX/intro/player_preclimbout_vo", "Player");
+				
+		/////////////////////////////////
+		// Disable area so player can't climb from outside
+		Entity_SetActive(asEntity,false);	
+	}
+	
 	//-------------------------------------------------------
 	
 	//} END EVENT A
 	
 	//} END SCENE 1
+	
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// ==============
+	// SCENE X *ZEPPELIN CRASH SITE*
+	// ==============
+	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	float mfDistToLanding;
+	float mfTotalDistToLanding;
+	cVector3f mvLandingPos;
+	cVector3f mvStartingPos;
+	
+	//-------------------------------------------------------
+	
+	void SetupZeppelinCrash()
+	{
+		// Zeppelin data
+		Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
+		
+		mfTotalDistToLanding = -1.0f;
+		mvLandingPos = Map_GetEntity("ZeppelinLandPos").GetPosition();
+		mvStartingPos = Map_GetEntity("ZeppelinPlatform").GetPosition();
+		mlZepInfoImage=1;
+		mfZepInfoTimer=0.0f;
+		
+		// Omnitool
+		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Sparks", "elec_sparks_tiny_continous.ps", "ZeppelinOmniToolSparkPos", false, cColor_White, 2);
+		ParticleSystem_SetVisible("ZeppelinOmniToolPS_Sparks", false);
+		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Bubbles", "loop_waterbubbles_small_stream.ps", "ZeppelinOmniToolBubblePos", false, cColor_White, 1);
+		Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
+		Sound_CreateAtEntity("BrokenCathtoolBubbles", "02_03_delta/AMB/Spot/omnitool_bubble_sparks", "ZeppelinOmniToolBubblePos");
+		
+//		//Remove broken chip effects
+//		Map_RemoveTimer("OmniToolFlash");
+//		Map_RemoveTimer("StopFlash");
+//		ParticleSystem_Destroy("ZeppelinOmniToolPS_*");
+//		Sound_Stop("BrokenCathtoolBubbles", 0.25f);
+	}
+	
+	//-------------------------------------------------------
+	
+	void Timer_ZeppelinOmniToolFlash(const tString &in asTimer)
+	{
+		if (asTimer == "StopFlash")
+		{
+			OmniToolSparkEffect_Stop("Zeppelin");
+			Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
+			return;
+		}
+		float fTime = OmniToolSparkEffect_Start("Zeppelin");
+		Map_AddTimer("StopFlash", fTime, "Timer_ZeppelinOmniToolFlash");
+	}
+	
+	//-------------------------------------------------------
+	
+	float OmniToolSparkEffect_Start(const tString &in asPrefix)
+	{
+		ParticleSystem_SetVisible(asPrefix+"OmniToolPS_Sparks", true);
+		float fTime = cMath_RandRectf(0.013, 0.04);
+		LightFlash_Add(fTime, 0.01, 0.01, asPrefix+"OmniToolSparkPos", cColor(0.438,0.829,1,0.03), 0.5, 10);
+		return fTime;
+	}
+ 
+    //-------------------------------------------------------
+	
+	void OmniToolSparkEffect_Stop(const tString &in asPrefix)
+	{
+		ParticleSystem_SetVisible(asPrefix+"OmniToolPS_Sparks", false);
+	}
+	
+	//-------------------------------------------------------
+	
+	/////////////////////////////////////////
+    // SCENE X EVENT A - *Player discovers crashsite*
+    //{///////////////////////////////////////
+	
+	//-------------------------------------------------------
+	
+	//-------------------------------------------------------
+	
+	//} END EVENT A
+	
+	//} END SCENE X
 	
 	/////////////////////////////////////////
 	// ==============
