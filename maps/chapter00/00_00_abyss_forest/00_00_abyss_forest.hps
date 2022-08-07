@@ -524,103 +524,14 @@ class cScrMap : iScrMap
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
+	// The cave is a research/testing ground. They've found something of interest here.
+	// A testing is under procedure, so the player needs to shut it down, otherwise the ladder wont the lowered.
+	
 	/////////////////////////////////////////
-    // SCENE 2 EVENT A - *Climb out of cave*
+    // SCENE 2 EVENT A - *X*
     //{///////////////////////////////////////
 	
 	//-------------------------------------------------------
-	
-	bool mbFirstTimeClimb = false;
-	bool mbSimonObjectiveLineSaid = false;
-	
-	bool CollideHoleArea(const tString &in asParent, const tString &in asChild, int alState)
-	{
-		/////////////////////////////////
-		// When near the hole activate the climbable area
-		// When leaving it - disable it!
-		cLux_AddDebugMessage("CollideHoleArea");
-		bool bClimbActive = alState == 1 ? true : false;
-		Entity_SetActive("AreaClimbHole", bClimbActive);
-		
-		///////////////////////////////////
-		// Always preserve this trigger in case the player comes back inside
-		return true;
-	}
-	
-	//-------------------------------------------------------
-	
-	void AreaClimbHole_OnPlayerInteract(const tString &in asEntity)
-	{		
-		Entity_AttachToEntity("ExitStartAnimation_2", "ExitStartAnimation_1", "", true);
-		CameraAnimation_Begin("ExitStartAnimation", "", false);
-		//PlayerHands_PlayAnimation("event_climb_of_dome_start_1_3", false, false, 0,"", false,1,-1);
-		
-		Sound_CreateAtEntity("PreClimb", "01_03_upsilon_outside/SFX/intro/player_preclimbout", "Player");
-		Sound_CreateAtEntity("PreClimbVO", "01_03_upsilon_outside/SFX/intro/player_preclimbout_vo", "Player");
-				
-		/////////////////////////////////
-		// Disable area so player can't climb from outside
-		Entity_SetActive(asEntity,false);	
-	}
-	
-	//-------------------------------------------------------
-	
-	bool CamAnim_StartExitAnim(const tString &in asEntity, int alDirection)
-	{
-		CameraAnimation_End();
-		cLux_AddDebugMessage("Animation start");
-		Player_SetGravityEnabled(false);
-		
-		Sound_Stop("PreClimb", 0.25f);
-		Sound_Stop("PreClimbVO", 0.25f);
-		
-		//Sound_CreateAtEntity("ClimbAnim", "01_03_upsilon_outside/SFX/intro/player_climbout_building", "Player");
-		Emotion_PlayEventBreath("01_03_upsilon_outside/SFX/intro/player_climbout_building_vo", 2);
-		
-		PlayerHands_SetUseCustomPosition(true);
-		PlayerHands_SetCustomPositionFromEntity("ClimbAnimationOffset");
-		PlayerHands_SetUseCustomRotation(true);
-//		PlayerHands_SetCustomRotation(cVector3f(0, cMath_PiDiv2, 0));
-		PlayerHands_PlayAnimation("event_climb_of_dome_1_3", false, true, 0,"", true,1,-1);
-		PlayerHands_SetAnimationOverCallback("HandAnimOver_ClimbedOut");
-		
-		PlayerHands_AttachCameraToSocket("Socket_Camera", 0, "", true,true,3, 
-										cVector3f(0,0,0), 0);
-												
-//		Map_AddTimer("Timer_DomeClimbSound", 6.5, "Timer_DomeClimbSound");
-		
-		return true;
-	}
-	
-	//-------------------------------------------------------
-	
-	void HandAnimOver_ClimbedOut(const tString&in asAnim)
-	{
-		Player_SetGravityEnabled(true);
-		Player_Teleport("PlayerStart_DomeExit");
-		Player_SetActive(false);
-		Map_AddTimer("HandAnimOver_ActivatePlayer", 1.75, "HandAnimOver_ActivatePlayer");
-		
-//		if(mbSimonObjectiveLineSaid==false)
-//		{
-//			Map_AddTimer("ExitHoleVoice", 18, "SimonUnderwaterComment");
-//			mbSimonObjectiveLineSaid = true;
-//		}
-	}
-	
-	//-------------------------------------------------------
-	
-	void HandAnimOver_ActivatePlayer(const tString &in asTimer)
-	{
-		Player_SetActive(true);
-	}
-	
-	//-------------------------------------------------------
-	
-	void SimonUnderwaterComment(const tString &in asTimer)
-	{
-		Voice_Play("LeftCommRoom_Objective");
-	}
 	
 	//-------------------------------------------------------
 	
