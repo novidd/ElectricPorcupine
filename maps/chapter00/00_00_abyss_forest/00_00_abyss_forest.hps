@@ -527,11 +527,10 @@ class cScrMap : iScrMap
 	// The cave is a research/testing ground. They've found something of interest here.
 	// A testing is under procedure, so the player needs to shut it down, otherwise the ladder wont the lowered.
 	
-	/////////////////////////////////////////
-    // SCENE 2 EVENT A - *X*
-    //{///////////////////////////////////////
 	
-	//-------------------------------------------------------
+	/////////////////////////////////////////
+    // SCENE 2 EVENT X - *Shutdown the testing procedure*
+    //{///////////////////////////////////////
 	
 	//-------------------------------------------------------
 	
@@ -546,7 +545,19 @@ class cScrMap : iScrMap
 		return true;
 	}
 	
-	//} END EVENT A
+	//-------------------------------------------------------
+	
+	bool LadderCrash(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		// Do particle
+		// Do sound
+		
+		return false;
+	}
+	
+	//-------------------------------------------------------
+	
+	//} END EVENT X
 	
 	//} END SCENE 1
 	
