@@ -574,13 +574,13 @@ class cScrMap : iScrMap
 		Sound_Stop("PreClimb", 0.25f);
 		Sound_Stop("PreClimbVO", 0.25f);
 		
-		Sound_CreateAtEntity("ClimbAnim", "01_03_upsilon_outside/SFX/intro/player_climbout_building", "Player");
+		//Sound_CreateAtEntity("ClimbAnim", "01_03_upsilon_outside/SFX/intro/player_climbout_building", "Player");
 		Emotion_PlayEventBreath("01_03_upsilon_outside/SFX/intro/player_climbout_building_vo", 2);
 		
 		PlayerHands_SetUseCustomPosition(true);
 		PlayerHands_SetCustomPositionFromEntity("ClimbAnimationOffset");
 		PlayerHands_SetUseCustomRotation(true);
-		PlayerHands_SetCustomRotation(cVector3f(0, cMath_PiDiv2, 0));
+//		PlayerHands_SetCustomRotation(cVector3f(0, cMath_PiDiv2, 0));
 		PlayerHands_PlayAnimation("event_climb_of_dome_1_3", false, true, 0,"", true,1,-1);
 		PlayerHands_SetAnimationOverCallback("HandAnimOver_ClimbedOut");
 		
