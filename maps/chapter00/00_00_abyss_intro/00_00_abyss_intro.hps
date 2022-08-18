@@ -120,7 +120,6 @@ class cScrMap : iScrMap
 		PlayerEnergy_SetFlowerSwallows(true);
 		
 		//Map setup
-		SetupZeppelinCrash();
 		
 		/////////////////////////
 		// Debug
@@ -133,8 +132,6 @@ class cScrMap : iScrMap
 		{
 			SequenceIntro("");
 		}
-		
-		Light_SetBrightness("workinglight_*", 0);
 	}
 
 	//-------------------------------------------------------
@@ -348,7 +345,7 @@ class cScrMap : iScrMap
 
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *ZEPPELIN CRASHES*
+	// SCENE 1 *FALLING INTO THE ABYSS*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
@@ -367,9 +364,18 @@ class cScrMap : iScrMap
 			
 			Player_SetHealth(0.7f);
 			
-			Effect_Fade_Out(0.0f);
+//			Effect_Fade_Out(0.0f);
+
+			// Flashlight ON to create sense of motion
+			Player_SetFlashlightActive(true, true);
+			Player_SetFlashlightDisabled(true);
 			
 			Effect_Rumble_Start(0.5f,1.0f,0.5,0.5f);
+			
+			StartPlayerBubbles();
+			StartPlayerMotionLines();
+			
+			AttachPlayerFallFx();
 			
 			// Play 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_BuildUp before screen fades in (~3s)
 			
@@ -386,6 +392,16 @@ class cScrMap : iScrMap
 			// The storm wind particles??
 			
 			//StartFlushAnim("Flush1", 0.65f, 0.7f);
+			
+			// The player falls along the cliff which goes below Theta
+			// As the player falls change
+			
+			// Set the skybox off when the player is in entering the abyss Map_SetSkyBoxActive(false);
+			// Also change the properties of the environmental particles when the player get caught in the current
+			
+			// Edit the fogs properites so the player can see the distant lightning being struck
+			
+			// The player rolls around as they falls straight down, they get glimpses of the cliff side, with life like plants and such
 			
 			// Lower hp more when crash on land
 //			if (Player_GetHealth()>0.7f)
@@ -418,7 +434,8 @@ class cScrMap : iScrMap
 	
 	void StartPlayerMotionLines()
 	{
-		ParticleSystem_CreateAtEntity("PlayerMotionLinesPS", "loop_waterbubbles_large_cloud.ps", "PlayerMotionLinesArea", true);
+		ParticleSystem_CreateAtEntityExt
+			("PlayerMotionLinesPS", "tau_storm_static_large.ps", "PlayerMotionLinesArea", true, cColor(1,0.936,0.836,0.508), 1.0f);
 	}
 	
 	//-------------------------------------------------------
@@ -426,7 +443,7 @@ class cScrMap : iScrMap
 	void AttachPlayerFallFx()
 	{
 		CameraAnimation_SetAttachedEntity("PlayerBubblesArea", false, false, false);
-//		CameraAnimation_SetAttachedEntity("PlayerMotionLinesArea", false, false, false);
+		Entity_AttachToEntity("PlayerMotionLinesArea", "PlayerBubblesArea", "", false);
 	}
 	
 	//-------------------------------------------------------
@@ -463,132 +480,6 @@ class cScrMap : iScrMap
 	
 	//} END SCENE 1
 	
-	/////////////////////////////////////////////////////////////////////////////////////////
-	// ==============
-	// SCENE 2 *CAVE NEST*
-	// ==============
-	//{//////////////////////////////////////////////////////////////////////////////////////
-	
-	// The cave is a research/testing ground. They've found something of interest here.
-	// A testing is under procedure, so the player needs to shut it down, otherwise the ladder wont the lowered.
-	
-	
-	/////////////////////////////////////////
-    // SCENE 2 EVENT X - *Shutdown the testing procedure*
-    //{///////////////////////////////////////
-	
-	//-------------------------------------------------------
-	
-	bool mbResearchCaveLadderIsDown = false;
-	
-	bool CheckLadderIsDown(const tString &in asParent, const tString &in asChild, int alState)
-	{
-		mbResearchCaveLadderIsDown = alState == 1;
-		
-		Entity_SetActive(asChild+"Area", mbResearchCaveLadderIsDown);
-		
-		return true;
-	}
-	
-	//-------------------------------------------------------
-	
-	bool LadderCrash(const tString &in asParent, const tString &in asChild, int alState)
-	{
-		// Do particle
-		// Do sound
-		
-		return false;
-	}
-	
-	//-------------------------------------------------------
-	
-	//} END EVENT X
-	
-	//} END SCENE 1
-	
-	/////////////////////////////////////////////////////////////////////////////////////////
-	// ==============
-	// SCENE X *ZEPPELIN CRASH SITE*
-	// ==============
-	//{//////////////////////////////////////////////////////////////////////////////////////
-	
-	float mfDistToLanding;
-	float mfTotalDistToLanding;
-	cVector3f mvLandingPos;
-	cVector3f mvStartingPos;
-	
-	//-------------------------------------------------------
-	
-	void SetupZeppelinCrash()
-	{
-		// Zeppelin data
-		Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
-		
-		mfTotalDistToLanding = -1.0f;
-		mvLandingPos = Map_GetEntity("ZeppelinLandPos").GetPosition();
-		mvStartingPos = Map_GetEntity("ZeppelinPlatform").GetPosition();
-		mlZepInfoImage=1;
-		mfZepInfoTimer=0.0f;
-		
-		// Omnitool
-		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Sparks", "elec_sparks_tiny_continous.ps", "ZeppelinOmniToolSparkPos", false, cColor_White, 2);
-		ParticleSystem_SetVisible("ZeppelinOmniToolPS_Sparks", false);
-		ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Bubbles", "loop_waterbubbles_small_stream.ps", "ZeppelinOmniToolBubblePos", false, cColor_White, 1);
-		Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
-		Sound_CreateAtEntity("BrokenCathtoolBubbles", "02_03_delta/AMB/Spot/omnitool_bubble_sparks", "ZeppelinOmniToolBubblePos");
-		
-//		//Remove broken chip effects
-//		Map_RemoveTimer("OmniToolFlash");
-//		Map_RemoveTimer("StopFlash");
-//		ParticleSystem_Destroy("ZeppelinOmniToolPS_*");
-//		Sound_Stop("BrokenCathtoolBubbles", 0.25f);
-	}
-	
-	//-------------------------------------------------------
-	
-	void Timer_ZeppelinOmniToolFlash(const tString &in asTimer)
-	{
-		if (asTimer == "StopFlash")
-		{
-			OmniToolSparkEffect_Stop("Zeppelin");
-			Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
-			return;
-		}
-		float fTime = OmniToolSparkEffect_Start("Zeppelin");
-		Map_AddTimer("StopFlash", fTime, "Timer_ZeppelinOmniToolFlash");
-	}
-	
-	//-------------------------------------------------------
-	
-	float OmniToolSparkEffect_Start(const tString &in asPrefix)
-	{
-		ParticleSystem_SetVisible(asPrefix+"OmniToolPS_Sparks", true);
-		float fTime = cMath_RandRectf(0.013, 0.04);
-		LightFlash_Add(fTime, 0.01, 0.01, asPrefix+"OmniToolSparkPos", cColor(0.438,0.829,1,0.03), 0.5, 10);
-		return fTime;
-	}
- 
-    //-------------------------------------------------------
-	
-	void OmniToolSparkEffect_Stop(const tString &in asPrefix)
-	{
-		ParticleSystem_SetVisible(asPrefix+"OmniToolPS_Sparks", false);
-	}
-	
-	//-------------------------------------------------------
-	
-	/////////////////////////////////////////
-    // SCENE X EVENT A - *Player discovers crashsite*
-    //{///////////////////////////////////////
-	
-	//-------------------------------------------------------
-	
-	//-------------------------------------------------------
-	
-	//} END EVENT A
-	
-	//} END SCENE X
-	
 	/////////////////////////////////////////
 	// ==============
 	// TERMINALS
@@ -599,124 +490,6 @@ class cScrMap : iScrMap
     // XX
     /////////////////////////////////////////
  
-    //-------------------------------------------------------
-	
-	/////////////////////////////////////////
-	// Terminal *Zeppelin A*
-	/////////////////////////////////////////
-
-	//-------------------------------------------------------
-	
-	void OnGuiZeppelinA(const tString&in asEntityName, float afTimeStep)
-	{
-		ImGui_SetTransCategory("02_04_theta_outside");
-	
-		cImGuiLabelData label;
-		label.mFont.SetFile(Helper_Font_GetFontName(eLuxFontType_Sansation_Medium));
-		label.mFont.mvSize = cVector2f(50, 50);
-	
-		StationGuiBG_Scanlines();
-		StationGuiBG_Backdrop();
-		
-		// ADD GLITCH LINES
-		
-		if (mfTotalDistToLanding<0.0f)
-			return;
-			
-		float fDist = 1.0f-(mfDistToLanding/mfTotalDistToLanding);
-		cVector3f vMapStart = cVector3f(-345,-300,1.0f);
-		cVector3f vMapEnd = cVector3f(-425.0f,-120.0f,1.0f);
-		cVector3f vOffs = (vMapEnd-vMapStart)*fDist;
-		cVector3f vMapCurrent = vMapStart+vOffs;
-		
-		float fDepth=2534.0f+(mvStartingPos.y-mvLandingPos.y)*fDist;
-		
-		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
-		
-		////////////////////
-		// Map		
-		ImGui_DoImage(cImGuiGfx("zepmap", eImGuiGfx_Texture), 
-			vMapCurrent, ImGui_NrmSizeGroup(cVector2f(1.75f,1.75f)) );
-		
-		////////////////////
-		// Cross
-		ImGui_DoImage(cImGuiGfx("zepcross", eImGuiGfx_Texture), 
-			ImGui_NrmPosGroup(cVector3f(0.525,0.325,2.0f)), ImGui_NrmSizeGroup(cVector2f(0.125f,0.2f)) );
-
-		////////////////////
-		// Distance
-		tString sDist = ""+mfDistToLanding;
-		int lDotPos = cString_GetLastCharPos(sDist, '.');
-		sDist = cString_Sub(sDist, 0, lDotPos+3);
-		
-		tString sDepth = ""+fDepth;
-		lDotPos = cString_GetLastCharPos(sDepth, '.');
-		sDepth = cString_Sub(sDepth, 0, lDotPos+3);
-
-		ImGui_DoLabelExt("ZepGui_Dest", label, cVector3f(120.0f,420.0f,1.0f), cVector2f_MinusOne, 1.0f);
-		
-		tWString sDistMsg = cResources_Translate("02_04_theta_outside", "ZepGui_DistanceDepth");
-		
-		// Resize for translation here to get a constant font size instead of one that changes depending on dist/depth
-		ImGui_ResizeFontToFit(sDistMsg, label.mFont, ImGui_GetCurrentGroupSize().x-240);
-		
-		sDistMsg = cString_ReplaceStringToW(sDistMsg, cString_To16Char("%dist"), cString_To16Char(sDist));
-		sDistMsg = cString_ReplaceStringToW(sDistMsg, cString_To16Char("%depth"), cString_To16Char(sDepth));
-		
-		ImGui_SetTextOverride(sDistMsg);
-		ImGui_DoLabelExt("", label, cVector3f(120.0f,480.0f,1.0f), cVector2f_MinusOne, 1.0f);
-			
-		ImGui_GroupEnd();
-	}
-	
-	//-------------------------------------------------------
-
-	/////////////////////////////////////////
-	// Terminal *Zeppelin B*
-	/////////////////////////////////////////
-	
-	//-------------------------------------------------------
-	int mlZepInfoImage;
-	float mfZepInfoTimer;
-	
-	//-------------------------------------------------------
-	
-	void OnGuiZeppelinB(const tString&in asEntityName, float afTimeStep)
-	{
-		ImGui_SetTransCategory("02_04_theta_outside");
-		
-		StationGuiBG_Scanlines();
-		StationGuiBG_Backdrop();
-		
-		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
-		
-		mfZepInfoTimer+=afTimeStep;
-		if (mfZepInfoTimer>2.0f)
-		{
-			mfZepInfoTimer-=2.0f;
-			mlZepInfoImage++;
-			if (mlZepInfoImage>4)
-			{
-				mlZepInfoImage=1;
-			}
-		}
-
-		////////////////////
-		// Map		
-		ImGui_DoImage(cImGuiGfx("zepinfo"+mlZepInfoImage+".dds", eImGuiGfx_Texture), 
-			cVector3f(0,0,10), ImGui_NrmSizeGroup(cVector2f_One) );
-			
-		ImGui_GroupEnd();
-	}
-
-	//-------------------------------------------------------
-	
-	void OnGuiZepCath(const tString&in asEntityName, float afTimeStep)
-	{
-		StationGuiBG_Scanlines();
-		Depth_ImGui_CathPortrait(afTimeStep);
-	}
-
 	//-------------------------------------------------------
 	
 	//} END TERMINALS
