@@ -807,7 +807,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268441527" Name="Cliffside" CreStamp="1660844622" ModStamp="1660844669" WorldPos="-1.25 298.25 250" Rotation="0 0 0" Scale="150 150 4" Active="true" Mesh="" UID="16 3138 268441527" AreaType="Trigger">
+            <Area ID="268441527" Name="Cliffside" CreStamp="1660844622" ModStamp="1660846127" WorldPos="0 350 250" Rotation="0 0 0" Scale="150 250 4" Active="true" Mesh="" UID="16 3138 268441527" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -829,6 +829,24 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268441528" Name="Fall1_1" CreStamp="1660846094" ModStamp="1660846399" WorldPos="-0.25 450.75 242" Rotation="-1.0472 -0 0" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3137 268441528" AreaType="CameraAnimation">
+                <UserVariables>
+                    <Var Name="MaxYaw" Value="45" />
+                    <Var Name="MaxPitch" Value="45" />
+                    <Var Name="LookSpeedMultiplier" Value="1" />
+                    <Var Name="ForwardTime" Value="1.5" />
+                    <Var Name="BackwardTime" Value="1" />
+                    <Var Name="AutoMovement" Value="1" />
+                    <Var Name="LookMoveDistance" Value="0" />
+                    <Var Name="LookMoveMaxAngle" Value="0" />
+                    <Var Name="InteractiveMovement" Value="false" />
+                    <Var Name="UseSpeedFading" Value="true" />
+                    <Var Name="CrouchOnExit" Value="false" />
+                    <Var Name="InitToCamera" Value="false" />
+                    <Var Name="UsePlayerEyeline" Value="false" />
+                    <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
         </Objects>

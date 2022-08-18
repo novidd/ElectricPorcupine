@@ -377,6 +377,10 @@ class cScrMap : iScrMap
 			
 			AttachPlayerFallFx();
 			
+			// omicron descent directional light properties at start than fade to main map settings later
+			
+			//StartFallAnim("Fall1", 0.65f, 0.7f);
+			
 			// Play 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_BuildUp before screen fades in (~3s)
 			
 			// Then play 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_WaterHits
@@ -391,8 +395,6 @@ class cScrMap : iScrMap
 			// Convey motion underwater with some form of motionlines (attach to player)
 			// The storm wind particles??
 			
-			//StartFlushAnim("Flush1", 0.65f, 0.7f);
-			
 			// The player falls along the cliff which goes below Theta
 			// As the player falls change
 			
@@ -402,6 +404,9 @@ class cScrMap : iScrMap
 			// Edit the fogs properites so the player can see the distant lightning being struck
 			
 			// The player rolls around as they falls straight down, they get glimpses of the cliff side, with life like plants and such
+			
+			// At one point the player seems like he will crash into a wall of rocks, the current picks the player
+			// Simon reacts
 			
 			// Lower hp more when crash on land
 //			if (Player_GetHealth()>0.7f)
