@@ -377,7 +377,14 @@ class cScrMap : iScrMap
 			
 			AttachPlayerFallFx();
 			
-			// omicron descent directional light properties at start than fade to main map settings later
+			// Omicron descent directional light properties at start than fade to main map settings later
+			
+			// Screen fades in and out throughout the fall
+			
+			// When the player is going to collide with a rock wall, fade the screen in just before the redirection
+			// Simon emotes right before the screen goes to black
+			// Then fade back in after the current has pulled the player to the side
+			// Manilpulate the game sound each time the screen fades in and out (as if covering your ears (fade out), then letting go (fade in))
 			
 			//StartFallAnim("Fall1", 0.65f, 0.7f);
 			
