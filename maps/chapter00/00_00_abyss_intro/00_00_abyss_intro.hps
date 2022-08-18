@@ -377,14 +377,21 @@ class cScrMap : iScrMap
 			
 			AttachPlayerFallFx();
 			
+//			mlHeartbeatID = Emotion_StartHeartbeat(0.75f,0.75f, 1, -1, 1.0f, 1.0f);
+//			mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear,0.5f, 1, -1, 1.0f, 1.0f);
+			
 			// Omicron descent directional light properties at start than fade to main map settings later
 			
 			// Screen fades in and out throughout the fall
+			// The player rolls around as they falls straight down, they get glimpses of the cliff side, with life like plants and such
 			
 			// When the player is going to collide with a rock wall, fade the screen in just before the redirection
 			// Simon emotes right before the screen goes to black
 			// Then fade back in after the current has pulled the player to the side
 			// Manilpulate the game sound each time the screen fades in and out (as if covering your ears (fade out), then letting go (fade in))
+			
+			// At the of the slide the player is still at an apex, music fades out, lighthing strikes, then the player continues to fall, music fade in
+			// Then fall toward the rock and *donk*
 			
 			//StartFallAnim("Fall1", 0.65f, 0.7f);
 			
@@ -410,17 +417,9 @@ class cScrMap : iScrMap
 			
 			// Edit the fogs properites so the player can see the distant lightning being struck
 			
-			// The player rolls around as they falls straight down, they get glimpses of the cliff side, with life like plants and such
-			
-			// At one point the player seems like he will crash into a wall of rocks, the current picks the player
-			// Simon reacts
-			
 			// Lower hp more when crash on land
 //			if (Player_GetHealth()>0.7f)
 //					Player_SetHealth(0.35f);
-			
-//			mlHeartbeatID = Emotion_StartHeartbeat(0.75f,0.75f, 1, -1, 1.0f, 1.0f);
-//			mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear,0.5f, 1, -1, 1.0f, 1.0f);
 
 			// Play Player/UI/blackout_hit when player hit their head
 
