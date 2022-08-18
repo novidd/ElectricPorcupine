@@ -371,7 +371,15 @@ class cScrMap : iScrMap
 			
 			Effect_Rumble_Start(0.5f,1.0f,0.5,0.5f);
 			
-			// 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_WaterHits
+			// Play 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_BuildUp before screen fades in (~3s)
+			
+			// Then play 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_WaterHits
+			// Player/action/underwater/abyss_fall can also be used for the fall
+			
+			
+			// Play 03_01_omicron_outside/SFX/special/intro_sequence/camera_anim moments before crashing into the rock (stop sound on hit)
+			// Play this too 03_01_omicron_outside/SFX/special/intro_sequence/camera_anim_vo 
+			// Play sound above after Simon screams 'Fuck!' or something like that once he realizes his situation
 			
 			// Convey motion underwater with some form of motionlines (attach to player)
 			
@@ -380,17 +388,21 @@ class cScrMap : iScrMap
 			// Lower hp more when crash on land
 //			if (Player_GetHealth()>0.7f)
 //					Player_SetHealth(0.35f);
-			// When player lands on the ground do fake damage on screen
-			//Player_GiveDamage(0, 0, eDamageType_Hit, "");
-			//Depth_Audio_PlayerTakeDamage();
 			
 //			mlHeartbeatID = Emotion_StartHeartbeat(0.75f,0.75f, 1, -1, 1.0f, 1.0f);
 //			mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear,0.5f, 1, -1, 1.0f, 1.0f);
+
+			// Play Player/UI/blackout_hit when player hit their head
+
 		}
 		
-		// After player hits head on rock (Add Simon damage vo), also add screen cracks
+		// After player hits head on rock (Add Simon damage vo), also add screen cracks on screen
 		// Screen is black, distant thunder, Cath saying something (sfx over her voice), then screen and sound fades back in, the storm has started
+		// Play Player/UI/blackbox_sonar once in silence, then moments before wake up as world sfx fades in
+		// Also play Player/UI/death_tinnitus, fade it out over time
 		// Suit diagonostics start when the screen fades back in *beep* *boop* *beep* *boop*
+		
+		// When Simon stands up play Player/camera_anim/underwater/abyss_recover/vo
 		
 		Sequence_End();
 	}
