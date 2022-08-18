@@ -1,0 +1,59 @@
+<HPLMapTrack_Terrain ID="BDBD12717F17B880F1195EA51F622636AB94AC99" Version="1.00">
+    <Terrain Active="true" GeometryPatchSize="32" TexturePatchSize="32" HeightMapSize="1024" MaxHeight="300" UnitSize="1" UndergrowthGridSize="10" UndergrowthFadeStart="18" UndergrowthFadeEnd="20" BaseMaterialFile="textures/terrain/sand/sand_rough_abyss.mat" BaseMaterialTileAmount="0.125" BaseMaterialStartFadeValue="0" BaseMaterialDetailTextureAmount="0.7 0 0" BaseMaterialHeightMapScale="0" MaterialSpecularPower="0.3" CliffTextureDiffuse="static_objects/environment/rocks_abyss/rock_huge_abyss.dds" CliffTextureNMap="static_objects/environment/rocks_abyss/rock_huge_abyss_nrm.dds" CliffTextureSize="0.1" CliffTextureFadeAngleMul="1.44">
+        <DetailTextures DetailFadeStart="10" DetailFadeEnd="20">
+            <DetailTexture ID="0" File="textures/terrain/sand/sand_detail_diff.dds" Scale="0.1" />
+            <DetailTexture ID="1" File="" Scale="1" />
+            <DetailTexture ID="2" File="" Scale="1" />
+        </DetailTextures>
+        <BlendLayers>
+            <BlendLayer ID="0">
+                <Material File="textures/terrain/sand/sand_flat.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="0.5 0.5 0.5" HeightMapScale="0" />
+                <Material File="textures/terrain/sand/sand_undergrowth_heavy.mat" TileAmount="0.1" StartFadeValue="0.25" DetailTextureAmount="0 0 1" HeightMapScale="0" />
+                <Material File="textures/terrain/rock/rockwall_rock_blend.mat" TileAmount="0.05" StartFadeValue="0.25" DetailTextureAmount="0 1 0" HeightMapScale="0" />
+                <Material File="textures/terrain/sand/sand_path.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+            </BlendLayer>
+            <BlendLayer ID="1">
+                <Material File="textures/terrain/sand/sand_flat_abyss.mat" TileAmount="0.15" StartFadeValue="0" DetailTextureAmount="0.3 0.3 0.2" HeightMapScale="0" />
+                <Material File="textures/terrain/sand/sand_rough_abyss_white.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+                <Material File="" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+                <Material File="" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+            </BlendLayer>
+        </BlendLayers>
+        <Sections>
+            <Section Name="lucas@LUCASPC">
+                <FileIndex_TerrainDecals NumOfFiles="1">
+                    <File Id="0" Path="textures/terrain/decals/mindcoral_creep_edge.mat" />
+                </FileIndex_TerrainDecals>
+                <Decals />
+                <FileIndex_UndergrowthMaterials NumOfFiles="23">
+                    <File Id="0" Path="undergrowth/rocks/jagged_rocks_abyss_100%.tum" />
+                    <File Id="1" Path="undergrowth/algae/algae_undergrowth/algae_undergrowth_abyss.tum" />
+                    <File Id="2" Path="undergrowth/algae/algae_undergrowth/algae_undergrowth.tum" />
+                    <File Id="3" Path="undergrowth/algae/algae_undergrowth/algae_small_undergrowth.tum" />
+                    <File Id="4" Path="undergrowth/algae/algae_caulerpa_undergrowth/algae_caulerpa_undergrowth_100%.tum" />
+                    <File Id="5" Path="undergrowth/algae/algae_caulerpa_undergrowth/algae_caulerpa_undergrowth_25%.tum" />
+                    <File Id="6" Path="undergrowth/algae/algae_caulerpa_undergrowth/algae_caulerpa_undergrowth_200%.tum" />
+                    <File Id="7" Path="undergrowth/invertibrate/tube_worm_small/tube_worm_small_100%.tum" />
+                    <File Id="8" Path="undergrowth/plants/grass/grass.tum" />
+                    <File Id="9" Path="undergrowth/plants/grass/grass_huge_mixed_sparse.tum" />
+                    <File Id="10" Path="undergrowth/plants/grass/grass_medium_desaturated.tum" />
+                    <File Id="11" Path="undergrowth/plants/purple_flower/purple_flower.tum" />
+                    <File Id="12" Path="undergrowth/plants/purple_flower/undergrowth_purple_flower_low.tum" />
+                    <File Id="13" Path="undergrowth/plants/purple_flower/purple_flower_dense.tum" />
+                    <File Id="14" Path="undergrowth/plants/red_flower/undergrowth_flower_red.tum" />
+                    <File Id="15" Path="undergrowth/plants/violette_flower/undergrowth_flower_violette_detailed.tum" />
+                    <File Id="16" Path="undergrowth/plants/violette_flower/undergrowth_flower_violette.tum" />
+                    <File Id="17" Path="undergrowth/rocks/small_rock_dense.tum" />
+                    <File Id="18" Path="undergrowth/rocks/small_rock.tum" />
+                    <File Id="19" Path="undergrowth/rocks/pebble_abyss_50%.tum" />
+                    <File Id="20" Path="undergrowth/rocks/pebble_abyss_100%.tum" />
+                    <File Id="21" Path="undergrowth/rocks/jagged_rocks_abyss_50%.tum" />
+                    <File Id="22" Path="undergrowth/rocks/jagged_rocks_forest_100%.tum" />
+                </FileIndex_UndergrowthMaterials>
+                <Undergrowth>
+                    <Circle ID="268438001" Name="Circle_14" CreStamp="1659210565" ModStamp="1659210565" WorldPos="-6.70248 224.091 336.645" Rotation="0 0 0" Scale="0 0 0" FileIndex="-1" FadeBorder="1" MaxInfluence="1" Center="-6.70248 336.645" Radius="0" UID="16 335 268438001" BlendType="Add" />
+                </Undergrowth>
+            </Section>
+        </Sections>
+    </Terrain>
+</HPLMapTrack_Terrain>
