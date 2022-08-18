@@ -407,17 +407,27 @@ class cScrMap : iScrMap
 		Sequence_End();
 	}
 	
+	//-------------------------------------------------------
+	
 	void StartPlayerBubbles()
 	{
 		ParticleSystem_CreateAtEntity("PlayerBubblesPS", "loop_waterbubbles_large_cloud.ps", "PlayerBubblesArea", true);
 	}
 	
+	void StartPlayerMotionLines()
+	{
+		ParticleSystem_CreateAtEntity("PlayerMotionLinesPS", "loop_waterbubbles_large_cloud.ps", "PlayerMotionLinesArea", true);
+	}
+	
 	//-------------------------------------------------------
 	
-	void AttachPlayerBubbles()
+	void AttachPlayerFallFx()
 	{
 		CameraAnimation_SetAttachedEntity("PlayerBubblesArea", false, false, false);
+//		CameraAnimation_SetAttachedEntity("PlayerMotionLinesArea", false, false, false);
 	}
+	
+	//-------------------------------------------------------
 	
 	void StartFlushAnim(const tString&in asName, float afHeartbeatTime, float afFearLevel)
 	{
@@ -429,10 +439,12 @@ class cScrMap : iScrMap
 		
 		CameraAnimation_End();
 		CameraAnimation_Begin(asName,"", false);
-		AttachPlayerBubbles();
+		AttachPlayerFallFx();
 		
 		cLux_AddTodoMessage("SOUND: Fade in player struggling as carried through through water flow");
 	}
+	
+	//-------------------------------------------------------
 	
 	bool OnFlushFade(const tString &in asEntity, int alDirection)
 	{
