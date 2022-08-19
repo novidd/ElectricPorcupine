@@ -429,7 +429,7 @@ class cScrMap : iScrMap
 		{
 			StartPlayerFallFx();
 			StartFallAnim("Fall1", 0.65f, 0.7f);
-			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 12.0f, "StormAudio_Stage0_Sweeteners");
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 6.0f, "StormAudio_Stage0_Sweeteners");
 		}
 		else if (Sequence_DoStepAndWait(2))
 		{
@@ -439,7 +439,7 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndPause())
 		{
 			StartFallAnim("Fall2", 0.75f, 0.8f);
-			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 12.0f, "StormAudio_Stage0_Sweeteners");
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 0.0f, "StormAudio_Stage0_Sweeteners");
 		}
 		
 		// Before crashing the player flies through wall of fog particles simulating the storm, then once on the other side *donk*
@@ -484,7 +484,7 @@ class cScrMap : iScrMap
 	
 	void StartFallAnim(const tString&in asName, float afHeartbeatTime, float afFearLevel)
 	{
-		Effect_Fade_In(1.0f);
+		Effect_Fade_In(0.1f);
 		
 		// Panicking!
 		mlHeartbeatID = Emotion_StartHeartbeat(afHeartbeatTime,0.75f,1, -1, 1.0f, 1.0f);
@@ -502,7 +502,7 @@ class cScrMap : iScrMap
 	
 	bool OnFlushFade(const tString &in asEntity, int alDirection)
 	{
-		Effect_Fade_Out(1.0f);
+		Effect_Fade_Out(0.1f);
 		
 		Emotion_StopBackgroundBreath(mlBreathID);
 		Emotion_StopHeartbeat(mlHeartbeatID);
