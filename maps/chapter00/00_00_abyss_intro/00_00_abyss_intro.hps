@@ -417,7 +417,6 @@ class cScrMap : iScrMap
 			// The player falls along the cliff which goes below Theta
 			// As the player falls change
 			
-			// Set the skybox off when the player is in entering the abyss Map_SetSkyBoxActive(false);
 			// Also change the properties of the environmental particles when the player get caught in the current
 			
 			// Edit the fogs properites so the player can see the distant lightning being struck
@@ -438,6 +437,8 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndPause())
 		{
+			Map_SetSkyBoxColor(cColor(0,0,0,0));
+			
 			StartFallAnim("Fall2", 0.75f, 0.8f);
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 0.0f, "StormAudio_Stage0_Sweeteners");
 		}
@@ -484,7 +485,7 @@ class cScrMap : iScrMap
 	
 	void StartFallAnim(const tString&in asName, float afHeartbeatTime, float afFearLevel)
 	{
-		Effect_Fade_In(0.1f);
+		Effect_Fade_In(0.01f);
 		
 		// Panicking!
 		mlHeartbeatID = Emotion_StartHeartbeat(afHeartbeatTime,0.75f,1, -1, 1.0f, 1.0f);
@@ -502,7 +503,7 @@ class cScrMap : iScrMap
 	
 	bool OnFlushFade(const tString &in asEntity, int alDirection)
 	{
-		Effect_Fade_Out(0.1f);
+		Effect_Fade_Out(0.01f);
 		
 		Emotion_StopBackgroundBreath(mlBreathID);
 		Emotion_StopHeartbeat(mlHeartbeatID);
