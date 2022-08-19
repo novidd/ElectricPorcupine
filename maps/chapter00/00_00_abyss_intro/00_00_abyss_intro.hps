@@ -501,6 +501,16 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
+	bool ChangeCurrentDirection(const tString &in asEntity, int alDirection)
+	{
+		// Change current direction here
+		
+		// Fall motion lines direction
+		
+		// Environmental particles wind direction
+		return true;
+	}
+	
 	bool OnFlushFade(const tString &in asEntity, int alDirection)
 	{
 		Effect_Fade_Out(0.01f);
