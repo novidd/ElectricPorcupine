@@ -363,6 +363,8 @@ class cScrMap : iScrMap
 			cLux_AddDebugMessage("!DO INTRO!");
 			
 			Player_SetHealth(0.7f);
+
+			Effect_Fade_Out(0.0f);
 			
 			// Flashlight ON to create sense of motion
 			Player_SetFlashlightActive(true, true);
@@ -374,11 +376,8 @@ class cScrMap : iScrMap
 			
 			// Need create/stop the sound each time the screen fades in/out
 			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
-//			Sound_PlayGui("Player/action/underwater/abyss_fall", 1.0f);
-
-			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
 			
-//			CameraAnimation_Begin("Fall1", "", false);
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
 			
 //			mlHeartbeatID = Emotion_StartHeartbeat(0.75f,0.75f, 1, -1, 1.0f, 1.0f);
 //			mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear,0.5f, 1, -1, 1.0f, 1.0f);
@@ -426,7 +425,7 @@ class cScrMap : iScrMap
 			// Play Player/UI/blackout_hit when player hit their head
 
 		}
-		else if (Sequence_DoStepAndWait(2))
+		else if (Sequence_DoStepAndPause())
 		{
 			StartPlayerFallFx();
 			StartFallAnim("Fall1", 0.65f, 0.7f);
@@ -434,7 +433,13 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(2))
 		{
-		
+			cLux_AddDebugMessage("Flush 1 complete.");
+			Effect_Fade_Out(0.0f);
+		}
+		else if (Sequence_DoStepAndPause())
+		{
+			StartFallAnim("Fall2", 0.75f, 0.8f);
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 12.0f, "StormAudio_Stage0_Sweeteners");
 		}
 		
 		// Before crashing the player flies through wall of fog particles simulating the storm, then once on the other side *donk*
@@ -503,10 +508,16 @@ class cScrMap : iScrMap
 		Emotion_StopHeartbeat(mlHeartbeatID);
 			
 		cLux_AddTodoMessage("SOUND: Fade out player struggling as carried through through water flow");
-		Sound_Stop("TEMPFLOOD", 8.0f);
-						
 		return true;
 	}
+	
+	bool OnFlushComplete(const tString &in asEntity, int alDirection)
+	{
+		SequenceStates_Resume("SequenceIntro");
+		return true;
+	}
+	
+	//-------------------------------------------------------
 	
 	//} END SCENE 1
 	
