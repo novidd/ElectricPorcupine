@@ -358,22 +358,17 @@ class cScrMap : iScrMap
 	{
 		Sequence_Begin("SequenceIntro", mIntroSequence);
 			
-		if (Sequence_DoStepAndWait(2))
+		if (Sequence_DoStepAndWait(4))
 		{
 			cLux_AddDebugMessage("!DO INTRO!");
 			
 			Player_SetHealth(0.7f);
 			
-//			Effect_Fade_Out(0.0f);
-
 			// Flashlight ON to create sense of motion
 			Player_SetFlashlightActive(true, true);
 			Player_SetFlashlightDisabled(true);
 			
 			Effect_Rumble_Start(0.5f,1.0f,0.5,0.5f);
-			
-			StartPlayerBubbles();
-			StartPlayerMotionLines();
 			
 			AttachPlayerFallFx();
 			
@@ -396,8 +391,6 @@ class cScrMap : iScrMap
 			
 			// At the of the slide the player is still at an apex, music fades out, lighthing strikes, then the player continues to fall, music fade in
 			// Then fall toward the rock and *donk*
-			
-			//StartFallAnim("Fall1", 0.65f, 0.7f);
 			
 			// Sand particle effects on screen when falling down or toward a current (like in tau_outside when in the storm)
 			
@@ -422,16 +415,20 @@ class cScrMap : iScrMap
 			// Also change the properties of the environmental particles when the player get caught in the current
 			
 			// Edit the fogs properites so the player can see the distant lightning being struck
-			
-			// Lower hp more when crash on land
-//			if (Player_GetHealth()>0.7f)
-//					Player_SetHealth(0.35f);
 
 			// Play Player/UI/blackout_hit when player hit their head
 
 		}
+		else if (Sequence_DoStepAndWait(2))
+		{
+			StartPlayerFallFx();
+			//StartFallAnim("Fall1", 0.65f, 0.7f);
+		}
 		
 		// After player hits head on rock (Add Simon damage vo), also add screen cracks on screen
+		// Lower hp more when crash on land
+//		if (Player_GetHealth()>0.7f)
+//				Player_SetHealth(0.35f);
 		// Screen is black, distant thunder, Cath saying something (sfx over her voice), then screen and sound fades back in, the storm has started
 		// Play Player/UI/blackbox_sonar once in silence, then moments before wake up as world sfx fades in
 		// Also play Player/UI/death_tinnitus, fade it out over time
@@ -444,15 +441,16 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	void StartPlayerBubbles()
-	{
-		ParticleSystem_CreateAtEntity("PlayerBubblesPS", "loop_waterbubbles_large_cloud.ps", "PlayerBubblesArea", true);
-	}
-	
-	void StartPlayerMotionLines()
+	void StartPlayerFallFx()
 	{
 		ParticleSystem_CreateAtEntityExt
-			("PlayerMotionLinesPS", "tau_storm_static_large.ps", "PlayerMotionLinesArea", true, cColor(1,0.936,0.836,0.508), 1.0f);
+			("PlayerBubblesPS", "loop_waterbubbles_large_cloud.ps", "PlayerBubblesArea", true, cColor(1,1,1,0.5), 0.1f);
+			
+		for(int i = 1; i <= 4; i++)
+		{
+			ParticleSystem_CreateAtEntityExt
+				("PlayerMotionLinesPS", "tau_storm_static_large.ps", "PlayerMotionLinesArea_"+i, true, cColor(1,0.936,0.836,0.508), 0.5f);
+		}
 	}
 	
 	//-------------------------------------------------------
@@ -460,7 +458,7 @@ class cScrMap : iScrMap
 	void AttachPlayerFallFx()
 	{
 		CameraAnimation_SetAttachedEntity("PlayerBubblesArea", false, false, false);
-		Entity_AttachToEntity("PlayerMotionLinesArea", "PlayerBubblesArea", "", false);
+		Entity_AttachToEntity("PlayerMotionLinesArea_*", "PlayerBubblesArea", "", false);
 	}
 	
 	//-------------------------------------------------------
