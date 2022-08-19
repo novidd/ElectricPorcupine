@@ -358,7 +358,7 @@ class cScrMap : iScrMap
 	{
 		Sequence_Begin("SequenceIntro", mIntroSequence);
 			
-		if (Sequence_DoStepAndWait(4))
+		if (Sequence_DoStepAndWait(5))
 		{
 			cLux_AddDebugMessage("!DO INTRO!");
 			
@@ -372,9 +372,13 @@ class cScrMap : iScrMap
 			
 			AttachPlayerFallFx();
 			
+			// Need create/stop the sound each time the screen fades in/out
 			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
+//			Sound_PlayGui("Player/action/underwater/abyss_fall", 1.0f);
+
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
 			
-			CameraAnimation_Begin("Fall1", "", false);
+//			CameraAnimation_Begin("Fall1", "", false);
 			
 //			mlHeartbeatID = Emotion_StartHeartbeat(0.75f,0.75f, 1, -1, 1.0f, 1.0f);
 //			mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear,0.5f, 1, -1, 1.0f, 1.0f);
@@ -382,6 +386,9 @@ class cScrMap : iScrMap
 			// Omicron descent directional light properties at start than fade to main map settings later
 			
 			// Screen fades in and out throughout the fall
+			
+			// Distant thunder here and there
+			
 			// The player rolls around as they falls straight down, they get glimpses of the cliff side, with life like plants and such
 			
 			// When the player is going to collide with a rock wall, fade the screen in just before the redirection
@@ -422,8 +429,15 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndWait(2))
 		{
 			StartPlayerFallFx();
-			//StartFallAnim("Fall1", 0.65f, 0.7f);
+			StartFallAnim("Fall1", 0.65f, 0.7f);
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 12.0f, "StormAudio_Stage0_Sweeteners");
 		}
+		else if (Sequence_DoStepAndWait(2))
+		{
+		
+		}
+		
+		// Before crashing the player flies through wall of fog particles simulating the storm, then once on the other side *donk*
 		
 		// After player hits head on rock (Add Simon damage vo), also add screen cracks on screen
 		// Lower hp more when crash on land
@@ -463,13 +477,14 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	void StartFlushAnim(const tString&in asName, float afHeartbeatTime, float afFearLevel)
+	void StartFallAnim(const tString&in asName, float afHeartbeatTime, float afFearLevel)
 	{
 		Effect_Fade_In(1.0f);
 		
 		// Panicking!
 		mlHeartbeatID = Emotion_StartHeartbeat(afHeartbeatTime,0.75f,1, -1, 1.0f, 1.0f);
-		mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear, afFearLevel, 1, 1.0f, 1.0f);
+		// Stop breathing when playing dialogue
+		mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear, afFearLevel*2, 1, -1, 1.0f);
 		
 		CameraAnimation_End();
 		CameraAnimation_Begin(asName,"", false);
@@ -582,13 +597,32 @@ class cScrMap : iScrMap
 		Map_SetPreloadPriority(eWorldStreamPriority_VeryHigh);
 	}
 	
+	//}-------------------------------------------------------
+	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
 	// AUDIO
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
-	//-------------------------------------------------------
+	/////////////////////////////////////////
+	// STORM AUDIO
+	//{///////////////////////////////////////
+	
+	void StormAudio_Stage0_Sweeteners(const tString &in asTimer)
+	{
+		if(asTimer == "StormAudio_Stage0_ThunderSweetener")
+		{
+			//Trigger thunder and duck storm 
+			cLux_AddDebugMessage("Stage 0 Thunder triggered");
+			Sound_CreateAtEntity("StormAudio_Stage0_Thunder", "04_01_tau_outside/AMB/storm/thunder/stage_0", "Player", 0.0f, false, 1.0f);
+
+			//Start timer for thunder again, fade up storm on release
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", cMath_RandRectf(25.0f,35.0f), "StormAudio_Stage0_Sweeteners");
+		}
+	}
+	
+	//}-------------------------------------------------------
 	
 	void AudioManager()
 	{
