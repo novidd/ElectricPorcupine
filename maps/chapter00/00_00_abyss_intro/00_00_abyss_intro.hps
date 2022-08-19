@@ -377,6 +377,10 @@ class cScrMap : iScrMap
 			
 			AttachPlayerFallFx();
 			
+			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
+			
+			CameraAnimation_Begin("Fall1", "", false);
+			
 //			mlHeartbeatID = Emotion_StartHeartbeat(0.75f,0.75f, 1, -1, 1.0f, 1.0f);
 //			mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear,0.5f, 1, -1, 1.0f, 1.0f);
 			
@@ -394,6 +398,8 @@ class cScrMap : iScrMap
 			// Then fall toward the rock and *donk*
 			
 			//StartFallAnim("Fall1", 0.65f, 0.7f);
+			
+			// Sand particle effects on screen when falling down or toward a current (like in tau_outside when in the storm)
 			
 			// Play 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_BuildUp before screen fades in (~3s)
 			
