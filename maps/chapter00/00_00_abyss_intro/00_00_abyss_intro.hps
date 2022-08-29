@@ -500,6 +500,7 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndPause())
 		{
+			// Make this fall shorter in time
 			StartPlayerFallFx();
 			StartFallAnim("Fall1", 0.65f, 0.7f);
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 6.0f, "StormAudio_Stage0_Sweeteners");
