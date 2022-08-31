@@ -566,6 +566,7 @@ class cScrMap : iScrMap
 	void StartFallAnim(const tString&in asName, float afHeartbeatTime, float afFearLevel)
 	{
 		Effect_Fade_In(0.01f);
+		// Do *voom* sound effect here
 		
 		// Panicking!
 		mlHeartbeatID = Emotion_StartHeartbeat(afHeartbeatTime,0.75f,1, -1, 1.0f, 1.0f);
