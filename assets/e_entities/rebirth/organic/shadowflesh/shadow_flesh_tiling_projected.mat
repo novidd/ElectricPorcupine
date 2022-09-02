@@ -1,0 +1,36 @@
+<Material>
+    <Main Type="projectedUV" DepthTest="true" ForceFullScaleTextures="false" UVSubDivs="1 1" UseAlpha="false" PhysicsMaterial="Default" BlendMode="Add" />
+    <TextureUnits>
+        <DiffuseSide MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/shadow_flesh_tiling.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <DiffuseTop MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/shadow_flesh_tiling.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <DiffuseBottom MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/shadow_flesh_tiling.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <NMapSide MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/animation/shadow_flesh_normal_001.dds" Type="2D" Wrap="Repeat" AnimMode="Loop" AnimFrameTime="0.05" AnimStartTime="0" />
+        <NMapTop MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/animation/shadow_flesh_normal_001.dds" Type="2D" Wrap="Repeat" AnimMode="Loop" AnimFrameTime="0.05" AnimStartTime="0" />
+        <NMapBottom MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/animation/shadow_flesh_normal_001.dds" Type="2D" Wrap="Repeat" AnimMode="Loop" AnimFrameTime="0.05" AnimStartTime="0" />
+        <SpecularSide MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/shadow_flesh_tiling_spec.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <SpecularTop MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/shadow_flesh_tiling_spec.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <SpecularBottom MipMaps="true" Compress="true" File="entities/nonexclusive/organic/shadowflesh/shadow_flesh_tiling_spec.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <HeightSide MipMaps="true" Compress="false" File="entities/nonexclusive/organic/shadowflesh/animation/shadow_flesh_height_001.dds" Type="2D" Wrap="ClampToEdge" AnimMode="Loop" AnimFrameTime="0.05" AnimStartTime="0" />
+        <HeightTop MipMaps="true" Compress="false" File="entities/nonexclusive/organic/shadowflesh/animation/shadow_flesh_height_001.dds" Type="2D" Wrap="ClampToEdge" AnimMode="Loop" AnimFrameTime="0.05" AnimStartTime="0" />
+        <HeightBottom MipMaps="true" Compress="false" File="entities/nonexclusive/organic/shadowflesh/animation/shadow_flesh_height_001.dds" Type="2D" Wrap="ClampToEdge" AnimMode="Loop" AnimFrameTime="0.05" AnimStartTime="0" />
+    </TextureUnits>
+    <SpecificVariables>
+        <Var Name="TextureUVScaleSide" Value="3" />
+        <Var Name="TextureUVScaleTop" Value="3" />
+        <Var Name="TextureUVScaleBottom" Value="3" />
+        <Var Name="TextureUVOffset" Value="0 0 0" />
+        <Var Name="PlanarUVRotation" Value="0 0 0" />
+        <Var Name="BlendSmoothness" Value="0.5" />
+        <Var Name="NormalMapBlendImpact" Value="0" />
+        <Var Name="HeightMapScaleSide" Value="-0.012" />
+        <Var Name="HeightMapBiasSide" Value="0" />
+        <Var Name="HeightMapScaleTop" Value="-0.012" />
+        <Var Name="HeightMapBiasTop" Value="0" />
+        <Var Name="HeightMapScaleBottom" Value="-0.012" />
+        <Var Name="HeightMapBiasBottom" Value="0" />
+        <Var Name="DetailTextureActive" Value="false" />
+        <Var Name="DetailTextureUVScale" Value="0.3" />
+        <Var Name="DetailBlendWeight" Value="0.5" />
+        <Var Name="DetailBlendMode" Value="Alpha" />
+    </SpecificVariables>
+</Material>

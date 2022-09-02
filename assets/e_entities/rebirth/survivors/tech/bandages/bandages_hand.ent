@@ -1,0 +1,73 @@
+<Entity>
+    <ModelData>
+        <Entities />
+        <Mesh Filename="entities/_temp/marc/bandages/bandages.dae">
+            <SubMesh ID="0" Name="bandageLO" CreStamp="0" ModStamp="0" WorldPos="0 0 0" Rotation="0 0 0" Scale="0.25 0.25 0.25" TriCount="696" Material="" Static="false" />
+        </Mesh>
+        <Bones />
+        <Shapes>
+            <Shape ID="1" Name="ShapeCylinder_1" CreStamp="1456221831" ModStamp="1456221844" WorldPos="0 0 0" Rotation="0 0 0" Scale="0.0542512 0.148538 0" RelativeTranslation="0 0 0" RelativeRotation="0 -0 0" RelativeScale="1 1 1" ShapeType="Cylinder" />
+        </Shapes>
+        <Bodies>
+            <Body ID="2" Name="Body_1" CreStamp="0" ModStamp="1519820390" WorldPos="0 0 0" Rotation="0 0 0" Scale="0.25 0.25 0.25" Material="Default" Mass="0" AngularDamping="0.5" LinearDamping="0.1" MaxAngularSpeed="20" MaxLinearSpeed="20" BuoyancyDensityMul="1" BlocksSound="false" ContinuousCollision="true" CanAttachCharacter="false" PushedByCharacterGravity="false" CollideCharacter="true" CollideNonCharacter="true" Volatile="false" UseSurfaceEffects="true" HasGravity="true" BlocksLight="true">
+                <Children>
+                    <Child ID="0" />
+                </Children>
+                <Shape ID="1" />
+            </Body>
+        </Bodies>
+        <Joints />
+        <Animations />
+        <ProcAnimations />
+    </ModelData>
+    <UserDefinedVariables EntityType="Prop_Pickup">
+        <Var Name="Health" Value="100" />
+        <Var Name="Toughness" Value="0" />
+        <Var Name="MaxInteractDistance" Value="0" />
+        <Var Name="EventTag" Value="" />
+        <Var Name="ShowHints" Value="true" />
+        <Var Name="LifeLength" Value="0" />
+        <Var Name="DissolveDuringLifeDecrease" Value="true" />
+        <Var Name="QuickSave" Value="false" />
+        <Var Name="FullGameSave" Value="false" />
+        <Var Name="BlocksLineOfSight" Value="MaterialBased" />
+        <Var Name="MainPhysicsBody" Value="" />
+        <Var Name="NoGravityWhenUnderwater" Value="false" />
+        <Var Name="DisableFreezeAtStart" Value="false" />
+        <Var Name="CustomScriptFile" Value="" />
+        <Var Name="CustomScriptClass" Value="" />
+        <Var Name="ShowMesh" Value="true" />
+        <Var Name="DissolveOnDestruction" Value="false" />
+        <Var Name="DissolveTime" Value="1.0" />
+        <Var Name="RandomizeAnimationStart" Value="true" />
+        <Var Name="EffectsOnSound" Value="" />
+        <Var Name="EffectsOffSound" Value="" />
+        <Var Name="EffectsOnTime" Value="0.2" />
+        <Var Name="EffectsOffTime" Value="0.2" />
+        <Var Name="StaticMoveCheckCollision" Value="false" />
+        <Var Name="StaticMoveStartSound" Value="" />
+        <Var Name="StaticMoveStopSound" Value="" />
+        <Var Name="StaticMoveLoopSound" Value="" />
+        <Var Name="StaticMoveLoopSoundFade" Value="true" />
+        <Var Name="BreakActive" Value="false" />
+        <Var Name="BreakOnlyOnMainBody" Value="false" />
+        <Var Name="BreakDestroyJoints" Value="false" />
+        <Var Name="BreakMinEnergy" Value="100" />
+        <Var Name="BreakEntity" Value="" />
+        <Var Name="BreakEntityAlignBody" Value="" />
+        <Var Name="BreakSound" Value="" />
+        <Var Name="BreakParticleSystem" Value="" />
+        <Var Name="BreakImpulse" Value="4" />
+        <Var Name="ItemType" Value="Bandages_Roll" />
+        <Var Name="ContentSubType" Value="" />
+        <Var Name="ContentLevel" Value="0" />
+        <Var Name="ContentColor" Value="0 0 0 0" />
+        <Var Name="OnlyNeedOne" Value="false" />
+        <Var Name="PutAwayAfter" Value="true" />
+        <Var Name="AnimationName" Value="" />
+        <Var Name="UseFullnessAnimation" Value="false" />
+        <Var Name="IsMeat" Value="false" />
+        <Var Name="MeatAttractDistance" Value="10" />
+        <Var Name="MeatAttractDistanceMax" Value="20" />
+    </UserDefinedVariables>
+</Entity>

@@ -1,0 +1,82 @@
+<Entity>
+    <ModelData>
+        <Entities />
+        <Mesh Filename="static_objects/_temp/cesar/survivors/plane_wreckage/plane_wreckage_cockpit_lever.dae">
+            <SubMesh ID="0" Name="plane_wreckage_cockpit_lever" CreStamp="0" ModStamp="1568716418" WorldPos="0 0.150347 0" Rotation="0 0 0" Scale="1 1 1" TriCount="192" Material="" Static="true" />
+        </Mesh>
+        <Bones />
+        <Shapes>
+            <Shape ID="1" Name="ShapeCapsule_1" CreStamp="1568715602" ModStamp="1568715642" WorldPos="0 0.279026 0.0487439" Rotation="0.59793 -0 0" Scale="0.0166187 0.183038 0" RelativeTranslation="8.19675e-05 -0.032719 -0.022761" RelativeRotation="0.59793 -0 0" RelativeScale="1 1 1" ShapeType="Capsule" />
+            <Shape ID="2" Name="ShapeSphere_1" CreStamp="1568715652" ModStamp="1568715683" WorldPos="-0.000163935 0.344464 0.0942659" Rotation="0 0 0" Scale="0.0246827 0 0" RelativeTranslation="-8.19675e-05 0.032719 0.022761" RelativeRotation="0 -0 0" RelativeScale="1 1 1" ShapeType="Sphere" />
+        </Shapes>
+        <Bodies>
+            <Body ID="3" Name="Body_1" CreStamp="0" ModStamp="1568717014" WorldPos="-8.19675e-05 0.311745 0.0715049" Rotation="0 0 0" Scale="1 1 1" Material="metal_grate" Mass="0.5" AngularDamping="0.5" LinearDamping="0.1" MaxAngularSpeed="20" MaxLinearSpeed="20" BuoyancyDensityMul="1" BlocksSound="false" ContinuousCollision="true" CanAttachCharacter="false" PushedByCharacterGravity="false" CollideCharacter="true" CollideNonCharacter="true" Volatile="false" UseSurfaceEffects="true" HasGravity="false" BlocksLight="true">
+                <Shape ID="1" />
+                <Shape ID="2" />
+            </Body>
+        </Bodies>
+        <Joints>
+            <JointHinge ID="4" Name="JointHinge_1" CreStamp="1568715825" ModStamp="1584018326" WorldPos="0 0 0" Rotation="0 -0 1.5708" Scale="1 1 1" LimitStepCount="0" Stiffness="0" MinMoveSpeed="0.1" MinMoveFreq="0.95" MinMoveFreqSpeed="0.2" MinMoveVolume="0.01" MaxMoveSpeed="2" MaxMoveFreq="1.1" MaxMoveFreqSpeed="0.7" MaxMoveVolume="0.8" MiddleMoveSpeed="0.5" MiddleMoveVolume="0.5" MinLimitSound="level_entity_shared/levers/console_lever/lever_start_stop" MinLimitMinSpeed="0" MinLimitMaxSpeed="0" MaxLimitSound="level_entity_shared/levers/console_lever/lever_start_stop" MaxLimitMinSpeed="0" MaxLimitMaxSpeed="0" Breakable="false" BreakForce="0" BreakSound="" CollideBodies="false" StickyMinLimit="true" StickyMaxLimit="true" MoveSound="level_entity_shared/levers/console_lever/lever_move" MoveType="Angular" MinAngle="0" MaxAngle="2" ConnectedParentBodyID="-1" ConnectedChildBodyID="3" />
+        </Joints>
+        <Animations />
+        <ProcAnimations />
+    </ModelData>
+    <UserDefinedVariables EntityType="Prop_Lever">
+        <Var ObjectId="4294967295" Name="Health" Value="1.0" />
+        <Var ObjectId="4294967295" Name="Toughness" Value="0" />
+        <Var ObjectId="4294967295" Name="MaxInteractDistance" Value="0" />
+        <Var ObjectId="4294967295" Name="EventTag" Value="" />
+        <Var ObjectId="4294967295" Name="ShowHints" Value="true" />
+        <Var ObjectId="4294967295" Name="LifeLength" Value="0" />
+        <Var ObjectId="4294967295" Name="DissolveDuringLifeDecrease" Value="true" />
+        <Var ObjectId="4294967295" Name="QuickSave" Value="false" />
+        <Var ObjectId="4294967295" Name="FullGameSave" Value="false" />
+        <Var ObjectId="4294967295" Name="BlocksLineOfSight" Value="MaterialBased" />
+        <Var ObjectId="4294967295" Name="MainPhysicsBody" Value="" />
+        <Var ObjectId="4294967295" Name="NoGravityWhenUnderwater" Value="false" />
+        <Var ObjectId="4294967295" Name="DisableFreezeAtStart" Value="false" />
+        <Var ObjectId="4294967295" Name="CustomScriptFile" Value="" />
+        <Var ObjectId="4294967295" Name="CustomScriptClass" Value="" />
+        <Var ObjectId="4294967295" Name="ShowMesh" Value="true" />
+        <Var ObjectId="4294967295" Name="DissolveOnDestruction" Value="false" />
+        <Var ObjectId="4294967295" Name="DissolveTime" Value="1.0" />
+        <Var ObjectId="4294967295" Name="RandomizeAnimationStart" Value="true" />
+        <Var ObjectId="4294967295" Name="RootMotionBone" Value="" />
+        <Var ObjectId="4294967295" Name="EffectsOnSound" Value="" />
+        <Var ObjectId="4294967295" Name="EffectsOffSound" Value="" />
+        <Var ObjectId="4294967295" Name="EffectsOnTime" Value="0.2" />
+        <Var ObjectId="4294967295" Name="EffectsOffTime" Value="0.2" />
+        <Var ObjectId="4294967295" Name="StaticMoveCheckCollision" Value="false" />
+        <Var ObjectId="4294967295" Name="StaticMoveStartSound" Value="" />
+        <Var ObjectId="4294967295" Name="StaticMoveStopSound" Value="" />
+        <Var ObjectId="4294967295" Name="StaticMoveLoopSound" Value="" />
+        <Var ObjectId="4294967295" Name="StaticMoveLoopSoundFade" Value="true" />
+        <Var ObjectId="4294967295" Name="BreakActive" Value="false" />
+        <Var ObjectId="4294967295" Name="BreakOnlyOnMainBody" Value="false" />
+        <Var ObjectId="4294967295" Name="BreakDestroyJoints" Value="false" />
+        <Var ObjectId="4294967295" Name="BreakMinEnergy" Value="100" />
+        <Var ObjectId="4294967295" Name="BreakEntity" Value="" />
+        <Var ObjectId="4294967295" Name="BreakEntityAlignBody" Value="" />
+        <Var ObjectId="4294967295" Name="BreakSound" Value="" />
+        <Var ObjectId="4294967295" Name="BreakParticleSystem" Value="" />
+        <Var ObjectId="4294967295" Name="BreakImpulse" Value="4" />
+        <Var ObjectId="4294967295" Name="CanInteractWithStaticBody" Value="true" />
+        <Var ObjectId="4294967295" Name="StuckSound" Value="" />
+        <Var ObjectId="4294967295" Name="InteractIcon" Value="PullLever" />
+        <Var ObjectId="4294967295" Name="MoveSound" Value="" />
+        <Var ObjectId="4294967295" Name="MinMoveSoundSpeed" Value="-1" />
+        <Var ObjectId="4294967295" Name="MoveMaxSpeed" Value="13.5" />
+        <Var ObjectId="4294967295" Name="MoveSlowDownFactor" Value="5" />
+        <Var ObjectId="4294967295" Name="MoveSpeedFactor" Value="8" />
+        <Var ObjectId="4294967295" Name="MoveThrowImpulse" Value="6.0" />
+        <Var ObjectId="4294967295" Name="MinLimitRange" Value="5.0" />
+        <Var ObjectId="4294967295" Name="MaxLimitRange" Value="5.0" />
+        <Var ObjectId="4294967295" Name="MinLimitSound" Value="" />
+        <Var ObjectId="4294967295" Name="MaxLimitSound" Value="" />
+        <Var ObjectId="4294967295" Name="MinInteractSound" Value="" />
+        <Var ObjectId="4294967295" Name="MaxInteractSound" Value="" />
+        <Var ObjectId="4294967295" Name="AutoMoveSpeedFactor" Value="2" />
+        <Var ObjectId="4294967295" Name="AutoMoveMaxSpeed" Value="8" />
+        <Var ObjectId="4294967295" Name="InteractConnectionSpeedFactor" Value="4" />
+    </UserDefinedVariables>
+</Entity>

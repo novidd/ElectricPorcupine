@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2020-01-21T09:51:43Z</created><keywords></keywords><modified>2020-01-21T09:51:43Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_images>
+    <image id="file21-image" name="file21"><init_from>file://D:/Frictional_SVN/amnesia2/trunk/redist/static_objects/_temp/cesar/survivors/plane_wreckage/plane_wreckage_cockpit_alpha.dds</init_from></image>
+  </library_images>
+  <library_materials>
+    <material id="plane_wreckage_cockpit_alpha_MAT" name="plane_wreckage_cockpit_alpha_MAT">
+      <instance_effect url="#plane_wreckage_cockpit_alpha_MAT-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="plane_wreckage_cockpit_alpha_MAT-fx" name="plane_wreckage_cockpit_alpha_MAT">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file21-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.500000  0.500000 0.500000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">6.311791</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">0.500000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="plane_wreckage_shattered_glass-lib" name="plane_wreckage_shattered_glassMesh">
+      <mesh>
+        <source id="plane_wreckage_shattered_glass-POSITION">
+          <float_array id="plane_wreckage_shattered_glass-POSITION-array" count="171">
+5.999084 -0.000000 -19.357794
+7.707514 -0.000000 -12.300286
+8.282151 0.000000 -9.926465
+13.298611 0.000000 9.403872
+13.948842 0.000000 12.089972
+14.182599 0.000000 13.055618
+10.766591 -0.000000 -12.828041
+9.978001 0.000000 -10.166490
+1.761091 0.000000 12.701528
+16.310101 -0.000000 8.831127
+16.693066 0.000000 10.499743
+16.831514 0.000000 11.102978
+0.564545 0.000000 12.929095
+2.588699 -0.000000 9.908286
+5.878058 -0.000000 3.040644
+6.904826 -0.000000 1.508315
+14.439159 0.000000 -10.279268
+6.781973 -0.000000 -16.123686
+19.496635 0.000000 -17.826946
+21.073553 -0.000000 -17.923471
+6.267362 -0.000000 -19.417713
+8.851007 -0.000000 -16.250334
+14.274019 -0.000000 -14.053207
+15.753020 0.000000 -12.240048
+16.156130 0.000000 -11.745863
+18.007988 -0.000000 -9.475604
+14.757198 0.000000 -10.753904
+15.744013 0.000000 -11.687534
+19.129915 0.000000 -14.890950
+21.050533 -0.000000 -16.708057
+9.021360 -0.000000 2.820626
+15.968967 -0.000000 -8.972449
+14.643746 -0.000000 -9.387860
+16.883606 0.000000 -13.927315
+10.075029 -0.000000 -16.053185
+-7.824186 -0.000000 -12.369858
+-10.209325 0.000000 -11.844164
+-21.286598 0.000000 -9.402693
+-22.256847 -0.000000 -9.188845
+-7.359458 -0.000000 -9.300573
+-10.004229 0.000000 -10.143738
+-19.102455 -0.000000 -13.044290
+-19.753147 0.000000 -6.626343
+-20.359100 -0.000000 -6.500330
+-19.305367 -0.000000 -14.245262
+-16.326826 -0.000000 -12.159409
+6.825504 -0.000000 -15.336977
+1.726701 0.000000 8.360687
+1.790772 0.000000 9.939257
+10.129418 -0.000000 -15.783731
+6.909571 -0.000000 -13.265776
+0.122634 0.000000 -1.973589
+-1.720561 0.000000 -0.532193
+-1.201133 0.000000 7.933660
+0.576090 0.000000 9.891245
+-0.056903 0.000000 0.632856
+12.750318 -0.000000 7.138882
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_shattered_glass-POSITION-array" count="57" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_wreckage_shattered_glass-Normal0">
+          <float_array id="plane_wreckage_shattered_glass-Normal0-array" count="171">
+0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+-0.000000 1.000000 -0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-0.000000 1.000000 -0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+0.000000 1.000000 -0.000000
+0.000000 1.000000 -0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_shattered_glass-Normal0-array" count="57" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_wreckage_shattered_glass-UV0">
+          <float_array id="plane_wreckage_shattered_glass-UV0-array" count="114">
+0.382837 0.635862
+0.421167 0.644091
+0.434121 0.647364
+0.480625 0.653787
+0.500870 0.657673
+0.506959 0.658629
+0.418941 0.661575
+0.433367 0.657242
+0.481583 0.636467
+0.479674 0.670971
+0.492228 0.673265
+0.496029 0.673820
+0.481960 0.629639
+0.466865 0.643393
+0.457701 0.651736
+0.449716 0.658720
+0.439330 0.666935
+0.400402 0.639633
+0.397828 0.695515
+0.397704 0.704546
+0.382491 0.637345
+0.399846 0.651209
+0.418382 0.665964
+0.428887 0.674783
+0.431839 0.677271
+0.445424 0.687062
+0.436826 0.668905
+0.432022 0.674871
+0.414849 0.693718
+0.404786 0.704541
+0.458272 0.669368
+0.447202 0.675318
+0.444300 0.667875
+0.419709 0.680981
+0.418382 0.665964
+0.428887 0.674783
+0.419709 0.680981
+0.421167 0.644091
+0.434121 0.647364
+0.433367 0.657242
+0.418941 0.661575
+0.496029 0.673820
+0.492228 0.673265
+0.500870 0.657673
+0.506959 0.658629
+0.481583 0.636467
+0.466865 0.643393
+0.481960 0.629639
+0.382837 0.635862
+0.400402 0.639633
+0.399846 0.651209
+0.382491 0.637345
+0.397704 0.704546
+0.397828 0.695515
+0.414849 0.693718
+0.404786 0.704541
+0.467799 0.652640
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_shattered_glass-UV0-array" count="57" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_wreckage_shattered_glass-VERTEX">
+          <input semantic="POSITION" source="#plane_wreckage_shattered_glass-POSITION"/>
+          <input semantic="NORMAL" source="#plane_wreckage_shattered_glass-Normal0"/>
+        </vertices>
+        <triangles count="27" material="plane_wreckage_cockpit_alpha_MAT"><input semantic="VERTEX" offset="0" source="#plane_wreckage_shattered_glass-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#plane_wreckage_shattered_glass-UV0"/><p> 22 22 23 23 33 33 1 1 7 7 6 6 7 7 1 1 2 2 10 10 4 4 11 11 11 11 4 4 5 5 8 8 13 13 12 12 20 20 17 17 21 21 17 17 20 20 0 0 32 32 26 26 16 16 31 31 24 24 27 27 31 31 27 27 26 26 31 31 26 26 32 32 24 24 31 31 25 25 29 29 18 18 28 28 18 18 29 29 19 19 51 34 52 35 55 36 40 39 39 40 35 37 40 39 35 37 36 38 37 43 43 41 42 42 43 41 37 43 38 44 41 45 45 46 44 47 49 51 46 49 50 50 46 49 49 51 34 48 47 53 54 55 48 52 54 55 47 53 53 54 14 14 30 30 15 15 9 9 56 56 3 3</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="plane_wreckage_shattered_glass" name="plane_wreckage_shattered_glass">
+      <node name="_exported_ingame" id="_exported_ingame" sid="_exported_ingame"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="plane_wreckage_shattered_glass" id="plane_wreckage_shattered_glass" sid="plane_wreckage_shattered_glass"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#plane_wreckage_shattered_glass-lib"><bind_material><technique_common><instance_material symbol="plane_wreckage_cockpit_alpha_MAT" target="#plane_wreckage_cockpit_alpha_MAT"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>2.000000</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#plane_wreckage_shattered_glass"></instance_visual_scene>
+  </scene>
+</COLLADA>

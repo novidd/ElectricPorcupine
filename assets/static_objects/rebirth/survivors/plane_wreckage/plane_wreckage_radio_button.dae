@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2019-09-18T08:04:38Z</created><keywords></keywords><modified>2019-09-18T08:04:38Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_images>
+    <image id="file22-image" name="file22"><init_from>file://D:/Frictional_SVN/amnesia2/trunk/redist/static_objects/_temp/cesar/survivors/plane_wreckage/plane_wreckage_radio.dds</init_from></image>
+  </library_images>
+  <library_materials>
+    <material id="plane_wreckage_radio_MAT" name="plane_wreckage_radio_MAT">
+      <instance_effect url="#plane_wreckage_radio_MAT-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="plane_wreckage_radio_MAT-fx" name="plane_wreckage_radio_MAT">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file22-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">6.311791</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">0.500000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="plane_wreckage_radio_button_ncl1_1-lib" name="plane_wreckage_radio_button_ncl1_1Mesh">
+      <mesh>
+        <source id="plane_wreckage_radio_button_ncl1_1-POSITION">
+          <float_array id="plane_wreckage_radio_button_ncl1_1-POSITION-array" count="24">
+-5.180000 -0.504876 2.066126
+5.180000 -0.504876 2.066126
+-4.877266 0.504876 1.945376
+4.877266 0.504876 1.945376
+-4.877266 0.504876 -1.945376
+4.877266 0.504876 -1.945376
+-5.180000 -0.504876 -2.066126
+5.180000 -0.504876 -2.066126
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_radio_button_ncl1_1-POSITION-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_wreckage_radio_button_ncl1_1-Normal0">
+          <float_array id="plane_wreckage_radio_button_ncl1_1-Normal0-array" count="108">
+0.000000 0.118737 0.992926
+0.000000 0.118737 0.992926
+0.000000 0.118737 0.992926
+0.000000 0.118737 0.992926
+0.000000 0.118737 0.992926
+0.000000 0.118737 0.992926
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.118737 -0.992926
+0.000000 0.118737 -0.992926
+0.000000 0.118737 -0.992926
+0.000000 0.118737 -0.992926
+0.000000 0.118737 -0.992926
+0.000000 0.118737 -0.992926
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.957876 0.287182 0.000000
+0.957876 0.287182 0.000000
+0.957876 0.287182 0.000000
+0.957876 0.287182 0.000000
+0.957876 0.287182 0.000000
+0.957876 0.287182 0.000000
+-0.957876 0.287182 0.000000
+-0.957876 0.287182 0.000000
+-0.957876 0.287182 0.000000
+-0.957876 0.287182 0.000000
+-0.957876 0.287182 0.000000
+-0.957876 0.287182 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_radio_button_ncl1_1-Normal0-array" count="36" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_wreckage_radio_button_ncl1_1-UV0">
+          <float_array id="plane_wreckage_radio_button_ncl1_1-UV0-array" count="48">
+0.919941 0.224675
+0.919953 0.147427
+0.933152 0.149687
+0.933141 0.222420
+0.424796 0.346776
+0.424796 0.274042
+0.450181 0.274042
+0.450181 0.346776
+0.928857 0.296940
+0.928868 0.224207
+0.942068 0.221952
+0.942056 0.299199
+0.560488 0.328371
+0.560488 0.251123
+0.587448 0.251123
+0.587448 0.328371
+0.646015 0.027937
+0.645948 0.000977
+0.659318 0.001731
+0.659381 0.027115
+0.631596 0.027936
+0.631675 0.000977
+0.645040 0.001803
+0.644966 0.027188
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_radio_button_ncl1_1-UV0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_wreckage_radio_button_ncl1_1-VERTEX">
+          <input semantic="POSITION" source="#plane_wreckage_radio_button_ncl1_1-POSITION"/>
+        </vertices>
+        <triangles count="12" material="plane_wreckage_radio_MAT"><input semantic="VERTEX" offset="0" source="#plane_wreckage_radio_button_ncl1_1-VERTEX"/><input semantic="NORMAL" offset="1" source="#plane_wreckage_radio_button_ncl1_1-Normal0"/><input semantic="TEXCOORD" offset="2" set="0" source="#plane_wreckage_radio_button_ncl1_1-UV0"/><p> 0 0 0 1 1 1 3 2 2 0 3 0 3 4 2 2 5 3 2 6 4 3 7 5 5 8 6 2 9 4 5 10 6 4 11 7 7 12 10 6 13 11 4 14 8 7 15 10 4 16 8 5 17 9 1 18 14 0 19 15 6 20 12 1 21 14 6 22 12 7 23 13 5 24 18 3 25 19 1 26 16 1 27 16 7 28 17 5 29 18 2 30 22 6 31 20 0 32 21 6 33 20 2 34 22 4 35 23</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="plane_wreckage_radio_button" name="plane_wreckage_radio_button">
+      <node name="_exported_ingame" id="_exported_ingame" sid="_exported_ingame"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="plane_wreckage_radio" id="plane_wreckage_radio" sid="plane_wreckage_radio"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="plane_wreckage_radio_button" id="plane_wreckage_radio_button" sid="plane_wreckage_radio_button"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="plane_wreckage_radio_button_ncl1_1" id="plane_wreckage_radio_button_ncl1_1" sid="plane_wreckage_radio_button_ncl1_1"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#plane_wreckage_radio_button_ncl1_1-lib"><bind_material><technique_common><instance_material symbol="plane_wreckage_radio_MAT" target="#plane_wreckage_radio_MAT"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node></node></node></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>2.000000</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#plane_wreckage_radio_button"></instance_visual_scene>
+  </scene>
+</COLLADA>

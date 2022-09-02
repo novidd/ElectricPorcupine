@@ -1,0 +1,84 @@
+<Entity>
+    <ModelData>
+        <Entities />
+        <Mesh Filename="entities/_temp/marc/bandages/bandages_jar.dae">
+            <SubMesh ID="0" Name="bandagejarLO" CreStamp="0" ModStamp="0" WorldPos="0 0 0" Rotation="0 0 0" Scale="1 1 1" TriCount="690" Material="" Static="false" />
+        </Mesh>
+        <Bones />
+        <Shapes>
+            <Shape ID="1" Name="ShapeCylinder_1" CreStamp="1456221926" ModStamp="1456221937" WorldPos="0 0 0" Rotation="0 0 0" Scale="0.229374 0.636577 0" RelativeTranslation="0 0 0" RelativeRotation="0 -0 0" RelativeScale="1 1 1" ShapeType="Cylinder" />
+        </Shapes>
+        <Bodies>
+            <Body ID="2" Name="Body_1" CreStamp="0" ModStamp="1456221955" WorldPos="0 0 0" Rotation="0 0 0" Scale="1 1 1" Material="Default Hard" Mass="1" AngularDamping="0.5" LinearDamping="0.1" MaxAngularSpeed="20" MaxLinearSpeed="20" BuoyancyDensityMul="1" BlocksSound="false" ContinuousCollision="true" CanAttachCharacter="false" PushedByCharacterGravity="false" CollideCharacter="true" CollideNonCharacter="true" Volatile="false" UseSurfaceEffects="true" HasGravity="true" BlocksLight="true">
+                <Children>
+                    <Child ID="0" />
+                </Children>
+                <Shape ID="1" />
+            </Body>
+        </Bodies>
+        <Joints />
+        <Animations />
+        <ProcAnimations />
+    </ModelData>
+    <UserDefinedVariables EntityType="Prop_Rigid">
+        <Var Name="Health" Value="100" />
+        <Var Name="Toughness" Value="0" />
+        <Var Name="MaxInteractDistance" Value="0" />
+        <Var Name="EventTag" Value="" />
+        <Var Name="ShowHints" Value="true" />
+        <Var Name="LifeLength" Value="0" />
+        <Var Name="DissolveDuringLifeDecrease" Value="true" />
+        <Var Name="QuickSave" Value="false" />
+        <Var Name="FullGameSave" Value="false" />
+        <Var Name="BlocksLineOfSight" Value="MaterialBased" />
+        <Var Name="MainPhysicsBody" Value="" />
+        <Var Name="NoGravityWhenUnderwater" Value="false" />
+        <Var Name="DisableFreezeAtStart" Value="false" />
+        <Var Name="CustomScriptFile" Value="" />
+        <Var Name="CustomScriptClass" Value="" />
+        <Var Name="ShowMesh" Value="true" />
+        <Var Name="DissolveOnDestruction" Value="false" />
+        <Var Name="DissolveTime" Value="1.0" />
+        <Var Name="RandomizeAnimationStart" Value="true" />
+        <Var Name="EffectsOnSound" Value="" />
+        <Var Name="EffectsOffSound" Value="" />
+        <Var Name="EffectsOnTime" Value="0.2" />
+        <Var Name="EffectsOffTime" Value="0.2" />
+        <Var Name="StaticMoveCheckCollision" Value="false" />
+        <Var Name="StaticMoveStartSound" Value="" />
+        <Var Name="StaticMoveStopSound" Value="" />
+        <Var Name="StaticMoveLoopSound" Value="" />
+        <Var Name="StaticMoveLoopSoundFade" Value="true" />
+        <Var Name="BreakActive" Value="false" />
+        <Var Name="BreakOnlyOnMainBody" Value="false" />
+        <Var Name="BreakDestroyJoints" Value="false" />
+        <Var Name="BreakMinEnergy" Value="100" />
+        <Var Name="BreakEntity" Value="" />
+        <Var Name="BreakEntityAlignBody" Value="" />
+        <Var Name="BreakSound" Value="" />
+        <Var Name="BreakParticleSystem" Value="" />
+        <Var Name="BreakImpulse" Value="4" />
+    </UserDefinedVariables>
+    <ComponentizedFormatData>
+        <Object ID="2">
+            <Components>
+                <Name>Body_1</Name>
+                <Transform Translation="0 0 0" Rotation="0 -0 0" Scale="1 1 1" ParentID="2" />
+                <Body Material="Default Hard" Mass="1" AngularDamping="0.5" MaxAngularSpeed="20" LinearDamping="0.1" MaxLinearSpeed="20" BuoyancyDensityMul="1" BlocksSound="false" BlocksLight="true" ContinuousCollision="true" CanAttachCharacter="false" PushedByCharacterGravity="false" CollideCharacter="true" CollideNonCharacter="true" Volatile="false" UseSurfaceEffects="true" HasGravity="true" />
+                <ShapeCylinder OffsetTranslation="0 0 0" OffsetRotation="0 -0 0" Radius="0.229374" Height="0.636577" />
+            </Components>
+            <Components>
+                <Transform Translation="0 0 0" Rotation="0 -0 0" Scale="1 1 1" />
+                <Prop_Rigid />
+                <Prop Health="100" Toughness="0" MaxInteractDistance="0" EventTag="" ShowHints="true" LifeLength="0" DissolveDuringLifeDecrease="true" QuickSave="false" FullGameSave="false" BlocksLineOfSight="MaterialBased" MainPhysicsBody="" NoGravityWhenUnderwater="false" DisableFreezeAtStart="false" CustomScriptFile="" CustomScriptClass="" ShowMesh="true" DissolveOnDestruction="false" DissolveTime="1.0" RandomizeAnimationStart="true" EffectsOnSound="" EffectsOffSound="" EffectsOnTime="0.2" EffectsOffTime="0.2" StaticMoveCheckCollision="false" StaticMoveStartSound="" StaticMoveStopSound="" StaticMoveLoopSound="" StaticMoveLoopSoundFade="true" BreakActive="false" BreakOnlyOnMainBody="false" BreakDestroyJoints="false" BreakMinEnergy="100" BreakEntity="" BreakEntityAlignBody="" BreakSound="" BreakParticleSystem="" BreakImpulse="4" />
+            </Components>
+        </Object>
+        <Object ID="0">
+            <Components>
+                <Name>bandagejarLO</Name>
+                <Transform ParentID="2" Translation="0 0 0" Rotation="0 -0 0" Scale="1 1 1" />
+                <SubMesh Name="entities/_temp/marc/bandages/bandages_jar.dae/bandagejarLO" CustomMaterial="" />
+            </Components>
+        </Object>
+    </ComponentizedFormatData>
+</Entity>

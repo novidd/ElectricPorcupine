@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <authoring_tool>modo 601 [Build 48460], Microsoft Windows 7 Service Pack 1 (6.1.7601 Service Pack 1)</authoring_tool>
+            <comments>Plug-in: [Build 48460]; Use Absolute Path: No; Merge Reference Items: No; Save Hidden Items: No; Save Cameras: No; Save Lights: No; Save Locators: Yes; Save Triangles as Triangles: No; Bake Matrices: Yes; Save Vertex Normals: Yes; Save UV Texture Coordinates: Yes; Save Vertex Colors: Yes; Save Vertex Weights: Yes; Save Animation: Yes; Sample Animation: Yes; Sample Animation Start: 1; Sample Animation End: 20; Save modo Profile: Yes; Save Maya Profile: No; Save 3ds Max Profile: No; Formatted Arrays: No;</comments>
+            <source_data>file:///D:/Work/studio/Frictional%20Games/Depth/redist/entities/organic/water/stream/special_shower.dae</source_data>
+        </contributor>
+        <created>2013-08-07T14:07:03Z</created>
+        <modified>2013-08-07T14:07:03Z</modified>
+        <unit name="game" meter="1" />
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_images>
+        <image id="Image0001" name="Image0001">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/textures/fx/water/water_stream.psd</init_from>
+        </image>
+    </library_images>
+    <library_materials>
+        <material id="Material-water_stream" name="water_stream">
+            <instance_effect url="#Effect-water_stream" />
+        </material>
+    </library_materials>
+    <library_effects>
+        <effect id="Effect-water_stream" name="water_stream">
+            <profile_COMMON>
+                <newparam sid="Image0001-surface">
+                    <surface type="2D">
+                        <init_from>Image0001</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0001-sampler">
+                    <sampler2D>
+                        <source>Image0001-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0001-sampler" texcoord="Texture" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.2 0.2 0.2 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+    </library_effects>
+    <library_geometries>
+        <geometry id="Geometry-shower" name="shower">
+            <mesh>
+                <source id="Geometry-shower-positions" name="positions">
+                    <float_array id="Geometry-shower-positions-array" count="345">0.305494 -0.101691 0.00270481 0.305494 -0.101691 0.00270481 0.748623 -0.101691 0.010903 0.748623 -0.101691 0.010903 0.748623 -0.101691 0.338477 0.756949 -0.101691 -0.435633 0.741879 -0.101691 0.653172 0.725257 -0.101691 -0.717834 0.594281 -0.101691 0.738645 0.580474 -0.101691 -0.74685 0.191764 -0.101691 0.72878 0.281557 -0.101691 -0.736767 -0.119336 -0.101691 0.736814 0.0341943 -0.101691 -0.753586 -0.43921 -0.101691 0.722918 -0.155537 -0.101691 -0.749689 -0.668109 -0.101691 0.714589 -0.42426 -0.101691 -0.749372 -0.75596 -0.101691 0.661535 -0.69651 -0.101691 -0.698678 0.292645 -0.101691 -0.0186607 0.266978 -0.101691 -0.0143235 0.263236 -0.101691 0.0081117 0.289255 -0.101691 0.0187816 0.373469 -0.101691 -0.449882 0.301857 -0.101691 -0.00858737 0.4567 -0.101691 0.00899562 0.279217 -0.101691 -0.019989 0.261132 -0.101691 -0.00349919 0.274775 -0.101691 0.0161353 0.4567 -0.101691 0.00899562 0.300181 -0.101691 0.0142427 0.601003 -0.101691 -0.40352 0.748623 -0.101691 -0.205729 0.579748 -0.101691 -0.232517 0.748623 -0.101691 0.166512 0.41703 -0.101691 0.625562 0.0755224 -0.101691 0.602713 0.399886 -0.101691 0.735939 0.260442 -0.101691 0.618229 0.36337 -0.101691 -0.609465 0.41818 -0.101691 -0.742951 0.128639 -0.101691 -0.621625 0.247185 -0.101691 -0.60756 -0.464034 -0.101691 0.620783 -0.221409 -0.101691 -0.609852 -0.741703 -0.101691 0.326069 -0.728123 -0.101691 -0.588357 0.594674 -0.101691 0.564332 0.350083 -0.101691 0.488759 0.703101 -0.101691 0.728803 0.531177 -0.101691 0.607902 -0.0641877 -0.101691 0.147192 0.118817 -0.101691 0.321664 -0.0151438 -0.101691 -0.219944 -0.0864614 -0.101691 -0.0442337 0.212677 -0.101691 -0.331247 0.286495 -0.101691 -0.46203 0.116764 -0.101691 -0.355434 0.552445 -0.101691 -0.591575 0.694719 -0.101691 -0.74432 0.461573 -0.101691 -0.603419 -0.233661 -0.101691 0.586382 -0.0664298 -0.101691 -0.627288 -0.594728 -0.101691 0.592772 -0.416657 -0.101691 -0.60503 0.747604 -0.101691 0.528084 0.591706 -0.101691 0.454724 0.436297 -0.101691 -0.410802 0.289927 -0.101691 -0.296012 0.761534 -0.101691 -0.640766 0.602908 -0.101691 -0.532117 0.0868205 -0.101691 -0.199819 0.00436662 -0.101691 -0.0395058 0.0412409 -0.101691 0.132494 0.436578 -0.101691 0.421412 0.231604 -0.101691 0.289247 0.139652 -0.101691 0.106582 0.271904 -0.101691 0.201189 0.184285 -0.101691 -0.145089 0.105854 -0.101691 -0.0219329 0.48167 -0.101691 -0.292373 0.332879 -0.101691 -0.228941 0.431864 -0.101691 0.266871 0.558247 -0.101691 0.25349 0.204324 -0.101691 0.0654822 0.187268 -0.101691 -0.000776622 0.344938 -0.101691 0.122667 0.269453 -0.101691 0.106752 0.223091 -0.101691 -0.0641037 0.299713 -0.101691 -0.102811 0.366583 -0.101691 -0.122736 0.438181 -0.101691 -0.0561108 0.423349 -0.101691 0.0718018 -0.170373 -0.101691 0.149247 -0.169327 -0.101691 -0.0481609 -0.0481906 -0.101691 0.327589 0.147041 -0.101691 0.484245 -0.117607 -0.101691 -0.232405 0.12663 -0.101691 -0.491384 -0.0141723 -0.101691 -0.37338 -0.237969 -0.101691 -0.246515 -0.269839 -0.101691 -0.0674002 -0.295842 -0.101691 0.12463 -0.213191 -0.101691 0.35953 -0.446453 -0.101691 0.334868 -0.748933 -0.101691 0.0338173 -0.575953 -0.101691 0.200322 -0.299595 -0.101691 -0.434767 -0.132193 -0.101691 -0.439423 -0.742638 -0.101691 -0.429385 -0.454672 -0.101691 -0.4377 -0.370625 -0.101691 -0.0973973 -0.526539 -0.101691 -0.159148 -0.753432 -0.101691 -0.206641</float_array>
+                    <technique_common>
+                        <accessor count="115" source="#Geometry-shower-positions-array" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-shower-normals" name="normals">
+                    <float_array id="Geometry-shower-normals-array" count="3">0 1 0</float_array>
+                    <technique_common>
+                        <accessor count="1" source="#Geometry-shower-normals-array" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-shower-Texture" name="Texture">
+                    <float_array id="Geometry-shower-Texture-array" count="230">0.3 0.631013 0.3 0.762055 0.4 0.706593 0.9 0.692206 0.8 0.74683 0.9 0.821572 0.1 0.477559 0.200043 0.422479 0.1 0.348955 1 0.564811 1 0.423995 0.9 0.485387 0.00312501 0.223579 0.1 0.168134 -2.22045e-015 0.108676 1 0.277743 1 0.123843 0.9 0.197165 0.9 1.04234 0.8 1.08222 0.9 1.13627 0.1 0.981151 0.1 1.08414 0.2 1.04262 0.9 1.22232 0.75 1.29103 0.9 1.37592 0.7 1.07514 0.1 1.17668 0.1 1.33662 0.25 1.26636 0.3 1.04681 0.4 1.27231 0.5 1.48379 0.5 1.27789 0.6 1.28699 6.07967e-006 0.973142 -1.11022e-015 1.07762 0.3 0.884305 0.2 0.875378 0.2 0.756174 1 0.702404 1 0.831491 0.1 0.610616 0.1 0.742216 0.2 0.620814 0.6 0.729445 0.5 0.716652 0.6 0.911084 0.5 0.902158 0.7 0.736771 0.8 0.928937 0.7 0.920011 0.8 0.47675 0.7 0.467355 0.5 0.182649 0.600003 0.186281 0.5 -0.0162749 0.600049 -0.0197453 0.8 0.194634 0.800006 -0.0268316 0.7 0.189907 0.7 -0.0233171 0.3 0.175392 0.4 0.178492 0.3 -0.009233 0.400391 -0.0123484 0.200345 0.172348 0.9 -0.0303593 1 1.38084 1 1.22802 0.4 1.05389 0.5 1.06098 -4.44089e-016 1.66627 -4.44089e-016 1.89391 0.1 1.66659 0.1 1.89284 0.75 1.88776 0.9 1.88632 0.75 1.66872 0.9 1.66921 0.5 1.66766 0.75 1.48736 1 1.14279 1 1.04999 0.9 0.937863 1 0.94679 -1.33227e-015 0.857526 0.1 0.866452 4.88162e-005 0.732746 -1.55431e-015 0.600417 0.4 0.893231 0.4 0.439833 0.5 0.449322 0.3 0.43129 0.6 0.458338 0.1 -0.00219107 0.203125 -0.00246739 0.6 1.0708 7.7486e-007 1.17019 1.19209e-007 1.331 -6.66134e-016 1.46971 0.1 1.47234 0.9 1.49083 0.25 1.66667 0.25 1.89144 0.25 1.47872 0.5 1.89038 0.000390649 0.468809 -1.77636e-015 0.340617 0.975 0.0064311 1 1.66953 1 1.88551 0.025 0.0272863 1 1.49314</float_array>
+                    <technique_common>
+                        <accessor count="115" source="#Geometry-shower-Texture-array" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-shower-Falloff" name="Falloff">
+                    <float_array id="Geometry-shower-Falloff-array" count="8">0 0.425635 0.400904 1 0.5 0.308235 0.575069 0.376173</float_array>
+                    <technique_common>
+                        <accessor count="8" source="#Geometry-shower-Falloff-array" stride="1">
+                            <param name="WEIGHT" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="Geometry-shower-vertices">
+                    <input semantic="POSITION" source="#Geometry-shower-positions" />
+                </vertices>
+                <polylist count="184" material="Material-water_stream">
+                    <input semantic="VERTEX" source="#Geometry-shower-vertices" offset="0" />
+                    <input semantic="NORMAL" source="#Geometry-shower-normals" offset="1" />
+                    <input semantic="TEXCOORD" source="#Geometry-shower-Texture" offset="2" set="0" />
+                    <input semantic="WEIGHT" source="#Geometry-shower-Falloff" offset="3" set="0" />
+                    <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</vcount>
+                    <p>69 0 0 0 56 0 1 0 72 0 2 0 67 0 3 0 75 0 4 0 48 0 5 0 32 0 6 0 81 0 7 0 34 0 8 0 4 0 9 0 35 0 10 0 84 0 11 0 3 0 12 1 92 0 13 0 26 0 14 2 2 0 15 0 30 0 16 0 93 0 17 0 36 0 18 0 97 0 19 0 39 0 20 0 40 0 21 0 43 0 22 0 99 0 23 0 37 0 24 0 104 0 25 0 62 0 26 0 97 0 19 0 96 0 27 0 104 0 25 0 42 0 28 0 63 0 29 0 109 0 30 0 100 0 31 0 99 0 23 0 109 0 30 0 101 0 32 0 112 0 33 0 102 0 34 0 102 0 34 0 112 0 33 0 103 0 35 0 9 0 36 0 41 0 37 0 40 0 21 0 43 0 22 0 40 0 21 0 41 0 37 0 58 0 38 0 56 0 1 0 57 0 39 0 24 0 40 0 57 0 39 0 56 0 1 0 67 0 3 0 48 0 5 0 66 0 41 0 6 0 42 0 66 0 41 0 48 0 5 0 71 0 43 0 59 0 44 0 68 0 45 0 24 0 40 0 68 0 45 0 59 0 44 0 74 0 46 3 73 0 47 4 52 0 48 0 55 0 49 0 52 0 48 0 73 0 47 4 75 0 4 0 76 0 50 4 49 0 51 0 53 0 52 0 49 0 51 0 76 0 50 4 75 0 4 0 83 0 53 0 76 0 50 0 78 0 54 0 76 0 50 0 83 0 53 0 86 0 55 0 85 0 56 0 28 0 57 0 22 0 58 0 28 0 57 0 85 0 56 0 87 0 59 0 23 0 60 0 88 0 61 0 29 0 62 0 88 0 61 0 23 0 60 0 90 0 63 0 89 0 64 0 27 0 65 0 21 0 66 0 27 0 65 0 89 0 64 0 34 0 8 0 81 0 7 0 92 0 13 0 91 0 67 0 92 0 13 0 81 0 7 0 87 0 59 0 93 0 17 0 23 0 60 0 31 0 68 0 23 0 60 0 93 0 17 0 62 0 26 0 12 0 69 0 37 0 24 0 10 0 70 0 37 0 24 0 12 0 69 0 98 0 71 0 101 0 32 0 95 0 72 0 102 0 34 0 95 0 72 0 101 0 32 0 17 0 73 0 19 0 74 0 65 0 75 0 47 0 76 0 65 0 75 0 19 0 74 0 106 0 77 3 46 0 78 0 107 0 79 0 64 0 80 0 107 0 79 0 46 0 78 0 100 0 31 0 109 0 30 0 98 0 71 0 101 0 32 0 98 0 71 0 109 0 30 0 113 0 81 0 107 0 79 0 112 0 33 0 105 0 82 0 112 0 33 0 107 0 79 0 38 0 83 0 39 0 20 0 10 0 70 0 37 0 24 0 10 0 70 0 39 0 20 0 36 0 18 0 8 0 84 0 51 0 85 0 50 0 86 0 51 0 85 0 8 0 84 0 60 0 87 0 9 0 36 0 61 0 88 0 40 0 21 0 61 0 88 0 9 0 36 0 7 0 89 0 59 0 44 0 70 0 90 0 71 0 43 0 70 0 90 0 59 0 44 0 72 0 2 0 54 0 91 0 73 0 47 4 55 0 49 0 73 0 47 4 54 0 91 0 76 0 50 4 74 0 46 3 53 0 52 0 52 0 48 0 53 0 52 0 74 0 46 3 79 0 92 0 72 0 2 0 80 0 93 0 73 0 47 0 80 0 93 0 72 0 2 0 68 0 45 0 69 0 0 0 81 0 7 0 82 0 94 0 81 0 7 0 69 0 0 0 67 0 3 0 84 0 11 0 75 0 4 0 83 0 53 0 75 0 4 0 84 0 11 0 78 0 54 0 88 0 61 0 77 0 95 0 85 0 56 0 77 0 95 0 88 0 61 0 79 0 92 0 80 0 93 0 89 0 64 0 86 0 55 0 89 0 64 0 80 0 93 0 90 0 63 0 91 0 67 0 82 0 94 0 81 0 7 0 82 0 94 0 91 0 67 0 92 0 13 0 91 0 67 0 25 0 96 0 20 0 97 0 25 0 96 0 91 0 67 0 93 0 17 0 84 0 11 0 2 0 15 5 35 0 10 0 2 0 15 5 84 0 11 0 53 0 52 0 52 0 48 0 96 0 27 0 94 0 98 0 96 0 27 0 52 0 48 0 54 0 91 0 98 0 71 0 55 0 49 0 95 0 72 0 55 0 49 0 98 0 71 0 57 0 39 0 99 0 23 0 58 0 38 0 100 0 31 0 58 0 38 0 99 0 23 0 11 0 99 0 13 0 100 0 42 0 28 0 63 0 29 0 42 0 28 0 13 0 100 0 15 0 101 0 17 0 73 0 45 0 102 0 65 0 75 0 45 0 102 0 17 0 73 0 39 0 20 0 97 0 19 0 37 0 24 0 104 0 25 0 37 0 24 0 97 0 19 0 44 0 103 0 105 0 82 0 64 0 80 0 107 0 79 0 64 0 80 0 105 0 82 0 65 0 75 0 47 0 76 0 111 0 104 0 110 0 105 0 111 0 104 0 47 0 76 0 109 0 30 0 108 0 106 0 101 0 32 0 112 0 33 0 101 0 32 0 108 0 106 0 111 0 104 0 110 0 105 0 113 0 81 0 114 0 107 0 113 0 81 0 110 0 105 0 39 0 20 0 38 0 83 0 36 0 18 0 8 0 84 0 36 0 18 0 38 0 83 0 50 0 86 0 6 0 42 0 51 0 85 0 48 0 5 0 51 0 85 0 6 0 42 0 61 0 88 0 59 0 44 0 60 0 87 0 7 0 89 0 60 0 87 0 59 0 44 0 32 0 6 0 5 0 108 0 71 0 43 0 70 0 90 0 71 0 43 0 5 0 108 0 73 0 47 0 74 0 46 4 80 0 93 0 77 0 95 0 80 0 93 0 74 0 46 4 72 0 2 0 79 0 92 0 69 0 0 0 82 0 94 0 69 0 0 0 79 0 92 0 84 0 11 0 67 0 3 0 4 0 9 0 66 0 41 0 4 0 9 0 67 0 3 0 85 0 56 0 88 0 61 0 22 0 58 0 29 0 62 0 22 0 58 0 88 0 61 0 89 0 64 0 86 0 55 0 21 0 66 0 28 0 57 0 21 0 66 0 86 0 55 0 91 0 67 0 90 0 63 0 20 0 97 0 27 0 65 0 20 0 97 0 90 0 63 0 92 0 13 0 3 0 12 1 34 0 8 0 33 0 109 0 34 0 8 0 3 0 12 1 30 0 16 0 0 0 110 0 93 0 17 0 31 0 68 0 93 0 17 0 0 0 110 0 52 0 48 0 55 0 49 0 94 0 98 0 95 0 72 0 94 0 98 0 55 0 49 0 96 0 27 0 97 0 19 0 53 0 52 0 49 0 51 0 53 0 52 0 97 0 19 0 58 0 38 0 100 0 31 0 54 0 91 0 98 0 71 0 54 0 91 0 100 0 31 0 13 0 100 0 15 0 101 0 63 0 29 0 45 0 102 0 63 0 29 0 15 0 101 0 16 0 111 6 64 0 80 0 18 0 112 0 46 0 78 0 18 0 112 0 64 0 80 0 96 0 27 0 94 0 98 0 104 0 25 0 103 0 35 0 104 0 25 0 94 0 98 0 105 0 82 0 44 0 103 0 104 0 25 0 62 0 26 0 104 0 25 0 44 0 103 0 45 0 102 0 65 0 75 0 108 0 106 0 111 0 104 0 108 0 106 0 65 0 75 0 105 0 82 0 104 0 25 0 103 0 35 0 103 0 35 0 112 0 33 0 105 0 82 0 114 0 107 0 106 0 77 3 113 0 81 0 107 0 79 0 113 0 81 0 106 0 77 3 5 0 108 0 32 0 6 0 33 0 109 0 34 0 8 0 33 0 109 0 32 0 6 0 42 0 28 0 43 0 22 0 11 0 99 0 41 0 37 0 11 0 99 0 43 0 22 0 59 0 44 0 61 0 88 0 24 0 40 0 57 0 39 0 24 0 40 0 61 0 88 0 68 0 45 0 24 0 40 0 69 0 0 0 56 0 1 0 69 0 0 0 24 0 40 0 56 0 1 0 58 0 38 0 72 0 2 0 54 0 91 0 72 0 2 0 58 0 38 0 49 0 51 0 51 0 85 0 75 0 4 0 48 0 5 0 75 0 4 0 51 0 85 0 76 0 50 0 78 0 54 0 74 0 46 4 77 0 95 0 74 0 46 4 78 0 54 0 81 0 7 0 32 0 6 0 68 0 45 0 71 0 43 0 68 0 45 0 32 0 6 0 80 0 93 0 77 0 95 0 86 0 55 0 85 0 56 0 86 0 55 0 77 0 95 0 83 0 53 0 87 0 59 0 78 0 54 0 88 0 61 0 78 0 54 0 87 0 59 0 82 0 94 0 79 0 92 0 90 0 63 0 89 0 64 0 90 0 63 0 79 0 92 0 26 0 14 2 92 0 13 0 1 0 113 7 25 0 96 0 1 0 113 7 92 0 13 0 84 0 11 0 93 0 17 0 83 0 53 0 87 0 59 0 83 0 53 0 93 0 17 0 51 0 85 0 49 0 51 0 36 0 18 0 97 0 19 0 36 0 18 0 49 0 51 0 99 0 23 0 57 0 39 0 40 0 21 0 61 0 88 0 40 0 21 0 57 0 39 0 12 0 69 0 62 0 26 0 14 0 114 0 44 0 103 0 14 0 114 0 62 0 26 0 94 0 98 0 95 0 72 0 103 0 35 0 102 0 34 0 103 0 35 0 95 0 72 0 16 0 111 0 14 0 114 0 64 0 80 0 44 0 103 0 64 0 80 0 14 0 114 0 43 0 22 0 42 0 28 0 99 0 23 0 109 0 30 0 99 0 23 0 42 0 28 0 63 0 29 0 45 0 102 0 109 0 30 0 108 0 106 0 109 0 30 0 45 0 102 0 112 0 33 0 108 0 106 0 113 0 81 0 111 0 104 0 113 0 81 0 108 0 106 0</p>
+                </polylist>
+                <extra>
+                    <technique profile="modo401">
+                        <param sid="render" name="Render" type="Name">default</param>
+                        <param sid="dissolve" name="Dissolve" type="float">0</param>
+                        <param sid="curves" name="Render_Curves" type="bool">false</param>
+                        <param sid="radius" name="Curve_Radius" type="float">0.05</param>
+                    </technique>
+                </extra>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_nodes id="shader_tree" name="Shader_Tree">
+        <node sid="shader_tree_render" name="Render">
+            <extra>
+                <technique profile="modo401">
+                    <param sid="first" name="Frame_Range_First" type="int">1</param>
+                    <param sid="last" name="Frame_Range_Last" type="int">120</param>
+                    <param sid="dpi" name="Frame_DPI" type="float">300</param>
+                    <param sid="resUnit" name="Resolution_Unit" type="Name">pixels</param>
+                    <param sid="pAspect" name="Frame_Pixel_Aspect_Ratio" type="float">1</param>
+                    <param sid="bucketX" name="Bucket_Width" type="int">32</param>
+                    <param sid="bucketY" name="Bucket_Height" type="int">32</param>
+                    <param sid="bktOrder" name="Bucket_Order" type="Name">hilbert</param>
+                    <param sid="bktSkip" name="Skip_Existing_Buckets" type="bool">false</param>
+                    <param sid="region" name="Render_Region" type="bool">false</param>
+                    <param sid="regX0" name="Render_Region_Left" type="float">0</param>
+                    <param sid="regX1" name="Render_Region_Right" type="float">1</param>
+                    <param sid="regY0" name="Render_Region_Top" type="float">0</param>
+                    <param sid="regY1" name="Render_Region_Bottom" type="float">1</param>
+                    <param sid="aa" name="Render_Antialiasing" type="Name">s8</param>
+                    <param sid="aaFilter" name="Render_Antialiasing_Filter" type="Name">gaussian</param>
+                    <param sid="fineRate" name="Refinement_Shading_Rate" type="float">0.25</param>
+                    <param sid="fineThresh" name="Refinement_Threshold" type="float">0.1</param>
+                    <param sid="bktRefine" name="Refine_Bucket_Borders" type="bool">false</param>
+                    <param sid="dof" name="Render_Depth_of_Field" type="bool">false</param>
+                    <param sid="mBlur" name="Render_Motion_Blur" type="bool">false</param>
+                    <param sid="stereo" name="Render_Stereoscopic" type="bool">false</param>
+                    <param sid="rayShadow" name="Ray_Tracing_Shadows" type="bool">true</param>
+                    <param sid="reflDepth" name="Reflection_Depth" type="int">8</param>
+                    <param sid="refrDepth" name="Refraction_Depth" type="int">8</param>
+                    <param sid="rayThresh" name="Ray_Threshold" type="float">0.001</param>
+                    <param sid="subdAdapt" name="Adaptive_Subdivision" type="bool">false</param>
+                    <param sid="subdRate" name="Subdivision_Rate" type="float">10</param>
+                    <param sid="dispEnable" name="Micropoly_Displacement" type="bool">true</param>
+                    <param sid="dispRate" name="Displacement_Rate" type="float">1</param>
+                    <param sid="dispRatio" name="Displacement_Ratio" type="float">4</param>
+                    <param sid="edgeMin" name="Minimum_Edge_Length" type="float">0.0001</param>
+                    <param sid="dispSmooth" name="Smooth_Positions" type="bool">true</param>
+                    <param sid="ambRad" name="Ambient_Intensity" type="float">0.05</param>
+                    <param sid="ambColor" name="Ambient_Color" type="color">1 1 1</param>
+                    <param sid="globEnable" name="Enable_Indirect_Illumination" type="bool">false</param>
+                    <param sid="globScope" name="Indirect_Illumination_Scope" type="Name">all</param>
+                    <param sid="globRays" name="Indirect_Rays" type="int">64</param>
+                    <param sid="globLimit" name="Indirect_Bounces" type="int">1</param>
+                    <param sid="globRange" name="Indirect_Range" type="float">0</param>
+                    <param sid="globSubs" name="Subsurface_Scattering" type="int">0</param>
+                    <param sid="globVols" name="Volumetrics_Affect_Indirect" type="bool">false</param>
+                    <param sid="irrCache" name="Enable_Irradiance_Caching" type="bool">true</param>
+                    <param sid="irrRays" name="Irradiance_Rays" type="int">256</param>
+                    <param sid="globSuper" name="Indirect_Supersampling" type="bool">true</param>
+                    <param sid="irrRate" name="Irradiance_Rate" type="float">2.5</param>
+                    <param sid="irrRatio" name="Irradiance_Ratio" type="float">6</param>
+                    <param sid="irrVals" name="Interpolation_Values" type="int">1</param>
+                    <param sid="irrGrads" name="Irradiance_Gradients" type="Name">both</param>
+                    <param sid="irrWalk" name="Walkthrough_Mode" type="bool">false</param>
+                    <param sid="irrLEnable" name="Load_Irradiance_before_Render" type="bool">false</param>
+                    <param sid="irrLName" name="Load_Irradiance_File" type="Name"></param>
+                    <param sid="irrSEnable" name="Save_Irradiance_after_Render" type="bool">false</param>
+                    <param sid="irrSName" name="Save_Irradiance_File" type="Name"></param>
+                    <param sid="causEnable" name="Enable_Direct_Caustics" type="bool">false</param>
+                    <param sid="causTotal" name="Caustics_Total_Photons" type="int">100000</param>
+                    <param sid="causLocal" name="Caustics_Local_Photons" type="int">32</param>
+                    <param sid="globCaus" name="Indirect_Caustics" type="Name">refraction</param>
+                </technique>
+            </extra>
+        </node>
+        <node sid="shader_tree_environment" name="Environment">
+            <extra>
+                <technique profile="modo401">
+                    <param sid="radiance" name="Environment_Intensity" type="float">1</param>
+                    <param sid="visCam" name="Environment_Visible_to_Camera" type="bool">true</param>
+                    <param sid="visInd" name="Environment_Visible_to_Indirect_Rays" type="bool">true</param>
+                    <param sid="visRefl" name="Environment_Visible_to_Reflection_Rays" type="bool">true</param>
+                    <param sid="visRefr" name="Environment_Visible_to_Refraction_Rays" type="bool">true</param>
+                </technique>
+            </extra>
+        </node>
+    </library_nodes>
+    <library_visual_scenes>
+        <visual_scene id="DefaultScene">
+            <node id="Geometry-showerNode" name="shower" type="NODE">
+                <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                <instance_geometry url="#Geometry-shower">
+                    <bind_material>
+                        <technique_common>
+                            <instance_material symbol="Material-water_stream" target="#Material-water_stream">
+                                <bind_vertex_input semantic="Texture" input_semantic="TEXCOORD" input_set="0" />
+                            </instance_material>
+                        </technique_common>
+                    </bind_material>
+                </instance_geometry>
+            </node>
+            <node id="txtrLocator001Node" name="water_stream__Image___Texture_" type="NODE">
+                <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+            </node>
+            <extra>
+                <technique profile="modo401">
+                    <param sid="fps" name="Scene_FPS" type="float">24</param>
+                    <param sid="sceneS" name="Scene_Start_Time" type="float">0</param>
+                    <param sid="sceneE" name="Scene_End_Time" type="float">5</param>
+                    <param sid="currentS" name="Scene_Current_Start_Time" type="float">0</param>
+                    <param sid="currentE" name="Scene_Current_End_Time" type="float">5</param>
+                    <param sid="timeSys" name="Scene_Time_System" type="Name">frames</param>
+                </technique>
+            </extra>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#DefaultScene" />
+    </scene>
+</COLLADA>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2020-07-09T08:41:03Z</created><keywords></keywords><modified>2020-07-09T08:41:03Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_images>
+    <image id="file14-image" name="file14"><init_from>file://D:/Frictional_SVN/amnesia2/trunk/redist/static_objects/survivors/plane/plane_interior_gold.dds</init_from></image>
+  </library_images>
+  <library_materials>
+    <material id="plane_interior_gold_MAT" name="plane_interior_gold_MAT">
+      <instance_effect url="#plane_interior_gold_MAT-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="plane_interior_gold_MAT-fx" name="plane_interior_gold_MAT">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file14-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">6.311791</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">0.500000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="plane_interior_golden_bar-lib" name="plane_interior_golden_barMesh">
+      <mesh>
+        <source id="plane_interior_golden_bar-POSITION">
+          <float_array id="plane_interior_golden_bar-POSITION-array" count="75">
+40.017918 112.547386 8.450689
+42.094769 112.547386 13.102531
+42.094769 114.447487 13.102531
+40.017918 114.447487 8.450689
+46.249302 112.547386 16.957018
+51.263264 112.547386 18.883873
+51.263264 114.447487 18.883873
+46.249302 114.447487 16.957018
+97.596916 112.547386 18.883873
+97.596916 114.447487 18.883873
+51.104134 112.547386 19.626095
+97.756050 112.547386 19.626095
+39.217918 112.547386 8.598331
+41.416561 112.547386 13.522966
+45.796143 112.547386 17.586245
+51.104130 114.304886 19.626095
+51.151863 114.447487 19.403452
+97.708305 114.447487 19.403452
+97.756050 114.304886 19.626095
+39.457893 114.447487 8.554045
+39.217918 114.304886 8.598331
+41.416561 114.304886 13.522968
+41.620003 114.447487 13.396851
+45.932076 114.447487 17.397493
+45.796139 114.304886 17.586241
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_golden_bar-POSITION-array" count="25" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_interior_golden_bar-Normal0">
+          <float_array id="plane_interior_golden_bar-Normal0-array" count="360">
+0.000000 0.000000 -1.000000
+0.037499 0.000000 -0.999297
+0.037499 0.000000 -0.999297
+0.000000 0.000000 -1.000000
+0.037499 0.000000 -0.999297
+0.000000 0.000000 -1.000000
+0.533381 0.000000 -0.845875
+0.806703 0.000000 -0.590957
+0.806703 0.000000 -0.590957
+0.533381 0.000000 -0.845875
+0.806703 0.000000 -0.590957
+0.533381 0.000000 -0.845875
+0.806703 0.000000 -0.590957
+0.913128 0.000000 -0.407673
+0.806703 0.000000 -0.590957
+0.806703 0.000000 -0.590957
+0.913128 0.000000 -0.407673
+0.913128 0.000000 -0.407673
+0.533381 0.000000 -0.845875
+0.037499 0.000000 -0.999297
+0.533381 0.000000 -0.845875
+0.037499 0.000000 -0.999297
+0.533381 0.000000 -0.845875
+0.037499 0.000000 -0.999297
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000004
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000004
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000004
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000000
+0.000000 -1.000000 -0.000003
+0.000000 -1.000000 -0.000000
+-0.020406 0.843898 0.536116
+-0.276296 0.851988 0.444721
+-0.021532 0.843987 0.535932
+-0.282334 0.852189 0.440525
+-0.021532 0.843987 0.535932
+-0.276296 0.851988 0.444721
+-0.021532 0.843987 0.535932
+0.000000 0.842094 0.539331
+-0.020406 0.843898 0.536116
+0.000000 0.842094 0.539331
+-0.021532 0.843987 0.535932
+0.000000 0.842094 0.539331
+-0.470507 0.857030 0.210054
+-0.416205 0.858564 0.299400
+-0.470507 0.857030 0.210054
+-0.412042 0.858307 0.305827
+-0.470507 0.857030 0.210054
+-0.416205 0.858564 0.299400
+-0.416205 0.858564 0.299400
+-0.282334 0.852189 0.440525
+-0.412042 0.858307 0.305827
+-0.412042 0.858307 0.305827
+-0.282334 0.852189 0.440525
+-0.276296 0.851988 0.444721
+-0.039228 0.000000 0.999230
+0.000000 0.000000 1.000000
+-0.039228 0.000000 0.999230
+0.000000 0.000000 1.000000
+-0.039228 0.000000 0.999230
+0.000000 0.000000 1.000000
+-0.806957 -0.000002 0.590610
+-0.533035 -0.000001 0.846093
+-0.806957 -0.000002 0.590610
+-0.533035 -0.000001 0.846093
+-0.806957 -0.000002 0.590610
+-0.533035 -0.000001 0.846093
+-0.806957 -0.000002 0.590610
+-0.913128 0.000000 0.407674
+-0.913128 0.000000 0.407674
+-0.913128 0.000000 0.407674
+-0.806957 -0.000002 0.590610
+-0.806957 -0.000002 0.590610
+-0.039228 0.000000 0.999230
+-0.533035 -0.000001 0.846093
+-0.533035 -0.000001 0.846093
+-0.039228 0.000000 0.999230
+-0.533035 -0.000001 0.846093
+-0.039228 0.000000 0.999230
+0.000000 1.000000 0.000007
+0.000000 1.000000 0.000006
+0.000000 1.000000 0.000006
+0.000000 1.000000 0.000006
+0.000000 1.000000 0.000007
+0.000000 1.000000 0.000007
+0.000000 1.000000 0.000001
+0.000000 1.000000 -0.000003
+0.000000 1.000000 -0.000003
+0.000000 1.000000 -0.000003
+0.000000 1.000000 0.000001
+0.000000 1.000000 0.000002
+0.000000 1.000000 0.000002
+0.000000 1.000000 0.000007
+0.000000 1.000000 0.000007
+0.000000 1.000000 0.000007
+0.000000 1.000000 0.000002
+0.000000 1.000000 0.000001
+0.000000 1.000000 0.000006
+0.000000 1.000000 -0.000003
+0.000000 1.000000 -0.000003
+0.000000 1.000000 -0.000003
+0.000000 1.000000 0.000006
+0.000000 1.000000 0.000006
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_golden_bar-Normal0-array" count="120" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_interior_golden_bar-UV0">
+          <float_array id="plane_interior_golden_bar-UV0-array" count="114">
+0.545560 0.938794
+0.379145 0.937908
+0.545287 0.985547
+0.378873 0.984661
+0.545287 0.985547
+0.545560 0.938794
+0.378873 0.984661
+0.379145 0.937908
+0.279129 0.828304
+0.279129 0.171696
+0.289647 0.169441
+0.289647 0.830559
+0.251823 0.899358
+0.260740 0.905780
+0.197200 0.958233
+0.203158 0.967844
+0.131277 0.987665
+0.133370 0.999002
+0.293556 0.830558
+0.296711 0.829882
+0.325138 0.903853
+0.322463 0.905780
+0.293556 0.169441
+0.296711 0.170118
+0.304074 0.828304
+0.331380 0.899358
+0.381832 0.964961
+0.380045 0.967844
+0.304074 0.171696
+0.386003 0.958233
+0.450461 0.995601
+0.449834 0.999002
+0.451926 0.987665
+0.378873 0.984661
+0.379145 0.937908
+0.545560 0.938794
+0.545287 0.985547
+0.287433 0.939270
+0.260521 0.986079
+0.663945 0.983727
+0.636716 0.937234
+0.545560 0.938794
+0.545287 0.985547
+0.378873 0.984661
+0.379145 0.937908
+0.663945 0.983727
+0.260521 0.986079
+0.287433 0.939270
+0.636716 0.937234
+0.545560 0.938794
+0.545287 0.985547
+0.378873 0.984661
+0.379145 0.937908
+0.545560 0.938794
+0.545287 0.985547
+0.378873 0.984661
+0.379145 0.937908
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_golden_bar-UV0-array" count="57" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_interior_golden_bar-VERTEX">
+          <input semantic="POSITION" source="#plane_interior_golden_bar-POSITION"/>
+        </vertices>
+        <triangles count="40" material="plane_interior_gold_MAT"><input semantic="VERTEX" offset="0" source="#plane_interior_golden_bar-VERTEX"/><input semantic="NORMAL" offset="1" source="#plane_interior_golden_bar-Normal0"/><input semantic="TEXCOORD" offset="2" set="0" source="#plane_interior_golden_bar-UV0"/><p> 8 0 55 5 1 56 6 2 53 8 3 55 6 4 53 9 5 54 4 6 3 1 7 1 2 8 0 4 9 3 2 10 0 7 11 2 1 12 44 0 13 41 2 14 43 2 15 43 0 16 41 3 17 42 7 18 36 6 19 33 4 20 35 5 21 34 4 22 35 6 23 33 10 24 11 8 25 9 11 26 10 8 27 9 10 28 11 5 29 8 14 30 13 13 31 15 1 32 14 1 33 14 4 34 12 14 35 13 13 36 15 0 37 16 1 38 14 0 39 16 13 40 15 12 41 17 10 42 11 14 43 13 4 44 12 10 45 11 4 46 12 5 47 8 16 48 19 23 49 20 15 50 18 24 51 21 15 52 18 23 53 20 15 54 18 17 55 23 16 56 19 17 57 23 15 58 18 18 59 22 20 60 31 21 61 27 19 62 30 22 63 26 19 64 30 21 65 27 21 66 27 24 67 21 22 68 26 22 69 26 24 70 21 23 71 20 10 72 50 18 73 52 15 74 49 18 75 52 10 76 50 11 77 51 13 78 4 24 79 7 21 80 5 24 81 7 13 82 4 14 83 6 13 84 46 20 85 48 12 86 45 20 87 48 13 88 46 21 89 47 15 90 37 24 91 40 14 92 39 15 93 37 14 94 39 10 95 38 17 96 23 6 97 24 16 98 19 6 99 24 17 100 23 9 101 28 2 102 29 23 103 20 7 104 25 23 105 20 2 106 29 22 107 26 22 108 26 3 109 32 19 110 30 3 111 32 22 112 26 2 113 29 16 114 19 7 115 25 23 116 20 7 117 25 16 118 19 6 119 24</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="plane_interior_golden_bar" name="plane_interior_golden_bar">
+      <node name="_export_ingame_static" id="_export_ingame_static" sid="_export_ingame_static"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="plane_interior_golden_bar" id="plane_interior_golden_bar" sid="plane_interior_golden_bar"><matrix sid="matrix">1.000000 0.000000 0.000000 -41.416557 0.000000 1.000000 0.000000 -112.547386 0.000000 0.000000 1.000000 -13.522966 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#plane_interior_golden_bar-lib"><bind_material><technique_common><instance_material symbol="plane_interior_gold_MAT" target="#plane_interior_gold_MAT"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>8.333333</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#plane_interior_golden_bar"></instance_visual_scene>
+  </scene>
+</COLLADA>

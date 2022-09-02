@@ -1,0 +1,86 @@
+<Entity>
+    <ModelData>
+        <Entities />
+        <Mesh Filename="entities/nonexclusive/organic/gibs/mummified_arm.DAE">
+            <SubMesh ID="0" Name="mummified_arm" CreStamp="0" ModStamp="0" WorldPos="0 0 0" Rotation="0 0 0" Scale="1 1 1" TriCount="2854" Material="" Static="false" />
+        </Mesh>
+        <Bones />
+        <Shapes>
+            <Shape ID="72" Name="ShapeBox_23" CreStamp="1493293608" ModStamp="1504620252" WorldPos="0.173676 0.150616 0.00251106" Rotation="-0.228493 0.448239 -1.97743" Scale="0.0757382 0.0114899 0.0102086" RelativeTranslation="0.136533 0.07591 -0.00398724" RelativeRotation="-0.228493 0.448239 -1.97743" RelativeScale="1 1 1" ShapeType="Box" />
+            <Shape ID="16" Name="ShapeBox_16" CreStamp="1493287285" ModStamp="1504620245" WorldPos="0.17813 0.094053 -0.00547326" Rotation="-0.31648 -0.14702 0.451046" Scale="0.0971284 0.0633834 0.0120174" RelativeTranslation="0.140986 0.0193468 -0.0119716" RelativeRotation="-0.31648 -0.14702 0.451046" RelativeScale="1 1 1" ShapeType="Box" />
+            <Shape ID="10" Name="ShapeBox_10" CreStamp="1493287131" ModStamp="1504620273" WorldPos="0.243971 0.123809 0.00617764" Rotation="-0.29692 -0.211986 0.390481" Scale="0.0520508 0.0668519 0.00990561" RelativeTranslation="0.206827 0.049103 -0.000320655" RelativeRotation="-0.29692 -0.211986 0.390481" RelativeScale="1 1 1" ShapeType="Box" />
+            <Shape ID="22" Name="ShapeBox_22" CreStamp="1493287494" ModStamp="1493287515" WorldPos="0.173785 0.154909 0.00639507" Rotation="-0.251046 0.379786 -2.12585" Scale="0.001 0.001 0.001" RelativeTranslation="0.181892 0.0853027 -0.00022943" RelativeRotation="-0.251046 0.379786 -2.12585" RelativeScale="1 1 1" ShapeType="Box" />
+            <Shape ID="30" Name="ShapeBox_30" CreStamp="1493287794" ModStamp="1504620205" WorldPos="-0.197513 0.040274 -0.00157124" Rotation="0.0854255 0.0307268 -0.383081" Scale="0.213617 0.0569268 0.0320999" RelativeTranslation="-0.234657 -0.0344322 -0.00806954" RelativeRotation="0.0854255 0.0307268 -0.383081" RelativeScale="1 1 1" ShapeType="Box" />
+            <Shape ID="27" Name="ShapeBox_27" CreStamp="1493287627" ModStamp="1504620197" WorldPos="0.0266355 0.0289273 -0.00810054" Rotation="-0.542103 -0.0130721 0.39584" Scale="0.230772 0.0425081 0.0197612" RelativeTranslation="-0.0105081 -0.0457789 -0.0145988" RelativeRotation="-0.542103 -0.0130721 0.39584" RelativeScale="1 1 1" ShapeType="Box" />
+            <Shape ID="73" Name="ShapeBox_31" CreStamp="1504620207" ModStamp="1504620218" WorldPos="-0.0731172 -0.00120388 0.00106822" Rotation="0.09075 -0.00194845 -0.0172161" Scale="0.077124 0.0632817 0.0461648" RelativeTranslation="-0.110261 -0.07591 -0.00543008" RelativeRotation="0.09075 -0.00194845 -0.0172161" RelativeScale="1 1 1" ShapeType="Box" />
+            <Shape ID="74" Name="ShapeBox_11" CreStamp="1504620278" ModStamp="1504620289" WorldPos="0.2718 0.138765 0.0210971" Rotation="-0.426822 -0.455204 0.47283" Scale="0.0520508 0.0668519 0.00641432" RelativeTranslation="0.234657 0.0640589 0.0145988" RelativeRotation="-0.426822 -0.455203 0.47283" RelativeScale="1 1 1" ShapeType="Box" />
+        </Shapes>
+        <Bodies>
+            <Body ID="76" Name="Body_1" CreStamp="0" ModStamp="1504620326" WorldPos="0.0371436 0.0747062 0.0064983" Rotation="0 0 0" Scale="1 1 1" Material="organic_mumified_arm" Mass="5" AngularDamping="0.5" LinearDamping="0.1" MaxAngularSpeed="20" MaxLinearSpeed="20" BuoyancyDensityMul="1" BlocksSound="false" ContinuousCollision="true" CanAttachCharacter="false" PushedByCharacterGravity="false" CollideCharacter="true" CollideNonCharacter="true" Volatile="false" UseSurfaceEffects="true" HasGravity="true" BlocksLight="true">
+                <Shape ID="74" />
+                <Shape ID="10" />
+                <Shape ID="16" />
+                <Shape ID="72" />
+                <Shape ID="27" />
+                <Shape ID="73" />
+                <Shape ID="30" />
+            </Body>
+        </Bodies>
+        <Joints />
+        <Animations />
+        <ProcAnimations />
+    </ModelData>
+    <UserDefinedVariables EntityType="Prop_Grab">
+        <Var Name="Health" Value="100" />
+        <Var Name="Toughness" Value="0" />
+        <Var Name="MaxInteractDistance" Value="0" />
+        <Var Name="EventTag" Value="" />
+        <Var Name="ShowHints" Value="true" />
+        <Var Name="LifeLength" Value="0" />
+        <Var Name="DissolveDuringLifeDecrease" Value="true" />
+        <Var Name="QuickSave" Value="false" />
+        <Var Name="FullGameSave" Value="false" />
+        <Var Name="BlocksLineOfSight" Value="true" />
+        <Var Name="MainPhysicsBody" Value="" />
+        <Var Name="NoGravityWhenUnderwater" Value="false" />
+        <Var Name="DisableFreezeAtStart" Value="false" />
+        <Var Name="CustomScriptFile" Value="" />
+        <Var Name="CustomScriptClass" Value="" />
+        <Var Name="ShowMesh" Value="true" />
+        <Var Name="DissolveOnDestruction" Value="false" />
+        <Var Name="DissolveTime" Value="1.0" />
+        <Var Name="RandomizeAnimationStart" Value="true" />
+        <Var Name="EffectsOnSound" Value="" />
+        <Var Name="EffectsOffSound" Value="" />
+        <Var Name="EffectsOnTime" Value="1" />
+        <Var Name="EffectsOffTime" Value="1" />
+        <Var Name="StaticMoveCheckCollision" Value="false" />
+        <Var Name="StaticMoveStartSound" Value="" />
+        <Var Name="StaticMoveStopSound" Value="" />
+        <Var Name="StaticMoveLoopSound" Value="" />
+        <Var Name="StaticMoveLoopSoundFade" Value="true" />
+        <Var Name="BreakActive" Value="false" />
+        <Var Name="BreakOnlyOnMainBody" Value="false" />
+        <Var Name="BreakDestroyJoints" Value="false" />
+        <Var Name="BreakMinEnergy" Value="100" />
+        <Var Name="BreakEntity" Value="" />
+        <Var Name="BreakEntityAlignBody" Value="" />
+        <Var Name="BreakSound" Value="" />
+        <Var Name="BreakParticleSystem" Value="" />
+        <Var Name="BreakImpulse" Value="4" />
+        <Var Name="Grab_UseCustomOffset" Value="false" />
+        <Var Name="Grab_CustomPositionOffset" Value="0 0 0" />
+        <Var Name="Grab_CustomRotationOffset" Value="0 0 0" />
+        <Var Name="Grab_UseCustomDepth" Value="false" />
+        <Var Name="Grab_CustomDepth" Value="1.2" />
+        <Var Name="Grab_MassMul" Value="0.1" />
+        <Var Name="Grab_MinDepth" Value="0.8" />
+        <Var Name="Grab_MaxDepth" Value="2" />
+        <Var Name="Grab_ForceMul" Value="1" />
+        <Var Name="Grab_TorqueMul" Value="1" />
+        <Var Name="Grab_ThrowImpulse" Value="5.0" />
+        <Var Name="Grab_IsHeavy" Value="false" />
+        <Var Name="Grab_CollisionWithPlayer" Value="false" />
+        <Var Name="Grab_InteractOnlyWithMainBody" Value="false" />
+    </UserDefinedVariables>
+</Entity>

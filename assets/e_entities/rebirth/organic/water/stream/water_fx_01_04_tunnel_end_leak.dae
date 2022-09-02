@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <authoring_tool>modo 701 [Build 68192], Microsoft Windows 7 Service Pack 1 (6.1.7601 Service Pack 1)</authoring_tool>
+            <comments>Plug-in: [Build 68192]; Use Absolute Path: No; Merge Reference Items: No; Save Hidden Items: No; Save Cameras: No; Save Lights: No; Save Locators: Yes; Save Triangles as Triangles: No; Order Vertex Maps Alphabetically: No; Bake Matrices: Yes; Save Vertex Normals: Yes; Save UV Texture Coordinates: Yes; Save Vertex Colors: No; Save Vertex Weights: Yes; Save Animation: No; Sample Animation: No; Sample Animation Start: 0; Sample Animation End: 1; Save modo Profile: No; Save Maya Profile: No; Save 3ds Max Profile: No; Formatted Arrays: No;</comments>
+            <source_data>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/entities/organic/water/water_effects.lxo</source_data>
+        </contributor>
+        <created>2014-12-18T14:35:11Z</created>
+        <modified>2014-12-18T14:35:11Z</modified>
+        <unit name="game" meter="1" />
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_images>
+        <image id="Image0001" name="Image0001">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/entities/urban/toilet/shower_cubicle_drain/shower_cubicle_drain.psd</init_from>
+        </image>
+        <image id="Image0002" name="Image0002">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/entities/urban/toilet/shower_cubicle_drain/shower_cubicle_drain_nrm.tga</init_from>
+        </image>
+        <image id="Image0003" name="Image0003">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/static_objects/station/datasite.tga</init_from>
+        </image>
+        <image id="Image0004" name="Image0004">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/static_objects/station/floor/pplant_first_floor_default_nrm.tga</init_from>
+        </image>
+        <image id="Image0005" name="Image0005">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/static_objects/station/floor/pplant_first_floor_tilable.psd</init_from>
+        </image>
+        <image id="Image0006" name="Image0006">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/static_objects/station/floor/pplant_floor.psd</init_from>
+        </image>
+        <image id="Image0007" name="Image0007">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/static_objects/station/floor/pplant_floor_nrm.tga</init_from>
+        </image>
+        <image id="Image0008" name="Image0008">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/static_objects/station/floor/pplant_floor_spec.tga</init_from>
+        </image>
+        <image id="Image0009" name="Image0009">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/temp/drain_floor_small.tga</init_from>
+        </image>
+        <image id="Image0010" name="Image0010">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/textures/fx/water/water_pouring.psd</init_from>
+        </image>
+        <image id="Image0011" name="Image0011">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/textures/fx/water/water_pouring_nrm.tga</init_from>
+        </image>
+        <image id="Image0012" name="Image0012">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/textures/fx/water/water_ripples.psd</init_from>
+        </image>
+        <image id="Image0013" name="Image0013">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/textures/fx/water/water_stream.psd</init_from>
+        </image>
+        <image id="Image0014" name="Image0014">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/textures/fx/water/watter_ripples_nrm.tga</init_from>
+        </image>
+    </library_images>
+    <library_materials>
+        <material id="Material-datasite" name="datasite">
+            <instance_effect url="#Effect-datasite" />
+        </material>
+        <material id="Material-drain" name="drain">
+            <instance_effect url="#Effect-drain" />
+        </material>
+        <material id="Material-lambert20" name="lambert20">
+            <instance_effect url="#Effect-lambert20" />
+        </material>
+        <material id="Material-moss_green_wall02_blinn1" name="moss_green_wall02_blinn1">
+            <instance_effect url="#Effect-moss_green_wall02_blinn1" />
+        </material>
+        <material id="Material-pplant_floor" name="pplant_floor">
+            <instance_effect url="#Effect-pplant_floor" />
+        </material>
+        <material id="Material-water_pouring" name="water_pouring">
+            <instance_effect url="#Effect-water_pouring" />
+        </material>
+        <material id="Material-water_ripples" name="water_ripples">
+            <instance_effect url="#Effect-water_ripples" />
+        </material>
+        <material id="Material-water_stream" name="water_stream">
+            <instance_effect url="#Effect-water_stream" />
+        </material>
+    </library_materials>
+    <library_effects>
+        <effect id="Effect-datasite" name="datasite">
+            <profile_COMMON>
+                <newparam sid="Image0003-surface">
+                    <surface type="2D">
+                        <init_from>Image0003</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0003-sampler">
+                    <sampler2D>
+                        <source>Image0003-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0003-sampler" texcoord="Texture" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.2 0.2 0.2 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="Effect-drain" name="drain">
+            <profile_COMMON>
+                <newparam sid="Image0009-surface">
+                    <surface type="2D">
+                        <init_from>Image0009</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0009-sampler">
+                    <sampler2D>
+                        <source>Image0009-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0009-sampler" texcoord="Box002-UV0" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.2 0.2 0.2 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="Effect-lambert20" name="lambert20">
+            <profile_COMMON>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <color sid="diffuse_effect_rgb">0.8 0.8 0.8 1</color>
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.2 0.2 0.2 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                        <transparent opaque="RGB_ZERO">
+                            <color sid="transparent_effect_rgb">0 0 0 1</color>
+                        </transparent>
+                        <transparency>
+                            <float sid="transparency_effect_float">1</float>
+                        </transparency>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="Effect-moss_green_wall02_blinn1" name="moss_green_wall02_blinn1">
+            <profile_COMMON>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <color sid="diffuse_effect_rgb">0.8 0.8 0.8 1</color>
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.5 0.5 0.5 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                        <reflective>
+                            <color sid="reflective_effect_rgb">0 0 0 1</color>
+                        </reflective>
+                        <reflectivity>
+                            <float sid="reflectivity_effect_float">0.5</float>
+                        </reflectivity>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="Effect-pplant_floor" name="pplant_floor">
+            <profile_COMMON>
+                <newparam sid="Image0006-surface">
+                    <surface type="2D">
+                        <init_from>Image0006</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0006-sampler">
+                    <sampler2D>
+                        <source>Image0006-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <newparam sid="Image0008-surface">
+                    <surface type="2D">
+                        <init_from>Image0008</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0008-sampler">
+                    <sampler2D>
+                        <source>Image0008-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0006-sampler" texcoord="Texture" />
+                        </diffuse>
+                        <specular>
+                            <texture texture="Image0008-sampler" texcoord="Texture" />
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">14.42</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="Effect-water_pouring" name="water_pouring">
+            <profile_COMMON>
+                <newparam sid="Image0010-surface">
+                    <surface type="2D">
+                        <init_from>Image0010</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0010-sampler">
+                    <sampler2D>
+                        <source>Image0010-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0010-sampler" texcoord="Texture" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.2 0.2 0.2 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="Effect-water_ripples" name="water_ripples">
+            <profile_COMMON>
+                <newparam sid="Image0012-surface">
+                    <surface type="2D">
+                        <init_from>Image0012</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0012-sampler">
+                    <sampler2D>
+                        <source>Image0012-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0012-sampler" texcoord="TEX0" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.2 0.2 0.2 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="Effect-water_stream" name="water_stream">
+            <profile_COMMON>
+                <newparam sid="Image0013-surface">
+                    <surface type="2D">
+                        <init_from>Image0013</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0013-sampler">
+                    <sampler2D>
+                        <source>Image0013-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0013-sampler" texcoord="Texture" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.2 0.2 0.2 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+    </library_effects>
+    <library_geometries>
+        <geometry id="Geometry-mesh008" name="01_04_tunnel_end_leak">
+            <mesh>
+                <source id="Geometry-mesh008-positions" name="positions">
+                    <float_array id="Geometry-mesh008-positions-array" count="12">-0.486943 0.129745 8 -0.486942 0.129745 0 0.486943 0.129745 8 0.486943 0.129745 0</float_array>
+                    <technique_common>
+                        <accessor count="4" source="#Geometry-mesh008-positions-array" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-mesh008-normals" name="normals">
+                    <float_array id="Geometry-mesh008-normals-array" count="3">0 1 0</float_array>
+                    <technique_common>
+                        <accessor count="1" source="#Geometry-mesh008-normals-array" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-mesh008-Texture" name="Texture">
+                    <float_array id="Geometry-mesh008-Texture-array" count="8">0.0405694 -5.25894 0.961023 -5.25894 0.040572 -1.63926 0.961023 -1.63926</float_array>
+                    <technique_common>
+                        <accessor count="4" source="#Geometry-mesh008-Texture-array" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="Geometry-mesh008-vertices">
+                    <input semantic="POSITION" source="#Geometry-mesh008-positions" />
+                </vertices>
+                <polylist count="2" material="Material-water_stream">
+                    <input semantic="VERTEX" source="#Geometry-mesh008-vertices" offset="0" />
+                    <input semantic="NORMAL" source="#Geometry-mesh008-normals" offset="1" />
+                    <input semantic="TEXCOORD" source="#Geometry-mesh008-Texture" offset="2" set="0" />
+                    <vcount>3 3</vcount>
+                    <p>0 0 0 2 0 1 1 0 2 3 0 3 1 0 2 2 0 1</p>
+                </polylist>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_visual_scenes>
+        <visual_scene id="DefaultScene">
+            <node id="groupLocator037Node" name="stream" type="NODE">
+                <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                <node id="groupLocator045Node" name="specials" type="NODE">
+                    <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                    <node id="Geometry-mesh008Node" name="01_04_tunnel_end_leak" type="NODE">
+                        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                        <instance_geometry url="#Geometry-mesh008">
+                            <bind_material>
+                                <technique_common>
+                                    <instance_material symbol="Material-water_stream" target="#Material-water_stream">
+                                        <bind_vertex_input semantic="Texture" input_semantic="TEXCOORD" input_set="0" />
+                                    </instance_material>
+                                </technique_common>
+                            </bind_material>
+                        </instance_geometry>
+                    </node>
+                </node>
+            </node>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#DefaultScene" />
+    </scene>
+</COLLADA>

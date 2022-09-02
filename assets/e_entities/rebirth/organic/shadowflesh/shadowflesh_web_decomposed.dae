@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <authoring_tool>modo 902 [Build 108604], Microsoft Windows 10 (10.0.15063)</authoring_tool>
+            <comments>
+                Plug-in: [Build 108604];
+                Use Absolute Path: No;
+                Merge Reference Items: No;
+                Save Hidden Items: No;
+                Save Cameras: No;
+                Save Lights: No;
+                Save Locators: Yes;
+                Save Triangles as Triangles: Yes;
+                Order Vertex Maps Alphabetically: Yes;
+                Bake Matrices: Yes;
+                Save Vertex Normals: Yes;
+                Save UV Texture Coordinates: Yes;
+                Save Vertex Colors: Yes;
+                Save Vertex Weights: Yes;
+                Save Animation: No;
+                Sample Animation: No;
+                Sample Animation Start: 0;
+                Sample Animation End: 120;
+                Save modo Profile: No;
+                Save Maya Profile: No;
+                Save 3ds Max Profile: No;
+                Formatted Arrays: Yes;
+            </comments>
+            <source_data>file:///E:/Google%20Drive/Workfiles%20-%20Aaron/Amnesia%202/entities/nonexclusive/organic/shadow_flesh/shadow_flesh_web.lxo</source_data>
+        </contributor>
+        <created>2017-08-23T14:23:41Z</created>
+        <modified>2017-08-23T14:23:41Z</modified>
+        <unit name="game" meter="1" />
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_images>
+        <image id="Image0001" name="Image0001">
+            <init_from>file:///E:/Google%20Drive/Workfiles%20-%20Aaron/Amnesia%202/entities/nonexclusive/organic/shadow_flesh/shadow_flesh_strands_decomposed.psd</init_from>
+        </image>
+        <image id="Image0002" name="Image0002">
+            <init_from>file:///E:/Google%20Drive/Workfiles%20-%20Aaron/Amnesia%202/entities/nonexclusive/organic/shadow_flesh/shadow_flesh_strands_nrm.tga</init_from>
+        </image>
+        <image id="Image0003" name="Image0003">
+            <init_from>file:///E:/Google%20Drive/Workfiles%20-%20Aaron/Amnesia%202/entities/nonexclusive/organic/shadow_flesh/shadow_flesh_tileable.psd</init_from>
+        </image>
+        <image id="Image0004" name="Image0004">
+            <init_from>file:///E:/Google%20Drive/Workfiles%20-%20Aaron/Amnesia%202/entities/nonexclusive/organic/shadow_flesh/shadow_flesh_web_decomposed.psd</init_from>
+        </image>
+        <image id="Image0005" name="Image0005">
+            <init_from>file:///E:/Google%20Drive/Workfiles%20-%20Aaron/Amnesia%202/entities/nonexclusive/organic/shadow_flesh/shadow_flesh_web_nrm.tga</init_from>
+        </image>
+        <image id="Image0006" name="Image0006">
+            <init_from>file:///E:/Work/textures/checker_512.gif</init_from>
+        </image>
+    </library_images>
+    <library_materials>
+        <material id="Material-shadow_flesh_strands" name="shadow_flesh_strands">
+            <instance_effect url="#Effect-shadow_flesh_strands" />
+        </material>
+        <material id="Material-shadow_flesh_web" name="shadow_flesh_web">
+            <instance_effect url="#Effect-shadow_flesh_web" />
+        </material>
+    </library_materials>
+    <library_effects>
+        <effect id="Effect-shadow_flesh_strands" name="shadow_flesh_strands">
+            <profile_COMMON>
+                <newparam sid="Image0001-surface">
+                    <surface type="2D">
+                        <init_from>Image0001</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0001-sampler">
+                    <sampler2D>
+                        <source>Image0001-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0001-sampler" texcoord="Texture" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.04 0.04 0.04 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+        <effect id="Effect-shadow_flesh_web" name="shadow_flesh_web">
+            <profile_COMMON>
+                <newparam sid="Image0004-surface">
+                    <surface type="2D">
+                        <init_from>Image0004</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0004-sampler">
+                    <sampler2D>
+                        <source>Image0004-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0004-sampler" texcoord="plane_uvs" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.04 0.04 0.04 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+    </library_effects>
+    <library_geometries>
+        <geometry id="Geometry-mesh014" name="low">
+            <mesh>
+                <source id="Geometry-mesh014-positions" name="positions">
+                    <float_array id="Geometry-mesh014-positions-array" count="24">
+                        1.01578 0 0
+                        -0.984222 0 0
+                        -0.984222 2 0
+                        1.01578 2 0
+                        1.01578 0 0
+                        -0.984222 0 0
+                        -0.984222 2 0
+                        1.01578 2 0
+                    </float_array>
+                    <technique_common>
+                        <accessor count="8" source="#Geometry-mesh014-positions-array" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-mesh014-normals" name="normals">
+                    <float_array id="Geometry-mesh014-normals-array" count="6">
+                        0 0 -1
+                        0 0 1
+                    </float_array>
+                    <technique_common>
+                        <accessor count="2" source="#Geometry-mesh014-normals-array" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-mesh014-plane_uvs" name="plane_uvs">
+                    <float_array id="Geometry-mesh014-plane_uvs-array" count="8">
+                        1 1.52271e-007
+                        -2.98023e-008 1.52271e-007
+                        1 1
+                        -1.49012e-007 1
+                    </float_array>
+                    <technique_common>
+                        <accessor count="4" source="#Geometry-mesh014-plane_uvs-array" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="Geometry-mesh014-vertices">
+                    <input semantic="POSITION" source="#Geometry-mesh014-positions" />
+                </vertices>
+                <triangles count="4" material="Material-shadow_flesh_web">
+                    <input semantic="VERTEX" source="#Geometry-mesh014-vertices" offset="0" />
+                    <input semantic="NORMAL" source="#Geometry-mesh014-normals" offset="1" />
+                    <input semantic="TEXCOORD" source="#Geometry-mesh014-plane_uvs" offset="2" set="0" />
+                    <p>0 0 0 1 0 1 3 0 2 2 0 3 3 0 2 1 0 1 4 1 0 7 1 2 5 1 1 6 1 3 5 1 1 7 1 2</p>
+                </triangles>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_visual_scenes>
+        <visual_scene id="DefaultScene">
+            <node id="Geometry-mesh014Node" name="low" type="NODE">
+                <matrix sid="transform">
+        1 0 0 0
+        0 1 0 0
+        0 0 1 0
+        0 0 0 1
+    </matrix>
+                <instance_geometry url="#Geometry-mesh014">
+                    <bind_material>
+                        <technique_common>
+                            <instance_material symbol="Material-shadow_flesh_web" target="#Material-shadow_flesh_web">
+                                <bind_vertex_input semantic="plane_uvs" input_semantic="TEXCOORD" input_set="0" />
+                            </instance_material>
+                        </technique_common>
+                    </bind_material>
+                </instance_geometry>
+            </node>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#DefaultScene" />
+    </scene>
+</COLLADA>

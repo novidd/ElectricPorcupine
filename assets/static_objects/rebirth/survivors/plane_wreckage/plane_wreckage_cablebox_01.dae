@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2020-01-14T10:45:34Z</created><keywords></keywords><modified>2020-01-14T10:45:34Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_images>
+    <image id="file24-image" name="file24"><init_from>file://D:/Frictional_SVN/amnesia2/trunk/redist/static_objects/_temp/cesar/survivors/plane_wreckage/plane_wreckage_cables.dds</init_from></image>
+  </library_images>
+  <library_materials>
+    <material id="plane_wreckage_cables" name="plane_wreckage_cables">
+      <instance_effect url="#plane_wreckage_cables-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="plane_wreckage_cables-fx" name="plane_wreckage_cables">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file24-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.500000  0.500000 0.500000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">20.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">0.500000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="plane_wreckage_cablebox_01-lib" name="plane_wreckage_cablebox_01Mesh">
+      <mesh>
+        <source id="plane_wreckage_cablebox_01-POSITION">
+          <float_array id="plane_wreckage_cablebox_01-POSITION-array" count="144">
+-119.497437 24.685593 92.625488
+-118.711426 22.787994 92.625488
+-117.139069 21.215637 92.625488
+-115.241470 20.429626 92.625488
+-102.788803 20.429626 92.625488
+-100.891205 21.215637 92.625488
+-99.318848 22.787994 92.625488
+-98.532837 24.685593 92.625488
+-118.711426 48.120544 92.625488
+-119.497437 46.222946 92.625488
+-115.241470 50.478912 92.625488
+-117.139069 49.692902 92.625488
+-100.891205 49.692902 92.625488
+-102.788803 50.478912 92.625488
+-98.532837 46.222946 92.625488
+-99.318848 48.120544 92.625488
+-118.464951 24.890961 107.374504
+-119.497437 24.685593 106.342018
+-118.464951 46.017578 107.374504
+-119.497437 46.222946 106.342018
+-117.836121 23.372849 107.374504
+-118.711426 22.787994 106.342018
+-115.036102 21.462112 107.374504
+-115.241470 20.429626 106.342018
+-102.994171 21.462112 107.374504
+-102.788803 20.429626 106.342018
+-116.554214 22.090942 107.374504
+-117.139069 21.215637 106.342018
+-101.476059 22.090942 107.374504
+-100.891205 21.215637 106.342018
+-100.194153 23.372849 107.374504
+-99.318848 22.787994 106.342018
+-99.565323 24.890961 107.374504
+-98.532837 24.685593 106.342018
+-99.565323 46.017578 107.374504
+-98.532837 46.222946 106.342018
+-117.836121 47.535690 107.374504
+-118.711426 48.120544 106.342018
+-116.554214 48.817596 107.374504
+-117.139069 49.692902 106.342018
+-115.036102 49.446426 107.374504
+-115.241470 50.478912 106.342018
+-102.994171 49.446426 107.374504
+-102.788803 50.478912 106.342018
+-101.476059 48.817596 107.374504
+-100.891205 49.692902 106.342018
+-100.194153 47.535690 107.374504
+-99.318848 48.120544 106.342018
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_cablebox_01-POSITION-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_wreckage_cablebox_01-Normal0">
+          <float_array id="plane_wreckage_cablebox_01-Normal0-array" count="144">
+-0.999438 -0.033521 0.000000
+-0.827060 -0.562114 0.000000
+-0.562114 -0.827060 0.000000
+-0.054691 -0.998503 0.000000
+0.054691 -0.998503 0.000000
+0.562115 -0.827059 0.000000
+0.827060 -0.562114 0.000000
+0.999438 -0.033521 0.000000
+-0.827060 0.562114 0.000000
+-0.999438 0.033521 0.000000
+-0.054691 0.998503 0.000000
+-0.562114 0.827060 0.000000
+0.562115 0.827059 0.000000
+0.054691 0.998503 0.000000
+0.999438 0.033521 0.000000
+0.827060 0.562114 0.000000
+-0.452944 -0.013907 0.891431
+-0.997434 -0.033275 0.063385
+-0.452944 0.013907 0.891431
+-0.997434 0.033275 0.063385
+-0.061845 -0.042109 0.997197
+-0.825571 -0.561162 0.059410
+-0.002070 -0.040828 0.999164
+-0.054329 -0.996538 0.062931
+0.002070 -0.040828 0.999164
+0.054329 -0.996538 0.062931
+-0.033014 -0.048489 0.998278
+-0.561161 -0.825572 0.059410
+0.033014 -0.048489 0.998278
+0.561162 -0.825571 0.059410
+0.061845 -0.042109 0.997197
+0.825571 -0.561162 0.059410
+0.452944 -0.013907 0.891431
+0.997434 -0.033275 0.063385
+0.452944 0.013907 0.891431
+0.997434 0.033275 0.063385
+-0.061845 0.042109 0.997197
+-0.825571 0.561162 0.059410
+-0.033014 0.048489 0.998278
+-0.561161 0.825572 0.059410
+-0.002070 0.040828 0.999164
+-0.054329 0.996538 0.062931
+0.002070 0.040828 0.999164
+0.054329 0.996538 0.062931
+0.033014 0.048489 0.998278
+0.561162 0.825571 0.059410
+0.061845 0.042109 0.997197
+0.825571 0.561162 0.059410
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_cablebox_01-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_wreckage_cablebox_01-UV0">
+          <float_array id="plane_wreckage_cablebox_01-UV0-array" count="160">
+0.501858 0.037594
+0.497323 0.036692
+0.497323 0.028358
+0.501858 0.030926
+0.501858 0.130376
+0.497323 0.131278
+0.501858 0.137043
+0.497323 0.139612
+0.900477 0.570655
+0.896633 0.568086
+0.903538 0.561181
+0.906107 0.565025
+0.149860 0.896360
+0.145326 0.897262
+0.145326 0.842573
+0.149860 0.843475
+0.149860 0.903027
+0.145326 0.905596
+0.145326 0.834239
+0.149860 0.836808
+0.972326 0.565025
+0.974895 0.561181
+0.981800 0.568086
+0.977956 0.570655
+0.251307 0.656698
+0.255842 0.654129
+0.255842 0.662463
+0.251307 0.663365
+0.255842 0.757050
+0.251307 0.756148
+0.255842 0.765383
+0.251307 0.762815
+0.896633 0.679340
+0.900477 0.676772
+0.906107 0.682402
+0.903538 0.686246
+0.021177 0.911368
+0.016642 0.908799
+0.016642 0.902132
+0.021177 0.903034
+0.016642 0.849247
+0.021177 0.848345
+0.016642 0.842580
+0.021177 0.840011
+0.974895 0.686246
+0.972326 0.682402
+0.977956 0.676772
+0.981800 0.679340
+0.085086 0.897262
+0.085086 0.842573
+0.081416 0.903034
+0.081416 0.848345
+0.316081 0.662463
+0.316081 0.757050
+0.437084 0.131278
+0.437084 0.036692
+0.437084 0.028358
+0.437084 0.021453
+0.497323 0.021453
+0.255842 0.647224
+0.316081 0.647224
+0.316081 0.654129
+0.437084 0.139612
+0.497323 0.146517
+0.437084 0.146517
+0.316081 0.772289
+0.255842 0.772289
+0.316081 0.765383
+0.965659 0.562263
+0.965659 0.685163
+0.912774 0.685163
+0.912774 0.562263
+0.085086 0.905596
+0.085086 0.834239
+0.081416 0.911368
+0.081416 0.840011
+0.980718 0.577322
+0.980718 0.670105
+0.897715 0.670105
+0.897715 0.577322
+</float_array>
+          <technique_common>
+            <accessor source="#plane_wreckage_cablebox_01-UV0-array" count="80" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_wreckage_cablebox_01-VERTEX">
+          <input semantic="POSITION" source="#plane_wreckage_cablebox_01-POSITION"/>
+          <input semantic="NORMAL" source="#plane_wreckage_cablebox_01-Normal0"/>
+        </vertices>
+        <triangles count="78" material="plane_wreckage_cables"><input semantic="VERTEX" offset="0" source="#plane_wreckage_cablebox_01-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#plane_wreckage_cablebox_01-UV0"/><p> 21 2 16 0 17 1 16 0 21 2 20 3 19 5 17 1 18 4 18 4 17 1 16 0 37 7 18 4 36 6 18 4 37 7 19 5 27 10 20 8 21 9 20 8 27 10 26 11 23 13 25 14 22 12 24 15 22 12 25 14 22 12 27 17 23 13 27 17 22 12 26 16 25 14 29 18 24 15 24 15 29 18 28 19 31 22 28 20 29 21 28 20 31 22 30 23 31 25 32 27 30 24 32 27 31 25 33 26 34 29 32 27 35 28 35 28 32 27 33 26 46 31 34 29 47 30 34 29 35 28 47 30 38 34 37 32 36 33 37 32 38 34 39 35 40 38 39 36 38 37 39 36 40 38 41 39 42 40 41 39 40 38 41 39 42 40 43 41 45 43 42 40 44 42 42 40 45 43 43 41 45 44 46 46 47 47 46 46 45 44 44 45 25 14 23 13 4 49 23 13 3 48 4 49 43 41 10 50 41 39 10 50 43 41 13 51 35 28 33 26 14 53 33 26 7 52 14 53 17 1 19 5 0 55 19 5 9 54 0 55 2 57 27 58 21 2 21 2 1 56 2 57 6 61 31 25 29 59 29 59 5 60 6 61 39 63 8 62 37 7 8 62 39 63 11 64 47 30 12 65 45 66 12 65 47 30 15 67 40 70 24 68 42 69 24 68 40 70 22 71 17 1 0 55 21 2 21 2 0 55 1 56 27 17 2 72 23 13 23 13 2 72 3 48 25 14 4 49 29 18 29 18 4 49 5 73 31 25 6 61 33 26 33 26 6 61 7 52 37 7 8 62 19 5 19 5 8 62 9 54 41 39 10 50 39 36 39 36 10 50 11 74 45 43 12 75 43 41 43 41 12 75 13 51 14 53 47 30 35 28 47 30 14 53 15 67 38 34 22 71 40 70 22 71 38 34 26 11 32 76 46 46 30 23 46 46 32 76 34 77 18 78 20 8 36 33 20 8 18 78 16 79 42 69 28 20 44 45 42 69 24 68 28 20 44 45 30 23 46 46 44 45 28 20 30 23 26 11 38 34 36 33 26 11 36 33 20 8</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="plane_wreckage_cablebox_01" name="plane_wreckage_cablebox_01">
+      <node name="_exported_ingame" id="_exported_ingame" sid="_exported_ingame"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="plane_wreckage_cablebox_01" id="plane_wreckage_cablebox_01" sid="plane_wreckage_cablebox_01"><matrix sid="matrix">1.000000 0.000000 0.000000 109.015137 0.000000 1.000000 0.000000 -35.454269 0.000000 0.000000 1.000000 -100.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#plane_wreckage_cablebox_01-lib"><bind_material><technique_common><instance_material symbol="plane_wreckage_cables" target="#plane_wreckage_cables"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>2.000000</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#plane_wreckage_cablebox_01"></instance_visual_scene>
+  </scene>
+</COLLADA>

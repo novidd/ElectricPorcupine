@@ -1,0 +1,27 @@
+<Entity>
+    <ModelData>
+        <Entities />
+        <Mesh Filename="entities/nonexclusive/organic/bones/bone_skull_fractured_02.DAE">
+            <SubMesh ID="0" Name="bone_skull_fractured_02" CreStamp="0" ModStamp="1481811436" WorldPos="0 0 0" Rotation="-1.5708 -0 0" Scale="1.25 1.25 1.25" TriCount="2467" Material="" Static="false" />
+        </Mesh>
+        <Bones />
+        <Shapes>
+            <Shape ID="50" Name="ShapeSphere_1" CreStamp="1497889393" ModStamp="1497889412" WorldPos="0 0.173422 0.0274849" Rotation="0 0 0" Scale="0.112366 0 0" RelativeTranslation="0 0.0336204 0.0294182" RelativeRotation="0 -0 0" RelativeScale="1 1 1" ShapeType="Sphere" />
+            <Shape ID="51" Name="ShapeSphere_2" CreStamp="1497889413" ModStamp="1497889489" WorldPos="0 0.188968 -0.0313516" Rotation="0 0 0" Scale="0.106534 0 0" RelativeTranslation="0 0.0491664 -0.0294182" RelativeRotation="0 -0 0" RelativeScale="1 1 1" ShapeType="Sphere" />
+            <Shape ID="52" Name="ShapeBox_1" CreStamp="1497889427" ModStamp="1497889476" WorldPos="0 0.0906352 0.0184697" Rotation="0.154843 -0 0" Scale="0.0957474 0.0455844 0.185963" RelativeTranslation="0 -0.0491664 0.020403" RelativeRotation="0.154843 -0 0" RelativeScale="1 1 1" ShapeType="Box" />
+        </Shapes>
+        <Bodies>
+            <Body ID="53" Name="Body_1" CreStamp="0" ModStamp="1550592867" WorldPos="0 0.139802 -0.00193335" Rotation="0 0 0" Scale="1 1 1" Material="bone_skull" Mass="0" AngularDamping="1.6" LinearDamping="0.1" MaxAngularSpeed="20" MaxLinearSpeed="20" BuoyancyDensityMul="1" BlocksSound="false" ContinuousCollision="true" CanAttachCharacter="false" PushedByCharacterGravity="false" CollideCharacter="true" CollideNonCharacter="true" Volatile="false" UseSurfaceEffects="true" HasGravity="true" BlocksLight="true">
+                <Shape ID="51" />
+                <Shape ID="50" />
+                <Shape ID="52" />
+            </Body>
+        </Bodies>
+        <Joints />
+        <Animations />
+        <ProcAnimations />
+    </ModelData>
+    <UserDefinedVariables EntityType="StaticProp">
+        <Var Name="ShowMesh" Value="true" />
+    </UserDefinedVariables>
+</Entity>

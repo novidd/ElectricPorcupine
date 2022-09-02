@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2019-02-19T13:06:31Z</created><keywords></keywords><modified>2019-02-19T13:06:31Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_images>
+    <image id="file21-image" name="file21"><init_from>file://D:/Frictional_SVN/amnesia2/trunk/redist/static_objects/survivors/plane/plane_interior_cockpit.dds</init_from></image>
+  </library_images>
+  <library_materials>
+    <material id="plane_interior_cockpit_MAT" name="plane_interior_cockpit_MAT">
+      <instance_effect url="#plane_interior_cockpit_MAT-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="plane_interior_cockpit_MAT-fx" name="plane_interior_cockpit_MAT">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file21-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">6.311791</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">0.500000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="plane_interior_floor-lib" name="plane_interior_floorMesh">
+      <mesh>
+        <source id="plane_interior_floor-POSITION">
+          <float_array id="plane_interior_floor-POSITION-array" count="12">
+-71.390366 0.000000 77.037880
+178.609634 0.000000 77.037880
+-71.390366 0.000000 -72.962120
+178.609634 0.000000 -72.962120
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_floor-POSITION-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_interior_floor-Normal0">
+          <float_array id="plane_interior_floor-Normal0-array" count="12">
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_floor-Normal0-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_interior_floor-UV0">
+          <float_array id="plane_interior_floor-UV0-array" count="8">
+0.003341 0.123814
+0.783824 0.123814
+0.003341 0.578857
+0.783824 0.578857
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_floor-UV0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_interior_floor-VERTEX">
+          <input semantic="POSITION" source="#plane_interior_floor-POSITION"/>
+          <input semantic="NORMAL" source="#plane_interior_floor-Normal0"/>
+        </vertices>
+        <triangles count="2" material="plane_interior_cockpit_MAT"><input semantic="VERTEX" offset="0" source="#plane_interior_floor-VERTEX"/><input semantic="TEXCOORD" offset="1" set="0" source="#plane_interior_floor-UV0"/><p> 3 3 0 0 1 1 0 0 3 3 2 2</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="plane_interior_floor" name="plane_interior_floor">
+      <node name="_export_ingame" id="_export_ingame" sid="_export_ingame"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="plane_interior_floor" id="plane_interior_floor" sid="plane_interior_floor"><matrix sid="matrix">1.000000 0.000000 0.000000 71.390366 0.000000 1.000000 0.000000 -0.000000 0.000000 0.000000 1.000000 72.962120 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#plane_interior_floor-lib"><bind_material><technique_common><instance_material symbol="plane_interior_cockpit_MAT" target="#plane_interior_cockpit_MAT"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>2.000000</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#plane_interior_floor"></instance_visual_scene>
+  </scene>
+</COLLADA>

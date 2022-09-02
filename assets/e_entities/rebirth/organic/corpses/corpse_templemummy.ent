@@ -1,0 +1,32 @@
+<Entity>
+    <ModelData>
+        <Entities />
+        <Mesh Filename="entities/nonexclusive/organic/corpses/corpse_templemummy.DAE">
+            <SubMesh ID="0" Name="Mesh" CreStamp="0" ModStamp="0" WorldPos="0 0 0" Rotation="0 0 0" Scale="1 1 1" TriCount="8932" Material="" Static="true" />
+        </Mesh>
+        <Bones />
+        <Shapes>
+            <Shape ID="1" Name="ShapeBox_1" CreStamp="1481815776" ModStamp="1481815806" WorldPos="0.00360639 0.183633 -0.00565881" Rotation="0 0 0" Scale="0.283055 0.360886 0.346394" RelativeTranslation="0.000178795 -0.30354 -0.0382433" RelativeRotation="0 -0 0" RelativeScale="1 1 1" ShapeType="Box" />
+            <Shape ID="3" Name="ShapeCapsule_1" CreStamp="1481815820" ModStamp="1481815874" WorldPos="0.0105807 0.428918 -0.0300095" Rotation="0.516463 -0 0" Scale="0.184856 0.602939 0" RelativeTranslation="0.0071531 -0.058255 -0.062594" RelativeRotation="0.516463 -0 0" RelativeScale="1 1 1" ShapeType="Capsule" />
+            <Shape ID="5" Name="ShapeCapsule_3" CreStamp="1481815907" ModStamp="1510922275" WorldPos="0.0116701 0.790713 0.0951784" Rotation="0.561235 -0.00270953 0.00477138" Scale="0.0870081 0.328074 0" RelativeTranslation="0.0082425 0.30354 0.062594" RelativeRotation="0.561235 -0.00270953 0.00477138" RelativeScale="1 1 1" ShapeType="Capsule" />
+            <Shape ID="8" Name="ShapeCapsule_6" CreStamp="1481815968" ModStamp="1481816008" WorldPos="-0.00481491 0.353851 0.0845435" Rotation="0.104385 -0.000127074 0.0104732" Scale="0.144901 0.492396 0" RelativeTranslation="-0.0082425 -0.133322 0.051959" RelativeRotation="0.104385 -0.000127074 0.0104732" RelativeScale="1 1 1" ShapeType="Capsule" />
+        </Shapes>
+        <Bodies>
+            <Body ID="9" Name="Body_1" CreStamp="0" ModStamp="1510922311" WorldPos="0.00342759 0.487173 0.0325845" Rotation="0 0 0" Scale="1 1 1" Material="" Mass="0" AngularDamping="0.5" LinearDamping="0.1" MaxAngularSpeed="20" MaxLinearSpeed="20" BuoyancyDensityMul="1" BlocksSound="false" ContinuousCollision="true" CanAttachCharacter="false" PushedByCharacterGravity="false" CollideCharacter="true" CollideNonCharacter="true" Volatile="false" UseSurfaceEffects="true" HasGravity="true" BlocksLight="true">
+                <Children>
+                    <Child ID="0" />
+                </Children>
+                <Shape ID="1" />
+                <Shape ID="8" />
+                <Shape ID="3" />
+                <Shape ID="5" />
+            </Body>
+        </Bodies>
+        <Joints />
+        <Animations />
+        <ProcAnimations />
+    </ModelData>
+    <UserDefinedVariables EntityType="StaticProp">
+        <Var Name="ShowMesh" Value="true" />
+    </UserDefinedVariables>
+</Entity>

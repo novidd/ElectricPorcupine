@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset>
+        <contributor>
+            <authoring_tool>modo 701 [Build 68192], Microsoft Windows 7 Service Pack 1 (6.1.7601 Service Pack 1)</authoring_tool>
+            <comments>Plug-in: [Build 68192]; Use Absolute Path: No; Merge Reference Items: No; Save Hidden Items: No; Save Cameras: No; Save Lights: No; Save Locators: Yes; Save Triangles as Triangles: Yes; Order Vertex Maps Alphabetically: Yes; Bake Matrices: Yes; Save Vertex Normals: Yes; Save UV Texture Coordinates: Yes; Save Vertex Colors: Yes; Save Vertex Weights: Yes; Save Animation: No; Sample Animation: Yes; Sample Animation Start: 0; Sample Animation End: 1; Save modo Profile: No; Save Maya Profile: No; Save 3ds Max Profile: No; Formatted Arrays: No;</comments>
+            <source_data>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/entities/organic/moss/moss_float/moss_float.lxo</source_data>
+        </contributor>
+        <created>2014-11-28T20:43:41Z</created>
+        <modified>2014-11-28T20:43:41Z</modified>
+        <unit name="game" meter="1" />
+        <up_axis>Y_UP</up_axis>
+    </asset>
+    <library_images>
+        <image id="Image0001" name="Image0001">
+            <init_from>file:///D:/Work/Dropbox/Frictional%20Games%20-%20Team/Aaron/models/entities/organic/moss/moss_float/moss_float_sway.psd</init_from>
+        </image>
+    </library_images>
+    <library_materials>
+        <material id="Material-moss_patchy" name="moss_patchy">
+            <instance_effect url="#Effect-moss_patchy" />
+        </material>
+    </library_materials>
+    <library_effects>
+        <effect id="Effect-moss_patchy" name="moss_patchy">
+            <profile_COMMON>
+                <newparam sid="Image0001-surface">
+                    <surface type="2D">
+                        <init_from>Image0001</init_from>
+                        <format>A8R8G8B8</format>
+                    </surface>
+                </newparam>
+                <newparam sid="Image0001-sampler">
+                    <sampler2D>
+                        <source>Image0001-surface</source>
+                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <magfilter>LINEAR</magfilter>
+                    </sampler2D>
+                </newparam>
+                <technique sid="common">
+                    <phong>
+                        <diffuse>
+                            <texture texture="Image0001-sampler" texcoord="uvSet1" />
+                        </diffuse>
+                        <specular>
+                            <color sid="specular_effect_rgb">0.2 0.2 0.2 1</color>
+                        </specular>
+                        <shininess>
+                            <float sid="specular_effect_rgb">256</float>
+                        </shininess>
+                    </phong>
+                </technique>
+            </profile_COMMON>
+        </effect>
+    </library_effects>
+    <library_geometries>
+        <geometry id="Geometry-mesh032" name="06">
+            <mesh>
+                <source id="Geometry-mesh032-positions" name="positions">
+                    <float_array id="Geometry-mesh032-positions-array" count="12">0.484375 0 0.672891 0.484375 0 -0.672891 -0.484375 0 -0.514609 -0.483365 0 0.672891</float_array>
+                    <technique_common>
+                        <accessor count="4" source="#Geometry-mesh032-positions-array" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-mesh032-normals" name="normals">
+                    <float_array id="Geometry-mesh032-normals-array" count="3">0 1 0</float_array>
+                    <technique_common>
+                        <accessor count="1" source="#Geometry-mesh032-normals-array" stride="3">
+                            <param name="X" type="float" />
+                            <param name="Y" type="float" />
+                            <param name="Z" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-mesh032-uvSet1" name="uvSet1">
+                    <float_array id="Geometry-mesh032-uvSet1-array" count="8">0.995122 0.338041 0.755297 0.298857 0.995122 0.00487805 0.755547 0.00487805</float_array>
+                    <technique_common>
+                        <accessor count="4" source="#Geometry-mesh032-uvSet1-array" stride="2">
+                            <param name="S" type="float" />
+                            <param name="T" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <source id="Geometry-mesh032-UV_Distortion" name="UV_Distortion">
+                    <float_array id="Geometry-mesh032-UV_Distortion-array" count="3">0.501961 0.54902 0.501961</float_array>
+                    <technique_common>
+                        <accessor count="1" source="#Geometry-mesh032-UV_Distortion-array" stride="3">
+                            <param name="R" type="float" />
+                            <param name="G" type="float" />
+                            <param name="B" type="float" />
+                        </accessor>
+                    </technique_common>
+                </source>
+                <vertices id="Geometry-mesh032-vertices">
+                    <input semantic="POSITION" source="#Geometry-mesh032-positions" />
+                </vertices>
+                <triangles count="2" material="Material-moss_patchy">
+                    <input semantic="VERTEX" source="#Geometry-mesh032-vertices" offset="0" />
+                    <input semantic="NORMAL" source="#Geometry-mesh032-normals" offset="1" />
+                    <input semantic="TEXCOORD" source="#Geometry-mesh032-uvSet1" offset="2" set="0" />
+                    <input semantic="COLOR" source="#Geometry-mesh032-UV_Distortion" offset="3" set="0" />
+                    <p>1 0 0 0 2 0 1 0 0 0 2 0 3 0 3 0 0 0 2 0 2 0 1 0</p>
+                </triangles>
+            </mesh>
+        </geometry>
+    </library_geometries>
+    <library_visual_scenes>
+        <visual_scene id="DefaultScene">
+            <node id="Geometry-mesh032Node" name="06" type="NODE">
+                <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                <instance_geometry url="#Geometry-mesh032">
+                    <bind_material>
+                        <technique_common>
+                            <instance_material symbol="Material-moss_patchy" target="#Material-moss_patchy">
+                                <bind_vertex_input semantic="uvSet1" input_semantic="TEXCOORD" input_set="0" />
+                            </instance_material>
+                        </technique_common>
+                    </bind_material>
+                </instance_geometry>
+            </node>
+            <node id="groupLocator027Node" name="Texture_Group" type="NODE">
+                <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                <node id="txtrLocator023Node" name="moss_float__Image___Texture_" type="NODE">
+                    <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                </node>
+            </node>
+        </visual_scene>
+    </library_visual_scenes>
+    <scene>
+        <instance_visual_scene url="#DefaultScene" />
+    </scene>
+</COLLADA>

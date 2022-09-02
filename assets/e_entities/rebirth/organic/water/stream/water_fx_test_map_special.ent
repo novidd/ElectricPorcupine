@@ -1,0 +1,41 @@
+<Entity>
+    <EditorSession>
+        <ViewportConfig Enlarged="true" Focused="3">
+            <Viewport CameraPos="0 0 200" CameraTarget="0 0 0" Controller="Ortho" GridHeights="0 0 0" GridPlane="2" LockToGrid="true" Mode="Front" OrthoZoom="7.38839" Renderer="Wireframe" ShowAxes="true" ShowGrid="true" />
+            <Viewport CameraPos="200 0 0" CameraTarget="0 0 0" Controller="Ortho" GridHeights="0 0 0" GridPlane="0" LockToGrid="true" Mode="Right" OrthoZoom="7.38839" Renderer="Wireframe" ShowAxes="true" ShowGrid="true" />
+            <Viewport CameraPos="0.722372 200 6.17188" CameraTarget="0.722372 0 6.17188" Controller="Ortho" GridHeights="0 0 0" GridPlane="1" LockToGrid="true" Mode="Top" OrthoZoom="7.71839" Renderer="Wireframe" ShowAxes="true" ShowGrid="true" />
+            <Viewport CameraPos="4.97444 4.73146 4.78736" CameraTarget="-0.464422 -0.255604 4.34914" Controller="Maya" GridHeights="0 0 0" GridPlane="1" LockToGrid="false" Mode="Perspective" Renderer="Shaded" ShowAxes="true" ShowGrid="true" />
+        </ViewportConfig>
+    </EditorSession>
+    <ModelData>
+        <Entities />
+        <Mesh Filename="entities/organic/water/stream/water_fx_test_map_special.dae">
+            <SubMesh ID="0" Material="" Name="Mesh__2_" Rotation="0 0 0" Scale="1 1 1" WorldPos="0 0 0" />
+        </Mesh>
+        <Bones />
+        <Shapes>
+            <Shape ID="1" Name="Shape_1" RelativeRotation="0 -0.253043 0" RelativeScale="1 1 1" RelativeTranslation="0.114634 0 -1.97644" Rotation="0 -0.253043 0" Scale="2.42294 0.0113851 1" ShapeType="Box" WorldPos="0.762704 0 2.725" />
+            <Shape ID="2" Name="Shape_2" RelativeRotation="0 -0.117144 0" RelativeScale="1 1 1" RelativeTranslation="0.0197645 0 -1.06728" Rotation="0 -0.117144 0" Scale="1.61677 0.0113851 1" ShapeType="Box" WorldPos="0.667835 0 3.63417" />
+            <Shape ID="3" Name="Shape_3" RelativeRotation="0 -0.00906725 0" RelativeScale="1 1 1" RelativeTranslation="-0.043482 0 -0.0790582" Rotation="0 -0.00906725 0" Scale="1.12397 0.0113851 1" ShapeType="Box" WorldPos="0.604588 0 4.62238" />
+            <Shape ID="4" Name="Shape_4" RelativeRotation="0 -0.00906725 0" RelativeScale="1 1 1" RelativeTranslation="-0.0909165 0 0.901255" Rotation="0 -0.00906725 0" Scale="1.12397 0.0113851 1" ShapeType="Box" WorldPos="0.557154 0 5.6027" />
+            <Shape ID="5" Name="Shape_5" RelativeRotation="0 -0.00906725 0" RelativeScale="1 1 1" RelativeTranslation="-0.114634 0 1.97644" Rotation="0 -0.00906725 0" Scale="1.00553 0.0113851 1.26878" ShapeType="Box" WorldPos="0.533437 0 6.67788" />
+        </Shapes>
+        <Bodies>
+            <Body AngularDamping="0.5" BlocksLight="true" BlocksSound="false" BuoyancyDensityMul="1" CanAttachCharacter="false" CollideCharacter="true" CollideNonCharacter="true" ContinuousCollision="true" HasGravity="true" ID="6" LinearDamping="0.1" Mass="0" Material="Water Puddle" MaxAngularSpeed="20" MaxLinearSpeed="20" Name="Body_1" PushedByCharacterGravity="false" Rotation="0 0 0" Scale="1 1 1" UseSurfaceEffects="true" Volatile="false" WorldPos="0.64807 0 4.70144">
+                <Children>
+                    <Child ID="0" />
+                </Children>
+                <Shape ID="2" />
+                <Shape ID="1" />
+                <Shape ID="3" />
+                <Shape ID="4" />
+                <Shape ID="5" />
+            </Body>
+        </Bodies>
+        <Joints />
+        <Animations />
+    </ModelData>
+    <UserDefinedVariables EntityType="StaticProp">
+        <Var Name="ShowMesh" Value="true" />
+    </UserDefinedVariables>
+</Entity>

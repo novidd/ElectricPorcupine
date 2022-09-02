@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2019-02-25T15:48:51Z</created><keywords></keywords><modified>2019-02-25T15:48:51Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_images>
+    <image id="file21-image" name="file21"><init_from>file://D:/Frictional_SVN/amnesia2/trunk/redist/static_objects/survivors/plane/plane_interior_cockpit.dds</init_from></image>
+  </library_images>
+  <library_materials>
+    <material id="plane_interior_cockpit_MAT" name="plane_interior_cockpit_MAT">
+      <instance_effect url="#plane_interior_cockpit_MAT-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="plane_interior_cockpit_MAT-fx" name="plane_interior_cockpit_MAT">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="file21-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">6.311791</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">0.500000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="plane_interior_map_1-lib" name="plane_interior_map_1Mesh">
+      <mesh>
+        <source id="plane_interior_map_1-POSITION">
+          <float_array id="plane_interior_map_1-POSITION-array" count="27">
+6.769402 9.981318 0.000000
+-0.683250 9.784722 0.000000
+-0.213455 -6.585976 0.000000
+-7.524445 -6.826906 0.000000
+-7.926895 9.161139 0.000000
+-0.675606 9.518205 0.000000
+-1.149170 9.494884 0.000000
+-0.116013 -9.981318 0.000000
+7.926895 -9.802845 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_map_1-POSITION-array" count="9" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_interior_map_1-Normal0">
+          <float_array id="plane_interior_map_1-Normal0-array" count="54">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_map_1-Normal0-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="plane_interior_map_1-UV0">
+          <float_array id="plane_interior_map_1-UV0-array" count="18">
+0.624885 0.721305
+0.624910 0.720413
+0.626457 0.666519
+0.626783 0.655156
+0.653699 0.655753
+0.649825 0.721962
+0.623325 0.720335
+0.600643 0.719218
+0.601990 0.665713
+</float_array>
+          <technique_common>
+            <accessor source="#plane_interior_map_1-UV0-array" count="9" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="plane_interior_map_1-VERTEX">
+          <input semantic="POSITION" source="#plane_interior_map_1-POSITION"/>
+        </vertices>
+        <triangles count="6" material="plane_interior_cockpit_MAT"><input semantic="VERTEX" offset="0" source="#plane_interior_map_1-VERTEX"/><input semantic="NORMAL" offset="1" source="#plane_interior_map_1-Normal0"/><input semantic="TEXCOORD" offset="2" set="0" source="#plane_interior_map_1-UV0"/><p> 5 0 1 0 1 5 1 2 0 2 3 2 0 4 5 5 5 1 8 6 4 0 7 5 2 8 2 2 9 2 7 10 3 8 11 4 6 12 6 3 13 8 2 14 2 3 15 8 6 16 6 4 17 7</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="plane_interior_map_1" name="plane_interior_map_1">
+      <node name="_export_ingame_static" id="_export_ingame_static" sid="_export_ingame_static"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra><node name="plane_interior_map_1" id="plane_interior_map_1" sid="plane_interior_map_1"><matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#plane_interior_map_1-lib"><bind_material><technique_common><instance_material symbol="plane_interior_cockpit_MAT" target="#plane_interior_cockpit_MAT"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>2.000000</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#plane_interior_map_1"></instance_visual_scene>
+  </scene>
+</COLLADA>
