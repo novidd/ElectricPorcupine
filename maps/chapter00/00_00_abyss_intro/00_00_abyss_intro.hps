@@ -125,7 +125,7 @@ class cScrMap : iScrMap
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
-//			bDoIntro = false;
+			bDoIntro = false;
 		}
 		
 		if (bDoIntro)
@@ -179,7 +179,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			Player_SetHealth(0.65f);
+			SequenceIntro("");
 		}
 		
 		if(alAction == eAction_Test2)
@@ -335,6 +335,8 @@ class cScrMap : iScrMap
 	// Scene 1 --
 	// The slide until crashing in the rock and waking up
 	
+	// In an area where the storm is calm, find glowy abyss fish
+	
 	// Scene 2 --
 	// The asteroid attracts objects with running electricity
 	// That is why the Zeppellin and the Plane is there (Lore friendly, I guess)
@@ -416,6 +418,8 @@ class cScrMap : iScrMap
 	// The greeneries grow out out the broken window into the hall
 	// The UV lights keep the plants alive, so they don't need the sun, "And water? Well there is plenty of that."
 	// He does need to turn the salt water into fresh water however, since the saltwater dries the plants, and eventually poisones them
+	
+	// In this lab the power will go out and the monster will appear, to only thing illuminating the room is the sample infused with the WAU.
 	
 	// A lone person runs this station.
 	// Tell a secondary story of a team of 8 that came here to pick him up. (after the guy above died)
