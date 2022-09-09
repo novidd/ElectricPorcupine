@@ -34,6 +34,8 @@
 
 #include "player/Player_Types.hps"
 
+#include "helpers/EP_helper_general.hps"
+
 //--------------------------------------------------
  
 const float gfDofMax = 3.0f;
@@ -184,10 +186,12 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test2)
 		{
-			// Do damage on crash
-			Player_GiveDamage(0, 0, eDamageType_Hit, "");
-//			Player_MoveHeadPos(cVector3f_Down*0.375, 9, 4, 0);
-			Depth_Audio_PlayerTakeDamage();
+//			// Do damage on crash
+//			Player_GiveDamage(0, 0, eDamageType_Hit, "");
+////			Player_MoveHeadPos(cVector3f_Down*0.375, 9, 4, 0);
+//			Depth_Audio_PlayerTakeDamage();
+//			
+			EP_StartScareEffects();
 		}
 		
 	}
