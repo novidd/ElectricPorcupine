@@ -157,7 +157,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268437842" Name="Creature1" CreStamp="1659182150" ModStamp="1659182160" WorldPos="-9.29785 231.247 412.135" Rotation="0 0 0" Scale="4.757 2.953 4.823" Active="true" Mesh="" UID="16 1103 268437842" AreaType="Trigger">
+            <Area ID="268437842" Name="Creature1" CreStamp="1659182150" ModStamp="1659182160" WorldPos="-9.29785 231.247 368.26" Rotation="0 0 0" Scale="4.757 2.953 4.823" Active="true" Mesh="" UID="16 1103 268437842" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -939,7 +939,7 @@
                     <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="268441620" Name="Fall1_3" CreStamp="1660917931" ModStamp="1662815852" WorldPos="-1 403.898 470.774" Rotation="-2.24122 2.80953 3.03498" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3047 268441620" AreaType="CameraAnimation">
+            <Area ID="268441620" Name="Fall1_3" CreStamp="1660917931" ModStamp="1662827772" WorldPos="-1 403.898 470.774" Rotation="-2.24122 2.80953 3.03498" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3047 268441620" AreaType="CameraAnimation">
                 <UserVariables>
                     <Var Name="MaxYaw" Value="10" />
                     <Var Name="MaxPitch" Value="10" />
@@ -954,25 +954,7 @@
                     <Var Name="CrouchOnExit" Value="false" />
                     <Var Name="InitToCamera" Value="false" />
                     <Var Name="UsePlayerEyeline" Value="false" />
-                    <Var Name="CallbackFunc" Value="SlideComplete" />
-                </UserVariables>
-            </Area>
-            <Area ID="268441622" Name="1Fall1_5" CreStamp="1660917958" ModStamp="1662815848" WorldPos="-1 353.898 472.568" Rotation="0.492177 2.97349 0.0538658" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3045 268441622" AreaType="CameraAnimation">
-                <UserVariables>
-                    <Var Name="MaxYaw" Value="15" />
-                    <Var Name="MaxPitch" Value="15" />
-                    <Var Name="LookSpeedMultiplier" Value="1" />
-                    <Var Name="ForwardTime" Value="0.75" />
-                    <Var Name="BackwardTime" Value="1" />
-                    <Var Name="AutoMovement" Value="1" />
-                    <Var Name="LookMoveDistance" Value="0" />
-                    <Var Name="LookMoveMaxAngle" Value="0" />
-                    <Var Name="InteractiveMovement" Value="false" />
-                    <Var Name="UseSpeedFading" Value="true" />
-                    <Var Name="CrouchOnExit" Value="false" />
-                    <Var Name="InitToCamera" Value="false" />
-                    <Var Name="UsePlayerEyeline" Value="false" />
-                    <Var Name="CallbackFunc" Value="SlideComplete" />
+                    <Var Name="CallbackFunc" Value="SlideStageComplete" />
                 </UserVariables>
             </Area>
             <Area ID="268441623" Name="Fall2_1" CreStamp="1660917960" ModStamp="1661966948" WorldPos="-1 339.854 487.474" Rotation="0.569558 0.0404043 -0.0202948" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3138 268441623" AreaType="CameraAnimation">
@@ -993,7 +975,7 @@
                     <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="268441625" Name="Fall2_2" CreStamp="1660919845" ModStamp="1662818375" WorldPos="-0.0622005 326.806 487.05" Rotation="1.13848 0.0404043 -0.0202948" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3043 268441625" AreaType="CameraAnimation">
+            <Area ID="268441625" Name="Fall2_2" CreStamp="1660919845" ModStamp="1662827845" WorldPos="-0.0622005 326.806 487.05" Rotation="1.13848 0.0404043 -0.0202948" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3043 268441625" AreaType="CameraAnimation">
                 <UserVariables>
                     <Var Name="MaxYaw" Value="15" />
                     <Var Name="MaxPitch" Value="15" />
@@ -1008,7 +990,7 @@
                     <Var Name="CrouchOnExit" Value="false" />
                     <Var Name="InitToCamera" Value="false" />
                     <Var Name="UsePlayerEyeline" Value="false" />
-                    <Var Name="CallbackFunc" Value="SlideStinger" />
+                    <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
             <Area ID="268441626" Name="Fall2_3" CreStamp="1660920124" ModStamp="1662049844" WorldPos="-2.0751 315.165 483.518" Rotation="0.87023 0.0404043 -0.0202948" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3040 268441626" AreaType="CameraAnimation">
@@ -1193,13 +1175,13 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="285212943" Name="Trigger_Lightning" CreStamp="1661966588" ModStamp="1662820306" WorldPos="0 301.633 459.394" Rotation="0 0 0" Scale="50 25 0.5" Active="true" Mesh="" UID="17 2955 285212943" AreaType="Trigger">
+            <Area ID="285212943" Name="Trigger_Lightning" CreStamp="1661966588" ModStamp="1662827895" WorldPos="0 301.633 459.394" Rotation="0 0 0" Scale="50 25 0.5" Active="true" Mesh="" UID="17 2955 285212943" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="UserVar" Value="" />
-                    <Var Name="CC_Entities" Value="" />
-                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="CC_Entities" Value="player" />
+                    <Var Name="CC_Funcs" Value="OnCollide_PitLightning" />
                     <Var Name="ParentAttachEntity" Value="" />
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
@@ -1235,7 +1217,7 @@
                     <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="285213426" Name="AMB_Smokers_1" CreStamp="1662040033" ModStamp="1662819089" WorldPos="-1.25 303.945 475.25" Rotation="0 0 0" Scale="35 25 35" Active="true" Mesh="" UID="17 2759 285213426" AreaType="Soundscape">
+            <Area ID="285213426" Name="AMB_Pit" CreStamp="1662040033" ModStamp="1662827903" WorldPos="-1.25 303.945 475.25" Rotation="0 0 0" Scale="35 25 35" Active="true" Mesh="" UID="17 2759 285213426" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="Off" />
@@ -1393,7 +1375,7 @@
                     <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="285215391" Name="Fall2_16" CreStamp="1662817596" ModStamp="1662826725" WorldPos="0.113632 268.951 418.25" Rotation="3.07202 -0.0583176 3.0335" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="17 2811 285215391" AreaType="CameraAnimation">
+            <Area ID="285215391" Name="Fall2_16" CreStamp="1662817596" ModStamp="1662827619" WorldPos="0.113632 268.951 418.25" Rotation="3.07202 -0.0583176 3.0335" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="17 2811 285215391" AreaType="CameraAnimation">
                 <UserVariables>
                     <Var Name="MaxYaw" Value="15" />
                     <Var Name="MaxPitch" Value="15" />
@@ -1408,7 +1390,7 @@
                     <Var Name="CrouchOnExit" Value="false" />
                     <Var Name="InitToCamera" Value="false" />
                     <Var Name="UsePlayerEyeline" Value="false" />
-                    <Var Name="CallbackFunc" Value="SlideComplete" />
+                    <Var Name="CallbackFunc" Value="SlideStageComplete" />
                 </UserVariables>
             </Area>
             <Area ID="285215392" Name="Fall2_10" CreStamp="1662817656" ModStamp="1662820083" WorldPos="0.0672302 292.082 453.296" Rotation="-3.0963 0.10501 -2.96731" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="17 2998 285215392" AreaType="CameraAnimation">
@@ -1686,6 +1668,30 @@
                 </UserVariables>
             </Area>
             <Area ID="285215810" Name="WildLifeInside" CreStamp="1662826564" ModStamp="1662826572" WorldPos="0 279 375" Rotation="3.72529e-009 -0 0" Scale="5 5 5" Active="true" Mesh="" UID="17 896 285215810" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="285215830" Name="SpidersCoverCaveWalls" CreStamp="1662828256" ModStamp="1662828278" WorldPos="0.25 268.5 316.75" Rotation="0 0 0" Scale="5 5 5" Active="true" Mesh="" UID="17 883 285215830" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
