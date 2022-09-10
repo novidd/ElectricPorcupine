@@ -45,6 +45,8 @@ const float gfFogNormal = 45.0f;
 const float gfDirLightOutsideBrightness = 0.1f;
 const float gfDirLightInsideBrightness = 0.05f;
 
+const cColor mgPreIntroSkyBoxColor = cColor(0.086,0.294,0.361,1);
+
 //--------------------------------------------------
 
 class cScrMap : iScrMap
@@ -502,6 +504,8 @@ class cScrMap : iScrMap
 		if (Sequence_DoStepAndWait(5))
 		{
 			cLux_AddDebugMessage("!DO INTRO!");
+			
+			Map_SetSkyBoxColor(cColor(mgPreIntroSkyBoxColor));
 			
 			Player_SetHealth(0.7f);
 
