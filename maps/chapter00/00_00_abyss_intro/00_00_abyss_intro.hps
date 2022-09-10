@@ -673,6 +673,8 @@ class cScrMap : iScrMap
 	bool SlideFade(const tString &in asEntity, int alDirection)
 	{
 		Effect_Fade_Out(0.01f);
+		Sound_Fade("FallMovement", 0.35f, 0.1f);
+//		Sound_Stop("FallMovement", 0.01f);
 		
 		Emotion_StopBackgroundBreath(mlBreathID);
 		Emotion_StopHeartbeat(mlHeartbeatID);
@@ -686,8 +688,6 @@ class cScrMap : iScrMap
 		SequenceStates_Resume("SequenceIntro");
 		
 		SlideFade(asEntity, alDirection);
-//		Sound_Stop("FallMovement", 0.01f);
-		Sound_Fade("FallMovement", 0.35f, 0.1f);
 		
 		return true;
 	}
