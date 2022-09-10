@@ -1375,7 +1375,7 @@
                     <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="285215390" Name="Fall2_15" CreStamp="1662817581" ModStamp="1662820103" WorldPos="1.43575 270.62 426.496" Rotation="3.07692 -0.0450714 -3.07169" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="17 3226 285215390" AreaType="CameraAnimation">
+            <Area ID="285215390" Name="Fall2_15" CreStamp="1662817581" ModStamp="1662826724" WorldPos="1.43575 270.62 426.496" Rotation="3.07692 -0.0450714 -3.07169" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="17 3226 285215390" AreaType="CameraAnimation">
                 <UserVariables>
                     <Var Name="MaxYaw" Value="15" />
                     <Var Name="MaxPitch" Value="15" />
@@ -1393,7 +1393,7 @@
                     <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="285215391" Name="Fall2_16" CreStamp="1662817596" ModStamp="1662820107" WorldPos="0.113632 268.951 418.25" Rotation="3.07202 -0.0583176 3.0335" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="17 2811 285215391" AreaType="CameraAnimation">
+            <Area ID="285215391" Name="Fall2_16" CreStamp="1662817596" ModStamp="1662826725" WorldPos="0.113632 268.951 418.25" Rotation="3.07202 -0.0583176 3.0335" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="17 2811 285215391" AreaType="CameraAnimation">
                 <UserVariables>
                     <Var Name="MaxYaw" Value="15" />
                     <Var Name="MaxPitch" Value="15" />
@@ -1408,7 +1408,7 @@
                     <Var Name="CrouchOnExit" Value="false" />
                     <Var Name="InitToCamera" Value="false" />
                     <Var Name="UsePlayerEyeline" Value="false" />
-                    <Var Name="CallbackFunc" Value="" />
+                    <Var Name="CallbackFunc" Value="SlideComplete" />
                 </UserVariables>
             </Area>
             <Area ID="285215392" Name="Fall2_10" CreStamp="1662817656" ModStamp="1662820083" WorldPos="0.0672302 292.082 453.296" Rotation="-3.0963 0.10501 -2.96731" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="17 2998 285215392" AreaType="CameraAnimation">
@@ -1638,6 +1638,54 @@
                 </UserVariables>
             </Area>
             <Area ID="285215431" Name="TriggerArea_1" CreStamp="1662821340" ModStamp="1662825270" WorldPos="-1.25 275.659 445.75" Rotation="0 0 0" Scale="11.5 5.5 1" Active="true" Mesh="" UID="17 1072 285215431" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="285215809" Name="LargeTunnelHallLookAtDocs" CreStamp="1662826441" ModStamp="1662826491" WorldPos="0 272.5 375" Rotation="3.72529e-009 -0 0" Scale="50 50 50" Active="true" Mesh="" UID="17 897 285215809" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="285215810" Name="WildLifeInside" CreStamp="1662826564" ModStamp="1662826572" WorldPos="0 279 375" Rotation="3.72529e-009 -0 0" Scale="5 5 5" Active="true" Mesh="" UID="17 896 285215810" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
