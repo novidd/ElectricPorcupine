@@ -427,6 +427,8 @@ class cScrMap : iScrMap
 	// Scene (?) --
 	// The station (inside)
 	
+	// play 02_07_theta_exit_a/SFX/enter_sweet when entering a watery/damp area with dripping water
+	
 	// Have a decontamination process early in the level
 	// "Thank you for your cooperation"
 	
@@ -508,7 +510,6 @@ class cScrMap : iScrMap
 			Map_SetSkyBoxColor(cColor(mgPreIntroSkyBoxColor));
 			
 			Player_SetHealth(0.7f);
-
 			Effect_Fade_Out(0.0f);
 			
 			// Flashlight ON to create sense of motion
@@ -522,25 +523,21 @@ class cScrMap : iScrMap
 			// Need create/stop the sound each time the screen fades in/out
 			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
 			
+//			Music_Play("NPC_robotheadgirl_attack", 1.0f, true, eMusicPrio_BigEvent);
+			
+			// MUSIC CONTENDERS
+			//
+			// MUSIC FOR WHEN THE LIGHTNING SHOWS UP
+			// 02_01_fleshervehicle
+			// MUSIC FOR WHEN THE PLAYER WAKES UP
+			// NPC_robotheadgirl_stalk
+			// 02_04_storm
+			
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
 			
-//			mlHeartbeatID = Emotion_StartHeartbeat(0.75f,0.75f, 1, -1, 1.0f, 1.0f);
-//			mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear,0.5f, 1, -1, 1.0f, 1.0f);
-			
-			// Omicron descent directional light properties at start than fade to main map settings later
-			
-			// Screen fades in and out throughout the fall
-			
-			// Distant thunder here and there
-			
-			// The player rolls around as they falls straight down, they get glimpses of the cliff side, with life like plants and such
-			
-			// When the player is going to collide with a rock wall, fade the screen in just before the redirection
-			// Simon emotes right before the screen goes to black
-			// Then fade back in after the current has pulled the player to the side
 			// Manilpulate the game sound each time the screen fades in and out (as if covering your ears (fade out), then letting go (fade in))
 			
-			// At the of the slide the player is still at an apex, music fades out, lighthing strikes, then the player continues to fall, music fade in
+			// At the end of the slide the player is still at an apex, music fades out, lighthing strikes, then the player continues to fall, music fade in
 			// Then fall toward the rock and *donk*
 			
 			// Sand particle effects on screen when falling down or toward a current (like in tau_outside when in the storm)
@@ -579,7 +576,6 @@ class cScrMap : iScrMap
 		else if (Sequence_DoStepAndWait(2))
 		{
 			cLux_AddDebugMessage("Flush 1 complete.");
-			Effect_Fade_Out(0.0f);
 		}
 		else if (Sequence_DoStepAndPause())
 		{
@@ -603,6 +599,13 @@ class cScrMap : iScrMap
 		// When Simon stands up play Player/camera_anim/underwater/abyss_recover/vo
 		
 		Sequence_End();
+	}
+	
+	//-------------------------------------------------------
+	
+	bool SlideStinger(const tString &in asEntity, int alDirection)
+	{
+		return true;
 	}
 	
 	//-------------------------------------------------------
@@ -634,6 +637,8 @@ class cScrMap : iScrMap
 		Effect_Fade_In(0.01f);
 		// Do *voom* sound effect here
 		
+		Sound_Fade("FallMovement", 1.0f, 0.01f);
+		
 		// Panicking!
 		mlHeartbeatID = Emotion_StartHeartbeat(afHeartbeatTime,0.75f,1, -1, 1.0f, 1.0f);
 		// Stop breathing when playing dialogue
@@ -658,7 +663,7 @@ class cScrMap : iScrMap
 		return true;
 	}
 	
-	bool OnFlushFade(const tString &in asEntity, int alDirection)
+	bool SlideFade(const tString &in asEntity, int alDirection)
 	{
 		Effect_Fade_Out(0.01f);
 		
@@ -669,9 +674,14 @@ class cScrMap : iScrMap
 		return true;
 	}
 	
-	bool OnFlushComplete(const tString &in asEntity, int alDirection)
+	bool SlideComplete(const tString &in asEntity, int alDirection)
 	{
 		SequenceStates_Resume("SequenceIntro");
+		
+		SlideFade(asEntity, alDirection);
+//		Sound_Stop("FallMovement", 0.01f);
+		Sound_Fade("FallMovement", 0.35f, 0.1f);
+		
 		return true;
 	}
 	
