@@ -520,6 +520,8 @@ class cScrMap : iScrMap
 			
 			AttachPlayerFallFx();
 			
+			Music_PlayExt("NPC_Creature_Attack", true, 0.75f, 1.0f, 7.5f, 0, eMusicPrio_SceneAmb, false);
+			
 			// Need create/stop the sound each time the screen fades in/out
 			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
 			
@@ -582,6 +584,9 @@ class cScrMap : iScrMap
 			Map_SetSkyBoxColor(cColor(0,0,0,0));
 			
 			StartFallAnim("Fall2", 0.75f, 0.8f);
+			
+			Music_PlayOverlay("", 1.0f);
+			
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 0.0f, "StormAudio_Stage0_Sweeteners");
 		}
 		
