@@ -196,6 +196,11 @@ class cScrMap : iScrMap
 			EP_StartScareEffects();
 		}
 		
+		if (alAction == eAction_Test3)
+		{
+			Map_AddTimer("PostWakeUpMusic", 0, "OnTimer_PostWakeUpMusicHandler");
+		}
+		
 	}
 
 	//-------------------------------------------------------
@@ -312,7 +317,12 @@ class cScrMap : iScrMap
 
 	//} END MAIN FUNCTIONS
 	
-		// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
+	// PLAY THIS BELOW AFTER PLAYER WAKE UP
+	void OnTimer_PostWakeUpMusic(const tString &in asTimer)
+	{
+		Music_PlayOverlay("00_00_postwakeup", 0.5f);
+	}
+
 	// 02_04_stormends when the player wakes up
 	
 	// Zepplin code: 049
@@ -581,7 +591,7 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndWait(2))
 		{
-			cLux_AddDebugMessage("Flush 1 complete.");
+			cLux_AddDebugMessage("Slide stage 1 complete.");
 		}
 		else if (Sequence_DoStepAndPause())
 		{
@@ -592,6 +602,14 @@ class cScrMap : iScrMap
 			Music_PlayOverlay("", 1.0f);
 			
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 0.0f, "StormAudio_Stage0_Sweeteners");
+		}
+		else if (Sequence_DoStepAndWait(2))
+		{
+			cLux_AddDebugMessage("Slide stage 2 complete.");
+		}
+		else if (Sequence_DoStepAndPause())
+		{
+			
 		}
 		
 		// Before crashing the player flies through wall of fog particles simulating the storm, then once on the other side *donk*
@@ -645,7 +663,6 @@ class cScrMap : iScrMap
 	{
 		Effect_Fade_In(0.01f);
 		// Do *voom* sound effect here
-		
 		Sound_Fade("FallMovement", 1.0f, 0.01f);
 		
 		// Panicking!
@@ -657,7 +674,7 @@ class cScrMap : iScrMap
 		CameraAnimation_Begin(asName,"", false);
 		AttachPlayerFallFx();
 		
-		cLux_AddTodoMessage("SOUND: Fade in player struggling as carried through through water flow");
+		cLux_AddDebugMessage("!!Starting new slide stage!!");
 	}
 	
 	//-------------------------------------------------------
@@ -680,15 +697,13 @@ class cScrMap : iScrMap
 		
 		Emotion_StopBackgroundBreath(mlBreathID);
 		Emotion_StopHeartbeat(mlHeartbeatID);
-			
-		cLux_AddTodoMessage("SOUND: Fade out player struggling as carried through through water flow");
 		return true;
 	}
 	
 	bool SlideStageComplete(const tString &in asEntity, int alDirection)
 	{
 		SequenceStates_Resume("SequenceIntro");
-		
+	
 		SlideFade(asEntity, alDirection);
 		
 		return true;
