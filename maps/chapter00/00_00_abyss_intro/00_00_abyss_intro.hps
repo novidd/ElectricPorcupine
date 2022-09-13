@@ -393,6 +393,9 @@ class cScrMap : iScrMap
 	// Import the skeleton models from Rebirth
 	
 	// The player finds a crashed plane, the plane is filled with skeletons in the seats
+	// Place moss and other decals all over the plane to make it look like it has been underwater
+	// Use curie-delta pod metal scraps for broken metal pieces attached directly to the plane
+	// The WAU covers the cockpit of the plane, creating blue light shining into the back of the plane filled with thick fog (+ USE A SPOTLIGHT)
 	// Place the skeletons in the same seat as the characters in Amnesia: Rebirth
 	// Place a dead baby on Tasi's seat, when the player looks at it do something special
 	// Each window has broken glass (check omicron main entrance dead guy helmet), except Tasi's window
@@ -611,7 +614,7 @@ class cScrMap : iScrMap
 		}
 		else if (Sequence_DoStepAndPause())
 		{
-			
+			StartFallAnim("Fall3", 0.8f, 0.85f);
 		}
 		
 		// Before crashing the player flies through wall of fog particles simulating the storm, then once on the other side *donk*
