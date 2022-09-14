@@ -37,15 +37,21 @@
 #include "helpers/EP_helper_general.hps"
 
 //--------------------------------------------------
- 
+
+const cVector3f gvCurrentDir = cVector3f(0.894, 0, 0.447);
+const cVector3f gvStage1CurrentDir = cVector3f(0, 0, -1);
+const cVector3f gvStage2CurrentDir = cVector3f(-1, 0, 0);
+
 const float gfDofMax = 3.0f;
 
+const cColor gvPreIntroSkyBoxColor = cColor(0.086,0.294,0.361,1);
+
 const float gfFogNormal = 45.0f;
+const float gfFogStorm1 = 40.0f;
+const float gfFogStorm2 = 35.0f;
+const float gfFogStorm3 = 25.0f;
 
-const float gfDirLightOutsideBrightness = 0.1f;
-const float gfDirLightInsideBrightness = 0.05f;
-
-const cColor mgPreIntroSkyBoxColor = cColor(0.086,0.294,0.361,1);
+const float gfParticleAlpha = 0.75f;
 
 //--------------------------------------------------
 
@@ -134,7 +140,7 @@ class cScrMap : iScrMap
 		
 		if (bDoIntro)
 		{
-			SequenceIntro("");
+			SetupIntro();
 		}
 	}
 
@@ -145,7 +151,9 @@ class cScrMap : iScrMap
 	void OnEnter()
 	{
 		Map_SetUnderwater(true);
-		
+		Player_SetFlashlightEnvParticleMul(16);
+		Map_SetUnderwater(true);
+		//Game_AutoSave();
 //		Map_AddTimer("TimerStartPreload",10.0f,"TimerStartPreload");
 	}
 
@@ -198,7 +206,8 @@ class cScrMap : iScrMap
 		
 		if (alAction == eAction_Test3)
 		{
-			Map_AddTimer("PostWakeUpMusic", 0, "OnTimer_PostWakeUpMusicHandler");
+			SetStormStrengthVisuals("tau_storm_med.ps", "tau_storm_dirt_med.ps", gvCurrentDir*3.5f, gfFogNormal, 0.0f);
+			UpdateStormScreenEffect();
 		}
 		
 	}
@@ -317,6 +326,10 @@ class cScrMap : iScrMap
 
 	//} END MAIN FUNCTIONS
 	
+	////////////////
+	// NOTES
+	//{/////////////
+	
 	// PLAY THIS WHEN THE PLAYER OPENS THEIR EYES ON PLAYER WAKE UP
 	void OnTimer_PostWakeUpMusic(const tString &in asTimer)
 	{
@@ -347,27 +360,6 @@ class cScrMap : iScrMap
 	// In a later scene Katebot has to sacricife herself so the player can proceed forward.
 	
 	// Map: 00_00_abyss_forest
-	
-	// Scene 1 --
-	// The slide until crashing in the rock and waking up
-	// Copy the whole wake up sequence from the maintenance map
-	// Run suit diagonistics (copy from maintenance map)
-	// Before the player stands up you can see the guy that shows up from time to time in the abyss in the original game
-	// Eye blink
-	// Then stand up
-	
-	// In an area where the storm is calm, find glowy abyss fish
-	// Rocks fall down scaring the player
-	// The player has to cross a field where the storm is stronger again, the player can get hit be rocks flying from right to left
-	
-	// ADD HELPER FUNCTION FOR SCARY MOMENTS, HEARTBEAT+BREATHING+EMOTE WITH CUSTOMIZABLE PARAMETERS
-	
-	// CHANGE COLOR FOR SUBTITLES AND CAPTIONS FROM WHITE TO A CALM YELLOW
-	// ADD THE CHARACTER WHO IS SPEAKING + ADD EMOTIONAL CONTEXT --> Catherine (sarcastic): *SUBTITLE TEXT*
-	
-	// ADD A STAMINA SYSTEM TO MAKE THE PLAYER MORE CAUTIOUS OF THEIR MOVEMENT.
-	// VFX WHEN STAMINA LOW, HEARTBEAT INCREASING THE LONGER PLAYER RUNS, HEAVY BREATHING
-	// RUNNING SPEED IS CONSTANT -- STAMINA AMOUNT !!DOES NOT!! AFFECT RUNNING SPEED
 	
 	// Scene 2 --
 	// The asteroid attracts objects with running electricity
@@ -516,16 +508,59 @@ class cScrMap : iScrMap
         // This located in the lab, there is a window into the medbay
 
 	// "You fuckin' make it then, if you're so god damn smart." -Some dead person, probably
+	
+	//}/////////////
 
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *FALLING INTO THE ABYSS*
+	// SCENE 1 *INTRO - FALLING INTO THE ABYSS*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
+	
+	// The slide until crashing in the rock and waking up
+	// Play 03_01_omicron_outside/SFX/special/intro_sequence/camera_anim moments before crashing into the rock (stop sound on hit)
+	// Play this too 03_01_omicron_outside/SFX/special/intro_sequence/camera_anim_vo 
+	// Play sound above after Simon screams 'Fuck!' or something like that once he realizes his situation
+	// Play Player/UI/blackout_hit when player hit their head
+	
+	// Copy the whole wake up sequence from the maintenance map
+	// Run suit diagonistics (copy from maintenance map)
+	// Before the player stands up you can see the guy that shows up from time to time in the abyss in the original game
+	// Eye blink
+	// Then stand up
+	
+	// In an area where the storm is calm, find glowy abyss fish
+	// Rocks fall down scaring the player
+	// The player has to cross a field where the storm is stronger again, the player can get hit be rocks flying from right to left
+	
+	// ADD HELPER FUNCTION FOR SCARY MOMENTS, HEARTBEAT+BREATHING+EMOTE WITH CUSTOMIZABLE PARAMETERS
+	
+	// CHANGE COLOR FOR SUBTITLES AND CAPTIONS FROM WHITE TO A CALM YELLOW
+	// ADD THE CHARACTER WHO IS SPEAKING + ADD EMOTIONAL CONTEXT --> Catherine (sarcastic): *SUBTITLE TEXT*
+	
+	// ADD A STAMINA SYSTEM TO MAKE THE PLAYER MORE CAUTIOUS OF THEIR MOVEMENT.
+	// VFX WHEN STAMINA LOW, HEARTBEAT INCREASING THE LONGER PLAYER RUNS, HEAVY BREATHING
+	// RUNNING SPEED IS CONSTANT -- STAMINA AMOUNT !!DOES NOT!! AFFECT RUNNING SPEED
 	
 	int mlBreathID;
 	int mlHeartbeatID;
 	int mlShakeID;
+	int mlStormScreenEffectID = -1;
+	
+			// MUSIC CONTENDERS
+			//
+			// MUSIC FOR WHEN THE LIGHTNING SHOWS UP
+			// 02_01_fleshervehicle
+			// MUSIC FOR WHEN THE PLAYER WAKES UP
+			// NPC_robotheadgirl_stalk
+			// 02_04_storm
+			
+	void SetupIntro()
+	{
+		cLux_AddDebugMessage("!DO INTRO!");
+		
+		SequenceIntro("");
+	}
 	
 	cSequenceStatesData mIntroSequence;
 	void SequenceIntro(const tString &in asTimer)
@@ -536,10 +571,11 @@ class cScrMap : iScrMap
 		{
 			cLux_AddDebugMessage("!DO INTRO!");
 			
-			Map_SetSkyBoxColor(cColor(mgPreIntroSkyBoxColor));
+			Map_SetSkyBoxColor(cColor(gvPreIntroSkyBoxColor));
 			
 			Player_SetHealth(0.7f);
 			Effect_Fade_Out(0.0f);
+			UpdateStormScreenEffect();
 			
 			// Flashlight ON to create sense of motion
 			Player_SetFlashlightActive(true, true);
@@ -551,51 +587,11 @@ class cScrMap : iScrMap
 			
 			Music_PlayExt("NPC_Creature_Attack", true, 0.75f, 1.0f, 7.5f, 0, eMusicPrio_SceneAmb, false);
 			
-			// Need create/stop the sound each time the screen fades in/out
+			SetStormStrengthVisuals("tau_storm_med.ps", "tau_storm_dirt_med.ps", gvCurrentDir*3.5f, gfFogNormal, 0.0f);
+			
 			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
 			
-//			Music_Play("NPC_robotheadgirl_attack", 1.0f, true, eMusicPrio_BigEvent);
-			
-			// MUSIC CONTENDERS
-			//
-			// MUSIC FOR WHEN THE LIGHTNING SHOWS UP
-			// 02_01_fleshervehicle
-			// MUSIC FOR WHEN THE PLAYER WAKES UP
-			// NPC_robotheadgirl_stalk
-			// 02_04_storm
-			
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
-			
-			// Manilpulate the game sound each time the screen fades in and out (as if covering your ears (fade out), then letting go (fade in))
-			
-			// At the end of the slide the player is still at an apex, music fades out, lighthing strikes, then the player continues to fall, music fade in
-			// Then fall toward the rock and *donk*
-			
-			// Sand particle effects on screen when falling down or toward a current (like in tau_outside when in the storm)
-			
-			// Play 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_BuildUp before screen fades in (~3s)
-			
-			// Then play 02_07_theta_exit_a/SFX/flood_sequence/breach/FloodSequence_WaterHits
-			// Player/action/underwater/abyss_fall can also be used for the fall
-			
-			// Do distant lighting as the player falls
-			
-			// Play 03_01_omicron_outside/SFX/special/intro_sequence/camera_anim moments before crashing into the rock (stop sound on hit)
-			// Play this too 03_01_omicron_outside/SFX/special/intro_sequence/camera_anim_vo 
-			// Play sound above after Simon screams 'Fuck!' or something like that once he realizes his situation
-			
-			// Convey motion underwater with some form of motionlines (attach to player)
-			// The storm wind particles??
-			
-			// The player falls along the cliff which goes below Theta
-			// As the player falls change
-			
-			// Also change the properties of the environmental particles when the player get caught in the current
-			
-			// Edit the fogs properites so the player can see the distant lightning being struck
-
-			// Play Player/UI/blackout_hit when player hit their head
-
 		}
 		else if (Sequence_DoStepAndPause())
 		{
@@ -645,9 +641,60 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	bool SlideStinger(const tString &in asEntity, int alDirection)
+	cVector3f mvStormParticleVel=cVector3f_Zero;
+	float mfStormFogEnd=gfFogNormal;
+	tString msStormParticles;
+	tString msStormDirt;
+	
+	int mlStormStrength = 0;
+	
+	void SetStormStrengthVisuals(const tString &in asStormParticles, const tString &in asStormDirt, 
+		const cVector3f avParticleVelocity, float afFogEnd, float afFadeTime)
 	{
-		return true;
+		msStormParticles = asStormParticles;
+		msStormDirt = asStormDirt;
+		
+		if (mlStormStrength != 0) 
+		{
+			ParticleSystem_Destroy("Storm");
+			ParticleSystem_Destroy("StormDirt");
+		}
+		if (asStormParticles != "") 
+		{
+			ParticleSystem_CreateAtEntityExt("Storm", asStormParticles, "IntroParticleArea", 
+				true, cColor_White, gfParticleAlpha, true, 0.3, 0.75);
+			ParticleSystem_CreateAtEntityExt("StormDirt", asStormDirt, "Camera", 
+				true, cColor_White, 0.25f, false, 0, 0);
+		}
+		Map_FadeFogEnd(afFogEnd, afFadeTime);
+		Map_FadeEnvironmentParticleWindVelocity(gvStage1CurrentDir*6.5f, afFadeTime);
+		
+		
+		mvStormParticleVel = avParticleVelocity;
+		mfStormFogEnd = afFogEnd;
+	}
+	
+	//-------------------------------------------------------
+	
+	void UpdateStormScreenEffect()
+	{
+		if (mlStormScreenEffectID == -1)
+		{
+			mlStormScreenEffectID = Effect_Screen_Start("storm_refraction.mat", cVector2f(0.5, 0.5), 
+										cVector2f(1.8, 1.8));
+			Effect_Screen_FadeAlpha(mlStormScreenEffectID, 1.0f, 0.4f);
+		}
+	}
+	
+	//-------------------------------------------------------
+	
+	void FadeStormScreenEffect()
+	{
+		if (mlStormScreenEffectID != -1)
+		{
+			Effect_Screen_FadeOut(mlStormScreenEffectID,0.4f);
+			mlStormScreenEffectID = -1;
+		}	
 	}
 	
 	//-------------------------------------------------------
@@ -655,7 +702,7 @@ class cScrMap : iScrMap
 	void StartPlayerFallFx()
 	{
 		ParticleSystem_CreateAtEntityExt
-			("PlayerBubblesPS", "loop_waterbubbles_large_cloud.ps", "PlayerBubblesArea", true, cColor(1,1,1,0.5), 0.1f);
+			("PlayerBubblesPS", "loop_waterbubbles_large_cloud.ps", "IntroParticleArea", true, cColor(1,1,1,0.5), 0.1f);
 			
 		for(int i = 1; i <= 4; i++)
 		{
@@ -668,8 +715,8 @@ class cScrMap : iScrMap
 	
 	void AttachPlayerFallFx()
 	{
-		CameraAnimation_SetAttachedEntity("PlayerBubblesArea", false, false, false);
-		Entity_AttachToEntity("PlayerMotionLinesArea_*", "PlayerBubblesArea", "", false);
+		CameraAnimation_SetAttachedEntity("IntroParticleArea", false, false, false);
+		Entity_AttachToEntity("PlayerMotionLinesArea_*", "IntroParticleArea", "", false);
 	}
 	
 	//-------------------------------------------------------
