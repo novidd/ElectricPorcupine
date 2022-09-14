@@ -999,25 +999,7 @@
                     <Var Name="CallbackFunc" Value="ChangeCurrentDirection" />
                 </UserVariables>
             </Area>
-            <Area ID="268441632" Name="1Fall2_6" CreStamp="1660920698" ModStamp="1661967107" WorldPos="-2.67213 303.293 458.447" Rotation="1.96801 -1.09072 -1.9433" Scale="0.25 0.25 0.5" Active="true" Mesh="" UID="16 3041 268441632" AreaType="CameraAnimation">
-                <UserVariables>
-                    <Var Name="MaxYaw" Value="15" />
-                    <Var Name="MaxPitch" Value="15" />
-                    <Var Name="LookSpeedMultiplier" Value="1" />
-                    <Var Name="ForwardTime" Value="1" />
-                    <Var Name="BackwardTime" Value="1" />
-                    <Var Name="AutoMovement" Value="1" />
-                    <Var Name="LookMoveDistance" Value="0" />
-                    <Var Name="LookMoveMaxAngle" Value="0" />
-                    <Var Name="InteractiveMovement" Value="false" />
-                    <Var Name="UseSpeedFading" Value="true" />
-                    <Var Name="CrouchOnExit" Value="false" />
-                    <Var Name="InitToCamera" Value="false" />
-                    <Var Name="UsePlayerEyeline" Value="false" />
-                    <Var Name="CallbackFunc" Value="" />
-                </UserVariables>
-            </Area>
-            <Area ID="268441649" Name="SlideTop_Hole" CreStamp="1660922846" ModStamp="1662035514" WorldPos="1.85266 296.25 473.5" Rotation="0 -1.5708 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 3031 268441649" AreaType="PlayerStart">
+            <Area ID="268441649" Name="SlideTop_Pit" CreStamp="1660922846" ModStamp="1663182583" WorldPos="-1.75 301.5 465.75" Rotation="0 -1.5708 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 3031 268441649" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
@@ -1051,30 +1033,6 @@
                 </UserVariables>
             </Area>
             <Area ID="285212673" Name="Basin_CometHoleWau" CreStamp="1661812108" ModStamp="1661812263" WorldPos="-60.5 260.5 -51.25" Rotation="0 0 0" Scale="50 50 50" Active="true" Mesh="" UID="17 3048 285212673" AreaType="Trigger">
-                <UserVariables>
-                    <Var Name="BlocksLineOfSight" Value="false" />
-                    <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="UserVar" Value="" />
-                    <Var Name="CC_Entities" Value="" />
-                    <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
-                    <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="PlayerLookAtCallback" Value="" />
-                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
-                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
-                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
-                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
-                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
-                    <Var Name="PlayerInteractCallback" Value="" />
-                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
-                    <Var Name="CanInteractWithoutCallback" Value="false" />
-                    <Var Name="MaxFocusDistance" Value="-1" />
-                    <Var Name="CustomInteractIcon" Value="PushButton" />
-                </UserVariables>
-            </Area>
-            <Area ID="285212677" Name="HarshViolinBuildUp" CreStamp="1661879747" ModStamp="1661967067" WorldPos="-0.75 339.917 483.466" Rotation="1.5708 -0 0" Scale="5 5 5" Active="true" Mesh="" UID="17 2811 285212677" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -1140,7 +1098,7 @@
                     <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="285213426" Name="AMB_Pit" CreStamp="1662040033" ModStamp="1662827903" WorldPos="-1.25 303.945 475.25" Rotation="0 0 0" Scale="35 25 35" Active="true" Mesh="" UID="17 2759 285213426" AreaType="Soundscape">
+            <Area ID="285213426" Name="AMB_SlidePit" CreStamp="1662040033" ModStamp="1663182704" WorldPos="-1.25 303.945 475.25" Rotation="0 0 0" Scale="35 25 35" Active="true" Mesh="" UID="17 2759 285213426" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="Off" />
@@ -1310,7 +1268,7 @@
                     <Var Name="CallbackFunc" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="285215393" Name="AMB_PreUnderground" CreStamp="1662818779" ModStamp="1663092450" WorldPos="-1.25 287 440.25" Rotation="0 0 0" Scale="35 50 35" Active="true" Mesh="" UID="17 2791 285215393" AreaType="Soundscape">
+            <Area ID="285215393" Name="AMB_SlideEnclosed" CreStamp="1662818779" ModStamp="1663182712" WorldPos="-1.25 287 446.75" Rotation="0 0 0" Scale="35 50 22.5" Active="true" Mesh="" UID="17 2791 285215393" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="Off" />
@@ -1396,7 +1354,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="285216163" Name="PreTunnel" CreStamp="1662911179" ModStamp="1663182155" WorldPos="-2 270.5 426.75" Rotation="-0 3.14159 -0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="17 1072 285216163" AreaType="PlayerStart">
+            <Area ID="285216163" Name="SlideBottom" CreStamp="1662911179" ModStamp="1663182571" WorldPos="-2 270.5 426.75" Rotation="-0 3.14159 -0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="17 1072 285216163" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
@@ -2049,7 +2007,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="285216406" Name="NoMusicPastThisPoint" CreStamp="1663159676" ModStamp="1663159730" WorldPos="-0.75 307.5 454.875" Rotation="1.5708 -0 0" Scale="5 5 5" Active="true" Mesh="" UID="17 2954 285216406" AreaType="Trigger">
+            <Area ID="285216406" Name="NoMusicPastThisPoint" CreStamp="1663159676" ModStamp="1663182738" WorldPos="-0.75 302 457" Rotation="1.5708 -0 0" Scale="5 5 5" Active="true" Mesh="" UID="17 2954 285216406" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2095,6 +2053,32 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="285216782" Name="AMB_SlideBottom" CreStamp="1663182621" ModStamp="1663182717" WorldPos="-7.25 269.5 418.25" Rotation="0 0 0" Scale="50 35 35" Active="true" Mesh="" UID="17 1404 285216782" AreaType="Soundscape">
+                <UserVariables>
+                    <Var Name="UseReverb" Value="true" />
+                    <Var Name="ReverbType" Value="Off" />
+                    <Var Name="ReverbPrio" Value="0" />
+                    <Var Name="ReverbAmount" Value="1" />
+                    <Var Name="ReverbFadeTime" Value="1" />
+                    <Var Name="Prio" Value="1" />
+                    <Var Name="Level" Value="1: Area" />
+                    <Var Name="BG_Sound" Value="level_amb_shared_underwater/amb/background/curie_ext/submarine_ext" />
+                    <Var Name="BG_Volume" Value="1" />
+                    <Var Name="BG_FadeInTime" Value="1" />
+                    <Var Name="BG_FadeOutTime" Value="1" />
+                    <Var Name="BG_FadeTransitionSpeed" Value="1" />
+                    <Var Name="BG_ParentVolMul" Value="1" />
+                    <Var Name="SoundEnt_InNames" Value="smoker_pit_*, volcano_pit" />
+                    <Var Name="SoundEnt_OutNames" Value="" />
+                    <Var Name="SoundEnt_FadeInTime" Value="1" />
+                    <Var Name="SoundEnt_FadeOutTime" Value="1" />
+                    <Var Name="SoundPrefixPrio" Value="0" />
+                    <Var Name="SoundPrefix" Value="[None]" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
                 </UserVariables>
             </Area>
         </Objects>
