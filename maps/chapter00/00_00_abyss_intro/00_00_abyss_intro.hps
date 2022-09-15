@@ -562,6 +562,23 @@ class cScrMap : iScrMap
 		SequenceIntro("");
 	}
 	
+	cSequenceStatesData mIntroClutterSequence;
+	void SequenceIntroClutter(const tString &in asTimer)
+	{
+		// FINAL STEP FOR EACH STAGE HAS TO BE Sequence_DoStepAndPause()
+		Sequence_Begin("SequenceIntroClutter", mIntroClutterSequence);
+		if (Sequence_DoStepAndPause())
+		{
+			cLux_AddDebugMessage("!DO INTRO CLUTTER!");
+		}
+		else if (Sequence_DoStepAndWait(2)) // SLIDE STAGE 1
+		{
+			cLux_AddDebugMessage("!DO SLIDE STAGE 1 CLUTTER!");
+			//EFFECTS ETC GOES HERE
+		}
+		Sequence_End();
+	}
+	
 	cSequenceStatesData mIntroSequence;
 	void SequenceIntro(const tString &in asTimer)
 	{
@@ -592,6 +609,9 @@ class cScrMap : iScrMap
 			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
 			
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
+			
+			// USE ANOTHER SEQUENCE WHEN SCRIPTING AND ADDING DETAILS TO THE SEQUENCE, PAUSE AND RESUME THE SEQUENCES ON START AND END OF EACH CAMERA ANIM STAGE
+			SequenceIntroClutter("");
 		}
 		else if (Sequence_DoStepAndPause())
 		{
@@ -726,6 +746,8 @@ class cScrMap : iScrMap
 		Effect_Fade_In(0.01f);
 		// Do *voom* sound effect here
 		Sound_Fade("FallMovement", 1.0f, 0.01f);
+		
+		SequenceStates_Resume("SequenceIntroClutter");
 		
 		// Panicking!
 		mlHeartbeatID = Emotion_StartHeartbeat(afHeartbeatTime,0.75f,1, -1, 1.0f, 1.0f);
