@@ -348,12 +348,11 @@ class cScrMap : iScrMap
 	// Mod premice --
 	// This mod plays on the idea that there are multiple Simons in the world
 	// Two "alive" Simons will communicate in the final scene in the mod (The other Simon is the original game one in Phi).
-	// All of the corpses that the player has passed throughout the mod are other Simons.
 	// They're all stuck in a loop, in control by the WAU for life to survive by any means necessary.
 	
 	// -- IDEAS --
 	// The player will lose their part of their arm just like in the original game (before the suicide, in the station)
-	// When the player has stood to close to the rave for too their suit starts to beep (red around screen at beep)
+	// When the player has stood to close to the ravie for too their suit starts to beep (red around screen at beep)
 	// Katebot will go deep into the abyss to repair something, on a terminal the player can see Katebot's position moving (green circle)
 	// The signal is cut off (the cirlce no no longer moves/or disappears). The player finds Katebot destroyed or covered in rocks
 	// Use 01_03_upsilon_outside/katebot/kate_trapped_alarm to locate Katebot more easily
@@ -425,6 +424,8 @@ class cScrMap : iScrMap
 	
 	// Scene (?) --
 	// The station (outside)
+	
+	// HAVE AN ELEVATOR WITH LIGHTS ALONG THE WALLS, WHEN THE ELEVATOR PASS A ROW OF LIGHTS TURN THEM ON (LIKE DEATH STRANDING ELEVATORS)
 	
 	// Small blue light along a row in front of important entrances/safety lines/airlocks and such, also place safety guard rails where needed
 	// When the player and Katebot get cloes enough the power in the station turns on (it will look pretty cool)
@@ -518,6 +519,10 @@ class cScrMap : iScrMap
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
 	// USE SOUND OF A REAL BLACKHOLE WHEN AROUND THE ASTEROID AND THE OBELISK
+	
+	// IMPLEMENT SO WHEN THE PLAYER ENTERS AN AREA WITH HOT SMOKERS MAKE SUIT GO *BEEP* *BEEP* *BEEP* (EXACTLY THREE TIMES)
+	// USE AREAS WITH RUN ON COLLIDE, SCRIPT IS EASILY REUSABLE
+	// ALSO DO THIS BEEPING WHEN THE PLAYER ENTERS THE STORM
 	
 	// The slide until crashing in the rock and waking up
 	// Play 03_01_omicron_outside/SFX/special/intro_sequence/camera_anim moments before crashing into the rock (stop sound on hit)
