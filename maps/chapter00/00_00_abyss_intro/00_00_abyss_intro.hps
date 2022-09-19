@@ -620,7 +620,7 @@ class cScrMap : iScrMap
 			
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
 			
-			// USE ANOTHER SEQUENCE WHEN SCRIPTING AND ADDING DETAILS TO THE SEQUENCE, PAUSE AND RESUME THE SEQUENCES ON START AND END OF EACH CAMERA ANIM STAGE
+			// USE 2 LAYER SEQUENCE WHEN ADDING DETAILS TO THE SEQUENCE, PAUSE AND RESUME THIS SEQUENCE ON START AND END OF EACH CAMERA ANIM STAGE
 			SequenceIntroClutter("");
 		}
 		else if (Sequence_DoStepAndPause())
@@ -667,6 +667,80 @@ class cScrMap : iScrMap
 		// When Simon stands up play Player/camera_anim/underwater/abyss_recover/vo
 		
 		Sequence_End();
+	}
+	
+	//-------------------------------------------------------
+	
+		bool SlideFade(const tString &in asEntity, int alDirection)
+	{
+		Effect_Fade_Out(0.01f);
+		Sound_Fade("FallMovement", 0.35f, 0.1f);
+//		Sound_Stop("FallMovement", 0.01f);
+		
+		Emotion_StopBackgroundBreath(mlBreathID);
+		Emotion_StopHeartbeat(mlHeartbeatID);
+		return true;
+	}
+	
+	bool SlideStageComplete(const tString &in asEntity, int alDirection)
+	{
+		SequenceStates_Resume("SequenceIntro");
+	
+		SlideFade(asEntity, alDirection);
+		
+		return true;
+	}
+	
+	//-------------------------------------------------------
+	
+	void StartFallAnim(const tString&in asName, float afHeartbeatTime, float afFearLevel)
+	{
+		Effect_Fade_In(0.01f);
+		// Do *voom* sound effect here
+		Sound_Fade("FallMovement", 1.0f, 0.01f);
+		
+		SequenceStates_Resume("SequenceIntroClutter");
+		
+		// Panicking!
+		mlHeartbeatID = Emotion_StartHeartbeat(afHeartbeatTime,0.75f,1, -1, 1.0f, 1.0f);
+		// Stop breathing when playing dialogue
+		mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear, afFearLevel*2, 1, -1, 1.0f);
+		
+		CameraAnimation_End();
+		CameraAnimation_Begin(asName,"", false);
+		AttachPlayerFallFx();
+		
+		cLux_AddDebugMessage("!!Starting new slide stage!!");
+	}
+	
+	void StartPlayerFallFx()
+	{
+		ParticleSystem_CreateAtEntityExt
+			("PlayerBubblesPS", "loop_waterbubbles_large_cloud.ps", "IntroParticleArea", true, cColor(1,1,1,0.5), 0.1f);
+			
+		for(int i = 1; i <= 4; i++)
+		{
+			ParticleSystem_CreateAtEntityExt
+				("PlayerMotionLinesPS", "tau_storm_static_large.ps", "PlayerMotionLinesArea_"+i, true, cColor(1,0.936,0.836,0.508), 0.5f);
+		}
+	}
+	
+	void AttachPlayerFallFx()
+	{
+		CameraAnimation_SetAttachedEntity("IntroParticleArea", false, false, false);
+		Entity_AttachToEntity("PlayerMotionLinesArea_*", "IntroParticleArea", "", false);
+	}
+	
+	//-------------------------------------------------------
+	
+	bool ChangeCurrentDirection(const tString &in asEntity, int alDirection)
+	{
+		// Change current direction here
+		
+		// Fall motion lines direction
+		
+		// Environmental particles wind direction
+		return true;
 	}
 	
 	//-------------------------------------------------------
@@ -725,82 +799,6 @@ class cScrMap : iScrMap
 			Effect_Screen_FadeOut(mlStormScreenEffectID,0.4f);
 			mlStormScreenEffectID = -1;
 		}	
-	}
-	
-	//-------------------------------------------------------
-	
-	void StartPlayerFallFx()
-	{
-		ParticleSystem_CreateAtEntityExt
-			("PlayerBubblesPS", "loop_waterbubbles_large_cloud.ps", "IntroParticleArea", true, cColor(1,1,1,0.5), 0.1f);
-			
-		for(int i = 1; i <= 4; i++)
-		{
-			ParticleSystem_CreateAtEntityExt
-				("PlayerMotionLinesPS", "tau_storm_static_large.ps", "PlayerMotionLinesArea_"+i, true, cColor(1,0.936,0.836,0.508), 0.5f);
-		}
-	}
-	
-	//-------------------------------------------------------
-	
-	void AttachPlayerFallFx()
-	{
-		CameraAnimation_SetAttachedEntity("IntroParticleArea", false, false, false);
-		Entity_AttachToEntity("PlayerMotionLinesArea_*", "IntroParticleArea", "", false);
-	}
-	
-	//-------------------------------------------------------
-	
-	void StartFallAnim(const tString&in asName, float afHeartbeatTime, float afFearLevel)
-	{
-		Effect_Fade_In(0.01f);
-		// Do *voom* sound effect here
-		Sound_Fade("FallMovement", 1.0f, 0.01f);
-		
-		SequenceStates_Resume("SequenceIntroClutter");
-		
-		// Panicking!
-		mlHeartbeatID = Emotion_StartHeartbeat(afHeartbeatTime,0.75f,1, -1, 1.0f, 1.0f);
-		// Stop breathing when playing dialogue
-		mlBreathID = Emotion_StartBackgroundBreath(eBreathType_Fear, afFearLevel*2, 1, -1, 1.0f);
-		
-		CameraAnimation_End();
-		CameraAnimation_Begin(asName,"", false);
-		AttachPlayerFallFx();
-		
-		cLux_AddDebugMessage("!!Starting new slide stage!!");
-	}
-	
-	//-------------------------------------------------------
-	
-	bool ChangeCurrentDirection(const tString &in asEntity, int alDirection)
-	{
-		// Change current direction here
-		
-		// Fall motion lines direction
-		
-		// Environmental particles wind direction
-		return true;
-	}
-	
-	bool SlideFade(const tString &in asEntity, int alDirection)
-	{
-		Effect_Fade_Out(0.01f);
-		Sound_Fade("FallMovement", 0.35f, 0.1f);
-//		Sound_Stop("FallMovement", 0.01f);
-		
-		Emotion_StopBackgroundBreath(mlBreathID);
-		Emotion_StopHeartbeat(mlHeartbeatID);
-		return true;
-	}
-	
-	bool SlideStageComplete(const tString &in asEntity, int alDirection)
-	{
-		SequenceStates_Resume("SequenceIntro");
-	
-		SlideFade(asEntity, alDirection);
-		
-		return true;
 	}
 	
 	//-------------------------------------------------------
