@@ -585,11 +585,34 @@ class cScrMap : iScrMap
 		if (Sequence_DoStepAndPause())
 		{
 			cLux_AddDebugMessage("!DO INTRO CLUTTER!");
+
+			// Fall effects and sound
+			AttachPlayerFallFx();
+			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
+			
+			// Storm
+			UpdateStormScreenEffect();
+			SetStormStrengthVisuals("tau_storm_med.ps", "tau_storm_dirt_med.ps", gvCurrentDir*3.5f, gfFogNormal, 0.0f);
+			
+			// Thunderstorm sound
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
+			
+			// Music
+			Music_PlayExt("NPC_Creature_Attack", true, 0.75f, 1.0f, 7.5f, 0, eMusicPrio_SceneAmb, false);
+			
+			Effect_Fade_Out(0.0f);
 		}
 		else if (Sequence_DoStepAndWait(2)) // SLIDE STAGE 1
 		{
 			cLux_AddDebugMessage("!DO SLIDE STAGE 1 CLUTTER!");
-			//EFFECTS ETC GOES HERE
+			
+			Effect_Rumble_Start(0.5f,1.0f,0.5,0.5f);
+
+		}
+		// ADD STAGE 1 STEPS IN BETWEEN HERE
+		if (Sequence_DoStepAndPause())
+		{
+			cLux_AddDebugMessage("!FINAL STAGE 1 CLUTTER!");
 		}
 		Sequence_End();
 	}
@@ -605,27 +628,14 @@ class cScrMap : iScrMap
 			
 			Map_SetSkyBoxColor(cColor(gvPreIntroSkyBoxColor));
 			
+			// Player
 			Player_SetHealth(0.7f);
-			Effect_Fade_Out(0.0f);
-			UpdateStormScreenEffect();
 			
 			// Flashlight ON to create sense of motion
 			Player_SetFlashlightActive(true, true);
 			Player_SetFlashlightDisabled(true);
 			
-			Effect_Rumble_Start(0.5f,1.0f,0.5,0.5f);
-			
-			AttachPlayerFallFx();
-			
-			Music_PlayExt("NPC_Creature_Attack", true, 0.75f, 1.0f, 7.5f, 0, eMusicPrio_SceneAmb, false);
-			
-			SetStormStrengthVisuals("tau_storm_med.ps", "tau_storm_dirt_med.ps", gvCurrentDir*3.5f, gfFogNormal, 0.0f);
-			
-			Sound_CreateAtEntity("FallMovement", "Player/action/underwater/abyss_fall", "Player");
-			
-			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 3.0f, "StormAudio_Stage0_Sweeteners");
-			
-			// USE 2 LAYER SEQUENCE WHEN ADDING DETAILS TO THE SEQUENCE, PAUSE AND RESUME THIS SEQUENCE ON START AND END OF EACH CAMERA ANIM STAGE
+			// Run intro clutter
 			SequenceIntroClutter("");
 		}
 		else if (Sequence_DoStepAndPause())
