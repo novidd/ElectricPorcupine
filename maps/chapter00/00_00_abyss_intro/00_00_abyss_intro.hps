@@ -607,12 +607,21 @@ class cScrMap : iScrMap
 			cLux_AddDebugMessage("!DO SLIDE STAGE 1 CLUTTER!");
 			
 			Effect_Rumble_Start(0.5f,1.0f,0.5,0.5f);
+			
+			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 6.0f, "StormAudio_Stage0_Sweeteners");
 
 		}
 		// ADD STAGE 1 STEPS IN BETWEEN HERE
 		if (Sequence_DoStepAndPause())
 		{
 			cLux_AddDebugMessage("!FINAL STAGE 1 CLUTTER!");
+		}
+		else if (Sequence_DoStepAndWait(2)) // SLIDE STAGE 2
+		{
+			cLux_AddDebugMessage("!DO SLIDE STAGE 2 CLUTTER!");
+			
+			Effect_Rumble_Start(0.5f,1.0f,0.5,0.5f);
+			
 		}
 		Sequence_End();
 	}
@@ -643,7 +652,6 @@ class cScrMap : iScrMap
 			// Make this fall shorter in time
 			StartPlayerFallFx();
 			StartFallAnim("Fall1", 0.65f, 0.7f);
-			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 6.0f, "StormAudio_Stage0_Sweeteners");
 		}
 		else if (Sequence_DoStepAndWait(2))
 		{
@@ -656,8 +664,6 @@ class cScrMap : iScrMap
 			StartFallAnim("Fall2", 0.75f, 0.8f);
 			
 			Music_PlayOverlay("", 1.0f);
-			
-			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 0.0f, "StormAudio_Stage0_Sweeteners");
 		}
 		else if (Sequence_DoStepAndWait(2))
 		{
