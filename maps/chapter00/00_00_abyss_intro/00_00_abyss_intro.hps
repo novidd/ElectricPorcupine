@@ -582,7 +582,7 @@ class cScrMap : iScrMap
 	{
 		// FINAL STEP FOR EACH STAGE HAS TO BE Sequence_DoStepAndPause()
 		Sequence_Begin("SequenceIntroClutter", mIntroClutterSequence);
-		if (Sequence_DoStepAndPause())
+		if (Sequence_DoStepAndPause()) // CLUTTER INIT
 		{
 			cLux_AddDebugMessage("!DO INTRO CLUTTER!");
 
@@ -611,8 +611,14 @@ class cScrMap : iScrMap
 			Map_AddTimer("StormAudio_Stage0_ThunderSweetener", 6.0f, "StormAudio_Stage0_Sweeteners");
 
 		}
+		else if (Sequence_DoStepAndWait(2))
+		{
+			// START TO MAKE THE WORKSHOP PAGE (PRIVATE IT)
+			// !! DO NOT PLAY THIS MOD I'VE YOU'VE NOT COMPLETED THE MAIN GAME!! (In large blue text)
+			// Demographic: This mod is designed for players who are familiar with the mechanics of the main game and completed the story.
+		}
 		// ADD STAGE 1 STEPS IN BETWEEN HERE
-		if (Sequence_DoStepAndPause())
+		else if (Sequence_DoStepAndPause()) // FINAL STAGE 1 STEP
 		{
 			cLux_AddDebugMessage("!FINAL STAGE 1 CLUTTER!");
 		}
@@ -663,8 +669,6 @@ class cScrMap : iScrMap
 			Map_SetSkyBoxColor(cColor(0,0,0,0));
 			
 			StartFallAnim("Fall2", 0.75f, 0.8f);
-			
-			Music_PlayOverlay("", 1.0f);
 		}
 		else if (Sequence_DoStepAndWait(2))
 		{
@@ -687,6 +691,15 @@ class cScrMap : iScrMap
 		// Suit diagonostics start when the screen fades back in *beep* *boop* *beep* *boop*
 		
 		// When Simon stands up play Player/camera_anim/underwater/abyss_recover/vo
+		
+		// The player is laying on their stomach the glitchy dude from tau_outside stands on the ledge of the cliff, the light and smoke from the crashed zeppilin in the background
+		// The blue WAU dots all over the crater can be seen like tau_escape on top of Alpha
+		
+		// *During stand up animation*
+		// "Catherine..?"
+		
+		// *Stood up*
+		// "*Grunt* The omnitool..."
 		
 		Sequence_End();
 	}
