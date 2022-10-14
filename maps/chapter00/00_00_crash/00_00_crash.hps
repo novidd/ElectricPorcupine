@@ -1,5 +1,4 @@
 #include "interfaces/Map_Interface.hps"
-#include "base/AchievementHandler_Types.hps"
 #include "base/InputHandler_Types.hps"
 #include "base/RichPresenceHandler_Types.hps"
 
@@ -32,8 +31,6 @@
 
 #include "helper_font.hps"
 
-#include "player/Player_Types.hps"
-
 //--------------------------------------------------
  
 const float gfDofMax = 3.0f;
@@ -58,20 +55,6 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	void PreloadData()
-	{
-		// Gui
-		OmnitoolGui_Preload();
-		
-		// Player hands
-		PlayerHands_PreloadHandModel_Diving();
-		
-		// Particles
-		ParticleSystem_Preload("");
-	}
-	
-	//-------------------------------------------------------
-	
 	////////////////////////////
 	// Set up map environment
 	void Setup()
@@ -91,6 +74,20 @@ class cScrMap : iScrMap
 		//Level start
 		CathTool_ResetScreen(eCathToolVariant_CathDelta);
 		CathTool_Insert("CathTool", "ZeppelinCathTerminal", false);
+	}
+	
+	//-------------------------------------------------------
+	
+	void PreloadData()
+	{
+		// Gui
+		OmnitoolGui_Preload();
+		
+		// Player hands
+		PlayerHands_PreloadHandModel_Diving();
+		
+		// Particles
+		ParticleSystem_Preload("");
 	}
 	
 	//-------------------------------------------------------
@@ -320,7 +317,7 @@ class cScrMap : iScrMap
 		Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
 		
 		mfTotalDistToLanding = -1.0f;
-		mvLandingPos = Map_GetEntity("ZeppelinLandPos").GetPosition();
+		mvLandingPos = cVector3f(1200, 3607, 800);
 		mvStartingPos = Map_GetEntity("ZeppelinPlatform").GetPosition();
 		mlZepInfoImage=1;
 		mfZepInfoTimer=0.0f;
@@ -614,13 +611,13 @@ class cScrMap : iScrMap
 		SequenceIntro("");	
 	}
 	
-	cSequenceStatesData mIntroClutterSequence;
-	void SequenceIntro(const &in tString asTimer)
+	cSequenceStatesData mIntroSequence;
+	void SequenceIntro(const tString &in asTimer)
 	{
-		Sequence_Begin("SequenceIntroClutter", mIntroClutterSequence);
+		Sequence_Begin("SequenceIntro", mIntroSequence);
 		if(Sequence_DoStepAndWait(2))
 		{
-			
+			Player_SetHealth(0.65f);
 		}
 		else if (Sequence_DoStepAndWait(2))
 		{
