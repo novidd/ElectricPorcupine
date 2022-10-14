@@ -298,6 +298,137 @@ class cScrMap : iScrMap
 
 	//} END MAIN FUNCTIONS
 	
+	//{ OLD NOTES ----
+	
+	// Scene 2 --
+	// Music: 04_01_village (while wandering in the abyss)
+	// 04_01_stormstart for long scary moment (when the player is walking in the kelp forest)
+	// The storm (lightning) is in the background
+	
+	// level_amb_shared_underwater/amb/spots/scary/ for scary sounds in the cave
+	// Play level_amb_shared_underwater/amb/spots/metal/binaural_roof_screech when approaching Wau (still works in a cave)
+	
+	// Leviathan passes 04_01_tau_outside/SFX/leviathan_sighting_001
+	
+	// Located at the bottom of the trench beside the cliff which at the top leads to Theta.
+	// The crash is in the trench between Delta and Theta, therefore the storm is quieter here.
+	// The player has crashed in a kelp forest (it's slanted to proceed deeper and deeper).
+	
+	// The crash site is in a small clearing.
+	// Make into a proper crash site
+	
+	// There are points of interest that move the player in the right direction (lights and small stations and stuff).
+	// Have an angler fish(es) in the forest
+	
+	// The station's back entrance gets revealed on the other end if the forest
+	// The storm is blowing hard here 
+	
+	// -- MAIN PUZZLE --
+	
+	// Do light cracking and heavy breathing and heartbeat sound effects because the player is deep in the ocean trench on a timer
+	// Use different stages depending on how deep in the level the player is. Use collide areas that set the enum for this.
+	
+	// Player is laying on their back after zepplin has crashed (set low hp).
+	
+	// Play the dialogue as the colorful jellyfish pass the screen.
+	
+	// The beeping of cutebot can be heard in the background. (CREATE NEW ENTIY kate_some_abyss and tweak settings so it looks good in the dark)
+	// Screen fades in, cutebot is looking at the the player (she talks to the player).
+	// Dialogue is still running
+	// When the dialogue ends, the screen fades out then in again (blink), player starts to stand up.
+	
+	// (THE PLAYER DOES NOT SPAWN BY THE RAVINE)
+	// The player getsdragged into some small nest in a cave
+	// Distant fishes can be seen in the distance (attracted to light of something the player will go to later, the fishes are then gone cus storm)
+	// The storm is raving outside (thunder strikes in the background)
+	// At the nest enterance cutebot arrives
+	// You can see cutebot looking at the player (the storm particles fly past her)
+	// Cutebot har arrived on time and attacks the tentacle (with her welder torch)
+	
+	// Later in the story when Kate and Simon are in the storm, Kate gets hit by a rock and crashes (inspect code for killing Kate in Delta)
+	
+	// The storm is in full force
+	// Cutebot escorts the player forward to the crashsite
+	// Cutebot goes round and round where Cath is
+	
+	// Cutebot escorts the player to the station which is by the abyss forest (field)
+	// The player will realize upon interacting with stuff in the this area that he needs the omnitool
+	
+	// The cutebot guide the player forward into the abyss
+	
+	// The player needs to go to a suit recharge station, there the player can rest from the abbys and continue on later with a deep diving suit.
+	
+	// Use Intercom_Pedersen_1 when using the communications terminal
+	
+	// Scene 2 --
+	// The station is placed at the edge of the valley is opening (the player came from the caverns)
+	
+	// Here the player can retrieve data from the omnitool (a dialogue scene between Simon and Cath she has saved, cute)
+	// Simon comments on this
+	
+	// The player enters the backend of the station
+	
+	// The whole station is fucked nothing works
+	// He pulls a power switch on lever falls off, Simon comments on that he doesn't even care anymore
+	
+	// Simon loses his hope (phi omega space gun dialogue will probably work well here)
+	// This is why he decides to walk into the storm as a final "fuck this" (this is suicide -- actually pretty dark wtf I didn't even realize that)
+	
+	// In station tower (TVS-h) after crash read text (console) conversation about someone who almost fell down into the abyss.
+	// Make this conversation show up on screen line after line.
+	// Function parameters: 
+	// (const tString &in asTextCategory, const tString &in asTextEntry (maybe use a suffix+prefix system), float afMsgTimestamp, float afMsgDelay)
+	// Other person makes a joke. The other types "fuck off not funny", and understandably so.
+	
+	// A: Hello and good morning *station*, you there B?
+	// B: of course, and as natural, things are covered in perpetual darkness
+	// A: How's your legs, still shaking?
+	// B: ha good one
+	// B: i was just starting to feel good about myself
+	// A: I'm glad I always crash the party
+	
+	// A: Anyway
+	// A: Yeah my dad used to do that to me
+	// B: really?
+	// A: Yeah
+	// (longer delay)
+	// B: fuck off
+	// A: Yeah, thanks. 
+	// A: I will.
+	// B: if only you could get out of that suit
+	// A: Wow, you got me there...
+	
+	// Simon comments on their banter at end of dialogue how to seem to be good friends
+	// He also comments on that Catherine is no longer here
+	
+	// Voice_SetSource("Catherine", "CathTool2", 3, 20, true, 20);
+	// Voice_Play("1_CatherineGivesDirections");
+	
+	// Final scene --
+	// No transmissions can be found
+	// The player tries to open the path to the escape pod (it malfunctions)
+	// All is hopeless
+	// The only thing the player can do is sit down on do nothing (look at Tau final survivor scene)
+	
+	// !! Simon falls asleep !! He starts to have delusions, everything that happens below is not real
+	
+	// Silence accompanied with melancholic music
+	// After some time, the large screen updates, the player can retrieve more dialogue from the omnitool
+	// More dialogue between Simon and Cath she has saved (cute)
+
+	// When the player approaches the seat again a voice comes from the coms room's (double speakers beside the large monitor)
+	// The player approaches the screen and after some white noise, Catherine's voice can be lightly heard (it's a jebait)
+	// The player has to focus in on the signal (look at Upsilon)
+	// When the player has zoned in, Simon shoutes "Catherine!", The response is from a voice too familiar (Simon's own voice)
+	// --THE END--
+	
+	// Epilogue --
+	// After the screen goes black the player is loaded into a different map (where you play as another Simon)
+	// A hatch opens above the player bubbles rise (player is climbing the ladder, they cannot climb down)
+	// Create the environment from the images in the project folder as inspiration
+	
+	//} -----------
+	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
 	// SCENE 1 *INTRO - ZEPPELIN CRASH SITE*
@@ -368,193 +499,7 @@ class cScrMap : iScrMap
 	}
 	
 	//-------------------------------------------------------
-	
-	// Scene 2 --
-	// Music: 04_01_village (while wandering in the abyss)
-	// 04_01_stormstart for long scary moment (when the player is walking in the kelp forest)
-	// The storm (lightning) is in the background
-	
-	// level_amb_shared_underwater/amb/spots/scary/ for scary sounds in the cave
-	// Play level_amb_shared_underwater/amb/spots/metal/binaural_roof_screech when approaching Wau (still works in a cave)
-	
-	// Leviathan passes 04_01_tau_outside/SFX/leviathan_sighting_001
-	
-	// Located at the bottom of the trench beside the cliff which at the top leads to Theta.
-	// The crash is in the trench between Delta and Theta, therefore the storm is quieter here.
-	// The player has crashed in a kelp forest (it's slanted to proceed deeper and deeper).
-	
-	// The crash site is in a small clearing.
-	// Make into a proper crash site
-	
-	// There are points of interest that move the player in the right direction (lights and small stations and stuff).
-	// Have an angler fish(es) in the forest
-	
-	// The station's back entrance gets revealed on the other end if the forest
-	// The storm is blowing hard here 
-	
-	// -- MAIN PUZZLE --
-	// The player utilizes with a terminal to move object(s) with functioning zepplin across the field
-	// This way the player can enter the station
-	
-	// Make player choose landing spot with the mouse on the terminal on a map (need to determine of landing spot is clear or not)
-	
-	
-	// level_amb_shared_underwater/amb/spots/scary/eerie_tone_01 in the background
-	
-	// Do light cracking and heavy breathing and heartbeat sound effects because the player is deep in the ocean trench on a timer
-	// Use different stages depending on how deep in the level the player is. Use collide areas that set the enum for this.
-	
-	// Player is laying on their back after zepplin has crashed (set low hp).
-	
-	// Play the dialogue as the colorful jellyfish pass the screen.
-	
-	// The beeping of cutebot can be heard in the background. (CREATE NEW ENTIY kate_some_abyss and tweak settings so it looks good in the dark)
-	// Screen fades in, cutebot is looking at the the player (she talks to the player).
-	// Dialogue is still running
-	// When the dialogue ends, the screen fades out then in again (blink), player starts to stand up.
-	
-	// (THE PLAYER DOES NOT SPAWN BY THE RAVINE)
-	// The player getsdragged into some small nest in a cave
-	// Distant fishes can be seen in the distance (attracted to light of something the player will go to later, the fishes are then gone cus storm)
-	// The storm is raving outside (thunder strikes in the background)
-	// At the nest enterance cutebot arrives
-	// You can see cutebot looking at the player (the storm particles fly past her)
-	// Cutebot har arrived on time and attacks the tentacle (with her welder torch)
-	
-	// Later in the story when Kate and Simon are in the storm, Kate gets hit by a rock and crashes (inspect code for killing Kate in Delta)
-	
-	// The storm is in full force
-	// Cutebot escorts the player forward to the crashsite
-	// Cutebot goes round and round where Cath is
-	
-	// Cutebot escorts the player to the station which is by the abyss forest (field)
-	// The player will realize upon interacting with stuff in the this area that he needs the omnitool
-	
-	// --------
-	
-	// Terminal A is still running but glitched. The player can see the distance away from Theta (4000+ meters)
-	// Play dialogue when the player looks at the completely broken omnitool.
-	// Add sparks accompanied with bubbles
-	
-	// Simon thinks that Cath is completely fucked (but she is still functioning, she will reveal herself in the final scene to be still here)
-	// She will say that she is an asshole for losing hope so quickly (fade out to black).
-	// Simon says "Catherine...?"
-	// She mentions how it felt like the blink of an eye for her, (then run the credits).
-	
-	// Lock player like in dialogue when talking "to" Catherine and play event_look_at_hands_2_1 or event_look_at_hands_2_1_intense when Simon is angry
-	
-	// The cutebot guide the player forward into the abyss
-	
-	// The player needs to go to a suit recharge station, there the player can rest from the abbys and continue on later with a deep diving suit.
-	
-	// Use Intercom_Pedersen_1 when using the communications terminal
-	
-	// Scene 2 --
-	// The station is placed at the edge of the valley is opening (the player came from the caverns)
-	
-	// Here the player can retrieve data from the omnitool (a dialogue scene between Simon and Cath she has saved, cute)
-	// Simon comments on this
-	
-	// The player enters the backend of the station
-	
-	// The whole station is fucked nothing works
-	// He pulls a power switch on lever falls off, Simon comments on that he doesn't even care anymore
-	
-	// Simon loses his hope (phi omega space gun dialogue will probably work well here)
-	// This is why he decides to walk into the storm as a final "fuck this" (this is suicide -- actually pretty dark wtf I didn't even realize that)
-	
-	// In station tower (TVS-h) after crash read text (console) conversation about someone who almost fell down into the abyss.
-	// Make this conversation show up on screen line after line.
-	// Function parameters: 
-	// (const tString &in asTextCategory, const tString &in asTextEntry (maybe use a suffix+prefix system), float afMsgTimestamp, float afMsgDelay)
-	// Other person makes a joke. The other types "fuck off not funny", and understandably so.
-	
-	// A: Hello and good morning *station*, you there B?
-	// B: of course, and as natural, things are covered in perpetual darkness
-	// A: How's your legs, still shaking?
-	// B: ha good one
-	// B: i was just starting to feel good about myself
-	// A: I'm glad I always crash the party
-	
-	// A: Anyway
-	// A: Yeah my dad used to do that to me
-	// B: really?
-	// A: Yeah
-	// (longer delay)
-	// B: fuck off
-	// A: Yeah, thanks. 
-	// A: I will.
-	// B: if only you could get out of that suit
-	// A: Wow, you got me there...
-	
-	// Simon comments on their banter at end of dialogue how to seem to be good friends
-	// He also comments on that Catherine is no longer here
-	
-	// Voice_SetSource("Catherine", "CathTool2", 3, 20, true, 20);
-	// Voice_Play("1_CatherineGivesDirections");
-	
-	// StormTrigger_1 with CollisionIncreaseStormStrength callback on 04_01_tau_outside for inspecting how the storm will work
-	
-	// Scene 3 --
-	// The player goes deep into the abyss
-	// The storm increases in intensity
-	// The player sees the distant point of interest (the obelisk)
-	
-	// The leviathan shows up and "kills" the player (it actually wants to help the player)
-	// Inspect the code when the bot gets picked up by the leviathan (maybe you can place the player there instead?)
-	
-	// Convey this through subtle story telling in the texts and world building
-	
-	// Scene 4 --
-	// The player wakes up from a beeping katebot (it followed the player because of the zeppelin crash)
-	// Simon notices the leviathan didn't hurt him (in dialogue)
-	//
-	
-	// Final scene --
-	// No transmissions can be found
-	// The player tries to open the path to the escape pod (it malfunctions)
-	// All is hopeless
-	// The only thing the player can do is sit down on do nothing (look at Tau final survivor scene)
-	
-	// !! Simon falls asleep !! He starts to have delusions, everything that happens below is not real
-	
-	// Silence accompanied with melancholic music
-	// After some time, the large screen updates, the player can retrieve more dialogue from the omnitool
-	// More dialogue between Simon and Cath she has saved (cute)
 
-	// When the player approaches the seat again a voice comes from the coms room's (double speakers beside the large monitor)
-	// The player approaches the screen and after some white noise, Catherine's voice can be lightly heard (it's a jebait)
-	// The player has to focus in on the signal (look at Upsilon)
-	// When the player has zoned in, Simon shoutes "Catherine!", The response is from a voice too familiar (Simon's own voice)
-	// --THE END--
-	
-	// Epilogue --
-	// After the screen goes black the player is loaded into a different map (where you play as another Simon)
-	// A hatch opens above the player bubbles rise (player is climbing the ladder, they cannot climb down)
-	// Create the environment from the images in the project folder as inspiration
-	
-	// Use level_amb_shared_underwater/amb/spots/oceanlife/fishes_group_swimming for large sources of bubbling/flowing water
-	
-	// Simon and Catherine are on a boat which is on the surface of the ocean.
-	// Simon is gathering some kinds materials for some science stuff in the ocean.
-	// The player goes up into this huge boat from the ocean on map transfer.
-	
-	// He needs to take off his deep diving suit (abyss suit)
-	
-	// Catherine has found a specimen in the ocean (The WAU, it always finds itself back to Simon).
-	// Simon cannot find Catherine
-	// He eventually finds her in the containment room, dead.
-	// His hand starts to glitch in and out in his anger
-	
-	// The WAU has appeared all over the walls and stuff, the whole ship is suddenly contaminated (cuz a delusion)
-	
-	// He eventually makes it to the communicatins room (identical design as the one in the real world)
-	// There is a transmission on the terminal, it's Simon speaking to himself (or the WAU speaking to him through Simon)
-	// Simon is shook
-	
-	// The environment changes, screen glitches, music rises till the screen goes to black in a finale
-	// To achieve the environment glitch attach the camera animation areas to the player body, this way they follow the player when being teleported
-	
 	// -- IDEAS --
 	// The player will lose their part of their arm just like in the original game (before the suicide, in the station)
 	// When the player has stood to close to the rave for too their suit starts to beep (red around screen at beep)
@@ -572,6 +517,15 @@ class cScrMap : iScrMap
 	
 	// 04_01_tau_outside/SFX/near_death on obelisk interact
 	// 04_01_tau_outside/SFX/ross_death_wake_sweet on leviathan collision
+	
+	// USEFULL SFX:
+	// Use level_amb_shared_underwater/amb/spots/oceanlife/fishes_group_swimming for large sources of bubbling/flowing water
+	// 04_01_tau_outside/SFX/near_death on obelisk interact
+	// 04_01_tau_outside/SFX/ross_death_wake_sweet on leviathan collision
+	// level_amb_shared_underwater/amb/spots/scary/eerie_tone_01 in the background
+	// level_amb_shared_underwater/amb/spots/scary/ for scary sounds in the cave
+	// Play level_amb_shared_underwater/amb/spots/metal/binaural_roof_screech when approaching Wau (still works in a cave)
+	// 04_01_stormstart for long scary moment (when the player enters the area with blood covered walls lit up by a fallen spotlight)
 	
 	// NEXT MAP (THIS MAP)
 	
@@ -600,6 +554,20 @@ class cScrMap : iScrMap
 	// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
 	// To enter the station the player has to find the nearest airlock (need to use the omnitool)
 	
+	// PICK UP OMNITOOL
+	
+	// Terminal A is still running but glitched. The player can see the distance away from Theta (4000+ meters)
+	// Play dialogue when the player looks at the completely broken omnitool.
+	// Add sparks accompanied with bubbles
+	
+	// Simon thinks that Cath is completely fucked (but she is still functioning, she will reveal herself in the final scene to be still here)
+	// She will say that she is an asshole for losing hope so quickly (fade out to black).
+	// Simon says "Catherine...?"
+	// She mentions how it felt like the blink of an eye for her, (then run the credits).
+	
+	// Lock player like in dialogue when talking "to" Catherine and play event_look_at_hands_2_1 or event_look_at_hands_2_1_intense when Simon is angry
+	
+	
 	// THE PLAYER HAS TO CRAWL THROUGH RUBBLE -- Show where the player has to go with sparks from a cable
 	// Crawl through a hole with cables hanging through the hole, on of the cables spark
 	
@@ -608,6 +576,12 @@ class cScrMap : iScrMap
 	// HAVE A LONG BRIDGE (UPSILON AWAKE)
 	// Play some Catherine flashback dialogue here
 	// Make Simon's head hurt here (convey with screen effects and Simon emoting)
+	
+	// 04_01_stormstart for long scary moment (when the player enters the area with blood covered walls lit up by a fallen spotlight)
+	
+	/////////////////////////////////////////
+    // SCENE 1 EVENT 1 - *Simon wakes up*
+    //{///////////////////////////////////////
 	
 	void SetupIntro()
 	{
@@ -634,6 +608,15 @@ class cScrMap : iScrMap
 	
 	bool OnCollide_ZeppelinStepCreak(const tString &in asParent, const tString &in asChild, int alState)
 	{
+		return true;
+	}
+	
+	//-------------------------------------------------------
+	
+	bool OnCollide_MetalPieceFall(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		// TRIGGER ONLY WHEN THE PLAYER HAS PICKED UP THE OMNITOOL
+		cLux_AddDebugMessage("!! METAL PIECE FALLING !!");
 		return true;
 	}
 	
