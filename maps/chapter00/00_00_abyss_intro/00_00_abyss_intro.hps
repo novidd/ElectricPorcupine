@@ -152,7 +152,6 @@ class cScrMap : iScrMap
 	{
 		Map_SetUnderwater(true);
 		Player_SetFlashlightEnvParticleMul(16);
-		Map_SetUnderwater(true);
 		//Game_AutoSave();
 //		Map_AddTimer("TimerStartPreload",10.0f,"TimerStartPreload");
 	}
@@ -191,6 +190,9 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
+			SetStormStrengthVisuals("tau_storm_med.ps", "tau_storm_dirt_med.ps", gvCurrentDir*3.5f, gfFogNormal, 0.0f);
+			UpdateStormScreenEffect();
+			
 			SequenceIntro("");
 		}
 		
@@ -587,8 +589,20 @@ class cScrMap : iScrMap
 	
 	// REMAKE THIS WHOLE SEQUENCE
 	// When the player has seen the lightning during the apex, lightning strikes several times and screen goes white
+	
+	// LOAD TO NEW MAP
+	
 	// The player then wakes up quickly beside the crashes zeppilin
-	// The player has low HP
+	
+	// MAKE THE AMBIENCE AS STRONG AS POSSIBLE
+	// There is a storm outside and lightning flashing and thunder rumbling
+	// Screen flashing
+	// Lots of dust particles
+	// Strong wind
+	
+	// WHEN THE PLAYER IS STANDING/LOOKING AT THE HOLE IN THE STATION WALL ADD SCREEN SAND EFFECTS
+	
+	// The player has low HP (CONVEY THIS WITH SCREEN EFFECTS, AND SO ON)
 	// After the player wakes up KATEBOT shows up scanning the environment
 	// When it looks at the player it makes some noise *beep* *beep*
 	// The zeppilin has crashed into the wall of a station, the room and its structure has been destroyed
@@ -596,6 +610,12 @@ class cScrMap : iScrMap
 	// The ceiling is obviously broken, so there are cables all over the place
 	// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
 	// To enter the station the player has to find the nearest airlock (need to use the omnitool)
+	
+	// THE PLAYER HAS TO CRAWL THROUGH RUBBLE -- Show where the player has to go with sparks or a half broken lamp (PHI ESCAPE TUNNEL RED LAMP)
+	
+	// HAVE A LONG BRIDGE (UPSILON AWAKE)
+	// Play some Catherine flashback dialogue here
+	// Make Simon's head hurt here (convey with screen effects and Simon emoting)
 	
 	cSequenceStatesData mIntroClutterSequence;
 	void SequenceIntroClutter(const tString &in asTimer)
