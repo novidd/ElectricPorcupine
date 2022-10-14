@@ -300,7 +300,7 @@ class cScrMap : iScrMap
 	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *ZEPPELIN CRASH SITE*
+	// SCENE 1 *INTRO - ZEPPELIN CRASH SITE*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
@@ -600,7 +600,10 @@ class cScrMap : iScrMap
 	// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
 	// To enter the station the player has to find the nearest airlock (need to use the omnitool)
 	
-	// THE PLAYER HAS TO CRAWL THROUGH RUBBLE -- Show where the player has to go with sparks or a half broken lamp (PHI ESCAPE TUNNEL RED LAMP)
+	// THE PLAYER HAS TO CRAWL THROUGH RUBBLE -- Show where the player has to go with sparks from a cable
+	// Crawl through a hole with cables hanging through the hole, on of the cables spark
+	
+	// KateBot passes the double windows, her light lights up the room helping the player to see since it's so dark
 	
 	// HAVE A LONG BRIDGE (UPSILON AWAKE)
 	// Play some Catherine flashback dialogue here
@@ -626,6 +629,15 @@ class cScrMap : iScrMap
 		Sequence_End();
 		
 	}
+	
+	//-------------------------------------------------------
+	
+	bool OnCollide_ZeppelinStepCreak(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		return true;
+	}
+	
+	//-------------------------------------------------------
 	
 	//} END SCENE 1
 	
