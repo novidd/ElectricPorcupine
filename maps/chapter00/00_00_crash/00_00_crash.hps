@@ -35,7 +35,9 @@
  
 const float gfDofMax = 3.0f;
 
-const float gfFogNormal = 45.0f;
+const float gfFogNormal = 100.0f;
+const cVector3f gvIndoorWindVelocity = cVector3f(0.02, 0.02, 0.05);
+const cVector3f gvStormWindVelocity = cVector3f(0.75, 0, -1)*6.5f;
 
 //--------------------------------------------------
 
@@ -514,7 +516,7 @@ class cScrMap : iScrMap
 		bool OnCollide_StormEffects(const tString &in asParent, const tString &in asChild, int alState)
 		{
 			bool bRunStormEffect = alState == 1;
-			StormManager(bRunStormEffect);
+			StormScreenEffectManager(bRunStormEffect);
 			
 			if (bRunStormEffect)
 				mlStormShakeID = Effect_Shake_Start(0.0025, -1, 3, 3, cVector3f(1, 1, 0), 20);
@@ -524,17 +526,19 @@ class cScrMap : iScrMap
 			return true;
 		}
 		
-		void StormManager(bool asRunStormEffect)
-		{			
+		void StormScreenEffectManager(bool asRunStormEffect)
+		{
 			if (asRunStormEffect == false)
 			{
+				// Turn off storm dirt effect
 				ParticleSystem_Destroy("StormDirt");
 				
+				// Turn off storm refraction effect
 				if (mlStormScreenEffectID != -1)
 				{
 					Effect_Screen_FadeOut(mlStormScreenEffectID, 3.0f);
 					mlStormScreenEffectID = -1;
-				}	
+				}
 			}
 			else
 			{
@@ -549,10 +553,19 @@ class cScrMap : iScrMap
 												cVector2f(1.8, 1.8));
 					Effect_Screen_FadeAlpha(mlStormScreenEffectID, 1.0f, 3.0f);
 				}
-				
-				// Storm environmental particles
-				//Map_FadeEnvironmentParticleWindVelocity(gvStage1CurrentDir*6.5f, afFadeTime);
 			}
+		}
+		
+		bool OnCollide_SetStormWindVelocity(const tString &in asParent, const tString &in asChild, int alState)
+		{
+			cLux_AddDebugMessage("Updating particle wind velocity.");
+			
+			if (alState == 1)
+				Map_FadeEnvironmentParticleWindVelocity(gvStormWindVelocity, 3.0f);
+			else
+				Map_FadeEnvironmentParticleWindVelocity(gvIndoorWindVelocity, 3.0f);
+			
+			return true;
 		}
 		
 		//-------------------------------------------------------
@@ -694,7 +707,7 @@ class cScrMap : iScrMap
 		{
 			// TRIGGER ONLY WHEN THE PLAYER HAS PICKED UP THE OMNITOOL
 			cLux_AddDebugMessage("!! METAL PIECE FALLING !!");
-			return true;
+			return false;
 		}
 		
 		//-------------------------------------------------------
