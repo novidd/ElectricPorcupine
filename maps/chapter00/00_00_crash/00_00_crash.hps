@@ -244,6 +244,8 @@ class cScrMap : iScrMap
 	
 	bool OnCollide_DivingSuitUpdate(const tString &in asParent, const tString &in asChild, int alState)
 	{
+		cLux_AddDebugMessage(Entity_GetVarString(asChild, ""));
+		
 		// USE ENUMS
 		// States
 		// InStorm
