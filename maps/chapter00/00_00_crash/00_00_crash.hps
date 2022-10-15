@@ -528,7 +528,6 @@ class cScrMap : iScrMap
 		{			
 			if (asRunStormEffect == false)
 			{
-				ParticleSystem_Destroy("Storm");
 				ParticleSystem_Destroy("StormDirt");
 				
 				if (mlStormScreenEffectID != -1)
@@ -539,12 +538,9 @@ class cScrMap : iScrMap
 			}
 			else
 			{
-				// Storm dust effect
-				ParticleSystem_CreateAtEntityExt("StormDirt", "tau_storm_dirt_max.ps", "Camera", 
-					true, cColor_White, 0.25f, false, 0, 0);
 				// Storm dirt effect
 				ParticleSystem_CreateAtEntityExt("StormDirt", "tau_storm_dirt_max.ps", "Camera", 
-					true, cColor_White, 0.25f, false, 0, 0);
+					true, cColor_White, 0.75f, false, 0, 0);
 				
 				// Storm refraction effect
 				if (mlStormScreenEffectID == -1)
@@ -618,6 +614,7 @@ class cScrMap : iScrMap
 		
 		// 04_01_tau_outside/SFX/elevator/docking_alarm, this sound runs at a loop because of the fact the station is broken
 		// Have red lamps spinning in the same interval as the sound (play the sound at these lamps)
+		// Set the animation speed to fit the inteval of the sound
 		
 		// Play 04_01_tau_outside/SFX/wake_up_sweet on wakeup
 		
@@ -628,23 +625,14 @@ class cScrMap : iScrMap
 		// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
 		// 02_04_stormends when the player wakes up
 		
-		
-		// MAKE THE AMBIENCE AS STRONG AS POSSIBLE
 		// There is a storm outside and lightning flashing and thunder rumbling
-		// Screen flashing
-		// Lots of dust particles
-		// Strong wind
-		
-		// WHEN THE PLAYER IS STANDING/LOOKING AT THE HOLE IN THE STATION WALL ADD SCREEN SAND EFFECTS
 		
 		// Play 05_02/SFX/sat/fly_out when the player has stood up
 		
 		// The player has low HP (CONVEY THIS WITH SCREEN EFFECTS, AND SO ON)
 		// After the player wakes up KATEBOT shows up scanning the environment
 		// When it looks at the player it makes some noise *beep* *beep*
-		// The zeppilin has crashed into the wall of a station, the room and its structure has been destroyed
 		// Lots of smoke and bubbles from fire underwater
-		// The ceiling is obviously broken, so there are cables all over the place
 		// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
 		// To enter the station the player has to find the nearest airlock (need to use the omnitool)
 		
