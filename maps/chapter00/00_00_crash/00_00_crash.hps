@@ -239,6 +239,29 @@ class cScrMap : iScrMap
 	//{///////////////////////////////////////////////////////////////////////////////////////
 	
 	///////////////////////////////
+	// Diving suit
+	//{////////////////////////////
+	
+	bool OnCollide_DivingSuitUpdate(const tString &in asParent, const tString &in asChild, int alState)
+	{
+		// USE ENUMS
+		// States
+		// InStorm
+		// InStation
+		// LeaveStorm
+		// EnterStorm
+		
+		// Nest in an update function
+		// Create a whole module just for this functionality to easily use across different maps
+		
+		// Make the suit do beeping and booping noises when it updates
+		
+		return true;
+	}
+	
+	//} END Diving suit
+	
+	///////////////////////////////
 	// Checkpoints
 	//{////////////////////////////
 	
