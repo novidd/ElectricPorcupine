@@ -1062,7 +1062,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268435757" Name="AMB_ZeppelinCrash" CreStamp="1665774032" ModStamp="1665842239" WorldPos="0 4 -0.25" Rotation="0 0 0" Scale="16 10 10" Active="true" Mesh="" UID="16 133 268435757" AreaType="Soundscape">
+            <Area ID="268435757" Name="AMB_ZeppelinCrash" CreStamp="1665774032" ModStamp="1665849776" WorldPos="0 2 -0.25" Rotation="0 0 0" Scale="16 5 10" Active="true" Mesh="" UID="16 133 268435757" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="Off" />
@@ -1592,7 +1592,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268435849" Name="Trigger_StormEffects" CreStamp="1665840942" ModStamp="1665844124" WorldPos="0 2.25 0" Rotation="0 0 0" Scale="16 10 8" Active="true" Mesh="" UID="16 257 268435849" AreaType="Trigger">
+            <Area ID="268435849" Name="Trigger_StormEffects" CreStamp="1665840942" ModStamp="1665849763" WorldPos="0 2 0" Rotation="0 0 0" Scale="16 5 8" Active="true" Mesh="" UID="16 257 268435849" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -1963,13 +1963,37 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268435912" Name="Trigger_DivingSuitUpdate" CreStamp="1665849456" ModStamp="1665849508" WorldPos="15.25 1.24715 -2.75" Rotation="0 0.261799 0" Scale="1 1 1" Active="true" Mesh="" UID="16 193 268435912" AreaType="Trigger">
+            <Area ID="268435912" Name="Trigger_DivingSuitUpdate" CreStamp="1665849456" ModStamp="1665849712" WorldPos="15.75 0.5 -2.75" Rotation="0 0.261799 0" Scale="1 1 1" Active="true" Mesh="" UID="16 193 268435912" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="UserVar" Value="LeaveStorm" />
                     <Var Name="CC_Entities" Value="player" />
-                    <Var Name="CC_Funcs" Value="OnCollide_" />
+                    <Var Name="CC_Funcs" Value="OnCollide_DivingSuitUpdate" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268435913" Name="Trigger_DivingSuitUpdate_1" CreStamp="1665849714" ModStamp="1665849755" WorldPos="0 1.75 -0.25" Rotation="0 -0 0" Scale="10 5 8" Active="true" Mesh="" UID="16 190 268435913" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="EnterStorm" />
+                    <Var Name="CC_Entities" Value="player" />
+                    <Var Name="CC_Funcs" Value="OnCollide_DivingSuitUpdate" />
                     <Var Name="ParentAttachEntity" Value="" />
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
