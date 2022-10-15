@@ -176,7 +176,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			
+			Effect_Flash_Start(0.25f, 1.0f, 5.0f);
 		}
 		
 		if(alAction == eAction_Test2)
@@ -677,7 +677,7 @@ class cScrMap : iScrMap
 		
 		void SetupIntro()
 		{
-			SequenceIntro("");	
+			SequenceIntro("");
 		}
 		
 		// Add the heartbeat
@@ -706,6 +706,11 @@ class cScrMap : iScrMap
 		
 		// Add many stratch, blast, explosion and debris decals on walls/floor
 		
+		// Start the lightning and thunder as the exakt moment the player wakes up
+		
+		// Fade in the world sound 0.5f before the lightning strikes making the screen white
+		// Use Effect_Flash_Start();
+		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
 		{
@@ -716,7 +721,8 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(2))
 			{
-				
+				// Here the player view fades in
+				//Effect_Flash_Start(0.25f, 1.0f, 5.0f);
 			}
 			Sequence_End();
 			
