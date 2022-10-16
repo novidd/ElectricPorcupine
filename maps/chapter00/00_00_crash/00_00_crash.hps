@@ -739,7 +739,10 @@ class cScrMap : iScrMap
 		// One of the cameras shows a creepy corridor with lots of blood (a flickering light showing the blood text on the wall)		
 		void SetupIntro()
 		{
-			SequenceIntro("");
+			// Player intro settings
+			Player_SetHealth(0.25f);
+			
+//			SequenceIntro("");
 		}
 		
 		// RUN RANDOM SCREEN SHAKES HERE WHILE THE PLAYER IS IN DIFFERENT AREAS OF THE MAP
@@ -788,14 +791,29 @@ class cScrMap : iScrMap
 		void SequenceIntro(const tString &in asTimer)
 		{
 			Sequence_Begin("SequenceIntro", mIntroSequence);
-			if(Sequence_DoStepAndWait(2))
+			if(Sequence_DoStepAndWait(7.25f))
 			{
-				Player_SetHealth(0.25f);
+				Effect_Fade_Out(0);
+				
+				// Game audio
+				Sound_SetGlobalVolume(0.0f);
+
+				// Time till lightning strike has to be 7.25f after the stinger starts
+				Sound_CreateAtEntity("IntroStinger", "04_01_tau_outside/SFX/wake_up_sweet", "Player", 0.0f, false, 1.0f);
 			}
-			else if (Sequence_DoStepAndWait(2))
+			else if (Sequence_DoStepAndWait(0.25f))
 			{
-				// Here the player view fades in
-				//Effect_Flash_Start(0.25f, 1.0f, 5.0f);
+				Sound_FadeGlobalVolume(1.0f, 0.25f);
+				
+				// Maybe decrease fade in time???
+				Effect_Flash_Start(0.25f, 1.0f, 5.0f);
+				Effect_Fade_In(5.0f);
+				
+				//Lighting strikes here
+			}
+			else if (Sequence_DoStepAndWait(0.5f))
+			{
+				
 			}
 			Sequence_End();
 			
