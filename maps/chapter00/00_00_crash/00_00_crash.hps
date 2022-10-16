@@ -98,6 +98,8 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
+		Seq_DarkWorldLightning("");
+		
 		bool bDoIntro = true;
 		
 		/////////////////////////
@@ -264,6 +266,52 @@ class cScrMap : iScrMap
 	}
 	
 	//} END Diving suit
+	
+	///////////////////////////////
+	// Storm Lightning
+	//{////////////////////////////
+	
+	tID m_idDarkWorldLightning_FlashLight;
+	tString msDWLightning_SoundName = "";
+	float mfDWLightning_Volume = 1;
+	cVector3f mvDir;
+	int mlDWLightning_Bolts = 3;
+	int mlDWLightning_Index = -1;
+	cVector3f mvDWLightning_Dir;
+	float mfDWLightning_LoopAngleOffset = 0;
+	cVector3f mvDWLightning_LoopDir;
+	
+	bool mbPlayerInsideStation = false;
+	
+	cSequenceStatesData mSeqDataDarkWorldLightning;	
+	void Seq_DarkWorldLightning(const tString &in asTimer)
+	{
+		Sequence_Begin("Seq_DarkWorldLightning", mSeqDataDarkWorldLightning);
+		if (Sequence_DoStepAndWait(0.1f))
+		{
+			Map_AddTimer("Timer_DarkWorldThunder", 0, "OnTimer_DarkWorldThunder");
+		}
+		Sequence_End();
+	}
+	
+	void OnTimer_DarkWorldThunder(const tString &in asTimer)
+	{
+		cVector3f vPos = Player_GetPosition() + mvDWLightning_Dir * cMath_RandRectf(60, 120);
+		vPos += cVector3f_Up * cMath_RandRectf(30, 50);
+		
+		// THE SOUND BELOW IS MISSING
+		tString sSound = "level_amb_shared/amb/sweeteners/thunder/thunder_strike";
+		if (msDWLightning_SoundName != "") sSound = msDWLightning_SoundName;
+			
+		cSoundEntity@ pThunder = cLux_GetCurrentMap().GetWorld().CreateSoundEntity("Thunder", sSound, true);
+		pThunder.SetUseCustomProperties(true);
+		pThunder.SetCustomMinDistance(80);
+		pThunder.SetCustomMaxDistance(200);
+		pThunder.SetPosition(vPos);
+		pThunder.SetVolume(mfDWLightning_Volume);
+	}
+	
+	//} END Storm Lightning
 	
 	///////////////////////////////
 	// Checkpoints
