@@ -156,6 +156,8 @@ class cScrMap : iScrMap
 		mfDistToLanding = vToLanding.Length()-0.2f;
 		if (mfTotalDistToLanding==-1.0f)
 			mfTotalDistToLanding = mfDistToLanding;
+			
+		// RUN RANDOM SCREEN SHAKES HERE WHILE THE PLAYER IS IN DIFFERENT AREAS OF THE MAP
 	}
 
 	//-------------------------------------------------------
@@ -713,6 +715,8 @@ class cScrMap : iScrMap
 		
 		// Fade in the world sound 0.5f before the lightning strikes making the screen white
 		// Use Effect_Flash_Start();
+		
+		// RUN RANDOM SCREEN SHAKES HERE WHILE THE PLAYER IS IN DIFFERENT AREAS OF THE MAP
 		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
