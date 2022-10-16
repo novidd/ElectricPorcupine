@@ -98,6 +98,8 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
+		InitDarkWorldLightning();
+		
 		Seq_DarkWorldLightning("");
 		
 		bool bDoIntro = true;
@@ -286,8 +288,8 @@ class cScrMap : iScrMap
 	void InitDarkWorldLightning()
 	{
 		cLightPoint@ pFlashLight = cLux_GetCurrentMap().GetWorld().CreateLightPoint("DWFlash", "", false);
-		pFlashLight.SetBrightness(0);
-		pFlashLight.SetRadius(200);
+		pFlashLight.SetBrightness(80);
+		pFlashLight.SetRadius(0);
 		m_idDarkWorldLightning_FlashLight = pFlashLight.GetID();
 	}
 	
@@ -367,10 +369,8 @@ class cScrMap : iScrMap
 			Sequence_Begin("Seq_DarkWorldLightning", mSeqDataDarkWorldLightning);
 			if (Sequence_DoStepAndWait(0.1f))
 			{
-				// LOGICAL STEPS DO LIGHTNING AND THUNDER
-				// 1. Show the lightning and flash screen
-				// 2. Play thunder with tiny delay
-				//
+				// OPTIMIZE THE CODE SO THIS SEQUENCE CAN HANDLE ANY INDEX
+				// WHEN FINISHED RENAME ALL VARIABLES AND FUNCTIONS
 				
 				Map_AddTimer("Timer_DarkWorldThunder", 0, "OnTimer_DarkWorldThunder");
 
@@ -379,31 +379,24 @@ class cScrMap : iScrMap
 				cLux_AddDebugMessage("Light: "+pLight.GetName());
 				pLight.FadeTo(cColor(0.617,0.951,1,1), pLight.GetRadius(), 0.05f);
 				
-				//				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
-//				pFlashLight.SetPosition(vFlashPos);
-//				pFlashLight.SetDiffuseColor(cColor(0.617,0.951,1,1));
-////				pFlashLight.FadeBrightnessTo(80, 0.05);
-//				pFlashLight.SetBrightness(80);
+				cVector3f vFlashPos = pLight.GetWorldPosition() * 1;
 				
-//				cVector3f vFlashPos = pLight.GetWorldPosition();
-//				
-//				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
-//				pFlashLight.SetPosition(vFlashPos);
-//				pFlashLight.SetDiffuseColor(cColor(0.617,0.951,1,1));
-//				pFlashLight.SetBrightness(1.0f);
+				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
+				pFlashLight.SetPosition(vFlashPos);
+				pFlashLight.FadeTo(cColor(0.617,0.951,1,1), 200, 0.05);
+			
+				// HANDLE ALL INNER STATION SPOTLIGHT FLASHES HERE
 			
 			}
 			else if (Sequence_DoStepAndWait(1.f))
 			{
-//				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlDWLightning_Index);
-//				pLight.FadeTo(cColor(0,0,0,1), pLight.GetRadius(), 0.2f);
-//				
-//				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
-//				//pFlashLight.FadeBrightnessTo(0, 0.3f);
-//				pFlashLight.SetBrightness(0.0f);
+				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
+				pFlashLight.FadeTo(cColor(0,0,0,1), 0, 0.3);
 
 				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlDWLightning_Index);
 				pLight.FadeTo(cColor(0,0,0,1), pLight.GetRadius(), 0.2f);
+				
+				// HANDLE ALL INNER STATION SPOTLIGHT FLASHES HERE
 			}
 			Sequence_End();
 	}
