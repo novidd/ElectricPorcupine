@@ -283,16 +283,132 @@ class cScrMap : iScrMap
 	
 	bool mbPlayerInsideStation = false;
 	
+	void InitDarkWorldLightning()
+	{
+		cLightPoint@ pFlashLight = cLux_GetCurrentMap().GetWorld().CreateLightPoint("DWFlash", "", false);
+		pFlashLight.SetBrightness(0);
+		pFlashLight.SetRadius(200);
+		m_idDarkWorldLightning_FlashLight = pFlashLight.GetID();
+	}
+	
+	//-------------------------------------------------------
+		
+		void RandomDarkWorldLightning(cVector3f &in avDir, float afMaxAngleOffset = 0, float afDelay = 0, const tString&in asSound = "", float afVolume = 1)
+		{
+			msDWLightning_SoundName = asSound;
+			mfDWLightning_Volume = afVolume;
+			
+			array<int> vIndexCandidates;
+			for (int i = 1; i <= mlDWLightning_Bolts; ++i)
+			{
+				if (mlDWLightning_Index > 0 && i == mlDWLightning_Index) continue;
+				vIndexCandidates.push_back(i);
+			}
+			
+			int lIndex = vIndexCandidates[cMath_RandRectl(0, vIndexCandidates.size() - 1)];
+			
+			cVector3f vDir = avDir;
+			vDir.y = 0;
+			vDir = cMath_MatrixMul(cMath_MatrixRotateY(cMath_ToRad(cMath_RandRectf(-afMaxAngleOffset, afMaxAngleOffset))), vDir);
+			DarkWorldLightning(lIndex, vDir);
+		}
+	
+	//-------------------------------------------------------
+	
+			
+		void DarkWorldLightning(int alIndex, cVector3f &in avDir, float afDelay = 0, const tString&in asSound = "", float afVolume = 1)
+		{
+			msDWLightning_SoundName = asSound;
+			mfDWLightning_Volume = afVolume;
+			
+			mlDWLightning_Index = alIndex;
+			mvDWLightning_Dir = avDir;
+			Map_AddTimer("Timer_DoDarkWorldLightning", afDelay, "OnTimer_DoDarkWorldLightning");
+		}
+	
+	//-------------------------------------------------------
+	
+			void OnTimer_DoDarkWorldLightning(const tString &in asTimer)
+		{
+			Seq_DarkWorldLightning("");
+		}
+	
+	//-------------------------------------------------------
+	
+		void OnTimer_DarkWorldLightningLoop(const tString &in asTimer)
+		{
+			bool bFront = false;
+			if (Map_TimerExists("LightningInFrontCooldown") == false)
+			{
+				float fFrontToLoopAngleDiff = cMath_Vector3Angle(mvDWLightning_LoopDir, cVector3f(Player_GetVelocity().x, 0, Player_GetVelocity().z));
+				if (fFrontToLoopAngleDiff <= mfDWLightning_LoopAngleOffset)
+				{
+					bFront = true;
+					RandomDarkWorldLightning(Player_GetVelocity(), 20);
+					Map_AddTimer("LightningInFrontCooldown", cMath_RandRectf(30, 120), "");
+//					Map_AddTimer("LightningInFrontCooldown", 10, "");
+					cLux_AddDebugMessage("[Map] Lightning in front");
+				}
+			}
+			if (bFront == false)
+			{
+				RandomDarkWorldLightning(mvDWLightning_LoopDir, mfDWLightning_LoopAngleOffset);
+				cLux_AddDebugMessage("[Map] Lightning random");
+			}
+			Map_RestartCurrentTimer(cMath_RandRectf(15, 45));
+//			Map_RestartCurrentTimer(10);
+		}
+	
+	//-------------------------------------------------------
+	
 	cSequenceStatesData mSeqDataDarkWorldLightning;	
 	void Seq_DarkWorldLightning(const tString &in asTimer)
 	{
-		Sequence_Begin("Seq_DarkWorldLightning", mSeqDataDarkWorldLightning);
-		if (Sequence_DoStepAndWait(0.1f))
-		{
-			Map_AddTimer("Timer_DarkWorldThunder", 0, "OnTimer_DarkWorldThunder");
-		}
-		Sequence_End();
+			Sequence_Begin("Seq_DarkWorldLightning", mSeqDataDarkWorldLightning);
+			if (Sequence_DoStepAndWait(0.1f))
+			{
+				// LOGICAL STEPS DO LIGHTNING AND THUNDER
+				// 1. Show the lightning and flash screen
+				// 2. Play thunder with tiny delay
+				//
+				
+				Map_AddTimer("Timer_DarkWorldThunder", 0, "OnTimer_DarkWorldThunder");
+
+				mlDWLightning_Index = 1;
+				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlDWLightning_Index);
+				cLux_AddDebugMessage("Light: "+pLight.GetName());
+				pLight.FadeTo(cColor(0.617,0.951,1,1), pLight.GetRadius(), 0.05f);
+				
+				//				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
+//				pFlashLight.SetPosition(vFlashPos);
+//				pFlashLight.SetDiffuseColor(cColor(0.617,0.951,1,1));
+////				pFlashLight.FadeBrightnessTo(80, 0.05);
+//				pFlashLight.SetBrightness(80);
+				
+//				cVector3f vFlashPos = pLight.GetWorldPosition();
+//				
+//				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
+//				pFlashLight.SetPosition(vFlashPos);
+//				pFlashLight.SetDiffuseColor(cColor(0.617,0.951,1,1));
+//				pFlashLight.SetBrightness(1.0f);
+			
+			}
+			else if (Sequence_DoStepAndWait(1.f))
+			{
+//				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlDWLightning_Index);
+//				pLight.FadeTo(cColor(0,0,0,1), pLight.GetRadius(), 0.2f);
+//				
+//				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
+//				//pFlashLight.FadeBrightnessTo(0, 0.3f);
+//				pFlashLight.SetBrightness(0.0f);
+
+				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlDWLightning_Index);
+				pLight.FadeTo(cColor(0,0,0,1), pLight.GetRadius(), 0.2f);
+			}
+			Sequence_End();
 	}
+	
+	//-------------------------------------------------------
 	
 	void OnTimer_DarkWorldThunder(const tString &in asTimer)
 	{
@@ -786,6 +902,8 @@ class cScrMap : iScrMap
 		// Simon speaks "Still works..." when door opens
 		
 		// When Simon is standing in the darkness, "Is this Theta..?"
+		
+		// Steam pipes "lab_welder.dae" placed on the ceiling, falling steam
 		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
