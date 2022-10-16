@@ -655,12 +655,8 @@ class cScrMap : iScrMap
 		// When it looks at the player it makes some noise *beep* *beep*
 		// Lots of smoke and bubbles from fire underwater
 		// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
-		// To enter the station the player has to find the nearest airlock (need to use the omnitool)
 		
 		// PICK UP OMNITOOL
-		
-		// When player stands on the zeppelin play 04_01_tau_outside/SFX/storm/sweeteners/exit_elevator
-		
 		// Terminal A is still running but glitched. The player can see the distance away from Theta (4000+ meters)
 		// Play dialogue when the player looks at the completely broken omnitool.
 		// Add sparks accompanied with bubbles
@@ -670,20 +666,35 @@ class cScrMap : iScrMap
 		// Simon says "Catherine...?"
 		// She mentions how it felt like the blink of an eye for her, (then run the credits).
 		
-		// Lock player like in dialogue when talking "to" Catherine and play event_look_at_hands_2_1 or event_look_at_hands_2_1_intense when Simon is angry
-		
 		// THE PLAYER HAS TO CRAWL THROUGH RUBBLE -- Show where the player has to go with sparks from a cable
 		// Crawl through a hole with cables hanging through the hole, on of the cables spark
 		
 		// KateBot passes the double windows, her light lights up the room helping the player to see since it's so dark
 		
-		// Have a terminal with multiple cameras to switch between
-		// One of the cameras shows a creepy corridor with lots of blood (a flickering light showing the blood text on the wall)
+		// Give the player a decent pause after they passed through the airlock
+		// This is where the story beats about Cath come in
+		// The player has to insert the Omnitool
+		// This is where to reveal comes
 		
+		// The other end of the airlock is very dark, the player has to turn on the lights
+		// Sparks go all over the place, the station moans and other details, distant clanging
+		// Lock player like in dialogue when Simon is trying to talk "to" Catherine and play event_look_at_hands_2_1 or event_look_at_hands_2_1_intense when Simon is angry and sad
+		
+		// After this is the long corridor, it's perfect to have Simon think of a previous conversation between him and Catherine - to make the story more depressing
+		// !! Utilize music well !!
+		
+		// !! IT IS NECESSARY TO GIVE THE PLAYER SOME TIME ALONE TO MAKE THE REVEAL OF THE KATEBOT MORE RELEAVING !!
+		// A little later reveal KateBot as the player's companion after this (it has to be underwater)
+		// The KateBot helps you with their laser/blowtorch thingy
+
+		// Have a terminal with multiple cameras to switch between
+		// One of the cameras shows a creepy corridor with lots of blood (a flickering light showing the blood text on the wall)		
 		void SetupIntro()
 		{
 			SequenceIntro("");
 		}
+		
+		// RUN RANDOM SCREEN SHAKES HERE WHILE THE PLAYER IS IN DIFFERENT AREAS OF THE MAP
 		
 		// Add the heartbeat
 		// Do special screen effects every heartbeat
@@ -692,31 +703,38 @@ class cScrMap : iScrMap
 		
 		// 04_01_stormstart for long scary moment (when the player enters the area with blood covered walls lit up by a fallen spotlight)
 		
-		// 04_01_tau_outside/SFX/elevator/docking_alarm, this sound runs at a loop because of the fact the station is broken
-		// Have red lamps spinning in the same interval as the sound (play the sound at these lamps)
-		// Set the animation speed to fit the inteval of the sound
-		
 		// Play 04_01_tau_outside/SFX/wake_up_sweet on wakeup
 		
 		// Play 04_01_tau_outside/SFX/near_death because Simon is near death
 		
-		// The player then wakes up quickly beside the crashes zeppilin
+		// Add many stratch, blast, explosion and debris decals on walls/floor
 		
-		// Link 01_03_robotreaction1 and 01_03_robotreaction2 together - play 01_03_robotreaction2 first then 01_03_robotreaction1 (Up and down effect)
-		// 02_04_stormends when the player wakes up
-		
-		// There is a storm outside and lightning flashing and thunder rumbling
+		// Start the lightning and thunder as the exact moment the player wakes up
+		// Fade in the world sound 0.5f before the lightning strikes making the screen white
+		// Use Effect_Flash_Start();
+		// Screen fades to white as lightning strikes (The world sound is muffled)
+		// KateBot approaches the player *beep* *boop*
+		// Player goes out of conciousness
+		// A few seconds later
+		// Another screen flash (sound no longer muffled)
+		// KateBot gone
+		// Simon quickly emotes "Ah, god damn it!" from the pain
+		// He stands up slowly
 		
 		// Play 05_02/SFX/sat/fly_out when the player has stood up
 		
-		// Add many stratch, blast, explosion and debris decals on walls/floor
+		// When player stands on the zeppelin play 04_01_tau_outside/SFX/storm/sweeteners/exit_elevator
 		
-		// Start the lightning and thunder as the exakt moment the player wakes up
+		// Lock player like in dialogue when talking "to" Catherine
+		// At end of dialogue, Simon realizes hes lost his hand (gets a wave of pain --> screen effects + groaning)
+		// He inspects it "Oh, fuck...", lightning strikes
+		// Simon speaks "I gotta get inside."
+		// Now let the player pick up the Omnitool after the short dialogue
 		
-		// Fade in the world sound 0.5f before the lightning strikes making the screen white
-		// Use Effect_Flash_Start();
+		// To enter the station the player has to find the nearest airlock (need to use the omnitool)
+		// Simon speaks "Still works..." when door opens
 		
-		// RUN RANDOM SCREEN SHAKES HERE WHILE THE PLAYER IS IN DIFFERENT AREAS OF THE MAP
+		// When Simon is standing in the darkness, "Is this Theta..?"
 		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
