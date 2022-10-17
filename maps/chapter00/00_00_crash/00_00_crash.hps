@@ -323,10 +323,10 @@ class cScrMap : iScrMap
 				mlAbyssLightning_Index = 1;
 				iLight@ pCurrentLight = Map_GetLight("Light_Lightning_Point_" + mlAbyssLightning_Index);
 				
-				cLux_AddDebugMessage("Light: "+pCurrentLight.GetName());
+				cLux_AddDebugMessage("AbyssLightning at: "+pCurrentLight.GetName());
 				pCurrentLight.FadeTo(cColor(0.617,0.951,1,1), pCurrentLight.GetRadius(), 0.05f);
 				
-				cVector3f vFlashPos = pCurrentLight.GetWorldPosition() * 1;
+				cVector3f vFlashPos = pCurrentLight.GetWorldPosition();
 				
 				iLight@ pFlashLight = cLux_ID_Light(m_idAbyssLightning_FlashLight);
 				pFlashLight.SetPosition(vFlashPos);
@@ -352,7 +352,8 @@ class cScrMap : iScrMap
 	
 	void OnTimer_DarkWorldThunder(const tString &in asTimer)
 	{
-		cVector3f vPos = Player_GetPosition() * cMath_RandRectf(60, 120);
+		iLight@ pCurrentLight = Map_GetLight("Light_Lightning_Point_" + mlAbyssLightning_Index);
+		cVector3f vPos = pCurrentLight.GetWorldPosition();
 		vPos += cVector3f_Up * cMath_RandRectf(30, 50);
 		
 		// THE SOUND BELOW IS MISSING
@@ -989,6 +990,7 @@ class cScrMap : iScrMap
 	/////////////////////////////////////////
 	
 	//-------------------------------------------------------
+	
 	int mlZepInfoImage;
 	float mfZepInfoTimer;
 	
