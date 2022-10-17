@@ -98,9 +98,7 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
-		InitDarkWorldLightning();
-		
-		Seq_DarkWorldLightning("");
+		InitAbyssLightning();
 		
 		bool bDoIntro = true;
 		
@@ -182,7 +180,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			Effect_Flash_Start(0.25f, 1.0f, 5.0f);
+			AbyssLightning(1, 0, "04_01_tau_outside/AMB/storm/thunder/stage_2", 2);
 		}
 		
 		if(alAction == eAction_Test2)
@@ -273,100 +271,48 @@ class cScrMap : iScrMap
 	// Storm Lightning
 	//{////////////////////////////
 	
-	tID m_idDarkWorldLightning_FlashLight;
-	tString msDWLightning_SoundName = "";
-	float mfDWLightning_Volume = 1;
-	cVector3f mvDir;
-	int mlDWLightning_Bolts = 3;
-	int mlDWLightning_Index = -1;
-	cVector3f mvDWLightning_Dir;
-	float mfDWLightning_LoopAngleOffset = 0;
-	cVector3f mvDWLightning_LoopDir;
+	int mlAbyssLightning_Bolts = 3;
+	int mlAbyssLightning_Index = -1;
+	
+	tString msAbyssLightning_SoundName = "";
+	float mfAbyssLightning_Volume = 1;
+	iLight@ pCurrentLight;
+	tID m_idAbyssLightning_FlashLight;
 	
 	bool mbPlayerInsideStation = false;
 	
-	void InitDarkWorldLightning()
+	void InitAbyssLightning()
 	{
-		cLightPoint@ pFlashLight = cLux_GetCurrentMap().GetWorld().CreateLightPoint("DWFlash", "", false);
+		cLightPoint@ pFlashLight = cLux_GetCurrentMap().GetWorld().CreateLightPoint("AbyssFlash", "", false);
 		pFlashLight.SetBrightness(80);
 		pFlashLight.SetRadius(0);
-		m_idDarkWorldLightning_FlashLight = pFlashLight.GetID();
+		m_idAbyssLightning_FlashLight = pFlashLight.GetID();
 	}
 	
 	//-------------------------------------------------------
-		
-		void RandomDarkWorldLightning(cVector3f &in avDir, float afMaxAngleOffset = 0, float afDelay = 0, const tString&in asSound = "", float afVolume = 1)
-		{
-			msDWLightning_SoundName = asSound;
-			mfDWLightning_Volume = afVolume;
 			
-			array<int> vIndexCandidates;
-			for (int i = 1; i <= mlDWLightning_Bolts; ++i)
-			{
-				if (mlDWLightning_Index > 0 && i == mlDWLightning_Index) continue;
-				vIndexCandidates.push_back(i);
-			}
-			
-			int lIndex = vIndexCandidates[cMath_RandRectl(0, vIndexCandidates.size() - 1)];
-			
-			cVector3f vDir = avDir;
-			vDir.y = 0;
-			vDir = cMath_MatrixMul(cMath_MatrixRotateY(cMath_ToRad(cMath_RandRectf(-afMaxAngleOffset, afMaxAngleOffset))), vDir);
-			DarkWorldLightning(lIndex, vDir);
-		}
-	
-	//-------------------------------------------------------
-	
-			
-		void DarkWorldLightning(int alIndex, cVector3f &in avDir, float afDelay = 0, const tString&in asSound = "", float afVolume = 1)
-		{
-			msDWLightning_SoundName = asSound;
-			mfDWLightning_Volume = afVolume;
-			
-			mlDWLightning_Index = alIndex;
-			mvDWLightning_Dir = avDir;
-			Map_AddTimer("Timer_DoDarkWorldLightning", afDelay, "OnTimer_DoDarkWorldLightning");
-		}
-	
-	//-------------------------------------------------------
-	
-			void OnTimer_DoDarkWorldLightning(const tString &in asTimer)
-		{
-			Seq_DarkWorldLightning("");
-		}
-	
-	//-------------------------------------------------------
-	
-		void OnTimer_DarkWorldLightningLoop(const tString &in asTimer)
-		{
-			bool bFront = false;
-			if (Map_TimerExists("LightningInFrontCooldown") == false)
-			{
-				float fFrontToLoopAngleDiff = cMath_Vector3Angle(mvDWLightning_LoopDir, cVector3f(Player_GetVelocity().x, 0, Player_GetVelocity().z));
-				if (fFrontToLoopAngleDiff <= mfDWLightning_LoopAngleOffset)
-				{
-					bFront = true;
-					RandomDarkWorldLightning(Player_GetVelocity(), 20);
-					Map_AddTimer("LightningInFrontCooldown", cMath_RandRectf(30, 120), "");
-//					Map_AddTimer("LightningInFrontCooldown", 10, "");
-					cLux_AddDebugMessage("[Map] Lightning in front");
-				}
-			}
-			if (bFront == false)
-			{
-				RandomDarkWorldLightning(mvDWLightning_LoopDir, mfDWLightning_LoopAngleOffset);
-				cLux_AddDebugMessage("[Map] Lightning random");
-			}
-			Map_RestartCurrentTimer(cMath_RandRectf(15, 45));
-//			Map_RestartCurrentTimer(10);
-		}
-	
-	//-------------------------------------------------------
-	
-	cSequenceStatesData mSeqDataDarkWorldLightning;	
-	void Seq_DarkWorldLightning(const tString &in asTimer)
+	void AbyssLightning(int alIndex, float afDelay = 0, const tString&in asSound = "", float afVolume = 1)
 	{
-			Sequence_Begin("Seq_DarkWorldLightning", mSeqDataDarkWorldLightning);
+		msAbyssLightning_SoundName = asSound;
+		mfAbyssLightning_Volume = afVolume;
+			
+		mlAbyssLightning_Index = alIndex;
+		Map_AddTimer("Timer_DoAbyssLightning", afDelay, "OnTimer_DoAbyssLightning");
+	}
+	
+	//-------------------------------------------------------
+	
+	void OnTimer_DoAbyssLightning(const tString &in asTimer)
+	{
+		Seq_AbyssLightning("");
+	}
+	
+	//-------------------------------------------------------
+	
+	cSequenceStatesData mSeqDataAbyssLightning;	
+	void Seq_AbyssLightning(const tString &in asTimer)
+	{
+			Sequence_Begin("Seq_AbyssLightning", mSeqDataAbyssLightning);
 			if (Sequence_DoStepAndWait(0.1f))
 			{
 				// OPTIMIZE THE CODE SO THIS SEQUENCE CAN HANDLE ANY INDEX
@@ -374,14 +320,15 @@ class cScrMap : iScrMap
 				
 				Map_AddTimer("Timer_DarkWorldThunder", 0, "OnTimer_DarkWorldThunder");
 
-				mlDWLightning_Index = 1;
-				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlDWLightning_Index);
-				cLux_AddDebugMessage("Light: "+pLight.GetName());
-				pLight.FadeTo(cColor(0.617,0.951,1,1), pLight.GetRadius(), 0.05f);
+				mlAbyssLightning_Index = 1;
+				iLight@ pCurrentLight = Map_GetLight("Light_Lightning_Point_" + mlAbyssLightning_Index);
 				
-				cVector3f vFlashPos = pLight.GetWorldPosition() * 1;
+				cLux_AddDebugMessage("Light: "+pCurrentLight.GetName());
+				pCurrentLight.FadeTo(cColor(0.617,0.951,1,1), pCurrentLight.GetRadius(), 0.05f);
 				
-				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
+				cVector3f vFlashPos = pCurrentLight.GetWorldPosition() * 1;
+				
+				iLight@ pFlashLight = cLux_ID_Light(m_idAbyssLightning_FlashLight);
 				pFlashLight.SetPosition(vFlashPos);
 				pFlashLight.FadeTo(cColor(0.617,0.951,1,1), 200, 0.05);
 			
@@ -390,10 +337,10 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(1.f))
 			{
-				iLight@ pFlashLight = cLux_ID_Light(m_idDarkWorldLightning_FlashLight);
+				iLight@ pFlashLight = cLux_ID_Light(m_idAbyssLightning_FlashLight);
 				pFlashLight.FadeTo(cColor(0,0,0,1), 0, 0.3);
 
-				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlDWLightning_Index);
+				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlAbyssLightning_Index);
 				pLight.FadeTo(cColor(0,0,0,1), pLight.GetRadius(), 0.2f);
 				
 				// HANDLE ALL INNER STATION SPOTLIGHT FLASHES HERE
@@ -405,19 +352,19 @@ class cScrMap : iScrMap
 	
 	void OnTimer_DarkWorldThunder(const tString &in asTimer)
 	{
-		cVector3f vPos = Player_GetPosition() + mvDWLightning_Dir * cMath_RandRectf(60, 120);
+		cVector3f vPos = Player_GetPosition() * cMath_RandRectf(60, 120);
 		vPos += cVector3f_Up * cMath_RandRectf(30, 50);
 		
 		// THE SOUND BELOW IS MISSING
 		tString sSound = "level_amb_shared/amb/sweeteners/thunder/thunder_strike";
-		if (msDWLightning_SoundName != "") sSound = msDWLightning_SoundName;
+		if (msAbyssLightning_SoundName != "") sSound = msAbyssLightning_SoundName;
 			
 		cSoundEntity@ pThunder = cLux_GetCurrentMap().GetWorld().CreateSoundEntity("Thunder", sSound, true);
 		pThunder.SetUseCustomProperties(true);
 		pThunder.SetCustomMinDistance(80);
-		pThunder.SetCustomMaxDistance(200);
+		pThunder.SetCustomMaxDistance(600);
 		pThunder.SetPosition(vPos);
-		pThunder.SetVolume(mfDWLightning_Volume);
+		pThunder.SetVolume(mfAbyssLightning_Volume);
 	}
 	
 	//} END Storm Lightning
@@ -897,6 +844,12 @@ class cScrMap : iScrMap
 		// When Simon is standing in the darkness, "Is this Theta..?"
 		
 		// Steam pipes "lab_welder.dae" placed on the ceiling, falling steam
+		
+		// Thunder SFX:
+		// 04_01_tau_outside/AMB/storm/thunder/stage_0
+		// 04_01_tau_outside/AMB/storm/thunder/stage_0_GuiWorld
+		// 04_01_tau_outside/AMB/storm/thunder/stage_1
+		// 04_01_tau_outside/AMB/storm/thunder/stage_2
 		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
