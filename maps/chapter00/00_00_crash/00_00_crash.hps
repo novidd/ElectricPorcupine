@@ -585,7 +585,7 @@ class cScrMap : iScrMap
 		void SetupZeppelinCrash()
 		{
 			// Zeppelin data
-			Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
+//			Entity_SetInteractionDisabled("ZeppelinRailing_*", true);
 			
 			mfTotalDistToLanding = -1.0f;
 			mvLandingPos = cVector3f(1200, 3607, 800);
@@ -854,6 +854,10 @@ class cScrMap : iScrMap
 		
 		// Reuse the conversation between Simon and Catherine where they talk about how much time passes for her inbetween Omnitool slots
 		// This makes the player think of, how much time has passed since the crash?
+		
+		// After the player has picked up the Omnitool, make the cable spark attracting the players intented path
+		// Make a piece of metal fall down and hit the zeppelin which in turn makes it creak and player camrera wobbles
+		// The Eastern Zeppelin Platform gets lowered down, so the player gets a new path 
 		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
