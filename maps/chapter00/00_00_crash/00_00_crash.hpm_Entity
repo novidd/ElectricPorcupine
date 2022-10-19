@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="4B7207D52290B467361684C45348D430F7FEC302" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="199">
+        <FileIndex_Entities NumOfFiles="205">
             <File Id="0" Path="entities/station/gameplay/omnitool/brainchip.ent" />
             <File Id="1" Path="entities/station/gameplay/omnitool/omnitool_with_securitychip_cortexchip.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin_destroyed/zeppelin_platform_destroyed.ent" />
@@ -200,6 +200,12 @@
             <File Id="196" Path="entities/station/tech/speaker_wall_mount/speaker_wall_mount_lamp.ent" />
             <File Id="197" Path="entities/station/tech/station_camera/station_camera.ent" />
             <File Id="198" Path="entities/urban/tech/dslr_camera/dslr_camera.ent" />
+            <File Id="199" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/tech/camera_fin/camera_fin.ent" />
+            <File Id="200" Path="entities/oceanbottom/tech/cctv_camera_overgrown/cctv_camera_overgrown.ent" />
+            <File Id="201" Path="entities/robot/tech/camera_hidden/camera_hidden.ent" />
+            <File Id="202" Path="entities/urban/tech/cctv_camera/cctv_camera_camera.ent" />
+            <File Id="203" Path="entities/station/terminals/camera_portable/camera_portable_hud.ent" />
+            <File Id="204" Path="entities/station/tech/camera_surveillance_theta/camera_surveillance_theta_headtrack.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435458" Name="CathTool" CreStamp="1665746479" ModStamp="1666180172" WorldPos="-0.0754574 1.56029 -2.75" Rotation="0.759473 -0.0911501 -0.00559049" Scale="1 1 1" FileIndex="1" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 30 268435458">
@@ -7783,6 +7789,46 @@
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268437057" Name="camera_surveillance_theta_headtrack_1" CreStamp="1666225152" ModStamp="1666225315" WorldPos="17.75 4.25 300.75" Rotation="0 1.19209e-007 0" Scale="1 1 1" FileIndex="204" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 906 268437057">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="AutoDisableWhenOutOfSight" Value="false" />
+                    <Var Name="AutoDisableWhenOutOfSightMinDist" Value="10" />
+                    <Var Name="AutoDisableCallback" Value="" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="UpdateWhenInvisible" Value="false" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="SensesActive" Value="true" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="VoiceName" Value="" />
+                    <Var Name="StaticCollider" Value="true" />
+                    <Var Name="CanBeTalkedTo" Value="true" />
+                    <Var Name="MainAnimation" Value="" />
+                    <Var Name="MainAnimationGlobalSpace" Value="false" />
+                    <Var Name="HeadTracker_TargetEntity" Value="" />
+                    <Var Name="HeadTracker_Active" Value="true" />
+                    <Var Name="WallAvoidActive" Value="false" />
+                    <Var Name="DynamicObjectAvoidActive" Value="false" />
                 </UserVariables>
             </Entity>
         </Objects>
