@@ -728,7 +728,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268435763" Name="Trigger_MetalPieceFall" CreStamp="1665774475" ModStamp="1666040375" WorldPos="4 1.5 -0.25" Rotation="0 0 0" Scale="0.5 4 6" Active="true" Mesh="" UID="16 130 268435763" AreaType="Trigger">
+            <Area ID="268435763" Name="Trigger_MetalPieceFall" CreStamp="1665774475" ModStamp="1666198464" WorldPos="4 1.5 -0.25" Rotation="0 0 0" Scale="0.5 4 6" Active="false" Mesh="" UID="16 130 268435763" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -1160,14 +1160,14 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268435851" Name="AMB_ZeppelinCrashOuter_1" CreStamp="1665844092" ModStamp="1665862733" WorldPos="-7.75 -6.2144 -0.25" Rotation="0 0 0" Scale="6 4 8" Active="true" Mesh="" UID="16 255 268435851" AreaType="Soundscape">
+            <Area ID="268435851" Name="AMB_ZeppelinCrashOuter" CreStamp="1665844092" ModStamp="1666198394" WorldPos="2.5 2 -1.5" Rotation="0 0 0" Scale="24 4 14" Active="true" Mesh="" UID="16 255 268435851" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="Off" />
                     <Var Name="ReverbPrio" Value="0" />
                     <Var Name="ReverbAmount" Value="1" />
                     <Var Name="ReverbFadeTime" Value="1" />
-                    <Var Name="Prio" Value="0" />
+                    <Var Name="Prio" Value="1" />
                     <Var Name="Level" Value="1: Area" />
                     <Var Name="BG_Sound" Value="04_01_tau_outside/amb/storm/smoker_plant" />
                     <Var Name="BG_Volume" Value="1" />
@@ -1824,32 +1824,6 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436160" Name="AMB_ZeppelinCrashOuter_3" CreStamp="1665931660" ModStamp="1665936402" WorldPos="0 -6.7856 -6.5" Rotation="0 1.5708 0" Scale="4 4 16" Active="true" Mesh="" UID="16 422 268436160" AreaType="Soundscape">
-                <UserVariables>
-                    <Var Name="UseReverb" Value="true" />
-                    <Var Name="ReverbType" Value="Off" />
-                    <Var Name="ReverbPrio" Value="0" />
-                    <Var Name="ReverbAmount" Value="1" />
-                    <Var Name="ReverbFadeTime" Value="1" />
-                    <Var Name="Prio" Value="0" />
-                    <Var Name="Level" Value="1: Area" />
-                    <Var Name="BG_Sound" Value="04_01_tau_outside/amb/storm/smoker_plant" />
-                    <Var Name="BG_Volume" Value="1" />
-                    <Var Name="BG_FadeInTime" Value="3" />
-                    <Var Name="BG_FadeOutTime" Value="1" />
-                    <Var Name="BG_FadeTransitionSpeed" Value="1" />
-                    <Var Name="BG_ParentVolMul" Value="1" />
-                    <Var Name="SoundEnt_InNames" Value="" />
-                    <Var Name="SoundEnt_OutNames" Value="" />
-                    <Var Name="SoundEnt_FadeInTime" Value="1" />
-                    <Var Name="SoundEnt_FadeOutTime" Value="1" />
-                    <Var Name="SoundPrefixPrio" Value="0" />
-                    <Var Name="SoundPrefix" Value="[None]" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
-                </UserVariables>
-            </Area>
             <Area ID="268436171" Name="ZeppelinCrash" CreStamp="1665932790" ModStamp="1665932816" WorldPos="0 1.75 -2" Rotation="1.37294e-009 3.02456 -5.42763e-009" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 414 268436171" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
@@ -2285,32 +2259,6 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
-                </UserVariables>
-            </Area>
-            <Area ID="268436419" Name="AMB_ZeppelinCrashOuter_2" CreStamp="1666004220" ModStamp="1666004251" WorldPos="11.75 -6.7856 -2" Rotation="-0 1.57114 -0" Scale="13 4 5.5" Active="true" Mesh="" UID="16 562 268436419" AreaType="Soundscape">
-                <UserVariables>
-                    <Var Name="UseReverb" Value="true" />
-                    <Var Name="ReverbType" Value="Off" />
-                    <Var Name="ReverbPrio" Value="0" />
-                    <Var Name="ReverbAmount" Value="1" />
-                    <Var Name="ReverbFadeTime" Value="1" />
-                    <Var Name="Prio" Value="0" />
-                    <Var Name="Level" Value="1: Area" />
-                    <Var Name="BG_Sound" Value="04_01_tau_outside/amb/storm/smoker_plant" />
-                    <Var Name="BG_Volume" Value="1" />
-                    <Var Name="BG_FadeInTime" Value="3" />
-                    <Var Name="BG_FadeOutTime" Value="1" />
-                    <Var Name="BG_FadeTransitionSpeed" Value="1" />
-                    <Var Name="BG_ParentVolMul" Value="1" />
-                    <Var Name="SoundEnt_InNames" Value="" />
-                    <Var Name="SoundEnt_OutNames" Value="" />
-                    <Var Name="SoundEnt_FadeInTime" Value="1" />
-                    <Var Name="SoundEnt_FadeOutTime" Value="1" />
-                    <Var Name="SoundPrefixPrio" Value="0" />
-                    <Var Name="SoundPrefix" Value="[None]" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
                 </UserVariables>
             </Area>
             <Area ID="268436420" Name="Flicker" CreStamp="1666026858" ModStamp="1666026861" WorldPos="8 7.8385 2.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 537 268436420" AreaType="Trigger">
@@ -3081,32 +3029,6 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436711" Name="AMB_ZeppelinCrashOuter_4" CreStamp="1666180986" ModStamp="1666194376" WorldPos="2.5 2 -2" Rotation="0 1.5708 0" Scale="12 4 24" Active="true" Mesh="" UID="16 682 268436711" AreaType="Soundscape">
-                <UserVariables>
-                    <Var Name="UseReverb" Value="true" />
-                    <Var Name="ReverbType" Value="Off" />
-                    <Var Name="ReverbPrio" Value="0" />
-                    <Var Name="ReverbAmount" Value="1" />
-                    <Var Name="ReverbFadeTime" Value="1" />
-                    <Var Name="Prio" Value="0" />
-                    <Var Name="Level" Value="1: Area" />
-                    <Var Name="BG_Sound" Value="04_01_tau_outside/amb/storm/smoker_plant" />
-                    <Var Name="BG_Volume" Value="1" />
-                    <Var Name="BG_FadeInTime" Value="3" />
-                    <Var Name="BG_FadeOutTime" Value="1" />
-                    <Var Name="BG_FadeTransitionSpeed" Value="1" />
-                    <Var Name="BG_ParentVolMul" Value="1" />
-                    <Var Name="SoundEnt_InNames" Value="" />
-                    <Var Name="SoundEnt_OutNames" Value="" />
-                    <Var Name="SoundEnt_FadeInTime" Value="1" />
-                    <Var Name="SoundEnt_FadeOutTime" Value="1" />
-                    <Var Name="SoundPrefixPrio" Value="0" />
-                    <Var Name="SoundPrefix" Value="[None]" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
-                </UserVariables>
-            </Area>
             <Area ID="268436714" Name="PullCables" CreStamp="1666192324" ModStamp="1666192330" WorldPos="-3.54974 0.844091 2" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 680 268436714" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
@@ -3186,6 +3108,30 @@
                     <Var Name="UserVar" Value="" />
                     <Var Name="CC_Entities" Value="player" />
                     <Var Name="CC_Funcs" Value="OnCollide_ZeppelinStepCreak" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268436823" Name="TurnOffStaticOnZeppelin" CreStamp="1666198468" ModStamp="1666198485" WorldPos="3.75 2.25 0.25" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 753 268436823" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
                     <Var Name="ParentAttachEntity" Value="" />
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
