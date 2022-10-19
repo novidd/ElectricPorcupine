@@ -185,7 +185,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test2)
 		{
-			
+			ZeppelinCollapse();
 		}
 		
 	}
@@ -896,8 +896,17 @@ class cScrMap : iScrMap
 		//} END Simon wakes up
 		
 		/////////////////////////////////////////
-		// SCENE 1 EVENT X - *Metal piece falls down*
+		// SCENE 1 EVENT X - *Zeppelin almost collapses*
 		//{///////////////////////////////////////
+		
+		void ZeppelinCollapse()
+		{
+			cLux_AddDebugMessage("Collapse Zeppelin...");
+			
+			// Simulate the zeppelin collapsing with, sway, screen shake and sfx
+			// The sound of swaying cables *bwoon* *bwoon*
+			
+		}
 		
 		bool OnCollide_MetalPieceFall(const tString &in asParent, const tString &in asChild, int alState)
 		{
@@ -905,6 +914,11 @@ class cScrMap : iScrMap
 			cLux_AddDebugMessage("!! METAL PIECE FALLING !!");
 			return false;
 		}
+		
+		// A METAL PIECE FALLS A FEW SECONDS LATER
+		// LOOK AT OMICRON SFX USED FOR THE FALLING METAL STRUCTURE
+		
+		//} END Metal piece falls down
 		
 		//-------------------------------------------------------
 		
