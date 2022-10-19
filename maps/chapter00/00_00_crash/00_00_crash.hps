@@ -76,6 +76,7 @@ class cScrMap : iScrMap
 		//Level start
 		CathTool_ResetScreen(eCathToolVariant_CathDelta);
 		CathTool_Insert("CathTool", "ZeppelinCathTerminal", false);
+		Entity_AttachToEntity("CathTool", "ZeppelinPlatform", "", true);
 	}
 	
 	//-------------------------------------------------------
@@ -903,13 +904,14 @@ class cScrMap : iScrMap
 		{
 			cLux_AddDebugMessage("Collapse Zeppelin...");
 			
-			// Simulate the zeppelin collapsing with, sway, screen shake and sfx
-			// The sound of swaying cables *bwoon* *bwoon*
+			Prop_MoveLinearTo("ZeppelinPlatform", "ZeppelinPlatform_Target", 1, .5, 0, true);
 			
 			Prop_SetStaticPhysics("ZeppelinEastBarrier*", false);
 			Lever_SetAutoMoveEnabled("ZeppelinEastBarrier*", true);
 			Lever_SetAutoMoveTarget("ZeppelinEastBarrier*", 1);
 			
+			// Simulate the zeppelin collapsing with, sway, screen shake and sfx
+			// The sound of swaying cables *bwoon* *bwoon*
 		}
 		
 		bool OnCollide_MetalPieceFall(const tString &in asParent, const tString &in asChild, int alState)
