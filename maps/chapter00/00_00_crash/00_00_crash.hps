@@ -182,7 +182,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			AbyssLightning(1, 0, "04_01_tau_outside/AMB/storm/thunder/stage_2", 2);
+			AbyssLightning(4, 0, "04_01_tau_outside/AMB/storm/thunder/stage_2", 2);
 		}
 		
 		if(alAction == eAction_Test2)
@@ -274,7 +274,7 @@ class cScrMap : iScrMap
 	//{////////////////////////////
 	
 	int mlAbyssLightning_Bolts = 3;
-	int mlAbyssLightning_Index = -1;
+	int mlAbyssLightning_Index = 1; // Set this -1 when making randomizatin
 	
 	tString msAbyssLightning_SoundName = "";
 	float mfAbyssLightning_Volume = 1;
@@ -322,7 +322,7 @@ class cScrMap : iScrMap
 				
 				Map_AddTimer("Timer_DarkWorldThunder", 0, "OnTimer_DarkWorldThunder");
 
-				mlAbyssLightning_Index = 1;
+				mlAbyssLightning_Index = mlAbyssLightning_Index;
 				iLight@ pCurrentLight = Map_GetLight("Light_Lightning_Point_" + mlAbyssLightning_Index);
 				
 				cLux_AddDebugMessage("AbyssLightning at: "+pCurrentLight.GetName());
