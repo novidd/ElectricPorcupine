@@ -88,6 +88,7 @@ class cScrMap : iScrMap
 		
 		// Player hands
 		PlayerHands_PreloadHandModel_Diving();
+		PlayerHands_PreloadHandModel_DeepSeaMutilated();
 		
 		// Particles
 		ParticleSystem_Preload("");
@@ -106,7 +107,7 @@ class cScrMap : iScrMap
 		/////////////////////////
 		// Player setup
 //		Player_SetAmbientLight_Outdoors();
-		PlayerHands_SetHandModel_();
+		PlayerHands_SetHandModel_DeepSeaMutilated();
 		
 		PlayerEnergy_SetFlowerSwallows(true);
 		
