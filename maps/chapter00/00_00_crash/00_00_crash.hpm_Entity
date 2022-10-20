@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="4B7207D52290B467361684C45348D430F7FEC302" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="205">
+        <FileIndex_Entities NumOfFiles="208">
             <File Id="0" Path="entities/station/gameplay/omnitool/brainchip.ent" />
             <File Id="1" Path="entities/station/gameplay/omnitool/omnitool_with_securitychip_cortexchip.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin_destroyed/zeppelin_platform_destroyed.ent" />
@@ -206,6 +206,9 @@
             <File Id="202" Path="entities/urban/tech/cctv_camera/cctv_camera_camera.ent" />
             <File Id="203" Path="entities/station/terminals/camera_portable/camera_portable_hud.ent" />
             <File Id="204" Path="entities/station/tech/camera_surveillance_theta/camera_surveillance_theta_headtrack.ent" />
+            <File Id="205" Path="entities/oceanbottom/building/tau_module_entrance/tau_module_entrance.ent" />
+            <File Id="206" Path="entities/oceanbottom/building/tau_module_entrance/tau_module_entrance_hacked.ent" />
+            <File Id="207" Path="entities/oceanbottom/door/swingdoor_tau_entrance/swingdoor_tau_entrance.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435458" Name="CathTool" CreStamp="1665746479" ModStamp="1666180172" WorldPos="-0.0754574 1.56029 -2.75" Rotation="0.759473 -0.0911501 -0.00559049" Scale="1 1 1" FileIndex="1" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 30 268435458">
@@ -5851,7 +5854,7 @@
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436545" Name="wall_medium_overgrown_noFX_1" CreStamp="1666044080" ModStamp="1666044112" WorldPos="0 3.25 -122.75" Rotation="0 -3.14159 0" Scale="1 1 1" FileIndex="153" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 515 268436545">
+            <Entity ID="268436545" Name="wall_medium_overgrown_noFX_1" CreStamp="1666044080" ModStamp="1666226883" WorldPos="-0.25 5 -153.25" Rotation="0 -3.14159 0" Scale="1 1 1" FileIndex="153" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 515 268436545">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7791,7 +7794,7 @@
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437057" Name="camera_surveillance_theta_headtrack_1" CreStamp="1666225152" ModStamp="1666225315" WorldPos="17.75 4.25 300.75" Rotation="0 1.19209e-007 0" Scale="1 1 1" FileIndex="204" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 906 268437057">
+            <Entity ID="268437057" Name="camera_surveillance_theta_headtrack_1" CreStamp="1666225152" ModStamp="1666227503" WorldPos="11.75 3.875 310.375" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="204" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 906 268437057">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="UserVar" Value="" />
@@ -7829,6 +7832,90 @@
                     <Var Name="HeadTracker_Active" Value="true" />
                     <Var Name="WallAvoidActive" Value="false" />
                     <Var Name="DynamicObjectAvoidActive" Value="false" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268437081" Name="tau_module_entrance_2" CreStamp="1666226709" ModStamp="1666227503" WorldPos="8.375 2.125 359.125" Rotation="0 4.71239 0" Scale="1 1 1" FileIndex="206" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 898 268437081">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268437084" Name="tau_module_entrance_3" CreStamp="1666226832" ModStamp="1666226990" WorldPos="0 2.5 -124.773" Rotation="0 4.71239 0" Scale="1 1 1" FileIndex="206" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 897 268437084">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268437097" Name="tau_module_entrance_4" CreStamp="1666227657" ModStamp="1666227672" WorldPos="0 6.5 -124.773" Rotation="0 5.56363e-008 0" Scale="1 1 1" FileIndex="207" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 885 268437097">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectBrightnessMul" Value="1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
+                    <Var Name="MoveDirection" Value="Vertical" />
+                    <Var Name="StuckState" Value="None" />
+                    <Var Name="MinLimitStuck" Value="false" />
+                    <Var Name="MaxLimitStuck" Value="false" />
+                    <Var Name="InteractionDisablesStuck" Value="false" />
+                    <Var Name="MiddleAngleAmount" Value="0" />
+                    <Var Name="AutoMoveToAngle" Value="True" />
+                    <Var Name="AutoMoveGoal" Value="Middle" />
+                    <Var Name="JointResetFix" Value="false" />
                 </UserVariables>
             </Entity>
         </Objects>
