@@ -788,9 +788,40 @@ class cScrMap : iScrMap
 		
 		// "CHAPTER NAME"
 		
+		// To enter the station the player has to find the nearest airlock (need to use the omnitool)
+		// Simon speaks "Still works..." when door opens
+		
 		// NEW STATION LEVEL:
 		
+		// When Simon is standing in the darkness, "Is this Theta..?"
+		
+		// Steam pipes "lab_welder.dae" placed on the ceiling, falling steam
+		
 		// Give the player a decent pause after they passed through the airlock
+		
+		// The player enters the corridor after the diving suit room
+		// A corpse with a blood trail coming from the staircase
+		// A blinking lamp is coming from the staircase highlighting the corpse
+		// The player has reaches the control room
+		// Interact with the camera terminal
+		// Swap between different camera views
+		// One shows the corridor with a corpse on the floor highlighted with the stais the player just came from
+		// The monster shows up here, stepping into the light approaching the stairs, the lamp turns off
+		// The terminal screen starts to blink
+		// This whole part of the station's electricity starts to fail
+		
+		// THE FEED ON THE CAMERA IS ON A DELAY - TRICKING THE PLAYER
+		// The monster is actually standing behind the player by the doorway already
+		// The player looks behind them, lightning flashes (use a spotlight through the window), music triggers
+		// The only other light shining into the room is a flickering light (with water refraction) from the aquarium and from outside
+		
+		// The player has a split second to hide from this creature
+		
+		// A: Underneath the main control room desk
+		// B: Run past and hide in the server room
+		// C: Somewhere downstairs and hide
+		
+		// After a little while, the power turns back on
 		
 		// "Gotta talk to Catherine", Simon says
 		
@@ -851,6 +882,10 @@ class cScrMap : iScrMap
 		// Simon quickly emotes "Ah, god damn it!" from the pain
 		// He stands up slowly
 		
+		// Suit system diagnostics run
+		
+		// As the player approaches the zeppelin Simon says "Catherine..."
+		
 		// Play 05_02/SFX/sat/fly_out when the player has stood up
 		
 		// When player stands on the zeppelin play 04_01_tau_outside/SFX/storm/sweeteners/exit_elevator
@@ -860,13 +895,6 @@ class cScrMap : iScrMap
 		// He inspects it "Oh, fuck...", lightning strikes
 		// Simon speaks "I gotta get inside."
 		// Now let the player pick up the Omnitool after the short dialogue
-		
-		// To enter the station the player has to find the nearest airlock (need to use the omnitool)
-		// Simon speaks "Still works..." when door opens
-		
-		// When Simon is standing in the darkness, "Is this Theta..?"
-		
-		// Steam pipes "lab_welder.dae" placed on the ceiling, falling steam
 		
 		// Thunder SFX:
 		// 04_01_tau_outside/AMB/storm/thunder/stage_0
@@ -880,6 +908,7 @@ class cScrMap : iScrMap
 		// After the player has picked up the Omnitool, make the cable spark attracting the players intented path
 		// Make a piece of metal fall down and hit the zeppelin which in turn makes it creak and player camrera wobbles
 		// The Eastern Zeppelin Platform gets lowered down, so the player gets a new path 
+		
 		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
