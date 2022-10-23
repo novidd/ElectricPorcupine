@@ -909,6 +909,15 @@ class cScrMap : iScrMap
 		// Make a piece of metal fall down and hit the zeppelin which in turn makes it creak and player camrera wobbles
 		// The Eastern Zeppelin Platform gets lowered down, so the player gets a new path 
 		
+		// Have a dramatic reappearance and proper introduction the KateBot when the player is inside the plane
+		// IT IS POSSIBLE FOR THE PLAYER TO NOT ENTER THE PLANE AND PROCEED ANYWAY
+		// To cover this CASE, I can either kill the player with the Leviathan if they stray from the ship OR make the KateBot show up around a rock after the plane to surprise the player, 
+		// when they think they've escape from the Leviathan
+		
+		// The KateBot guides the player the whole way to the station
+		// KateBot *beep-boops* when the meteor crater is revealed, then TITLE CARD
+		// By the meteor crater KateBot will stay at the beginning of the bridge, making anxious *beep-boops* once the player enters
+		// Outside the station entrance KateBot will spin around in joy saying farewell to the player
 		
 		cSequenceStatesData mIntroSequence;
 		void SequenceIntro(const tString &in asTimer)
