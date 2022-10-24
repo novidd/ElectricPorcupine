@@ -100,8 +100,6 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
-		InitAbyssLightning();
-		
 		bool bDoIntro = true;
 		
 		/////////////////////////
@@ -111,8 +109,15 @@ class cScrMap : iScrMap
 		
 		PlayerEnergy_SetFlowerSwallows(true);
 		
+		// Lightning
+		InitAbyssLightning();
+		
 		//Map setup
 		SetupZeppelinCrash();
+		
+		// Graveyard
+		// Crashed plane
+		SwingDoor_SetOpenAmount("PlaneDoor", 1.0f);
 		
 		/////////////////////////
 		// Debug
@@ -188,6 +193,11 @@ class cScrMap : iScrMap
 		if(alAction == eAction_Test2)
 		{
 			ZeppelinCollapse();
+		}
+		
+		if(alAction == eAction_Test3)
+		{
+			
 		}
 		
 	}
