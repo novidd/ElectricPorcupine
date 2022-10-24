@@ -1,0 +1,19 @@
+<Material>
+    <Main Type="decal" DepthTest="true" ForceFullScaleTextures="false" UVSubDivs="1 1" UseAlpha="false" PhysicsMaterial="Default Soft" BlendMode="Alpha" />
+    <TextureUnits>
+        <Diffuse MipMaps="true" Compress="true" File="textures/decals/organic/moss/moss_generic_01.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <NMap MipMaps="true" Compress="true" File="textures/decals/organic/moss/moss_generic_01_nrm.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <Specular MipMaps="true" Compress="true" File="textures/decals/organic/moss/moss_generic_01_spec.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+        <Height MipMaps="true" Compress="true" File="textures/decals/organic/moss/moss_generic_01_height.dds" Type="2D" Wrap="Repeat" AnimMode="None" AnimFrameTime="0" AnimStartTime="0" />
+    </TextureUnits>
+    <SpecificVariables>
+        <Var Name="HeightMapScale" Value="-0.002" />
+        <Var Name="HeightMapBias" Value="0.1" />
+        <Var Name="FrenselBias" Value="0.2" />
+        <Var Name="FrenselPow" Value="8" />
+        <Var Name="DetailUvMul" Value="4 4" />
+        <Var Name="DetailFadeStart" Value="5" />
+        <Var Name="DetailFadeEnd" Value="10" />
+        <Var Name="DetailWeight" Value="1" />
+    </SpecificVariables>
+</Material>
