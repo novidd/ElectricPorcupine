@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="4B7207D52290B467361684C45348D430F7FEC302" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="286">
+        <FileIndex_Entities NumOfFiles="296">
             <File Id="0" Path="entities/station/gameplay/omnitool/brainchip.ent" />
             <File Id="1" Path="entities/station/gameplay/omnitool/omnitool_with_securitychip_cortexchip.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin_destroyed/zeppelin_platform_destroyed.ent" />
@@ -287,6 +287,16 @@
             <File Id="283" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_bottle_3.ent" />
             <File Id="284" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_wreckage_cockpit_lever.ent" />
             <File Id="285" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/ornaments/doll_monkey/doll_monkey.ent" />
+            <File Id="286" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_blades_on.ent" />
+            <File Id="287" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_glimpse_01.ent" />
+            <File Id="288" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_interior_cockpit_door.ent" />
+            <File Id="289" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_interior_panel_light_02.ent" />
+            <File Id="290" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_interior_panel_light_01.ent" />
+            <File Id="291" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_interior_panel_light_06.ent" />
+            <File Id="292" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_intro_cockpit.ent" />
+            <File Id="293" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_intro_cockpit_wall.ent" />
+            <File Id="294" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_intro_passengers.ent" />
+            <File Id="295" Path="mods/ElectricPorcupine/assets/e_entities/rebirth/survivors/plane/plane_intro_wing_broken.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435458" Name="CathTool" CreStamp="1665746479" ModStamp="1666180172" WorldPos="-0.0754574 1.56029 -2.75" Rotation="0.759473 -0.0911501 -0.00559049" Scale="1 1 1" FileIndex="1" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 30 268435458">
@@ -12146,16 +12156,16 @@
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438181" Name="plate_airplane_3" CreStamp="1666587974" ModStamp="1666701401" WorldPos="219.147 -20.1323 -81.5921" Rotation="0.113313 0.86481 3.02247" Scale="0.75 0.75 0.75" FileIndex="257" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1596 268438181">
+            <Entity ID="268438181" Name="plate_airplane_3" CreStamp="1666587974" ModStamp="1666712362" WorldPos="219.147 -20.1323 -81.5921" Rotation="0.113313 0.86481 3.02247" Scale="0.75 0.75 0.75" FileIndex="257" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1596 268438181">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
-                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="StaticPhysics" Value="true" />
                     <Var Name="EffectsActive" Value="true" />
-                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="InteractionDisabled" Value="true" />
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="ColorMul" Value="0.21176472306251526 0.25098040699958801 0.20000001788139343 1" />
                     <Var Name="EffectColorMul" Value="1 1 1 1" />
