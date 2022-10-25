@@ -608,7 +608,7 @@ class cScrMap : iScrMap
 			// Omnitool
 			ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Sparks", "elec_sparks_tiny_continous.ps", "ZeppelinOmniToolSparkPos", false, cColor_White, 2);
 			ParticleSystem_SetVisible("ZeppelinOmniToolPS_Sparks", false);
-			ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Bubbles", "loop_waterbubbles_small_stream.ps", "ZeppelinOmniToolBubblePos", false, cColor_White, 1);
+			ParticleSystem_CreateAtEntityExt("ZeppelinOmniToolPS_Bubbles", "loop_waterbubbles_small_stream.ps", "ZeppelinOmniToolBubblePos", false, cColor_White, 0.25);
 			Map_AddTimer("OmniToolFlash", cMath_RandRectf(0.25, 2.0), "Timer_ZeppelinOmniToolFlash");
 			Sound_CreateAtEntity("BrokenCathtoolBubbles", "02_03_delta/AMB/Spot/omnitool_bubble_sparks", "ZeppelinOmniToolBubblePos");
 			
