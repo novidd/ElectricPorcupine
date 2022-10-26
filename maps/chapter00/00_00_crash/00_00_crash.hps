@@ -730,7 +730,7 @@ class cScrMap : iScrMap
 		
 		// -- IDEAS --
 		// The player will lose their part of their arm just like in the original game (before the suicide, in the station)
-		// When the player has stood to close to the rave for too their suit starts to beep (red around screen at beep)
+		// When the player has stood to close to the ravine for too their suit starts to beep (red around screen at beep)
 		// Katebot will go deep into the abyss to repair something, on a terminal the player can see Katebot's position moving (green circle)
 		// The signal is cut off (the cirlce no no longer moves/or disappears). The player finds Katebot destroyed or covered in rocks
 		// Use 01_03_upsilon_outside/katebot/kate_trapped_alarm to locate Katebot more easily
@@ -763,45 +763,24 @@ class cScrMap : iScrMap
 		// SCENE 1 EVENT 1 - *Simon wakes up*
 		//{///////////////////////////////////////
 		
-		// HAVE A LONG BRIDGE (UPSILON AWAKE)
-		// Play some Catherine flashback dialogue here
-		// Make Simon's head hurt here (convey with screen effects and Simon emoting)
-		// After implement a slideshow about launching a satellite (phi_inside)
-		// The player will hear it in the distance in a corridor (from the other end of the long bridge tunnel - upsilon tunnel)
-		// Have it play on a loop with no player interaction
-		
 		//-------------------------------------------------------
 		
-		// The player has low HP (CONVEY THIS WITH SCREEN EFFECTS, AND SO ON)
-		// After the player wakes up KATEBOT shows up scanning the environment
-		// When it looks at the player it makes some noise *beep* *beep*
-		// Lots of smoke and bubbles from fire underwater
-		// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
+		//{ -- LEVEL: MAIN FLOOR (SECTION 1)
 		
-		// PICK UP OMNITOOL
-		// Terminal A is still running but glitched. The player can see the distance away from Theta (4000+ meters)
-		// Play dialogue when the player looks at the completely broken omnitool.
-		// Add sparks accompanied with bubbles
+		// Have a section that is dark and lit mainly with red lights like in ms_curie_inside
 		
-		// Simon thinks that Cath is completely fucked (but she is still functioning, she will reveal herself in the final scene to be still here)
-		// She will say that she is an asshole for losing hope so quickly (fade out to black).
-		// Simon says "Catherine...?"
-		// She mentions how it felt like the blink of an eye for her, (then run the credits).
+		// Use 01_02_glimpse_spot.ent for a scare, move it along an axis the make look like a light of a monster patrolling, just like in upsilon_inside
 		
-		// THE PLAYER HAS TO CRAWL THROUGH RUBBLE -- Show where the player has to go with sparks from a cable
-		// Crawl through a hole with cables hanging through the hole, on of the cables spark
+		// Have sounds come from darkness in front of player to tease them (footsteps, growling etc)
 		
-		// KateBot passes the double windows, her light lights up the room helping the player to see since it's so dark
+		// !! IT IS NECESSARY TO GIVE THE PLAYER SOME TIME ALONE TO MAKE THE REVEAL OF THE KATEBOT MORE RELEAVING !!
+		// A little later reveal KateBot as the player's companion after this (it has to be underwater)
+		// The KateBot helps you with their laser/blowtorch thingy
+
+		// Have a terminal with multiple cameras to switch between
+		// One of the cameras shows a creepy corridor with lots of blood (a flickering light showing the blood text on the wall)
 		
-		// The player approache the ledge of the meteor crater, the title card appears
-		// *accompanied with fitting music*
-		// In a simplistic font - think Half Life 2 and the same effect, each letter gets typed out and pulses the color of the WAU at the beginning 
-		// Fade in "MOD NAME"
-		// Fade out
-		// Fade in "Made by, Lucas Pettersson"
-		// Fade out
-		
-		// "CHAPTER NAME"
+		// Have sounds come from darkness in front of player to tease them (footsteps, growling etc)
 		
 		// To enter the station the player has to find the nearest airlock (need to use the omnitool)
 		// Simon speaks "Still works..." when door opens
@@ -838,9 +817,63 @@ class cScrMap : iScrMap
 		
 		// After a little while, the power turns back on
 		
-		// Have a section that is dark and lit mainly with red lights like in ms_curie_inside
+		// After this is the long corridor, it's perfect to have Simon think of a previous conversation between him and Catherine - to make the story more depressing
+		// !! Utilize music well !!
 		
-		// ---- THE FINAL CHAPTER ----
+		// HAVE A LONG BRIDGE (UPSILON AWAKE)
+		// Play some Catherine flashback dialogue here
+		// Make Simon's head hurt here (convey with screen effects and Simon emoting)
+		// After implement a slideshow about launching a satellite (phi_inside)
+		// The player will hear it in the distance in a corridor (from the other end of the long bridge tunnel - upsilon tunnel)
+		// Have it play on a loop with no player interaction
+		
+		//} -- LEVEL: MAIN FLOOR (SECTION 1)
+		
+		//{ -- LEVEL: THE BRIDGE (SECTION 1 -> SECTION 2 TRANSITION)
+		
+		// The player has to cross through this transition to get to the coms tower
+		// The player is crossing below the bridge - THIS IS PATH IS THE UNSAFE PATH
+		// The player will backtrack across the functioning bridge on the way back to the main station to the elevator
+		
+		//} -- LEVEL: THE BRIDGE (SECTION 1 -> SECTION 2 TRANSITION)
+		
+		//{ -- LEVEL: COMS TOWER STATION (SECTION 2)
+		
+		// The player goes here to establish a link with the ARK
+		
+		//} -- LEVEL: COMS TOWER STATION (SECTION 2)
+		
+		//{ ---- THE FINAL CHAPTER "XXX" ----
+		
+		//{ -- LEVEL: THE LAB NEST
+
+		// This map is scary
+		// Use the Tau monster
+		
+		// The player takes the elevator to the lab, the elevator goes past it because it malfunctions (cuz of the WAU)
+		
+		// The player has to click on a terminal/button to turn on the elevator
+		// How to communicate elevator levels:
+		// A number on a terminal that moves toward to next floor to the next
+		// The elevator will malfunction before the target lab floor is reached
+		
+		// The elevator's doors open as lights turn back on flickering
+		// The elevator's light reveals the starting basement room below the lab
+		// It's very dark, only the WAU lights it up here and there AND flickering lights (some will function to guide the player and such)
+		
+		//} -- LEVEL: THE LAB NEST
+		
+		//{ -- LEVEL: THE LAB
+		
+		// The player will have to ability to go outside into the meteor crater (it's not far from the lab)
+		// The crater is no longer has the meteor inside it because it was moved into the station using a rail system
+		// It is now inside the bottom of the station inside some kind of high level quarantine tech lab behind a thick glass
+		// The WAU has obviously overgrown to all hell
+		
+		// When the player approaches the meteor the diving suit will react in different ways
+		// Almost as if the player is approaching something radioactive (one if several reasons) and because its A FUCKING WAU METOR
+		
+		// - THE TERMINAL (Mod name???)
 		
 		// Give the player a choice to destroy everything (and killing themself) OR come to terms with his now lonely immortal life
 		// Depending on their choice the final end screen will look different
@@ -891,7 +924,9 @@ class cScrMap : iScrMap
 		
 		// *NO MORE RESPONSE FROM THE CONNECTION*
 		
-		// ---- THE GOOD ENDING ----
+		// !! CONTINUE HERE FROM GOOD ENDING OR TO BAD ENDING!!
+		
+		//{ - THE GOOD ENDING -
 		
 		// SCREEN GOES BLACK
 		
@@ -912,7 +947,63 @@ class cScrMap : iScrMap
 		
 		// Simon whispers to himself "Alice..."
 		
-		// Use 01_02_glimpse_spot.ent for a scare, move it along an axis the make look like a light of a monster patrolling, just like in upsilon_inside
+		// THE END
+		
+		//} - THE GOOD ENDING
+		
+		//{ - THE BAD ENDING -
+		
+		// The player interacts with the beating heart of the meteor (the player loses their arm in the process)
+		
+		// As the station is breaking down around the player Simon sits down
+		// *an alarm spins and is blaring*
+		// All the sounds become muffled and lower the volume of global sounds(use underwater filter, code used in airlocks)
+		// Simon talks quietly to himself
+		// The monster enters the room from the otherside
+		// Simon doesn't care
+		// He says a final line
+		// *BOOM*
+		// SILENCE AND BLACK SCREEN
+		// Use the dialogue from before the Zeppelin explosion
+		// FADE IN CREDITS
+		// THE END
+		
+		//} - THE BAD ENDING -
+		
+		//} -- LEVEL: THE LAB
+		
+		//{ -- ENDING: THE FINAL END CARD
+		
+		// Give the player a choice to destroy everything (and killing themself) OR come to terms with his now lonely immortal life
+		// Depending on their choice the final end screen will look different
+		
+		// Each ending shows a different sceneries
+		
+		// Good ending characteristics: Sunny, sound of birds, happy
+		// Open meadows with a large oak tree on it, with distant futuristic buildings
+		
+		// Bad ending characteristics: Night, lava, red sky, burning world (instead use a view of Earth's surface?)
+		// Falling rocks from space (use billboards or make an entity), move them over time
+		
+		//} -- ENDING: THE FINAL END CARD
+		
+		//} ---- THE FINAL CHAPTER
+		
+		// The player has low HP (CONVEY THIS WITH SCREEN EFFECTS, AND SO ON)
+		// After the player wakes up KATEBOT shows up scanning the environment
+		// When it looks at the player it makes some noise *beep* *beep*
+		// Lots of smoke and bubbles from fire underwater
+		// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
+		
+		// PICK UP OMNITOOL
+		// Terminal A is still running but glitched. The player can see the distance away from Theta (4000+ meters)
+		// Play dialogue when the player looks at the completely broken omnitool.
+		// Add sparks accompanied with bubbles
+		
+		// Simon thinks that Cath is completely fucked (but she is still functioning, she will reveal herself in the final scene to be still here)
+		// She will say that she is an asshole for losing hope so quickly (fade out to black).
+		// Simon says "Catherine...?"
+		// She mentions how it felt like the blink of an eye for her, (then run the credits).
 		
 		// "Gotta talk to Catherine", Simon says
 		
@@ -924,19 +1015,20 @@ class cScrMap : iScrMap
 		// Sparks go all over the place, the station moans and other details, distant clanging
 		// Lock player like in dialogue when Simon is trying to talk "to" Catherine and play event_look_at_hands_2_1 or event_look_at_hands_2_1_intense when Simon is angry and sad
 		
-		// After this is the long corridor, it's perfect to have Simon think of a previous conversation between him and Catherine - to make the story more depressing
-		// !! Utilize music well !!
+		// THE PLAYER HAS TO CRAWL THROUGH RUBBLE -- Show where the player has to go with sparks from a cable
+		// Crawl through a hole with cables hanging through the hole, on of the cables spark
 		
-		// Have sounds come from darkness in front of player to tease them (footsteps, growling etc)
+		// KateBot passes the double windows, her light lights up the room helping the player to see since it's so dark
 		
-		// !! IT IS NECESSARY TO GIVE THE PLAYER SOME TIME ALONE TO MAKE THE REVEAL OF THE KATEBOT MORE RELEAVING !!
-		// A little later reveal KateBot as the player's companion after this (it has to be underwater)
-		// The KateBot helps you with their laser/blowtorch thingy
-
-		// Have a terminal with multiple cameras to switch between
-		// One of the cameras shows a creepy corridor with lots of blood (a flickering light showing the blood text on the wall)
+		// The player approache the ledge of the meteor crater, the title card appears
+		// *accompanied with fitting music*
+		// In a simplistic font - think Half Life 2 and the same effect, each letter gets typed out and pulses the color of the WAU at the beginning 
+		// Fade in "MOD NAME"
+		// Fade out
+		// Fade in "Made by, Lucas Pettersson"
+		// Fade out
 		
-		// Have sounds come from darkness in front of player to tease them (footsteps, growling etc)
+		// "CHAPTER NAME"
 	
 		void SetupIntro()
 		{
