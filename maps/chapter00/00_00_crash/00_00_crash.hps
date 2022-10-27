@@ -197,7 +197,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
-			
+			AbyssLightingLoop();
 		}
 		
 	}
@@ -302,6 +302,30 @@ class cScrMap : iScrMap
 	}
 	
 	//-------------------------------------------------------
+	
+	// Use this for scripted sequences, for example dialogue
+	bool mbPauseLightning = false;
+	float fNextLightningTime = 0;
+	
+	void RandomAbyssLighting(int alIndex, float afDelay = 0, const tString&in asSound = "", float afVolume = 1)
+	{
+		msAbyssLightning_SoundName = asSound;
+		mfAbyssLightning_Volume = afVolume;
+		
+		array<int> vIndexCanditates;
+		
+		for (int i = 1; i <= mlAbyssLightning_Bolts; ++i)
+		{
+			if (mlAbyssLightning_Index > 0 && i == mlAbyssLightning_Index) continue;
+			vIndexCandidates.push_back(i);
+		}
+		
+		int lIndex = vIndexCandidates[cMath_RandRectl(0, vIndexCandidates.size() - 1)];
+		
+		AbyssLightning(lIndex);
+	}
+	
+	//-------------------------------------------------------
 			
 	void AbyssLightning(int alIndex, float afDelay = 0, const tString&in asSound = "", float afVolume = 1)
 	{
@@ -317,6 +341,13 @@ class cScrMap : iScrMap
 	void OnTimer_DoAbyssLightning(const tString &in asTimer)
 	{
 		Seq_AbyssLightning("");
+	}
+	
+	//-------------------------------------------------------
+	
+	void OnTimer_AbyssLightningLoop(const tString &in asTimer)
+	{
+		
 	}
 	
 	//-------------------------------------------------------
