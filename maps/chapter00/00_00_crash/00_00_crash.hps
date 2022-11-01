@@ -683,10 +683,10 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		// When the player leaves the crash site reset the environmental particle properties
-		
 		int mlStormScreenEffectID = -1;
 		int mlStormShakeID = -1;
+		
+		bool mbRunStormEffects = true;
 		
 		bool OnCollide_StormEffects(const tString &in asParent, const tString &in asChild, int alState)
 		{
