@@ -112,8 +112,10 @@ class cScrMap : iScrMap
 		// Lightning
 		InitAbyssLightning();
 		
-		// Storm screen effect
+		// Storm
 		StartStormScreenEffect();
+		
+		Map_FadeEnvironmentParticleWindVelocity(gvStormWindVelocity, 3.0f);
 		
 		//Map setup
 		SetupZeppelinCrash();
