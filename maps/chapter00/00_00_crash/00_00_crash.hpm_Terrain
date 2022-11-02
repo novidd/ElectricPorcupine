@@ -1,3 +1,33 @@
 <HPLMapTrack_Terrain ID="4B7207D52290B467361684C45348D430F7FEC302" Version="1.00">
-    <Terrain Active="false" GeometryPatchSize="32" TexturePatchSize="32" HeightMapSize="64" MaxHeight="10" UnitSize="1" UndergrowthGridSize="10" UndergrowthFadeStart="18" UndergrowthFadeEnd="20" />
+    <Terrain Active="true" GeometryPatchSize="32" TexturePatchSize="32" HeightMapSize="1024" MaxHeight="300" UnitSize="1" UndergrowthGridSize="10" UndergrowthFadeStart="25" UndergrowthFadeEnd="35" BaseMaterialFile="textures/terrain/sand/sand_wavy.mat" BaseMaterialTileAmount="0.25" BaseMaterialStartFadeValue="0" BaseMaterialDetailTextureAmount="0.75 0 0" BaseMaterialHeightMapScale="0" MaterialSpecularPower="1" CliffTextureDiffuse="textures/terrain/rock/rockwall_rock_blend.dds" CliffTextureNMap="textures/terrain/rock/rockwall_rock_blend_nrm.dds" CliffTextureSize="0.1" CliffTextureFadeAngleMul="1">
+        <DetailTextures DetailFadeStart="10" DetailFadeEnd="20">
+            <DetailTexture ID="0" File="textures/terrain/sand/sand_detail_diff.dds" Scale="0.25" />
+            <DetailTexture ID="1" File="" Scale="1" />
+            <DetailTexture ID="2" File="" Scale="1" />
+        </DetailTextures>
+        <BlendLayers>
+            <BlendLayer ID="0">
+                <Material File="textures/terrain/undergrowth/seaweed.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+                <Material File="textures/terrain/sand/sand_undergrowth_heavy.mat" TileAmount="0.125" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+                <Material File="textures/terrain/sand/sand_path.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+                <Material File="textures/terrain/sand/sand_flat.mat" TileAmount="0.25" StartFadeValue="0" DetailTextureAmount="1 0 0" HeightMapScale="0" />
+            </BlendLayer>
+        </BlendLayers>
+        <Sections>
+            <Section Name="clmpe@LAPTOP-EJS7RG6B">
+                <FileIndex_TerrainDecals NumOfFiles="0" />
+                <Decals />
+                <FileIndex_UndergrowthMaterials NumOfFiles="3">
+                    <File Id="0" Path="undergrowth/algae/algae_caulerpa_undergrowth/algae_caulerpa_undergrowth_100%.tum" />
+                    <File Id="1" Path="undergrowth/algae/algae_undergrowth/algae_small_undergrowth.tum" />
+                    <File Id="2" Path="undergrowth/algae/algae_undergrowth/algae_undergrowth.tum" />
+                </FileIndex_UndergrowthMaterials>
+                <Undergrowth>
+                    <Circle ID="268439569" Name="Circle_1" CreStamp="1667405759" ModStamp="1667405811" WorldPos="17.25 145.369 213" Rotation="0 0 0" Scale="2.134 2.134 2.134" FileIndex="0" FadeBorder="1" MaxInfluence="1" Center="17.25 213" Radius="2.134" UID="16 2291 268439569" BlendType="Add" />
+                    <Circle ID="268439570" Name="Circle_2" CreStamp="1667405778" ModStamp="1667405786" WorldPos="9.5 145.75 212.691" Rotation="0 0 0" Scale="5.131 5.131 5.131" FileIndex="1" FadeBorder="1" MaxInfluence="1" Center="9.5 212.691" Radius="5.131" UID="16 2292 268439570" BlendType="Add" />
+                    <Circle ID="268439571" Name="Circle_3" CreStamp="1667405803" ModStamp="1667405809" WorldPos="16.5 145.177 204.25" Rotation="0 0 0" Scale="5.746 5.746 5.746" FileIndex="2" FadeBorder="1" MaxInfluence="1" Center="16.5 204.25" Radius="5.746" UID="16 2290 268439571" BlendType="Add" />
+                </Undergrowth>
+            </Section>
+        </Sections>
+    </Terrain>
 </HPLMapTrack_Terrain>
