@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="4B7207D52290B467361684C45348D430F7FEC302" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="403">
+        <FileIndex_Entities NumOfFiles="405">
             <File Id="0" Path="entities/station/gameplay/omnitool/brainchip.ent" />
             <File Id="1" Path="entities/station/gameplay/omnitool/omnitool_with_securitychip_cortexchip.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin_destroyed/zeppelin_platform_destroyed.ent" />
@@ -404,6 +404,8 @@
             <File Id="400" Path="entities/oceanbottom/mscurie/rusted_ship_hooks/rusted_ship_hooks_single.ent" />
             <File Id="401" Path="entities/oceanbottom/tech/steam_pump/steam_pump_piston.ent" />
             <File Id="402" Path="entities/oceanbottom/mscurie/rusted_ship_hatch/rusted_ship_largehatch.ent" />
+            <File Id="403" Path="entities/oceanbottom/mscurie/rusted_ship_raft/rusted_ship_raft.ent" />
+            <File Id="404" Path="entities/oceanbottom/mscurie/rusted_ship_portal/rusted_ship_portal.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435458" Name="CathTool" CreStamp="1665746479" ModStamp="1667405299" WorldPos="-0.0754547 152.167 230.077" Rotation="0.759473 -0.0911501 -0.00559049" Scale="1 1 1" FileIndex="1" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 30 268435458">
@@ -13357,6 +13359,61 @@
                 </UserVariables>
             </Entity>
             <Entity ID="268439595" Name="station_plateau_small_broken_2" CreStamp="1667408289" ModStamp="1667408301" WorldPos="-2 148.5 173" Rotation="-0 4.45059 -0" Scale="0.5 0.5 0.5" FileIndex="399" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2333 268439595">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439603" Name="rusted_ship_cylinder1_2" CreStamp="1667414026" ModStamp="1667414091" WorldPos="20 176.5 92.75" Rotation="0 -1.49012e-008 0" Scale="6 6 6" FileIndex="323" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2180 268439603">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439605" Name="rusted_ship_cylinder1_3" CreStamp="1667414085" ModStamp="1667414087" WorldPos="30.5 176.5 92.75" Rotation="0 -1.49012e-008 0" Scale="6 6 6" FileIndex="323" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2293 268439605">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439639" Name="rusted_ship_cylinder1_4" CreStamp="1667415372" ModStamp="1667415406" WorldPos="37.75 155.25 102.5" Rotation="-1.49012e-008 6.5135e-016 1.5708" Scale="4 4 4" FileIndex="323" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2152 268439639">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439648" Name="rusted_ship_raft_1" CreStamp="1667415497" ModStamp="1667416781" WorldPos="24.5 157.75 119.75" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="403" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2150 268439648">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439649" Name="rusted_ship_portal_1" CreStamp="1667415886" ModStamp="1667415900" WorldPos="5.75 148 103.75" Rotation="1.5708 -0 0" Scale="1.5 1.5 1.5" FileIndex="404" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2149 268439649">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
