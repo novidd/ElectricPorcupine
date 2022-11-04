@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="4B7207D52290B467361684C45348D430F7FEC302" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="410">
+        <FileIndex_Entities NumOfFiles="411">
             <File Id="0" Path="entities/station/gameplay/omnitool/brainchip.ent" />
             <File Id="1" Path="entities/station/gameplay/omnitool/omnitool_with_securitychip_cortexchip.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin_destroyed/zeppelin_platform_destroyed.ent" />
@@ -411,6 +411,7 @@
             <File Id="407" Path="entities/station/lamp/fluorescent_ceil_cabin_large/fluorescent_ceil_cabin_large.ent" />
             <File Id="408" Path="entities/creatures/fish/mediterranean_rainbow_wrasse/mediterranean_rainbow_wrasse.ent" />
             <File Id="409" Path="entities/oceanbottom/special/03_01_wau_lights/03_01_wau_lights.ent" />
+            <File Id="410" Path="entities/organic/plants/kelp/kelp.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435458" Name="CathTool" CreStamp="1665746479" ModStamp="1667581045" WorldPos="-0.217491 126.167 233.758" Rotation="0.759473 3.05044 0.00559049" Scale="1 1 1" FileIndex="1" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 30 268435458">
@@ -7001,6 +7002,17 @@
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439931" Name="kelp_1" CreStamp="1667582991" ModStamp="1667583019" WorldPos="-18.25 123.25 219.5" Rotation="0 0 0" Scale="1 1 1" FileIndex="410" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2419 268439931">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
