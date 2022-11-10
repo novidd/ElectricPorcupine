@@ -301,7 +301,7 @@ class cScrMap : iScrMap
 	void InitAbyssLightning()
 	{
 		cLightPoint@ pFlashLight = cLux_GetCurrentMap().GetWorld().CreateLightPoint("AbyssFlash", "", false);
-		pFlashLight.SetBrightness(80);
+		pFlashLight.SetBrightness(20);
 		pFlashLight.SetRadius(0);
 		m_idAbyssLightning_FlashLight = pFlashLight.GetID();
 	}
@@ -352,7 +352,8 @@ class cScrMap : iScrMap
 	
 	void OnTimer_AbyssLightningLoop(const tString &in asTimer)
 	{
-		
+		// Randomize index here
+		// Save previous index so the same lightning spot is never the same OR find another method
 	}
 	
 	//-------------------------------------------------------
@@ -364,7 +365,6 @@ class cScrMap : iScrMap
 			if (Sequence_DoStepAndWait(0.1f))
 			{
 				// OPTIMIZE THE CODE SO THIS SEQUENCE CAN HANDLE ANY INDEX
-				// WHEN FINISHED RENAME ALL VARIABLES AND FUNCTIONS
 				
 				Map_AddTimer("Timer_DarkWorldThunder", 0, "OnTimer_DarkWorldThunder");
 
@@ -378,10 +378,7 @@ class cScrMap : iScrMap
 				
 				iLight@ pFlashLight = cLux_ID_Light(m_idAbyssLightning_FlashLight);
 				pFlashLight.SetPosition(vFlashPos);
-				pFlashLight.FadeTo(cColor(0.617,0.951,1,1), 200, 0.05);
-			
-				// HANDLE ALL INNER STATION SPOTLIGHT FLASHES HERE
-			
+				pFlashLight.FadeTo(cColor(0.617,0.951,1,1), 450, 0.05);
 			}
 			else if (Sequence_DoStepAndWait(1.f))
 			{
@@ -390,8 +387,6 @@ class cScrMap : iScrMap
 
 				iLight@ pLight = Map_GetLight("Light_Lightning_Point_" + mlAbyssLightning_Index);
 				pLight.FadeTo(cColor(0,0,0,1), pLight.GetRadius(), 0.2f);
-				
-				// HANDLE ALL INNER STATION SPOTLIGHT FLASHES HERE
 			}
 			Sequence_End();
 	}
@@ -404,7 +399,6 @@ class cScrMap : iScrMap
 		cVector3f vPos = pCurrentLight.GetWorldPosition();
 		vPos += cVector3f_Up * cMath_RandRectf(30, 50);
 		
-		// THE SOUND BELOW IS MISSING
 		tString sSound = "level_amb_shared/amb/sweeteners/thunder/thunder_strike";
 		if (msAbyssLightning_SoundName != "") sSound = msAbyssLightning_SoundName;
 			
@@ -769,7 +763,6 @@ class cScrMap : iScrMap
 		//-------------------------------------------------------
 		
 		// IMPLEMENT SCREEN SHAKES AND SWAY HERE WHEN STANDING ON THE ZEPPELIN
-		
 		
 		//-------------------------------------------------------
 		
