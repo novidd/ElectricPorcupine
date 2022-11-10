@@ -1372,14 +1372,14 @@
                     <Var Name="JointResetFix" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435487" Name="zeppelin_destroyed_constlure_1" CreStamp="1665754041" ModStamp="1665754588" WorldPos="8.90775 122.988 216.557" Rotation="-0.108165 -0.265865 0.145753" Scale="1 1 1" FileIndex="15" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 42 268435487">
+            <Entity ID="268435487" Name="ZeppelinEngine" CreStamp="1665754041" ModStamp="1668076213" WorldPos="8.90775 122.988 216.557" Rotation="-0.108165 -0.265865 0.145753" Scale="1 1 1" FileIndex="15" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 42 268435487">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
-                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="StaticPhysics" Value="true" />
                     <Var Name="EffectsActive" Value="true" />
                     <Var Name="InteractionDisabled" Value="true" />
                     <Var Name="CastShadows" Value="true" />
@@ -4070,7 +4070,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438581" Name="wau_flower_1" CreStamp="1666808172" ModStamp="1667326765" WorldPos="2.25349 138.197 223.969" Rotation="0.387597 0.361372 0.85707" Scale="1 1 1" FileIndex="84" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1850 268438581">
+            <Entity ID="268438581" Name="wau_flower_1" CreStamp="1666808172" ModStamp="1667326765" WorldPos="2.25349 123.125 223.969" Rotation="0.387597 0.361372 0.85707" Scale="1 1 1" FileIndex="84" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1850 268438581">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7126,7 +7126,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440172" Name="mid_section_3" CreStamp="1667834096" ModStamp="1667839929" WorldPos="59 166.5 189.25" Rotation="0.161394 -1.28214 3.06416" Scale="1.5 1.5 1.5" FileIndex="348" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2275 268440172">
+            <Entity ID="268440172" Name="mid_section_3" CreStamp="1667834096" ModStamp="1668076366" WorldPos="59 164 189.25" Rotation="0.161394 -1.28214 3.06416" Scale="1.5 1.5 1.5" FileIndex="348" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2275 268440172">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -7269,7 +7269,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440311" Name="blue_runner_infected_1" CreStamp="1668074450" ModStamp="1668074501" WorldPos="8.20894 124.591 254.448" Rotation="0 -1.5708 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2556 268440311">
+            <Entity ID="268440311" Name="blue_runner_infected_1" CreStamp="1668074450" ModStamp="1668076315" WorldPos="7.54057 125.718 210.209" Rotation="0 -0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2556 268440311">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="GroupEntityName" Value="runner_obelisk" />
@@ -7292,7 +7292,315 @@
                     <Var Name="ConnectedEntity" Value="" />
                     <Var Name="ConnectedEntityInvertState" Value="false" />
                     <Var Name="ConnectedEntityStatesUsed" Value="0" />
-                    <Var Name="TowardsCenterMul" Value="1" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440313" Name="blue_runner_infected_2" CreStamp="1668075963" ModStamp="1668076315" WorldPos="7.76857 125.751 209.729" Rotation="0 -0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2551 268440313">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440314" Name="blue_runner_infected_3" CreStamp="1668075975" ModStamp="1668076315" WorldPos="7.23143 125.769 209.372" Rotation="0 -0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2554 268440314">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440315" Name="blue_runner_infected_4" CreStamp="1668076002" ModStamp="1668076315" WorldPos="7.40808 125.521 209.571" Rotation="0 -0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2552 268440315">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440316" Name="blue_runner_infected_5" CreStamp="1668076020" ModStamp="1668076315" WorldPos="7.556 125.979 209.403" Rotation="0 -0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2553 268440316">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440317" Name="blue_runner_infected_6" CreStamp="1668076033" ModStamp="1668076315" WorldPos="7.34088 125.66 208.791" Rotation="0 -0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2345 268440317">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440320" Name="blue_runner_infected_7" CreStamp="1668076331" ModStamp="1668076342" WorldPos="0.458694 136.968 178.959" Rotation="0 1.5708 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2343 268440320">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440321" Name="blue_runner_infected_8" CreStamp="1668076331" ModStamp="1668076340" WorldPos="-0.0205994 137.001 178.731" Rotation="0 1.5708 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2329 268440321">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440322" Name="blue_runner_infected_9" CreStamp="1668076331" ModStamp="1668076337" WorldPos="-0.346878 137.229 178.944" Rotation="0 1.5708 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2325 268440322">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440323" Name="blue_runner_infected_10" CreStamp="1668076331" ModStamp="1668076344" WorldPos="-0.377899 137.019 179.269" Rotation="0 1.5708 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2342 268440323">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440324" Name="blue_runner_infected_11" CreStamp="1668076331" ModStamp="1668076347" WorldPos="-0.958694 136.91 179.159" Rotation="0 1.5708 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2328 268440324">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440325" Name="blue_runner_infected_12" CreStamp="1668076331" ModStamp="1668076346" WorldPos="-0.17894 136.771 179.092" Rotation="0 1.5708 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2327 268440325">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk_1" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="2" />
                     <Var Name="ExtraEscapeMul" Value="1" />
                     <Var Name="ExtraEscapeEntities" Value="" />
                 </UserVariables>
