@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="4B7207D52290B467361684C45348D430F7FEC302" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="431">
+        <FileIndex_Entities NumOfFiles="432">
             <File Id="0" Path="entities/station/gameplay/omnitool/brainchip.ent" />
             <File Id="1" Path="entities/station/gameplay/omnitool/omnitool_with_securitychip_cortexchip.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin_destroyed/zeppelin_platform_destroyed.ent" />
@@ -432,6 +432,7 @@
             <File Id="428" Path="entities/robot/tentacle/tentacle_small_2_static_prop.ent" />
             <File Id="429" Path="entities/robot/tentacle/tentacle_small_3_static_prop.ent" />
             <File Id="430" Path="entities/robot/tentacle/tentacle_small_1_static_prop.ent" />
+            <File Id="431" Path="entities/creatures/fish/blue_runner_infected/blue_runner_infected.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435458" Name="CathTool" CreStamp="1665746479" ModStamp="1667585975" WorldPos="3.6909 124.036 244.758" Rotation="0.769274 2.92883 0.0183988" Scale="1 1 1" FileIndex="1" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 30 268435458">
@@ -7266,6 +7267,34 @@
                     <Var Name="IllumBrightness" Value="1" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268440311" Name="blue_runner_infected_1" CreStamp="1668074450" ModStamp="1668074501" WorldPos="8.20894 124.591 254.448" Rotation="0 -1.5708 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2556 268440311">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="GroupEntityName" Value="runner_obelisk" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="DisableAtMaxDistance" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="TowardsCenterMul" Value="1" />
+                    <Var Name="ExtraEscapeMul" Value="1" />
+                    <Var Name="ExtraEscapeEntities" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
