@@ -113,7 +113,7 @@ class cScrMap : iScrMap
 		InitAbyssLightning();
 		
 		// Storm
-		StartStormScreenEffect();
+		//StartStormScreenEffect();
 		
 		Map_FadeEnvironmentParticleWindVelocity(gvStormWindVelocity, 3.0f);
 		
@@ -301,7 +301,7 @@ class cScrMap : iScrMap
 	void InitAbyssLightning()
 	{
 		cLightPoint@ pFlashLight = cLux_GetCurrentMap().GetWorld().CreateLightPoint("AbyssFlash", "", false);
-		pFlashLight.SetBrightness(20);
+		pFlashLight.SetBrightness(10);
 		pFlashLight.SetRadius(0);
 		m_idAbyssLightning_FlashLight = pFlashLight.GetID();
 	}
