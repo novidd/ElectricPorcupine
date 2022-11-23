@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="4B7207D52290B467361684C45348D430F7FEC302" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="590">
+        <FileIndex_Entities NumOfFiles="591">
             <File Id="0" Path="entities/station/gameplay/omnitool/brainchip.ent" />
             <File Id="1" Path="entities/station/gameplay/omnitool/omnitool_with_securitychip_cortexchip.ent" />
             <File Id="2" Path="entities/character/robot/zeppelin_destroyed/zeppelin_platform_destroyed.ent" />
@@ -591,6 +591,7 @@
             <File Id="587" Path="entities/oceanbottom/tech/probe_survivor/probe_survivor_03.ent" />
             <File Id="588" Path="entities/oceanbottom/tech/probe_survivor/probe_survivor_01.ent" />
             <File Id="589" Path="entities/oceanbottom/tech/probe_survivor/probe_survivor_02.ent" />
+            <File Id="590" Path="entities/oceanbottom/machine/lift_arm_delta/lift_arm_delta.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435458" Name="CathTool" CreStamp="1665746479" ModStamp="1669046650" WorldPos="6.00132 123.891 84.9774" Rotation="0.977845 3.91108 0.00959691" Scale="1 1 1" FileIndex="1" Active="true" Important="false" CulledByDistance="false" CulledByFog="false" UID="16 30 268435458">
@@ -1530,7 +1531,7 @@
                     <Var Name="JointResetFix" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435487" Name="ZeppelinEngine" CreStamp="1665754041" ModStamp="1669046650" WorldPos="-36.0227 122.988 62.4864" Rotation="-0.108165 -0.265865 0.145753" Scale="1 1 1" FileIndex="15" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 42 268435487">
+            <Entity ID="268435487" Name="ZeppelinEngine" CreStamp="1665754041" ModStamp="1669046650" WorldPos="-36.0227 122.988 9.76855" Rotation="-0.108165 -0.265865 0.145753" Scale="1 1 1" FileIndex="15" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 42 268435487">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1643,7 +1644,7 @@
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435710" Name="fluorescent_small_1" CreStamp="1665767478" ModStamp="1669046650" WorldPos="-35.4112 125.939 65.1494" Rotation="-0.0982477 1.19184 -0.0499139" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 160 268435710">
+            <Entity ID="268435710" Name="fluorescent_small_1" CreStamp="1665767478" ModStamp="1669046650" WorldPos="-35.4112 125.939 12.4315" Rotation="-0.0982477 1.19184 -0.0499139" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 160 268435710">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1708,7 +1709,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435711" Name="fluorescent_small_2" CreStamp="1665767572" ModStamp="1669046650" WorldPos="-35.6929 123.616 64.7243" Rotation="-1.36123 -0.0363013 -1.5294" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 122 268435711">
+            <Entity ID="268435711" Name="fluorescent_small_2" CreStamp="1665767572" ModStamp="1669046650" WorldPos="-35.6929 123.616 12.0064" Rotation="-1.36123 -0.0363013 -1.5294" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 122 268435711">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1773,7 +1774,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435712" Name="fluorescent_small_3" CreStamp="1665767601" ModStamp="1669046650" WorldPos="-33.7205 125.463 59.0954" Rotation="-0.465976 1.48993 -0.423264" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 163 268435712">
+            <Entity ID="268435712" Name="fluorescent_small_3" CreStamp="1665767601" ModStamp="1669046650" WorldPos="-33.7205 125.463 6.37755" Rotation="-0.465976 1.48993 -0.423264" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 163 268435712">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1838,7 +1839,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435713" Name="fluorescent_small_4" CreStamp="1665767621" ModStamp="1669046650" WorldPos="-33.4813 125.85 56.6073" Rotation="-0.300815 1.23454 -0.0626774" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 162 268435713">
+            <Entity ID="268435713" Name="fluorescent_small_4" CreStamp="1665767621" ModStamp="1669046650" WorldPos="-33.4813 125.85 3.88945" Rotation="-0.300815 1.23454 -0.0626774" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 162 268435713">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -1937,7 +1938,7 @@
                     <Var Name="AttackerCustomCallback" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435771" Name="fluorescent_small_5" CreStamp="1665776098" ModStamp="1669046650" WorldPos="-38.6625 125.453 64.2774" Rotation="-2.99509 -1.31956 3.04103" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 165 268435771">
+            <Entity ID="268435771" Name="fluorescent_small_5" CreStamp="1665776098" ModStamp="1669046650" WorldPos="-38.6625 125.453 11.5595" Rotation="-2.99509 -1.31956 3.04103" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 165 268435771">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2002,7 +2003,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435772" Name="fluorescent_small_6" CreStamp="1665776132" ModStamp="1669046650" WorldPos="-37.6136 123.384 64.1694" Rotation="1.85704 -0.0363013 -1.5294" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 121 268435772">
+            <Entity ID="268435772" Name="fluorescent_small_6" CreStamp="1665776132" ModStamp="1669046650" WorldPos="-37.6136 123.384 11.4516" Rotation="1.85704 -0.0363013 -1.5294" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 121 268435772">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2067,7 +2068,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435773" Name="fluorescent_small_7" CreStamp="1665776157" ModStamp="1669046650" WorldPos="-36.8718 124.983 58.2283" Rotation="2.9187 1.06727 -0.0868419" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 164 268435773">
+            <Entity ID="268435773" Name="fluorescent_small_7" CreStamp="1665776157" ModStamp="1669046650" WorldPos="-36.8718 124.983 5.51045" Rotation="2.9187 1.06727 -0.0868419" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 164 268435773">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2132,7 +2133,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435774" Name="fluorescent_small_8" CreStamp="1665776189" ModStamp="1669046650" WorldPos="-35.9169 125.523 55.9124" Rotation="-0.142711 1.97716 3.01034" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 120 268435774">
+            <Entity ID="268435774" Name="fluorescent_small_8" CreStamp="1665776189" ModStamp="1669046650" WorldPos="-35.9169 125.523 3.19455" Rotation="-0.142711 1.97716 3.01034" Scale="0.75 0.5 0.5" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 120 268435774">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2197,7 +2198,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435786" Name="zeppelin_searchlight01_1" CreStamp="1665776413" ModStamp="1669046650" WorldPos="-37.1048 122.625 63.8723" Rotation="-2.40983 -1.33075 2.75838" Scale="1 1 1" FileIndex="69" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 113 268435786">
+            <Entity ID="268435786" Name="zeppelin_searchlight01_1" CreStamp="1665776413" ModStamp="1669046650" WorldPos="-37.1048 122.625 11.1544" Rotation="-2.40983 -1.33075 2.75838" Scale="1 1 1" FileIndex="69" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 113 268435786">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2688,7 +2689,7 @@
                     <Var Name="Locked" Value="true" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435927" Name="zeppelin_searchlight01_2" CreStamp="1665852878" ModStamp="1669046650" WorldPos="-35.7164 122.822 64.2574" Rotation="0.740641 0.792073 -0.228208" Scale="1 1 1" FileIndex="69" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 185 268435927">
+            <Entity ID="268435927" Name="zeppelin_searchlight01_2" CreStamp="1665852878" ModStamp="1669046650" WorldPos="-35.7164 122.822 11.5396" Rotation="0.740641 0.792073 -0.228208" Scale="1 1 1" FileIndex="69" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 185 268435927">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -4413,7 +4414,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268439368" Name="wau_lump02_1" CreStamp="1667329583" ModStamp="1667581045" WorldPos="-23.5343 125.375 62.4503" Rotation="-3.14159 0.311651 2.61799" Scale="1.5 1.5 1.5" FileIndex="232" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2210 268439368">
+            <Entity ID="268439368" Name="wau_lump02_1" CreStamp="1667329583" ModStamp="1667581045" WorldPos="-23.5343 125.375 23.4189" Rotation="-3.14159 0.311651 2.61799" Scale="1.5 1.5 1.5" FileIndex="232" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2210 268439368">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -6262,7 +6263,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440311" Name="blue_runner_infected_1" CreStamp="1668074450" ModStamp="1669046650" WorldPos="-37.3899 125.718 56.1384" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2556 268440311">
+            <Entity ID="268440311" Name="blue_runner_infected_1" CreStamp="1668074450" ModStamp="1669046650" WorldPos="-37.3899 125.718 3.42055" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2556 268440311">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="GroupEntityName" Value="runner_obelisk" />
@@ -6290,7 +6291,7 @@
                     <Var Name="ExtraEscapeEntities" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440313" Name="blue_runner_infected_2" CreStamp="1668075963" ModStamp="1669046650" WorldPos="-37.1619 125.751 55.6584" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2551 268440313">
+            <Entity ID="268440313" Name="blue_runner_infected_2" CreStamp="1668075963" ModStamp="1669046650" WorldPos="-37.1619 125.751 2.94055" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2551 268440313">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="GroupEntityName" Value="runner_obelisk" />
@@ -6318,7 +6319,7 @@
                     <Var Name="ExtraEscapeEntities" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440314" Name="blue_runner_infected_3" CreStamp="1668075975" ModStamp="1669046650" WorldPos="-37.6991 125.769 55.3013" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2554 268440314">
+            <Entity ID="268440314" Name="blue_runner_infected_3" CreStamp="1668075975" ModStamp="1669046650" WorldPos="-37.6991 125.769 2.58345" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2554 268440314">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="GroupEntityName" Value="runner_obelisk" />
@@ -6346,7 +6347,7 @@
                     <Var Name="ExtraEscapeEntities" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440315" Name="blue_runner_infected_4" CreStamp="1668076002" ModStamp="1669046650" WorldPos="-37.5224 125.521 55.5004" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2552 268440315">
+            <Entity ID="268440315" Name="blue_runner_infected_4" CreStamp="1668076002" ModStamp="1669046650" WorldPos="-37.5224 125.521 2.78255" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2552 268440315">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="GroupEntityName" Value="runner_obelisk" />
@@ -6374,7 +6375,7 @@
                     <Var Name="ExtraEscapeEntities" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440316" Name="blue_runner_infected_5" CreStamp="1668076020" ModStamp="1669046650" WorldPos="-37.3745 125.979 55.3324" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2553 268440316">
+            <Entity ID="268440316" Name="blue_runner_infected_5" CreStamp="1668076020" ModStamp="1669046650" WorldPos="-37.3745 125.979 2.61455" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2553 268440316">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="GroupEntityName" Value="runner_obelisk" />
@@ -6402,7 +6403,7 @@
                     <Var Name="ExtraEscapeEntities" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268440317" Name="blue_runner_infected_6" CreStamp="1668076033" ModStamp="1669046650" WorldPos="-37.5896 125.66 54.7204" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2345 268440317">
+            <Entity ID="268440317" Name="blue_runner_infected_6" CreStamp="1668076033" ModStamp="1669046650" WorldPos="-37.5896 125.66 2.00255" Rotation="0 0 0" Scale="1.776 1.752 1.409" FileIndex="431" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2345 268440317">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="GroupEntityName" Value="runner_obelisk" />
@@ -8928,7 +8929,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268441542" Name="station_robot_dock_2" CreStamp="1669217139" ModStamp="1669217302" WorldPos="28.25 122 62.25" Rotation="0 0 0" Scale="1 1 1" FileIndex="225" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2303 268441542">
+            <Entity ID="268441542" Name="station_robot_dock_2" CreStamp="1669217139" ModStamp="1669231781" WorldPos="-2.75 122 46.75" Rotation="0 0 0" Scale="1 1 1" FileIndex="225" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2303 268441542">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -9862,6 +9863,17 @@
                 </UserVariables>
             </Entity>
             <Entity ID="268441805" Name="rusted_ship_cylinder1_6" CreStamp="1669231360" ModStamp="1669231395" WorldPos="17.25 135 -220" Rotation="-1.91986 5.83247e-014 1.5708" Scale="4 4 4" FileIndex="323" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2423 268441805">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268441821" Name="lift_arm_delta_1" CreStamp="1669232584" ModStamp="1669232598" WorldPos="1.25 121.5 63.25" Rotation="0 0 0" Scale="1.5 1.5 1.5" FileIndex="590" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1639 268441821">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
