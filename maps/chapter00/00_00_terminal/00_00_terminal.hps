@@ -58,6 +58,8 @@ class cScrMap : iScrMap
 	void Setup()
 	{
 		// Set map DoF and such here
+		
+		Player_SetAmbientLight_Indoors();
 	}
 	
 	//-------------------------------------------------------
@@ -553,14 +555,31 @@ class cScrMap : iScrMap
 		
 		//} ---- THE FINAL CHAPTER
 		
-		// Start with the player as another character running for his life
-		// Establish that something is chasing him, falling metal piece
-		
 		// INTRO:
 		// Black screen, heavy breathing fades in quickly as screen fades in
- 
-		
+		// The player wakes up in a scan chair
+		// It's calm
+		// The player explores and finds the meteor in the lab
+		// The monster shows
 		// The goo monster from THETA picks up the player in a scripted death just like in the original game
+		
+		// THE TRASH COMPACTOR:
+		// The player wakes up in the trash compactor
+		// They get flushed out into the ocean when trying to find their way out of the monster's nest (this place is scary, have some tension build up)
+		
+		// THE SHIP:
+		// The player gets dragged by a tenctacle into the nest.
+		// The player proceeds forward, high tension
+		// The path they come from collapses, they are stuck
+		// Silence for some time
+		// A light passes a hole in the hull
+		// Then a door gets opened by the KATEBOT
+		// YAY
+		// The player will now proceed to the meteor lab
+		
+		// THE METEOR CRATER:
+		
+		// THE LAB:
 		
 		// The player has low HP (CONVEY THIS WITH SCREEN EFFECTS, AND SO ON)
 		// After the player wakes up KATEBOT shows up scanning the environment
