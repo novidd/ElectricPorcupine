@@ -33,7 +33,7 @@
 
 //--------------------------------------------------
  
-const float gfDofMax = 3.0f;
+const float gfDofMax = 2.0f;
 
 //--------------------------------------------------
 
@@ -132,6 +132,8 @@ class cScrMap : iScrMap
 		Effect_Bloom_FadeBloomWidth(64, 0);
 		Effect_Bloom_FadeBloomTint(0.6, 0.4, 0.4, 0);
 		Effect_RadialBlur_SetDirect(0.1, 0.75, 0.1);
+		
+		Map_SetUnderwater(true);
 	}
 
 	//-------------------------------------------------------
@@ -240,16 +242,6 @@ class cScrMap : iScrMap
 	{
 		cLux_AddDebugMessage(Entity_GetVarString(asChild, ""));
 		
-		// USE ENUMS
-		// States
-		// InStorm
-		// InStation
-		// LeaveStorm
-		// EnterStorm
-		
-		// Nest in an update function
-		// Create a whole module just for this functionality to easily use across different maps
-		
 		// Make the suit do beeping and booping noises when it updates
 		
 		return true;
@@ -321,7 +313,7 @@ class cScrMap : iScrMap
 	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *INTRO - SWITCH BODIES*
+	// SCENE 1 *INTRO - WAKE UP*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
@@ -405,6 +397,8 @@ class cScrMap : iScrMap
 		// KateBot rises from below, takes a right into the room on the side, then comes out again and notices the player
 		// He approaches and when he is close to the player flash the screen to white, then fade out
 		// The player's suit boots up --> Gameplay then starts
+		
+		// SOME TEXT ON BOTTOM LEFT SIDE IN SIMPLE HALF LIFE STYLE (some sort of code)
 		
 		//{ THE STORY:
 		
