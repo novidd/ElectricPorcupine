@@ -119,16 +119,19 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-		cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
-		Effect_DoF_Start(0, 6, 0.5, 0);
-//	    float fFadeTime = 0.5;
-
-		Effect_Bloom_FadeBrightPass(0.00001, 0); //set so pixels that are over 127 (255 * 0.5) contributes to bloom.
-		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best between 32 - 512 pixels
-		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets a red tint on bloom
-		//Game_AutoSave();
+//		cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
+//		Effect_DoF_Start(0, 6, 0.5, 0);
+//
+//		Effect_Bloom_FadeBrightPass(0.00001, 0); //set so pixels that are over 127 (255 * 0.5) contributes to bloom.
+//		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best between 32 - 512 pixels
+//		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets a red tint on bloom
 		
-//		Map_AddTimer("TimerStartPreload",10.0f,"TimerStartPreload");
+		Effect_DoF_Start(0.0f, gfDofMax, 0.5, 0.0);
+		
+		Effect_Bloom_FadeBrightPass(0.00001, 0);
+		Effect_Bloom_FadeBloomWidth(64, 0);
+		Effect_Bloom_FadeBloomTint(0.6, 0.4, 0.4, 0);
+		Effect_RadialBlur_SetDirect(0.1, 0.75, 0.1);
 	}
 
 	//-------------------------------------------------------
