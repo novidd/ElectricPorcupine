@@ -66,14 +66,21 @@ class cScrMap : iScrMap
 	
 	void PreloadData()
 	{
-		// Gui
-		OmnitoolGui_Preload();
+		/////////////////////////////////
+		// PARTICLES CREATED
+		/////////////////////////////////
+		StationGui_PreloadDefault();
+		ParticleSystem_Preload("");
 		
-		// Player hands
+		////////////////////////////
+		// PLAYER HANDS
+		////////////////////////////
 		PlayerHands_PreloadHandModel_Diving();
 		
-		// Particles
-		ParticleSystem_Preload("");
+		///////////////////////////
+		// IMGUI
+		///////////////////////////
+		OmnitoolGui_Preload();
 	}
 	
 	//-------------------------------------------------------
@@ -112,6 +119,13 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
+		cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
+		Effect_DoF_Start(0, 6, 0.5, 0);
+//	    float fFadeTime = 0.5;
+
+		Effect_Bloom_FadeBrightPass(0.00001, 0); //set so pixels that are over 127 (255 * 0.5) contributes to bloom.
+		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best between 32 - 512 pixels
+		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets a red tint on bloom
 		//Game_AutoSave();
 		
 //		Map_AddTimer("TimerStartPreload",10.0f,"TimerStartPreload");
@@ -983,42 +997,6 @@ class cScrMap : iScrMap
 		
 		//} END Simon wakes up
 		
-		/////////////////////////////////////////
-		// SCENE 1 EVENT X - *Zeppelin almost collapses*
-		//{///////////////////////////////////////
-		
-		void ZeppelinCollapse()
-		{
-			cLux_AddDebugMessage("Collapse Zeppelin...");
-			
-			Prop_MoveLinearTo("ZeppelinPlatform", "ZeppelinPlatform_Target", 1, .5, 0, true);
-			
-			Prop_SetStaticPhysics("ZeppelinEastBarrier*", false);
-			Lever_SetAutoMoveEnabled("ZeppelinEastBarrier*", true);
-			Lever_SetAutoMoveTarget("ZeppelinEastBarrier*", 1);
-			
-			// On collapse bubble particles around the whole zeppelin
-			// oneshot_waterbubbles_huge_directed_shorter.ps (around)
-			// Plus oneshot_waterbubbles_ground_impact.ps (place below zeppelin to line it up properly)
-			
-			// Simulate the zeppelin collapsing with, sway, screen shake and sfx
-			// The sound of swaying cables *bwoon* *bwoon*
-		}
-		
-		bool OnCollide_MetalPieceFall(const tString &in asParent, const tString &in asChild, int alState)
-		{
-			// TRIGGER ONLY WHEN THE PLAYER HAS PICKED UP THE OMNITOOL
-			cLux_AddDebugMessage("!! METAL PIECE FALLING !!");
-			return false;
-		}
-		
-		// A METAL PIECE FALLS A FEW SECONDS LATER
-		// LOOK AT OMICRON SFX USED FOR THE FALLING METAL STRUCTURE
-		
-		//} END Metal piece falls down
-		
-		//-------------------------------------------------------
-		
 	//} END SCENE 1
 	
 	/////////////////////////////////////////
@@ -1034,122 +1012,11 @@ class cScrMap : iScrMap
     //-------------------------------------------------------
 	
 	/////////////////////////////////////////
-	// Terminal *Zeppelin A*
+	// Terminal *XXX*
 	/////////////////////////////////////////
 
 	//-------------------------------------------------------
 	
-	void OnGuiZeppelinA(const tString&in asEntityName, float afTimeStep)
-	{
-		ImGui_SetTransCategory("02_04_theta_outside");
-	
-		cImGuiLabelData label;
-		label.mFont.SetFile(Helper_Font_GetFontName(eLuxFontType_Sansation_Medium));
-		label.mFont.mvSize = cVector2f(50, 50);
-	
-		StationGuiBG_Scanlines();
-		StationGuiBG_Backdrop();
-		
-		// ADD GLITCH LINES
-		
-		if (mfTotalDistToLanding<0.0f)
-			return;
-			
-		float fDist = 1.0f-(mfDistToLanding/mfTotalDistToLanding);
-		cVector3f vMapStart = cVector3f(-345,-300,1.0f);
-		cVector3f vMapEnd = cVector3f(-425.0f,-120.0f,1.0f);
-		cVector3f vOffs = (vMapEnd-vMapStart)*fDist;
-		cVector3f vMapCurrent = vMapStart+vOffs;
-		
-		float fDepth=2534.0f+(mvStartingPos.y-mvLandingPos.y)*fDist;
-		
-		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
-		
-		////////////////////
-		// Map		
-		ImGui_DoImage(cImGuiGfx("zepmap", eImGuiGfx_Texture), 
-			vMapCurrent, ImGui_NrmSizeGroup(cVector2f(1.75f,1.75f)) );
-		
-		////////////////////
-		// Cross
-		ImGui_DoImage(cImGuiGfx("zepcross", eImGuiGfx_Texture), 
-			ImGui_NrmPosGroup(cVector3f(0.525,0.325,2.0f)), ImGui_NrmSizeGroup(cVector2f(0.125f,0.2f)) );
-
-		////////////////////
-		// Distance
-		tString sDist = ""+mfDistToLanding;
-		int lDotPos = cString_GetLastCharPos(sDist, '.');
-		sDist = cString_Sub(sDist, 0, lDotPos+3);
-		
-		tString sDepth = ""+fDepth;
-		lDotPos = cString_GetLastCharPos(sDepth, '.');
-		sDepth = cString_Sub(sDepth, 0, lDotPos+3);
-
-		ImGui_DoLabelExt("ZepGui_Dest", label, cVector3f(120.0f,420.0f,1.0f), cVector2f_MinusOne, 1.0f);
-		
-		tWString sDistMsg = cResources_Translate("02_04_theta_outside", "ZepGui_DistanceDepth");
-		
-		// Resize for translation here to get a constant font size instead of one that changes depending on dist/depth
-		ImGui_ResizeFontToFit(sDistMsg, label.mFont, ImGui_GetCurrentGroupSize().x-240);
-		
-		sDistMsg = cString_ReplaceStringToW(sDistMsg, cString_To16Char("%dist"), cString_To16Char(sDist));
-		sDistMsg = cString_ReplaceStringToW(sDistMsg, cString_To16Char("%depth"), cString_To16Char(sDepth));
-		
-		ImGui_SetTextOverride(sDistMsg);
-		ImGui_DoLabelExt("", label, cVector3f(120.0f,480.0f,1.0f), cVector2f_MinusOne, 1.0f);
-			
-		ImGui_GroupEnd();
-	}
-	
-	//-------------------------------------------------------
-
-	/////////////////////////////////////////
-	// Terminal *Zeppelin B*
-	/////////////////////////////////////////
-	
-	//-------------------------------------------------------
-	
-	int mlZepInfoImage;
-	float mfZepInfoTimer;
-	
-	//-------------------------------------------------------
-	
-	void OnGuiZeppelinB(const tString&in asEntityName, float afTimeStep)
-	{
-		ImGui_SetTransCategory("02_04_theta_outside");
-		
-		StationGuiBG_Scanlines();
-		StationGuiBG_Backdrop();
-		
-		ImGui_GroupBegin(cVector3f_Zero, ImGui_GetSize());
-		
-		mfZepInfoTimer+=afTimeStep;
-		if (mfZepInfoTimer>2.0f)
-		{
-			mfZepInfoTimer-=2.0f;
-			mlZepInfoImage++;
-			if (mlZepInfoImage>4)
-			{
-				mlZepInfoImage=1;
-			}
-		}
-
-		////////////////////
-		// Map		
-		ImGui_DoImage(cImGuiGfx("zepinfo"+mlZepInfoImage+".dds", eImGuiGfx_Texture), 
-			cVector3f(0,0,10), ImGui_NrmSizeGroup(cVector2f_One) );
-			
-		ImGui_GroupEnd();
-	}
-
-	//-------------------------------------------------------
-	
-	void OnGuiZepCath(const tString&in asEntityName, float afTimeStep)
-	{
-		StationGuiBG_Scanlines();
-		Depth_ImGui_CathPortrait(afTimeStep);
-	}
-
 	//-------------------------------------------------------
 	
 	//} END TERMINALS
