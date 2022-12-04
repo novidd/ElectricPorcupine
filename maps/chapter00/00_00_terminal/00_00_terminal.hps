@@ -362,66 +362,6 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		// Use 01_02_glimpse_spot.ent for a scare, move it along an axis the make look like a light of a monster patrolling, just like in upsilon_inside
-		
-		// Have sounds come from darkness in front of player to tease them (footsteps, growling etc)
-		
-		// !! IT IS NECESSARY TO GIVE THE PLAYER SOME TIME ALONE TO MAKE THE REVEAL OF THE KATEBOT MORE RELEAVING !!
-		// A little later reveal KateBot as the player's companion after this (it has to be underwater)
-		// The KateBot helps you with their laser/blowtorch thingy
-
-		// Have a terminal with multiple cameras to switch between
-		// One of the cameras shows a creepy corridor with lots of blood (a flickering light showing the blood text on the wall)
-		
-		// Have sounds come from darkness in front of player to tease them (footsteps, growling etc)
-		
-		// To enter the station the player has to find the nearest airlock (need to use the omnitool)
-		// Simon speaks "Still works..." when door opens
-		
-		// NEW STATION LEVEL:
-		
-		// When Simon is standing in the darkness, "Is this Theta..?"
-		
-		// Steam pipes "lab_welder.dae" placed on the ceiling, falling steam
-		
-		// Give the player a decent pause after they passed through the airlock
-		
-		// The player enters the corridor after the diving suit room
-		// A corpse with a blood trail coming from the staircase
-		// A blinking lamp is coming from the staircase highlighting the corpse
-		// The player has reaches the control room
-		// Interact with the camera terminal
-		// Swap between different camera views
-		// One shows the corridor with a corpse on the floor highlighted with the stais the player just came from
-		// The monster shows up here, stepping into the light approaching the stairs, the lamp turns off
-		// The terminal screen starts to blink
-		// This whole part of the station's electricity starts to fail
-		
-		// THE FEED ON THE CAMERA IS ON A DELAY - TRICKING THE PLAYER
-		// The monster is actually standing behind the player by the doorway already OR the monster is not there but around the corner in the staircase hallway waiting for the player
-		// The player looks behind them, lightning flashes (use a spotlight through the window), music triggers
-		// The only other light shining into the room is a flickering light (with water refraction) from the aquarium and from outside
-		
-		// The player has a split second to hide from this creature
-		
-		// A: Underneath the main control room desk
-		// B: Run past and hide in the server room
-		// C: Somewhere downstairs and hide
-		
-		// After a little while, the power turns back on
-		
-		// After this is the long corridor, it's perfect to have Simon think of a previous conversation between him and Catherine - to make the story more depressing
-		// !! Utilize music well !!
-		
-		// HAVE A LONG BRIDGE (UPSILON AWAKE)
-		// Play some Catherine flashback dialogue here
-		// Make Simon's head hurt here (convey with screen effects and Simon emoting)
-		// After implement a slideshow about launching a satellite (phi_inside)
-		// The player will hear it in the distance in a corridor (from the other end of the long bridge tunnel - upsilon tunnel)
-		// Have it play on a loop with no player interaction
-		
-		//} -- LEVEL: MAIN FLOOR (SECTION 1)
-		
 		//{ ---- THE FINAL CHAPTER "XXX" ----
 		
 		//{ -- LEVEL: THE LAB NEST
@@ -442,119 +382,6 @@ class cScrMap : iScrMap
 		
 		//} -- LEVEL: THE LAB NEST
 		
-		//{ -- LEVEL: THE LAB
-		
-		// The player will have to ability to go outside into the meteor crater (it's not far from the lab)
-		// In the crater there are theres tons of crashed ships/submarines and stuff because the meteor pulls them to itself
-		
-		// The crater is no longer has the meteor inside it because it was moved into the station using a rail system
-		// It is now inside the bottom of the station inside some kind of high level quarantine tech lab behind a thick glass
-		// The WAU has obviously overgrown to all hell
-		
-		// When the player approaches the meteor the diving suit will react in different ways
-		// Almost as if the player is approaching something radioactive (one if several reasons) and because its A FUCKING WAU METOR
-		
-		// - THE TERMINAL (Mod name???)
-		
-		// Give the player a choice to destroy everything (and killing themself) OR come to terms with his now lonely immortal life
-		// Depending on their choice the final end screen will look different
-		
-		// Each ending shows a different sceneries
-		
-		// Good ending characteristics: Sunny, sound of birds, happy
-		// Open meadows with a large oak tree on it, with distant futuristic buildings
-		
-		// Bad ending characteristics: Night, lava, red sky, burning world (instead use a view of Earth's surface?)
-		// Falling rocks from space (use billboards or make an entity), move them over time
-		
-		// Simon establishes a direct link with the ARK
-		// Someone responds on the other side
-		// The whole conversation is in text communications
-		// Simon emotes and speaks during the important and impactful story beats
-		// Do not reveal that Catherine is the one typing till the end to make it more sad (this also displays Catherine's distant personality)
-		
-		// This terminal screen: monitor_theta_terminal.ent
-		
-		// DESIGN TO UI LIKE A COMMAND PROMPT
-		
-		// C = Catherine, S = Simon, S_ARK = Simon on the ark
-		
-		// C: "Think if it as a virtual machine -- If there is "
-		// S: "So thats it?"
-		// C: "Yeah."
-		
-		// C: "Do you have someone special?"
-		// S: "What do you mean?"
-		
-		// *long pause*
-		
-		// C: "oh right"
-		// C: "sorry"
-		
-		// S: "It's ok."
-		
-		// C: "sorry"
-		// C: "sorry 3x"
-		
-		// *Simon chuckles a little to himself*
-		// His eyes (camera) quickly meets the floor and stays there for some time
-		
-		// C: "I do, a husband and a sweet little girl."
-		// S: "What's her name?"
-		// C: "Alice." (Simons girlfriend's name who died in the accident)
-		
-		// !! More dialogue here !!
-		
-		// *NO MORE RESPONSE FROM THE CONNECTION*
-		
-		// !! CONTINUE HERE FROM GOOD ENDING OR TO BAD ENDING!!
-		
-		//{ - THE GOOD ENDING -
-		
-		// SCREEN GOES BLACK
-		
-		// Credits: "Created by Lucas Pettersson"
-		
-		// SCREEN FADES BACK IN (the player can't see anything tho OR just keep the screen black)
-		// THE STATION HAS BECOME MORE DECREPIT AND OVERGROWN (who knows how much time has passed)
-		
-		// The terminal goes *beep*
-		// The only thing the player can see is the light of the terminal lighting the surrounding area
-		
-		// S_ARK: Hello?
-		//
-		
-		// S: Does she know about me?
-		// S_ARK: No.
-		// S: Good.
-		
-		// Simon whispers to himself "Alice..."
-		
-		// THE END
-		
-		//} - THE GOOD ENDING
-		
-		//{ - THE BAD ENDING -
-		
-		// The player interacts with the beating heart of the meteor (the player loses their arm in the process)
-		
-		// As the station is breaking down around the player Simon sits down
-		// *an alarm spins and is blaring*
-		// All the sounds become muffled and lower the volume of global sounds(use underwater filter, code used in airlocks)
-		// Simon talks quietly to himself
-		// The monster enters the room from the otherside
-		// Simon doesn't care
-		// He says a final line
-		// *BOOM*
-		// SILENCE AND BLACK SCREEN
-		// Use the dialogue from before the Zeppelin explosion
-		// FADE IN CREDITS
-		// THE END
-		
-		//} - THE BAD ENDING -
-		
-		//} -- LEVEL: THE LAB
-		
 		//{ -- ENDING: THE FINAL END CARD
 		
 		// Give the player a choice to destroy everything (and killing themself) OR come to terms with his now lonely immortal life
@@ -573,20 +400,9 @@ class cScrMap : iScrMap
 		//} ---- THE FINAL CHAPTER
 		
 		// INTRO:
-		// Black screen, heavy breathing fades in quickly as screen fades in
-		// The player wakes up in a scan chair
-		// cathchat_descentpart1_002_player_001 "What happened?" *confused*
-		// cathandsimon_5c_cath_simonisleftalone_001_player_001 "Catherine...?"
-		// *heavy breathing*
-		// The player explores and finds the meteor in the lab
-		// The monster shows
-		// The goo monster from THETA picks up the player in a scripted death just like in the original game
-		
-		// simoncomments_intro_breath_001_player_001 "What, what the hell how is this possible?"
-		
-		// cathandsimon_5c_cath_talkafterwakeup_004_player_001 "What the hell happened, what went wrong?"
-		
-		// The player finds a Ms Curie sign lit up, he comments
+		// The screen fades in quickly with a *whoosh*
+		// No music, just ambience
+		// KateBot rises from below, takes a right into the room on the side, then comes out again and notices the player
 		
 		//{ THE STORY:
 		
