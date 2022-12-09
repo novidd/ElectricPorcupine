@@ -89,7 +89,7 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
-		bool bDoIntro = true;
+		bool mbIntroRunning = true;
 		
 		/////////////////////////
 		// Player setup
@@ -107,9 +107,9 @@ class cScrMap : iScrMap
 //			bDoIntro = false;
 		}
 		
-		if (bDoIntro)
+		if (mbIntroRunning)
 		{
-			SetupIntro();
+			TimerIntro("");
 		}
 	}
 
@@ -119,21 +119,19 @@ class cScrMap : iScrMap
 	// Run when entering map
 	void OnEnter()
 	{
-//		cLux_GetCurrentMap().GetWorld().SetFogUnderwater(true);
-//		Effect_DoF_Start(0, 6, 0.5, 0);
-//
-//		Effect_Bloom_FadeBrightPass(0.00001, 0); //set so pixels that are over 127 (255 * 0.5) contributes to bloom.
-//		Effect_Bloom_FadeBloomWidth(160, 0); //sets 128 pixels in bloom width, looks best between 32 - 512 pixels
-//		Effect_Bloom_FadeBloomTint(0.3, 0.3, 0.3, 0); //sets a red tint on bloom
+		Effect_Bloom_FadeBrightPass(0.75f, 2);
+		Effect_Bloom_FadeBloomWidth(128, 2);
+		Effect_Bloom_FadeBloomFalloff(0.5f, 2);
+		Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
 		
-		Effect_DoF_Start(0.0f, gfDofMax, 0.5, 0.0);
-		
-		Effect_Bloom_FadeBrightPass(0.00001, 0);
-		Effect_Bloom_FadeBloomWidth(64, 0);
-		Effect_Bloom_FadeBloomTint(0.6, 0.4, 0.4, 0);
-		Effect_RadialBlur_SetDirect(0.1, 0.75, 0.1);
-		
-		Map_SetUnderwater(true);
+//		Effect_DoF_Start(0.0f, gfDofMax, 0.5, 0.0);
+//		
+//		Effect_Bloom_FadeBrightPass(0.00001, 0);
+//		Effect_Bloom_FadeBloomWidth(64, 0);
+//		Effect_Bloom_FadeBloomTint(0.6, 0.4, 0.4, 0);
+//		Effect_RadialBlur_SetDirect(0.1, 0.75, 0.1);
+//		
+//		Map_SetUnderwater(true);
 	}
 
 	//-------------------------------------------------------
@@ -313,7 +311,7 @@ class cScrMap : iScrMap
 	
 	/////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE 1 *INTRO - WAKE UP*
+	// SCENE 1 *INTRO*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
 	
@@ -349,72 +347,82 @@ class cScrMap : iScrMap
 		// 04_01_stormstart for long scary moment (when the player enters the area with blood covered walls lit up by a fallen spotlight)
 		
 		/////////////////////////////////////////
-		// SCENE 1 EVENT 1 - *Simon wakes up*
+		// SCENE 1 EVENT 1 - *Intro - Start*
 		//{///////////////////////////////////////
 		
 		//-------------------------------------------------------
-		
-		//{ ---- THE FINAL CHAPTER "XXX" ----
-		
-		//{ -- LEVEL: THE LAB NEST
 
-		// This map is scary
-		// Use the Tau monster
-		
-		// The player takes the elevator to the lab, the elevator goes past it because it malfunctions (cuz of the WAU)
-		
-		// The player has to click on a terminal/button to turn on the elevator
-		// How to communicate elevator levels:
-		// A number on a terminal that moves toward to next floor to the next
-		// The elevator will malfunction before the target lab floor is reached
-		
-		// The elevator's doors open as lights turn back on flickering
-		// The elevator's light reveals the starting basement room below the lab
-		// It's very dark, only the WAU lights it up here and there AND flickering lights (some will function to guide the player and such)
-		
-		//} -- LEVEL: THE LAB NEST
-		
-		//{ -- ENDING: THE FINAL END CARD
-		
-		// Give the player a choice to destroy everything (and killing themself) OR come to terms with his now lonely immortal life
-		// Depending on their choice the final end screen will look different
-		
-		// Each ending shows a different sceneries
-		
-		// Good ending characteristics: Sunny, sound of birds, happy
-		// Open meadows with a large oak tree on it, with distant futuristic buildings
-		
-		// Bad ending characteristics: Night, lava, red sky, burning world (instead use a view of Earth's surface?)
-		// Falling rocks from space (use billboards or make an entity), move them over time
-		
-		//} -- ENDING: THE FINAL END CARD
-		
-		//} ---- THE FINAL CHAPTER
-		
 		// STORY:
-		// The player is running a simulation while sitting a scan chair
-		// There is an objective with the simulation the player has to achieve
+		// LOCATION: A space station
 		
-		// There is a computer with chip modules to use that contain the simulations
-		// The player needs to switch to someone elses perspective
+		// STORY: 
+		// The player is on a space station
+		// This is set before the events of the main game
+		// It's all good
 		
-		// Character:
-		// SLOT FOR PORTRAIT IMAGE - USE A CLASSIC PLACEHOLDER IMAGE IF A PORTRAIT IS MISSING FOR THAT CHARACTER
-		// Name: XXX XXX
-		// Status: Alive/Deceased
-		//
+		// *An unidentified lifeform has been detected in the ship*
+		// The message then disappears (the WAU has internal controls of the ship) - the protagonist still feels he needs to check it out
 		
-		// In the intro the player will die in a scripted death and then be sent to the real world
+		// The player passes through the room with all the other crew passangers frozen in their pods (look at Alien for inspiration)
 		
-		// In the end of the game the player will be sent back to reality
-		// The monster shows up here and kills the player
+		// Before he can a large rock passes the sun
+		// Have an explosion on earth (use smoke and stuff rising around the area after explosion)
+		// The whole screen lights up as the player looks at it
+		// The Ship shakes
+		// The player falls back
+		// The power goes into support mode from the blast
+		
+		// Go back to several camera perspectives while the power is down (always use the same camera perspectives - the player will see the WAU seed here again IT GROWS EACH TIME)
+		// The transmission from the MS CURIE plays from a terminal
+		// Lights flicker
+		
+		// FLASHBACK:
+		// Fade in - the player is laying in the bed 
+		// The player goes to the lab
+		// Interact with the tablet - a message from his daughter (she's dead)
+		// Screen goes black
+		
+		// The player wakes up in reality
+		
+		// Things have gone to shit, there is a monster on the ship
+		// Player gets caught by it
+		// The player then wakes up many years later (when the main game's story is set) - the WAU has spread all over the place
+		// The ship is running on auxilliary systems on the lowest level (no power only life support and no gravity)
+		// The WAU has spread all over the place
+		// The monster has actually died
+		
+		// The player will attempt to make contact with Pathos
+		// Then a warning goes of because an object is passing close to the ship
+		// The player will see the satellite pass their ship out the window (play 05_02/SFX/sat/fly_out)
+		// END
 		
 		// INTRO:
 		
-		// SOME TEXT ON BOTTOM LEFT SIDE IN SIMPLE HALF LIFE STYLE (some sort of code)
-		// "Code #4789: Unauthorized reboot of systems..."
-		// "Objective: Establish connection to Omega."
-		// ">" *blinking*
+		// Use this to change how gravity affects the player Player_SetGravity(cVector3f(0, 0, 0));
+		
+		// Text showing what year it is: "2074"
+		
+		// A still camera perspective starts fades quickly in (look at omicron puzzle and how that works)
+		// Cut to several perspectives
+		// Something strange can be seen (the seed which will make the monster spawn)
+		
+		// Then suddenly to the player sitting in a chair
+		// A ball rolls on the table slowly - the camera follows
+		// The ball falls on the floor
+		
+		// 1. Lick it.
+		// 2. Don't lick it.
+		// 3. Lick it, but only a little.
+		
+		void TimerIntro(const tString &in asTimer)
+		{	
+			mbIntroRunning = true;
+			Map_AddTimer("timer_begin", 0.1f, "TimerBeginSequences");
+		
+			// Effects for when in player view
+			//Effect_ChromaticAberration_StartAnim(8.0f,0.005,0.005,cVector2f_Zero);
+			//ffect_ImageTrail_Start(0.08,0.1,7.0,1.0);
+		}
 		
 		// The screaming of the monster
 		// The screen fades in quickly with a *whoosh*
@@ -434,15 +442,6 @@ class cScrMap : iScrMap
 		// The monster breaks into the room when there is only silence - stinger here
 		
 		// The player has to run around the monster - the way it came from
-		
-		// The player will now run toward the airlock
-		
-		// After the airlock door closes the monster bangs on the door and screams
-		
-		// As the player crosses this bridge, there are some tremors with distant moaning of a monster
-		// The station's outer lights flicker
-		
-		//
 		
 		//{ THE STORY:
 		
