@@ -373,7 +373,8 @@ class cScrMap : iScrMap
 		// The message then disappears (the WAU has internal controls of the ship) - the protagonist still feels he needs to check it out
 		
 		// The player passes through the room with all the other crew passangers frozen in their pods (look at Alien for inspiration)
-		// Do a scary whisper here
+		// Do a scary whisper here (play 03_02_omicron_inside/AMB/spot/window_rub)
+		// Use 03_02_omicron_inside/AMB/spot/whispers at some other point
 		// Play a heartbeat - Do special screen effects every heartbeat
 		
 		// On return he can a large rock passes the sun
@@ -395,6 +396,9 @@ class cScrMap : iScrMap
 		
 		// The player wakes up in reality
 		// Play a heartbeat - Do special screen effects every heartbeat
+		
+		// You have to choose to kill all the remaining crew members or not
+		// THIS IS A MORAL CHOICE
 		
 		// Things have gone to shit, there is a monster on the ship
 		// Player gets caught by it
@@ -426,6 +430,11 @@ class cScrMap : iScrMap
 		// 1. Lick it.
 		// 2. Don't lick it.
 		// 3. Lick it, but only a little.
+		
+		// Useful sounds:
+		// 03_02_omicron_inside/gameplay/robot_puzzle/robot_puzzle_cry
+		// 03_02_omicron_inside/gameplay/robot_puzzle/robot_puzzle_torture
+		// 03_02_omicron_inside/SFX/robothead_hallway_run - Use after 
 		
 		bool mbIntroRunning = true;
 		
