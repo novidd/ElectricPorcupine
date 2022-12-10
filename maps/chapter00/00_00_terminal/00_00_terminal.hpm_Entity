@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="8D9D5164A0714CE5E2BF7CEB5244163BDC1583F0" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="664">
+        <FileIndex_Entities NumOfFiles="667">
             <File Id="0" Path="entities/station/furniture/chair_scan/chair_scan.ent" />
             <File Id="1" Path="entities/station/furniture/chair_scan/chair_scan_helmet.ent" />
             <File Id="2" Path="entities/urban/special/00_04_scan_helmet/00_04_scan_helmet.ent" />
@@ -665,6 +665,9 @@
             <File Id="661" Path="entities/station/doors/slidedoor_tau_small/slidedoor_tau_small_open.ent" />
             <File Id="662" Path="entities/station/doors/slidedoor_tau_small/slidedoor_tau_small_static.ent" />
             <File Id="663" Path="entities/station/lamp/lamp_ceiling_comfy/lamp_ceiling_comfy.ent" />
+            <File Id="664" Path="entities/station/doors/slidedoor_large_bulkhead_vertical/slidedoor_large_bulkhead_vertical_longfalloff.ent" />
+            <File Id="665" Path="entities/station/doors/slidedoor_large_bulkhead_vertical/slidedoor_large_bulkhead_theta.ent" />
+            <File Id="666" Path="entities/station/doors/slidedoor_large_bulkhead_vertical/slidedoor_large_bulkhead_vertical.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435487" Name="02_05_computer_scan_storage_cylinder_1" CreStamp="1669894285" ModStamp="1669930999" WorldPos="-129.875 0 0" Rotation="0 3.14159 0" Scale="1 1 1" FileIndex="20" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 18 268435487">
@@ -9158,7 +9161,7 @@
                     <Var Name="VerticalFOV" Value="70" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437249" Name="computer_floor_2" CreStamp="1670698485" ModStamp="1670698867" WorldPos="0 -0.5 0" Rotation="0 -50.2655 0" Scale="1 1 1" FileIndex="488" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 388 268437249">
+            <Entity ID="268437249" Name="computer_floor_2" CreStamp="1670698485" ModStamp="1670698867" WorldPos="0 -0.5 0" Rotation="6.84185e-019 -1.39876e-006 4.89136e-013" Scale="1 1 1" FileIndex="488" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 388 268437249">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -13663,7 +13666,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437634" Name="slidedoor_large_bulkhead_vertical_fastclose_1" CreStamp="1670702965" ModStamp="1670704865" WorldPos="7 0 0" Rotation="0 -95.8186 0" Scale="0.65 0.9 0.75" FileIndex="659" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 205 268437634">
+            <Entity ID="268437634" Name="BridgeBlastDoor" CreStamp="1670702965" ModStamp="1670706285" WorldPos="7 0 0" Rotation="0 -95.8186 0" Scale="0.65 0.9 0.75" FileIndex="664" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 205 268437634">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -13695,7 +13698,7 @@
                     <Var Name="RecieveMessageCallback" Value="" />
                     <Var Name="CC_Entities" Value="" />
                     <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntity" Value="BridgeBlastDoor_Panel" />
                     <Var Name="ConnectedEntityInvertState" Value="false" />
                     <Var Name="ConnectedEntityStatesUsed" Value="0" />
                     <Var Name="ParentAttachEntity" Value="" />
@@ -13720,7 +13723,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437635" Name="deepsea_large_2" CreStamp="1670703045" ModStamp="1670703070" WorldPos="6.75 1.5 1.25" Rotation="-0 4.29821 -0" Scale="1 1 1" FileIndex="608" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 241 268437635">
+            <Entity ID="268437635" Name="BridgeBlastDoor_Panel" CreStamp="1670703045" ModStamp="1670706220" WorldPos="6.72882 1.5 0.992718" Rotation="-0 4.29821 -0" Scale="1 1 1" FileIndex="608" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 241 268437635">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -13752,7 +13755,7 @@
                     <Var Name="RecieveMessageCallback" Value="" />
                     <Var Name="CC_Entities" Value="" />
                     <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntity" Value="BridgeBlastDoor" />
                     <Var Name="ConnectedEntityInvertState" Value="false" />
                     <Var Name="ConnectedEntityStatesUsed" Value="0" />
                     <Var Name="ParentAttachEntity" Value="" />
