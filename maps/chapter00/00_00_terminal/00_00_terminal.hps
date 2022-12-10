@@ -192,19 +192,18 @@ class cScrMap : iScrMap
 	
 	//-------------------------------------------------------
 	
-	tString msMessageText = "";
-	float mfMessageTimer = 0.0f;
-	
-	void DrawText(const tString asString, float afTime = 2.0f)
-	{
-		msMessageText = asString;
-		mfMessageTimer = afTime;
-	}
-	
 	void OnGui(float afTimeStep)
 	{
 		if (cLux_ScriptDebugOn() == false) return;
 		
+		// Debug screen info
+		DebugPrintScreenInfo(afTimeStep);
+		
+//		 StationGuiBG_Scanlines();
+	}
+	
+	void DebugPrintScreenInfo(float afTimeStep)
+	{
 		cImGuiFont textLineFont;
 		textLineFont.mvSize = ImGui_NrmSizeKeepRatio(0.02f);
 		textLineFont.mColor = cColor(1.0f, 1.0f, 0.0f, 1.0f);
@@ -223,7 +222,16 @@ class cScrMap : iScrMap
 			ImGui_DoTextFrameExt(msMessageText, cVector2f(0.0f, 0.0f), 0.0f, 0.0f, textData, cVector3f(0.0f, ImGui_GetSize().y / 2.0f, 1.0f), cVector2f(ImGui_GetSize().x - 450.0f, 500.0f));
 		}
 	}
- 
+	
+	tString msMessageText = "";
+	float mfMessageTimer = 0.0f;
+	
+	void DrawText(const tString asString, float afTime = 2.0f)
+	{
+		msMessageText = asString;
+		mfMessageTimer = afTime;
+	}
+	
 	//} END MAIN CALLBACKS
 
 	//////////////////////////////////////////////////////////////////////////////////////////
@@ -393,6 +401,7 @@ class cScrMap : iScrMap
 		// The player then wakes up many years later (when the main game's story is set) - the WAU has spread all over the place
 		// The ship is running on auxilliary systems on the lowest level (no power only life support and no gravity)
 		// The WAU has spread all over the place
+		// The WAU has started to consume the people in the pods (on of the pods are open and it seems like they are moving around) - mimic theta tunnels goo stuff
 		// The monster has actually died
 		
 		// The player will attempt to make contact with Pathos
