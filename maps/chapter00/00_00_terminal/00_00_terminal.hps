@@ -354,18 +354,21 @@ class cScrMap : iScrMap
 
 		// STORY:
 		// LOCATION: A space station
+		// PROTAGONIST: Simon (this is in another timeline)
 		
-		// STORY: 
 		// The player is on a space station
 		// This is set before the events of the main game
 		// It's all good
 		
 		// *An unidentified lifeform has been detected in the ship*
+		// Play a heartbeat - Do special screen effects every heartbeat
 		// The message then disappears (the WAU has internal controls of the ship) - the protagonist still feels he needs to check it out
 		
 		// The player passes through the room with all the other crew passangers frozen in their pods (look at Alien for inspiration)
+		// Do a scary whisper here
+		// Play a heartbeat - Do special screen effects every heartbeat
 		
-		// Before he can a large rock passes the sun
+		// On return he can a large rock passes the sun
 		// Have an explosion on earth (use smoke and stuff rising around the area after explosion)
 		// The whole screen lights up as the player looks at it
 		// The Ship shakes
@@ -383,6 +386,7 @@ class cScrMap : iScrMap
 		// Screen goes black
 		
 		// The player wakes up in reality
+		// Play a heartbeat - Do special screen effects every heartbeat
 		
 		// Things have gone to shit, there is a monster on the ship
 		// Player gets caught by it
@@ -414,6 +418,8 @@ class cScrMap : iScrMap
 		// 2. Don't lick it.
 		// 3. Lick it, but only a little.
 		
+		bool mbIntroRunning = true;
+		
 		void TimerIntro(const tString &in asTimer)
 		{	
 			mbIntroRunning = true;
@@ -422,6 +428,8 @@ class cScrMap : iScrMap
 			// Effects for when in player view
 			//Effect_ChromaticAberration_StartAnim(8.0f,0.005,0.005,cVector2f_Zero);
 			//ffect_ImageTrail_Start(0.08,0.1,7.0,1.0);
+			
+			// Add effects for the camera with "static_anim_01"
 		}
 		
 		// The screaming of the monster
@@ -535,181 +543,6 @@ class cScrMap : iScrMap
 		// When it looks at the player it makes some noise *beep* *beep*
 		// Lots of smoke and bubbles from fire underwater
 		// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
-		
-		// PICK UP OMNITOOL
-		// Terminal A is still running but glitched. The player can see the distance away from Theta (4000+ meters)
-		// Play dialogue when the player looks at the completely broken omnitool.
-		// Add sparks accompanied with bubbles
-		
-		// Simon thinks that Cath is completely fucked (but she is still functioning, she will reveal herself in the final scene to be still here)
-		// She will say that she is an asshole for losing hope so quickly (fade out to black).
-		// Simon says "Catherine...?"
-		// She mentions how it felt like the blink of an eye for her, (then run the credits).
-		
-		// "Gotta talk to Catherine", Simon says
-		
-		// This is where the story beats about Cath come in
-		// The player has to insert the Omnitool
-		// This is where to reveal comes
-		
-		// The other end of the airlock is very dark, the player has to turn on the lights
-		// Sparks go all over the place, the station moans and other details, distant clanging
-		// Lock player like in dialogue when Simon is trying to talk "to" Catherine and play event_look_at_hands_2_1 or event_look_at_hands_2_1_intense when Simon is angry and sad
-		
-		// THE PLAYER HAS TO CRAWL THROUGH RUBBLE -- Show where the player has to go with sparks from a cable
-		// Crawl through a hole with cables hanging through the hole, on of the cables spark
-		
-		// KateBot passes the double windows, her light lights up the room helping the player to see since it's so dark
-		
-		// The player approache the ledge of the meteor crater, the title card appears
-		// *accompanied with fitting music*
-		// In a simplistic font - think Half Life 2 and the same effect, each letter gets typed out and pulses the color of the WAU at the beginning 
-		// Fade in "MOD NAME"
-		// Fade out
-		// Fade in "Made by, Lucas Pettersson"
-		// Fade out
-		
-		// "CHAPTER NAME"
-	
-		// While screen is black, Catherine dialogue from Omicron when switching bodies
-		// Make the ambience creepy as fuck
-		// Black screen, heavy breathing fades in quickly as screen fades in
-		// The player wakes up in a scan chair
-		// Simon: "Catherine...?"
-		// The monster does a sudden noise as almost alerted by Simon's voice
-		// Increase player heartbeat
-		// The monster moving is breathing while the helmet is still on
-		// The player cannot see anything
-		//
-		
-		void SetupIntro()
-		{
-			// Player intro settings
-			Player_SetHealth(0.25f);
-			
-//			SequenceIntro("");
-		}
-		
-		// Add the heartbeat
-		// Do special screen effects every heartbeat
-		// Simon emotes (moaning, coughing, groaning)
-		// Turn off the emotes during dialogue (use a bool check)
-		
-		// 04_01_stormstart for long scary moment (when the player enters the area with blood covered walls lit up by a fallen spotlight)
-		
-		// Play 04_01_tau_outside/SFX/wake_up_sweet on wakeup
-		
-		// Play 04_01_tau_outside/SFX/near_death because Simon is near death
-		
-		// Add many stratch, blast, explosion and debris decals on walls/floor
-		
-		// Start the lightning and thunder as the exact moment the player wakes up
-		// Fade in the world sound 0.5f before the lightning strikes making the screen white
-		// Use Effect_Flash_Start();
-		// Screen fades to white as lightning strikes (The world sound is muffled)
-		// KateBot approaches the player *beep* *boop*
-		// Player goes out of conciousness
-		// A few seconds later
-		// Another screen flash (sound no longer muffled)
-		// KateBot gone
-		// Simon quickly emotes "Ah, god damn it!" from the pain
-		// He stands up slowly
-		
-		// Suit system diagnostics run
-		
-		// As the player approaches the zeppelin Simon says "Catherine..."
-		
-		// Play 05_02/SFX/sat/fly_out when the player has stood up
-		
-		// When player stands on the zeppelin play 04_01_tau_outside/SFX/storm/sweeteners/exit_elevator
-		
-		// Lock player like in dialogue when talking "to" Catherine
-		// At end of dialogue, Simon realizes hes lost his hand (gets a wave of pain --> screen effects + groaning)
-		// He inspects it "Oh, fuck...", lightning strikes
-		// Simon speaks "I gotta get inside."
-		// Now let the player pick up the Omnitool after the short dialogue
-		
-		// Thunder SFX:
-		// 04_01_tau_outside/AMB/storm/thunder/stage_0
-		// 04_01_tau_outside/AMB/storm/thunder/stage_0_GuiWorld
-		// 04_01_tau_outside/AMB/storm/thunder/stage_1
-		// 04_01_tau_outside/AMB/storm/thunder/stage_2
-		
-		// Reuse the conversation between Simon and Catherine where they talk about how much time passes for her inbetween Omnitool slots
-		// This makes the player think of, how much time has passed since the crash?
-		
-		// After the player has picked up the Omnitool, make the cable spark attracting the players intented path
-		// Make a piece of metal fall down and hit the zeppelin which in turn makes it creak and player camrera wobbles
-		// The Eastern Zeppelin Platform gets lowered down, so the player gets a new path 
-		
-		// Have a dramatic reappearance and proper introduction the KateBot when the player is inside the plane
-		// IT IS POSSIBLE FOR THE PLAYER TO NOT ENTER THE PLANE AND PROCEED ANYWAY
-		// To cover this CASE, I can either kill the player with the Leviathan if they stray from the ship OR make the KateBot show up around a rock after the plane to surprise the player, 
-		// when they think they've escape from the Leviathan
-		
-		// The KateBot guides the player the whole way to the station
-		// KateBot *beep-boops* when the meteor crater is revealed, then TITLE CARD
-		// By the meteor crater KateBot will stay at the beginning of the bridge, making anxious *beep-boops* once the player enters
-		// Outside the station entrance KateBot will spin around in joy saying farewell to the player
-		
-		// The station here was made to investigate the intense storms
-		
-		// There is a termial that tracks storm data in realtime
-		// There is a WAU heart that is attach close to it
-		// The terminal is not working properly and glitching
-		// If the player heals themselves with the WAU heart the terminal now functions
-		
-		// Display data in real time about the storm here
-		// The player can rotate the focus area for the relay antenna to investigate different hotspots
-		// Have a grid map showing when the player chooses focus area
-		// Focus area is chosen with a wheel just like in Delta
-		
-		// The player has to follow the KateBot to the open area
-		// The KateBot is always far enougn so the player can't get a good look on her
-		// She spins around the zeppelin and shakes with *beep-boop*
-		// Move the map start area further back (cant be far from zeppelin)
-		
-		// On the path play Cath and Simon dialogue from the zeppelin ride
-		
-		// The player sees the ship from high above in the spawn area
-		
-		// The OmniTool is broken so the player has to extract the cortex chip
-		// The player will find a functioning OmniTool at the end of the SHIP level
-		
-		// Skybox color basin: 78E6FFFF / cColor(0.471,0.902,1,1) Brightness: 0.6
-		// Skybox color startcliff: 164B5CFF / cColor(0.086,0.294,0.361,1) Brightness: 0.5
-		
-		cSequenceStatesData mIntroSequence;
-		void SequenceIntro(const tString &in asTimer)
-		{
-			Sequence_Begin("SequenceIntro", mIntroSequence);
-			if(Sequence_DoStepAndWait(7.25f))
-			{
-				Effect_Fade_Out(0);
-				
-				// Game audio
-				Sound_SetGlobalVolume(0.0f);
-
-				// Time till lightning strike has to be 7.25f after the stinger starts
-				Sound_CreateAtEntity("IntroStinger", "04_01_tau_outside/SFX/wake_up_sweet", "Player", 0.0f, false, 1.0f);
-			}
-			else if (Sequence_DoStepAndWait(0.25f))
-			{
-				Sound_FadeGlobalVolume(1.0f, 0.25f);
-				
-				// Maybe decrease fade in time???
-				Effect_Flash_Start(0.25f, 1.0f, 5.0f);
-				Effect_Fade_In(5.0f);
-				
-				//Lighting strikes here
-			}
-			else if (Sequence_DoStepAndWait(0.5f))
-			{
-				
-			}
-			Sequence_End();
-			
-		}
 		
 		//-------------------------------------------------------
 		
