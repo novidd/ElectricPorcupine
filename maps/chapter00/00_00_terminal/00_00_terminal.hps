@@ -373,7 +373,8 @@ class cScrMap : iScrMap
 		// The message then disappears (the WAU has internal controls of the ship) - the protagonist still feels he needs to check it out
 		
 		// The player passes through the room with all the other crew passangers frozen in their pods (look at Alien for inspiration)
-		// Do a scary whisper here
+		// Do a scary whisper here (play 03_02_omicron_inside/AMB/spot/window_rub)
+		// Use 03_02_omicron_inside/AMB/spot/whispers at some other point
 		// Play a heartbeat - Do special screen effects every heartbeat
 		
 		// On return he can a large rock passes the sun
@@ -395,6 +396,9 @@ class cScrMap : iScrMap
 		
 		// The player wakes up in reality
 		// Play a heartbeat - Do special screen effects every heartbeat
+		
+		// You have to choose to kill all the remaining crew members or not
+		// THIS IS A MORAL CHOICE
 		
 		// Things have gone to shit, there is a monster on the ship
 		// Player gets caught by it
@@ -426,6 +430,11 @@ class cScrMap : iScrMap
 		// 1. Lick it.
 		// 2. Don't lick it.
 		// 3. Lick it, but only a little.
+		
+		// Useful sounds:
+		// 03_02_omicron_inside/gameplay/robot_puzzle/robot_puzzle_cry
+		// 03_02_omicron_inside/gameplay/robot_puzzle/robot_puzzle_torture
+		// 03_02_omicron_inside/SFX/robothead_hallway_run - Use after 
 		
 		bool mbIntroRunning = true;
 		
@@ -459,99 +468,6 @@ class cScrMap : iScrMap
 		// The monster breaks into the room when there is only silence - stinger here
 		
 		// The player has to run around the monster - the way it came from
-		
-		//{ THE STORY:
-		
-		// The player starts in a nest filled with spores
-		// Use fog/environmental particles
-		
-		// Have a section be underwater
-		// There are unique visuals that can be used here
-		// Have a water floor
-		// The player opens a door and what they see is a hole (opening) into the ocean (make this a spectacle)
-		
-		// THE FEELINGS I WANT TO CONVEY IN THIS GAME:
-		// - Clostrophobia
-		// - The feeling that the player is inside some kinda cramped submarine
-		
-		// Maybe give the player dialogue choices?
-		// When the player approaches HER the suit updates and warns the player about a dangerous substance
-		
-		// The player has to kill a robot
-		// Lover says on return: "Have you wanted to kill someone before?"
-		
-		// Have a power outage while talking, make this scary, the player has to hide
-		
-		// Have some entries about what "Lover" is
-		// She is some kind of creation by the WAU
-		
-		// Find a voice module for her (this will act as TTS)
-		// The player has to find the module in a creepy area by connecting to the scan chair
-		
-		// Lover: "I can't see you..."
-		// Player: "I'm shy, plus it's dark."
-		// "Sorry."
-		
-		// Lover: "Could you do me a favor?"
-		// Lover: "I can't see you."
-		// Player: "How would I do that?"
-		// Lover: "How am I supposed to know? Look around or something... 
-		// "WELL JUST DO SOMETHING WILL YOU?!"
-		// *CONNECTION LOST*
-		
-		// The player needs to flick a switch or something of the like
-		
-		// Lover: ""
-		
-		// Lover: "Do you have a name?"
-		// Player: "I don't know."
-		// Lover: ""
-		
-		// Lover: "I can't hear you."
-		// Player: "Maybe the cat caught my tounge."
-		// 
-		
-		// Lover: "What do you call someone you care for?"
-		// Player: "A lover...?"
-		
-		// Lover: "Your so far away... I want you to hold me."
-		// Player: "..."
-		// Lover: "I want you to touch me..."
-		
-		// Lover: "Put it inside of me."
-		
-		// Lover: "This might be a bit sudden but... Do you love me?"
-		// Player: "I do."
-		// Lover: "Then this will hurt."
-		
-		// THE SHIP:
-		// The player gets dragged by a tenctacle into the nest.
-		// The player proceeds forward, high tension
-		// The path they come from collapses, they are stuck
-		// comment_8_firststunrodhit_001_player_001 "oh cmon"
-		// Silence for some time
-		// A light passes a hole in the hull
-		// Then a door gets opened by the KATEBOT
-		// YAY
-		
-		// comment_2_seeskate_notrescued_001_player_001 at Kate rescue
-		// dialog_9_katehelpedplayer_001_player_001
-		// dialog_9_katehelpedplayer_002_player_001
-		// dialog_9_katehelpedplayer_003_player_001
-		
-		// comment_5_crossingtheabyss_001_player_001 "this better be the right way"
-		
-		// The player will now proceed to the meteor lab
-		
-		// THE METEOR CRATER:
-		
-		// THE LAB:
-		
-		// The player has low HP (CONVEY THIS WITH SCREEN EFFECTS, AND SO ON)
-		// After the player wakes up KATEBOT shows up scanning the environment
-		// When it looks at the player it makes some noise *beep* *beep*
-		// Lots of smoke and bubbles from fire underwater
-		// There are doors to other rooms, but the player cannot enter because of the new pressure (on the other end, water is leaking slightly)
 		
 		//-------------------------------------------------------
 		
