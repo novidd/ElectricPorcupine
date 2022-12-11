@@ -60,6 +60,10 @@ class cScrMap : iScrMap
 		// Set map DoF and such here
 		
 		Player_SetAmbientLight_Indoors();
+		
+//		Map_Preset_SetupDepthOfField("BridgePreset", true, 0, 12.0, 0.25);
+		Map_Preset_SetupDepthOfField("BridgePreset", true, 0, 6.0, 0.25);
+		Map_Preset_Fade("BridgePreset", 0.01);
 	}
 	
 	//-------------------------------------------------------
@@ -120,18 +124,9 @@ class cScrMap : iScrMap
 	void OnEnter()
 	{
 		Effect_Bloom_FadeBrightPass(0.75f, 2);
-		Effect_Bloom_FadeBloomWidth(128, 2);
-		Effect_Bloom_FadeBloomFalloff(0.5f, 2);
-		Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
-		
-//		Effect_DoF_Start(0.0f, gfDofMax, 0.5, 0.0);
-//		
-//		Effect_Bloom_FadeBrightPass(0.00001, 0);
-//		Effect_Bloom_FadeBloomWidth(64, 0);
-//		Effect_Bloom_FadeBloomTint(0.6, 0.4, 0.4, 0);
-//		Effect_RadialBlur_SetDirect(0.1, 0.75, 0.1);
-//		
-//		Map_SetUnderwater(true);
+        Effect_Bloom_FadeBloomWidth(128, 2);
+        Effect_Bloom_FadeBloomFalloff(0.5f, 2);
+        Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
 	}
 
 	//-------------------------------------------------------
