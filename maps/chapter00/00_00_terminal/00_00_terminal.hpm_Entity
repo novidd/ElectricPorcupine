@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="8D9D5164A0714CE5E2BF7CEB5244163BDC1583F0" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="911">
+        <FileIndex_Entities NumOfFiles="912">
             <File Id="0" Path="entities/station/furniture/chair_scan/chair_scan.ent" />
             <File Id="1" Path="entities/station/furniture/chair_scan/chair_scan_helmet.ent" />
             <File Id="2" Path="entities/urban/special/00_04_scan_helmet/00_04_scan_helmet.ent" />
@@ -912,6 +912,7 @@
             <File Id="908" Path="entities/station/ornaments_wall/theta_warning_cleanroom/theta_warning_cleanroom.ent" />
             <File Id="909" Path="entities/station/lamp/ceiling_spot_hanging/ceiling_spot_hanging.ent" />
             <File Id="910" Path="entities/station/lamp/fluorescent_tube_slidedoor_medium/fluorescent_tube_slidedoor_medium_nolight.ent" />
+            <File Id="911" Path="entities/station/tech/tech_airlock_tau_small/tech_airlock_tau_small.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435487" Name="02_05_computer_scan_storage_cylinder_1" CreStamp="1669894285" ModStamp="1669930999" WorldPos="-129.875 0 0" Rotation="0 3.14159 0" Scale="1 1 1" FileIndex="20" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 18 268435487">
@@ -20863,7 +20864,7 @@
                     <Var Name="VerticalFOV" Value="70" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268438522" Name="computer_panel_small_GUI_1" CreStamp="1670951345" ModStamp="1671098276" WorldPos="4.25 1.25 0.875" Rotation="-0.349065 1.8326 -1.9295e-008" Scale="0.75 0.75 0.75" FileIndex="874" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 844 268438522">
+            <Entity ID="268438522" Name="computer_panel_small_GUI_1" CreStamp="1670951345" ModStamp="1671098276" WorldPos="4.135 1.25 0.9375" Rotation="-0.349065 1.8326 -1.9295e-008" Scale="0.75 0.75 0.75" FileIndex="874" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 844 268438522">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -24753,6 +24754,50 @@
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439278" Name="tech_airlock_tau_small_1" CreStamp="1671144462" ModStamp="1671144497" WorldPos="4.135 1.25 1.3125" Rotation="1.5708 3.14159 -1.5708" Scale="0.25 0.25 0.25" FileIndex="911" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1052 268439278">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439279" Name="tech_airlock_tau_small_2" CreStamp="1671144501" ModStamp="1671144503" WorldPos="4.135 1.25 1.3125" Rotation="1.5708 -6.3573e-008 -1.5708" Scale="0.25 0.25 0.25" FileIndex="911" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1051 268439279">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439284" Name="tech_airlock_tau_small_5" CreStamp="1671144674" ModStamp="1671144676" WorldPos="4.135 1.25 1.3125" Rotation="1.5708 3.14159 1.49012e-007" Scale="0.25 0.25 0.25" FileIndex="911" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1049 268439284">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439285" Name="tech_airlock_tau_small_6" CreStamp="1671144677" ModStamp="1671144678" WorldPos="4.135 1.25 1.3125" Rotation="1.5708 4.13264e-007 1.49012e-007" Scale="0.25 0.25 0.25" FileIndex="911" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1050 268439285">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
