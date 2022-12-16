@@ -34,10 +34,11 @@ enum eCathToolVariant
 
 //------------------------------------------------------------
 
-void SetUpOmnitoolGUI(cLuxProp@ apBaseObj)
+void SetUpObjectivePadGUI(cLuxProp@ apBaseObj)
 {
 	// Set up GUI screen
 	apBaseObj.CreateAndSetupGui("medium_screen", cColor_White, cColor(0,0,0,1), cColor(0,0,0,0), cVector2f(613.0f, 768.0f));
+	// Create a seperate file to handle the GUI, and call the function here in the same manner as below
 	apBaseObj.SetOnGuiFunction("$_CathTool_OnGui");
 }
 
@@ -88,7 +89,7 @@ class cScrPropObjectivePadTool : cScrPropTool
 		cScrPropTool::SetupAfterLoad(apWorld, apVars, apInstanceVars);
 		
 		// Set up GUI screen
-		SetUpOmnitoolGUI(mBaseObj);
+		SetUpObjectivePadGUI(mBaseObj);
 		
 		//Unless another callback has been set, use a default one
 		if (msCanBeUsedCallback=="") msCanBeUsedCallback = "$CathTool_CanUse";
@@ -518,7 +519,7 @@ class cScrPropObjectivePadToolHud : cScrPropHudObject
 		cScrPropHudObject::SetupAfterLoad(apWorld, apVars, apInstanceVars);
 		
 		// Set up GUI screen
-		SetUpOmnitoolGUI(mBaseObj);
+		SetUpObjectivePadGUI(mBaseObj);
 	}
 	
 	//------------------------------------------------------------
