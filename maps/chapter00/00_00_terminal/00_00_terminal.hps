@@ -168,6 +168,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
+			cLux_AddDebugMessage("DADA");
 		}
 		
 		if(alAction == eAction_Test2)
@@ -492,10 +493,11 @@ class cScrMap : iScrMap
 		
 		bool mbIntroRunning = true;
 		
+		// Create a datapad tool system
 		void TimerIntro(const tString &in asTimer)
 		{	
 			mbIntroRunning = true;
-			Map_AddTimer("timer_begin", 0.1f, "TimerBeginSequences");
+//			Map_AddTimer("timer_begin", 0.1f, "TimerBeginSequences");
 		
 			// Effects for when in player view
 			//Effect_ChromaticAberration_StartAnim(8.0f,0.005,0.005,cVector2f_Zero);
