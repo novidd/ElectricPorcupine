@@ -104,6 +104,8 @@ class cScrMap : iScrMap
 		// Player setup
 //		Player_SetAmbientLight_Outdoors();
 		PlayerHands_SetHandModel_Diving();
+		Tool_PickUp("objective_datapad_1", false, false);
+//		Tool_PickUp("omni", false, false);
 		
 		PlayerEnergy_SetFlowerSwallows(true);
 		
@@ -494,6 +496,7 @@ class cScrMap : iScrMap
 		bool mbIntroRunning = true;
 		
 		// Create a datapad tool system
+		// Pick up datapad sound - Player/foley/default/action/pickup_datapad
 		void TimerIntro(const tString &in asTimer)
 		{	
 			mbIntroRunning = true;
