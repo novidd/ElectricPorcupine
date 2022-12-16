@@ -68,6 +68,7 @@ class cScrMap : iScrMap
 		Map_Preset_SetupColorGrading("CameraMode", "grading_rasmustest1.dds");
 		// The screen effect to mimic a camera
 //		Effect_Screen_Start("scanline_overlay.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  .1, 0.1, 900, 0.1);
+		// This sound when in camera mode - Entities_Special/Equipment/scanner/interface_scan_sequence
 	}
 	
 	//-------------------------------------------------------
@@ -467,6 +468,18 @@ class cScrMap : iScrMap
 		// 03_02_omicron_inside/gameplay/robot_puzzle/robot_puzzle_cry
 		// 03_02_omicron_inside/gameplay/robot_puzzle/robot_puzzle_torture
 		// 03_02_omicron_inside/SFX/robothead_hallway_run - Use after 
+		
+		// Entities_Station/object/robot_bear/bear_music_01
+		// Entities_Station/object/robot_bear/bear_music_02
+		// Entities_Station/object/robot_bear/bear_music_03
+		// Use these three as a scare after the collapse
+		
+		// Entities_Station/tech/generator_tiny/generator_blowout - in the vents 
+		// Entities_Station/tech/radar_machine/radar_machine - on power on
+		// Entities_Station/object/tau_elevator/door/dist/open - on power on
+		// Entities_Station/tech/terminal_beeps/pathOS_comp/pathOS_comp_start - entering the hub
+		
+		// Entities_Station/object/train/screen/screen_up_ding - play on start of commerical program
 		
 		bool mbIntroRunning = true;
 		
