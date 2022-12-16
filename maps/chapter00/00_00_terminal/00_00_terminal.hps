@@ -33,7 +33,7 @@
 
 //--------------------------------------------------
  
-const float gfDofMax = 2.0f;
+// GLOBAL CONSTANTS HERE
 
 //--------------------------------------------------
 
@@ -104,7 +104,7 @@ class cScrMap : iScrMap
 		// Player setup
 //		Player_SetAmbientLight_Outdoors();
 		PlayerHands_SetHandModel_Diving();
-		Tool_PickUp("objective_datapad_1", false, false);
+		Tool_PickUp("objective_datapad", false, false);
 //		Tool_PickUp("omni", false, false);
 		
 		PlayerEnergy_SetFlowerSwallows(true);
@@ -170,7 +170,19 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			cLux_AddDebugMessage("DADA");
+			if (Player_GetCurrentToolEntityName() == "objective_datapad")
+			{
+				Player_UnequipTool();
+				return;
+			}
+			
+			if (ToolHandler_CanPickOrUseTool() == false)
+			{
+				return;
+			}
+			
+			Player_EquipTool("objective_datapad", "");
+			cLux_AddDebugMessage("Equipping objective data pad...");
 		}
 		
 		if(alAction == eAction_Test2)
