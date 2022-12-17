@@ -170,19 +170,23 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
+			// This way the player cannot pull out the pad while already interacting with terminal/reading etc
+			if (Player_IsInteracting()) return;
+			
+			// Unequip tool if already in use
 			if (Player_GetCurrentToolEntityName() == "objective_datapad")
 			{
 				Player_UnequipTool();
-				return;
-			}
-			
-			if (ToolHandler_CanPickOrUseTool() == false)
-			{
+				
+				// Enables the players ability to interact with terminals/readables while the pad is out
+				Player_SetInteractionAllowed(true);
 				return;
 			}
 			
 			Player_EquipTool("objective_datapad", "");
-			cLux_AddDebugMessage("Equipping objective data pad...");
+			
+			// Disable the players ability to interact with terminals/readables while the pad is out
+			Player_SetInteractionAllowed(false);
 		}
 		
 		if(alAction == eAction_Test2)
@@ -510,8 +514,11 @@ class cScrMap : iScrMap
 		
 		bool mbIntroRunning = true;
 		
-		// Create a datapad tool system
-		// Pick up datapad sound - Player/foley/default/action/pickup_datapad
+		// Introduce a short tutorial for how the datapad works
+		// Give the player a hint - "Click 'BUTTON X' to show your current objectives"
+		// Pull out the datapad immediately after being picked up with
+		// Player_EquipTool("objective_datapad", "");
+
 		void TimerIntro(const tString &in asTimer)
 		{	
 			mbIntroRunning = true;

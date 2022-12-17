@@ -2,6 +2,7 @@
 #include "Prop_HudObject.hps"
 #include "helpers/helper_player.hps"
 #include "helpers/helper_audio.hps"
+#include "helpers/helper_effects.hps"
 
 const tString gsCathInteractUnderwaterSound = "Entities_OceanBottom/objects/cathtool/remove";
 const tString gsCathInteractNonUnderwaterSound = "Entities_Station/object/cathtool/remove_cathtool_nonunderwater";
@@ -88,6 +89,8 @@ class cScrPropObjectivePadTool : cScrPropTool
 	{
 		cScrPropTool::SetupAfterLoad(apWorld, apVars, apInstanceVars);
 		
+		mfFOV = cMath_ToRad(apInstanceVars.GetVarFloat("VerticalFOV", 70));
+		
 		// Set up GUI screen
 		SetUpObjectivePadGUI(mBaseObj);
 		
@@ -142,24 +145,47 @@ class cScrPropObjectivePadTool : cScrPropTool
 	
 	//------------------------------------------------------------
 	
+	// ---- List of features to add ----
+	// - On adding a new objective, flash the pad icon in bottom right of screen
+	// - Play a sound effect as well
+	
+	//------------------------------------------------------------
+	
 	void _Global_OnEquip()
 	{
 		//msEquippedCathTool = cScript_GetGlobalArgString(0);
 		
 		//Map_AddTimer(mBaseObj.GetName(), 0.5f, "$_CathTool_Equipped_ScreenUpdate_Timer");
 		
-		cLux_AddDebugMessage("Cathtool equipped");
+		cLux_AddDebugMessage("Objective pad equipped");
+		
+		//////////////////////////////
+		// Fade in DOF effect
+		Effect_DoF_FadeOut(mlDepthOfFieldID, 1);
+		mlDepthOfFieldID = Effect_DoF_Start(0, 0.50, 1, 1);
+		
+		/////////////////////
+		// Fade fov		
+		cLux_GetPlayer().FadeCameraFOVTo(mfFOV, 1.0f);
 	}
 	
 	void _Global_OnUnequip()
 	{
-		cLux_AddDebugMessage("Cathtool unequipped");
+		cLux_AddDebugMessage("Objective pad unequipped");
 		
 		mBaseObj.SetVarString("LookEntities", "");
 		//if(mScreenState==eCathToolScreen_Disconnected)
 		//	mScreenState = eCathToolScreen_PreInteract;
 		
 		//Map_RemoveTimer(mBaseObj.GetName());
+		
+		//////////////////////////////
+		// Fade out DOF effect
+		Effect_DoF_FadeOut(mlDepthOfFieldID, 1.0f);
+		
+		//////////////
+		// Restore fov
+		Player_FadeFOVToDefault(1.0f);
 	}
 	
 	void _Global_UpdateLookEntities()
@@ -489,6 +515,10 @@ class cScrPropObjectivePadTool : cScrPropTool
 	/////////////////////////////////////////
 	
 	//------------------------------------------------------------
+	
+	[nosave] float mfFOV;
+	
+	int mlDepthOfFieldID;
 	
 	bool mbInserted = false;
 	tString msSlot = "";
