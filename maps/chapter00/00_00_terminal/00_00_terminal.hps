@@ -57,8 +57,6 @@ class cScrMap : iScrMap
 	// Set up map environment
 	void Setup()
 	{
-		// Set map DoF and such here
-		
 		Player_SetAmbientLight_Indoors();
 		
 //		Map_Preset_SetupDepthOfField("BridgePreset", true, 0, 12.0, 0.25);
@@ -66,6 +64,7 @@ class cScrMap : iScrMap
 		Map_Preset_Fade("BridgePreset", 0.01);
 		
 		Map_Preset_SetupColorGrading("CameraMode", "grading_rasmustest1.dds");
+		
 		// The screen effect to mimic a camera
 //		Effect_Screen_Start("scanline_overlay.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  .1, 0.1, 900, 0.1);
 		// This sound when in camera mode - Entities_Special/Equipment/scanner/interface_scan_sequence
@@ -102,7 +101,7 @@ class cScrMap : iScrMap
 		
 		/////////////////////////
 		// Player setup
-//		Player_SetAmbientLight_Outdoors();
+//		PlayerHands_SetHandModel_Human();
 		PlayerHands_SetHandModel_Diving();
 		Tool_PickUp("objective_datapad", false, false);
 //		Tool_PickUp("omni", false, false);
@@ -217,8 +216,6 @@ class cScrMap : iScrMap
 		
 		// Debug screen info
 		DebugPrintScreenInfo(afTimeStep);
-		
-//		 StationGuiBG_Scanlines();
 	}
 	
 	void DebugPrintScreenInfo(float afTimeStep)
@@ -437,6 +434,12 @@ class cScrMap : iScrMap
 		// The transmission from the MS CURIE plays from a terminal
 		// Lights flicker
 		
+		// Start the perspective from another character boarding the ship from the airlock (tau/phi entrance airlock)
+		// Use the camera filter and effects to convey this
+		// This ship is now partly destroyed and in complete zero gravity
+		// You look for survivors
+		// The camera feed cuts to static and flatlining when the player dies
+		
 		// FLASHBACK:
 		// Fade in - the player is laying in the bed 
 		// The player goes to the lab
@@ -445,8 +448,9 @@ class cScrMap : iScrMap
 		// Screen goes black
 		
 		// The player wakes up in reality
-		// During the time the player has been out, they were taken to the infirmary (Have a note reffering to one "Simon Garret")
+		// During the time the player has been out (Have a note reffering to one "Simon Garret")
 		// The player needs to find the tram station
+		// You need to disable zero gravity by closing of the part of the ship that is comprimized (that way the rest of the ship can decompress)
 		
 		// Play a heartbeat - Do special screen effects every heartbeat
 		
