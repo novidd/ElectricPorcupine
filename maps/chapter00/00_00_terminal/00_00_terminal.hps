@@ -84,6 +84,7 @@ class cScrMap : iScrMap
 		// PLAYER HANDS
 		////////////////////////////
 		PlayerHands_PreloadHandModel_Diving();
+		PlayerHands_PreloadHandModel_Human();
 		
 		///////////////////////////
 		// IMGUI
@@ -101,10 +102,12 @@ class cScrMap : iScrMap
 		
 		/////////////////////////
 		// Player setup
-//		PlayerHands_SetHandModel_Human();
-		PlayerHands_SetHandModel_Diving();
+		PlayerHands_SetHandModel_Human();
+//		PlayerHands_SetHandModel_Diving();
 		Tool_PickUp("objective_datapad", false, false);
 //		Tool_PickUp("omni", false, false);
+
+		Player_SetFlashlightDisabled(true);
 		
 		PlayerEnergy_SetFlowerSwallows(true);
 		
@@ -115,6 +118,8 @@ class cScrMap : iScrMap
 		if(cLux_ScriptDebugOn()) 
 		{
 //			bDoIntro = false;
+
+			Player_SetFlashlightDisabled(false);
 		}
 		
 		if (mbIntroRunning)
@@ -405,6 +410,12 @@ class cScrMap : iScrMap
 		
 		// The player needs to enter the vent by the front of the bridge to fix the issue
 		// The player will pass through the main hub with the table (think Alien - makes this an Alien refrence (mimic the table with the infamous alien scene))
+		
+		// The player needs to login in the terminal to get access (their LOG-ID is on the objective datapad in the top left corner)
+		// The light on the maintenance shaft lights do green
+		
+		// !! USE DARKNESS !!
+		
 		// When the player comes back they see something strange on the floor oil?  (its the wau)
 		// It's dripping from a vent in the ceiling
 		// The player follows the trail the lab (the trail stops by broken vent shaft - check theta_tunnnels lab)
@@ -437,6 +448,9 @@ class cScrMap : iScrMap
 		
 		// Start the perspective from another character boarding the ship from the airlock (tau/phi entrance airlock)
 		// Use the camera filter and effects to convey this
+		
+		// Use heavy depth of field here
+		
 		// This ship is now partly destroyed and in complete zero gravity
 		// You look for survivors
 		// The camera feed cuts to static and flatlining when the player dies
