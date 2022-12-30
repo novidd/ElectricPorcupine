@@ -1,7 +1,7 @@
 <HPLMapTrack_Area ID="8D9D5164A0714CE5E2BF7CEB5244163BDC1583F0" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
         <Objects>
-            <Area ID="268435510" Name="PlayerStartArea_1" CreStamp="1669894444" ModStamp="1671099109" WorldPos="6 1 0" Rotation="0 4.71239 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 769 268435510" AreaType="PlayerStart">
+            <Area ID="268435510" Name="PlayerStartArea_1" CreStamp="1669894444" ModStamp="1672412636" WorldPos="2.75 -22.25 22.75" Rotation="0 4.71239 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 2172 268435510" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
                 </UserVariables>
@@ -150,7 +150,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436334" Name="AMB_ShipBridge" CreStamp="1670255868" ModStamp="1671193375" WorldPos="2.75 1.5 0" Rotation="0 0 0" Scale="9.5 5 13.5" Active="true" Mesh="" UID="16 1154 268436334" AreaType="Soundscape">
+            <Area ID="268436334" Name="AMB_ShipBridge" CreStamp="1670255868" ModStamp="1672411770" WorldPos="2.75 1.5 0" Rotation="0 0 0" Scale="9.5 5 13.5" Active="true" Mesh="" UID="16 1154 268436334" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="ExtraRoomMedium" />
@@ -161,8 +161,8 @@
                     <Var Name="Level" Value="2: Room" />
                     <Var Name="BG_Sound" Value="level_amb_shared_interior/amb/background/tau/living_infirmary" />
                     <Var Name="BG_Volume" Value="1" />
-                    <Var Name="BG_FadeInTime" Value="0.75" />
-                    <Var Name="BG_FadeOutTime" Value="1" />
+                    <Var Name="BG_FadeInTime" Value="1" />
+                    <Var Name="BG_FadeOutTime" Value="2" />
                     <Var Name="BG_FadeTransitionSpeed" Value="1" />
                     <Var Name="BG_ParentVolMul" Value="1" />
                     <Var Name="SoundEnt_InNames" Value="" />
@@ -2665,7 +2665,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268440776" Name="CometHitHere" CreStamp="1672009330" ModStamp="1672346101" WorldPos="-5.5625 -20.9375 -25.375" Rotation="0 -0.785398 0" Scale="4 4 4" Active="true" Mesh="" UID="16 742 268440776" AreaType="Trigger">
+            <Area ID="268440776" Name="CometHitHere" CreStamp="1672009330" ModStamp="1672412932" WorldPos="-7 -20.9375 -27.75" Rotation="0 -0.785398 0" Scale="4 4 4" Active="true" Mesh="" UID="16 742 268440776" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2689,7 +2689,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268440777" Name="EarthHereAndSunShiningIn" CreStamp="1672009351" ModStamp="1672346101" WorldPos="-6.5625 -20.1875 -26.375" Rotation="0 -0.785398 0" Scale="1 1 1" Active="true" Mesh="" UID="16 741 268440777" AreaType="Trigger">
+            <Area ID="268440777" Name="EarthHereAndSunShiningIn" CreStamp="1672009351" ModStamp="1672412932" WorldPos="-8 -20.1875 -28.75" Rotation="0 -0.785398 0" Scale="1 1 1" Active="true" Mesh="" UID="16 741 268440777" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -3241,7 +3241,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268441103" Name="PathToElevator_2" CreStamp="1672165323" ModStamp="1672346101" WorldPos="11.1875 -21 -0.125" Rotation="0 -1.49012e-007 0" Scale="6 5 8" Active="true" Mesh="" UID="16 1893 268441103" AreaType="Trigger">
+            <Area ID="268441103" Name="PathToElevator_2" CreStamp="1672165323" ModStamp="1672412658" WorldPos="11.25 -21 -0.25" Rotation="0 -1.49012e-007 0" Scale="6 5 8" Active="true" Mesh="" UID="16 1893 268441103" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -4014,6 +4014,11 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268441756" Name="ElevatorBridge" CreStamp="1672413196" ModStamp="1672413211" WorldPos="11.25 1 2.75" Rotation="-0 3.14159 -0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="16 769 268441756" AreaType="PlayerStart">
+                <UserVariables>
+                    <Var Name="Crouching" Value="false" />
                 </UserVariables>
             </Area>
         </Objects>
