@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="8D9D5164A0714CE5E2BF7CEB5244163BDC1583F0" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="1104">
+        <FileIndex_Entities NumOfFiles="1107">
             <File Id="0" Path="entities/station/furniture/chair_scan/chair_scan.ent" />
             <File Id="1" Path="entities/station/furniture/chair_scan/chair_scan_helmet.ent" />
             <File Id="2" Path="entities/urban/special/00_04_scan_helmet/00_04_scan_helmet.ent" />
@@ -1105,6 +1105,9 @@
             <File Id="1101" Path="entities/station/furniture/bench_tv_community_room/bench_tv_community_room.ent" />
             <File Id="1102" Path="entities/station/storage/box_clothing/box_clothing_lid.ent" />
             <File Id="1103" Path="entities/station/ornaments/boot_left_right/boots_left.ent" />
+            <File Id="1104" Path="entities/station/utility/air_vent/air_vent.ent" />
+            <File Id="1105" Path="entities/station/utility/air_vent/air_vent_destroyed.ent" />
+            <File Id="1106" Path="entities/station/utility/air_vent/air_vent_frame.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435487" Name="02_05_computer_scan_storage_cylinder_1" CreStamp="1669894285" ModStamp="1669930999" WorldPos="-22.75 0 0" Rotation="0 3.14159 0" Scale="1 1 1" FileIndex="20" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 18 268435487">
@@ -35731,7 +35734,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268442388" Name="16.265" CreStamp="1672507136" ModStamp="1672507807" WorldPos="-12 18.1427 3.25" Rotation="-0 1.8326 -0" Scale="0.75 0.75 0.75" FileIndex="1096" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2551 268442388">
+            <Entity ID="268442388" Name="vent_broken_door" CreStamp="1672507136" ModStamp="1672574512" WorldPos="-12 19.75 5.25" Rotation="-1.82349 3.15011 -0.0670397" Scale="0.65 0.6 0.6" FileIndex="1096" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2551 268442388">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -35783,17 +35786,6 @@
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
-                </UserVariables>
-            </Entity>
-            <Entity ID="268442390" Name="02_05_hatch_ventilation_broken_base_1" CreStamp="1672507213" ModStamp="1672507242" WorldPos="-13.65 21.25 4.5" Rotation="-4.24874 4.71239 -5.17604" Scale="0.75 0.75 0.75" FileIndex="1097" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2549 268442390">
-                <UserVariables>
-                    <Var Name="CastShadows" Value="true" />
-                    <Var Name="IsAffectedByDecal" Value="true" />
-                    <Var Name="ColorMul" Value="1 1 1 1" />
-                    <Var Name="IllumColor" Value="1 1 1 1" />
-                    <Var Name="IllumBrightness" Value="1" />
-                    <Var Name="IsOccluder" Value="false" />
-                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
             <Entity ID="268442395" Name="module_ark_room_02_13" CreStamp="1672507548" ModStamp="1672507555" WorldPos="-10 20 2" Rotation="-2.08223 1.5708 -5.22383" Scale="1.25 1.25 1.25" FileIndex="544" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2544 268442395">
@@ -36941,6 +36933,94 @@
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
                     <Var Name="ColorMul" Value="0.18431372940540314 0.18431372940540314 0.18431372940540314 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268442541" Name="vent_broken" CreStamp="1672574271" ModStamp="1672574567" WorldPos="-12 23.25 4.75" Rotation="0 0 0" Scale="1 1 1" FileIndex="1105" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2587 268442541">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268442543" Name="vent_broken_frame" CreStamp="1672574281" ModStamp="1672574540" WorldPos="-12 21.1092 4.96275" Rotation="0.523599 -0 0" Scale="0.565 0.5 0.5" FileIndex="1106" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2581 268442543">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268442546" Name="vent_frame" CreStamp="1672574523" ModStamp="1672574552" WorldPos="-12 21.109 4.963" Rotation="0.523599 -0 0" Scale="0.565 0.5 0.5" FileIndex="1104" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2675 268442546">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268442550" Name="air_vent_frame_1" CreStamp="1672574672" ModStamp="1672574747" WorldPos="-13.65 21.25 4" Rotation="-5.49779 1.5708 -5.49779" Scale="0.625 0.85 1" FileIndex="1106" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2580 268442550">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268442551" Name="air_vent_frame_2" CreStamp="1672574761" ModStamp="1672574778" WorldPos="-7.235 21.25 2.095" Rotation="-3.09086e-008 -1.28028e-008 1.35106e-015" Scale="0.625 0.85 1" FileIndex="1106" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2586 268442551">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268442560" Name="air_vent_frame_3" CreStamp="1672574871" ModStamp="1672574885" WorldPos="-5.945 21.25 8.5" Rotation="0.500474 -1.5708 -0.500474" Scale="0.625 0.85 1" FileIndex="1106" Active="false" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 207 268442560">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268442565" Name="vent_frame_1" CreStamp="1672574990" ModStamp="1672575026" WorldPos="-10.9749 21.1235 6.75" Rotation="-0.414435 4.71239 -5.34515" Scale="0.565 0.5 0.5" FileIndex="1104" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2585 268442565">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268442566" Name="vent_frame_2" CreStamp="1672575050" ModStamp="1672575083" WorldPos="-8.25 21.1348 7.51951" Rotation="0.523599 3.14159 1.43601e-015" Scale="0.565 0.5 0.5" FileIndex="1104" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 2674 268442566">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
                     <Var Name="IllumBrightness" Value="1" />
                     <Var Name="IsOccluder" Value="false" />
