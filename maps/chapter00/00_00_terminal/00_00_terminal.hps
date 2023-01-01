@@ -114,6 +114,15 @@ class cScrMap : iScrMap
 		//Map setup
 		
 		/////////////////////////
+		// Map setup
+		
+		// -- Scan room
+		
+		// Makes the trash can flap open 
+		Entity_AddForce("trash_can_theta_flap_2", cVector3f(0, 750, 0), true, true);
+		
+		
+		/////////////////////////
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
@@ -200,6 +209,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
+			Entity_AddForce("trash_can_theta_flap_2", cVector3f(0, 250, 0), true, true);
 		}
 		
 	}
