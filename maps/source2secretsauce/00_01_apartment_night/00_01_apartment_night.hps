@@ -81,6 +81,10 @@ class cScrMap : iScrMap
 		Entity_SetInteractionDisabled("fire_alarm_1", true);
 		
 		/////////////////////////
+		// Clock
+		Map_AddTimer("move", 0.0f, "OnTimer_ManageClock");
+		
+		/////////////////////////
 		// Debug
 		if(cLux_ScriptDebugOn()) 
 		{
@@ -1759,4 +1763,33 @@ class cScrMap : iScrMap
 	}
 	
 	//}End Audio-----------------------------------------------------
+	
+	/////////////////////////////////////////
+	// Clock
+	//{///////////////////////////////////////
+	
+	float clockCurrentNeedleState = 0;
+	
+	void OnTimer_ManageClock(const tString &in asTimer)
+	{
+		if (asTimer == "move")
+		{	
+			// Clock tick sound
+			if (!Sound_Exists("clock_tick"))
+				Sound_CreateAtEntity("clock_tick", "00_04_doctor/amb/spot/wall_clock", "ClockSoundSource");
+			
+			// Update the clock needle state
+			clockCurrentNeedleState += 0.0167f;
+			Meter_SetState("wall_clock_second_1", clockCurrentNeedleState, false);
+			
+			Map_RestartCurrentTimer(1.0f);
+		}
+		
+		if (asTimer == "stop")
+		{
+			Sound_Stop("clock_tick", 0);
+		}
+	}
+	
+	//}End Clock-----------------------------------------------------
 }
