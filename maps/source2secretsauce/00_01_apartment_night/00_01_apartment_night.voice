@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<VoiceData>
+ <Characters>
+  <Character ID="0" Name="Player" DisplayName="Simon" Actor="" AutoGenVoice="False" AutoGenVoiceFile="" AutoGenVoiceSoundFreq="1" WorldSpace="False" AffectedByReverb="True" TextToSpeechVoice="Default" DefaultCriteria="" EntryType="GUIWorld" Volume="1" ReverbVolume="0.875" SpeakerSpread="40" EntitySource="" MinDist="0" MaxDist="0" MinFreq="22000" MaxFreq="22000" MaxListeningDist="-1" FrequencyFilter="None" />
+  <Character ID="1" Name="David" DisplayName="Munshi" Actor="" AutoGenVoice="False" AutoGenVoiceFile="" AutoGenVoiceSoundFreq="1" WorldSpace="False" AffectedByReverb="False" TextToSpeechVoice="Default" DefaultCriteria="" EntryType="GUIWorld" Volume="1" ReverbVolume="1" SpeakerSpread="180" EntitySource="" MinDist="0" MaxDist="0" MinFreq="22000" MaxFreq="22000" MaxListeningDist="-1" FrequencyFilter="None" />
+  <Character ID="2" Name="Jerry" DisplayName="Jesse" Actor="" AutoGenVoice="False" AutoGenVoiceFile="" AutoGenVoiceSoundFreq="1" WorldSpace="True" AffectedByReverb="True" TextToSpeechVoice="Default" DefaultCriteria="" EntryType="GUIWorld" Volume="0.5" ReverbVolume="0.925" SpeakerSpread="20" EntitySource="" MinDist="0" MaxDist="0" MinFreq="22000" MaxFreq="22000" MaxListeningDist="-1" FrequencyFilter="None" />
+  <Character ID="3" Name="AnswerMachine" DisplayName="Answering Machine" Actor="" AutoGenVoice="False" AutoGenVoiceFile="" AutoGenVoiceSoundFreq="1" WorldSpace="True" AffectedByReverb="True" TextToSpeechVoice="Default" DefaultCriteria="" EntryType="GUIWorld" Volume="1" ReverbVolume="0.915" SpeakerSpread="20" EntitySource="" MinDist="0" MaxDist="18" MinFreq="22000" MaxFreq="22000" MaxListeningDist="-1" FrequencyFilter="None" />
+ </Characters>
+ <Effects />
+ <Scenes>
+  <Scene ID="0" Name="Phonecall" FocusPrio="10" DefaultCriteria="" Volume="1" ReverbVolume="1" />
+  <Scene ID="1" Name="AnswerMachine" FocusPrio="0" DefaultCriteria="" Volume="1" ReverbVolume="1" />
+  <Scene ID="2" Name="SimonTalking" FocusPrio="20" DefaultCriteria="" Volume="1" ReverbVolume="1" />
+ </Scenes>
+ <Subjects>
+  <Subject Name="1_PhoneCall" UseSingleRandomLine="False" SceneId="0" EffectId="-1">
+   <Line CharacterId="0" Direction="(shocked)" Prio="0">
+    <Sound Text="Yeah, I'm up!" VoiceOffset="1" Volume="0.6" Timestamp="2015-05-21 11:10" />
+   </Line>
+   <Line CharacterId="1" Prio="0">
+    <Sound Text="Hi, Simon Jarrett?" VoiceOffset="0.3" TextOffset="0.3" EndPadding="-0.1" Timestamp="2015-05-21 11:10" />
+   </Line>
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Yeah, that's me." Volume="0.55" Timestamp="2014-10-15 01:00" />
+   </Line>
+   <Line CharacterId="1" Prio="0">
+    <Sound Text="My name is David Munshi. We spoke earlier--" VoiceOffset="0.5" TextOffset="0.5" Timestamp="2015-05-21 11:18" />
+   </Line>
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="The brain scan! I remember." EndPadding="0.17" Volume="0.6" Timestamp="2015-05-21 11:18" />
+   </Line>
+   <Line CharacterId="1" Prio="0">
+    <Sound Text="Are you all right?" VoiceOffset="0.5" TextOffset="0.5" Timestamp="2014-10-15 01:00" />
+   </Line>
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Yeah, yeah -- just a bad dream. Are we still on for today?" Volume="0.65" Timestamp="2015-05-21 11:18" />
+   </Line>
+   <Line CharacterId="1" Prio="0">
+    <Sound Text="Yeah, that's why I'm calling. I wanted to remind you to drink the tracer fluid I sent you. It will help me capture a better image of the damages." Volume="0.95" Timestamp="2015-03-09 10:37" />
+   </Line>
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Don't worry, I got it somewhere." Volume="0.8" Timestamp="2014-10-15 01:00" />
+   </Line>
+   <Line CharacterId="1" Prio="0">
+    <Sound Text="Okay, great. Well, see you in a couple of hours then." Volume="0.95" Timestamp="2015-05-21 11:18" />
+   </Line>
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Okay -- see you soon." Volume="0.65" Timestamp="2015-05-21 11:18" />
+   </Line>
+  </Subject>
+  <Subject Name="5_FoundTracer" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="There it is." Volume="0.7" Timestamp="2014-02-06 03:25" />
+   </Line>
+  </Subject>
+  <Subject Name="6_DrinkTracer" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Feels like milk, but the taste -- it's like sucking on a penny." Volume="0.85" Timestamp="2015-05-21 11:18" />
+   </Line>
+  </Subject>
+  <Subject Name="7_BrokenShower" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Don't want to keep the doctor waiting. I'll shower when I get back." Volume="0.85" Timestamp="2014-02-06 03:25" />
+   </Line>
+  </Subject>
+  <Subject Name="8_OpenDrapes" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Summer's coming. Hope it's a good one." Volume="0.8" Timestamp="2015-03-09 10:37" />
+   </Line>
+  </Subject>
+  <Subject Name="9_InspectFridge" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Nothing but fast food. Should buy something healthier on my way home." VoiceOffset="1" Volume="0.7" Timestamp="2015-03-09 10:37" />
+   </Line>
+  </Subject>
+  <Subject Name="10_AnswerMachine" UseSingleRandomLine="False" SceneId="1" EffectId="-1">
+   <Line CharacterId="2" Direction="talking into answering machine" Prio="0" Callback="LineOver_AnswerPhoneBeepSound" EntitySource="Simon_Phone" MinDist="1" MaxDist="11" MaxFreq="1000" MaxListeningDist="11">
+    <Sound Text="Hey, Simon. It's Jesse! You working this weekend or what?" VoiceOffset="0.75" EndPadding="-0.4" Volume="0.75" Timestamp="2015-05-21 11:18" />
+    <Sound Text="I knew there was something you were doing -- was it this weekend -- or next?" EndPadding="-0.8" Volume="0.75" Timestamp="2015-05-21 11:18" />
+    <Sound Text="Anyhoo, just shoot me a mail or something. Loveyoumissyoumeanit!" EndPadding="-0.8" Volume="0.75" Timestamp="2015-05-21 11:18" />
+   </Line>
+   <Line CharacterId="3" Prio="0" EntitySource="AnsMachSource" MaxDist="11" MaxFreq="1000" MaxListeningDist="11">
+    <Sound Text="End of messages." VoiceOffset="0.25" EndPadding="0.5" Volume="0.45" Timestamp="2015-01-19 01:14" />
+   </Line>
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="I swear that guy has the memory of a gold fish." Volume="0.8" Timestamp="2014-10-14 05:29" />
+   </Line>
+  </Subject>
+  <Subject Name="11_UseTV" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Right, watching TV gives me headaches now. Thank you, brain." Timestamp="2014-10-15 05:07" />
+   </Line>
+  </Subject>
+  <Subject Name="12_TryToExit" UseSingleRandomLine="False" SceneId="0" EffectId="-1">
+   <Line CharacterId="0" Prio="0" PlayOnce="True">
+    <Sound Text="I really should drink the tracer fluid before I go see Dr Munshi." Volume="0.7" FileName="phonecall_12_trytoexit_001_player_001" Timestamp="2015-05-21 11:18" />
+   </Line>
+  </Subject>
+  <Subject Name="13_TracerReminder" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Where did I put the tracer fluid?" Volume="0.7" FileName="simontalking_13_tracerreminder_001_player_001" Timestamp="2013-11-05 12:49" />
+   </Line>
+  </Subject>
+  <Subject Name="13_TracerReminderB" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0">
+    <Sound Text="Come on, radioactive tracer fluid. Where are you?" Volume="0.7" FileName="simontalking_13_tracerreminderb_001_player_001" Timestamp="2015-03-09 10:37" />
+   </Line>
+  </Subject>
+  <Subject Name="13_NoNewMessages" UseSingleRandomLine="False" SceneId="1" EffectId="-1">
+   <Line CharacterId="3" Prio="0" Callback="LineOver_AnswerPhoneBeepSound" EntitySource="Simon_Phone" MaxDist="11" MaxFreq="1000" MaxListeningDist="11">
+    <Sound Text="You have no new messages." VoiceOffset="0.25" Volume="0.45" FileName="answermachine_13_nonewmessages_001_answermachine_001" Timestamp="2014-06-24 05:33" />
+   </Line>
+  </Subject>
+  <Subject Name="1_PhoneCallOver" UseSingleRandomLine="False" SceneId="0" EffectId="-1">
+   <Line CharacterId="0" Direction="(under his breath)" Prio="0">
+    <Sound Text="...christ... " Volume="0.65" FileName="phonecall_1_phonecallover_001_player_001" Timestamp="2015-01-19 04:34" />
+   </Line>
+  </Subject>
+  <Subject Name="2_UnsentMailReaction" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Direction="surprised" Prio="0" PlayOnce="True">
+    <Sound Text="Forgot to hit send. Does it matter? I already told him about it." FileName="simontalking_2_unsentmailreaction_001_player_001" Timestamp="2015-05-28 03:34" />
+   </Line>
+  </Subject>
+  <Subject Name="2_SentMailReaction" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0" PlayOnce="True">
+    <Sound Text="Better late then never." FileName="simontalking_2_sentmailreaction_001_player_001" Timestamp="2015-03-13 03:20" />
+   </Line>
+  </Subject>
+  <Subject Name="2_UnsentMailReaction_HeardMsg" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0" PlayOnce="True">
+    <Sound Text="Oh, I forgot to hit send." FileName="simontalking_2_unsentmailreaction_heardmsg_001_player_001" Timestamp="2015-05-07 11:04" />
+   </Line>
+  </Subject>
+  <Subject Name="10_AnswerMachine_NotReadMail" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0" PlayOnce="True">
+    <Sound Text="I even sent an email to remind him, didn't I?" VoiceOffset="0.75" FileName="simontalking_10_answermachine_notreadmail_001_player_001" Timestamp="2015-05-06 03:26" />
+   </Line>
+  </Subject>
+  <Subject Name="10_AnswerMachine_SentMail" UseSingleRandomLine="False" SceneId="2" EffectId="-1">
+   <Line CharacterId="0" Prio="0" PlayOnce="True">
+    <Sound Text="Well, I got the email off. He must have caught up by now." FileName="simontalking_10_answermachine_sentmail_001_player_001" Timestamp="2015-05-06 03:26" />
+   </Line>
+  </Subject>
+ </Subjects>
+</VoiceData>
