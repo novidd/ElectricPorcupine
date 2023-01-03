@@ -20232,7 +20232,7 @@
                     <Var Name="ShakeMul" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539274" Name="apartmentdoor" CreStamp="1672661662" ModStamp="1672703015" WorldPos="-3.25 0 9.25" Rotation="0 4.71239 0" Scale="0.925 0.925 1" FileIndex="5" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="29 123 486539274">
+            <Entity ID="486539274" Name="simonapartment_door" CreStamp="1672661662" ModStamp="1672760758" WorldPos="-3.25 0 9.25" Rotation="0 4.71239 0" Scale="0.925 0.925 1" FileIndex="5" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="29 123 486539274">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -20537,7 +20537,7 @@
                     <Var Name="JointResetFix" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539338" Name="scanroom_door_numbers_361_1" CreStamp="1672669068" ModStamp="1672669339" WorldPos="-3.221 2.1 9.235" Rotation="0 -1.5708 0" Scale="0.7 0.7 0.7" FileIndex="13" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 162 486539338">
+            <Entity ID="486539338" Name="scanroom_door_numbers_361_1" CreStamp="1672669068" ModStamp="1672760768" WorldPos="-3.221 2.1 9.235" Rotation="0 -1.5708 0" Scale="0.7 0.7 0.7" FileIndex="13" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 162 486539338">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -20572,7 +20572,7 @@
                     <Var Name="ConnectedEntity" Value="" />
                     <Var Name="ConnectedEntityInvertState" Value="false" />
                     <Var Name="ConnectedEntityStatesUsed" Value="0" />
-                    <Var Name="ParentAttachEntity" Value="apartmentdoor" />
+                    <Var Name="ParentAttachEntity" Value="simonapartment_door" />
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
                     <Var Name="ParentAttachSocket" Value="" />
@@ -21478,10 +21478,10 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539460" Name="theta_emergency_stairwell_sign_2" CreStamp="1672691571" ModStamp="1672759321" WorldPos="-4.2754 2 21.25" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="78" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="29 510 486539460">
+            <Entity ID="486539460" Name="theta_emergency_stairwell_sign_2" CreStamp="1672691571" ModStamp="1672760748" WorldPos="-4.1645 2 21.25" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="78" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="29 510 486539460">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="CollideGroup" Value="-doorattachment" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
@@ -21513,7 +21513,7 @@
                     <Var Name="ConnectedEntity" Value="" />
                     <Var Name="ConnectedEntityInvertState" Value="false" />
                     <Var Name="ConnectedEntityStatesUsed" Value="0" />
-                    <Var Name="ParentAttachEntity" Value="stairwelldoor" />
+                    <Var Name="ParentAttachEntity" Value="stairwell_door" />
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
                     <Var Name="ParentAttachSocket" Value="" />
@@ -22099,10 +22099,10 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539539" Name="stairwelldoor" CreStamp="1672700652" ModStamp="1672759323" WorldPos="-4.325 0 21.25" Rotation="0 4.71239 0" Scale="0.915 1 1" FileIndex="14" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 723 486539539">
+            <Entity ID="486539539" Name="stairwell_door" CreStamp="1672700652" ModStamp="1672760742" WorldPos="-4.2355 0 21.25" Rotation="0 4.71239 0" Scale="0.865 1 1" FileIndex="14" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 723 486539539">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="CollideGroup" Value="+doorattachment" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
@@ -22190,7 +22190,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539581" Name="swingdoor_scanroom_corridor_2" CreStamp="1672748763" ModStamp="1672748783" WorldPos="-1.75 0 31.375" Rotation="0 5.56363e-008 0" Scale="0.915 1 1" FileIndex="14" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 621 486539581">
+            <Entity ID="486539581" Name="serverroom_door" CreStamp="1672748763" ModStamp="1672760735" WorldPos="-1.75 0 31.375" Rotation="0 5.56363e-008 0" Scale="0.865 1 1" FileIndex="14" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 621 486539581">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
