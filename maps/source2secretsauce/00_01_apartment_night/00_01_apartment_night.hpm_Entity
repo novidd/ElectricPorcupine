@@ -19915,7 +19915,7 @@
         <Objects />
     </Section>
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="101">
+        <FileIndex_Entities NumOfFiles="103">
             <File Id="0" Path="entities/oceanbottom/tech/field_radio/field_radio.ent" />
             <File Id="1" Path="entities/urban/ornament_wall/wall_clock/wall_clock.ent" />
             <File Id="2" Path="entities/urban/ornament_wall/wall_clock/wall_clock_glass_dark.ent" />
@@ -20017,6 +20017,8 @@
             <File Id="98" Path="entities/urban/utility/first_aid_kit_box/first_aid_kit_box.ent" />
             <File Id="99" Path="entities/urban/utility/first_aid_kit_box/first_aid_kit_box_wau.ent" />
             <File Id="100" Path="entities/organic/splat/blood/blood_splash01.ent" />
+            <File Id="101" Path="entities/station/ornaments_wall/poster_firstaid/poster_firstaid.ent" />
+            <File Id="102" Path="entities/urban/furniture/05_02_bench/05_02_bench.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="486539266" Name="wall_clock_1" CreStamp="1672661407" ModStamp="1672661416" WorldPos="-13.5754 2.5 2" Rotation="0 1.5708 0" Scale="1.5 1.5 1.5" FileIndex="1" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 15 486539266">
@@ -22438,7 +22440,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539626" Name="air_vent_8" CreStamp="1672754261" ModStamp="1672765132" WorldPos="-3 3 31.25" Rotation="-1.5708 4.42482e-008 7.45058e-008" Scale="1 1 1" FileIndex="25" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 718 486539626">
+            <Entity ID="486539626" Name="air_vent_8" CreStamp="1672754261" ModStamp="1672780313" WorldPos="-2.95 3.5 31.25" Rotation="-1.5708 4.42482e-008 7.45058e-008" Scale="1 1 1" FileIndex="25" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 718 486539626">
                 <UserVariables>
                     <Var Name="CastShadows" Value="false" />
                     <Var Name="IsAffectedByDecal" Value="false" />
@@ -23419,6 +23421,17 @@
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="486539885" Name="poster_firstaid_1" CreStamp="1672780140" ModStamp="1672780237" WorldPos="-18.25 1.5 25.25" Rotation="0 -23.5619 0" Scale="1 1 1" FileIndex="101" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 554 486539885">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
