@@ -2338,7 +2338,7 @@
                     <Var Name="DoorwayCheckCenterOnly" Value="true" />
                 </UserVariables>
             </Area>
-            <Area ID="486539503" Name="Stairwell" CreStamp="1672696586" ModStamp="1672763482" WorldPos="-10.25 1.75 21.25" Rotation="0 0 0" Scale="12 4 3.5" Active="true" Mesh="" UID="29 482 486539503" AreaType="DoorwayTrigger">
+            <Area ID="486539503" Name="Stairwell" CreStamp="1672696586" ModStamp="1672769096" WorldPos="-9.25 1.75 21.25" Rotation="0 0 0" Scale="10 4 3.5" Active="true" Mesh="" UID="29 482 486539503" AreaType="DoorwayTrigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2577,7 +2577,7 @@
                     <Var Name="DoorwayCheckCenterOnly" Value="true" />
                 </UserVariables>
             </Area>
-            <Area ID="486539739" Name="DoorToStationFacility" CreStamp="1672763388" ModStamp="1672763484" WorldPos="-16.25 1.75 21.25" Rotation="0 0 0" Scale="0.25 3 2" Active="true" Mesh="" UID="29 661 486539739" AreaType="DoorwayTrigger">
+            <Area ID="486539739" Name="DoorToStationFacility" CreStamp="1672763388" ModStamp="1672769098" WorldPos="-14.25 1.75 21.25" Rotation="0 0 0" Scale="0.25 3 2" Active="true" Mesh="" UID="29 661 486539739" AreaType="DoorwayTrigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2611,7 +2611,7 @@
                     <Var Name="DoorwayCheckCenterOnly" Value="true" />
                 </UserVariables>
             </Area>
-            <Area ID="486539744" Name="RustDecal" CreStamp="1672763694" ModStamp="1672763708" WorldPos="-6 3.25 22.5" Rotation="0 0 0" Scale="0.5 0.5 0.5" Active="true" Mesh="" UID="29 656 486539744" AreaType="DoorwayTrigger">
+            <Area ID="486539744" Name="RustDecal" CreStamp="1672763694" ModStamp="1672768930" WorldPos="-6 3.25 22.75" Rotation="0 0 0" Scale="0.5 0.5 0.5" Active="true" Mesh="" UID="29 656 486539744" AreaType="DoorwayTrigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2869,6 +2869,44 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="486539830" Name="Mailboxes?" CreStamp="1672768392" ModStamp="1672769162" WorldPos="-6.67388 1.5 22.75" Rotation="0 0 0" Scale="1 0.5 0.25" Active="true" Mesh="" UID="29 582 486539830" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="486539831" Name="VisibilityPortalArea_8" CreStamp="1672768600" ModStamp="1672768866" WorldPos="-4.25 1.75 21.25" Rotation="0 0 0" Scale="0.347 4 1.75" Active="true" Mesh="" UID="29 580 486539831" AreaType="VisibilityPortal">
+                <UserVariables>
+                    <Var Name="ConnectedAreas1" Value="VisibilityAreaArea_5" />
+                    <Var Name="ConnectedAreas2" Value="VisibilityAreaArea_4" />
+                    <Var Name="ConnectedAreas3" Value="" />
+                </UserVariables>
+            </Area>
+            <Area ID="486539832" Name="VisibilityAreaArea_5" CreStamp="1672768626" ModStamp="1672768639" WorldPos="-10.25 2.75 21" Rotation="0 1.5708 0" Scale="5.25 11.5 12" Active="true" Mesh="" UID="29 581 486539832" AreaType="VisibilityArea">
+                <UserVariables>
+                    <Var Name="AddPartialIntersectingObjects" Value="false" />
+                    <Var Name="MinObjectsPerNode" Value="-1" />
+                    <Var Name="MaxObjectsPerNode" Value="-1" />
                 </UserVariables>
             </Area>
         </Objects>
