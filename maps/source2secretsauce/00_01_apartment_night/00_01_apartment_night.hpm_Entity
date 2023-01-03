@@ -19681,7 +19681,7 @@
         <Objects />
     </Section>
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="61">
+        <FileIndex_Entities NumOfFiles="64">
             <File Id="0" Path="entities/oceanbottom/tech/field_radio/field_radio.ent" />
             <File Id="1" Path="entities/urban/ornament_wall/wall_clock/wall_clock.ent" />
             <File Id="2" Path="entities/urban/ornament_wall/wall_clock/wall_clock_glass_dark.ent" />
@@ -19743,6 +19743,9 @@
             <File Id="58" Path="entities/urban/tech/server_scanroom/server_scanroom.ent" />
             <File Id="59" Path="entities/urban/special/00_04_computer_scanroom/computer_scanroom_small.ent" />
             <File Id="60" Path="entities/urban/utility/fuse_box/fuse_box.ent" />
+            <File Id="61" Path="entities/urban/furniture/stepladder/stepladder.ent" />
+            <File Id="62" Path="entities/urban/ornament/paintbucket/paintbucket_white.ent" />
+            <File Id="63" Path="entities/urban/ornament/laboratory_floor_sheet/laboratory_floor_sheet.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="486539266" Name="wall_clock_1" CreStamp="1672661407" ModStamp="1672661416" WorldPos="-13.5754 2.5 2" Rotation="0 1.5708 0" Scale="1.5 1.5 1.5" FileIndex="1" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 15 486539266">
@@ -22027,7 +22030,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539597" Name="fuse_box_1" CreStamp="1672749043" ModStamp="1672749043" WorldPos="-0.00475991 1.52384 33.2334" Rotation="0 -14.1372 0" Scale="1 1 1" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 735 486539597">
+            <Entity ID="486539597" Name="fuse_box_1" CreStamp="1672749043" ModStamp="1672749043" WorldPos="0.12024 1.52384 33.2334" Rotation="0 -14.1372 0" Scale="1 1 1" FileIndex="60" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 735 486539597">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -22085,7 +22088,7 @@
                     <Var Name="JointResetFix" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539598" Name="fuse_box_button_3" CreStamp="1672749097" ModStamp="1672749113" WorldPos="-0.00475991 1.52384 33.2334" Rotation="0 -14.1372 0" Scale="1 1 1" FileIndex="16" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 734 486539598">
+            <Entity ID="486539598" Name="fuse_box_button_3" CreStamp="1672749097" ModStamp="1672749113" WorldPos="0.12024 1.52384 33.2334" Rotation="0 -14.1372 0" Scale="1 1 1" FileIndex="16" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 734 486539598">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -22142,6 +22145,39 @@
                     <Var Name="ReturnToOffTime" Value="-1" />
                     <Var Name="Locked" Value="false" />
                     <Var Name="Disabled" Value="false" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="486539618" Name="stepladder_1" CreStamp="1672753118" ModStamp="1672753136" WorldPos="-2.5 0 29" Rotation="-0 1.8326 -0" Scale="0.9 0.9 0.9" FileIndex="61" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 729 486539618">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="486539619" Name="paintbucket_white_1" CreStamp="1672753154" ModStamp="1672753177" WorldPos="-2.75 0.011 27.5" Rotation="0 -14.1372 0" Scale="0.8 0.8 0.8" FileIndex="62" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 722 486539619">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="486539621" Name="laboratory_floor_sheet_1" CreStamp="1672753208" ModStamp="1672753237" WorldPos="-2.125 0.014 25.25" Rotation="0 -14.1372 0" Scale="1 1 1" FileIndex="63" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 721 486539621">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
