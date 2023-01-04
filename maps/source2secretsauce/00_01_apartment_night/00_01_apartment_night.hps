@@ -1339,12 +1339,12 @@ class cScrMap : iScrMap
 		if (alState == 1)
 		{
 			//Sound source is "HandleSoundTrigger"
-			Sound_CreateAtEntity("HandleDown", "Entities_Urban/door/toilet_door/door_handle_down", "HandleSoundTrigger",0,false);
+			Sound_CreateAtEntity("HandleDown", "Entities_Urban/door/toilet_door/door_handle_down", asParent,0,false);
 		}
 		else
 		{
 			//Sound source is "HandleSoundTrigger"
-			Sound_CreateAtEntity("HandleUp", "Entities_Urban/door/toilet_door/door_handle_up", "HandleSoundTrigger",0,false);
+			Sound_CreateAtEntity("HandleUp", "Entities_Urban/door/toilet_door/door_handle_up", asParent,0,false);
 		}
 		return true;
 	}
