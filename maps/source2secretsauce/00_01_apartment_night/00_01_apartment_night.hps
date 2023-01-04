@@ -45,6 +45,8 @@ class cScrMap : iScrMap
         Effect_Bloom_FadeBloomWidth(128, 2);
         Effect_Bloom_FadeBloomFalloff(0.5f, 2);
         Effect_Bloom_FadeBloomTint(1, 1, 1, 2);
+		
+		Map_Preset_SetupDepthOfField("TorontoPreset", true, 0, 16.0, 0.25);
 	}
 	
 	//-------------------------------------------------------
@@ -137,9 +139,12 @@ class cScrMap : iScrMap
 
 		Entity_SetMaxInteractionDistance("drapes_simon", 0.01); //So that only auxareas are used for interaction.
 		Player_SetFlashlightDisabled(true);
+		
 		if (cLux_ScriptDebugOn())
 		{
 			Player_SetFlashlightDisabled(false);
+			
+			Map_Preset_Fade("TorontoPreset", 0.01);
 		}
 		
 		PlayerHands_SetHandModel_Human();
