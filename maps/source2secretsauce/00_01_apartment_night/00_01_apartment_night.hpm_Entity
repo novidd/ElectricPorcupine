@@ -21345,7 +21345,7 @@
         <Objects />
     </Section>
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="283">
+        <FileIndex_Entities NumOfFiles="284">
             <File Id="0" Path="entities/oceanbottom/tech/field_radio/field_radio.ent" />
             <File Id="1" Path="entities/urban/ornament_wall/wall_clock/wall_clock.ent" />
             <File Id="2" Path="entities/urban/ornament_wall/wall_clock/wall_clock_glass_dark.ent" />
@@ -21629,6 +21629,7 @@
             <File Id="280" Path="entities/urban/special/00_03_rain/00_03_rain_plane_fast.ent" />
             <File Id="281" Path="entities/urban/special/00_03_rain/00_03_rain_plane_slow.ent" />
             <File Id="282" Path="entities/urban/special/00_03_rain/water_drip_glass.ent" />
+            <File Id="283" Path="entities/urban/special/00_03_rain/water_drip_glass_fast.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="486539266" Name="wall_clock_1" CreStamp="1672661407" ModStamp="1672661416" WorldPos="-13.5754 2.5 2" Rotation="0 1.5708 0" Scale="1.5 1.5 1.5" FileIndex="1" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 15 486539266">
@@ -25325,16 +25326,16 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486539986" Name="drapes_simon_1" CreStamp="1672839829" ModStamp="1672852374" WorldPos="-1.7505 0.75 3.425" Rotation="0 0 0" Scale="1 1 1" FileIndex="118" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="29 581 486539986">
+            <Entity ID="486539986" Name="drapes_simon_1" CreStamp="1672839829" ModStamp="1672866854" WorldPos="-1.7505 0.75 3.425" Rotation="0 0 0" Scale="1 1 1" FileIndex="118" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="29 581 486539986">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
-                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="StaticPhysics" Value="true" />
                     <Var Name="EffectsActive" Value="true" />
-                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="InteractionDisabled" Value="true" />
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="ColorMul" Value="0.318359375 0.27442076802253723 0.15047454833984375 0.29411765933036804" />
                     <Var Name="EffectColorMul" Value="1 1 1 1" />
@@ -27508,18 +27509,29 @@
                     <Var Name="InteractDisablesStaticPhysics" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486540504" Name="00_03_rain_plane_fast_1" CreStamp="1672861204" ModStamp="1672861204" WorldPos="-10 4.76837e-007 -1" Rotation="0 -37.6991 0" Scale="1 1 1" FileIndex="280" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 314 486540504">
+            <Entity ID="486540504" Name="00_03_rain_plane_fast_1" CreStamp="1672861204" ModStamp="1672867480" WorldPos="-10 4.76837e-007 -1" Rotation="0 -37.6991 0" Scale="1 1 1" FileIndex="280" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 314 486540504">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
-                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="ColorMul" Value="1 1 1 0.19607844948768616" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
                     <Var Name="IllumBrightness" Value="1" />
                     <Var Name="IsOccluder" Value="false" />
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="486540506" Name="water_drip_glass_1" CreStamp="1672861220" ModStamp="1672861235" WorldPos="-9.75 1.5 0.504928" Rotation="0 -37.6991 0" Scale="1 1 1" FileIndex="282" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 313 486540506">
+            <Entity ID="486540506" Name="water_drip_glass_1" CreStamp="1672861220" ModStamp="1672867521" WorldPos="-9.75 1.5 0.455" Rotation="0 -37.6991 0" Scale="1 1 1" FileIndex="282" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 313 486540506">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.058823533356189728" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="486540547" Name="water_drip_glass_fast_1" CreStamp="1672867405" ModStamp="1672867514" WorldPos="-10 1.75 0.455049" Rotation="0 -37.6991 0" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="29 270 486540547">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
