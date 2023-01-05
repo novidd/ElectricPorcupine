@@ -79,9 +79,13 @@
 // - Simon commments - "What the hell? Hello?"
 // - Find the body, Simon calls 911 no one answers
 // - After Simon finds the keypad code the puppet spawns from the vent
+// - Use this sound for the vent breaking: 03_02_omicron_inside/SFX/vent_hatch_rip
+// Turn off static physics for the vent to get the sound of the vent falling on the floor (or play it manually for more control)
 // - The player has to hide under tables and such
 // - The puppet will FIRST enter the archive room and then the server room - this is the players window to sneak past to enter the code
 // - CODE SUCCESS! - ESCAPE! YAY!
+// - On code success alert the puppet - the player has to hurry to close the door (it locks automatically)
+// - The puppet smashes the door
 // - Load next map in vents
 // MAP END
 
@@ -124,6 +128,8 @@
 // - Simon comment - "Oh, oh... what the fuck!"
 // - You pick up the Omnitool from their body - !GUILT ACTIVATED! MWAHAHAHAHA!
 // - You can hear a near silent breathing from him
+// - puppet_dreamer_male.ent for his body and lower the colormul to: 0A0A0AFF, OR use another body
+// Run the code Entity_PlayAnimation("[CHARACTER NAME]_toasted", "puppet_victim_lying", 0, true, true); for him to lie on his back breathing heavily
 
 // - The player can find this guys safe room
 // - There are notes and stuff about this guy and his friend (the guy dead in the archives room)
