@@ -82,6 +82,7 @@ class cScrMap : iScrMap
 		//Setup Entities
 		Entity_SetInteractionDisabled("fire_alarm_1", true);
 		Prop_RotateToSpeed("fan_wall_fan_*", 20, 20, cVector3f(1,0,0), false, "");
+		Entity_PlayAnimation("UnnamedEmployee", "puppet_victim_sitting_in_chair", 0, true, true);
 		
 		/////////////////////////
 		// Clock
