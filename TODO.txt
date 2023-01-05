@@ -66,6 +66,7 @@
 // - Screen sway as if drunk
 // - Sound if distant thunder
 // - Simon falls, then wakes up suddenly (the rain has cleared, its early morning, the sound of morning birds)
+// - When Simon falls on ground play: 02_06_theta_tunnels/sfx/events/elevator_sequence/ladder/ground_hit 
 
 // - A new email from Munshi - match the writing style with his dialogue and his other email.
 // EMAIL TEXT: "[MORE TEXT]. I expect to see you next week. Keep it up, and make sure to have a good nights sleep. If you have any complications contact me immediately so we can reconsider your future."
@@ -76,22 +77,25 @@
 
 // 5. The corridor
 // - The video distortion when the player finds the blood on the floor
+// - Start looping 01_01_upsilon_awake/sfx/wake_up/nervous, just like in Upsilon (disable the sound during dialogue - use a bool)
 // - Simon commments - "What the hell? Hello?"
 // - Find the body, Simon calls 911 no one answers
 // - After Simon finds the keypad code the puppet spawns from the vent
-// - Use this sound for the vent breaking: 03_02_omicron_inside/SFX/vent_hatch_rip
+// - Use this sound for the vent breaking: 03_02_omicron_inside/SFX/vent_hatch_rip THIS TOO: 02_05_theta/sweeteners/akers_tomfoolery/akers_server_spawn
 // Turn off static physics for the vent to get the sound of the vent falling on the floor (or play it manually for more control)
 // - The player has to hide under tables and such
 // - The puppet will FIRST enter the archive room and then the server room - this is the players window to sneak past to enter the code
 // - CODE SUCCESS! - ESCAPE! YAY!
 // - On code success alert the puppet - the player has to hurry to close the door (it locks automatically)
-// - The puppet smashes the door
-// - Load next map in vents
+// - The puppet smashes the door - 02_06_theta_tunnels/sfx/events/elevator_sequence/akers_attack
+// - Play dust particles on smash (Upsilon door smash event?)
+// - Load next map in maintenance tunnel
 // MAP END
 
 // X. The player will find an unfinished survey questionare - at the last question the program crashes or something "Exception on line[...]"
 
 // X. In the maintenance tunnel
+// - Play 02_05_theta/sweeteners/akers_tomfoolery/akers_distant 
 // - The player fill find a safe space where the blood guy dropped his datapad
 // - Play special music when the player picks it up
 // - Find notes mentioning a "Catherine", and that she is behind alot of what's going on
@@ -115,6 +119,10 @@
 // - Then establish map objective
 // - A locked path - omnitool needed?
 // - The player needs to find the omnitool to proceed
+
+// - Give the player some down time before the puppet comes back - some story telling and world building, environmental storytelling and such
+
+// - The player can hear this behind the section divider door: 02_05_theta/sweeteners/akers_tomfoolery/akers_closed_corridor_door
 
 // - The power goes out
 // - The puppet breaks down the door that blocked to only path to the area where the key to the objective is located
@@ -154,6 +162,7 @@
 // X. Find Catherine's body
 // - She's got something in her hand - an tool item for the player to pick up (it gives the player a ticket to upload themselves to the ark)
 // - And a recording of Simon and Catherine's conversation on the Zeppelin to Theta
+// - Show a picture of Catherine on the terminal just like old times
 // - "Eternity among the stars"
 
 // TWO ENDINGS:
