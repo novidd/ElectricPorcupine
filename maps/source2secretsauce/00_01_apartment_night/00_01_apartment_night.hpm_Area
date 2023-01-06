@@ -2169,30 +2169,6 @@
                     <Var Name="DoorwayCheckCenterOnly" Value="true" />
                 </UserVariables>
             </Area>
-            <Area ID="486539802" Name="VentFallOnMonsterDropDown" CreStamp="1672765498" ModStamp="1672920634" WorldPos="-1.75 3.25 9.25" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="29 605 486539802" AreaType="Trigger">
-                <UserVariables>
-                    <Var Name="BlocksLineOfSight" Value="false" />
-                    <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="UserVar" Value="" />
-                    <Var Name="CC_Entities" Value="" />
-                    <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
-                    <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="PlayerLookAtCallback" Value="" />
-                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
-                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
-                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
-                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
-                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
-                    <Var Name="PlayerInteractCallback" Value="" />
-                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
-                    <Var Name="CanInteractWithoutCallback" Value="false" />
-                    <Var Name="MaxFocusDistance" Value="-1" />
-                    <Var Name="CustomInteractIcon" Value="PushButton" />
-                </UserVariables>
-            </Area>
             <Area ID="486539807" Name="RestrictedPersonell" CreStamp="1672765667" ModStamp="1672765706" WorldPos="-1.75 2 31.2046" Rotation="0 0 0" Scale="0.75 0.5 0.125" Active="true" Mesh="" UID="29 601 486539807" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
@@ -3331,6 +3307,30 @@
             <Area ID="486541191" Name="DemoStartArea" CreStamp="1672958892" ModStamp="1672959087" WorldPos="-11.5 1.01415 2.75" Rotation="0 -0.114642 0" Scale="0.7 1.9 0.7" Active="true" Mesh="" UID="29 560 486541191" AreaType="PlayerStart">
                 <UserVariables>
                     <Var Name="Crouching" Value="false" />
+                </UserVariables>
+            </Area>
+            <Area ID="486541372" Name="PuppetGoopDripHere" CreStamp="1673011573" ModStamp="1673011585" WorldPos="-1.75 4 9.25" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="29 324 486541372" AreaType="Description">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="TextData" Value="" />
+                    <Var Name="TimeVisibleMul" Value="1" />
+                    <Var Name="NumOfSentences" Value="1" />
+                    <Var Name="ShowTextCallback" Value="" />
+                    <Var Name="OnlyShowOnce" Value="false" />
+                    <Var Name="TriggerType" Value="look" />
+                    <Var Name="MaxLookDistance" Value="2.5" />
+                    <Var Name="BusyType" Value="wait" />
+                    <Var Name="Effect" Value="none" />
+                    <Var Name="EffectAmount" Value="1" />
+                    <Var Name="Color" Value="1 1 1 1" />
                 </UserVariables>
             </Area>
         </Objects>
