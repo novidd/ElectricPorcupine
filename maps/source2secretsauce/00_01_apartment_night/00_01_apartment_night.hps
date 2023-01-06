@@ -217,6 +217,11 @@ class cScrMap : iScrMap
 					cLux_AddDebugMessage(pEnt.GetName()+" type:"+pEnt.GetEntityType());
 			}
 		}
+		else if (alAction == eAction_Test7)
+		{
+			Effect_Screen_Start("scanline_overlay.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  .1, 0.1, 900, 0.1);
+			Sound_CreateAtEntity("camera_noise", "Entities_Special/Equipment/scanner/interface_scan_sequence", "player", 0, false, 0.15f);
+		}
 		
 	}
 
