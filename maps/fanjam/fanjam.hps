@@ -321,7 +321,7 @@ class cScrMap : iScrMap
 //			Player_SetActive(false);
 			
 			// Sequence
-			Map_AddTimer("introsequence", 0.1f, "SequenceIntro");
+			Map_AddTimer("introsequence", 0.01f, "SequenceIntro");
 			
 			mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
 			Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 2, 0.01);
