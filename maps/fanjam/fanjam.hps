@@ -109,11 +109,15 @@ class cScrMap : iScrMap
 		Player_SetAmbientLight_Indoors();
 		Player_SetFootWear("sneaker");
 		Player_SetClothing("dressed");
+		Player_SetFlashlightDisabled(true);
 		PlayerHands_SetHandModel_Human();
+		PlayerEnergy_SetFlowerSwallows(true);
 		if (cLux_ScriptDebugOn())
 		{
-			Player_SetFlashlightDisabled(false);
+			
 		}
+		
+		Tool_PickUp("objective_datapad", false, false);
 	}
 
 	//-------------------------------------------------------
@@ -150,6 +154,27 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
+		}
+		
+		if(alAction == eAction_Test1) // Change this key to F
+		{
+			// This way the player cannot pull out the pad while already interacting with terminal/reading etc
+			if (Player_IsInteracting()) return;
+			
+			// Unequip tool if already in use
+			if (Player_GetCurrentToolEntityName() == "objective_datapad")
+			{
+				Player_UnequipTool();
+				
+				// Enables the players ability to interact with terminals/readables while the pad is out
+				Player_SetInteractionAllowed(true);
+				return;
+			}
+			
+			Player_EquipTool("objective_datapad", "");
+			
+			// Disable the players ability to interact with terminals/readables while the pad is out
+			Player_SetInteractionAllowed(false);
 		}
 	}
 
@@ -242,8 +267,7 @@ class cScrMap : iScrMap
 			Sequence_Begin("SequenceIntro", mSequenceIntro_Data);
 			if (Sequence_DoStepAndWait(5.0f))
 			{
-				Player_SetCrouching(true, true, true);
-				Player_Teleport("IntroStartPos", true);
+				Player_Teleport("PlayerStartArea_1", true);
 				
 				// - Start looping 01_01_upsilon_awake/sfx/wake_up/nervous, just like in Upsilon (disable the sound during dialogue - use a bool)
 				Map_AddTimer("nervousbreath_start", 0.0f, "OnTimer_NervousBreath");
