@@ -10,6 +10,17 @@
 #include "helpers/helper_game.hps"
 #include "helpers/helper_modules.hps"
 #include "helpers/helper_ai.hps"
+#include "helpers/helper_areas.hps"
+
+#include "helper_imgui_station.hps"
+
+#include "helpers/helper_player.hps"
+#include "custom_depth/helper_custom_depth_audio.hps"
+#include "helper_imgui_station.hps"
+#include "helper_imgui_station_app_error.hps"
+
+#include "helper_custom_depth.hps"
+#include "helper_custom_depth_ai.hps"
 
 //--------------------------------------------------
  
@@ -34,7 +45,28 @@ class cScrMap : iScrMap
 	// Set up map environment
 	void Setup()
 	{
+		
+	}
 	
+	//-------------------------------------------------------
+	
+	void PreloadData()
+	{
+		///////////////////////////
+		// PARTICLES CREATED
+		///////////////////////////
+		ParticleSystem_Preload("");
+		
+		///////////////////////////
+		// PLAYER HANDS
+		///////////////////////////
+		PlayerHands_PreloadHandModel_DeepSea();
+		
+		///////////////////////////
+		// IMGUI
+		///////////////////////////
+		OmnitoolGui_Preload();
+		StationGui_PreloadDefault();
 	}
 	
 	//-------------------------------------------------------
@@ -43,7 +75,44 @@ class cScrMap : iScrMap
 	// Run first time starting map
 	void OnStart()
 	{
+		/////////////////////////
+		// Debug
+		if(cLux_ScriptDebugOn()) 
+		{
+			cLux_AddDebugMessage("Debug on.");
+			Sound_FadeGlobalVolume(1.0f, 0.5f, eSoundEntryType_WorldAll);
+		}
 		
+		////////////////////////////
+		// Setup
+		// puppet_victim_sitting_in_chair
+		// puppet_victim_lying
+		// puppet_victim_lying_against_wall
+		Entity_PlayAnimation("IntroPuppetVictim", "puppet_victim_lying_against_wall", 0, true, true);
+		
+		////////////////////////////
+		// Kick off intro
+		bool bDoIntro = true;
+		
+		if (cLux_ScriptDebugOn() == false)
+		{
+			// bDoIntro = false;
+		}
+		
+		if (bDoIntro)
+		{
+			SetupIntro();
+		}
+		
+		///////////////////////////////
+		// Defaults
+		Player_SetAmbientLight_Indoors();
+		Player_SetFootWear("sneaker");
+		Player_SetClothing("dressed");
+		if (cLux_ScriptDebugOn())
+		{
+			Player_SetFlashlightDisabled(false);
+		}
 	}
 
 	//-------------------------------------------------------
@@ -118,7 +187,7 @@ class cScrMap : iScrMap
  
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE X *NAME OF SCENE*
+	// SCENE X *SIMON LOOKS FOR AN OMNITOOL*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
@@ -138,21 +207,62 @@ class cScrMap : iScrMap
 		
 		//} END General	
 	 
-		 /////////////////////////////////////////
-		 // Event *Monster pass*
-		 //{//////////////////////////////////////
+		/////////////////////////////////////////
+		// Event *Akers enters the office*
+		//{//////////////////////////////////////
 	 
-		 //-------------------------------------------------------
+		//-------------------------------------------------------
 	 
-		 /*Put any variables that are only used in Scene X, Event X here.*/
+		/*Put any variables that are only used in Scene X, Event X here.*/
 	 
-		 //-------------------------------------------------------
+		//-------------------------------------------------------
 	 
-		 /*Put any functions that are only used in Scene X, Event X here.*/
+		/*Put any functions that are only used in Scene X, Event X here.*/
 	 
-		 //-------------------------------------------------------
-	 
-		 //} END Event *Name Of Event*
+		//-------------------------------------------------------
+		
+		void SetupIntro()
+		{
+			cLux_AddDebugMessage("Starting Intro...");
+			
+//			Effect_Fade_Out(0);
+//			Player_SetActive(false);
+			
+			// Sequence
+			Map_AddTimer("introsequence", 0.1f, "SequenceIntro");
+			
+		}
+		
+		cSequenceStatesData mSequenceIntro_Data;
+		void SequenceIntro(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceIntro", mSequenceIntro_Data);
+			if (Sequence_DoStepAndWait(5.0f))
+			{
+				Player_SetCrouching(true, true, true);
+				Player_Teleport("IntroStartPos", true);
+				
+				// - Start looping 01_01_upsilon_awake/sfx/wake_up/nervous, just like in Upsilon (disable the sound during dialogue - use a bool)
+				Map_AddTimer("nervousbreath_start", 0.0f, "OnTimer_NervousBreath");
+			}
+			else if (Sequence_DoStepAndWait(0.0f))
+			{
+				
+			}
+			
+			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		void OnTimer_NervousBreath(const tString &in asTimer)
+		{
+			Sound_CreateAtEntity("nervous_breath", "01_01_upsilon_awake/sfx/wake_up/nervous", "player");
+		}
+		
+		//-------------------------------------------------------
+		
+		 //} END Event *Akers enters the office*
 	 
 	 //} END SCENE X
  
