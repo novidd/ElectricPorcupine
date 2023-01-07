@@ -97,9 +97,9 @@ class cScrMap : iScrMap
 		// Kick off intro
 		bool bDoIntro = true;
 		
-		if (cLux_ScriptDebugOn() == false)
+		if (cLux_ScriptDebugOn())
 		{
-			// bDoIntro = false;
+			 bDoIntro = false;
 		}
 		
 		if (bDoIntro)
