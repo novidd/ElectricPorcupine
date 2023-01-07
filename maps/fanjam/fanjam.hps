@@ -110,8 +110,8 @@ class cScrMap : iScrMap
 		///////////////////////////////
 		// Defaults
 		Player_SetAmbientLight_Indoors();
-		Player_SetFootWear("sneaker");
-		Player_SetClothing("dressed");
+		Player_SetFootWear("default");
+		Player_SetClothing("default");
 		Player_SetFlashlightDisabled(true);
 		PlayerHands_SetHandModel_Human();
 		PlayerEnergy_SetFlowerSwallows(true);
@@ -159,25 +159,10 @@ class cScrMap : iScrMap
 		{
 		}
 		
-		if(alAction == eAction_Test1) // Change this key to F
+		// The objective datapad
+		if(abPressed && alAction==eAction_Flashlight)
 		{
-			// This way the player cannot pull out the pad while already interacting with terminal/reading etc
-			if (Player_IsInteracting()) return;
-			
-			// Unequip tool if already in use
-			if (Player_GetCurrentToolEntityName() == "objective_datapad")
-			{
-				Player_UnequipTool();
-				
-				// Enables the players ability to interact with terminals/readables while the pad is out
-				Player_SetInteractionAllowed(true);
-				return;
-			}
-			
-			Player_EquipTool("objective_datapad", "");
-			
-			// Disable the players ability to interact with terminals/readables while the pad is out
-			Player_SetInteractionAllowed(false);
+			SetObjectiveDatapadActive(!mbDatapadActive);
 		}
 	}
 
@@ -202,6 +187,35 @@ class cScrMap : iScrMap
 	// ==============
 	//{///////////////////////////////////////////////////////////////////////////////////////
  
+	//-------------------------------------------------------
+	
+	/////////////////////////////////////////
+	// *Objective datapad*
+	/////////////////////////////////////////
+	
+	bool mbDatapadActive = false;
+	
+	void SetObjectiveDatapadActive(bool abActive)
+	{
+			// This way the player cannot pull out the pad while already interacting with terminal/reading etc
+			if (Player_IsInteracting()) return;
+			
+			// Unequip tool if already in use
+			if (Player_GetCurrentToolEntityName() == "objective_datapad" || abActive == false)
+			{
+				Player_UnequipTool();
+				
+				// Enables the players ability to interact with terminals/readables when pad is put down
+				Player_SetInteractionAllowed(true);
+				return;
+			}
+			
+			Player_EquipTool("objective_datapad", "");
+			
+			// Disable the players ability to interact with terminals/readables while the pad is out
+			Player_SetInteractionAllowed(false);
+	}
+	
 	//-------------------------------------------------------
  
 	/////////////////////////////////////////
