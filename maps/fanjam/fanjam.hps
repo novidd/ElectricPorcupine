@@ -60,7 +60,7 @@ class cScrMap : iScrMap
 		///////////////////////////
 		// PLAYER HANDS
 		///////////////////////////
-		PlayerHands_PreloadHandModel_DeepSea();
+		PlayerHands_PreloadHandModel_Human();
 		
 		///////////////////////////
 		// IMGUI
@@ -109,6 +109,7 @@ class cScrMap : iScrMap
 		Player_SetAmbientLight_Indoors();
 		Player_SetFootWear("sneaker");
 		Player_SetClothing("dressed");
+		PlayerHands_SetHandModel_Human();
 		if (cLux_ScriptDebugOn())
 		{
 			Player_SetFlashlightDisabled(false);
