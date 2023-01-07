@@ -88,6 +88,9 @@ class cScrMap : iScrMap
 		// puppet_victim_sitting_in_chair
 		// puppet_victim_lying
 		// puppet_victim_lying_against_wall
+		
+		SetupDoorSeals();
+		
 		Entity_PlayAnimation("IntroPuppetVictim", "puppet_victim_lying_against_wall", 0, true, true);
 		
 		////////////////////////////
@@ -201,12 +204,64 @@ class cScrMap : iScrMap
  
 	//-------------------------------------------------------
  
-	/*Put any variables that are used in more than one scene here.*/
+	/////////////////////////////////////////
+	// *Door Seals*
+	/////////////////////////////////////////
+	
+	void SetupDoorSeals()
+	{
+		Entity_StopAnimation("DoorSeal_*");
+	}
  
 	//-------------------------------------------------------
- 
-	/*Put any functions that are used in more than one scene here.*/
- 
+	
+	void OnStateChangeDoorSeal(const tString &in asEntity, int alState)
+	{
+		if (alState==1)
+		{
+			tString sSeal = cString_Sub(asEntity,6);
+			cLux_AddDebugMessage("Opening Door Seal:"+sSeal);
+			Entity_PlayAnimation(sSeal, "door_lock_opening",0.1f,false,true,"OnDoorSealOpenCompleted");
+			Entity_SetAnimationPaused(sSeal, "door_lock_opening", false);
+			
+			//////////////////////////////////
+			// Turn off lamp to disable any connected lights and then finally, disable it.
+			cLux_AddTodoMessage("SCRIPT: Post beta polish on these, make the lights fade before disabling entity");
+			// suggestion : use timer
+			Lamp_SetLit(sSeal+"_Lamp",false,true);
+			Entity_SetActive(sSeal+"_Lamp",false);
+			Light_SetVisible(sSeal+"_Light*",false);
+			
+			/////////////////////////////////////
+			// Disable aux area
+			Entity_SetActive("AuxArea_"+sSeal,false);
+			
+			/////////////////////////////////////////////
+			// Trigger special event for Omnitool Storage (scroll down!)
+//			if (asEntity == "HandleDoorSeal_OmnitoolStorage")
+//			{
+////				OnRemoveStorageSeal();
+//			}
+//			
+//			if (asEntity == "HandleDoorSeal_TechRoom")
+//			{
+//				
+//			}
+		}
+	}
+	
+	//-------------------------------------------------------
+	
+	void OnDoorSealOpenCompleted(const tString &in asEntityName,  const tString &in asAnimName)
+	{
+		tString sPanel = Entity_GetVarString(asEntityName, "");
+//		Button_SetLocked(sPanel, false);
+		Entity_SetActive(asEntityName,false);
+		Entity_SetActive("Handle"+asEntityName, false);
+		Entity_SetActive("Open"+asEntityName, true);
+	}
+
+	
 	//-------------------------------------------------------
  
 	//} END MAIN FUNCTIONS
@@ -267,7 +322,7 @@ class cScrMap : iScrMap
 			Sequence_Begin("SequenceIntro", mSequenceIntro_Data);
 			if (Sequence_DoStepAndWait(5.0f))
 			{
-				Player_Teleport("PlayerStartArea_1", true);
+//				Player_Teleport("PlayerStartArea_1", true);
 				
 				// - Start looping 01_01_upsilon_awake/sfx/wake_up/nervous, just like in Upsilon (disable the sound during dialogue - use a bool)
 				Map_AddTimer("nervousbreath_start", 0.0f, "OnTimer_NervousBreath");
