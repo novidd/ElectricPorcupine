@@ -1781,7 +1781,7 @@ class cScrMap : iScrMap
 	
 	/////////////////////////////////////////
 	// Clock
-	//{///////////////////////////////////////
+	//{//////////////////////////////////////
 	
 	float clockCurrentNeedleState = 0;
 	
@@ -1790,8 +1790,8 @@ class cScrMap : iScrMap
 		if (asTimer == "move")
 		{	
 			// Clock tick sound
-			if (!Sound_Exists("clock_tick"))
-				Sound_CreateAtEntity("clock_tick", "00_04_doctor/amb/spot/wall_clock", "ClockSoundSource");
+			if (!Sound_Exists("Clock_1_SoundSource"))
+				Sound_Play("Clock_1_SoundSource", 0);
 			
 			// Update the clock needle state
 			clockCurrentNeedleState += 0.0167f;
@@ -1802,7 +1802,7 @@ class cScrMap : iScrMap
 		
 		if (asTimer == "stop")
 		{
-			Sound_Stop("clock_tick", 0);
+			Sound_Stop("Clock_1_SoundSource", 0);
 		}
 	}
 	
