@@ -183,18 +183,14 @@ class cScrMap : iScrMap
 		
 		if (alAction == eAction_Test1)
 		{
-//			cLux_AddDebugMessage("Cellphone test.");
-//			Entity_SetActive("Cellphone", true);
-//			Entity_CallEntityInteract("Cellphone");
+			cLux_AddDebugMessage("Cellphone test.");
+			Entity_SetActive("CellPhoneArm_1", true);
+			Entity_CallEntityInteract("CellPhoneArm_1");
 		}
 		else if (alAction == eAction_Test2)
 		{
-//			Entity_SetActive("Tracer_Fluid", true);
-//			Entity_CallEntityInteract("Tracer_Fluid");
-
-			cLux_AddDebugMessage("Cellphone test.");
-			Entity_SetActive("Cellphone", true);
-			Entity_CallEntityInteract("Cellphone");
+			Entity_SetActive("Tracer_Fluid", true);
+			Entity_CallEntityInteract("Tracer_Fluid");
 		}
 		else if (alAction == eAction_Test3)
 		{
@@ -1827,28 +1823,34 @@ class cScrMap : iScrMap
 	// Pull out Simons phone to call 911
 	void OnGui_Cellphone(const tString&in asEntityName, float afTimeStep)
 	{
-		cLux_AddDebugMessage("DAAD");
-		
 		if (ImGui_IsFirstRun())
 		{
-			CellPhoneGui_SetClockString("00_03_Time");
+			CellPhoneGui_SetClockString("TimeFanJam");
 			CellPhoneGui_SetReceptionIcons("A");
-			CellPhoneGui_DecideToCall("munshi");
+//			CellPhoneGui_DecideToCall("911");
+			
+			CellPhoneGui_Calling("911");
+			ImGui_AddTimer("CallRejected", 0);
 		}
 		
 		eCellPhoneGuiAction action = CellPhoneGui_Update();
-		if (action==eCellPhoneGuiAction_Called)
+		
+		if(ImGui_TimerOver("CallRejected"))
 		{
 			Sound_CreateAtEntity("PhoneDavid", "00_06_lab/VIPScriptedEvents/phone_call_munshi", "Player");
 			ImGui_AddTimer("PutAwayPhone", 2.5);
-				
-			Voice_Play("2_LockedDoor0_Dialing", -1, "VoiceOver_DialingComment");
-		}
-		else if (action==eCellPhoneGuiAction_CancelledCall)
-		{
-			ImGui_AddTimer("PutAwayPhone", 1);
 		}
 		
+//		if (action==eCellPhoneGuiAction_Called)
+//		{
+//			Sound_CreateAtEntity("PhoneDavid", "00_06_lab/VIPScriptedEvents/phone_call_munshi", "Player");
+//			ImGui_AddTimer("PutAwayPhone", 2.5);
+//		}
+//		else if (action==eCellPhoneGuiAction_CancelledCall)
+//		{
+//			ImGui_AddTimer("PutAwayPhone", 1);
+//		}
+//		
 		if(ImGui_TimerOver("PutAwayPhone"))
 		{
 			Player_SetInteractionAllowed(true);
