@@ -1,114 +1,46 @@
-// ---- Story
-- KEY STORY TELLING METHOD: Never explain anything, let the player come up with their own conclusions
-- The player is presented with different scenarious of creatures on an operating table, the player has to fully complete the operation
-- During this process the player will have to leave the confined lab to
-- The player puts electronics, parts and pieces in the monster corpse, it will later wake up and the monster will break out so the player can escape too
-- As the player proceeds through the game, play instances of dialogue from the original game, i.e (ARK interview dialogue and such)
+// Location: On a moving train (look at the script in the train map to micking the tunnel moving forever)
+- Play the moving train sound on the player on a loop the whole mod
+01_04_transport_station/Special/Train/sequence
+- Constant screen shake
+- Convey that the train is moving by placing lamps on the tunnel walls that shine into the windows of the train
+- Convey that the trains is moving and shaking with dangling lights and such (look at the train in toronto)
 
-- The player kills the man on the table, to then proceed to recusitate him, by adding structure gel and whatnot
-- As the game progresses and the player comes back to the lab, the body will metamorphose
-- The puppet body will be gone when the player turns around (the room has two sections with a divider slidedoor in the middle)
+// -- Events:
+- Cold open: Open eyes suddenly (loot simon's apartment intro).
+- The player is attached to the wall, they get off landing on the floor
+- On the other side of the room, by a corpse the player will find an omnitool (a light flickers on the body)
+- They can now proceed to the locked door
+- A noise from the puppet can be heard from above 
+- The pathos train orientation audio+music is playing the distance
+XXX
 
-// ---- THE TEST ENVIRONMENT
-- The player wakes up in a scan chair, wrists locked tight
-- The player does not know why they are there, but they've been summoned for a reason
-- The room is pitch black
-- The power turns on
-- A terminal boots up (rendered in the HUD in OnGui()), asking the player to agree to the terms of conditions
-	- "I consent to have my personal genetic makeup repurposed in future Phatos programs." - "Agree" The player cannot say no.
-	- "I accept"
+!REMEMBER TO CONSTANTLY BUILD TENSION!
 
-- The player gets their eye scanned
-- A door opens
+- The player is getting chased
+- The player enters a room, the door closed from behind
+- There is only a monitor with terminal with white noise on it
+- There is insufficient power
+- There is powerbox with a monitor showing the power status with a missing power cable (train station Amy)
+- In the adjecent room the player can find a cable to pull from a robot
+- When attaching said cable and pulling the level, the robot screams as it's getting overloaded with electricity
+01_04_transport_station/Special/Station_PowerOn/PowerOn_Bad_Alarm
+01_04_transport_station/Special/Station_PowerOn/PowerOn_Bad
+01_04_transport_station/Special/Enter_Station/enter_station_quake
 
-- There is a series of tests asking out of options A-D which one the player relates to the most
-	A weeping WAU lump shows up on the table
-	For example: "Which one of the alternatives (emotions) resonates the most you?"
-	A: Comfort
-	B: Unease
-	C: Rage
-	D: Sadness
-	
-- The Assistant says on finish: "Congratulations, "
+- The lights flicker until a breaking point where they all pop (a cable breaks out from a vent in the ceiling)
 
-- There is a puppet on the operating table (the player will be confronted by the puppet when the player is asked to walk down the hallway to proceed to the next test)
-- The power goes out momentarily - the player will think the puppet has moved from the operating table (play a creepy sound to fuck with them)
-- Then the needle reveals itself from the an opening above
-		
-- The player is now presented with the corpse on an operating table, the AI will give the player an introduction about the given scenario
-- Use the datapad to track tasks
-- Play Robins Bass interview from a terminal: terminal_terminal_interviewrecording_1_001_catherineterminal_001
 
-// ---- The Bunker
-- Maybe import some rebirth assets to make this environment as rich as possible
-- Ceramic AND/OR plaster walls
 
-- Use 03_03_elevator_fuse_box.ent with 03_03_elevator_fuse_box_rod.ent to turn on the power in the bunker
-- The player can click on the phone (it's got no unread messages - this room has heavy reverb)
-- The door leading outside is high level tech to protect the bunker from the outside
-- The doorway is inside a tiny mole hill - like those old graves, or old fashoned storage basements
-- 1. Lick it.
-  2. Don't lick it.
-  3. Lick it, but only a little.
+- Now silent darkness
+- Nervous breath, heartbeat
+- The sound of the door opening in the darkness
+- The sound of puppet Akers coming from the darkness
+- The monitor flickers revealing his form
+- Akers runs toward the player and picks you up
+- The lights flicker intensily
+- (Don't actually kill the player )
 
-// ---- Outside
-- On a clearing in a forest OR in the middle of a never ending field, with a lone oak tree?
 
-- The opening is like a sterotypical rooftop doorway on an apartment complex in New York (think gta 4) - the opening (out of concrete) sticks out of the ground (OR JUST USE A HATCH)
-- The player finds a path leading deeper into the forest from the clearing 
-- As the player approaches the coast they can hear seagulls
-- There is a final terminal
-	"Congratulations! [...] "
-- There is a crashed plane on the beach
-- They eventually find a lone tree at the edge of the cliff, with a grave in it's shadow
-- There is a bench, the player will sit on it and listen to nature's sounds - INCREASE THE SOUND OF THE BACKGROUND (to put it into focus in a beautiful way - now, you are really listening)
-- Anim: dream_sequence_ashley
-- Look at player hand anim during Ashley dream
-- Fade out
-// ROLL CREDITS
-// - "We made it Simon[...]" (The same line used when in space?) OR the line where Catherine talks about popping in and out (Delta? Theta? Delta I think)
-// Only text: "Made by: Lucas Pettersson"
-// - "Eternity among the stars"
-// - !END!
-
-// ---- Ideas
-- A puppet is sitting 
-- The player looks at a camera of the puppet approaching a door and opening it
-- The door behind the player opens (light from behind the door lights up the terminal and stuff, making the player think the monster is behind him)
-- But there is nothing there (GET TROLLED)
-- The camera fottage on the terminal repeats like fake fottage/old fottage
-- Now the player can leave
-- The monster enters the players safe space - surprising the player
-- Place an aquarium somewhere (use particle oil_underwater_smoky.ps for leaking oil spill)
-- (easter egg) an image of Munshi smiling (the meme) - "Recovering image file" in a terminal
-- There is a survey on a terminal (ask creepy and strange questions)
-- SURVEY:
-	Question X: Little Timmy has toy you want. But you can't convince him to share it with you, what do you do?
-		A: Make it seem like an accident - "Did someone turn on the grill?"
-		B: Be diplomatic - make a trade.
-		C: Spit in his face, and snatch it from his sausage fingers right in front of him.
-		D: Just kill him already!
-
-- When the player has finished OR escaped the experiment, they find a modern (Toronto aesthetic) bunker outside the test environment
-- This is the path outside: TEST ENV --> CAVE --> BUNKER --> OUTSIDE
-- The player finds old skeleton(s)
-- The player finds open the hatch and outside is the wilderness (it's a post apocalyptic world so everything remaining from the modern times is overgrown with vines)
-
-// --- ENDING SCREEN
-// - Use cinematic shots with DoF - shots of swaying grass and close up of rocks and such (the sound of the beach in the background with the wind)
-// - Fade in Vinland Saga ost like piano
-// - Close up shots of the boat (05_02_boat.ent) swaying in the water
-// - Catherine's distant voice, maybe children squealing and laughing
-// - Shot of the waves
-// - Screen starts to glitch out
-// - Use particles from levels/05_02 for the beach water waves, clouds, and fog.
-
-// - The final shot from below (ground) looking up at grave - swaying grass (sun shining straight on)
-// - Use the tombstone grave_marie.ent to encinuate that Simon is dead (place pictures on his grave, a bouqet of flowers, and Simon's camera)
-// - Import rebirth assets perhaps?
-// - Fade out
-// - "We made it Simon[...]" (The same line used when in space?)
-// ROLL CREDITS
 // Only text: "Made by: Lucas Pettersson"
 // - "Eternity among the stars"
 // - !END!

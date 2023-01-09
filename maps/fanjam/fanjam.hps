@@ -85,12 +85,13 @@ class cScrMap : iScrMap
 		
 		////////////////////////////
 		// Setup
-		// puppet_victim_sitting_in_chair
-		// puppet_victim_lying
-		// puppet_victim_lying_against_wall
 		
 		SetupDoorSeals();
 		
+		// Puppet victims
+		// puppet_victim_sitting_in_chair
+		// puppet_victim_lying
+		// puppet_victim_lying_against_wall
 		Entity_PlayAnimation("IntroPuppetVictim", "puppet_victim_lying_against_wall", 0, true, true);
 		
 		////////////////////////////
@@ -112,12 +113,12 @@ class cScrMap : iScrMap
 		Player_SetAmbientLight_Indoors();
 		Player_SetFootWear("default");
 		Player_SetClothing("default");
-		Player_SetFlashlightDisabled(true);
-		PlayerHands_SetHandModel_Human();
+		Player_SetFlashlightDisabled(false);
+		PlayerHands_SetHandModel_Diving();
 		PlayerEnergy_SetFlowerSwallows(true);
 		if (cLux_ScriptDebugOn())
 		{
-			
+			Player_SetFlashlightDisabled(true);
 		}
 		
 		Tool_PickUp("objective_datapad", false, false);
