@@ -86,7 +86,7 @@ class cScrMap : iScrMap
 		
 		/////////////////////////
 		// Clock
-		Map_AddTimer("move", 0.0f, "OnTimer_ManageClock");
+		Map_AddTimer("SimonClock", 0.0f, "OnTimer_ManageClock");
 		
 		/////////////////////////
 		// Debug
@@ -1787,23 +1787,11 @@ class cScrMap : iScrMap
 	
 	void OnTimer_ManageClock(const tString &in asTimer)
 	{
-		if (asTimer == "move")
-		{	
-			// Clock tick sound
-			if (!Sound_Exists("Clock_1_SoundSource"))
-				Sound_Play("Clock_1_SoundSource", 0);
+		// Update the clock needle state
+		clockCurrentNeedleState += 0.0167f;
+		Meter_SetState(asTimer+"_SecondNeedle", clockCurrentNeedleState, false);
 			
-			// Update the clock needle state
-			clockCurrentNeedleState += 0.0167f;
-			Meter_SetState("wall_clock_second_1", clockCurrentNeedleState, false);
-			
-			Map_RestartCurrentTimer(1.0f);
-		}
-		
-		if (asTimer == "stop")
-		{
-			Sound_Stop("Clock_1_SoundSource", 0);
-		}
+		Map_RestartCurrentTimer(1.0f);
 	}
 	
 	//}End Clock-----------------------------------------------------
