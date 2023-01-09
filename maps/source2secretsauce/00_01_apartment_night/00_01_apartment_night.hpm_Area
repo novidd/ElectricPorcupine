@@ -2121,14 +2121,14 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="486539831" Name="VisibilityPortalArea_8" CreStamp="1672768600" ModStamp="1672775423" WorldPos="-4.25 1.5 21.25" Rotation="0 0 0" Scale="0.347 2.601 1.75" Active="true" Mesh="" UID="29 580 486539831" AreaType="VisibilityPortal">
+            <Area ID="486539831" Name="VisibilityPortalArea_8" CreStamp="1672768600" ModStamp="1672775423" WorldPos="-4.25 1.5 21.25" Rotation="0 0 0" Scale="0.347 2.601 1.75" Active="true" Mesh="" UID="29 1231 486539831" AreaType="VisibilityPortal">
                 <UserVariables>
                     <Var Name="ConnectedAreas1" Value="VisibilityAreaArea_5" />
                     <Var Name="ConnectedAreas2" Value="VisibilityAreaArea_4" />
                     <Var Name="ConnectedAreas3" Value="" />
                 </UserVariables>
             </Area>
-            <Area ID="486539832" Name="VisibilityAreaArea_5" CreStamp="1672768626" ModStamp="1673261995" WorldPos="-9.25 2.75 20.75" Rotation="0 1.5708 0" Scale="4.5 11.5 10" Active="true" Mesh="" UID="29 612 486539832" AreaType="VisibilityArea">
+            <Area ID="486539832" Name="VisibilityAreaArea_5" CreStamp="1672768626" ModStamp="1673261995" WorldPos="-9.25 2.75 20.75" Rotation="0 1.5708 0" Scale="4.5 11.5 10" Active="true" Mesh="" UID="29 1230 486539832" AreaType="VisibilityArea">
                 <UserVariables>
                     <Var Name="AddPartialIntersectingObjects" Value="false" />
                     <Var Name="MinObjectsPerNode" Value="-1" />
@@ -2477,7 +2477,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="486540745" Name="SpotCorpseEmergencyCall" CreStamp="1672917892" ModStamp="1672936430" WorldPos="-7.5 1.25 28" Rotation="0 0 0" Scale="0.75 2 0.75" Active="true" Mesh="" UID="29 210 486540745" AreaType="Trigger">
+            <Area ID="486540745" Name="SpotPuppetVictim" CreStamp="1672917892" ModStamp="1673268556" WorldPos="-7.5 1.25 28" Rotation="0 0 0" Scale="0.75 2 0.75" Active="true" Mesh="" UID="29 210 486540745" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -2488,12 +2488,12 @@
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="SpotPuppetVictim_OnPlayerLookAt" />
                     <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
                     <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
                     <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
-                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
-                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="8" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="1" />
                     <Var Name="PlayerInteractCallback" Value="" />
                     <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
                     <Var Name="CanInteractWithoutCallback" Value="false" />
@@ -2667,12 +2667,12 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="486541046" Name="AMB_BreakRoom" CreStamp="1672937263" ModStamp="1673262200" WorldPos="-6.5 2.25 27" Rotation="0 0 0" Scale="6.25 4 6.75" Active="true" Mesh="" UID="29 187 486541046" AreaType="Soundscape">
+            <Area ID="486541046" Name="AMB_BreakRoom" CreStamp="1672937263" ModStamp="1673269168" WorldPos="-6.5 2.25 27" Rotation="0 0 0" Scale="6.25 4 6.75" Active="true" Mesh="" UID="29 187 486541046" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
-                    <Var Name="ReverbType" Value="Off" />
+                    <Var Name="ReverbType" Value="ExtraRoomSmall" />
                     <Var Name="ReverbPrio" Value="0" />
-                    <Var Name="ReverbAmount" Value="1" />
+                    <Var Name="ReverbAmount" Value="1.5" />
                     <Var Name="ReverbFadeTime" Value="1" />
                     <Var Name="Prio" Value="0" />
                     <Var Name="Level" Value="2: Room" />
@@ -3274,7 +3274,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="486542681" Name="HighlightWithFlickerLamp" CreStamp="1673209838" ModStamp="1673250594" WorldPos="-10.25 -1.75 14.5" Rotation="0 0 0" Scale="2.5 1 1.5" Active="true" Mesh="" UID="29 1086 486542681" AreaType="Trigger">
+            <Area ID="486542681" Name="HighlightWithFlickerLamp" CreStamp="1673209838" ModStamp="1673267169" WorldPos="-10.25 -1.75 13.5" Rotation="0 0 0" Scale="2.5 1 1.5" Active="true" Mesh="" UID="29 1086 486542681" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -3793,7 +3793,7 @@
                     <Var Name="DoorwayCheckCenterOnly" Value="true" />
                 </UserVariables>
             </Area>
-            <Area ID="486542854" Name="PuppetScreechOnEscape" CreStamp="1673217097" ModStamp="1673250594" WorldPos="-10.25 -1 14.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="29 1155 486542854" AreaType="Trigger">
+            <Area ID="486542854" Name="PuppetScreechOnEscape" CreStamp="1673217097" ModStamp="1673267169" WorldPos="-10.25 -1 13.5" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="29 1155 486542854" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -4127,6 +4127,20 @@
                     <Var Name="CanInteractWithoutCallback" Value="false" />
                     <Var Name="MaxFocusDistance" Value="-1" />
                     <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="486542963" Name="VisibilityPortalArea_10" CreStamp="1673267061" ModStamp="1673267109" WorldPos="-10.25 1.5 18.75" Rotation="0 1.5708 0" Scale="0.347 2.98538 2.05575" Active="true" Mesh="" UID="29 580 486542963" AreaType="VisibilityPortal">
+                <UserVariables>
+                    <Var Name="ConnectedAreas1" Value="VisibilityAreaArea_5" />
+                    <Var Name="ConnectedAreas2" Value="VisibilityAreaArea_8" />
+                    <Var Name="ConnectedAreas3" Value="" />
+                </UserVariables>
+            </Area>
+            <Area ID="486542964" Name="VisibilityAreaArea_8" CreStamp="1673267079" ModStamp="1673267103" WorldPos="-10.25 -2.5 15.5" Rotation="-0 3.1416 -0" Scale="6.25 35 6.5" Active="true" Mesh="" UID="29 612 486542964" AreaType="VisibilityArea">
+                <UserVariables>
+                    <Var Name="AddPartialIntersectingObjects" Value="false" />
+                    <Var Name="MinObjectsPerNode" Value="-1" />
+                    <Var Name="MaxObjectsPerNode" Value="-1" />
                 </UserVariables>
             </Area>
         </Objects>

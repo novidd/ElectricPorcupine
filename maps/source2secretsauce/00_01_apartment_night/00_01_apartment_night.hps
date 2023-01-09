@@ -183,12 +183,18 @@ class cScrMap : iScrMap
 		
 		if (alAction == eAction_Test1)
 		{
-			Player_SetHealth(0.5f);
+//			cLux_AddDebugMessage("Cellphone test.");
+//			Entity_SetActive("Cellphone", true);
+//			Entity_CallEntityInteract("Cellphone");
 		}
 		else if (alAction == eAction_Test2)
 		{
-			Entity_SetActive("Tracer_Fluid", true);
-			Entity_CallEntityInteract("Tracer_Fluid");
+//			Entity_SetActive("Tracer_Fluid", true);
+//			Entity_CallEntityInteract("Tracer_Fluid");
+
+			cLux_AddDebugMessage("Cellphone test.");
+			Entity_SetActive("Cellphone", true);
+			Entity_CallEntityInteract("Cellphone");
 		}
 		else if (alAction == eAction_Test3)
 		{
@@ -1797,7 +1803,59 @@ class cScrMap : iScrMap
 	//}End Clock-----------------------------------------------------
 	
 	// Voice lines to use
-	// -
-	// -
-	// -
+	// - datamine_2i_interactafterdoorbang_001_player_001 (on door monster arrival)
+	
+	/////////////////////////////////////////
+	// Spot puppet victim
+	//{//////////////////////////////////////
+	
+	// Voice lines to use
+	// - datamine_2i_interactafterdoorbang_001_player_001 (on door monster arrival)
+	
+	void SpotPuppetVictim_OnPlayerLookAt(const tString &in asEntity, int alState)
+	{
+		cLux_AddDebugMessage("Spotted puppet victim.");
+		
+		Voice_Play("SpotPuppetVictim");
+		
+		Entity_SetActive("Cellphone", true);
+		Entity_CallEntityInteract("Cellphone");
+	}
+	
+	//-------------------------------------------------------
+	
+	// Pull out Simons phone to call 911
+	void OnGui_Cellphone(const tString&in asEntityName, float afTimeStep)
+	{
+		cLux_AddDebugMessage("DAAD");
+		
+		if (ImGui_IsFirstRun())
+		{
+			CellPhoneGui_SetClockString("00_03_Time");
+			CellPhoneGui_SetReceptionIcons("A");
+			CellPhoneGui_DecideToCall("munshi");
+		}
+		
+		eCellPhoneGuiAction action = CellPhoneGui_Update();
+		if (action==eCellPhoneGuiAction_Called)
+		{
+			Sound_CreateAtEntity("PhoneDavid", "00_06_lab/VIPScriptedEvents/phone_call_munshi", "Player");
+			ImGui_AddTimer("PutAwayPhone", 2.5);
+				
+			Voice_Play("2_LockedDoor0_Dialing", -1, "VoiceOver_DialingComment");
+		}
+		else if (action==eCellPhoneGuiAction_CancelledCall)
+		{
+			ImGui_AddTimer("PutAwayPhone", 1);
+		}
+		
+		if(ImGui_TimerOver("PutAwayPhone"))
+		{
+			Player_SetInteractionAllowed(true);
+			ImGui_Exit();
+		}
+	}
+	
+	//} End Spot puppet victim -----------------------------------------------------
+	
 }
