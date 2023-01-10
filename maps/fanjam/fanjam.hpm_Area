@@ -51,30 +51,6 @@
                     <Var Name="MaxFocusDistance" Value="-1" />
                 </UserVariables>
             </Area>
-            <Area ID="268436176" Name="TriggerArea_1" CreStamp="1673304562" ModStamp="1673304569" WorldPos="2 2 0" Rotation="0 0 0" Scale="4 4 4" Active="true" Mesh="" UID="16 332 268436176" AreaType="Trigger">
-                <UserVariables>
-                    <Var Name="BlocksLineOfSight" Value="false" />
-                    <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="UserVar" Value="" />
-                    <Var Name="CC_Entities" Value="" />
-                    <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
-                    <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="PlayerLookAtCallback" Value="" />
-                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
-                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
-                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
-                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
-                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
-                    <Var Name="PlayerInteractCallback" Value="" />
-                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
-                    <Var Name="CanInteractWithoutCallback" Value="false" />
-                    <Var Name="MaxFocusDistance" Value="-1" />
-                    <Var Name="CustomInteractIcon" Value="PushButton" />
-                </UserVariables>
-            </Area>
             <Area ID="268436181" Name="PuppetVictimJoaquinPhoenix" CreStamp="1673304604" ModStamp="1673304646" WorldPos="-3.5 1 0" Rotation="0 0 0" Scale="1 1 1" Active="true" Mesh="" UID="16 362 268436181" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
@@ -147,19 +123,19 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268436250" Name="SoundscapeArea_1" CreStamp="1673380046" ModStamp="1673380592" WorldPos="0 3 0" Rotation="0 0 0" Scale="10 6 8" Active="true" Mesh="" UID="16 426 268436250" AreaType="Soundscape">
+            <Area ID="268436250" Name="AMB_Start" CreStamp="1673380046" ModStamp="1673381760" WorldPos="0 3 0" Rotation="0 0 0" Scale="10 6 8" Active="true" Mesh="" UID="16 426 268436250" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
-                    <Var Name="ReverbType" Value="Off" />
-                    <Var Name="ReverbPrio" Value="0" />
-                    <Var Name="ReverbAmount" Value="1" />
+                    <Var Name="ReverbType" Value="ExtraRoomMedium" />
+                    <Var Name="ReverbPrio" Value="2" />
+                    <Var Name="ReverbAmount" Value="1.175" />
                     <Var Name="ReverbFadeTime" Value="1" />
                     <Var Name="Prio" Value="0" />
                     <Var Name="Level" Value="2: Room" />
-                    <Var Name="BG_Sound" Value="" />
+                    <Var Name="BG_Sound" Value="level_amb_shared_interior/amb/background/theta/undergound/gloopy_corridor" />
                     <Var Name="BG_Volume" Value="1" />
-                    <Var Name="BG_FadeInTime" Value="1" />
-                    <Var Name="BG_FadeOutTime" Value="1" />
+                    <Var Name="BG_FadeInTime" Value="0.75" />
+                    <Var Name="BG_FadeOutTime" Value="2" />
                     <Var Name="BG_FadeTransitionSpeed" Value="1" />
                     <Var Name="BG_ParentVolMul" Value="1" />
                     <Var Name="SoundEnt_InNames" Value="" />
@@ -167,7 +143,7 @@
                     <Var Name="SoundEnt_FadeInTime" Value="1" />
                     <Var Name="SoundEnt_FadeOutTime" Value="1" />
                     <Var Name="SoundPrefixPrio" Value="0" />
-                    <Var Name="SoundPrefix" Value="[None]" />
+                    <Var Name="SoundPrefix" Value="small_room" />
                     <Var Name="ParentAttachEntity" Value="" />
                     <Var Name="ParentAttachUseRotation" Value="true" />
                     <Var Name="ParentAttachBody" Value="" />
