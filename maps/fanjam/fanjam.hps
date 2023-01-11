@@ -92,7 +92,7 @@ class cScrMap : iScrMap
 		// puppet_victim_sitting_in_chair
 		// puppet_victim_lying
 		// puppet_victim_lying_against_wall
-		Entity_PlayAnimation("IntroPuppetVictim", "puppet_victim_lying_against_wall", 0, true, true);
+//		Entity_PlayAnimation("IntroPuppetVictim", "puppet_victim_lying_against_wall", 0, true, true);
 		
 		////////////////////////////
 		// Kick off intro
@@ -121,7 +121,7 @@ class cScrMap : iScrMap
 			
 		}
 		
-		Tool_PickUp("objective_datapad", false, false);
+//		Tool_PickUp("objective_datapad", false, false);
 	}
 
 	//-------------------------------------------------------
@@ -162,10 +162,10 @@ class cScrMap : iScrMap
 		}
 		
 		// The objective datapad
-		if(abPressed && alAction==eAction_Flashlight)
-		{
-			SetObjectiveDatapadActive(!mbDatapadActive);
-		}
+//		if(abPressed && alAction==eAction_Flashlight)
+//		{
+//			SetObjectiveDatapadActive(!mbDatapadActive);
+//		}
 	}
 
 	//-------------------------------------------------------
