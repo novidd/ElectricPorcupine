@@ -336,6 +336,8 @@ class cScrMap : iScrMap
 		}
 		
 		cSequenceStatesData mSequenceIntro_Data;
+		
+		//Decal_SetVisibleInArea(true, "BrandonDecals", materialarraytoaffect);
 		void SequenceIntro(const tString &in asTimer)
 		{
 			Sequence_Begin("SequenceIntro", mSequenceIntro_Data);
