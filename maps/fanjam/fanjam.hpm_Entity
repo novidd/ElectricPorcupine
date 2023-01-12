@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="1C44AE3592835ADD4B2980DE61A99534C93E1F0" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="261">
+        <FileIndex_Entities NumOfFiles="262">
             <File Id="0" Path="entities/station/furniture/trash_can_theta/trash_can_theta.ent" />
             <File Id="1" Path="entities/station/furniture/trash_can_theta/trash_can_theta_flap.ent" />
             <File Id="2" Path="entities/station/ornaments/wet_floor_sign/wet_floor_sign.ent" />
@@ -262,6 +262,7 @@
             <File Id="258" Path="entities/station/lamp/wall_medium/wall_medium.ent" />
             <File Id="259" Path="entities/station/lamp/wall_small/wall_small.ent" />
             <File Id="260" Path="entities/station/lamp/wall_small/wall_small_animated.ent" />
+            <File Id="261" Path="entities/station/utility/strut_open/strut_open.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435457" Name="trash_can_theta_1" CreStamp="1673045161" ModStamp="1673393614" WorldPos="1.10635 0.425 -6.33478" Rotation="0.785404 -2.62753e-006 1.5708" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 15 268435457">
@@ -2565,7 +2566,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436416" Name="camera_surveillance_theta_noheadtrack_1" CreStamp="1673453096" ModStamp="1673477397" WorldPos="2.5 3.5 -4" Rotation="0 -5.96046e-008 0" Scale="1 1 1" FileIndex="232" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 480 268436416">
+            <Entity ID="268436416" Name="camera_surveillance_theta_noheadtrack_1" CreStamp="1673453096" ModStamp="1673542006" WorldPos="2.5 3.5 -4.4" Rotation="0 -5.96046e-008 0" Scale="1 1 1" FileIndex="232" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 480 268436416">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2925,7 +2926,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436474" Name="ventilation_theta_2" CreStamp="1673443455" ModStamp="1673477404" WorldPos="2.5105 4.976 -4.1305" Rotation="0 6.51683e-007 0" Scale="0.6 0.6 0.6" FileIndex="230" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 291 268436474">
+            <Entity ID="268436474" Name="ventilation_theta_2" CreStamp="1673443455" ModStamp="1673541961" WorldPos="2.5105 4.976 -4.4555" Rotation="0 6.51683e-007 0" Scale="0.6 0.6 0.6" FileIndex="230" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 291 268436474">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -2936,7 +2937,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436475" Name="lamp_wall_deepsea_3" CreStamp="1673443564" ModStamp="1673477404" WorldPos="2.5275 4.854 -3.9555" Rotation="0.785398 6.51683e-007 0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 290 268436475">
+            <Entity ID="268436475" Name="lamp_wall_deepsea_3" CreStamp="1673443564" ModStamp="1673541961" WorldPos="2.5275 4.854 -4.2805" Rotation="0.785398 6.51683e-007 0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 290 268436475">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -4032,6 +4033,17 @@
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268436981" Name="strut_open_1" CreStamp="1673541846" ModStamp="1673542133" WorldPos="-2.61438e-007 0 10.25" Rotation="0 -9.42478 0" Scale="1.5 1.6 1.5" FileIndex="261" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 70 268436981">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
         </Objects>
