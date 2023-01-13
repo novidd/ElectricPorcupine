@@ -89,6 +89,8 @@ class cScrMap : iScrMap
 		SetupDoorSeals();
 		SetupBrandon();
 		
+		Entity_StopAnimation("SimonDeathHands");
+		
 		// Puppet victims
 		// puppet_victim_sitting_in_chair
 		// puppet_victim_lying
@@ -169,15 +171,20 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
+			Entity_SetActive("SimonDeathHands", true);
 			CameraAnimation_Begin("SimonDeath_Cam", "", false);
 			Player_ShowCrossHairIcons(false);
 			
 			Entity_SetActive("BrandonSplat", true);
 			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
+		
+			// Effects
+			Player_SetHealth(0.65f);
 		}
 		
 		if(alAction == eAction_Test4)
 		{
+			Entity_SetActive("SimonDeathHands", false);
 			CameraAnimation_End();
 			Player_ShowCrossHairIcons(true);
 			
@@ -185,6 +192,9 @@ class cScrMap : iScrMap
 			Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonDecalMaterials);
 			
 			Player_Teleport("PlayerStartArea_1");
+			
+			// Effects
+			Player_SetHealth(1.0f);
 		}
 		
 		// The objective datapad
