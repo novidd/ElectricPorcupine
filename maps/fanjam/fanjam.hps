@@ -180,6 +180,7 @@ class cScrMap : iScrMap
 			
 			Entity_SetActive("BrandonSplat", true);
 			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
+			ParticleSystem_SetVisible("BrandonParticles_*", true);
 			
 			// Misc
 			Entity_SetActive("PrinterPaper", true);
@@ -200,6 +201,7 @@ class cScrMap : iScrMap
 			
 			Entity_SetActive("BrandonSplat", false);
 			Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonDecalMaterials);
+			ParticleSystem_SetVisible("BrandonParticles_*", false);
 			
 			// Misc
 			Entity_SetActive("PrinterPaper", false);
@@ -215,7 +217,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test5)
 		{
-			
+			ParticleSystem_SetVisible("BrandonParticles_*", false);
 		}
 		
 		// The objective datapad
@@ -455,8 +457,9 @@ class cScrMap : iScrMap
 		 
 		 void SetupBrandon()
 		 {
-			 // Disable decals
+			 // Disable decals & particles
 //			 Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonDecalMaterials);
+//			ParticleSystem_SetVisible("BrandonParticles_*", false);
 
 			Entity_PlayAnimation("BrandonTop", "sit_about_to_leave", 0, true);
 		 }
