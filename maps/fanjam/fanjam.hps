@@ -159,12 +159,12 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonBloodMaterials);
+			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
 		}
 		
 		if(alAction == eAction_Test2)
 		{
-			Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonBloodMaterials);
+			Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonDecalMaterials);
 		}
 		
 		if(alAction == eAction_Test3)
@@ -173,7 +173,18 @@ class cScrMap : iScrMap
 			Player_ShowCrossHairIcons(false);
 			
 			Entity_SetActive("BrandonSplat", true);
-			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonBloodMaterials);
+			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
+		}
+		
+		if(alAction == eAction_Test4)
+		{
+			CameraAnimation_End();
+			Player_ShowCrossHairIcons(true);
+			
+			Entity_SetActive("BrandonSplat", false);
+			Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonDecalMaterials);
+			
+			Player_Teleport("PlayerStartArea_1");
 		}
 		
 		// The objective datapad
@@ -409,12 +420,12 @@ class cScrMap : iScrMap
 		
 		 //} END Event *Akers chases player in the stairs*
 		 
-		 array<tString> mvBrandonBloodMaterials = {"blood_splatter_dull.mat"};
+		 array<tString> mvBrandonDecalMaterials = {"blood_splatter_dull.mat"};
 		 
 		 void SetupBrandon()
 		 {
 			 // Disable blood decals
-			 Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonBloodMaterials);
+//			 Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonDecalMaterials);
 		 }
 	 
 	 //} END SCENE X
