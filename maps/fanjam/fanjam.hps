@@ -87,6 +87,7 @@ class cScrMap : iScrMap
 		// Setup
 		
 		SetupDoorSeals();
+		SetupBrandon();
 		
 		// Puppet victims
 		// puppet_victim_sitting_in_chair
@@ -158,7 +159,12 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test1)
 		{
-			
+			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonBloodMaterials);
+		}
+		
+		if(alAction == eAction_Test2)
+		{
+			Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonBloodMaterials);
 		}
 		
 		// The objective datapad
@@ -291,13 +297,13 @@ class cScrMap : iScrMap
  
 	//////////////////////////////////////////////////////////////////////////////////////////
 	// ==============
-	// SCENE X *SIMON LOOKS FOR AN OMNITOOL*
+	// SCENE X *FAN JAM SEQUENCE*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
  
-		 /////////////////////////////////////////
-		 // General
-		 //{//////////////////////////////////////
+		/////////////////////////////////////////
+		// General
+		//{//////////////////////////////////////
 		 
 		//-------------------------------------------------------
 	 
@@ -312,7 +318,7 @@ class cScrMap : iScrMap
 		//} END General	
 	 
 		/////////////////////////////////////////
-		// Event *Power turns on*
+		// Event *Akers chases player in the stairs*
 		//{//////////////////////////////////////
 	 
 		//-------------------------------------------------------
@@ -392,7 +398,15 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		 //} END Event *Power turns on*
+		 //} END Event *Akers chases player in the stairs*
+		 
+		 array<tString> mvBrandonBloodMaterials = {"blood_splatter_dull.mat"};
+		 
+		 void SetupBrandon()
+		 {
+			 // Disable blood decals
+			 Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonBloodMaterials);
+		 }
 	 
 	 //} END SCENE X
  
