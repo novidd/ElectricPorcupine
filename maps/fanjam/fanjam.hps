@@ -167,6 +167,15 @@ class cScrMap : iScrMap
 			Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonBloodMaterials);
 		}
 		
+		if(alAction == eAction_Test3)
+		{
+			CameraAnimation_Begin("SimonDeath_Cam", "", false);
+			Player_ShowCrossHairIcons(false);
+			
+			Entity_SetActive("BrandonSplat", true);
+			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonBloodMaterials);
+		}
+		
 		// The objective datapad
 //		if(abPressed && alAction==eAction_Flashlight)
 //		{
