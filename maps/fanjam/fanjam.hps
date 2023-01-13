@@ -181,6 +181,9 @@ class cScrMap : iScrMap
 			Entity_SetActive("BrandonSplat", true);
 			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
 			
+			// Misc
+			Entity_SetActive("PrinterPaper", true);
+			
 			// Girders
 			Entity_SetActive("BrandonDebrisBefore_*", false);
 			Entity_SetActive("BrandonDebrisAfter_*", true);
@@ -198,6 +201,8 @@ class cScrMap : iScrMap
 			Entity_SetActive("BrandonSplat", false);
 			Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonDecalMaterials);
 			
+			// Misc
+			Entity_SetActive("PrinterPaper", false);
 			Player_Teleport("PlayerStartArea_1");
 			
 			// Girders
