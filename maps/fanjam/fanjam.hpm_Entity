@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="1C44AE3592835ADD4B2980DE61A99534C93E1F0" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="315">
+        <FileIndex_Entities NumOfFiles="319">
             <File Id="0" Path="entities/station/furniture/trash_can_theta/trash_can_theta.ent" />
             <File Id="1" Path="entities/station/furniture/trash_can_theta/trash_can_theta_flap.ent" />
             <File Id="2" Path="entities/station/ornaments/wet_floor_sign/wet_floor_sign.ent" />
@@ -316,6 +316,10 @@
             <File Id="312" Path="mods/ElectricPorcupine/assets/entities/mod_station/girder_rusty_straight_rigid.ent" />
             <File Id="313" Path="entities/station/special/03_02_railings/03_02_railing_short.ent" />
             <File Id="314" Path="mods/ElectricPorcupine/assets/entities/mod_station/printer_paper_rigid.ent" />
+            <File Id="315" Path="entities/station/debris/concrete_rubble/concrete_rubble.ent" />
+            <File Id="316" Path="entities/station/debris/floor_grate_piece/floor_grate_piece.ent" />
+            <File Id="317" Path="entities/station/debris/flattened_box/flattened_box.ent" />
+            <File Id="318" Path="entities/station/debris/train_tunnel_metal_plate/train_tunnel_metal_plate_small.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435457" Name="trash_can_theta_1" CreStamp="1673045161" ModStamp="1673614901" WorldPos="1.14645 0.309528 -6.21749" Rotation="0.68381 -2.24684e-006 1.5708" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 15 268435457">
@@ -1962,71 +1966,6 @@
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="Lit" Value="false" />
-                    <Var Name="FlickerActive" Value="false" />
-                    <Var Name="UseCustomFlickerSettings" Value="false" />
-                    <Var Name="FlickerMinOnTime" Value="0.05" />
-                    <Var Name="FlickerMaxOnTime" Value="1" />
-                    <Var Name="FlickerMinOffTime" Value="0.025" />
-                    <Var Name="FlickerMaxOffTime" Value="0.15" />
-                    <Var Name="FlickerFade" Value="false" />
-                    <Var Name="FlickerOnSound" Value="" />
-                    <Var Name="FlickerOffSound" Value="" />
-                    <Var Name="FlickerOnPS" Value="" />
-                    <Var Name="FlickerOffPS" Value="" />
-                </UserVariables>
-            </Entity>
-            <Entity ID="268436377" Name="lamp_wall_deepsea_2" CreStamp="1673450432" ModStamp="1673450439" WorldPos="0 18.25 0" Rotation="1.5708 5.56363e-008 4.37114e-008" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 389 268436377">
-                <UserVariables>
-                    <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="CollideGroup" Value="" />
-                    <Var Name="UserVar" Value="" />
-                    <Var Name="DisableBreakable" Value="false" />
-                    <Var Name="FullGameSave" Value="false" />
-                    <Var Name="StaticPhysics" Value="false" />
-                    <Var Name="EffectsActive" Value="true" />
-                    <Var Name="InteractionDisabled" Value="false" />
-                    <Var Name="CastShadows" Value="true" />
-                    <Var Name="ColorMul" Value="1 1 1 1" />
-                    <Var Name="EffectColorMul" Value="1 1 1 1" />
-                    <Var Name="EffectBrightnessMul" Value="1" />
-                    <Var Name="IllumColor" Value="1 1 1 1" />
-                    <Var Name="IllumBrightness" Value="1" />
-                    <Var Name="IsAffectedByDecal" Value="false" />
-                    <Var Name="IsOccluder" Value="false" />
-                    <Var Name="UpdateBonesWhenCulled" Value="false" />
-                    <Var Name="OnBreakCallbackFunc" Value="" />
-                    <Var Name="ConnectionStateChangeCallback" Value="" />
-                    <Var Name="PlayerLookAtCallback" Value="" />
-                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
-                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
-                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
-                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
-                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
-                    <Var Name="PlayerInteractCallback" Value="" />
-                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
-                    <Var Name="RecieveMessageCallback" Value="" />
-                    <Var Name="CC_Entities" Value="" />
-                    <Var Name="CC_Funcs" Value="" />
-                    <Var Name="ConnectedEntity" Value="" />
-                    <Var Name="ConnectedEntityInvertState" Value="false" />
-                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
-                    <Var Name="ParentAttachEntity" Value="" />
-                    <Var Name="ParentAttachUseRotation" Value="true" />
-                    <Var Name="ParentAttachBody" Value="" />
-                    <Var Name="ParentAttachSocket" Value="" />
-                    <Var Name="ParentAttachSnap" Value="false" />
-                    <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
-                    <Var Name="ConnectionLightAmount" Value="1" />
-                    <Var Name="ConnectionLightUseOnColor" Value="true" />
-                    <Var Name="ConnectionLightUseSpec" Value="false" />
-                    <Var Name="ConnectionLightType" Value="Mul" />
-                    <Var Name="ExtraConnectedLight" Value="" />
-                    <Var Name="ExtraConnectionLightAmount" Value="1" />
-                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
-                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
-                    <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
                     <Var Name="FlickerActive" Value="false" />
                     <Var Name="UseCustomFlickerSettings" Value="false" />
                     <Var Name="FlickerMinOnTime" Value="0.05" />
@@ -7878,10 +7817,10 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437838" Name="BrandonSplat" CreStamp="1673620961" ModStamp="1673637738" WorldPos="0.342491 -0.25 -0.694353" Rotation="0.372558 2.34032 -0.196989" Scale="1 1 1" FileIndex="192" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1088 268437838">
+            <Entity ID="268437838" Name="BrandonSplat" CreStamp="1673620961" ModStamp="1673640352" WorldPos="0.342491 -0.25 -0.694353" Rotation="0.372558 2.34032 -0.196989" Scale="1 1 1" FileIndex="192" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1088 268437838">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="CollideGroup" Value="-agent" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
@@ -8238,10 +8177,10 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437965" Name="BrandonDebrisAfter_2" CreStamp="1673631208" ModStamp="1673637999" WorldPos="0.940607 0.0888917 -0.82949" Rotation="1.5708 3.67112 1.68928e-008" Scale="0.75 0.75 0.75" FileIndex="312" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 479 268437965">
+            <Entity ID="268437965" Name="BrandonDebrisAfter_2" CreStamp="1673631208" ModStamp="1673640338" WorldPos="0.940607 0.0888917 -0.82949" Rotation="1.5708 3.67112 1.68928e-008" Scale="0.75 0.75 0.75" FileIndex="312" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 479 268437965">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="CollideGroup" Value="-agent" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
@@ -8293,10 +8232,10 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437967" Name="BrandonDebrisAfter_3" CreStamp="1673637303" ModStamp="1673638003" WorldPos="0.784667 0.143869 -0.168096" Rotation="1.5939 3.91068 -1.32747e-010" Scale="0.75 0.75 0.75" FileIndex="312" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 477 268437967">
+            <Entity ID="268437967" Name="BrandonDebrisAfter_3" CreStamp="1673637303" ModStamp="1673640343" WorldPos="0.784667 0.143869 -0.168096" Rotation="1.5939 3.91068 -1.32747e-010" Scale="0.75 0.75 0.75" FileIndex="312" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 477 268437967">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="CollideGroup" Value="-agent" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
@@ -8348,10 +8287,10 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437970" Name="BrandonDebrisAfter_1" CreStamp="1673637921" ModStamp="1673638053" WorldPos="0.615835 -0.018357 -0.431803" Rotation="2.01676 3.89243 -2.84359" Scale="1 1 1" FileIndex="313" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1096 268437970">
+            <Entity ID="268437970" Name="BrandonDebrisAfter_1" CreStamp="1673637921" ModStamp="1673640334" WorldPos="0.615835 -0.018357 -0.431803" Rotation="2.01676 3.89243 -2.84359" Scale="1 1 1" FileIndex="313" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 293 268437970">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
-                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="CollideGroup" Value="-agent" />
                     <Var Name="UserVar" Value="" />
                     <Var Name="DisableBreakable" Value="false" />
                     <Var Name="FullGameSave" Value="false" />
