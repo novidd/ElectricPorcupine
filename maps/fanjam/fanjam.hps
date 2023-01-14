@@ -440,7 +440,9 @@ class cScrMap : iScrMap
 
 			if (Sequence_DoStepAndWait(0.0f))
 			{
-				Sound_CreateAtEntity("ScannerLoopPulse", "02_06_theta_tunnels/sfx/nuclear_scanner/scan_pulse", "Player", 1.25f, false, 0.75);
+				// Lower the sound level for the ambience of stuff
+				
+//				Sound_CreateAtEntity("ScannerLoopPulse", "02_06_theta_tunnels/sfx/nuclear_scanner/scan_pulse", "Player", 1.25f, false, 1);
 			}
 			else if (Sequence_DoStepAndWait(3.0f))
 			{

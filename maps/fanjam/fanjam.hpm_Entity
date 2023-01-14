@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="1C44AE3592835ADD4B2980DE61A99534C93E1F0" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="321">
+        <FileIndex_Entities NumOfFiles="330">
             <File Id="0" Path="entities/station/furniture/trash_can_theta/trash_can_theta.ent" />
             <File Id="1" Path="entities/station/furniture/trash_can_theta/trash_can_theta_flap.ent" />
             <File Id="2" Path="entities/station/ornaments/wet_floor_sign/wet_floor_sign.ent" />
@@ -322,6 +322,15 @@
             <File Id="318" Path="entities/station/debris/train_tunnel_metal_plate/train_tunnel_metal_plate_small.ent" />
             <File Id="319" Path="mods/ElectricPorcupine/assets/entities/mod_station/girder_rusty_support_damage01_rigid.ent" />
             <File Id="320" Path="mods/ElectricPorcupine/assets/entities/mod_station/girder_rusty_support_damage02_rigid.ent" />
+            <File Id="321" Path="entities/station/special/01_05_transporter_cargo_damaged/01_05_transporter_cargo_doors.ent" />
+            <File Id="322" Path="entities/station/special/01_05_transporter_cargo_damaged/01_05_transporter_cargo_damaged.ent" />
+            <File Id="323" Path="mods/ElectricPorcupine/assets/entities/rebirth/organic/cobwebs/cobwebs_1.ent" />
+            <File Id="324" Path="mods/ElectricPorcupine/assets/entities/rebirth/organic/cobwebs/cobwebs_strong_02.ent" />
+            <File Id="325" Path="mods/ElectricPorcupine/assets/entities/rebirth/organic/cobwebs/cobwebs_strong_01.ent" />
+            <File Id="326" Path="mods/ElectricPorcupine/assets/entities/rebirth/organic/cobwebs/cobwebs_3.ent" />
+            <File Id="327" Path="mods/ElectricPorcupine/assets/entities/rebirth/organic/cobwebs/cobwebs_2.ent" />
+            <File Id="328" Path="mods/ElectricPorcupine/assets/entities/rebirth/organic/cobwebs/cobwebs_4.ent" />
+            <File Id="329" Path="mods/ElectricPorcupine/assets/entities/rebirth/organic/cobwebs/cobwebs_strong_04.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435457" Name="trash_can_theta_1" CreStamp="1673045161" ModStamp="1673614901" WorldPos="1.14645 0.309528 -6.21749" Rotation="0.68381 -2.24684e-006 1.5708" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 15 268435457">
@@ -397,7 +406,7 @@
                     <Var Name="JointResetFix" Value="false" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268435490" Name="IntroPuppetVictim" CreStamp="1673049843" ModStamp="1673090680" WorldPos="-34 -4.375 0" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="5" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 22 268435490">
+            <Entity ID="268435490" Name="IntroPuppetVictim" CreStamp="1673049843" ModStamp="1673090680" WorldPos="-33.5 -3.875 0" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="5" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 22 268435490">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="UserVar" Value="" />
@@ -6117,7 +6126,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437693" Name="lamp_roof_small_red_1" CreStamp="1673611053" ModStamp="1673611271" WorldPos="-11.2235 -0.282313 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1172 268437693">
+            <Entity ID="268437693" Name="lamp_roof_small_red_1" CreStamp="1673611053" ModStamp="1673715149" WorldPos="-11.2235 -0.282313 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1172 268437693">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6158,7 +6167,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_56" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6168,7 +6177,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6182,7 +6191,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437696" Name="lamp_roof_small_red_2" CreStamp="1673611273" ModStamp="1673611277" WorldPos="-13.2242 -0.66647 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 70 268437696">
+            <Entity ID="268437696" Name="lamp_roof_small_red_2" CreStamp="1673611273" ModStamp="1673715157" WorldPos="-13.2242 -0.66647 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 70 268437696">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6223,7 +6232,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_57" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6233,7 +6242,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6247,7 +6256,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437697" Name="lamp_roof_small_red_3" CreStamp="1673611278" ModStamp="1673611281" WorldPos="-15.2254 -1.05072 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1122 268437697">
+            <Entity ID="268437697" Name="lamp_roof_small_red_3" CreStamp="1673611278" ModStamp="1673717023" WorldPos="-15.2254 -1.04019 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1122 268437697">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6288,7 +6297,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_58" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6298,7 +6307,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6312,7 +6321,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437698" Name="lamp_roof_small_red_4" CreStamp="1673611281" ModStamp="1673611285" WorldPos="-17.226 -1.43486 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1124 268437698">
+            <Entity ID="268437698" Name="lamp_roof_small_red_4" CreStamp="1673611281" ModStamp="1673717059" WorldPos="-17.226 -1.42396 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1124 268437698">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6353,7 +6362,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_59" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6363,7 +6372,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6377,7 +6386,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437699" Name="lamp_roof_small_red_5" CreStamp="1673611286" ModStamp="1673611290" WorldPos="-19.2259 -1.81884 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1123 268437699">
+            <Entity ID="268437699" Name="lamp_roof_small_red_5" CreStamp="1673611286" ModStamp="1673717054" WorldPos="-19.2259 -1.80525 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1123 268437699">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6418,7 +6427,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_60" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6428,7 +6437,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6442,7 +6451,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437700" Name="lamp_roof_small_red_6" CreStamp="1673611290" ModStamp="1673611296" WorldPos="-21.2517 -2.20782 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1139 268437700">
+            <Entity ID="268437700" Name="lamp_roof_small_red_6" CreStamp="1673611290" ModStamp="1673717050" WorldPos="-21.2517 -2.19244 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1139 268437700">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6483,7 +6492,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_61" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6493,7 +6502,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6507,7 +6516,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437701" Name="lamp_roof_small_red_7" CreStamp="1673611296" ModStamp="1673611299" WorldPos="-23.2522 -2.59193 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1138 268437701">
+            <Entity ID="268437701" Name="lamp_roof_small_red_7" CreStamp="1673611296" ModStamp="1673717044" WorldPos="-23.2522 -2.57478 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1138 268437701">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6548,7 +6557,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_62" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6558,7 +6567,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6572,7 +6581,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437702" Name="lamp_roof_small_red_8" CreStamp="1673611301" ModStamp="1673611303" WorldPos="-25.2496 -2.97544 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1154 268437702">
+            <Entity ID="268437702" Name="lamp_roof_small_red_8" CreStamp="1673611301" ModStamp="1673717040" WorldPos="-25.2496 -2.95532 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1154 268437702">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6613,7 +6622,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_63" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6623,7 +6632,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6637,7 +6646,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437703" Name="lamp_roof_small_red_9" CreStamp="1673611304" ModStamp="1673611309" WorldPos="-27.2492 -3.35939 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1169 268437703">
+            <Entity ID="268437703" Name="lamp_roof_small_red_9" CreStamp="1673611304" ModStamp="1673717037" WorldPos="-27.2492 -3.33402 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1169 268437703">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6678,7 +6687,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_64" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6688,7 +6697,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6702,7 +6711,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437704" Name="lamp_roof_small_red_10" CreStamp="1673611310" ModStamp="1673611314" WorldPos="-29.2476 -3.74309 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1168 268437704">
+            <Entity ID="268437704" Name="lamp_roof_small_red_10" CreStamp="1673611310" ModStamp="1673717033" WorldPos="-29.2476 -3.71539 0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1168 268437704">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6743,7 +6752,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_65" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6753,7 +6762,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6767,7 +6776,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437705" Name="lamp_roof_small_red_11" CreStamp="1673611320" ModStamp="1673611321" WorldPos="-11.223 -0.282 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 31 268437705">
+            <Entity ID="268437705" Name="lamp_roof_small_red_11" CreStamp="1673611320" ModStamp="1673715151" WorldPos="-11.223 -0.282 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 31 268437705">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6808,7 +6817,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_56" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6818,7 +6827,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6832,7 +6841,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437706" Name="lamp_roof_small_red_12" CreStamp="1673611325" ModStamp="1673611326" WorldPos="-13.224 -0.666 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1109 268437706">
+            <Entity ID="268437706" Name="lamp_roof_small_red_12" CreStamp="1673611325" ModStamp="1673715155" WorldPos="-13.224 -0.666 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1109 268437706">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6873,7 +6882,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_57" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6883,7 +6892,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6897,7 +6906,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437707" Name="lamp_roof_small_red_13" CreStamp="1673611328" ModStamp="1673611328" WorldPos="-15.225 -1.051 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1093 268437707">
+            <Entity ID="268437707" Name="lamp_roof_small_red_13" CreStamp="1673611328" ModStamp="1673717023" WorldPos="-15.225 -1.04047 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1093 268437707">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6938,7 +6947,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_58" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -6948,7 +6957,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -6962,7 +6971,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437708" Name="lamp_roof_small_red_14" CreStamp="1673611330" ModStamp="1673611330" WorldPos="-17.226 -1.435 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 23 268437708">
+            <Entity ID="268437708" Name="lamp_roof_small_red_14" CreStamp="1673611330" ModStamp="1673717059" WorldPos="-17.226 -1.4241 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 23 268437708">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7003,7 +7012,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_59" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7013,7 +7022,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -7027,7 +7036,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437709" Name="lamp_roof_small_red_15" CreStamp="1673611332" ModStamp="1673611333" WorldPos="-19.226 -1.819 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 21 268437709">
+            <Entity ID="268437709" Name="lamp_roof_small_red_15" CreStamp="1673611332" ModStamp="1673717054" WorldPos="-19.226 -1.80541 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 21 268437709">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7068,7 +7077,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_60" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7078,7 +7087,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -7092,7 +7101,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437710" Name="lamp_roof_small_red_16" CreStamp="1673611335" ModStamp="1673611335" WorldPos="-21.252 -2.208 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 34 268437710">
+            <Entity ID="268437710" Name="lamp_roof_small_red_16" CreStamp="1673611335" ModStamp="1673717050" WorldPos="-21.252 -2.19262 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 34 268437710">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7133,7 +7142,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_61" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7143,7 +7152,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -7157,7 +7166,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437711" Name="lamp_roof_small_red_17" CreStamp="1673611336" ModStamp="1673611337" WorldPos="-23.252 -2.592 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1094 268437711">
+            <Entity ID="268437711" Name="lamp_roof_small_red_17" CreStamp="1673611336" ModStamp="1673717044" WorldPos="-23.252 -2.57485 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1094 268437711">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7198,7 +7207,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_62" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7208,7 +7217,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -7222,7 +7231,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437712" Name="lamp_roof_small_red_18" CreStamp="1673611339" ModStamp="1673611339" WorldPos="-25.25 -2.975 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 42 268437712">
+            <Entity ID="268437712" Name="lamp_roof_small_red_18" CreStamp="1673611339" ModStamp="1673717040" WorldPos="-25.25 -2.95488 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 42 268437712">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7263,7 +7272,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_63" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7273,7 +7282,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -7287,7 +7296,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437713" Name="lamp_roof_small_red_19" CreStamp="1673611352" ModStamp="1673611353" WorldPos="-27.249 -3.359 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 41 268437713">
+            <Entity ID="268437713" Name="lamp_roof_small_red_19" CreStamp="1673611352" ModStamp="1673717037" WorldPos="-27.249 -3.33363 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 41 268437713">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7328,7 +7337,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_64" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7338,7 +7347,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -7352,7 +7361,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437714" Name="lamp_roof_small_red_20" CreStamp="1673611354" ModStamp="1673611355" WorldPos="-29.248 -3.743 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 32 268437714">
+            <Entity ID="268437714" Name="lamp_roof_small_red_20" CreStamp="1673611354" ModStamp="1673717033" WorldPos="-29.248 -3.7153 -0.65" Rotation="2.19498 -1.5708 1.13631" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 32 268437714">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7393,7 +7402,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_65" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7403,7 +7412,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -7417,7 +7426,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437730" Name="lamp_roof_small_red_21" CreStamp="1673611755" ModStamp="1673611770" WorldPos="-8.75 0 0.65" Rotation="-1.54911 4.71239 -1.59249" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1170 268437730">
+            <Entity ID="268437730" Name="lamp_roof_small_red_21" CreStamp="1673611755" ModStamp="1673715143" WorldPos="-8.75 0 0.65" Rotation="-1.54911 4.71239 -1.59249" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1170 268437730">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7458,7 +7467,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_66" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7468,7 +7477,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -7482,7 +7491,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437731" Name="lamp_roof_small_red_22" CreStamp="1673611773" ModStamp="1673611777" WorldPos="-8.75 0 -0.65" Rotation="-1.54911 4.71239 -1.59249" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1108 268437731">
+            <Entity ID="268437731" Name="lamp_roof_small_red_22" CreStamp="1673611773" ModStamp="1673715145" WorldPos="-8.75 0 -0.65" Rotation="-1.54911 4.71239 -1.59249" Scale="1 1 1" FileIndex="283" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1108 268437731">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7523,7 +7532,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="PointLight_66" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7533,7 +7542,7 @@
                     <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
-                    <Var Name="Lit" Value="true" />
+                    <Var Name="Lit" Value="false" />
                     <Var Name="FlickerActive" Value="true" />
                     <Var Name="UseCustomFlickerSettings" Value="true" />
                     <Var Name="FlickerMinOnTime" Value="0.25" />
@@ -8459,6 +8468,615 @@
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
                     <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438060" Name="01_05_transporter_cargo_doors_1" CreStamp="1673714774" ModStamp="1673714873" WorldPos="-41.25 -5 -6.25" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="321" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1213 268438060">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="-cargotrain" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="false" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="false" />
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectBrightnessMul" Value="1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
+                    <Var Name="OpenableByAgent" Value="true" />
+                    <Var Name="OpenAmount" Value="-1" />
+                    <Var Name="AutoCloseTime" Value="0" />
+                    <Var Name="AutoOpen" Value="false" />
+                    <Var Name="AutoClose" Value="false" />
+                    <Var Name="Locked" Value="false" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438061" Name="01_05_transporter_cargo_doors_2" CreStamp="1673714783" ModStamp="1673714795" WorldPos="-41.25 -5 -6.25" Rotation="0 1.5708 0" Scale="1 1 1" FileIndex="322" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 108 268438061">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="+cargotrain" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438069" Name="cobwebs_strong_02_2" CreStamp="1673715705" ModStamp="1673716415" WorldPos="-12.4374 2.02663 1.61982" Rotation="-0.367254 3.06704 -1.1376" Scale="1.25 1.25 1.25" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1125 268438069">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438070" Name="cobwebs_strong_02_3" CreStamp="1673715732" ModStamp="1673716410" WorldPos="-12.2735 1.52663 1.72835" Rotation="0.265027 3.14137 1.4545" Scale="1.5 1.5 1" FileIndex="327" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1256 268438070">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438071" Name="cobwebs_strong_02_4" CreStamp="1673715810" ModStamp="1673716407" WorldPos="-12.274 2.4847 1.6026" Rotation="-2.31911 -0.65432 -1.23994" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1253 268438071">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438072" Name="cobwebs_strong_02_5" CreStamp="1673715866" ModStamp="1673716395" WorldPos="-12.274 2.4847 1.6026" Rotation="-2.31911 -0.65432 -1.23994" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1132 268438072">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438075" Name="cobwebs_strong_02_8" CreStamp="1673716006" ModStamp="1673716398" WorldPos="-12.3976 2.32135 0.795982" Rotation="2.87749 1.55575 2.93915" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1254 268438075">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438077" Name="cobwebs_strong_02_10" CreStamp="1673716055" ModStamp="1673716391" WorldPos="-12.4435 1.18377 1.91199" Rotation="-1.5708 -0.184702 -1.5708" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1236 268438077">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438090" Name="cobwebs_strong_02_11" CreStamp="1673716501" ModStamp="1673716509" WorldPos="-12.5033 2.97337 0.63796" Rotation="-0.649293 1.57128 -0.588163" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1255 268438090">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438092" Name="cobwebs_strong_02_9" CreStamp="1673716006" ModStamp="1673716398" WorldPos="-12.3788 2.32135 -0.795828" Rotation="2.87749 4.69733 -2.93915" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1252 268438092">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438093" Name="cobwebs_strong_02_6" CreStamp="1673715705" ModStamp="1673716415" WorldPos="-12.3389 2.02663 -1.61967" Rotation="2.77434 3.21614 -2.00399" Scale="1.25 1.25 1.25" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1130 268438093">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438094" Name="cobwebs_strong_02_7" CreStamp="1673715866" ModStamp="1673716395" WorldPos="-12.5023 2.4847 -1.60245" Rotation="0.822479 0.65432 -1.90165" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1127 268438094">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438095" Name="cobwebs_strong_02_12" CreStamp="1673716501" ModStamp="1673716509" WorldPos="-12.2731 2.97337 -0.637806" Rotation="-0.649194 -1.57031 0.588064" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1257 268438095">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438096" Name="cobwebs_strong_02_13" CreStamp="1673715732" ModStamp="1673716410" WorldPos="-12.5029 1.52663 -1.72819" Rotation="-2.87657 3.14181 1.68709" Scale="1.5 1.5 1" FileIndex="327" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1259 268438096">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438097" Name="cobwebs_strong_02_14" CreStamp="1673715810" ModStamp="1673716407" WorldPos="-12.5023 2.4847 -1.60245" Rotation="0.822479 0.65432 -1.90165" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1258 268438097">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438099" Name="cobwebs_strong_02_15" CreStamp="1673716006" ModStamp="1673716398" WorldPos="-21.4906 0.571163 -0.795828" Rotation="2.87749 4.69732 -2.93915" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1204 268438099">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438100" Name="cobwebs_strong_02_16" CreStamp="1673715705" ModStamp="1673716415" WorldPos="-21.4508 0.276448 -1.61967" Rotation="2.77434 3.21614 -2.00399" Scale="1.25 1.25 1.25" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1211 268438100">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438101" Name="cobwebs_strong_02_17" CreStamp="1673715866" ModStamp="1673716395" WorldPos="-21.6141 0.734515 -1.60245" Rotation="0.822479 0.65432 -1.90165" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1210 268438101">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438102" Name="cobwebs_strong_02_18" CreStamp="1673716501" ModStamp="1673716509" WorldPos="-21.3849 1.22318 -0.637806" Rotation="-0.649194 -1.57031 0.588064" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1206 268438102">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438103" Name="cobwebs_strong_02_19" CreStamp="1673715732" ModStamp="1673716410" WorldPos="-21.6147 -0.223552 -1.72819" Rotation="-2.87657 3.14181 1.68709" Scale="1.5 1.5 1" FileIndex="327" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1205 268438103">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438104" Name="cobwebs_strong_02_20" CreStamp="1673715810" ModStamp="1673716407" WorldPos="-21.6141 0.734515 -1.60245" Rotation="0.822479 0.65432 -1.90165" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1209 268438104">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438106" Name="cobwebs_strong_02_21" CreStamp="1673716006" ModStamp="1673716398" WorldPos="-21.5094 0.571531 0.795982" Rotation="2.87749 1.55574 2.93915" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1208 268438106">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438107" Name="cobwebs_strong_02_22" CreStamp="1673715705" ModStamp="1673716415" WorldPos="-21.5492 0.276816 1.61982" Rotation="-0.367254 3.06704 -1.1376" Scale="1.25 1.25 1.25" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1219 268438107">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438108" Name="cobwebs_strong_02_23" CreStamp="1673715866" ModStamp="1673716395" WorldPos="-21.3859 0.734883 1.6026" Rotation="-2.31911 -0.65432 -1.23994" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1227 268438108">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438109" Name="cobwebs_strong_02_24" CreStamp="1673716501" ModStamp="1673716509" WorldPos="-21.6151 1.22355 0.63796" Rotation="-0.649293 1.57128 -0.588163" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1237 268438109">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438110" Name="cobwebs_strong_02_25" CreStamp="1673715732" ModStamp="1673716410" WorldPos="-21.3853 -0.223184 1.72835" Rotation="0.265027 3.14137 1.4545" Scale="1.5 1.5 1" FileIndex="327" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1223 268438110">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438111" Name="cobwebs_strong_02_26" CreStamp="1673715810" ModStamp="1673716407" WorldPos="-21.3859 0.734883 1.6026" Rotation="-2.31911 -0.65432 -1.23994" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1224 268438111">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438113" Name="cobwebs_strong_02_27" CreStamp="1673716006" ModStamp="1673716398" WorldPos="-29.4906 -0.928837 -0.795828" Rotation="2.87749 4.69732 -2.93915" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1220 268438113">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438114" Name="cobwebs_strong_02_28" CreStamp="1673715705" ModStamp="1673716415" WorldPos="-29.4508 -1.22355 -1.61967" Rotation="2.77434 3.21614 -2.00399" Scale="1.25 1.25 1.25" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1230 268438114">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438115" Name="cobwebs_strong_02_29" CreStamp="1673715866" ModStamp="1673716395" WorldPos="-29.6141 -0.765485 -1.60245" Rotation="0.822479 0.65432 -1.90165" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1229 268438115">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438116" Name="cobwebs_strong_02_30" CreStamp="1673716501" ModStamp="1673716509" WorldPos="-29.3849 -0.276816 -0.637806" Rotation="-0.649194 -1.57031 0.588064" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1225 268438116">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438117" Name="cobwebs_strong_02_31" CreStamp="1673715732" ModStamp="1673716410" WorldPos="-29.6147 -1.72355 -1.72819" Rotation="-2.87657 3.14181 1.68709" Scale="1.5 1.5 1" FileIndex="327" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1243 268438117">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438118" Name="cobwebs_strong_02_32" CreStamp="1673715810" ModStamp="1673716407" WorldPos="-29.6141 -0.765485 -1.60245" Rotation="0.822479 0.65432 -1.90165" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1222 268438118">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438120" Name="cobwebs_strong_02_33" CreStamp="1673716006" ModStamp="1673716398" WorldPos="-29.5094 -0.928469 0.795982" Rotation="2.87749 1.55573 2.93915" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1240 268438120">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438121" Name="cobwebs_strong_02_34" CreStamp="1673715705" ModStamp="1673716415" WorldPos="-29.5492 -1.22318 1.61982" Rotation="-0.367254 3.06704 -1.1376" Scale="1.25 1.25 1.25" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1242 268438121">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438122" Name="cobwebs_strong_02_35" CreStamp="1673715866" ModStamp="1673716395" WorldPos="-29.3859 -0.765118 1.6026" Rotation="-2.31911 -0.65432 -1.23994" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1221 268438122">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438123" Name="cobwebs_strong_02_36" CreStamp="1673716501" ModStamp="1673716509" WorldPos="-29.6151 -0.276448 0.63796" Rotation="-0.649293 1.57128 -0.588163" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1231 268438123">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438124" Name="cobwebs_strong_02_37" CreStamp="1673715732" ModStamp="1673716410" WorldPos="-29.3853 -1.72318 1.72835" Rotation="0.265027 3.14137 1.4545" Scale="1.5 1.5 1" FileIndex="327" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1226 268438124">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438125" Name="cobwebs_strong_02_38" CreStamp="1673715810" ModStamp="1673716407" WorldPos="-29.3859 -0.765118 1.6026" Rotation="-2.31911 -0.65432 -1.23994" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1238 268438125">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438127" Name="cobwebs_strong_02_39" CreStamp="1673716006" ModStamp="1673716398" WorldPos="-12.3976 -0.321347 -0.795828" Rotation="2.8775 4.69733 0.202433" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1201 268438127">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438128" Name="cobwebs_strong_02_40" CreStamp="1673715705" ModStamp="1673716415" WorldPos="-12.4374 -0.0266325 -1.61967" Rotation="2.77434 3.21614 1.1376" Scale="1.25 1.25 1.25" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1215 268438128">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438129" Name="cobwebs_strong_02_41" CreStamp="1673715866" ModStamp="1673716395" WorldPos="-12.274 -0.484699 -1.60245" Rotation="0.822479 0.65432 1.23994" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1218 268438129">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438130" Name="cobwebs_strong_02_42" CreStamp="1673716501" ModStamp="1673716509" WorldPos="-12.5033 -0.973368 -0.637806" Rotation="-0.649036 -1.57031 -2.55369" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1202 268438130">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438131" Name="cobwebs_strong_02_43" CreStamp="1673715732" ModStamp="1673716410" WorldPos="-12.2735 0.473368 -1.72819" Rotation="-2.87657 3.14181 -1.4545" Scale="1.5 1.5 1" FileIndex="327" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1203 268438131">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438132" Name="cobwebs_strong_02_44" CreStamp="1673715810" ModStamp="1673716407" WorldPos="-12.274 -0.484699 -1.60245" Rotation="0.822479 0.65432 1.23994" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1200 268438132">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438134" Name="cobwebs_strong_02_45" CreStamp="1673716006" ModStamp="1673716398" WorldPos="-12.3788 -0.321347 0.795982" Rotation="2.87748 1.55573 -0.202452" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1199 268438134">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438135" Name="cobwebs_strong_02_46" CreStamp="1673715705" ModStamp="1673716415" WorldPos="-12.3389 -0.0266321 1.61982" Rotation="-0.367254 3.06704 2.00399" Scale="1.25 1.25 1.25" FileIndex="326" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1217 268438135">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438136" Name="cobwebs_strong_02_47" CreStamp="1673715866" ModStamp="1673716395" WorldPos="-12.5023 -0.484699 1.6026" Rotation="-2.31911 -0.654319 1.90165" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1216 268438136">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438137" Name="cobwebs_strong_02_48" CreStamp="1673716501" ModStamp="1673716509" WorldPos="-12.2731 -0.973368 0.63796" Rotation="-0.649451 1.57128 2.55327" Scale="2 2 1" FileIndex="323" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1207 268438137">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.68627452850341797" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438138" Name="cobwebs_strong_02_49" CreStamp="1673715732" ModStamp="1673716410" WorldPos="-12.5029 0.473368 1.72835" Rotation="0.265027 3.14137 -1.68709" Scale="1.5 1.5 1" FileIndex="327" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1214 268438138">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
+                    <Var Name="IllumColor" Value="1 1 1 1" />
+                    <Var Name="IllumBrightness" Value="1" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="CollideGroup" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268438139" Name="cobwebs_strong_02_50" CreStamp="1673715810" ModStamp="1673716407" WorldPos="-12.5023 -0.484699 1.6026" Rotation="-2.31911 -0.654319 1.90165" Scale="2 2 1" FileIndex="328" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1212 268438139">
+                <UserVariables>
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="IsAffectedByDecal" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 0.78431379795074463" />
                     <Var Name="IllumColor" Value="1 1 1 1" />
                     <Var Name="IllumBrightness" Value="1" />
                     <Var Name="IsOccluder" Value="false" />
