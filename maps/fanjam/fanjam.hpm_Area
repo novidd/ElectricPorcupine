@@ -13,7 +13,7 @@
                     <Var Name="MaxFocusDistance" Value="-1" />
                 </UserVariables>
             </Area>
-            <Area ID="268436250" Name="AMB_Start" CreStamp="1673380046" ModStamp="1673539055" WorldPos="0 12 0" Rotation="0 0 0" Scale="15 28 15" Active="true" Mesh="" UID="16 426 268436250" AreaType="Soundscape">
+            <Area ID="268436250" Name="AMB_Start" CreStamp="1673380046" ModStamp="1673722435" WorldPos="0 12 0" Rotation="0 0 0" Scale="15 28 15" Active="true" Mesh="" UID="16 426 268436250" AreaType="Soundscape">
                 <UserVariables>
                     <Var Name="UseReverb" Value="true" />
                     <Var Name="ReverbType" Value="ExtraWarehouse" />
@@ -408,7 +408,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Area>
-            <Area ID="268438145" Name="StartRoom" CreStamp="1673717641" ModStamp="1673719437" WorldPos="-50 -2 0" Rotation="0 0 0" Scale="6 4 4" Active="true" Mesh="" UID="16 1288 268438145" AreaType="Trigger">
+            <Area ID="268438145" Name="StartRoom" CreStamp="1673717641" ModStamp="1673720053" WorldPos="-50.75 -2 0" Rotation="0 0 0" Scale="7 4 4" Active="true" Mesh="" UID="16 1288 268438145" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
@@ -505,6 +505,82 @@
                 </UserVariables>
             </Area>
             <Area ID="268438150" Name="Vent" CreStamp="1673719373" ModStamp="1673719384" WorldPos="-50.75 0 0.75" Rotation="0 0 0" Scale="1 0.25 1" Active="true" Mesh="" UID="16 1283 268438150" AreaType="Trigger">
+                <UserVariables>
+                    <Var Name="BlocksLineOfSight" Value="false" />
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="true" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="CanInteractWithoutCallback" Value="false" />
+                    <Var Name="MaxFocusDistance" Value="-1" />
+                    <Var Name="CustomInteractIcon" Value="PushButton" />
+                </UserVariables>
+            </Area>
+            <Area ID="268438201" Name="AMB_Station" CreStamp="1673721221" ModStamp="1673721491" WorldPos="-42.25 -2 0" Rotation="0 1.5708 0" Scale="19.75 8.75 26.75" Active="true" Mesh="" UID="16 1317 268438201" AreaType="Soundscape">
+                <UserVariables>
+                    <Var Name="UseReverb" Value="true" />
+                    <Var Name="ReverbType" Value="ExtraRoomLarge" />
+                    <Var Name="ReverbPrio" Value="1" />
+                    <Var Name="ReverbAmount" Value="1.5" />
+                    <Var Name="ReverbFadeTime" Value="0.65" />
+                    <Var Name="Prio" Value="1" />
+                    <Var Name="Level" Value="2: Room" />
+                    <Var Name="BG_Sound" Value="level_amb_shared_interior/amb/background/upsilon/station/station_dark" />
+                    <Var Name="BG_Volume" Value="1" />
+                    <Var Name="BG_FadeInTime" Value="2" />
+                    <Var Name="BG_FadeOutTime" Value="3.5" />
+                    <Var Name="BG_FadeTransitionSpeed" Value="1" />
+                    <Var Name="BG_ParentVolMul" Value="1" />
+                    <Var Name="SoundEnt_InNames" Value="" />
+                    <Var Name="SoundEnt_OutNames" Value="" />
+                    <Var Name="SoundEnt_FadeInTime" Value="1" />
+                    <Var Name="SoundEnt_FadeOutTime" Value="1" />
+                    <Var Name="SoundPrefixPrio" Value="0" />
+                    <Var Name="SoundPrefix" Value="medium_room" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                </UserVariables>
+            </Area>
+            <Area ID="268438202" Name="AMB_Station_1" CreStamp="1673721514" ModStamp="1673721603" WorldPos="-51 -2 0" Rotation="0 1.5708 0" Scale="3.5 5 8" Active="true" Mesh="" UID="16 1316 268438202" AreaType="Soundscape">
+                <UserVariables>
+                    <Var Name="UseReverb" Value="true" />
+                    <Var Name="ReverbType" Value="ExtraRoomLarge" />
+                    <Var Name="ReverbPrio" Value="2" />
+                    <Var Name="ReverbAmount" Value="1.175" />
+                    <Var Name="ReverbFadeTime" Value="0.65" />
+                    <Var Name="Prio" Value="2" />
+                    <Var Name="Level" Value="2: Room" />
+                    <Var Name="BG_Sound" Value="level_amb_shared_interior/amb/background/upsilon/station/small_side_room" />
+                    <Var Name="BG_Volume" Value="1" />
+                    <Var Name="BG_FadeInTime" Value="2" />
+                    <Var Name="BG_FadeOutTime" Value="3" />
+                    <Var Name="BG_FadeTransitionSpeed" Value="1" />
+                    <Var Name="BG_ParentVolMul" Value="1" />
+                    <Var Name="SoundEnt_InNames" Value="" />
+                    <Var Name="SoundEnt_OutNames" Value="" />
+                    <Var Name="SoundEnt_FadeInTime" Value="1" />
+                    <Var Name="SoundEnt_FadeOutTime" Value="1" />
+                    <Var Name="SoundPrefixPrio" Value="0" />
+                    <Var Name="SoundPrefix" Value="small_room" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                </UserVariables>
+            </Area>
+            <Area ID="268438220" Name="TriggerArea_1" CreStamp="1673721937" ModStamp="1673721993" WorldPos="-50 -2.675 1.5" Rotation="0 0 0" Scale="1.25 0.125 0.5" Active="true" Mesh="" UID="16 1309 268438220" AreaType="Trigger">
                 <UserVariables>
                     <Var Name="BlocksLineOfSight" Value="false" />
                     <Var Name="EventInstanceTag" Value="" />
