@@ -60,7 +60,7 @@ class cScrMap : iScrMap
 		///////////////////////////
 		// PLAYER HANDS
 		///////////////////////////
-		PlayerHands_PreloadHandModel_Human();
+		PlayerHands_PreloadHandModel_Diving();
 		
 		///////////////////////////
 		// IMGUI
@@ -85,7 +85,6 @@ class cScrMap : iScrMap
 		
 		////////////////////////////
 		// Setup
-		
 		SetupDoorSeals();
 		
 		// Brandon
@@ -106,12 +105,12 @@ class cScrMap : iScrMap
 		
 		if (cLux_ScriptDebugOn())
 		{
-			 bDoIntro = false;
+//			 bDoIntro = false;
 		}
 		
 		if (bDoIntro)
 		{
-//			SetupIntro();
+			SetupIntro();
 		}
 		
 		///////////////////////////////
@@ -390,56 +389,63 @@ class cScrMap : iScrMap
 			// Sequence
 			Map_AddTimer("introsequence", 0.01f, "SequenceIntro");
 			
-			mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
-			Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 2, 0.01);
+//			mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
+//			Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 2, 0.01);
 		}
 		
 		cSequenceStatesData mSequenceIntro_Data;
-		
-		//Decal_SetVisibleInArea(true, "BrandonDecals", materialarraytoaffect);
 		void SequenceIntro(const tString &in asTimer)
 		{
 			Sequence_Begin("SequenceIntro", mSequenceIntro_Data);
+//			if (Sequence_DoStepAndWait(0.0f))
+//			{
+////				Player_Teleport("PlayerStartArea_1", true);
+//				
+//				// - Start looping 01_01_upsilon_awake/sfx/wake_up/nervous, just like in Upsilon (disable the sound during dialogue - use a bool)
+////				Map_AddTimer("nervousbreath_start", 0.0f, "OnTimer_NervousBreath");
+//			}
+//			else if (Sequence_DoStepAndWait(2.0f))
+//			{
+//				// On lights turning on turn up the bloom
+//				// Look at Upsilon awake when turing on the power in the spawn room
+//				Sound_CreateAtEntity("PowerOn", "01_01_upsilon_awake/sfx/wake_up/lights_on", "Player", 0, false);
+////				Map_AddTimer("Timer_LightsOnMusic", 3.5f, "Timer_LightsOnMusic");
+//			}
+//			else if (Sequence_DoStepAndWait(2.0f))
+//			{
+//				Effect_DoF_FadeFocus(mlDOFLightsOn, 0.0, 0.1, 0.4);
+//				Effect_ToneMapping_FadeWhiteCut(0.1, 0.0001f);
+//				
+//				Effect_ImageTrail_Start(0.8, 0.001, 4, 6);
+//				
+//				// Turn on first set of lights/lamps here
+//			}
+//			else if (Sequence_DoStepAndWait(2.0f))
+//			{
+//				// Turn on second set of lights/lamps here
+//				
+//				// Terminals boot up
+//			}
+//			else if (Sequence_DoStepAndWait(2.0f))
+//			{
+//				Effect_ToneMapping_FadeWhiteCut(0.7, 3);
+//			}
+//			else if (Sequence_DoStepAndWait(0.5f))
+//			{
+//				Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 30, 8);
+//				Effect_DoF_FadeOut(mlDOFLightsOn, 7.0f);
+//				Effect_ToneMapping_FadeWhiteCut(3.5, 7.0);
+//			}
+//			Sequence_End();
+
 			if (Sequence_DoStepAndWait(0.0f))
 			{
-//				Player_Teleport("PlayerStartArea_1", true);
+				Sound_CreateAtEntity("ScannerLoopPulse", "02_06_theta_tunnels/sfx/nuclear_scanner/scan_pulse", "Player", 1.25f, false, 0.75);
+			}
+			else if (Sequence_DoStepAndWait(3.0f))
+			{
 				
-				// - Start looping 01_01_upsilon_awake/sfx/wake_up/nervous, just like in Upsilon (disable the sound during dialogue - use a bool)
-//				Map_AddTimer("nervousbreath_start", 0.0f, "OnTimer_NervousBreath");
 			}
-			else if (Sequence_DoStepAndWait(2.0f))
-			{
-				// On lights turning on turn up the bloom
-				// Look at Upsilon awake when turing on the power in the spawn room
-				Sound_CreateAtEntity("PowerOn", "01_01_upsilon_awake/sfx/wake_up/lights_on", "Player", 0, false);
-//				Map_AddTimer("Timer_LightsOnMusic", 3.5f, "Timer_LightsOnMusic");
-			}
-			else if (Sequence_DoStepAndWait(2.0f))
-			{
-				Effect_DoF_FadeFocus(mlDOFLightsOn, 0.0, 0.1, 0.4);
-				Effect_ToneMapping_FadeWhiteCut(0.1, 0.0001f);
-				
-				Effect_ImageTrail_Start(0.8, 0.001, 4, 6);
-				
-				// Turn on first set of lights/lamps here
-			}
-			else if (Sequence_DoStepAndWait(2.0f))
-			{
-				// Turn on second set of lights/lamps here
-				
-				// Terminals boot up
-			}
-			else if (Sequence_DoStepAndWait(2.0f))
-			{
-				Effect_ToneMapping_FadeWhiteCut(0.7, 3);
-			}
-			else if (Sequence_DoStepAndWait(0.5f))
-			{
-				Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 30, 8);
-				Effect_DoF_FadeOut(mlDOFLightsOn, 7.0f);
-				Effect_ToneMapping_FadeWhiteCut(3.5, 7.0);
-			}
-			Sequence_End();
 		}
 		
 		//-------------------------------------------------------
