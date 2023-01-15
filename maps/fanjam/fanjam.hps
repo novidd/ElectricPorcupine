@@ -491,11 +491,17 @@ class cScrMap : iScrMap
 		
 		void CavePowerOff()
 		{
+			// Lights & Lamps
 			Light_SetVisible("light_dynamic_*", false);
 			Lamp_SetLit("lamp_dynamic_*", false, false);
 			Lamp_SetLit("tv_community_room_1", false, false);
 			
+			// Panels
 			Button_SetDisabled("cave_panel_*", true, false);
+			
+			// Sounds
+			Sound_Stop("Sound_Dynamic_*", 0);
+			Sound_Stop("BrokenSchedule", 0);
 		}
 		
 		cSequenceStatesData mSequenceB_Data;
