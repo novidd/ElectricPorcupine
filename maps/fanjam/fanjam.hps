@@ -506,9 +506,6 @@ class cScrMap : iScrMap
 			
 			// The intro sequence
 			Map_AddTimer("introsequenceB", 1.0f, "SequenceB");
-			
-			// At the end of this sound file break the light (time till break: 7.25f)
-			Sound_CreateAtEntity("wau_infection", "04_03_tau_escape/SFX/wau_heart_sweetener", "player");
 		}
 		
 		cSequenceStatesData mSequenceB_Data;
@@ -521,6 +518,10 @@ class cScrMap : iScrMap
 				
 				// Sound of power going out
 				//Simon: "Catherine..?"
+				
+				// Play this after the Simon's line
+				// At the end of this sound file break the light (time till break: 7.25f)
+//				Sound_CreateAtEntity("wau_infection", "04_03_tau_escape/SFX/wau_heart_sweetener", "player");
 			}
 			if (Sequence_DoStepAndWait(0.25f))
 			{
