@@ -110,7 +110,8 @@ class cScrMap : iScrMap
 		
 		if (bDoIntro)
 		{
-			SetupIntro();
+//			SetupIntroA();
+			SetupIntroB();
 		}
 		
 		///////////////////////////////
@@ -370,7 +371,7 @@ class cScrMap : iScrMap
 		//} END General	
 	 
 		/////////////////////////////////////////
-		// Event *Akers chases player in the stairs*
+		// Event *Sequence A - Start in the station*
 		//{//////////////////////////////////////
 	 
 		//-------------------------------------------------------
@@ -379,7 +380,7 @@ class cScrMap : iScrMap
 		
 		int mlDOFLightsOn = -1;
 		
-		void SetupIntro()
+		void SetupIntroA()
 		{
 			cLux_AddDebugMessage("Starting Intro...");
 			
@@ -387,16 +388,16 @@ class cScrMap : iScrMap
 //			Player_SetActive(false);
 			
 			// Sequence
-			Map_AddTimer("introsequence", 0.01f, "SequenceIntro");
+			Map_AddTimer("introsequenceA", 0.01f, "SequenceA");
 			
 //			mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
 //			Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 2, 0.01);
 		}
 		
-		cSequenceStatesData mSequenceIntro_Data;
-		void SequenceIntro(const tString &in asTimer)
+		cSequenceStatesData mSequenceA_Data;
+		void SequenceA(const tString &in asTimer)
 		{
-			Sequence_Begin("SequenceIntro", mSequenceIntro_Data);
+			Sequence_Begin("SequenceA", mSequenceA_Data);
 //			if (Sequence_DoStepAndWait(0.0f))
 //			{
 ////				Player_Teleport("PlayerStartArea_1", true);
@@ -461,18 +462,59 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		 //} END Event *Akers chases player in the stairs*
+		 //} END Event *Sequence A - Start in the station*
 		 
-		 array<tString> mvBrandonDecalMaterials = {"blood_splatter_dull.mat", "rust_holes_large02.mat", "rust_cracks.mat", "rust_holes_large.mat", "explosion_dirt.mat"};
+		/////////////////////////////////////////
+		// Event *Sequence B - Start in the cave*
+		//{//////////////////////////////////////
+	 
+		//-------------------------------------------------------
+	 
+		// - Play this in a corridor: 01_04_transport_station/Special/Train/infomercial/music
+		
+		void SetupIntroB()
+		{
+			cLux_AddDebugMessage("Starting IntroB...");
+			
+//			Effect_Fade_Out(0);
+			Player_SetActive(false);
+			
+			// Sequence
+			Map_AddTimer("introsequenceB", 0.01f, "SequenceB");
+			
+//			mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
+//			Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 2, 0.01);
+		}
+		
+		cSequenceStatesData mSequenceB_Data;
+		void SequenceB(const tString &in asTimer)
+		{
+			Sequence_Begin("SequenceB", mSequenceB_Data);
+
+			if (Sequence_DoStepAndWait(0.0f))
+			{
+				
+			}
+			else if (Sequence_DoStepAndWait(3.0f))
+			{
+				
+			}
+		}
+		
+		//-------------------------------------------------------
+		
+		 //} END Event *Sequence B - Start in the cave*
 		 
-		 void SetupBrandon()
-		 {
+		array<tString> mvBrandonDecalMaterials = {"blood_splatter_dull.mat", "rust_holes_large02.mat", "rust_cracks.mat", "rust_holes_large.mat", "explosion_dirt.mat"};
+		 
+		void SetupBrandon()
+		{
 			 // Disable decals & particles
 //			 Decal_SetVisibleInArea(false, "BrandonDecals", mvBrandonDecalMaterials);
 //			ParticleSystem_SetVisible("BrandonParticles_*", false);
 
 			Entity_PlayAnimation("BrandonTop", "sit_about_to_leave", 0, true);
-		 }
+		}
 	 
 	 //} END SCENE X
  
