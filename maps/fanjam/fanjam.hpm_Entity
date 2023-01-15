@@ -2465,7 +2465,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436475" Name="lamp_wall_deepsea_3" CreStamp="1673443564" ModStamp="1673541961" WorldPos="2.5275 4.854 -4.2805" Rotation="0.785398 6.51683e-007 0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 999 268436475">
+            <Entity ID="268436475" Name="PillarLamp_1" CreStamp="1673443564" ModStamp="1673801492" WorldPos="2.5275 4.854 -4.2805" Rotation="0.785398 6.51683e-007 0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 999 268436475">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2506,7 +2506,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="pillarlamp_1_light_*" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -3433,7 +3433,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436963" Name="wall_long_skinny_white_1" CreStamp="1673541318" ModStamp="1673615856" WorldPos="2.5 5.5 0" Rotation="-0.534063 1.5708 -5.24645" Scale="1 1 1" FileIndex="169" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 494 268436963">
+            <Entity ID="268436963" Name="brandon_lamp" CreStamp="1673541318" ModStamp="1673801896" WorldPos="2.5 5.5 0" Rotation="-0.534063 1.5708 -5.24645" Scale="1 1 1" FileIndex="169" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 494 268436963">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -3474,7 +3474,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="brandon_light_*" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -3485,14 +3485,14 @@
                     <Var Name="ExtraConnectionLightUseSpec" Value="false" />
                     <Var Name="ExtraConnectionLightType" Value="Mul" />
                     <Var Name="Lit" Value="true" />
-                    <Var Name="FlickerActive" Value="false" />
-                    <Var Name="UseCustomFlickerSettings" Value="false" />
-                    <Var Name="FlickerMinOnTime" Value="0.05" />
-                    <Var Name="FlickerMaxOnTime" Value="1" />
-                    <Var Name="FlickerMinOffTime" Value="0.025" />
-                    <Var Name="FlickerMaxOffTime" Value="0.15" />
-                    <Var Name="FlickerFade" Value="false" />
-                    <Var Name="FlickerOnSound" Value="" />
+                    <Var Name="FlickerActive" Value="true" />
+                    <Var Name="UseCustomFlickerSettings" Value="true" />
+                    <Var Name="FlickerMinOnTime" Value="0.5" />
+                    <Var Name="FlickerMaxOnTime" Value="0.25" />
+                    <Var Name="FlickerMinOffTime" Value="0.05" />
+                    <Var Name="FlickerMaxOffTime" Value="0.1" />
+                    <Var Name="FlickerFade" Value="true" />
+                    <Var Name="FlickerOnSound" Value="level_amb_shared_machines/misc/lights/halogen_light_blink" />
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
@@ -4820,7 +4820,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437540" Name="lamp_wall_deepsea_4" CreStamp="1673443564" ModStamp="1673541961" WorldPos="-3.4725 4.854 -4.2805" Rotation="0.785398 6.51683e-007 0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 990 268437540">
+            <Entity ID="268437540" Name="lamp_wall_deepsea_4" CreStamp="1673443564" ModStamp="1673801836" WorldPos="-3.4725 4.854 -4.2805" Rotation="0.785398 6.51683e-007 0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 990 268437540">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -4861,7 +4861,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="pillarlamp_2_light_*" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -4896,7 +4896,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437553" Name="lamp_wall_deepsea_5" CreStamp="1673443564" ModStamp="1673541961" WorldPos="-3.5275 4.854 4.2805" Rotation="0.785398 3.14159 -0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 290 268437553">
+            <Entity ID="268437553" Name="PillarLamp_4" CreStamp="1673443564" ModStamp="1673801829" WorldPos="-3.5275 4.854 4.2805" Rotation="0.785398 3.14159 -0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 290 268437553">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -4937,7 +4937,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="pillarlamp_4_light_*" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -4972,7 +4972,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437566" Name="lamp_wall_deepsea_6" CreStamp="1673443564" ModStamp="1673541961" WorldPos="2.4725 4.854 4.2805" Rotation="0.785398 3.14159 -0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 989 268437566">
+            <Entity ID="268437566" Name="PillarLamp_3" CreStamp="1673443564" ModStamp="1673801816" WorldPos="2.4725 4.854 4.2805" Rotation="0.785398 3.14159 -0" Scale="1 1 1" FileIndex="172" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 989 268437566">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -5013,7 +5013,7 @@
                     <Var Name="ParentAttachSocket" Value="" />
                     <Var Name="ParentAttachSnap" Value="false" />
                     <Var Name="ParentAttachLocked" Value="false" />
-                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectedLight" Value="pillarlamp_3_light_*" />
                     <Var Name="ConnectionLightAmount" Value="1" />
                     <Var Name="ConnectionLightUseOnColor" Value="true" />
                     <Var Name="ConnectionLightUseSpec" Value="false" />
@@ -7605,7 +7605,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437749" Name="wall_long_skinny_white_5" CreStamp="1673612599" ModStamp="1673615887" WorldPos="-0.5 5.5 -3" Rotation="-1.5708 3.14159 2.08616e-007" Scale="1 1 1" FileIndex="169" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1147 268437749">
+            <Entity ID="268437749" Name="lamp_dynamic_12" CreStamp="1673612599" ModStamp="1673800919" WorldPos="-0.5 5.5 -3" Rotation="-1.5708 3.14159 2.08616e-007" Scale="1 1 1" FileIndex="169" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1147 268437749">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7670,7 +7670,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437750" Name="wall_long_skinny_white_6" CreStamp="1673612616" ModStamp="1673615886" WorldPos="-0.5 5.5 3" Rotation="-1.5708 3.14159 2.08616e-007" Scale="1 1 1" FileIndex="169" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1148 268437750">
+            <Entity ID="268437750" Name="lamp_dynamic_11" CreStamp="1673612616" ModStamp="1673800914" WorldPos="-0.5 5.5 3" Rotation="-1.5708 3.14159 2.08616e-007" Scale="1 1 1" FileIndex="169" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1148 268437750">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -7735,7 +7735,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268437751" Name="wall_long_skinny_white_7" CreStamp="1673612625" ModStamp="1673615890" WorldPos="-3.5 5.5 -9.43904e-008" Rotation="-0.524817 1.5708 -5.23721" Scale="1 1 1" FileIndex="169" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1149 268437751">
+            <Entity ID="268437751" Name="lamp_dynamic_14" CreStamp="1673612625" ModStamp="1673800924" WorldPos="-3.5 5.5 -9.43904e-008" Rotation="-0.524817 1.5708 -5.23721" Scale="1 1 1" FileIndex="169" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1149 268437751">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />

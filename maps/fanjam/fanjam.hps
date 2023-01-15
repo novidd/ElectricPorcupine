@@ -493,8 +493,14 @@ class cScrMap : iScrMap
 		{
 			// Lights & Lamps
 			Light_SetVisible("light_dynamic_*", false);
+			
+			Lamp_SetLit("PillarLamp_*", false, false);
 			Lamp_SetLit("lamp_dynamic_*", false, false);
+			
+			// Broken schedule
 			Lamp_SetLit("tv_community_room_1", false, false);
+			Light_SetVisible("PointLight_3", false);
+			
 			
 			// Panels
 			Button_SetDisabled("cave_panel_*", true, false);
@@ -502,6 +508,9 @@ class cScrMap : iScrMap
 			// Sounds
 			Sound_Stop("Sound_Dynamic_*", 0);
 			Sound_Stop("BrokenSchedule", 0);
+			
+			// Particles
+			ParticleSystem_SetVisible("rising_steam", false);
 		}
 		
 		cSequenceStatesData mSequenceB_Data;
@@ -511,7 +520,7 @@ class cScrMap : iScrMap
 
 			if (Sequence_DoStepAndWait(0.0f))
 			{
-				
+				// Power off sound
 			}
 			else if (Sequence_DoStepAndWait(3.0f))
 			{
