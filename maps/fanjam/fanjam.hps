@@ -472,12 +472,17 @@ class cScrMap : iScrMap
 	 
 		// - Play this in a corridor: 01_04_transport_station/Special/Train/infomercial/music
 		
+		int mlid_Infection = -1;
+		
 		void SetupIntroB()
 		{
 			cLux_AddDebugMessage("Starting IntroB...");
 			
 //			Effect_Fade_Out(0);
 			Player_SetActive(false);
+			Player_SetHealth(0.65f);
+			Player_ShowCrossHairIcons(false);
+			mlid_Infection = Effect_Screen_Start("damage_steam_screen.mat", cVector2f(0.5, 0.5), cVector2f(2, 1),  0.25f, 0.5, 9000, 0);
 			
 			// Cave power
 			CavePowerOff();
@@ -534,20 +539,41 @@ class cScrMap : iScrMap
 			{
 				Sound_FadeGlobalVolume(0.2f, 0, eSoundEntryType_World);
 				
-				Sound_CreateAtEntity("nervous_breath", "01_01_upsilon_awake/sfx/wake_up/nervous", "player");
-				// Heartbeat here
+				Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0.5, 0.2);
+				Emotion_StartHeartbeat(0.75, 0.25, 1, -1);
 				
 				// NEXT STEP
 				
-				// Violin stinger
+				// Violent stinger
 				// Fade in with a *thum* - like the apartment intro on wake up
 				// Play music
+				// DoF
+				// Image trail
+				// Radial blur
+				// Player hands anim: "event_look_at_hands_2_1"
+				// Bloom effect
+				// Eye blinking 
 				
+				// Player hands
+				PlayerHands_SetUseCustomPosition(false);
+				PlayerHands_SetUseCustomRotation(false);
+				PlayerHands_PlayAnimation("event_look_at_hands_2_1", false, false, 0, "", true, 0.75f);
+				
+				Effect_VideoDistortion_Start(0.4, 0.25, 0.0, 0.2);
+				
+				Sound_CreateAtEntity("ScannerLoopPulse", "02_06_theta_tunnels/sfx/nuclear_scanner/scan_pulse", "Player", 1.25f, false, 0.35f);
+				
+				//- Spark sound: 02_07_theta_exit_a/SFX/lights_spark_out
+				//- Spark particle:
 			}
 			else if (Sequence_DoStepAndWait(3.0f))
 			{
-				Lamp_SetLit("low_power_lamp_1", true, true);
-				Sound_CreateAtEntity("ScannerLoopPulse", "02_06_theta_tunnels/sfx/nuclear_scanner/scan_pulse", "Player", 0, false, 0.75f);
+				// Turn on these lights all with a slight delay - look at old maintenance
+				Lamp_SetLit("low_power_lamp_1", true, false);
+				// Tiny screen shake
+				// Sound for low power on
+				
+				// Flicker the screen
 			}
 		}
 		
