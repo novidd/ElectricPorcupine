@@ -204,7 +204,7 @@ class cScrMap : iScrMap
 			
 			// Misc
 			Entity_SetActive("PrinterPaper", false);
-			Player_Teleport("PlayerStartArea_1");
+			Player_Teleport("Cave");
 			
 			// Girders
 			Entity_SetActive("BrandonDebrisBefore_*", true);
@@ -440,9 +440,11 @@ class cScrMap : iScrMap
 
 			if (Sequence_DoStepAndWait(0.0f))
 			{
-				// Lower the sound level for the ambience of stuff
-				
-//				Sound_CreateAtEntity("ScannerLoopPulse", "02_06_theta_tunnels/sfx/nuclear_scanner/scan_pulse", "Player", 1.25f, false, 1);
+				// Start with the player being crouched down to pick up the item
+				// Simon says: "Got it."
+				// Monster makes noise, Simon turns around and stands up at the same time
+				// Heartbeat
+				// Nerveous breath
 			}
 			else if (Sequence_DoStepAndWait(3.0f))
 			{
