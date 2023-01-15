@@ -482,6 +482,9 @@ class cScrMap : iScrMap
 			// Cave power
 			CavePowerOff();
 			
+			//
+			Entity_SetActive("PrinterPaper", false);
+			
 			// The intro sequence
 			Map_AddTimer("introsequenceB", 0.01f, "SequenceB");
 			
@@ -493,6 +496,7 @@ class cScrMap : iScrMap
 		{
 			// Lights & Lamps
 			Light_SetVisible("light_dynamic_*", false);
+			Light_SetVisible("bottom_tower_light_*", false);
 			
 			Lamp_SetLit("PillarLamp_*", false, false);
 			Lamp_SetLit("lamp_dynamic_*", false, false);
@@ -501,7 +505,6 @@ class cScrMap : iScrMap
 			Lamp_SetLit("tv_community_room_1", false, false);
 			Light_SetVisible("PointLight_3", false);
 			
-			
 			// Panels
 			Button_SetDisabled("cave_panel_*", true, false);
 			
@@ -509,8 +512,16 @@ class cScrMap : iScrMap
 			Sound_Stop("Sound_Dynamic_*", 0);
 			Sound_Stop("BrokenSchedule", 0);
 			
+			// Cath terminal
+			Lamp_SetLit("CathTerminalLamp", false, false);
+			Terminal_SetGuiActive("CathTerminal", false);
+			
 			// Particles
 			ParticleSystem_SetVisible("rising_steam", false);
+			ParticleSystem_SetVisible("bottom_tower_partlcle_*", false);
+			
+			// Turn on low power lights
+			
 		}
 		
 		cSequenceStatesData mSequenceB_Data;
