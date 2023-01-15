@@ -581,6 +581,7 @@ class cScrMap : iScrMap
 //				Lamp_SetLit("low_power_lamp_1", true, false);
 //				// Tiny screen shake
 //				// Sound for low power on
+//				Player_SetFlashlightDisabled(false);
 			Sequence_End();
 		}
 		
@@ -609,6 +610,9 @@ class cScrMap : iScrMap
 			// Cath terminal
 			Lamp_SetLit("CathTerminalLamp", false, false);
 			Terminal_SetGuiActive("CathTerminal", false);
+			Entity_SetActive("CathSlot", false);
+			Entity_SetActive("CathTool", false);
+			Light_SetVisible("CathSlot_lamp_*", false);
 			
 			// Particles
 			ParticleSystem_SetVisible("rising_steam", false);
