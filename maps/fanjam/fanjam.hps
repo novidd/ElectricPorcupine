@@ -484,9 +484,11 @@ class cScrMap : iScrMap
 //			Player_SetActive(false);
 			Player_SetHealth(0.65f);
 			Player_ShowCrossHairIcons(false);
-			Player_SetMoveSpeedMul(0.25f);
+			Player_SetMoveSpeedMul(0.1f);
 			Player_SetRunSpeedMul(0);
 			Player_SetCrouchDisabled(true);
+			Player_SetJumpDisabled(true);
+			Player_SetLookSpeedMul(0.75f);
 			
 			// Sound 
 			Sound_FadeGlobalVolume(0.0f, 0, eSoundEntryType_World);
@@ -513,19 +515,19 @@ class cScrMap : iScrMap
 		void SequenceB(const tString &in asTimer)
 		{
 			Sequence_Begin("SequenceB", mSequenceB_Data);
+			if (Sequence_DoStepAndWait(0.1f))
+			{
+				Player_Teleport("IntroBPos");
+			}
 			if (Sequence_DoStepAndWait(0.25f))
 			{
-				Sound_FadeGlobalVolume(0.2f, 0, eSoundEntryType_World);
-				Sound_FadeGlobalVolume(0.15f, 0, eSoundEntryType_GuiWorld);
+				Sound_FadeGlobalVolume(0.2f, 0.1, eSoundEntryType_World);
+				Sound_FadeGlobalVolume(0.15f, 0.1, eSoundEntryType_GuiWorld);
 				
 				Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
 				Emotion_StartHeartbeat(0.75, 0.25, 1, -1, 0, 0);
 				
-				Player_Teleport("IntroBPos");
-				
 				Effect_Fade_In(0.1);
-				
-				Depth_Audio_SimonGasp();
 				
 				Effect_VideoDistortion_Start(0.4, 0.25, 0.0, 0.5);
 				
@@ -548,6 +550,9 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
+				Sound_FadeGlobalVolume(0.8f, 6.0, eSoundEntryType_World);
+				Sound_FadeGlobalVolume(0.67f, 6.0, eSoundEntryType_GuiWorld);
+				
 				// The infections intensity increases
 				// Simon starts to scream
 				// He look downward because of the pain (leaning forward)
@@ -558,13 +563,18 @@ class cScrMap : iScrMap
 				
 				PlayerHands_SetUseCustomPosition(false);
 				PlayerHands_SetUseCustomRotation(false);
-				PlayerHands_PlayAnimation("event_look_at_hands_2_1", false, false, 0, "", true, 0.65f);
+				PlayerHands_PlayAnimation("event_look_at_hands_1_3", false, false, 0, "", true, 1.0f);
+				
 				
 				// Flicker the screen
 			}
+			else if (Sequence_DoStepAndWait(2.0f))
+			{
+				Depth_Audio_SimonBeaten();
+			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
-//				Depth_Audio_SimonBeaten();
+				Depth_Audio_SimonBeaten();
 			}
 			
 			//				// Turn on these lights all with a slight delay - look at old maintenance
