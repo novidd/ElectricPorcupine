@@ -520,7 +520,8 @@ class cScrMap : iScrMap
 			ParticleSystem_SetVisible("rising_steam", false);
 			ParticleSystem_SetVisible("bottom_tower_partlcle_*", false);
 			
-			// Turn on low power lights
+			// Turn off low power lights
+			Lamp_SetLit("low_power_lamp_1", false, false);
 			
 		}
 		
@@ -528,14 +529,25 @@ class cScrMap : iScrMap
 		void SequenceB(const tString &in asTimer)
 		{
 			Sequence_Begin("SequenceB", mSequenceB_Data);
-
-			if (Sequence_DoStepAndWait(0.0f))
+	
+			if (Sequence_DoStepAndWait(3.0f))
 			{
-				// Power off sound
+				Sound_FadeGlobalVolume(0.2f, 0, eSoundEntryType_World);
+				
+				Sound_CreateAtEntity("nervous_breath", "01_01_upsilon_awake/sfx/wake_up/nervous", "player");
+				// Heartbeat here
+				
+				// NEXT STEP
+				
+				// Violin stinger
+				// Fade in with a *thum* - like the apartment intro on wake up
+				// Play music
+				
 			}
 			else if (Sequence_DoStepAndWait(3.0f))
 			{
-				
+				Lamp_SetLit("low_power_lamp_1", true, true);
+				Sound_CreateAtEntity("ScannerLoopPulse", "02_06_theta_tunnels/sfx/nuclear_scanner/scan_pulse", "Player", 0, false, 0.75f);
 			}
 		}
 		
