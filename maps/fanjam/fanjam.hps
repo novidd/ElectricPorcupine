@@ -479,11 +479,23 @@ class cScrMap : iScrMap
 //			Effect_Fade_Out(0);
 			Player_SetActive(false);
 			
-			// Sequence
+			// Cave power
+			CavePowerOff();
+			
+			// The intro sequence
 			Map_AddTimer("introsequenceB", 0.01f, "SequenceB");
 			
 //			mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
 //			Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 2, 0.01);
+		}
+		
+		void CavePowerOff()
+		{
+			Light_SetVisible("light_dynamic_*", false);
+			Lamp_SetLit("lamp_dynamic_*", false, false);
+			Lamp_SetLit("tv_community_room_1", false, false);
+			
+			Button_SetDisabled("cave_panel_*", true, false);
 		}
 		
 		cSequenceStatesData mSequenceB_Data;
