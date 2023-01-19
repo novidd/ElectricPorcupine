@@ -519,11 +519,12 @@ class cScrMap : iScrMap
 				
 				Player_Teleport("IntroBPos");
 				
+				Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
+				
 				// At the end of this sound file break the light (time till break: 7.25f)
 				Sound_CreateAtEntity("wau_infection", "04_03_tau_escape/SFX/wau_heart_sweetener", "player", 1.0f);
-
-				Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
-				// Do some screen shake + rumble (gamepad rumble)
+				
+				// Play music
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
@@ -533,6 +534,8 @@ class cScrMap : iScrMap
 				
 				Effect_VideoDistortion_Start(0.6, -1, 0.0, 0, 0.8);
 				Effect_Shake_Start(0.05f, 7.0f, 0, 1);
+				
+//				Sound_CreateAtEntity("seq_whoosh", "01_03_upsilon_outside/SFX/intro/sequence/drone", "player");
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
@@ -550,7 +553,8 @@ class cScrMap : iScrMap
 				
 				// Violent stinger
 				// Fade in with a *thum* - like the apartment intro on wake up
-				// Play music
+				// 00_03_apartment1/VIPScriptedEvents/whooshes/whoosh
+				
 				// DoF
 				// Image trail
 				// Radial blur
