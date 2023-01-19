@@ -565,7 +565,7 @@ class cScrMap : iScrMap
 			{
 				Depth_Audio_SimonBeaten();
 			}
-			else if (Sequence_DoStepAndWait(4.0f))
+			else if (Sequence_DoStepAndWait(1.5f))
 			{
 				cLux_AddDebugMessage("Popping Brandon lamp...");
 				
@@ -574,16 +574,23 @@ class cScrMap : iScrMap
 				// The lamp breaks
 				Sound_CreateAtEntity("brandon_lamp_pop", "02_07_theta_exit_a/SFX/lights_spark_out", "LampPopSource");
 				ParticleSystem_SetActive("BrandonLampSpark", true);
-				Lamp_SetLit("brandon_lamp", false, false);
 				
 				// Bloom effect for the flash
 			}
+			else if (Sequence_DoStepAndWait(4.0f))
+			{
+				Lamp_SetLit("brandon_lamp", false, false);
+			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
-				//Simon: "Catherine..?"
 				Voice_Play("NoPowerCallout");
 				
 				// Increase player movement speed and stuff here
+				Player_FadeMoveSpeedMulTo(0.5f, 4.0f);
+				
+				// Turn on the low power lights after ~15s
+				// Then turn on the broken schedule screen
+				// The door panel turns on
 			}
 			
 				// Use this to create a flicker without the video distortion
