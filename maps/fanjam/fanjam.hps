@@ -558,14 +558,6 @@ class cScrMap : iScrMap
 				Effect_RadialBlur_FadeSize(mlid_RadialBlur, 0.1f, 7);
 				
 				Depth_Audio_SimonBeaten();
-				
-				// Bloom effect
-
-				// Use this to create a flicker without the video distortion
-//				Player_SetFlashlightFadeIn(0.1);
-				
-				// Can be used to make Akers show up on flashlight on
-//				Player_SetFlashlightOnOffCallback("funcName"); // void funcName(bool abLit) {}
 			}
 			else if (Sequence_DoStepAndPause())
 			{
@@ -581,6 +573,8 @@ class cScrMap : iScrMap
 				Sound_CreateAtEntity("brandon_lamp_pop", "02_07_theta_exit_a/SFX/lights_spark_out", "LampPopSource");
 				ParticleSystem_SetActive("BrandonLampSpark", true);
 				Lamp_SetLit("brandon_lamp", false, false);
+				
+				// Bloom effect for the flash
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
@@ -588,6 +582,12 @@ class cScrMap : iScrMap
 				
 				// Increase player movement speed and stuff here
 			}
+			
+				// Use this to create a flicker without the video distortion
+//				Player_SetFlashlightFadeIn(0.1);
+				
+				// Can be used to make Akers show up on flashlight on
+//				Player_SetFlashlightOnOffCallback("funcName"); // void funcName(bool abLit) {}
 			
 			// Make the whole scene quiet and dampen all effects
 			// The player turns on the flashlight
