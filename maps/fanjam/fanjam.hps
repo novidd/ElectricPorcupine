@@ -119,7 +119,6 @@ class cScrMap : iScrMap
 		Player_SetAmbientLight_Indoors();
 		Player_SetFootWear("default");
 		Player_SetClothing("default");
-		Player_SetFlashlightDisabled(false);
 		PlayerHands_SetHandModel_Diving();
 		PlayerEnergy_SetFlowerSwallows(true);
 		if (cLux_ScriptDebugOn())
@@ -491,6 +490,7 @@ class cScrMap : iScrMap
 			Player_SetJumpDisabled(true);
 			Player_SetLookSpeedMul(0.75f);
 			Player_FadeFOVMulTo(0.5f, 0.1f);
+			Player_SetFlashlightDisabled(true);
 			
 			// Sound 
 			Sound_FadeGlobalVolume(0.0f, 0, eSoundEntryType_World);
@@ -575,6 +575,8 @@ class cScrMap : iScrMap
 			{
 				cLux_AddDebugMessage("Popping Brandon lamp...");
 				
+				Player_SetFlashlightDisabled(false);
+				
 				// The lamp breaks
 				Sound_CreateAtEntity("brandon_lamp_pop", "02_07_theta_exit_a/SFX/lights_spark_out", "LampPopSource");
 				ParticleSystem_SetActive("BrandonLampSpark", true);
@@ -583,6 +585,8 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
 				//Simon: "Catherine..?"
+				
+				// Increase player movement speed and stuff here
 			}
 			
 			// Make the whole scene quiet and dampen all effects
