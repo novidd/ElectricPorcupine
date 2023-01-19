@@ -512,28 +512,39 @@ class cScrMap : iScrMap
 		void SequenceB(const tString &in asTimer)
 		{
 			Sequence_Begin("SequenceB", mSequenceB_Data);
-			if (Sequence_DoStepAndWait(0.1f))
+			if (Sequence_DoStepAndWait(1.0f))
 			{
+				Sound_FadeGlobalVolume(0.15f, 1.0f, eSoundEntryType_GuiWorld);
+				Sound_FadeGlobalVolume(0.2f, 1.0f, eSoundEntryType_World);
+				
 				Player_Teleport("IntroBPos");
 				
-				// Sound of power going out
-				//Simon: "Catherine..?"
-				
-				// Play this after the Simon's line
 				// At the end of this sound file break the light (time till break: 7.25f)
-//				Sound_CreateAtEntity("wau_infection", "04_03_tau_escape/SFX/wau_heart_sweetener", "player");
+				Sound_CreateAtEntity("wau_infection", "04_03_tau_escape/SFX/wau_heart_sweetener", "player", 1.0f);
+
+				Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
+				// Do some screen shake + rumble (gamepad rumble)
 			}
-			if (Sequence_DoStepAndWait(0.25f))
+			else if (Sequence_DoStepAndWait(1.0f))
 			{
-				Sound_FadeGlobalVolume(0.2f, 0.1, eSoundEntryType_World);
-				Sound_FadeGlobalVolume(0.15f, 0.1, eSoundEntryType_GuiWorld);
+				PlayerHands_SetUseCustomPosition(false);
+				PlayerHands_SetUseCustomRotation(false);
+				PlayerHands_PlayAnimation("event_look_at_hands_1_3", false, false, 0, "", true, 1.0f);
+				
+				Effect_VideoDistortion_Start(0.6, -1, 0.0, 0, 0.8);
+				Effect_Shake_Start(0.05f, 7.0f, 0, 1);
+			}
+			else if (Sequence_DoStepAndWait(2.0f))
+			{
+				Sound_FadeGlobalVolume(0.8f, 6.0, eSoundEntryType_World);
+				Sound_FadeGlobalVolume(0.67f, 6.0, eSoundEntryType_GuiWorld);
 				
 				Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
 				Emotion_StartHeartbeat(0.75, 0.25, 1, -1, 0, 0);
 				
 				Effect_Fade_In(0.1);
 				
-				Effect_VideoDistortion_Start(0.4, 0.25, 0.0, 0.5);
+				Depth_Audio_SimonBeaten();
 				
 				// NEXT STEP
 				
@@ -555,38 +566,23 @@ class cScrMap : iScrMap
 				
 				// Constant beep in ears
 				
+				// The lamp breaks
 				//- Spark sound: 02_07_theta_exit_a/SFX/lights_spark_out
 				//- Spark particle:
 				
-				// Do some screen shake + rumble (gamepad rumble)
+				//Simon: "Catherine..?"
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
-				Sound_FadeGlobalVolume(0.8f, 6.0, eSoundEntryType_World);
-				Sound_FadeGlobalVolume(0.67f, 6.0, eSoundEntryType_GuiWorld);
-				
-				// The infections intensity increases
-				// Simon starts to scream
-				// He look downward because of the pain (leaning forward)
-				
-				// Do more screen effects to convey the change
-				
-				Effect_VideoDistortion_Start(0.6, -1, 0.0, 0, 0.8);
-				
-				PlayerHands_SetUseCustomPosition(false);
-				PlayerHands_SetUseCustomRotation(false);
-				PlayerHands_PlayAnimation("event_look_at_hands_1_3", false, false, 0, "", true, 1.0f);
-				
-				
-				// Flicker the screen
+				Depth_Audio_SimonBeaten();
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
-				Depth_Audio_SimonBeaten();
+//				Depth_Audio_SimonBeaten();
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
-				Depth_Audio_SimonBeaten();
+//				Depth_Audio_SimonBeaten();
 			}
 			
 			// Make the whole scene quiet and dampen all effects
