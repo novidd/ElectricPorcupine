@@ -526,6 +526,8 @@ class cScrMap : iScrMap
 				
 				Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
 				
+				// Power off sounds effect here
+				
 				// At the end of this sound file break the light (time till break: 7.25f)
 				Sound_CreateAtEntity("wau_infection", "04_03_tau_escape/SFX/wau_heart_sweetener", "player", 1.0f);
 				Map_AddTimer("pop_brandon_lamp", 7.25f, "OnTimer_PopBrandonLamp");
@@ -579,6 +581,7 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
 				//Simon: "Catherine..?"
+				Voice_Play("NoPowerCallout");
 				
 				// Increase player movement speed and stuff here
 			}
