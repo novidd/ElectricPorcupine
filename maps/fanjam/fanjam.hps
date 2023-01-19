@@ -503,6 +503,9 @@ class cScrMap : iScrMap
 			// Cave power
 			CavePowerOff();
 			
+			// Brandon lamp
+			ParticleSystem_SetActive("BrandonLampSpark", false);
+			
 			// Printer paper
 			Entity_SetActive("PrinterPaper", false);
 			
@@ -568,18 +571,18 @@ class cScrMap : iScrMap
 			{
 				Depth_Audio_SimonBeaten();
 			}
-			else if (Sequence_DoStepAndWait(2.0f))
+			else if (Sequence_DoStepAndWait(3.0f))
 			{
 				cLux_AddDebugMessage("Popping Brandon lamp...");
 				
 				// The lamp breaks
-				//- Spark sound: 02_07_theta_exit_a/SFX/lights_spark_out
-				//- Spark particle:
-				
-				//Simon: "Catherine..?"
+				Sound_CreateAtEntity("brandon_lamp_pop", "02_07_theta_exit_a/SFX/lights_spark_out", "LampPopSource");
+				ParticleSystem_SetActive("BrandonLampSpark", true);
+				Lamp_SetLit("brandon_lamp", false, false);
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
+				//Simon: "Catherine..?"
 			}
 			
 			// Make the whole scene quiet and dampen all effects
