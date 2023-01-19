@@ -627,6 +627,7 @@ class cScrMap : iScrMap
 			Lamp_SetLit("CathTerminalLamp", false, false);
 			Lamp_SetLit("CathSlot_lamp_*", false, false);
 			Terminal_SetGuiActive("CathTerminal", false);
+			Terminal_SetGuiActive("PowerStatusTerminal", false);
 			Entity_SetActive("CathSlot", false);
 			Entity_SetActive("CathTool", false);
 			Light_SetVisible("omnislot_light*", false);
@@ -636,7 +637,7 @@ class cScrMap : iScrMap
 			ParticleSystem_SetVisible("bottom_tower_partlcle_*", false);
 			
 			// Turn off low power lights
-			Lamp_SetLit("low_power_lamp_1", false, false);
+			Lamp_SetLit("low_power_lamp_*", false, false);
 		}
 		
 		//-------------------------------------------------------
