@@ -489,6 +489,7 @@ class cScrMap : iScrMap
 			Player_SetCrouchDisabled(true);
 			Player_SetJumpDisabled(true);
 			Player_SetLookSpeedMul(0.75f);
+			Player_FadeFOVMulTo(0.65f, 0.1);
 			
 			// Sound 
 			Sound_FadeGlobalVolume(0.0f, 0, eSoundEntryType_World);
@@ -535,6 +536,8 @@ class cScrMap : iScrMap
 				Effect_VideoDistortion_Start(0.6, -1, 0.0, 0, 0.8);
 				Effect_Shake_Start(0.05f, 7.0f, 0, 1);
 				
+				Effect_ImageTrail_Start(0.5f, 0, 7.0f, 0);
+				
 //				Sound_CreateAtEntity("seq_whoosh", "01_03_upsilon_outside/SFX/intro/sequence/drone", "player");
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
@@ -550,12 +553,6 @@ class cScrMap : iScrMap
 				Depth_Audio_SimonBeaten();
 				
 				// NEXT STEP
-				
-				// Violent stinger
-				// Fade in with a *thum* - like the apartment intro on wake up
-				// 00_03_apartment1/VIPScriptedEvents/whooshes/whoosh
-				
-				// DoF
 				// Image trail
 				// Radial blur
 				// Player hands anim: "event_look_at_hands_2_1"
@@ -625,10 +622,11 @@ class cScrMap : iScrMap
 			
 			// Cath terminal
 			Lamp_SetLit("CathTerminalLamp", false, false);
+			Lamp_SetLit("CathSlot_lamp_*", false, false);
 			Terminal_SetGuiActive("CathTerminal", false);
 			Entity_SetActive("CathSlot", false);
 			Entity_SetActive("CathTool", false);
-			Light_SetVisible("CathSlot_lamp_*", false);
+			Light_SetVisible("omnislot_light*", false);
 			
 			// Particles
 			ParticleSystem_SetVisible("rising_steam", false);
