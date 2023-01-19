@@ -474,6 +474,7 @@ class cScrMap : iScrMap
 		
 		int mlid_Infection = -1;
 		int mlid_DoF = -1;
+		int mlid_RadialBlur = -1;
 		
 		// Do a test run with a gamepad
 		void SetupIntroB()
@@ -482,14 +483,14 @@ class cScrMap : iScrMap
 			
 			Effect_Fade_Out(0);
 //			Player_SetActive(false);
-			Player_SetHealth(0.65f);
+			Player_SetHealth(0.5f);
 			Player_ShowCrossHairIcons(false);
 			Player_SetMoveSpeedMul(0.1f);
 			Player_SetRunSpeedMul(0);
 			Player_SetCrouchDisabled(true);
 			Player_SetJumpDisabled(true);
 			Player_SetLookSpeedMul(0.75f);
-			Player_FadeFOVMulTo(0.65f, 0.1);
+			Player_FadeFOVMulTo(0.5f, 0.1f);
 			
 			// Sound 
 			Sound_FadeGlobalVolume(0.0f, 0, eSoundEntryType_World);
@@ -524,6 +525,7 @@ class cScrMap : iScrMap
 				
 				// At the end of this sound file break the light (time till break: 7.25f)
 				Sound_CreateAtEntity("wau_infection", "04_03_tau_escape/SFX/wau_heart_sweetener", "player", 1.0f);
+				Map_AddTimer("pop_brandon_lamp", 7.25f, "OnTimer_PopBrandonLamp");
 				
 				// Play music
 			}
@@ -533,39 +535,42 @@ class cScrMap : iScrMap
 				PlayerHands_SetUseCustomRotation(false);
 				PlayerHands_PlayAnimation("event_look_at_hands_1_3", false, false, 0, "", true, 1.0f);
 				
+				// Initial effects
 				Effect_VideoDistortion_Start(0.6, -1, 0.0, 0, 0.8);
 				Effect_Shake_Start(0.05f, 7.0f, 0, 1);
-				
 				Effect_ImageTrail_Start(0.5f, 0, 7.0f, 0);
-				
-//				Sound_CreateAtEntity("seq_whoosh", "01_03_upsilon_outside/SFX/intro/sequence/drone", "player");
+				mlid_RadialBlur = Effect_RadialBlur_Start(0.15f, 0.25f, 0.35f, 0);
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
-				Sound_FadeGlobalVolume(0.8f, 6.0, eSoundEntryType_World);
-				Sound_FadeGlobalVolume(0.67f, 6.0, eSoundEntryType_GuiWorld);
+				Sound_FadeGlobalVolume(0.8f, 3.0, eSoundEntryType_World);
+				Sound_FadeGlobalVolume(0.67f, 3.0, eSoundEntryType_GuiWorld);
+				
+				Player_FadeFOVMulTo(0.85f, 5);
 				
 				Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
 				Emotion_StartHeartbeat(0.75, 0.25, 1, -1, 0, 0);
 				
 				Effect_Fade_In(0.1);
+				Effect_RadialBlur_FadeSize(mlid_RadialBlur, 0.1f, 7);
 				
 				Depth_Audio_SimonBeaten();
 				
-				// NEXT STEP
-				// Image trail
-				// Radial blur
-				// Player hands anim: "event_look_at_hands_2_1"
 				// Bloom effect
-				// Eye blinking 
 
 				// Use this to create a flicker without the video distortion
 //				Player_SetFlashlightFadeIn(0.1);
 				
 				// Can be used to make Akers show up on flashlight on
 //				Player_SetFlashlightOnOffCallback("funcName"); // void funcName(bool abLit) {}
-				
-				// Constant beep in ears
+			}
+			else if (Sequence_DoStepAndPause())
+			{
+				Depth_Audio_SimonBeaten();
+			}
+			else if (Sequence_DoStepAndWait(2.0f))
+			{
+				cLux_AddDebugMessage("Popping Brandon lamp...");
 				
 				// The lamp breaks
 				//- Spark sound: 02_07_theta_exit_a/SFX/lights_spark_out
@@ -575,15 +580,6 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
-				Depth_Audio_SimonBeaten();
-			}
-			else if (Sequence_DoStepAndWait(2.0f))
-			{
-//				Depth_Audio_SimonBeaten();
-			}
-			else if (Sequence_DoStepAndWait(1.0f))
-			{
-//				Depth_Audio_SimonBeaten();
 			}
 			
 			// Make the whole scene quiet and dampen all effects
@@ -596,6 +592,13 @@ class cScrMap : iScrMap
 //				// Sound for low power on
 //				Player_SetFlashlightDisabled(false);
 			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		void OnTimer_PopBrandonLamp(const tString &in asTimer)
+		{
+			SequenceStates_Resume("SequenceB");
 		}
 		
 		//-------------------------------------------------------
