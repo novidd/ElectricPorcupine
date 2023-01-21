@@ -85,7 +85,6 @@ class cScrMap : iScrMap
 		
 		////////////////////////////
 		// Setup
-		SetupDoorSeals();
 		
 		// Brandon
 		SetupBrandon();
@@ -97,7 +96,7 @@ class cScrMap : iScrMap
 		// puppet_victim_sitting_in_chair
 		// puppet_victim_lying
 		// puppet_victim_lying_against_wall
-//		Entity_PlayAnimation("IntroPuppetVictim", "puppet_victim_lying_against_wall", 0, true, true);
+		Entity_PlayAnimation("IntroPuppetVictim", "puppet_victim_lying_against_wall", 0, true, true);
 		
 		////////////////////////////
 		// Kick off intro
@@ -273,66 +272,6 @@ class cScrMap : iScrMap
 			// Disable the players ability to interact with terminals/readables while the pad is out
 			Player_SetInteractionAllowed(false);
 	}
-	
-	//-------------------------------------------------------
- 
-	/////////////////////////////////////////
-	// *Door Seals*
-	/////////////////////////////////////////
-	
-	void SetupDoorSeals()
-	{
-		Entity_StopAnimation("DoorSeal_*");
-	}
- 
-	//-------------------------------------------------------
-	
-	void OnStateChangeDoorSeal(const tString &in asEntity, int alState)
-	{
-		if (alState==1)
-		{
-			tString sSeal = cString_Sub(asEntity,6);
-			cLux_AddDebugMessage("Opening Door Seal:"+sSeal);
-			Entity_PlayAnimation(sSeal, "door_lock_opening",0.1f,false,true,"OnDoorSealOpenCompleted");
-			Entity_SetAnimationPaused(sSeal, "door_lock_opening", false);
-			
-			//////////////////////////////////
-			// Turn off lamp to disable any connected lights and then finally, disable it.
-			cLux_AddTodoMessage("SCRIPT: Post beta polish on these, make the lights fade before disabling entity");
-			// suggestion : use timer
-			Lamp_SetLit(sSeal+"_Lamp",false,true);
-			Entity_SetActive(sSeal+"_Lamp",false);
-			Light_SetVisible(sSeal+"_Light*",false);
-			
-			/////////////////////////////////////
-			// Disable aux area
-			Entity_SetActive("AuxArea_"+sSeal,false);
-			
-			/////////////////////////////////////////////
-			// Trigger special event for Omnitool Storage (scroll down!)
-//			if (asEntity == "HandleDoorSeal_OmnitoolStorage")
-//			{
-////				OnRemoveStorageSeal();
-//			}
-//			
-//			if (asEntity == "HandleDoorSeal_TechRoom")
-//			{
-//				
-//			}
-		}
-	}
-	
-	//-------------------------------------------------------
-	
-	void OnDoorSealOpenCompleted(const tString &in asEntityName,  const tString &in asAnimName)
-	{
-		tString sPanel = Entity_GetVarString(asEntityName, "");
-//		Button_SetLocked(sPanel, false);
-		Entity_SetActive(asEntityName,false);
-		Entity_SetActive("Handle"+asEntityName, false);
-		Entity_SetActive("Open"+asEntityName, true);
-	}
-
 	
 	//-------------------------------------------------------
  
@@ -597,6 +536,8 @@ class cScrMap : iScrMap
 			}
 			else if(Sequence_DoStepAndWait(1.0f))
 			{
+				cLux_AddDebugMessage("Turning on the broken screen!");
+				
 				// Broken schedule
 				Lamp_SetLit("tv_community_room_1", true, true);
 				Light_SetVisible("PointLight_3", true);
@@ -627,7 +568,7 @@ class cScrMap : iScrMap
 			Entity_SetActive("puppet_end", true);
 			
 			Pathfinder_Track_Clear("puppet_end");
-			Pathfinder_Track_Add("puppet_end", "PathNodeArea_10", 30, -1, "idle_extra_3");
+			Pathfinder_Track_Add("puppet_end", "PathNodeArea_10", 1, -1, "idle_extra_3");
 			Pathfinder_Track_Start("puppet_end", true, 1, "ReachedBrokenScreen");
 			
 			AttackMeter_SetCustomDamageCallback("TunnelPuppetDamage");
