@@ -526,10 +526,6 @@ class cScrMap : iScrMap
 				
 				// Increase player movement speed and stuff here
 				Player_FadeMoveSpeedMulTo(0.65f, 8.0f);
-				
-				// Turn on the low power lights after ~15s
-				// Then turn on the broken schedule screen
-				// The door panel turns on
 			}
 			else if (Sequence_DoStepAndPause())
 			{
@@ -543,6 +539,10 @@ class cScrMap : iScrMap
 			{
 				cLux_AddDebugMessage("Turning on the broken screen!");
 				
+				// Broken screen turns on here - no monster to be found
+				// Turn off screen completely to create a longer pause
+				// Monster moves forward
+				// Screen on again
 				// Broken schedule
 				Lamp_SetLit("tv_community_room_1", true, true);
 				Light_SetVisible("PointLight_3", true);
@@ -695,6 +695,9 @@ class cScrMap : iScrMap
 		void SimonDeathCam()
 		{
 			// TURN ON THE LIGHTS AND TERMINALS SEQUENTALLY LAMP AFTER LAMP
+			
+			
+//			Infection_ClearTrees();
 			
 			Entity_SetActive("SimonDeathHands", true);
 			CameraAnimation_Begin("SimonDeath_Cam", "", false);
