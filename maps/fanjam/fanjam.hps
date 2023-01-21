@@ -173,23 +173,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
-			Entity_SetActive("SimonDeathHands", true);
-			CameraAnimation_Begin("SimonDeath_Cam", "", false);
-			Player_ShowCrossHairIcons(false);
-			
-			Entity_SetActive("BrandonSplat", true);
-			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
-			ParticleSystem_SetVisible("BrandonParticles_*", true);
-			
-			// Misc
-			Entity_SetActive("PrinterPaper", true);
-			
-			// Girders
-			Entity_SetActive("BrandonDebrisBefore_*", false);
-			Entity_SetActive("BrandonDebrisAfter_*", true);
-			
-			// Effects
-			Player_SetHealth(0.65f);
+			SimonDeathCam();
 		}
 		
 		if(alAction == eAction_Test4)
@@ -642,44 +626,76 @@ class cScrMap : iScrMap
 				
 				Sound_FadeGlobalVolume(0.0f, 0.05f, eSoundEntryType_WorldAll);
 			}
-//			else if (Sequence_DoStepAndWait(2.0f))
-//			{
-//				Effect_Fade_Out(0.025f);
-//				Sound_PlayGui("Player/UI/blackout_hit", 1.0f, eSoundEntryType_Gui);
-//				Sound_Stop("puppet_tunnel_SpotPlayer", 0.015f);
-//				Sound_Stop("AkersBurstDoor", 0.015f);
-//			}
-//			else if (Sequence_DoStepAndWait(0.9f))
-//			{
-//				Pathfinder_Stop("puppet_tunnel");
-//				Entity_SetActive("puppet_tunnel",false);
-//			}
-//			else if (Sequence_DoStepAndPause(0.1f))
-//			{
-//				
-//				Entity_SetActive("puppet_tunnel",true);
-//				Puppet_SetAfterPlayerDeathAnimtionCallback("puppet_tunnel", "PuppetTunnelDeahAnimOver");
-//				Puppet_StartPlayerDeathAnimation("puppet_tunnel");
-//			}
-//			else if (Sequence_DoStepAndWait(10))
-//			{
-//				Entity_SetActive("puppet_tunnel",false);
-//				Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
-//				Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
-//				
-//			}
-//			else if (Sequence_DoStepAndWait(1))
-//			{
-//				Player_SetMoveSpeedMul(1);
-//				Player_SetLookSpeedMul(1);
-//				Player_SetHealth(1);
-//				
-//				cSound_SetGlobalVolume(1.0f, eSoundEntryType_WorldAll, eScriptGlobalVolume_AttackMeter);
-//				
-//				ExitLevel();
-//			}
+			else if (Sequence_DoStepAndWait(2.0f))
+			{
+				Effect_Fade_Out(0.025f);
+				Sound_PlayGui("Player/UI/blackout_hit", 1.0f, eSoundEntryType_Gui);
+				Sound_Stop("puppet_tunnel_SpotPlayer", 0.015f);
+				Sound_Stop("AkersBurstDoor", 0.015f);
+			}
+			else if (Sequence_DoStepAndWait(0.9f))
+			{
+				Pathfinder_Stop("puppet_end");
+				Entity_SetActive("puppet_end",false);
+			}
+			else if (Sequence_DoStepAndPause(0.1f))
+			{
+				
+				Entity_SetActive("puppet_end",true);
+				Puppet_SetAfterPlayerDeathAnimtionCallback("puppet_end", "PuppetTunnelDeahAnimOver");
+				Puppet_StartPlayerDeathAnimation("puppet_end");
+			}
+			else if (Sequence_DoStepAndWait(10))
+			{
+				Entity_SetActive("puppet_end",false);
+				Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
+				Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
+				
+			}
+			else if (Sequence_DoStepAndWait(1))
+			{
+				Player_SetMoveSpeedMul(1);
+				Player_SetLookSpeedMul(1);
+				Player_SetHealth(1);
+				
+				cSound_SetGlobalVolume(1.0f, eSoundEntryType_WorldAll, eScriptGlobalVolume_AttackMeter);
+				
+				
+				// Cut the camera to Simon death cam
+//				SimonDeathCam();
+			}
 			
 			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		void SimonDeathCam()
+		{
+			Entity_SetActive("SimonDeathHands", true);
+			CameraAnimation_Begin("SimonDeath_Cam", "", false);
+			Player_ShowCrossHairIcons(false);
+			
+			Entity_SetActive("BrandonSplat", true);
+			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
+			ParticleSystem_SetVisible("BrandonParticles_*", true);
+			
+			// Misc
+			Entity_SetActive("PrinterPaper", true);
+			
+			// Girders
+			Entity_SetActive("BrandonDebrisBefore_*", false);
+			Entity_SetActive("BrandonDebrisAfter_*", true);
+			
+			// Effects
+			Player_SetHealth(0.65f);
+		}
+		
+		//-------------------------------------------------------
+		
+		void PuppetTunnelDeahAnimOver()
+		{
+			SequenceStates_Resume("SequencePuppetCapture");
 		}
 		
 		//-------------------------------------------------------
