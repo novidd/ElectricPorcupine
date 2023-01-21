@@ -530,9 +530,9 @@ class cScrMap : iScrMap
 				Effect_ImageTrail_Start(0.5f, 0, 7.0f, 0);
 				mlid_RadialBlur = Effect_RadialBlur_Start(0.15f, 0.25f, 0.35f, 0);
 				
-				Infection_CreateBorderTree(1, 30, cVector2f(14,35), 3.0f);
-				Infection_CreateBorderTree(2, 30, cVector2f(14,35), 3.0f);
-				Infection_CreateBorderTree(3, 30, cVector2f(14,35), 3.0f);
+				Infection_CreateBorderTree(1, 30, cVector2f(14,35), 9.0f);
+				Infection_CreateBorderTree(2, 30, cVector2f(14,35), 9.0f);
+				Infection_CreateBorderTree(3, 30, cVector2f(14,35), 9.0f);
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
@@ -630,7 +630,7 @@ class cScrMap : iScrMap
 			
 			Puppet_ChangeState_Patrol("puppet_end");
 			BarkMachine_SetActive("puppet_end", false);
-			Map_AddTimer("RevealPlayerPos", 2, "Timer_RevealPlayerPos");
+//			Map_AddTimer("RevealPlayerPos", 2, "Timer_RevealPlayerPos");
 			
 			Player_SetMoveSpeedMul(0.875f);
 		}
@@ -708,9 +708,9 @@ class cScrMap : iScrMap
 		{
 			Music_Stop(0.1f, eMusicPrio_BgAmb);
 			Music_Play("02_06_hallwaysurprise", 0.55f, false, eMusicPrio_OverrideAll);
-			Sound_CreateAtEntity("AkersBurstDoor", "02_06_theta_tunnels/sfx/events/akers_smash_door", "AkersSmashSoundSource");
+//			Sound_CreateAtEntity("AkersBurstDoor", "02_06_theta_tunnels/sfx/events/akers_smash_door", "AkersSmashSoundSource");
 				
-			Effect_Shake_Start(0.2f,0.2f,0.0f,0.1f);
+//			Effect_Shake_Start(0.2f,0.2f,0.0f,0.1f);
 			return false;
 		}
 		
