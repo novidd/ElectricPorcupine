@@ -529,6 +529,10 @@ class cScrMap : iScrMap
 				Effect_Shake_Start(0.05f, 7.0f, 0, 1);
 				Effect_ImageTrail_Start(0.5f, 0, 7.0f, 0);
 				mlid_RadialBlur = Effect_RadialBlur_Start(0.15f, 0.25f, 0.35f, 0);
+				
+				Infection_CreateBorderTree(1, 30, cVector2f(14,35), 3.0f);
+				Infection_CreateBorderTree(2, 30, cVector2f(14,35), 3.0f);
+				Infection_CreateBorderTree(3, 30, cVector2f(14,35), 3.0f);
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
@@ -580,6 +584,8 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
+				Button_SetSwitchedOn("cave_panel_puppet", true, true);
+				
 				TriggerFinalPuppet();
 			}
 			
@@ -606,6 +612,27 @@ class cScrMap : iScrMap
 		void NoPowerCalloutFinished(const tString &in asScene, const tString &in asSubject)
 		{
 			SequenceStates_Resume("SequenceB");
+		}
+		
+		//-------------------------------------------------------
+		
+		bool mbPuppetEndSeqStarted =false;
+		
+		void TriggerFinalPuppet()
+		{
+			Entity_SetActive("puppet_end", true);
+			
+			Pathfinder_Track_Clear("puppet_end");
+			Pathfinder_Track_Add("puppet_end", "PathNodeArea_16");
+			Pathfinder_Track_Start("puppet_end", true, 1, "");
+			
+			AttackMeter_SetCustomDamageCallback("TunnelPuppetDamage");
+			
+			Puppet_ChangeState_Patrol("puppet_end");
+			BarkMachine_SetActive("puppet_end", false);
+			Map_AddTimer("RevealPlayerPos", 2, "Timer_RevealPlayerPos");
+			
+			Player_SetMoveSpeedMul(0.875f);
 		}
 		
 		//-------------------------------------------------------
@@ -647,7 +674,7 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(10))
 			{
-				Entity_SetActive("puppet_end",false);
+				Entity_SetActive("puppet_end", false);
 				Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
 				Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
 				
@@ -670,53 +697,9 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void SimonDeathCam()
-		{
-			Entity_SetActive("SimonDeathHands", true);
-			CameraAnimation_Begin("SimonDeath_Cam", "", false);
-			Player_ShowCrossHairIcons(false);
-			
-			Entity_SetActive("BrandonSplat", true);
-			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
-			ParticleSystem_SetVisible("BrandonParticles_*", true);
-			
-			// Misc
-			Entity_SetActive("PrinterPaper", true);
-			
-			// Girders
-			Entity_SetActive("BrandonDebrisBefore_*", false);
-			Entity_SetActive("BrandonDebrisAfter_*", true);
-			
-			// Effects
-			Player_SetHealth(0.65f);
-		}
-		
-		//-------------------------------------------------------
-		
 		void PuppetTunnelDeahAnimOver()
 		{
 			SequenceStates_Resume("SequencePuppetCapture");
-		}
-		
-		//-------------------------------------------------------
-		
-		bool mbPuppetEndSeqStarted =false;
-		
-		void TriggerFinalPuppet()
-		{
-			Entity_SetActive("puppet_end", true);
-			
-			Pathfinder_Track_Clear("puppet_end");
-			Pathfinder_Track_Add("puppet_end", "PathNodeArea_16");
-			Pathfinder_Track_Start("puppet_end", true, 1, "");
-			
-			AttackMeter_SetCustomDamageCallback("TunnelPuppetDamage");
-			
-			Puppet_ChangeState_Hunt("puppet_end");
-			BarkMachine_SetActive("puppet_end", false);
-			Map_AddTimer("RevealPlayerPos", 0.25, "Timer_RevealPlayerPos");
-			
-			Player_SetMoveSpeedMul(0.875f);
 		}
 		
 		//-------------------------------------------------------
@@ -750,6 +733,31 @@ class cScrMap : iScrMap
 			SequencePuppetCapture("");
 			
 			Effect_Rumble_Start(0.9, 0.7);
+		}
+		
+		//-------------------------------------------------------
+		
+		void SimonDeathCam()
+		{
+			// TURN ON THE LIGHTS AND TERMINALS SEQUENTALLY LAMP AFTER LAMP
+			
+			Entity_SetActive("SimonDeathHands", true);
+			CameraAnimation_Begin("SimonDeath_Cam", "", false);
+			Player_ShowCrossHairIcons(false);
+			
+			Entity_SetActive("BrandonSplat", true);
+			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
+			ParticleSystem_SetVisible("BrandonParticles_*", true);
+			
+			// Misc
+			Entity_SetActive("PrinterPaper", true);
+			
+			// Girders
+			Entity_SetActive("BrandonDebrisBefore_*", false);
+			Entity_SetActive("BrandonDebrisAfter_*", true);
+			
+			// Effects
+			Player_SetHealth(0.65f);
 		}
 		
 		//-------------------------------------------------------
