@@ -449,20 +449,24 @@ class cScrMap : iScrMap
 			Sequence_Begin("SequenceB", mSequenceB_Data);
 			if (Sequence_DoStepAndWait(1.0f))
 			{
-				Sound_FadeGlobalVolume(0.15f, 1.0f, eSoundEntryType_GuiWorld);
-				Sound_FadeGlobalVolume(0.2f, 1.0f, eSoundEntryType_World);
+				Sound_FadeGlobalVolume(0.35f, 2.0f, eSoundEntryType_GuiWorld);
+				Sound_FadeGlobalVolume(0.0f, 2.0f, eSoundEntryType_World);
 				
 				Player_Teleport("IntroBPos");
 				
 				Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
+				Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
+				Emotion_StartHeartbeat(0.75, 0.25, 1, -1, 0, 0);
 				
 				// Power off sounds effect here
 				
+				// Play music
+			}
+			else if (Sequence_DoStepAndWait(1.0f))
+			{
 				// At the end of this sound file break the light (time till break: 7.25f)
 				Sound_CreateAtEntity("wau_infection", "04_03_tau_escape/SFX/wau_heart_sweetener", "player", 1.0f);
 				Map_AddTimer("pop_brandon_lamp", 7.25f, "OnTimer_PopBrandonLamp");
-				
-				// Play music
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
@@ -482,13 +486,10 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
-				Sound_FadeGlobalVolume(0.8f, 3.0, eSoundEntryType_World);
-				Sound_FadeGlobalVolume(0.67f, 3.0, eSoundEntryType_GuiWorld);
+				Sound_FadeGlobalVolume(0.8f, 0.1, eSoundEntryType_World);
+				Sound_FadeGlobalVolume(0.67f, 0.1, eSoundEntryType_GuiWorld);
 				
 				Player_FadeFOVMulTo(0.85f, 5);
-				
-				Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
-				Emotion_StartHeartbeat(0.75, 0.25, 1, -1, 0, 0);
 				
 				Effect_Fade_In(0.1);
 				Effect_RadialBlur_FadeSize(mlid_RadialBlur, 0.1f, 7);
@@ -531,6 +532,8 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndPause())
 			{
 				Button_SetSwitchedOn("cave_panel_puppet", true, true);
+				
+				Depth_Audio_SimonGasp();
 				
 				TriggerFinalPuppet();
 			}
@@ -582,7 +585,7 @@ class cScrMap : iScrMap
 		
 		void ReachedBrokenScreen(const tString &in asEntityName)
 		{
-			Map_AddTimer("SequenceB", 3.0f, "OnTimer_ResumeSequence");
+			Map_AddTimer("SequenceB", 6.0f, "OnTimer_ResumeSequence");
 		}
 		
 		//-------------------------------------------------------
