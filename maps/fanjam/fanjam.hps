@@ -517,6 +517,8 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(4.0f))
 			{
 				Lamp_SetLit("brandon_lamp", false, false);
+				
+				// Lower the video distortion temporarily to create silence
 			}
 			else if (Sequence_DoStepAndPause())
 			{
