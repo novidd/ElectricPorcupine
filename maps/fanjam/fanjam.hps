@@ -20,7 +20,7 @@
 #include "helper_imgui_station_app_error.hps"
 
 #include "helper_custom_depth.hps"
-#include "helper_custom_depth_ai.hps"
+#include "helper_custom_depth_ai_puppet.hps"
 
 //--------------------------------------------------
  
@@ -583,16 +583,20 @@ class cScrMap : iScrMap
 			{
 				Lamp_SetLit("brandon_lamp", false, false);
 			}
-			else if (Sequence_DoStepAndWait(1.0f))
+			else if (Sequence_DoStepAndPause())
 			{
-				Voice_Play("NoPowerCallout");
+				Voice_Play("NoPowerCallout", -1, "NoPowerCalloutFinished");
 				
 				// Increase player movement speed and stuff here
-				Player_FadeMoveSpeedMulTo(0.5f, 4.0f);
+				Player_FadeMoveSpeedMulTo(0.75f, 8.0f);
 				
 				// Turn on the low power lights after ~15s
 				// Then turn on the broken schedule screen
 				// The door panel turns on
+			}
+			else if (Sequence_DoStepAndWait(1.0f))
+			{
+				TriggerFinalPuppet();
 			}
 			
 				// Use this to create a flicker without the video distortion
@@ -611,6 +615,125 @@ class cScrMap : iScrMap
 //				// Sound for low power on
 //				Player_SetFlashlightDisabled(false);
 			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		void NoPowerCalloutFinished(const tString &in asScene, const tString &in asSubject)
+		{
+			SequenceStates_Resume("SequenceB");
+		}
+		
+		//-------------------------------------------------------
+		
+		cSequenceStatesData mSequencePuppetCature;
+		void SequencePuppetCapture(const tString &in asTimer)
+		{
+			Sequence_Begin("SequencePuppetCapture", mSequencePuppetCature);
+			
+			if (Sequence_DoStepAndWait(0.25))
+			{
+				Map_RemoveTimer("RevealPlayerPos");
+				Sound_PreloadGroup("NPC_Creatures/Foley/InWorld/CoralPuppet_01", true);
+				
+				Player_SetMoveSpeedMul(0.2);
+				Player_SetLookSpeedMul(0.3f);
+				Effect_Shake_Start(0.85, 0.4, 0.3, 0.3, cVector3f(1, 0.3f, 0));
+				
+				Sound_FadeGlobalVolume(0.0f, 0.05f, eSoundEntryType_WorldAll);
+			}
+//			else if (Sequence_DoStepAndWait(2.0f))
+//			{
+//				Effect_Fade_Out(0.025f);
+//				Sound_PlayGui("Player/UI/blackout_hit", 1.0f, eSoundEntryType_Gui);
+//				Sound_Stop("puppet_tunnel_SpotPlayer", 0.015f);
+//				Sound_Stop("AkersBurstDoor", 0.015f);
+//			}
+//			else if (Sequence_DoStepAndWait(0.9f))
+//			{
+//				Pathfinder_Stop("puppet_tunnel");
+//				Entity_SetActive("puppet_tunnel",false);
+//			}
+//			else if (Sequence_DoStepAndPause(0.1f))
+//			{
+//				
+//				Entity_SetActive("puppet_tunnel",true);
+//				Puppet_SetAfterPlayerDeathAnimtionCallback("puppet_tunnel", "PuppetTunnelDeahAnimOver");
+//				Puppet_StartPlayerDeathAnimation("puppet_tunnel");
+//			}
+//			else if (Sequence_DoStepAndWait(10))
+//			{
+//				Entity_SetActive("puppet_tunnel",false);
+//				Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
+//				Sound_SetGlobalVolume(0.0f, eSoundEntryType_GuiWorld);
+//				
+//			}
+//			else if (Sequence_DoStepAndWait(1))
+//			{
+//				Player_SetMoveSpeedMul(1);
+//				Player_SetLookSpeedMul(1);
+//				Player_SetHealth(1);
+//				
+//				cSound_SetGlobalVolume(1.0f, eSoundEntryType_WorldAll, eScriptGlobalVolume_AttackMeter);
+//				
+//				ExitLevel();
+//			}
+			
+			Sequence_End();
+		}
+		
+		//-------------------------------------------------------
+		
+		bool mbPuppetEndSeqStarted =false;
+		
+		void TriggerFinalPuppet()
+		{
+			Entity_SetActive("puppet_end", true);
+			
+			Pathfinder_Track_Clear("puppet_end");
+			Pathfinder_Track_Add("puppet_end", "PathNodeArea_16");
+			Pathfinder_Track_Start("puppet_end", true, 1, "");
+			
+			AttackMeter_SetCustomDamageCallback("TunnelPuppetDamage");
+			
+			Puppet_ChangeState_Hunt("puppet_end");
+			BarkMachine_SetActive("puppet_end", false);
+			Map_AddTimer("RevealPlayerPos", 0.25, "Timer_RevealPlayerPos");
+			
+			Player_SetMoveSpeedMul(0.875f);
+		}
+		
+		//-------------------------------------------------------
+		
+		bool EndPuppetSweetener(const tString &in asParent, const tString &in asChild, int alState)
+		{
+			Music_Stop(0.1f, eMusicPrio_BgAmb);
+			Music_Play("02_06_hallwaysurprise", 0.55f, false, eMusicPrio_OverrideAll);
+			Sound_CreateAtEntity("AkersBurstDoor", "02_06_theta_tunnels/sfx/events/akers_smash_door", "AkersSmashSoundSource");
+				
+			Effect_Shake_Start(0.2f,0.2f,0.0f,0.1f);
+			return false;
+		}
+		
+		//-------------------------------------------------------
+		
+		void Timer_RevealPlayerPos(const tString &in asTimer)
+		{
+			Puppet_Hunt_RevealCurrentPlayerPos("puppet_end");
+			Puppet_ChangeState_Hunt("puppet_end");
+			Map_AddTimer("RevealPlayerPos", 0.25, "Timer_RevealPlayerPos");
+		}
+		
+		//-------------------------------------------------------
+		
+		void TunnelPuppetDamage(const tString &in asSource)
+		{
+			if(mbPuppetEndSeqStarted) return;
+			
+			mbPuppetEndSeqStarted = true;
+			SequencePuppetCapture("");
+			
+			Effect_Rumble_Start(0.9, 0.7);
 		}
 		
 		//-------------------------------------------------------
