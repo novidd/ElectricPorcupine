@@ -623,7 +623,7 @@ class cScrMap : iScrMap
 			Entity_SetActive("puppet_end", true);
 			
 			Pathfinder_Track_Clear("puppet_end");
-			Pathfinder_Track_Add("puppet_end", "PathNodeArea_16");
+			Pathfinder_Track_Add("puppet_end", "PathNodeArea_10");
 			Pathfinder_Track_Start("puppet_end", true, 1, "");
 			
 			AttackMeter_SetCustomDamageCallback("TunnelPuppetDamage");
