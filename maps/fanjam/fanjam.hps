@@ -449,31 +449,41 @@ class cScrMap : iScrMap
 			{
 				cLux_AddDebugMessage("Turning on the broken screen!");
 	
-				Lamp_SetLit("tv_community_room_1", true, true);
+				Lamp_SetLit("tv_community_room_1", true, false);
 				Light_SetVisible("PointLight_3", true);
 				
 				Effect_VideoDistortion_Start(0.5, -1, 0, 0, 0.8);
 			}
-			else if(Sequence_DoStepAndWait(3.0f))
+			else if(Sequence_DoStepAndWait(2.0f))
 			{
 				cLux_AddDebugMessage("Turning off the broken screen!");
 				
-				Lamp_SetLit("tv_community_room_1", false, true);
+				Lamp_SetLit("tv_community_room_1", false, false);
 				Light_SetVisible("PointLight_3", false);
 			}
 			else if(Sequence_DoStepAndPause()) // Next step will run when puppet reaches target pathnode
 			{
 				TriggerFinalPuppet();
 			}
-			else if(Sequence_DoStepAndWait(3.0f))
+			else if(Sequence_DoStepAndWait(2.0f))
+			{
+				cLux_AddDebugMessage("Puppet arrived!");
+				// NPC_Creatures/Foley/InWorld/Flesher/idle_twitch_3
+				Sound_CreateAtEntity("puppet_noise", "NPC_Creatures/Foley/InWorld/Flesher/idle_twitch_3", "puppet_end");
+			}
+			else if(Sequence_DoStepAndWait(0.5f))
 			{
 				cLux_AddDebugMessage("FINAL!");
-				Lamp_SetLit("tv_community_room_1", true, true);
+				Lamp_SetLit("tv_community_room_1", true, false);
 				Light_SetVisible("PointLight_3", true);
-				
+			}
+			else if(Sequence_DoStepAndWait(0.5f))
+			{
 				// Reveal the players position
-//				Map_AddTimer("RevealPlayerPos", 2, "Timer_RevealPlayerPos");
-//				Puppet_ChangeState_Hunt("puppet_end");
+				Map_AddTimer("RevealPlayerPos", 0, "Timer_RevealPlayerPos");
+				
+				Player_SetFlashlightActive(true);
+				Player_SetFlashlightDisabled(false);
 			}
 			Sequence_End();
 		}
@@ -501,6 +511,7 @@ class cScrMap : iScrMap
 			Entity_SetActive("puppet_end", true);
 			
 			Pathfinder_Track_Clear("puppet_end");
+//			Pathfinder_Track_Add("puppet_end", "PathNodeArea_8", 1, -1, "idle_extra_3");
 			Pathfinder_Track_Add("puppet_end", "PathNodeArea_10", 1, -1, "idle_extra_3");
 			Pathfinder_Track_Start("puppet_end", true, 1, "ReachedBrokenScreen");
 			
@@ -514,7 +525,7 @@ class cScrMap : iScrMap
 		
 		void ReachedBrokenScreen(const tString &in asEntityName)
 		{
-			Map_AddTimer("SequenceB", 6.0f, "OnTimer_ResumeSequence");
+			SequenceStates_Resume("SequenceB");
 		}
 		
 		//-------------------------------------------------------
