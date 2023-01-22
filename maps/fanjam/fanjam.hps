@@ -649,6 +649,7 @@ class cScrMap : iScrMap
 			{
 				Sound_FadeGlobalVolume(0.8f, 0, eSoundEntryType_GuiWorld);
 				Sound_FadeGlobalVolume(0.67f, 0, eSoundEntryType_World);
+				Entity_SetActive("IntroPuppetVictim", false);
 				Effect_Fade_In(0);
 			}
 			else if (Sequence_DoStepAndWait(5.0f))
@@ -668,15 +669,21 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(5.0f))
 			{
 				// Cath call out here
+				
 			}
-			else if (Sequence_DoStepAndWait(4.0f))
+			else if (Sequence_DoStepAndPause())
 			{
 				// Run credits here
 				// No music just puppet victim breathing
+				Credits_Start("config/CreditsElectricPorcupine.cfg", "OnCreditsComplete", 0, 0.05f);
 			}
-//			Credits_Start("config/Credits.cfg", "OnCreditsComplete", 0, 0.006f);
-//			Credits_Stop(0.0f);
-//			MainMenu_GameOver();
+			else if (Sequence_DoStepAndWait(5.0f))
+			{
+				Credits_Stop(0.0f);
+				PauseMenu_Enabled(true);
+				Inventory_SetEnabled(true);
+				MainMenu_GameOver();
+			}
 		}
 		
 		//-------------------------------------------------------
