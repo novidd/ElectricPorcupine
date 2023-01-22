@@ -172,7 +172,7 @@ class cScrMap : iScrMap
 		
 		if(alAction == eAction_Test3)
 		{
-			SimonDeathCam();
+			SimonDeathCam("");
 		}
 		
 		if(alAction == eAction_Test4)
@@ -323,7 +323,7 @@ class cScrMap : iScrMap
 			mlid_DoF = Effect_DoF_Start(0, 1, 1, 0);
 			
 			// Cave power
-			CavePowerOff();
+			CavePowerHandler(false);
 			
 			// Brandon lamp
 			ParticleSystem_SetActive("BrandonLampSpark", false);
@@ -501,13 +501,6 @@ class cScrMap : iScrMap
 			Sequence_End();
 		}
 		
-		// Broken screen turns on here - no monster to be found
-		// Turn off screen completely to create a longer pause
-		// Low power lights on
-		// Puppet dashes toward player out from the dark
-		// Turn on the flashlight here
-		// Screen on again
-		
 		//-------------------------------------------------------
 		
 		void NoPowerCalloutFinished(const tString &in asScene, const tString &in asSubject)
@@ -591,9 +584,8 @@ class cScrMap : iScrMap
 				
 				cSound_SetGlobalVolume(1.0f, eSoundEntryType_WorldAll, eScriptGlobalVolume_AttackMeter);
 				
-				
 				// Cut the camera to Simon death cam
-				SimonDeathCam();
+				SimonDeathCam("");
 			}
 			
 			Sequence_End();
@@ -628,33 +620,30 @@ class cScrMap : iScrMap
 		}
 		
 		//-------------------------------------------------------
-		
-		void SimonDeathCam()
+		cSequenceStatesData mSimonDeathCam;
+		void SimonDeathCam(const tString &in asTimer)
 		{
+			Sequence_Begin("SimonDeathCam", mSimonDeathCam);
+			if (Sequence_DoStepAndWait(0.1f))
+			{
+				Player_SetHealth(0.65f);
+				
+				ClearAllIntroEffects();
+				CavePowerHandler(true);
+				
+				Entity_SetActive("SimonDeathHands", true);
+				CameraAnimation_Begin("SimonDeath_Cam", "", false);
+				
+				// Misc
+				Entity_SetActive("PrinterPaper", true);
+			}
+			else if (Sequence_DoStepAndWait(1.0f))
+			{
+				Sound_FadeGlobalVolume(0.8f, 0, eSoundEntryType_GuiWorld);
+				Sound_FadeGlobalVolume(0.67f, 0, eSoundEntryType_World);
+				Effect_Fade_In(0);
+			}
 			// TURN ON THE LIGHTS AND TERMINALS SEQUENTALLY LAMP AFTER LAMP
-			
-			ClearAllIntroEffects();
-			
-			Entity_SetActive("SimonDeathHands", true);
-			CameraAnimation_Begin("SimonDeath_Cam", "", false);
-			
-			Entity_SetActive("BrandonSplat", true);
-			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
-			ParticleSystem_SetVisible("BrandonParticles_*", true);
-			
-			// Misc
-			Entity_SetActive("PrinterPaper", true);
-			
-			// Girders
-			Entity_SetActive("BrandonDebrisBefore_*", false);
-			Entity_SetActive("BrandonDebrisAfter_*", true);
-			
-			// Effects
-			Player_SetHealth(0.65f);
-			
-			Sound_FadeGlobalVolume(0.8f, 0, eSoundEntryType_GuiWorld);
-			Sound_FadeGlobalVolume(0.67f, 0, eSoundEntryType_World);
-			Effect_Fade_In(0);
 		}
 		
 		//-------------------------------------------------------
@@ -668,6 +657,7 @@ class cScrMap : iScrMap
 			Player_SetFlashlightDisabled(true);
 			
 			Effect_VideoDistortion_FadeOut(mlid_VideoDist, 0.1);
+			Effect_RadialBlur_FadeSize(mlid_RadialBlur, 0.02, 0.1);
 			Emotion_StopBackgroundBreath(mlid_Breath);
 		}
 		
@@ -680,41 +670,77 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void CavePowerOff()
+		void CavePowerHandler(bool abPowerOn)
 		{
-			// Lights & Lamps
-			Light_SetVisible("light_dynamic_*", false);
-			Light_SetVisible("bottom_tower_light_*", false);
-			
-			Lamp_SetLit("PillarLamp_*", false, false);
-			Lamp_SetLit("lamp_dynamic_*", false, false);
-			
-			// Broken schedule
-			Lamp_SetLit("tv_community_room_1", false, false);
-			Light_SetVisible("PointLight_3", false);
-			
-			// Panels
-			Button_SetDisabled("cave_panel_*", true, false);
-			
-			// Sounds
-			Sound_Stop("Sound_Dynamic_*", 0);
-			Sound_Stop("BrokenSchedule", 0);
-			
-			// Cath terminal
-			Lamp_SetLit("CathTerminalLamp", false, false);
-			Lamp_SetLit("CathSlot_lamp_*", false, false);
-			Terminal_SetGuiActive("CathTerminal", false);
-			Terminal_SetGuiActive("PowerStatusTerminal", false);
-			Entity_SetActive("CathSlot", false);
-			Entity_SetActive("CathTool", false);
-			Light_SetVisible("omnislot_light*", false);
-			
-			// Particles
-			ParticleSystem_SetVisible("rising_steam", false);
-			ParticleSystem_SetVisible("bottom_tower_partlcle_*", false);
-			
-			// Turn off low power lights
-			Lamp_SetLit("low_power_lamp_*", false, false);
+			if (abPowerOn)
+			{
+				// Lights & Lamps
+				Light_SetVisible("light_dynamic_*", true);
+				Light_SetVisible("bottom_tower_light_*", true);
+				
+				Lamp_SetLit("PillarLamp_*", true, false);
+				Lamp_SetLit("lamp_dynamic_*", true, false);
+				
+				Button_SetDisabled("cave_panel_*", false, false);
+				
+				Sound_Play("Sound_Dynamic_*", 0);
+				
+				// Cath terminal
+				Lamp_SetLit("CathTerminalLamp", true, false);
+				Lamp_SetLit("CathSlot_lamp_*", true, false);
+				Terminal_SetGuiActive("CathTerminal", true);
+				Terminal_SetGuiActive("PowerStatusTerminal", true);
+				Entity_SetActive("CathSlot", true);
+				Entity_SetActive("CathTool", true);
+				Light_SetVisible("omnislot_light*", true);
+				
+				Entity_SetActive("CathSlot_off", false);
+				Entity_SetActive("CathSlot_lamp_left_off", false);
+				Entity_SetActive("CathSlot_lamp_right_off", false);
+				
+				// Particles
+				ParticleSystem_SetVisible("rising_steam", true);
+				ParticleSystem_SetVisible("bottom_tower_partlcle_*", true);
+				
+				// Turn off low power lights
+				Lamp_SetLit("low_power_lamp_*", true, false);
+			}
+			else
+			{
+				// Lights & Lamps
+				Light_SetVisible("light_dynamic_*", false);
+				Light_SetVisible("bottom_tower_light_*", false);
+				
+				Lamp_SetLit("PillarLamp_*", false, false);
+				Lamp_SetLit("lamp_dynamic_*", false, false);
+				
+				// Broken schedule
+				Lamp_SetLit("tv_community_room_1", false, false);
+				Light_SetVisible("PointLight_3", false);
+				
+				// Panels
+				Button_SetDisabled("cave_panel_*", true, false);
+				
+				// Sounds
+				Sound_Stop("Sound_Dynamic_*", 0);
+				Sound_Stop("BrokenSchedule", 0);
+				
+				// Cath terminal
+				Lamp_SetLit("CathTerminalLamp", false, false);
+				Lamp_SetLit("CathSlot_lamp_*", false, false);
+				Terminal_SetGuiActive("CathTerminal", false);
+				Terminal_SetGuiActive("PowerStatusTerminal", false);
+				Entity_SetActive("CathSlot", false);
+				Entity_SetActive("CathTool", false);
+				Light_SetVisible("omnislot_light*", false);
+				
+				// Particles
+				ParticleSystem_SetVisible("rising_steam", false);
+				ParticleSystem_SetVisible("bottom_tower_partlcle_*", false);
+				
+				// Turn off low power lights
+				Lamp_SetLit("low_power_lamp_*", false, false);
+			}
 		}
 		
 		//-------------------------------------------------------
