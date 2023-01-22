@@ -13,6 +13,7 @@
 #include "helpers/helper_areas.hps"
 
 #include "helper_imgui_station.hps"
+#include "helper_imgui_cath_portrait.hps"
 
 #include "helpers/helper_player.hps"
 #include "custom_depth/helper_custom_depth_audio.hps"
@@ -464,7 +465,7 @@ class cScrMap : iScrMap
 				
 				mlid_VideoDist = Effect_VideoDistortion_Start(0.5, -1, 0, 0, 0.8);
 			}
-			else if(Sequence_DoStepAndWait(4.0f))
+			else if(Sequence_DoStepAndWait(1.0f))
 			{
 				cLux_AddDebugMessage("Turning off the broken screen!");
 				
@@ -485,6 +486,8 @@ class cScrMap : iScrMap
 			else if(Sequence_DoStepAndWait(0.5f))
 			{
 				// Turn on the low power lights
+				Pathfinder_Track_Clear("puppet_end");
+				Map_AddTimer("RevealPlayerPos", 0, "Timer_RevealPlayerPos");
 				
 				cLux_AddDebugMessage("FINAL!");
 				Lamp_SetLit("tv_community_room_1", true, false);
@@ -492,9 +495,6 @@ class cScrMap : iScrMap
 			}
 			else if(Sequence_DoStepAndWait(0.5f))
 			{
-				// Reveal the players position
-				Map_AddTimer("RevealPlayerPos", 0, "Timer_RevealPlayerPos");
-				
 				Player_SetFlashlightDisabled(false);
 				Player_SetFlashlightActive(true);
 			}
@@ -569,7 +569,7 @@ class cScrMap : iScrMap
 				Puppet_SetAfterPlayerDeathAnimtionCallback("puppet_end", "PuppetTunnelDeahAnimOver");
 				Puppet_StartPlayerDeathAnimation("puppet_end");
 			}
-			else if (Sequence_DoStepAndWait(5))
+			else if (Sequence_DoStepAndWait(10))
 			{
 				Entity_SetActive("puppet_end", false);
 				Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
@@ -585,6 +585,8 @@ class cScrMap : iScrMap
 				cSound_SetGlobalVolume(1.0f, eSoundEntryType_WorldAll, eScriptGlobalVolume_AttackMeter);
 				
 				// Cut the camera to Simon death cam
+				Inventory_SetEnabled(false);
+				PauseMenu_Enabled(false);
 				SimonDeathCam("");
 			}
 			
@@ -624,12 +626,14 @@ class cScrMap : iScrMap
 		void SimonDeathCam(const tString &in asTimer)
 		{
 			Sequence_Begin("SimonDeathCam", mSimonDeathCam);
-			if (Sequence_DoStepAndWait(0.1f))
+			if (Sequence_DoStepAndWait(5.0f))
 			{
 				Player_SetHealth(0.65f);
 				
 				ClearAllIntroEffects();
 				CavePowerHandler(true);
+				
+				CathTool_Insert("CathTool","CathSlot");
 				
 				Entity_SetActive("SimonDeathHands", true);
 				CameraAnimation_Begin("SimonDeath_Cam", "", false);
@@ -637,13 +641,62 @@ class cScrMap : iScrMap
 				// Misc
 				Entity_SetActive("PrinterPaper", true);
 			}
-			else if (Sequence_DoStepAndWait(1.0f))
+			else if (Sequence_DoStepAndWait(6.0f))
 			{
 				Sound_FadeGlobalVolume(0.8f, 0, eSoundEntryType_GuiWorld);
 				Sound_FadeGlobalVolume(0.67f, 0, eSoundEntryType_World);
 				Effect_Fade_In(0);
 			}
+			else if (Sequence_DoStepAndWait(5.0f))
+			{
+				CathTerminalBootUpSound();
+			}
+			else if (Sequence_DoStepAndWait(5.0f))
+			{
+				// Turn on Catherine terminal here
+				Terminal_SetGuiActive("CathTerminal", true);
+			}
+			else if (Sequence_DoStepAndWait(4.0f))
+			{
+				Effect_Fade_Out(0);
+				Sound_FadeGlobalVolume(0.0f, 4.0f, eSoundEntryType_AllExceptGui);
+			}
+			else if (Sequence_DoStepAndWait(5.0f))
+			{
+				// Cath call out here
+				Sound_FadeGlobalVolume(0.0f, 4.0f, eSoundEntryType_Gui);
+			}
+			else if (Sequence_DoStepAndWait(4.0f))
+			{
+				// Run credits here
+				// Play music
+			}
 			// TURN ON THE LIGHTS AND TERMINALS SEQUENTALLY LAMP AFTER LAMP
+//			Credits_Start("config/Credits.cfg", "OnCreditsComplete", 0, 0.006f);
+//			Credits_Stop(0.0f);
+//			MainMenu_GameOver();
+		}
+		
+		//-------------------------------------------------------
+		
+		void CathTerminalBootUpSound()
+		{
+			////////////////////
+			//Booting up sound sequence
+			Sound_CreateAtEntity("CathTerminalBootUpSound", "03_02_omicron_inside/SFX/diving_suit_computer/startup", "CatherineTerminalSource", 0.0f, false, 1.0f);
+			Map_AddTimer("Timer_DiveSuitComputerIdleSound", 38.5f, "CathTerminalIdleSound");
+		}
+		
+		void CathTerminalIdleSound(const tString &in asTimer)
+		{
+			Sound_CreateAtEntity("CathTerminalIdle", "03_02_omicron_inside/SFX/diving_suit_computer/comp_loop", "CatherineTerminalSource", 1.0f, false, 1.0f);
+		}
+		
+		//-------------------------------------------------------
+		
+		void OnCreditsComplete()
+		{
+			SequenceStates_Resume("SimonDeathCam");
 		}
 		
 		//-------------------------------------------------------
@@ -688,7 +741,7 @@ class cScrMap : iScrMap
 				// Cath terminal
 				Lamp_SetLit("CathTerminalLamp", true, false);
 				Lamp_SetLit("CathSlot_lamp_*", true, false);
-				Terminal_SetGuiActive("CathTerminal", true);
+//				Terminal_SetGuiActive("CathTerminal", true);
 				Terminal_SetGuiActive("PowerStatusTerminal", true);
 				Entity_SetActive("CathSlot", true);
 				Entity_SetActive("CathTool", true);
@@ -767,23 +820,16 @@ class cScrMap : iScrMap
 	 // ==============
 	 //{//////////////////////////////////////
  
-		 //-------------------------------------------------------
-	 
-		 /////////////////////////////////////////
-		 // Terminal *Name Of Terminal*
-		 //{//////////////////////////////////////
-	 
-		 //-------------------------------------------------------
-	 
-		 /*Put any variables that are only used Terminal here.*/
-	 
-		 //-------------------------------------------------------
-	 
-		 /*Put any functions that are only used Terminal here.*/
-	 
-		 //-------------------------------------------------------
-	 
-		 //} END Terminal *Name Of Terminal*
+		void CathTerminal_OnGui(const tString&in asEntityName, float afTimeStep)
+		{
+			//////////////////////////////////////
+			// Display Catherine!
+			StationGuiBG_Scanlines();
+			StationGuiBG_Backdrop();
+			Depth_ImGui_CathPortrait(afTimeStep);
+			//ImGui_DoImage(cImGuiGfx("catherine_large"), cVector3f(0,0,1), ImGui_NrmSizeGroup(cVector2f(1, 1)));
+			return;
+		}
 	
 	//} END TERMINALS
  
