@@ -506,6 +506,7 @@ class cScrMap : iScrMap
 				// Turn on the low power (red) lights
 				// Look for sfx to use when each section of power turn on
 				Button_SetDisabled("cave_panel_2", false);
+				Lamp_SetLit("low_powerlamp_*", true, false);
 				
 				// Player tries to open the door leading to the stairs
 				// Turns around, gets killed
@@ -665,6 +666,8 @@ class cScrMap : iScrMap
 				
 				ClearAllIntroEffects();
 				CavePowerHandler(true);
+				Lamp_SetLit("low_powerlamp_*", false, false);
+				
 				Sound_Play("printer_sound", 0);
 				
 				CathTool_Insert("CathTool","CathSlot");
