@@ -668,14 +668,12 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(5.0f))
 			{
 				// Cath call out here
-				Sound_FadeGlobalVolume(0.0f, 4.0f, eSoundEntryType_All);
 			}
 			else if (Sequence_DoStepAndWait(4.0f))
 			{
 				// Run credits here
-				// Play music
+				// No music just puppet victim breathing
 			}
-			// TURN ON THE LIGHTS AND TERMINALS SEQUENTALLY LAMP AFTER LAMP
 //			Credits_Start("config/Credits.cfg", "OnCreditsComplete", 0, 0.006f);
 //			Credits_Stop(0.0f);
 //			MainMenu_GameOver();
