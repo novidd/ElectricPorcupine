@@ -543,9 +543,9 @@ class cScrMap : iScrMap
 				
 				// Broken screen turns on here - no monster to be found
 				// Turn off screen completely to create a longer pause
+				// Low power lights on
 				// Monster moves forward
 				// Screen on again
-				// Broken schedule
 				Lamp_SetLit("tv_community_room_1", true, true);
 				Light_SetVisible("PointLight_3", true);
 			}
