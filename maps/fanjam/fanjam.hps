@@ -346,7 +346,7 @@ class cScrMap : iScrMap
 				
 				Player_Teleport("IntroBPos");
 				
-				Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
+				mlid_VideoDist = Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
 				mlid_Breath = Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
 				Emotion_StartHeartbeat(0.75, 0.25, 1, -1, 0, 0);
 				
@@ -445,6 +445,16 @@ class cScrMap : iScrMap
 				Effect_VideoDistortion_FadeOut(mlid_VideoDist, 3.0f);
 				Emotion_StartHeartbeat(1, 0.25, 1, -1, 2, 2);
 			}
+			else if(Sequence_DoStepAndPause()) // Next step will run when puppet reaches target pathnode
+			{
+				TriggerFinalPuppet();
+			}
+			else if(Sequence_DoStepAndWait(0.5f))
+			{
+				cLux_AddDebugMessage("Puppet arrived!");
+				// NPC_Creatures/Foley/InWorld/Flesher/idle_twitch_3
+				Sound_CreateAtEntity("puppet_noise", "NPC_Creatures/Foley/InWorld/Flesher/idle_twitch_3", "puppet_end");
+			}
 			else if(Sequence_DoStepAndWait(5.0f))
 			{
 				cLux_AddDebugMessage("Turning on the broken screen!");
@@ -452,18 +462,19 @@ class cScrMap : iScrMap
 				Lamp_SetLit("tv_community_room_1", true, false);
 				Light_SetVisible("PointLight_3", true);
 				
-				Effect_VideoDistortion_Start(0.5, -1, 0, 0, 0.8);
+				mlid_VideoDist = Effect_VideoDistortion_Start(0.5, -1, 0, 0, 0.8);
 			}
-			else if(Sequence_DoStepAndWait(2.0f))
+			else if(Sequence_DoStepAndWait(4.0f))
 			{
 				cLux_AddDebugMessage("Turning off the broken screen!");
 				
 				Lamp_SetLit("tv_community_room_1", false, false);
 				Light_SetVisible("PointLight_3", false);
 			}
-			else if(Sequence_DoStepAndPause()) // Next step will run when puppet reaches target pathnode
+			else if(Sequence_DoStepAndPause())
 			{
-				TriggerFinalPuppet();
+				Pathfinder_Track_Add("puppet_end", "PathNodeArea_10", 1, -1, "idle_extra_3");
+				Pathfinder_Track_Start("puppet_end", true, 1, "PuppetFinishPath");
 			}
 			else if(Sequence_DoStepAndWait(2.0f))
 			{
@@ -473,6 +484,8 @@ class cScrMap : iScrMap
 			}
 			else if(Sequence_DoStepAndWait(0.5f))
 			{
+				// Turn on the low power lights
+				
 				cLux_AddDebugMessage("FINAL!");
 				Lamp_SetLit("tv_community_room_1", true, false);
 				Light_SetVisible("PointLight_3", true);
@@ -482,8 +495,8 @@ class cScrMap : iScrMap
 				// Reveal the players position
 				Map_AddTimer("RevealPlayerPos", 0, "Timer_RevealPlayerPos");
 				
-				Player_SetFlashlightActive(true);
 				Player_SetFlashlightDisabled(false);
+				Player_SetFlashlightActive(true);
 			}
 			Sequence_End();
 		}
@@ -511,9 +524,8 @@ class cScrMap : iScrMap
 			Entity_SetActive("puppet_end", true);
 			
 			Pathfinder_Track_Clear("puppet_end");
-//			Pathfinder_Track_Add("puppet_end", "PathNodeArea_8", 1, -1, "idle_extra_3");
-			Pathfinder_Track_Add("puppet_end", "PathNodeArea_10", 1, -1, "idle_extra_3");
-			Pathfinder_Track_Start("puppet_end", true, 1, "ReachedBrokenScreen");
+			Pathfinder_Track_Add("puppet_end", "PathNodeArea_3", 1, -1, "idle_extra_3");
+			Pathfinder_Track_Start("puppet_end", true, 1, "PuppetFinishPath");
 			
 			AttackMeter_SetCustomDamageCallback("TunnelPuppetDamage");
 			
@@ -523,7 +535,7 @@ class cScrMap : iScrMap
 		
 		//-------------------------------------------------------
 		
-		void ReachedBrokenScreen(const tString &in asEntityName)
+		void PuppetFinishPath(const tString &in asEntityName)
 		{
 			SequenceStates_Resume("SequenceB");
 		}
@@ -560,12 +572,11 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndPause(0.1f))
 			{
-				
 				Entity_SetActive("puppet_end",true);
 				Puppet_SetAfterPlayerDeathAnimtionCallback("puppet_end", "PuppetTunnelDeahAnimOver");
 				Puppet_StartPlayerDeathAnimation("puppet_end");
 			}
-			else if (Sequence_DoStepAndWait(10))
+			else if (Sequence_DoStepAndWait(5))
 			{
 				Entity_SetActive("puppet_end", false);
 				Sound_SetGlobalVolume(0.0f, eSoundEntryType_WorldAll);
@@ -582,7 +593,7 @@ class cScrMap : iScrMap
 				
 				
 				// Cut the camera to Simon death cam
-//				SimonDeathCam();
+				SimonDeathCam();
 			}
 			
 			Sequence_End();
@@ -622,12 +633,10 @@ class cScrMap : iScrMap
 		{
 			// TURN ON THE LIGHTS AND TERMINALS SEQUENTALLY LAMP AFTER LAMP
 			
-			
-//			Infection_ClearTrees();
+			ClearAllIntroEffects();
 			
 			Entity_SetActive("SimonDeathHands", true);
 			CameraAnimation_Begin("SimonDeath_Cam", "", false);
-			Player_ShowCrossHairIcons(false);
 			
 			Entity_SetActive("BrandonSplat", true);
 			Decal_SetVisibleInArea(true, "BrandonDecals", mvBrandonDecalMaterials);
@@ -642,6 +651,24 @@ class cScrMap : iScrMap
 			
 			// Effects
 			Player_SetHealth(0.65f);
+			
+			Sound_FadeGlobalVolume(0.8f, 0, eSoundEntryType_GuiWorld);
+			Sound_FadeGlobalVolume(0.67f, 0, eSoundEntryType_World);
+			Effect_Fade_In(0);
+		}
+		
+		//-------------------------------------------------------
+		
+		void ClearAllIntroEffects()
+		{
+//			Infection_ClearTrees();
+			Player_ShowCrossHairIcons(false);
+			
+			Player_SetFlashlightActive(false);
+			Player_SetFlashlightDisabled(true);
+			
+			Effect_VideoDistortion_FadeOut(mlid_VideoDist, 0.1);
+			Emotion_StopBackgroundBreath(mlid_Breath);
 		}
 		
 		//-------------------------------------------------------
