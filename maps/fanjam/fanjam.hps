@@ -472,6 +472,8 @@ class cScrMap : iScrMap
 				Light_SetVisible("PointLight_3", true);
 				
 				// Reveal the players position
+//				Map_AddTimer("RevealPlayerPos", 2, "Timer_RevealPlayerPos");
+//				Puppet_ChangeState_Hunt("puppet_end");
 			}
 			Sequence_End();
 		}
@@ -506,7 +508,6 @@ class cScrMap : iScrMap
 			
 			Puppet_ChangeState_Patrol("puppet_end");
 			BarkMachine_SetActive("puppet_end", false);
-//			Map_AddTimer("RevealPlayerPos", 2, "Timer_RevealPlayerPos");
 		}
 		
 		//-------------------------------------------------------
