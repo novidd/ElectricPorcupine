@@ -282,116 +282,6 @@ class cScrMap : iScrMap
 	// SCENE X *FAN JAM SEQUENCE*
 	// ==============
 	//{//////////////////////////////////////////////////////////////////////////////////////
- 
-		/////////////////////////////////////////
-		// General
-		//{//////////////////////////////////////
-		 
-		//-------------------------------------------------------
-	 
-		/*Put any variables that are used by many events in Scene X here.*/
-	 
-		//-------------------------------------------------------
-	 
-		/*Put any functions that are used in more than one event in Scene X here.*/
-	 
-		//-------------------------------------------------------
-		
-		//} END General	
-	 
-		/////////////////////////////////////////
-		// Event *Sequence A - Start in the station*
-		//{//////////////////////////////////////
-	 
-		//-------------------------------------------------------
-	 
-		// - Play this in a corridor: 01_04_transport_station/Special/Train/infomercial/music
-		
-		int mlDOFLightsOn = -1;
-		
-		void SetupIntroA()
-		{
-			cLux_AddDebugMessage("Starting Intro...");
-			
-//			Effect_Fade_Out(0);
-//			Player_SetActive(false);
-			
-			// Sequence
-			Map_AddTimer("introsequenceA", 0.01f, "SequenceA");
-			
-//			mlDOFLightsOn = Effect_DoF_Start(0.2, 2, 1, 0.01);
-//			Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 2, 0.01);
-		}
-		
-		cSequenceStatesData mSequenceA_Data;
-		void SequenceA(const tString &in asTimer)
-		{
-			Sequence_Begin("SequenceA", mSequenceA_Data);
-//			if (Sequence_DoStepAndWait(0.0f))
-//			{
-////				Player_Teleport("PlayerStartArea_1", true);
-//				
-//				// - Start looping 01_01_upsilon_awake/sfx/wake_up/nervous, just like in Upsilon (disable the sound during dialogue - use a bool)
-////				Map_AddTimer("nervousbreath_start", 0.0f, "OnTimer_NervousBreath");
-//			}
-//			else if (Sequence_DoStepAndWait(2.0f))
-//			{
-//				// On lights turning on turn up the bloom
-//				// Look at Upsilon awake when turing on the power in the spawn room
-//				Sound_CreateAtEntity("PowerOn", "01_01_upsilon_awake/sfx/wake_up/lights_on", "Player", 0, false);
-////				Map_AddTimer("Timer_LightsOnMusic", 3.5f, "Timer_LightsOnMusic");
-//			}
-//			else if (Sequence_DoStepAndWait(2.0f))
-//			{
-//				Effect_DoF_FadeFocus(mlDOFLightsOn, 0.0, 0.1, 0.4);
-//				Effect_ToneMapping_FadeWhiteCut(0.1, 0.0001f);
-//				
-//				Effect_ImageTrail_Start(0.8, 0.001, 4, 6);
-//				
-//				// Turn on first set of lights/lamps here
-//			}
-//			else if (Sequence_DoStepAndWait(2.0f))
-//			{
-//				// Turn on second set of lights/lamps here
-//				
-//				// Terminals boot up
-//			}
-//			else if (Sequence_DoStepAndWait(2.0f))
-//			{
-//				Effect_ToneMapping_FadeWhiteCut(0.7, 3);
-//			}
-//			else if (Sequence_DoStepAndWait(0.5f))
-//			{
-//				Effect_DoF_FadeFocus(mlDOFLightsOn, 0.2, 30, 8);
-//				Effect_DoF_FadeOut(mlDOFLightsOn, 7.0f);
-//				Effect_ToneMapping_FadeWhiteCut(3.5, 7.0);
-//			}
-//			Sequence_End();
-
-			if (Sequence_DoStepAndWait(0.0f))
-			{
-				// Start with the player being crouched down to pick up the item
-				// Simon says: "Got it."
-				// Monster makes noise, Simon turns around and stands up at the same time
-				// Heartbeat
-				// Nervous breath
-			}
-			else if (Sequence_DoStepAndWait(3.0f))
-			{
-				
-			}
-		}
-		
-		//-------------------------------------------------------
-		
-		void OnTimer_NervousBreath(const tString &in asTimer)
-		{
-			Sound_CreateAtEntity("nervous_breath", "01_01_upsilon_awake/sfx/wake_up/nervous", "player");
-		}
-		
-		//-------------------------------------------------------
-		
-		 //} END Event *Sequence A - Start in the station*
 		 
 		/////////////////////////////////////////
 		// Event *Sequence B - Start in the cave*
@@ -405,6 +295,7 @@ class cScrMap : iScrMap
 		int mlid_DoF = -1;
 		int mlid_RadialBlur = -1;
 		int mlid_VideoDist = -1;
+		int mlid_Breath = -1;
 		
 		// Do a test run with a gamepad
 		void SetupIntroB()
@@ -456,7 +347,7 @@ class cScrMap : iScrMap
 				Player_Teleport("IntroBPos");
 				
 				Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
-				Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
+				mlid_Breath = Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
 				Emotion_StartHeartbeat(0.75, 0.25, 1, -1, 0, 0);
 				
 				// Power off sounds effect here
@@ -528,6 +419,7 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(0.5f))
 			{
 				Voice_Play("NoPowerCallout", -1, "NoPowerCalloutFinished");
+				Emotion_SetBackgroundBreathMuted(mlid_Breath, true);
 				
 				// Increase player movement speed and stuff here
 				Player_FadeMoveSpeedMulTo(0.65f, 8.0f);
@@ -538,6 +430,7 @@ class cScrMap : iScrMap
 			}
 			else if (Sequence_DoStepAndPause()) // Next step will run when the subject finishes playing
 			{
+				Emotion_SetBackgroundBreathMuted(mlid_Breath, false);
 				Player_SetFlashlightActive(true);
 			}
 			else if (Sequence_DoStepAndWait(4.0f))
@@ -563,6 +456,8 @@ class cScrMap : iScrMap
 			}
 			else if(Sequence_DoStepAndWait(3.0f))
 			{
+				cLux_AddDebugMessage("Turning off the broken screen!");
+				
 				Lamp_SetLit("tv_community_room_1", false, true);
 				Light_SetVisible("PointLight_3", false);
 			}
@@ -572,7 +467,11 @@ class cScrMap : iScrMap
 			}
 			else if(Sequence_DoStepAndWait(3.0f))
 			{
+				cLux_AddDebugMessage("FINAL!");
+				Lamp_SetLit("tv_community_room_1", true, true);
+				Light_SetVisible("PointLight_3", true);
 				
+				// Reveal the players position
 			}
 			Sequence_End();
 		}
@@ -682,18 +581,6 @@ class cScrMap : iScrMap
 		void PuppetTunnelDeahAnimOver()
 		{
 			SequenceStates_Resume("SequencePuppetCapture");
-		}
-		
-		//-------------------------------------------------------
-		
-		bool EndPuppetSweetener(const tString &in asParent, const tString &in asChild, int alState)
-		{
-			Music_Stop(0.1f, eMusicPrio_BgAmb);
-//			Music_Play("02_06_hallwaysurprise", 0.55f, false, eMusicPrio_OverrideAll);
-//			Sound_CreateAtEntity("AkersBurstDoor", "02_06_theta_tunnels/sfx/events/akers_smash_door", "AkersSmashSoundSource");
-				
-//			Effect_Shake_Start(0.2f,0.2f,0.0f,0.1f);
-			return false;
 		}
 		
 		//-------------------------------------------------------
