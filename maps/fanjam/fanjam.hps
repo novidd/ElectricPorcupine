@@ -477,25 +477,26 @@ class cScrMap : iScrMap
 				Pathfinder_Track_Add("puppet_end", "PathNodeArea_10", 1, -1, "idle_extra_3");
 				Pathfinder_Track_Start("puppet_end", true, 1, "PuppetFinishPath");
 			}
-			else if(Sequence_DoStepAndWait(2.0f))
+			else if(Sequence_DoStepAndWait(1.0f))
 			{
 				cLux_AddDebugMessage("Puppet arrived!");
 				// NPC_Creatures/Foley/InWorld/Flesher/idle_twitch_3
 				Sound_CreateAtEntity("puppet_noise", "NPC_Creatures/Foley/InWorld/Flesher/idle_twitch_3", "puppet_end");
 			}
-			else if(Sequence_DoStepAndWait(1.0f))
+			else if(Sequence_DoStepAndWait(2.0f))
 			{
 				Button_SetDisabled("cave_panel_2", false);
-				Sound_CreateAtEntity("PanelUnlock", "Entities_Station/doors/upsilon/upsilon_button/upsilon_button_unlock", "cave_panel_2");	
+				Sound_CreateAtEntity("PanelUnlock", "Entities_Station/doors/upsilon/upsilon_button/upsilon_button_unlock", "cave_panel_2");
+				
+				Player_SetMoveSpeedMul(0.75f);
 			}
 			else if(Sequence_DoStepAndWait(0.5f))
 			{
 				// Turn on the low power lights
+				Button_SetDisabled("cave_panel_2", false);
 				
 				// Player tries to open the door leading to the stairs
 				// Turns around, gets killed
-				
-				Button_SetDisabled("cave_panel_*", false);
 				
 				Pathfinder_Track_Clear("puppet_end");
 				Map_AddTimer("RevealPlayerPos", 0, "Timer_RevealPlayerPos");
@@ -562,6 +563,9 @@ class cScrMap : iScrMap
 				Player_SetMoveSpeedMul(0.2);
 				Player_SetLookSpeedMul(0.3f);
 				Effect_Shake_Start(0.85, 0.4, 0.3, 0.3, cVector3f(1, 0.3f, 0));
+				
+				Player_SetFlashlightDisabled(false);
+				Player_SetFlashlightActive(true, true);
 				
 				Sound_FadeGlobalVolume(0.0f, 0.05f, eSoundEntryType_WorldAll);
 			}
@@ -672,21 +676,20 @@ class cScrMap : iScrMap
 				// Turn on Catherine terminal here
 				Terminal_SetGuiActive("CathTerminal", true);
 			}
-			else if (Sequence_DoStepAndWait(4.0f))
-			{
-				Effect_Fade_Out(0);
-				Sound_FadeGlobalVolume(0.0f, 4.0f, eSoundEntryType_AllExceptGui);
-			}
-			else if (Sequence_DoStepAndWait(5.0f))
+			else if (Sequence_DoStepAndWait(3.0f))
 			{
 				// Cath call out here
 				Voice_Play("CatherineCallout");
 			}
+			else if (Sequence_DoStepAndWait(5.0f))
+			{
+				Effect_Fade_Out(0);
+				Sound_FadeGlobalVolume(0.0f, 4.0f, eSoundEntryType_AllExceptGui);
+			}
 			else if (Sequence_DoStepAndPause())
 			{
 				// Run credits here
-				// No music just puppet victim breathing
-				Credits_Start("config/CreditsElectricPorcupine.cfg", "OnCreditsComplete", 0, 0.05f);
+				Credits_Start("config/CreditsElectricPorcupine.cfg", "OnCreditsComplete", 0, 0.025f);
 			}
 			else if (Sequence_DoStepAndWait(5.0f))
 			{
@@ -703,13 +706,15 @@ class cScrMap : iScrMap
 		{
 			////////////////////
 			//Booting up sound sequence
-			Sound_CreateAtEntity("CathTerminalBootUpSound", "03_02_omicron_inside/SFX/diving_suit_computer/startup", "CatherineTerminalSource", 0.0f, false, 1.0f);
+//			Sound_CreateAtEntity("CathTerminalBootUpSound", "03_02_omicron_inside/SFX/diving_suit_computer/startup", "CatherineTerminalSource", 0.0f, false, 1.0f);
+			Sound_Play("CathTerminalBootUpSound", 0);
 			Map_AddTimer("Timer_DiveSuitComputerIdleSound", 38.5f, "CathTerminalIdleSound");
 		}
 		
 		void CathTerminalIdleSound(const tString &in asTimer)
 		{
-			Sound_CreateAtEntity("CathTerminalIdle", "03_02_omicron_inside/SFX/diving_suit_computer/comp_loop", "CatherineTerminalSource", 1.0f, false, 1.0f);
+//			Sound_CreateAtEntity("CathTerminalIdle", "03_02_omicron_inside/SFX/diving_suit_computer/comp_loop", "CatherineTerminalSource", 1.0f, false, 1.0f);
+			Sound_Play("CathTerminalIdle", 1);
 		}
 		
 		//-------------------------------------------------------
@@ -765,6 +770,7 @@ class cScrMap : iScrMap
 				Terminal_SetGuiActive("PowerStatusTerminal", true);
 				Entity_SetActive("CathSlot", true);
 				Entity_SetActive("CathTool", true);
+				Entity_SetActive("CathTool_off", false);
 				Light_SetVisible("omnislot_light*", true);
 				
 				Entity_SetActive("CathSlot_off", false);

@@ -1,6 +1,6 @@
 <HPLMapTrack_Entity ID="1C44AE3592835ADD4B2980DE61A99534C93E1F0" Version="1.00">
     <Section Name="clmpe@LAPTOP-EJS7RG6B">
-        <FileIndex_Entities NumOfFiles="387">
+        <FileIndex_Entities NumOfFiles="388">
             <File Id="0" Path="entities/station/furniture/trash_can_theta/trash_can_theta.ent" />
             <File Id="1" Path="entities/station/furniture/trash_can_theta/trash_can_theta_flap.ent" />
             <File Id="2" Path="entities/station/ornaments/wet_floor_sign/wet_floor_sign.ent" />
@@ -388,6 +388,7 @@
             <File Id="384" Path="entities/station/special/01_01_computer_station_techroom/01_01_computer_station_techroom_glass.ent" />
             <File Id="385" Path="entities/station/tech/computer_parts_xx/computer_parts_diskdrive.ent" />
             <File Id="386" Path="entities/station/tech/computer_parts_xx/computer_parts_fan.ent" />
+            <File Id="387" Path="entities/station/gameplay/omnitool/omnitool_with_cortexchip_hud.ent" />
         </FileIndex_Entities>
         <Objects>
             <Entity ID="268435457" Name="trash_can_theta_1" CreStamp="1673045161" ModStamp="1673614901" WorldPos="1.14645 0.309528 -6.21749" Rotation="0.68381 -2.24684e-006 1.5708" Scale="1 1 1" FileIndex="0" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 15 268435457">
@@ -877,7 +878,7 @@
                     <Var Name="VerticalFOV" Value="70" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436234" Name="PrinterPaper" CreStamp="1673378603" ModStamp="1674391628" WorldPos="4.61105 1.09038 -1.60655" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="314" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 368 268436234">
+            <Entity ID="268436234" Name="PrinterPaper" CreStamp="1673378603" ModStamp="1674391628" WorldPos="4.61105 1.09038 -0.766855" Rotation="0 -1.5708 0" Scale="1 1 1" FileIndex="314" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 368 268436234">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2194,7 +2195,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436486" Name="CathSlot_off" CreStamp="1673459864" ModStamp="1674391258" WorldPos="4.36876 1.15977 -1.02334" Rotation="-1.81977 -1.5708 0.510767" Scale="1 1 1" FileIndex="239" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 444 268436486">
+            <Entity ID="268436486" Name="CathSlot_off" CreStamp="1673459864" ModStamp="1674391258" WorldPos="4.36876 1.15977 -1.44613" Rotation="-1.81977 -1.5708 0.510767" Scale="1 1 1" FileIndex="239" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 444 268436486">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2362,7 +2363,7 @@
                     <Var Name="CustomInteractIcon" Value="PushButton" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436560" Name="CathSlot_lamp_left_off" CreStamp="1673463834" ModStamp="1674391268" WorldPos="4.36876 1.15977 -1.02334" Rotation="0 4.71239 -1.309" Scale="1 1 1" FileIndex="240" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 230 268436560">
+            <Entity ID="268436560" Name="CathSlot_lamp_left_off" CreStamp="1673463834" ModStamp="1674391268" WorldPos="4.36876 1.15977 -1.44613" Rotation="0 4.71239 -1.309" Scale="1 1 1" FileIndex="240" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 230 268436560">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -2427,7 +2428,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268436561" Name="CathSlot_lamp_right" CreStamp="1673463836" ModStamp="1674391291" WorldPos="4.36876 1.15977 -1.02334" Rotation="0 4.71239 -1.309" Scale="1 1 1" FileIndex="241" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 229 268436561">
+            <Entity ID="268436561" Name="CathSlot_lamp_right" CreStamp="1673463836" ModStamp="1674391291" WorldPos="4.36876 1.15977 -1.44613" Rotation="0 4.71239 -1.309" Scale="1 1 1" FileIndex="241" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 229 268436561">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6470,7 +6471,7 @@
                     <Var Name="OpenAmount" Value="0" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268439024" Name="CathSlot_lamp_left" CreStamp="1674391278" ModStamp="1674391283" WorldPos="4.36876 1.15977 -1.02334" Rotation="0 4.71239 -1.309" Scale="1 1 1" FileIndex="240" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1856 268439024">
+            <Entity ID="268439024" Name="CathSlot_lamp_left" CreStamp="1674391278" ModStamp="1674391283" WorldPos="4.36876 1.15977 -1.44613" Rotation="0 4.71239 -1.309" Scale="1 1 1" FileIndex="240" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1856 268439024">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6535,7 +6536,7 @@
                     <Var Name="FlickerOffPS" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268439025" Name="CathSlot" CreStamp="1674391293" ModStamp="1674391841" WorldPos="4.36876 1.15977 -1.02334" Rotation="-1.81977 -1.5708 0.510767" Scale="1 1 1" FileIndex="239" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1816 268439025">
+            <Entity ID="268439025" Name="CathSlot" CreStamp="1674391293" ModStamp="1674391841" WorldPos="4.36876 1.15977 -1.44613" Rotation="-1.81977 -1.5708 0.510767" Scale="1 1 1" FileIndex="239" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1816 268439025">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6593,7 +6594,7 @@
                     <Var Name="OffLamp" Value="CathSlot_lamp_right" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268439026" Name="CathTool" CreStamp="1674391300" ModStamp="1674400119" WorldPos="4.32319 1.25837 -1.13645" Rotation="0.785395 -1.5708 -0.523599" Scale="1 1 1" FileIndex="215" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1817 268439026">
+            <Entity ID="268439026" Name="CathTool" CreStamp="1674391300" ModStamp="1674400119" WorldPos="4.32319 1.25837 -1.55924" Rotation="0.785395 -1.5708 -0.523599" Scale="1 1 1" FileIndex="215" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1817 268439026">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6652,7 +6653,7 @@
                     <Var Name="HighlightActive" Value="true" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268439028" Name="computer_parts_diskdrive_2" CreStamp="1674391575" ModStamp="1674391633" WorldPos="4.7112 1.17639 -1.60337" Rotation="-4.84879 1.5708 -3.02156" Scale="1.5 1.5 1.5" FileIndex="385" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1815 268439028">
+            <Entity ID="268439028" Name="computer_parts_diskdrive_2" CreStamp="1674391575" ModStamp="1674391633" WorldPos="4.7112 1.17639 -0.763676" Rotation="1.4344 1.57114 -3.02156" Scale="1.5 1.5 1.5" FileIndex="385" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1815 268439028">
                 <UserVariables>
                     <Var Name="CastShadows" Value="true" />
                     <Var Name="IsAffectedByDecal" Value="true" />
@@ -6685,7 +6686,7 @@
                     <Var Name="CollideGroup" Value="" />
                 </UserVariables>
             </Entity>
-            <Entity ID="268439031" Name="CathSlot_lamp_right_off" CreStamp="1674391777" ModStamp="1674391783" WorldPos="4.36876 1.15977 -1.02334" Rotation="0 4.71239 -1.309" Scale="1 1 1" FileIndex="241" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1812 268439031">
+            <Entity ID="268439031" Name="CathSlot_lamp_right_off" CreStamp="1674391777" ModStamp="1674391783" WorldPos="4.36876 1.15977 -1.44613" Rotation="0 4.71239 -1.309" Scale="1 1 1" FileIndex="241" Active="true" Important="false" CulledByDistance="true" CulledByFog="true" UID="16 1812 268439031">
                 <UserVariables>
                     <Var Name="EventInstanceTag" Value="" />
                     <Var Name="CollideGroup" Value="" />
@@ -6748,6 +6749,59 @@
                     <Var Name="FlickerOffSound" Value="" />
                     <Var Name="FlickerOnPS" Value="" />
                     <Var Name="FlickerOffPS" Value="" />
+                </UserVariables>
+            </Entity>
+            <Entity ID="268439036" Name="CathTool_off" CreStamp="1674409065" ModStamp="1674409250" WorldPos="4.32319 1.25837 -1.55924" Rotation="0.785395 -1.5708 -0.523599" Scale="1 1 1" FileIndex="387" Active="true" Important="false" CulledByDistance="false" CulledByFog="true" UID="16 1810 268439036">
+                <UserVariables>
+                    <Var Name="EventInstanceTag" Value="" />
+                    <Var Name="CollideGroup" Value="" />
+                    <Var Name="UserVar" Value="" />
+                    <Var Name="DisableBreakable" Value="false" />
+                    <Var Name="FullGameSave" Value="false" />
+                    <Var Name="StaticPhysics" Value="true" />
+                    <Var Name="EffectsActive" Value="true" />
+                    <Var Name="InteractionDisabled" Value="true" />
+                    <Var Name="CastShadows" Value="true" />
+                    <Var Name="ColorMul" Value="1 1 1 1" />
+                    <Var Name="EffectColorMul" Value="0 0 0 1" />
+                    <Var Name="EffectBrightnessMul" Value="0" />
+                    <Var Name="IllumColor" Value="0 0 0 1" />
+                    <Var Name="IllumBrightness" Value="0" />
+                    <Var Name="IsAffectedByDecal" Value="false" />
+                    <Var Name="IsOccluder" Value="false" />
+                    <Var Name="UpdateBonesWhenCulled" Value="false" />
+                    <Var Name="OnBreakCallbackFunc" Value="" />
+                    <Var Name="ConnectionStateChangeCallback" Value="" />
+                    <Var Name="PlayerLookAtCallback" Value="" />
+                    <Var Name="PlayerLookAtCallbackAutoRemove" Value="false" />
+                    <Var Name="PlayerLookAtCheckCenterOfScreen" Value="true" />
+                    <Var Name="PlayerLookAtCheckRayIntersection" Value="true" />
+                    <Var Name="PlayerLookAtMaxDistance" Value="-1" />
+                    <Var Name="PlayerLookAtCallbackDelay" Value="0" />
+                    <Var Name="PlayerInteractCallback" Value="" />
+                    <Var Name="PlayerInteractCallbackAutoRemove" Value="false" />
+                    <Var Name="RecieveMessageCallback" Value="" />
+                    <Var Name="CC_Entities" Value="" />
+                    <Var Name="CC_Funcs" Value="" />
+                    <Var Name="ConnectedEntity" Value="" />
+                    <Var Name="ConnectedEntityInvertState" Value="false" />
+                    <Var Name="ConnectedEntityStatesUsed" Value="0" />
+                    <Var Name="ParentAttachEntity" Value="" />
+                    <Var Name="ParentAttachUseRotation" Value="true" />
+                    <Var Name="ParentAttachBody" Value="" />
+                    <Var Name="ParentAttachSocket" Value="" />
+                    <Var Name="ParentAttachSnap" Value="false" />
+                    <Var Name="ParentAttachLocked" Value="false" />
+                    <Var Name="ConnectedLight" Value="" />
+                    <Var Name="ConnectionLightAmount" Value="1" />
+                    <Var Name="ConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ConnectionLightUseSpec" Value="false" />
+                    <Var Name="ConnectionLightType" Value="Mul" />
+                    <Var Name="ExtraConnectedLight" Value="" />
+                    <Var Name="ExtraConnectionLightAmount" Value="1" />
+                    <Var Name="ExtraConnectionLightUseOnColor" Value="true" />
+                    <Var Name="ExtraConnectionLightUseSpec" Value="false" />
+                    <Var Name="ExtraConnectionLightType" Value="Mul" />
                 </UserVariables>
             </Entity>
         </Objects>
