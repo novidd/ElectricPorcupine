@@ -488,11 +488,12 @@ class cScrMap : iScrMap
 				Button_SetDisabled("cave_panel_2", false);
 				Sound_CreateAtEntity("PanelUnlock", "Entities_Station/doors/upsilon/upsilon_button/upsilon_button_unlock", "cave_panel_2");
 				
-				Player_SetMoveSpeedMul(0.75f);
+				Player_SetMoveSpeedMul(0.875f);
 			}
 			else if(Sequence_DoStepAndWait(0.5f))
 			{
-				// Turn on the low power lights
+				// Turn on the low power (red) lights
+				// Look for sfx to use when each section of power turn on
 				Button_SetDisabled("cave_panel_2", false);
 				
 				// Player tries to open the door leading to the stairs
@@ -515,6 +516,9 @@ class cScrMap : iScrMap
 			}
 			Sequence_End();
 		}
+		
+		// Code a scenario if the player manages to pick up the omnitool
+		// Code a scenario where the player clicks on the right panel
 		
 		//-------------------------------------------------------
 		
@@ -681,7 +685,7 @@ class cScrMap : iScrMap
 				// Cath call out here
 				Voice_Play("CatherineCallout");
 			}
-			else if (Sequence_DoStepAndWait(5.0f))
+			else if (Sequence_DoStepAndWait(8.0f))
 			{
 				Effect_Fade_Out(0);
 				Sound_FadeGlobalVolume(0.0f, 4.0f, eSoundEntryType_AllExceptGui);
@@ -704,8 +708,6 @@ class cScrMap : iScrMap
 		
 		void CathTerminalBootUpSound()
 		{
-			////////////////////
-			//Booting up sound sequence
 //			Sound_CreateAtEntity("CathTerminalBootUpSound", "03_02_omicron_inside/SFX/diving_suit_computer/startup", "CatherineTerminalSource", 0.0f, false, 1.0f);
 			Sound_Play("CathTerminalBootUpSound", 0);
 			Map_AddTimer("Timer_DiveSuitComputerIdleSound", 38.5f, "CathTerminalIdleSound");
@@ -810,7 +812,7 @@ class cScrMap : iScrMap
 				Terminal_SetGuiActive("CathTerminal", false);
 				Terminal_SetGuiActive("PowerStatusTerminal", false);
 				Entity_SetActive("CathSlot", false);
-				Entity_SetActive("CathTool", false);
+//				Entity_SetActive("CathTool", false);
 				Light_SetVisible("omnislot_light*", false);
 				
 				// Particles
@@ -837,23 +839,20 @@ class cScrMap : iScrMap
 			Entity_PlayAnimation("BrandonTop", "sit_about_to_leave", 0, true);
 		}
 	 
-	 //} END SCENE X
+	//} END SCENE X
  
  
-	 /////////////////////////////////////////
-	 // ==============
-	 // TERMINALS
-	 // ==============
-	 //{//////////////////////////////////////
+	/////////////////////////////////////////
+	// ==============
+	// TERMINALS
+	// ==============
+	//{//////////////////////////////////////
  
 		void CathTerminal_OnGui(const tString&in asEntityName, float afTimeStep)
 		{
-			//////////////////////////////////////
-			// Display Catherine!
 			StationGuiBG_Scanlines();
 			StationGuiBG_Backdrop();
 			Depth_ImGui_CathPortrait(afTimeStep);
-			//ImGui_DoImage(cImGuiGfx("catherine_large"), cVector3f(0,0,1), ImGui_NrmSizeGroup(cVector2f(1, 1)));
 			return;
 		}
 	
