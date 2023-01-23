@@ -355,6 +355,7 @@ class cScrMap : iScrMap
 				Sound_FadeGlobalVolume(0.0f, 2.0f, eSoundEntryType_World);
 				
 				Player_Teleport("IntroBPos");
+				Player_StartLookAt("IntroLookAtArea_1", 5, 10, 100);
 				
 				mlid_VideoDist = Effect_VideoDistortion_Start(0.4, 1.0, 0.0, 0.5);
 				mlid_Breath = Emotion_StartBackgroundBreath(eBreathType_Fear, 1, 1, -1, 0, 0);
@@ -391,6 +392,7 @@ class cScrMap : iScrMap
 				Sound_FadeGlobalVolume(0.67f, 0, eSoundEntryType_GuiWorld);
 				
 				Player_FadeFOVMulTo(0.85f, 5);
+				Player_StopLookAt(1);
 				
 				Effect_Fade_In(0.1);
 				Effect_RadialBlur_FadeSize(mlid_RadialBlur, 0.1f, 7);
