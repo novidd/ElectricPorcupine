@@ -502,11 +502,12 @@ class cScrMap : iScrMap
 				// NPC_Creatures/Foley/InWorld/Flesher/idle_twitch_3
 				Sound_CreateAtEntity("puppet_noise", "NPC_Creatures/Foley/InWorld/Flesher/idle_twitch_3", "puppet_end");
 			}
-			else if(Sequence_DoStepAndWait(2.0f))
+			else if(Sequence_DoStepAndWait(0.5f))
 			{
 				Button_SetDisabled("cave_panel_2", false);
-				Sound_CreateAtEntity("PanelUnlock", "Entities_Station/doors/upsilon/upsilon_button/upsilon_button_unlock", "cave_panel_2");
-				
+//				Sound_CreateAtEntity("PanelUnlock", "Entities_Station/doors/upsilon/upsilon_button/upsilon_button_unlock", "cave_panel_2");
+				Sound_Play("PanelUnlock", 0);
+					
 				Player_SetMoveSpeedMul(0.925f);
 				Player_SetJumpDisabled(true);
 			}
@@ -514,7 +515,6 @@ class cScrMap : iScrMap
 			{
 				// Turn on the low power (red) lights
 				// Look for sfx to use when each section of power turn on
-				Button_SetDisabled("cave_panel_2", false);
 //				Lamp_SetLit("low_powerlamp_*", true, false);
 				
 				// Player tries to open the door leading to the stairs
@@ -711,10 +711,15 @@ class cScrMap : iScrMap
 				// Cath call out here
 				Voice_Play("CatherineCallout");
 			}
-			else if (Sequence_DoStepAndWait(12.0f))
+			else if (Sequence_DoStepAndWait(11.0f))
 			{
 				Effect_Fade_Out(0);
 				Sound_FadeGlobalVolume(0.0f, 6.0f, eSoundEntryType_AllExceptGui);
+			}
+			else if (Sequence_DoStepAndWait(1.0f))
+			{
+				// Credits music here
+				Music_PlayExt("EndCredits", false, 1.0f, 1.0f, 0.0f, 0.0f, eMusicPrio_OverrideAll, false);
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
@@ -730,6 +735,7 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(5.0f))
 			{
 				Credits_Stop(0.0f);
+				Music_Stop(1.0f, eMusicPrio_OverrideAll);
 				PauseMenu_Enabled(true);
 				Inventory_SetEnabled(true);
 				MainMenu_GameOver();
