@@ -425,6 +425,7 @@ class cScrMap : iScrMap
 			{
 				Lamp_SetLit("brandon_lamp", false, false);
 				Effect_Screen_FadeAlpha(mlid_Infection, 0.05f, 1);
+				Effect_DoF_FadeFalloff(mlid_DoF, 0.25f, 4);
 			}
 			else if (Sequence_DoStepAndWait(0.5f))
 			{
