@@ -362,8 +362,6 @@ class cScrMap : iScrMap
 				
 				// Power off sounds effect here
 				Sound_CreateAtEntity("power_out", "02_05_theta/sweeteners/wau_flower_lights_out", "player");
-				
-				// Play music
 			}
 			else if (Sequence_DoStepAndWait(1.0f))
 			{
@@ -419,7 +417,8 @@ class cScrMap : iScrMap
 				// Increaes heartbeat here temporarily
 				Emotion_StartHeartbeat(0.35, 0.5, 1, 5, 0, 2);
 				
-				// Fade out the music here to silence
+				// Play ambience
+				Music_Play("01_02_shortcircuit", 0.35f, true, eMusicPrio_SceneAmb);
 			}
 			else if (Sequence_DoStepAndWait(4.0f))
 			{
@@ -428,6 +427,7 @@ class cScrMap : iScrMap
 				Effect_DoF_FadeFalloff(mlid_DoF, 0.25f, 4);
 				
 				// Slowly fade in some low music
+//				Music_Play("01_02_shortcircuit", 0.5f, true, eMusicPrio_SceneAmb);
 			}
 			else if (Sequence_DoStepAndWait(0.5f))
 			{
@@ -450,6 +450,9 @@ class cScrMap : iScrMap
 			else if (Sequence_DoStepAndWait(4.0f))
 			{
 				Button_SetSwitchedOn("cave_panel_puppet", true, true);
+				
+				// Music
+				Music_Stop(0.1f, eMusicPrio_SceneAmb);
 				
 				Player_SetFlashlightActive(false);
 				Player_SetFlashlightDisabled(true);
@@ -706,10 +709,10 @@ class cScrMap : iScrMap
 				// Cath call out here
 				Voice_Play("CatherineCallout");
 			}
-			else if (Sequence_DoStepAndWait(10.0f))
+			else if (Sequence_DoStepAndWait(12.0f))
 			{
 				Effect_Fade_Out(0);
-				Sound_FadeGlobalVolume(0.0f, 5.0f, eSoundEntryType_AllExceptGui);
+				Sound_FadeGlobalVolume(0.0f, 6.0f, eSoundEntryType_AllExceptGui);
 			}
 			else if (Sequence_DoStepAndWait(2.0f))
 			{
